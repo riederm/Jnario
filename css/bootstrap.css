@@ -3931,7 +3931,7 @@ a.thumbnail:hover {
 }
 .hero-unit {
   padding-top: 30px;
-  padding-left: 30px;
+  padding-left: 0px;
   position: relative;
 }
 .hero-unit h1 {
