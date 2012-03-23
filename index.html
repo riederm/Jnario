@@ -8,6 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+
 <!-- Le styles -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/jnario.min.css" rel="stylesheet">
@@ -56,7 +57,7 @@ $(function(){
 	<header class="header">
 		<div id="home" class="hero-unit container">
 			<h1>Jnario</h1>
-			<h4>Executable Specifications for Java.</h4>
+			<p>Executable Specifications for Java.</p>
 			<div id="myCarousel" class="carousel slide hidden-phone">
 				<div class="carousel-inner">
 					<div class="item active">
@@ -111,6 +112,7 @@ $(function(){
               <li><a href="#introduction">Introduction</a></li>
               <li><a href="#documentation">Documentation</a></li>
               <li><a href="#installation">Installation</a></li>
+              <li><a href="#support">Support</a></li>
               <li><a href="#about">About</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -123,9 +125,13 @@ $(function(){
 			<section id="introduction" class="row">
 				<h1>Introduction</h1>
 				<p>Jnario is a framework for writing executable specifications
-					for Java. It provides all the goodness of Xtend while being specifically
+					for Java. It provides two different languages, one for writing 
+					high-level acceptance specifications and one for writing low-level unit
+					specifications. Both languages are specifically tailored to their 
+
+					It provides all the goodness of Xtend while being specifically
 					tailored to writing acceptance and unit tests. It is easy to 
-					integrate as Jnario specifications are compiled to plain Java Junit tests.
+					integrate as Jnario specifications are compiled to plain Java classes that can be run with JUnit.
 					 </p>
 				
 				<!--<p>There is so much more to testing than just checking whether
@@ -150,8 +156,7 @@ $(function(){
     When I press "add"
       <span class="code">calculator.press(args.first)</span>
     Then the result should be "120" on the screen
-      <span class="code">calculator.result => args.first</span>
-}</pre>
+      <span class="code">calculator.result => args.first</span></pre>
 				<h2>Unit Specifications</h2>
 				<p></p>
 				<pre class="prettyprint lang-spec">
@@ -184,14 +189,14 @@ describe Stack{
 				<h1>Installation</h1>
 				<ul>
 					<li>Jnario requires <a href="eclipse.org/downloads/">Eclipse
-							3.6</a> with <a href="http://www.xtext.org">Xtext 2.3</a> and <a
-						href="http://www.eclipse.org/xtend/">Xtend 2.3</a>. You can
-						install both via the Xtext update site: 
+							&#8805;3.6</a> with <a href="http://www.xtext.org">Xtext 2.3</a> and <a
+						href="http://www.eclipse.org/xtend/">Xtend 2.3</a>. Both can be
+						installed via the Xtext update site: 
 						<pre>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/</pre>
 					</li>
 					<li>Jnario will be officially released together with Xtext 2.3 in June 2012. Stable snapshots of Jnario
 						can be installed via this update site;
-						<pre>http://www.jnario.org/updates/snapshot/</pre>.
+						<pre>http://www.jnario.org/updates/snapshot/</pre>
 					</li>
 				</ul>
 			</section>
@@ -200,14 +205,13 @@ describe Stack{
 				<h1>Documentation</h1>
 				<p>Coming soon...</p>
 			</section>
-			<section class="row">
+			<section id="support" class="row">
 				<h1>Support</h1>
 				<ul>
 					<li>Visit <a href="https://github.com/bmwcarit/Jnario">Github</a> for the source code.
 					</li>
-					<li>Submit issues and feature request at <a	href="https://github.com/bmwcarit/Jnario/issues">Github</a>.
-					<li>For general questions head over to the <a href="http://groups.google.com/group/jnario">discussion group</a>.
-					</li>
+					<li>Submit issues and feature request at <a	href="https://github.com/bmwcarit/Jnario/issues">Github Issues</a>.</li>
+					<li>For general questions head over to the <a href="http://groups.google.com/group/jnario">discussion group</a>.</li>
 				</ul>
 			</section>
 			<section  id="about" class="row">
