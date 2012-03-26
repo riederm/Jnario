@@ -159,14 +159,13 @@ $(function(){
         </p>
 		<h2>Features</h2>
 		<ul>
-			<li>Cucumber-style acceptance tests without boilerplate.</li>
-			<li>Unit tests without boilerplate.</li> 
-			<li>Full interoparability with Java.</li>
-			<li>Easy integration due to specs being compiled to plain JUnit tests.</li>
-			<li>Debugging support.</li>
+      <li>Full interoparability with Java.</li>
+      <li>Generation of <a href="org/jnario/spec/tests/documentation/JnarioSpecsTutorialSpec.html#Generating_Documentation">textual specifications</a>.</li> 
+      <li><a href="/org/jnario/spec/tests/integration/SpecsExampleTablesSpec.html">Self-explanatory assertions</a>.</li>
+      <li>Easy to integrate into existing Java projects.</li>
+      <li>Full Eclipse support with debugging.</li>
 		</ul>
-        
-        <h2>Acceptance Specifications</h2>
+    <h2>Acceptance Specifications</h2>
         <p>Acceptance specifications in Jnario focus on the <a href="http://www.slideshare.net/lunivore/behavior-driven-development-11754474">design</a> and <a href="http://dannorth.net/whats-in-a-story/">communication</a> part of developing software.
         	You can describe the features of your application
         	in a business readable language similar to <a href="http://cukes.info/">Cucumber</a>, but with one
@@ -189,6 +188,8 @@ $(function(){
     Then the result should be "120" 
       <span class="code">calculator.result =&gt; args.first</span></pre>
         <h2>Unit Specifications</h2>
+        <p>With Jnario it is possible to write unit tests without unecessary boilerplate code.
+        At the same time, they  while being as descriptive as possible.</p>
         <pre class="prettyprint lang-spec">
 package example
 
