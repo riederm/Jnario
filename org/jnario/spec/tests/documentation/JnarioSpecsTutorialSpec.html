@@ -120,7 +120,7 @@ import java.util.Stack
 describe Stack{
   ...
 }
-</pre><p>This way you achieve a strong link between specification and its target that works even if the target class is renamed. Jnario will also implicitly create a field called <code>subject</code> of the target type (<a href="/org/jnario/spec/tests/documentation/ImplicitSubject.html">more...</a>). Therefore we can get rid of the subject field in our stack specification.</p><p><span class="label label-important">Important</span> The implicit subject works only if the target class has a default constructor without any arguments, but it is also possible to use Guice or other frameworks to automatically create the subjects (<a href="/org/jnario/spec/tests/documentation/SpecInstantiation.html">more...</a>).</p>
+</pre><p>This way you achieve a strong link between specification and its target that works even if the target class is renamed. Jnario will also implicitly create a field called <code>subject</code> of the target type (<a href="/org/jnario/spec/tests/integration/ImplicitSubjectSpec.html">more...</a>). Therefore we can get rid of the subject field in our stack specification.</p><p><span class="label label-important">Important</span> The implicit subject works only if the target class has a default constructor without any arguments, but it is also possible to use Guice or other frameworks to automatically create the subjects (<a href="/org/jnario/spec/tests/integration/SpecInstantiationSpec.html">more...</a>).</p>
 <pre class="prettyprint lang-spec">
 package demo
 
@@ -182,7 +182,7 @@ describe "Addition" {
  }
  fact additions.forEach[a + b should be sum]
 }
-</pre><p>The <code>forEach</code> extension method expects a closure as argument. Within the closure you can directly access all values in a row by their column name. The great thing about example tables is that they will give you detailed error messages when one of the assertions fails (<a href="/org/jnario/spec/tests/documentation/ExampleTables">more...</a>):</p>
+</pre><p>The <code>forEach</code> extension method expects a closure as argument. Within the closure you can directly access all values in a row by their column name. The great thing about example tables is that they will give you detailed error messages when one of the assertions fails (<a href="/org/jnario/spec/tests/integration/SpecsExampleTablesSpec.html">more...</a>):</p>
 <pre class="prettyprint lang-none">
 java.lang.AssertionError: additions failed
 
@@ -331,7 +331,7 @@ describe "Helper Methods & Fields"{
 </p>
 </li></ul>
 <h3>Writing Assertions</h3>
-<p><p>Jnario provides different statements for writing assertions (<a href="/org/jnario/spec/tests/documentation/Assertion.html">more...</a>).</p>
+<p><p>Jnario provides different statements for writing assertions (<a href="/org/jnario/spec/tests/integration/AssertionSpec.html">more...</a>).</p>
 </p>
 <ul><li><p>
 <strong>'assert'</strong>
