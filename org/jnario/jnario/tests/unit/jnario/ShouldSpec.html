@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>SpecScopeProvider</title>
+<title>Should</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,30 +24,33 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>SpecScopeProvider</h1>
+				<h1>Should</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<ul><li><p id="should_resolve_operations_from_surrounding_ExampleGroup_s_target">
-<strong>should resolve operations from surrounding ExampleGroup's target</strong>
+<ul><li><p id="_isNot__is_false_if_for__1_should_be_1">
+<strong>'isNot' is false if for '1 should be 1</strong>
 <pre class="prettyprint lang-spec">
-parseSpec('
+parseSpec('''
 	package bootstrap
-	
-	import org.junit.Assert
+	describe "Should"{
+		fact 1 should be 1
+	}
+''')
 
-	describe Assert{
-		describe assertNotNull(String, Object){
-			"assertNotNull(String, Object)"{
-			}
-		}
-	} 
+assert !query.first(typeof(Should)).isNot</pre>
+</p>
+</li><li><p id="_isNot__is_true_if_for__1_should_not_be_1">
+<strong>'isNot' is true if for '1 should not be 1</strong>
+<pre class="prettyprint lang-spec">
+parseSpec('''
+	package bootstrap
+	describe "Should"{
+		fact 1 should not be 1
+	}
+''')
 
-'    
-)
-val exampleGroup = query.second(typeof(ExampleGroup))
-contains(targetOperation(exampleGroup), "assertNotNull(String, Object)") 
-contains(targetOperation(exampleGroup), "assertNotNull")</pre>
+assert query.first(typeof(Should)).isNot</pre>
 </p>
 </li></ul>
 				</div>
