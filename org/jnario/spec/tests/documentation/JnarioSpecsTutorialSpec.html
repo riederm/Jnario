@@ -12,12 +12,12 @@
     <![endif]-->
 
 <!-- Le styles -->
-<link rel="stylesheet" href="../../../../../css/bootstrap.min.css">
-<link rel="stylesheet" href="../../../../../css/bootstrap-responsive.min.css">
-<link rel="stylesheet" href="../../../../../css/custom.css">
-<link rel="stylesheet" href="../../../../../css/prettify.css">
-<script type="text/javascript" src="../../../../../js/prettify.js"></script>
-<script type="text/javascript" src="../../../../../js/lang-jnario.js"></script>
+<link rel="stylesheet" href="..//css/bootstrap.min.css">
+<link rel="stylesheet" href="..//css/bootstrap-responsive.min.css">
+<link rel="stylesheet" href="..//css/custom.css">
+<link rel="stylesheet" href="..//css/prettify.css">
+<script type="text/javascript" src="..//js/prettify.js"></script>
+<script type="text/javascript" src="..//js/lang-jnario.js"></script>
 </head>
 
 <body onload="prettyPrint()">
@@ -56,7 +56,7 @@ describe "A Stack"{
     new Stack().size =&gt; 0
   }
   fact "increases its size when pushing an element"{
-    val subject = new Stack
+    val subject = new Stack&lt;String&gt;
     subject.push("A String")
     subject.size =&gt; 1
   }
@@ -72,7 +72,7 @@ describe "A Stack"{
  }
  // ...
 }
-</pre><p>we see that the string description looks pretty similar to the actual code. We can make this even more obvious by replacing <code>new Stack().size =&gt; 0</code> with <code>new Stack().size should be 0</code>, using the more descriptive <code>should be</code> assertion instead of <code>=&gt;</code>. In Jnario you can avoid such redundancies between code and description by leaving the description out. The code becomes the actual description:</p>
+</pre><p>we see that the string description looks pretty similar to the actual code. We can make this even more obvious by replacing <code>new Stack().size =&gt; 0</code> with <code>new Stack().size should be 0</code>, using the more descriptive <code>should be</code> assertion ìinstead of <code>=&gt;</code>. In Jnario you can avoid such redundancies between code and description by leaving the description out. The code becomes the actual description:</p>
 <pre class="prettyprint lang-none">A Stack
   - new Stack().size should be 0
   - increases its size when pushing an element</pre><p><span class="label label-important">Important</span> Facts without description can only have a single statement. If you need more statements, you should add a description.</p><p>Here is the updated version of our specification:</p>
@@ -84,7 +84,7 @@ import java.util.Stack
 describe "A Stack"{
   fact new Stack().size should be 0
   fact "increases its size when pushing an element"{
-    val subject = new Stack
+    val subject = new Stack&lt;String&gt;
     subject.push("A String")
     subject.size =&gt; 1
   }
@@ -99,7 +99,7 @@ package demo
 import java.util.Stack
 
 describe "A Stack"{
-  Stack subject = new Stack
+  Stack&lt;String&gt; subject = new Stack&lt;String&gt;
   fact "initially empty" {
     subject.size =&gt; 0
   }
@@ -341,14 +341,13 @@ assert true
 assert new Stack().empty
 assert "Hello".startsWith("H")</pre>
 </p>
-</li><li><p id="_should____must__and_____">
-<strong>'should', 'must' and `=>`</strong>
-<p>If you want to express how an object should behave, you can use <code>should</code> or <code>must</code>. It passes if the result of the left expression is equal to the result of the right expression. You can also use <code>not</code> to assert that both expressions have different results. You have already seen the short cut <code>=&gt;</code> which has the same effect as <code>should be</code>.</p>
+</li><li><p id="_should__and_____">
+<strong>'should' and `=>`</strong>
+<p>If you want to express how an object should behave, you can use <code>should</code>. It passes if the result of the left expression is equal to the result of the right expression. You can also use <code>not</code> to assert that both expressions have different results. You have already seen the short cut <code>=&gt;</code> which has the same effect as <code>should be</code>.</p>
 <pre class="prettyprint lang-spec">
 true should be true
-"hello" must be "hello"
+false =&gt; false
 1 + 1 should not be 1 
-"hello".toUpperCase must not be "hello"
 1 + 1 =&gt; 2</pre>
 </p>
 </li><li><p id="Self_explaining_failures">
@@ -366,9 +365,9 @@ errorMessage[assert x == 1 && y == 0].is('''
        
 val greeting = "hello"        
 errorMessage[greeting.toUpperCase should not be "HELLO"].is('''
-  Expected x.toUpperCase should not be "HELLO" but:
-     x.toUpperCase is "HELLO"
-     x is "hello"''')</pre>
+  Expected greeting.toUpperCase should not be "HELLO" but:
+       greeting.toUpperCase is "HELLO"
+       greeting is "hello"''')</pre>
 </p>
 </li></ul>
 				</div>
