@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Strings</title>
+<title>FeatureValueConverter</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,57 +24,29 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>Strings</h1>
+				<h1>FeatureValueConverter</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<h3 id="null">StartsWithWord[String, String]</h3>
+<h3 id="null">ToValue[String, INode]</h3>
 <p></p>
-<ul><li><h4 id="examples">Examples</h4>
+<ul><li><p id="subject_toValue__Prefix__text_n___null______text_">
+<strong>subject.toValue["Prefix: text\; ", null] => "text"</strong>
+</p>
+</li><li><p id="subject_toValue_null__null_____null">
+<strong>subject.toValue[null, null] => null</strong>
+</p>
+</li><li><p id="subject_toValue__xxx___null______xxx_">
+<strong>subject.toValue["xxx", null] => "xxx"</strong>
+</p>
+</li></ul>
+<h3 id="null">ToString[String]</h3>
 <p></p>
-<table class="table table-striped table-bordered table-condensed">
-	<thead>
-		<tr>
-		<th>string</th>
-		<th>word</th>
-		<th>index</th>
-		</tr>
-	</thead>
-	<tbody>
-	<tr>
-		<td>""</td>
-		<td>"hello"</td>
-		<td>-1</td>
-	</tr>
-	<tr>
-		<td>"hello hi"</td>
-		<td>"hello"</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>" hello"</td>
-		<td>"hello"</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>"\thello"</td>
-		<td>"hello"</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>"\t hello"</td>
-		<td>"hello"</td>
-		<td>2</td>
-	</tr>
-	<tr>
-		<td>"\t hell o"</td>
-		<td>"hello"</td>
-		<td>-1</td>
-	</tr>
-	</tbody>
-</table>
-</li><li><p id="examples_forEach_string_startsWithWord_word_____index_">
-<strong>examples.forEach[string.startsWithWord[word] => index]</strong>
+<ul><li><p id="subject_toString__text_______Prefix_text_n_">
+<strong>subject.toString["text"] => "Prefix:text\; "</strong>
+</p>
+</li><li><p id="subject_toString_null_____null">
+<strong>subject.toString[null] => null</strong>
 </p>
 </li></ul>
 				</div>

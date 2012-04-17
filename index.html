@@ -53,7 +53,28 @@ $(function(){
 </head>
 
 <body  data-spy="scroll">
-
+  <!-- navbar -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav row">
+              <li class="active"><a href="#home">Jnario</a></li>
+              <li><a href="#introduction">Introduction</a></li>
+              <li><a href="#documentation">Documentation</a></li>
+              <li><a href="#installation">Installation</a></li>
+              <li><a href="#support">Support</a></li>
+              <li><a href="#about">About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
   <!-- the header -->
   <header class="header">
     <div id="home" class="hero-unit container">
@@ -121,23 +142,7 @@ $(function(){
       
     </div>
   </header>
-  <!-- header -->
-    <div class="navbar navbar-fixed-bottom">
-      <div class="navbar-inner">
-        <div class="container">
-          <div class="nav-collapse">
-            <ul class="nav row">
-              <li class="active"><a href="#home">Home</a></li>
-              <li><a href="#introduction">Introduction</a></li>
-              <li><a href="#documentation">Documentation</a></li>
-              <li><a href="#installation">Installation</a></li>
-              <li><a href="#support">Support</a></li>
-              <li><a href="#about">About</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+
   <!-- the content -->
   <div class="content">
     <div class="container">
@@ -230,17 +235,16 @@ describe Stack{
       <section id="documentation" class="row">
         <h1>Documentation</h1>
         <ul>
-		  <li><a href="org/jnario/feature/documentation/JnarioFeaturesTutorialSpec.html">Tutorial: Writing Acceptance Specifications with Jnario</a></li>
-		  <li><a href="org/jnario/spec/tests/documentation/JnarioSpecsTutorialSpec.html">Tutorial: Writing Unit Specifications with Jnario</a></li>
+		  <li>Tutorial: <a href="org/jnario/feature/documentation/JnarioFeaturesTutorialSpec.html">Writing Acceptance Specifications</a></li>
+		  <li>Tutorial: <a href="org/jnario/spec/tests/documentation/JnarioSpecsTutorialSpec.html">Writing Unit Specifications</a></li>
 		</ul>
       </section>
       <section id="support" class="row">
         <h1>Support</h1>
         <ul>
-          <li>Visit <a href="https://github.com/bmwcarit/Jnario">Github</a> for the source code.
-          </li>
           <li>Submit issues and feature request at <a  href="https://github.com/bmwcarit/Jnario/issues">Github Issues</a>.</li>
           <li>For general questions head over to the <a href="http://groups.google.com/group/jnario">discussion group</a>.</li>
+          <li>Visit <a href="https://github.com/bmwcarit/Jnario">Github</a> for the source code.</li>
         </ul>
       </section>
       <section  id="about" class="row">
@@ -253,12 +257,9 @@ describe Stack{
       </section>
     </div>
   </div>
-
   <!-- /container -->
 
-
-
-  <!-- the javascript -->
+  <!-- Le javascript -->
   <script src="js/jnario.min.js"></script>
   <script src="js/application.js"></script>
 

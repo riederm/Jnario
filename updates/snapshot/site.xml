@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.jnario_0.1.0.201203282044.jar" id="org.jnario" version="0.1.0.201203282044">
+   <feature url="features/org.jnario_0.1.0.201204171329.jar" id="org.jnario" version="0.1.0.201204171329">
       <category name="Jnario"/>
    </feature>
-   <feature url="features/org.jnario.ui_0.1.0.201203282044.jar" id="org.jnario.ui" version="0.1.0.201203282044">
+   <feature url="features/org.jnario.ui_0.1.0.201204171329.jar" id="org.jnario.ui" version="0.1.0.201204171329">
       <category name="Jnario"/>
    </feature>
    <category-def name="Jnario" label="Jnario"/>
