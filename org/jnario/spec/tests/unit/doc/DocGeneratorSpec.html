@@ -124,7 +124,11 @@ generateDoc('''
 	} 
 ''')
 val scenarioDoc = generatedFile("ExampleSpec.html")
+<<<<<<< HEAD
 assert scenarioDoc.contains('&lt;h4 id="myExample"&gt;MyExample&lt;/h4&gt;')
+=======
+assert scenarioDoc.contains('&lt;h4&gt;&lt;a name="myExample"&gt;&lt;/a&gt;MyExample&lt;/h4&gt;')
+>>>>>>> 6b492a873a767361d6ef469c3dfa09fc13f07a52
 assert scenarioDoc.contains("&lt;th&gt;a&lt;/th&gt;")
 assert scenarioDoc.contains("&lt;th&gt;b&lt;/th&gt;")
 assert scenarioDoc.contains("&lt;td&gt;1&lt;/td&gt;")
