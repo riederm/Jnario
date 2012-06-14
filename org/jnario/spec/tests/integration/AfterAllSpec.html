@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>References for steps</title>
+<title>AfterAll</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,47 +24,36 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>References for steps</h1>
+				<h1>AfterAll</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<p></p>
-<h3>Scenario: Defining a step and using it in the same scenario
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Referencing steps with different keyword
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Using fields from other steps
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with a field</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>Then</strong> it should be successful</p>
-<ul>
-</ul>
-</li>
-</ul>
+<p>@author Sebastian Benz - Initial contribution and API</p>
+<ul><li><p  id="should_be_executed_after_all_tests"><strong>should be executed after all tests</strong>
+<pre class="prettyprint lang-spec">
+val spec = '
+	package bootstrap 
+	
+	describe "AfterAll"{
+		
+		static int afterExecutionCount = 0
+		
+		fact "should be executed after all tests (1)"{
+			afterExecutionCount should be 0
+		}	
+		
+		fact "should be executed after all tests (2)"{
+			afterExecutionCount should be 0
+		}	
+		
+		after all{
+			afterExecutionCount = afterExecutionCount + 1
+		}
+	}
+'
+spec.executesSuccessfully</pre>
+</p>
+</li></ul>
 				</div>
 			</div>
 		</div> <!-- /content -->

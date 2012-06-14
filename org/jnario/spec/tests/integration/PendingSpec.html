@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>References for steps</title>
+<title>Pending</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,47 +24,29 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>References for steps</h1>
+				<h1>Pending</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<p></p>
-<h3>Scenario: Defining a step and using it in the same scenario
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Referencing steps with different keyword
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Using fields from other steps
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with a field</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>Then</strong> it should be successful</p>
-<ul>
-</ul>
-</li>
-</ul>
+<ul><li><p  id="ignores_empty_examples_during_example_runs"><strong>ignores empty examples during example runs</strong>
+<pre class="prettyprint lang-spec">
+val spec = '
+	package bootstrap
+
+	import org.junit.*
+
+	describe "Pending" {
+
+		fact "has no implementation in block expression"{
+		} 
+		
+		fact "has no body"
+				
+	}
+'
+assertThat(execute(spec), ignoreCountIs(2))</pre>
+</p>
+</li></ul>
 				</div>
 			</div>
 		</div> <!-- /content -->

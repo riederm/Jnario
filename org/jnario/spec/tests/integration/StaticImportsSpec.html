@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>References for steps</title>
+<title>StaticImports</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,47 +24,29 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>References for steps</h1>
+				<h1>StaticImports</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<p></p>
-<h3>Scenario: Defining a step and using it in the same scenario
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Referencing steps with different keyword
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Using fields from other steps
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with a field</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>Then</strong> it should be successful</p>
-<ul>
-</ul>
-</li>
-</ul>
+<ul><li><p  id="should_resolve_static_imports"><strong>should resolve static imports</strong>
+<pre class="prettyprint lang-spec">
+val spec = '
+	package bootstrap
+	
+	import static org.junit.Assert.*
+	
+	describe "Example" {
+	
+		fact "should resolve static imports"{
+			assertTrue(true) 
+		} 
+				
+	}
+'
+val result = org::jnario::jnario::test::util::SpecExecutor::execute(spec)
+org::junit::Assert::assertThat(result, org::jnario::jnario::test::util::ResultMatchers::successful)</pre>
+</p>
+</li></ul>
 				</div>
 			</div>
 		</div> <!-- /content -->

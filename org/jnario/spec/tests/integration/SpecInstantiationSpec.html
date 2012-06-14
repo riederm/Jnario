@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>References for steps</title>
+<title>Spec Instantiation</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,47 +24,41 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>References for steps</h1>
+				<h1>Spec Instantiation</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<p></p>
-<h3>Scenario: Defining a step and using it in the same scenario
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Referencing steps with different keyword
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Using fields from other steps
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with a field</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>Then</strong> it should be successful</p>
-<ul>
-</ul>
-</li>
-</ul>
+<p>It is possible to customize the instantiation of tests and subjects.</p>
+<pre class="prettyprint">
+package org.jnario.lib;
+
+import com.google.inject.Guice;
+import com.google.inject.util.Modules;
+
+public class GuiceBasedTestInstantiator extends AbstractTestInstantiator {
+  public Object createTest(Class<?> klass) throws Exception {
+    return Guice.createInjector(Modules.EMPTY_MODULE).getInstance(klass);
+  }
+}
+</pre>
+<ul><li><p  id="how_to_use_a_custom_test_instantiator"><strong>how to use a custom test instantiator</strong>
+<pre class="prettyprint lang-spec">
+package bootstrap
+
+import org.jnario.runner.InstantiateWith
+import org.jnario.jnario.test.util.GuiceBasedTestInstantiator
+import com.google.inject.Inject
+
+@InstantiateWith(typeof(GuiceBasedTestInstantiator))
+describe GuiceBasedTestInstantiator {
+  
+  @Inject String toInject
+  
+  fact toInject should not be null
+      
+}</pre>
+</p>
+</li></ul>
 				</div>
 			</div>
 		</div> <!-- /content -->

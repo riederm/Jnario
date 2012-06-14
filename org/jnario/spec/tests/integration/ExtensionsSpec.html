@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>References for steps</title>
+<title>Extensions</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,47 +24,43 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>References for steps</h1>
+				<h1>Extensions</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<p></p>
-<h3>Scenario: Defining a step and using it in the same scenario
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Referencing steps with different keyword
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Using fields from other steps
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with a field</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>Then</strong> it should be successful</p>
-<ul>
-</ul>
-</li>
-</ul>
+<p>Extensions can be used to share common setup and teardown behavior across different specifications.</p>
+<ul><li><p  id="all_setup_and_tear_down_methods_in_extensions_will_be_executed"><strong>all setup and tear down methods in extensions will be executed</strong>
+<pre class="prettyprint lang-spec">
+execute('''
+	package bootstrap
+
+	import org.jnario.spec.tests.integration.ExtensionExample
+
+	describe "Extension"{
+		extension ExtensionExample = new ExtensionExample()
+
+		fact "test 1"{
+			ExtensionExample::executedMethods += "ExtensionSpec#test1"
+		}
+		
+		fact "test 2"{
+			ExtensionExample::executedMethods += "ExtensionSpec#test2"
+		}
+	}
+''')
+
+executedMethods =&gt; newArrayList(
+	"ExtensionExample#beforeClass", 
+	"ExtensionExample#before",  
+	"ExtensionSpec#test1",  
+	"ExtensionExample#after",  
+	"ExtensionExample#before",
+	"ExtensionSpec#test2",  
+	"ExtensionExample#after",
+	"ExtensionExample#afterClass"
+)</pre>
+</p>
+</li></ul>
 				</div>
 			</div>
 		</div> <!-- /content -->

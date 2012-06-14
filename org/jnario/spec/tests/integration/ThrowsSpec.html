@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>References for steps</title>
+<title>Throws</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,47 +24,46 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>References for steps</h1>
+				<h1>Throws</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<p></p>
-<h3>Scenario: Defining a step and using it in the same scenario
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Referencing steps with different keyword
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with reused steps</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> I run it it should fail</p>
-<ul>
-</ul>
-</li>
-</ul>
-<h3>Scenario: Using fields from other steps
-</h3>
-<ul>
-<li><p><strong>Given</strong> a scenario with a field</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>Then</strong> it should be successful</p>
-<ul>
-</ul>
-</li>
-</ul>
+<ul><li><p  id="passes_if_exception_is_thrown"><strong>passes if exception is thrown</strong>
+<pre class="prettyprint lang-spec">
+'''
+	package bootstrap
+	
+	import java.util.Stack
+	import java.util.EmptyStackException
+	
+	describe "throws" {
+	  fact new Stack&lt;String&gt;().pop throws EmptyStackException 
+	}
+'''.executesSuccessfully</pre>
+</p>
+</li><li><p  id="passes_if_exception_of_expected_sub_type_is_thrown"><strong>passes if exception of expected sub type is thrown</strong>
+<pre class="prettyprint lang-spec">
+'''
+	package bootstrap
+	
+	import java.util.Stack
+	
+	describe "throws" {
+	  fact new Stack&lt;String&gt;().pop throws Throwable 
+	}
+'''.executesSuccessfully</pre>
+</p>
+</li><li><p  id="fails_if_no_exception_is_thrown"><strong>fails if no exception is thrown</strong>
+<pre class="prettyprint lang-spec">
+'''
+	package bootstrap
+	
+	describe "throws" {
+	  fact 1 + 1 throws RuntimeException 
+	}
+'''.executionFails</pre>
+</p>
+</li></ul>
 				</div>
 			</div>
 		</div> <!-- /content -->
