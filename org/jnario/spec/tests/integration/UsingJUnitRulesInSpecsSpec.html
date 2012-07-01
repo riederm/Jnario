@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Junit Rules</title>
+<title>Using JUnit Rules in Specs</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,27 +24,25 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>Junit Rules</h1>
+				<h1>Using JUnit Rules in Specs</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<p></p>
-<h3>Scenario: Using JUnit Rules 
-</h3>
-<ul>
-<li><p><strong>Given</strong> a feature</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>When</strong> it is executed</p>
-<ul>
-</ul>
-</li>
-<li><p><strong>Then</strong> it should be successful</p>
-<ul>
-</ul>
-</li>
-</ul>
+<p>JUnit rules work exactly as in JUnit. Just declare a public field with the rule annotation.</p>
+<ul><li><p  id="Example_Specification_"><strong>Example Specification:</strong>
+<pre class="prettyprint lang-spec">
+package test
+    
+import org.junit.Rule
+import org.junit.rules.TemporaryFolder
+
+describe Rule{
+  @Rule public val folder = new TemporaryFolder  
+
+  fact folder.root should not be null
+}</pre>
+</p>
+</li></ul>
 				</div>
 			</div>
 		</div> <!-- /content -->

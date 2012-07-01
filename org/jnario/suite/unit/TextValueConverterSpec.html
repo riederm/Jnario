@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>SpecificationResolver</title>
+<title>TextValueConverter</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,64 +24,42 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>SpecificationResolver</h1>
+				<h1>TextValueConverter</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<ul><li><p  id="resolves_referenced_specs"><strong>resolves referenced specs</strong>
-<pre class="prettyprint lang-spec">
-parseSuite('''
-	package demo
-	import demo.*
-	#My Suite
-	
-	- "My Spec"
-	- "My Feature"
-''')
-
-resolvedSpecs(firstSuite) =&gt; set("My Spec", "My Feature")</pre>
-</p>
-</li></ul><h3 id="evaluates_regular_expressions">Evaluates regular expressions</h3>
+<h3 id="null">ToString[String]</h3>
 <p></p>
-<ul><li><p  id="example_1"><strong>example 1</strong>
+<ul><li><p  id="adds_colon"><strong>adds colon</strong>
 <pre class="prettyprint lang-spec">
-m.parseSuite('''
-package demo
-import demo.*
-#My Suite
-
-- \demo.*\
-			''')
-			
-			resolvedSpecs(m.firstSuite) =&gt; set("My Spec", "My Feature")</pre>
+subject.toString("suite - with dash") =&gt; ":suite \\- with dash"</pre>
 </p>
-</li><li><p  id="example_2"><strong>example 2</strong>
+</li><li><p  id="escapes_dashes"><strong>escapes dashes</strong>
 <pre class="prettyprint lang-spec">
-m.parseSuite('''
-	package demo
-	import demo.*
-	#My Suite
-	
-	- \.*Spec\
-''')
-
-resolvedSpecs(m.firstSuite) =&gt; set("My Spec")</pre>
+subject.toString("suite - with dash") =&gt; ":suite \\- with dash"</pre>
 </p>
-</li><li><p  id="returns_empty_list_on_null_input"><strong>returns empty list on null input</strong>
+</li><li><p  id="escapes_hashs"><strong>escapes hashs</strong>
 <pre class="prettyprint lang-spec">
-subject.resolveSpecs(SuiteFactory::eINSTANCE.createPatternReference) =&gt; list()</pre>
+subject.toString("suite # with hash") =&gt; ":suite \\# with hash"</pre>
 </p>
-</li><li><p  id="ignores_unresolved_elements"><strong>ignores unresolved elements</strong>
+</li></ul>
+<h3 id="null">ToValue[String, INode]</h3>
+<p></p>
+<ul><li><p  id="removes_colon"><strong>removes colon</strong>
 <pre class="prettyprint lang-spec">
-m.parseSuite('''
-	package demo
-	import demo.*
-	#My Suite
-	
-	- \NonExistent\
-''')
-
-resolvedSpecs(m.firstSuite) =&gt; set()</pre>
+subject.toValue(":suite", null) =&gt; "suite"</pre>
+</p>
+</li><li><p  id="removes_whitespace_after_colon"><strong>removes whitespace after colon</strong>
+<pre class="prettyprint lang-spec">
+subject.toValue(": suite", null) =&gt; "suite"</pre>
+</p>
+</li><li><p  id="removes_escape_character_for_dashes"><strong>removes escape character for dashes</strong>
+<pre class="prettyprint lang-spec">
+subject.toValue(":suite \\- with dash", null) =&gt; "suite - with dash"</pre>
+</p>
+</li><li><p  id="removes_escape_character_for__hashs"><strong>removes escape character for  hashs</strong>
+<pre class="prettyprint lang-spec">
+subject.toValue(":suite \\# with hash", null) =&gt; "suite # with hash"</pre>
 </p>
 </li></ul>
 				</div>

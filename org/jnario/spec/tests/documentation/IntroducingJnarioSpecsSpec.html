@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Jnario Specs - Tutorial</title>
+<title>Introducing Jnario Specs</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,7 +24,7 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>Jnario Specs - Tutorial</h1>
+				<h1>Introducing Jnario Specs</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
@@ -44,7 +44,10 @@ describe "A Stack"{
 </pre><p>In the background, Jnario automatically translates the stack specification into a JUnit test case <code>AStackSpec.java</code> in the <code>xtend-gen</code> folder.</p>
 </p>
 <ul><li><p  id="Checking_your_facts"><strong>Checking your facts</strong>
-<p>The next step is to enrich our facts with the required logic to check whether our stack behaves as specified. Checks are implemented by adding a block expression to your facts. We use <code>=&gt;</code> to describe the expected result of an expression. For example, <code>new Stack.size =&gt; 0</code> will fail if the size is not <code>0</code>. If we execute our specification we will see that all specifications pass and that they are not marked as <em>PENDING</em> anymore,</p><p><span class="label label-info">Info</span> Declaring and importing other packages works similar to Xtend (static imports work as well).</p>
+<p>The next step is to enrich our facts with the required logic to check whether our stack behaves as specified. Checks are implemented by adding a block expression to your facts. We use <code>=&gt;</code> to describe the expected result of an expression. For example, <code>new Stack.size =&gt; 0</code> will fail if the size is not <code>0</code>. If we execute our specification we will see that all specifications pass and that they are not marked as <em>PENDING</em> anymore. You can also mark <em>facts</em> explicitly as pending using the <strong>pending</strong> keyword:</p>
+<pre class="prettyprint lang-spec">
+  pending fact assert 1 != 2
+</pre><p><span class="label label-info">Info</span> Declaring and importing other packages works similar to Xtend (static imports work as well).</p>
 <pre class="prettyprint lang-spec">
 package demo
 
@@ -143,7 +146,7 @@ Stack
 </pre><p>In this example we also use the <code>throws</code> statement in <code>subject.pop throws EmptyStackException</code>. It fails if the previous statement does not throw an instance of the specified exception.</p>
 <pre class="prettyprint lang-spec">
 package demo
-	      
+        
 import java.util.Stack
 import java.util.EmptyStackException
 
@@ -157,10 +160,10 @@ describe Stack{
     fact "pop decreases size"{
       subject.pop
       subject.size =&gt; 0
-    }	
+    }  
     fact "pop removes last element"{
       subject.pop =&gt; "an element"
-    }		
+    }    
   }
 }</pre>
 </p>
@@ -197,7 +200,7 @@ java.lang.AssertionError: additions failed
 <p align="center"><a href="/img/tutorial/doc_stack_example.png"><img src="/img/tutorial/doc_stack_example_small.png" alt="Generated documentation for the stack specification"/></a></p><p>This tutorial has actually been generated from a <a href="https://github.com/bmwcarit/Jnario/blob/master/org.jnario.tests/src/org/jnario/spec/tests/documentation/SpecTutorial.spec">specification</a>.</p>
 <pre class="prettyprint lang-spec">
 package demo
-				      
+              
 import java.util.Stack
 import java.util.EmptyStackException
 
@@ -222,10 +225,10 @@ describe Stack{
     fact "pop decreases size"{
       subject.pop
       subject.size =&gt; 0
-    }	
+    }  
     fact "pop removes last element"{
       subject.pop =&gt; "an element"
-    }		
+    }    
   }
 }</pre>
 </p>
@@ -294,7 +297,7 @@ closeDatabaseConnection
 <pre class="prettyprint lang-spec">
 describe "Spec Extensions"{
   extension DatabaseExtension db = new DatabaseExtension
-  fact query("SELECT * FROM content")	      
+  fact query("SELECT * FROM content")        
 }</pre>
 </p>
 </li><li><p  id="Helper_methods"><strong>Helper methods</strong>
@@ -339,16 +342,16 @@ false =&gt; false
 1 + 1 =&gt; 2</pre>
 </p>
 </li><li><p  id="Self_explaining_failures"><strong>Self-explaining failures</strong>
-<p>Assertions in Jnario are self-explainable. When an assertion fails, it tries to provide as much information as possible. It will print the exact expression that has failed together with the actual value of all subexpressions. This means that you don't need to debug a test to see why it actually has failed.</p>
+<p>Assertions in Jnario are self-explainable. When an assertion fails, it tries to provide as much information about the reason of its failure as possible. It will print the exact expression that has failed together with the actual value of all subexpressions. This means that you don't need to debug a test to see why it actually has failed.</p>
 <pre class="prettyprint lang-spec">
 val x = 0 
 val y = 1 
 errorMessage[assert x == 1 && y == 0].is('''
   Expected x == 1 && y == 0 but
-       x == 1 is false
-       x is 0
-       y == 0 is false
-       y is 1''')
+       x == 1 is &lt;false&gt;
+       x is &lt;0&gt;
+       y == 0 is &lt;false&gt;
+       y is &lt;1&gt;''')
        
 val greeting = "hello"        
 errorMessage[greeting.toUpperCase should not be "HELLO"].is('''

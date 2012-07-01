@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Spec Instantiation</title>
+<title>Using JUnit Rules in Features</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,41 +24,38 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>Spec Instantiation</h1>
+				<h1>Using JUnit Rules in Features</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<p>It is possible to customize the instantiation of tests and subjects.</p>
-<pre class="prettyprint">
-package org.jnario.lib;
+<p><p>You can use <a href="http://kentbeck.github.com/junit/javadoc/latest/org/junit/rules/TestRule.html">JUnit rules</a> in your feature. Just define a field with the <code>@Rule</code> annotation like you would do in a normal JUnit test case.</p></p>
+<h3>Scenario: Using JUnit Rules 
+</h3>
+<ul>
+<li><p><strong>Given</strong> a feature</p><pre>package demo
+import org.junit.Rule
+import org.junit.rules.TemporaryFolder
 
-import com.google.inject.Guice;
-import com.google.inject.util.Modules;
+Feature:  JUnit Rules
 
-public class GuiceBasedTestInstantiator extends AbstractTestInstantiator {
-  public Object createTest(Class<?> klass) throws Exception {
-    return Guice.createInjector(Modules.EMPTY_MODULE).getInstance(klass);
-  }
-}
-</pre>
-<ul><li><p  id="how_to_use_a_custom_test_instantiator"><strong>how to use a custom test instantiator</strong>
-<pre class="prettyprint lang-spec">
-package bootstrap
-
-import org.jnario.runner.InstantiateWith
-import org.jnario.jnario.test.util.GuiceBasedTestInstantiator
-import com.google.inject.Inject
-
-@InstantiateWith(typeof(GuiceBasedTestInstantiator))
-describe GuiceBasedTestInstantiator {
+  Scenario: Using rules in a Feature
+    @Rule public val folder = new TemporaryFolder
   
-  @Inject String toInject
-  
-  fact toInject should not be null
-      
-}</pre>
-</p>
-</li></ul>
+    Given a feature with a rule
+    Then the rule should be initialized
+      folder.root should not be null</pre>
+<ul>
+</ul>
+</li>
+<li><p><strong>When</strong> it is executed</p>
+<ul>
+</ul>
+</li>
+<li><p><strong>Then</strong> it should be successful</p>
+<ul>
+</ul>
+</li>
+</ul>
 				</div>
 			</div>
 		</div> <!-- /content -->

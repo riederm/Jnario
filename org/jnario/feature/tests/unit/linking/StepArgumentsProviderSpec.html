@@ -39,10 +39,6 @@
 	</thead>
 	<tbody>
 	<tr>
-		<td>null</td>
-		<td>list()</td>
-	</tr>
-	<tr>
 		<td>'Given no values'</td>
 		<td>list()</td>
 	</tr>
@@ -59,11 +55,11 @@
 		<td>list("hello", "world")</td>
 	</tr>
 	<tr>
-		<td>'Given a multiline \n"hello"'</td>
+		<td>"Given a multiline \n'''hello'''"</td>
 		<td>list("hello")</td>
 	</tr>
 	<tr>
-		<td>'Given a multiline \n 1+1 =&gt; 2 "hello"'</td>
+		<td>"Given a multiline \n 1+1 =&gt; 2 '''hello'''"</td>
 		<td>list()</td>
 	</tr>
 	</tbody>
@@ -71,10 +67,10 @@
 </li><li><p  id="extracts_arguments_from_step_descriptions"><strong>extracts arguments from step descriptions</strong>
 <pre class="prettyprint lang-spec">
 examples.forEach[
-	val singleOrDoubleQuotes = list(step, step?.replaceAll('"', "'"))
-	for(each : singleOrDoubleQuotes){
-		subject.findStepArguments(create(each)) =&gt; expectedArgs
-	}
+  val singleOrDoubleQuotes = list(step, step?.replaceAll('"', "'"))
+  for(each : singleOrDoubleQuotes){
+    subject.findStepArguments(create(each)) =&gt; expectedArgs
+  }
 ]</pre>
 </p>
 </li></ul>

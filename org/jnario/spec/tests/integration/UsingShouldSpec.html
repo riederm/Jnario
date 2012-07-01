@@ -51,9 +51,9 @@ newArrayList("something") should not contain "something else"
 
 // using the "with" operator
 val greeting = "hello world" =&gt; [
-	length =&gt; 11
-	it should startWith("hello")
-	it should endWith("world")
+  length =&gt; 11
+  it should startWith("hello")
+  it should endWith("world")
 ]
 greeting =&gt; typeof(String)</pre>
 </p>
@@ -69,14 +69,14 @@ method() throws IllegalArgumentException</pre>
 <p>When failing, <code>should</code> and <code>=&gt;</code> try to give you as much context information as possible. The error message will print the values of all expressions and their subexpressions.</p>
 <pre class="prettyprint lang-spec">
 errorMessage[1 + 1 =&gt; 1].is('''
-  Expected 1 + 1 =&gt; 1 but
-       1 + 1 is 2''')	
+ Expected 1 + 1 =&gt; 1 but
+      1 + 1 is &lt;2&gt;''')  
 
 val x = "hello"        
 errorMessage[x.toUpperCase should not be "HELLO"].is('''
   Expected x.toUpperCase should not be "HELLO" but
        x.toUpperCase is "HELLO"
-       x is "hello"''')	  
+       x is "hello"''')    
        
 val y = "world"        
 errorMessage[x =&gt; y].is('''

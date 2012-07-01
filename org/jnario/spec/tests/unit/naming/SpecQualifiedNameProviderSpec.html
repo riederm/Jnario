@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>JnarioValidator</title>
+<title>SpecQualifiedNameProvider</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,24 +24,40 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>JnarioValidator</h1>
+				<h1>SpecQualifiedNameProvider</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<p>@author Sebastian Benz - Initial contribution and API</p>
-<h3 id="Features_must_have_descriptions">Features must have descriptions</h3>
-<p></p>
-<ul><li><p  id="____Feature______select_typeof_Feature___assertErrorContains__description__"><strong>''' Feature: '''.select[typeof[Feature]].assertErrorContains["description"]</strong>
+<ul><li><p  id="uses_spec_description"><strong>uses spec description</strong>
+<pre class="prettyprint lang-spec">
+parseSpec('''
+  describe "My Spec"{}''')
+qualifiedName =&gt; "My Spec"</pre>
 </p>
-</li></ul>
-<h3 id="Scenarios_must_have_descriptions">Scenarios must have descriptions</h3>
-<p></p>
-<ul><li><p  id="____Feature__A_Feature_Scenario______select_typeof_Scenario___assertErrorContains__description__"><strong>''' Feature: A Feature Scenario: '''.select[typeof[Scenario]].assertErrorContains["description"]</strong>
+</li><li><p  id="trims_spec_description_whitespace"><strong>trims spec description whitespace</strong>
+<pre class="prettyprint lang-spec">
+parseSpec('''
+  describe "My Spec  "{}''')
+qualifiedName =&gt; "My Spec"</pre>
 </p>
-</li></ul>
-<h3 id="Steps_must_have_descriptions">Steps must have descriptions</h3>
-<p></p>
-<ul><li><p  id="____Feature__A_feature_Scenario__A_scenario_Given_When_Then_____allOf_typeof_Step___assertErrorContains__description___"><strong>''' Feature: A feature Scenario: A scenario Given When Then '''.allOf[typeof[Step]][assertErrorContains["description"]]</strong>
+</li><li><p  id="uses_referenced_type"><strong>uses referenced type</strong>
+<pre class="prettyprint lang-spec">
+parseSpec('''
+  describe org.junit.Assert{}''')
+qualifiedName =&gt; "Assert"</pre>
+</p>
+</li><li><p  id="uses_referenced_type_and_description"><strong>uses referenced type and description</strong>
+<pre class="prettyprint lang-spec">
+parseSpec('''
+  describe org.junit.Assert "My Spec"{}''')
+qualifiedName =&gt; "Assert My Spec"</pre>
+</p>
+</li><li><p  id="adds_spec_package"><strong>adds spec package</strong>
+<pre class="prettyprint lang-spec">
+parseSpec('''
+  package test
+  describe "My Spec"{}''')
+qualifiedName =&gt; "test.My Spec"</pre>
 </p>
 </li></ul>
 				</div>
