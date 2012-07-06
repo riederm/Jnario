@@ -35,25 +35,25 @@
 // equality
 true should be true
 1 + 1 should not be 1 
-"something" should not be null 
+&quot;something&quot; should not be null 
 1 + 1 =&gt; 2 
 
 // types
-"a string" =&gt; typeof(String)
+&quot;a string&quot; =&gt; typeof(String)
 
 // strings
-"something" should contain "thing"
-"something" should not contain "any"
+&quot;something&quot; should contain &quot;thing&quot;
+&quot;something&quot; should not contain &quot;any&quot;
 
 // iterables
-newArrayList("something") should contain "something"
-newArrayList("something") should not contain "something else"
+newArrayList(&quot;something&quot;) should contain &quot;something&quot;
+newArrayList(&quot;something&quot;) should not contain &quot;something else&quot;
 
-// using the "with" operator
-val greeting = "hello world" =&gt; [
+// using the &quot;with&quot; operator
+val greeting = &quot;hello world&quot; =&gt; [
   length =&gt; 11
-  it should startWith("hello")
-  it should endWith("world")
+  it should startWith(&quot;hello&quot;)
+  it should endWith(&quot;world&quot;)
 ]
 greeting =&gt; typeof(String)</pre>
 </p>
@@ -72,17 +72,17 @@ errorMessage[1 + 1 =&gt; 1].is('''
  Expected 1 + 1 =&gt; 1 but
       1 + 1 is &lt;2&gt;''')  
 
-val x = "hello"        
-errorMessage[x.toUpperCase should not be "HELLO"].is('''
-  Expected x.toUpperCase should not be "HELLO" but
-       x.toUpperCase is "HELLO"
-       x is "hello"''')    
+val x = &quot;hello&quot;        
+errorMessage[x.toUpperCase should not be &quot;HELLO&quot;].is('''
+  Expected x.toUpperCase should not be &quot;HELLO&quot; but
+       x.toUpperCase is &quot;HELLO&quot;
+       x is &quot;hello&quot;''')    
        
-val y = "world"        
+val y = &quot;world&quot;        
 errorMessage[x =&gt; y].is('''
   Expected x =&gt; y but
-       x is "hello"
-       y is "world"''')</pre>
+       x is &quot;hello&quot;
+       y is &quot;world&quot;''')</pre>
 </p>
 </li><li><p  id="Combining_hamcrest_and_should"><strong>Combining hamcrest and should</strong>
 <p>You can also the <code>should</code> and <code>=&gt;</code> together with <a href="http://code.google.com/p/hamcrest/">hamcrest</a> matchers. The following static import statements are needed to run the examples.</p>
@@ -91,9 +91,9 @@ import static org.hamcrest.CoreMatchers.equalTo
 import static org.hamcrest.Matchers.hasItem
 </code></pre>
 <pre class="prettyprint lang-spec">
-"hello" =&gt; startsWith("h")
-newArrayList("red", "green") =&gt; hasItem("red")
-"hello" should be equalTo("hello")</pre>
+&quot;hello&quot; =&gt; startsWith(&quot;h&quot;)
+newArrayList(&quot;red&quot;, &quot;green&quot;) =&gt; hasItem(&quot;red&quot;)
+&quot;hello&quot; should be equalTo(&quot;hello&quot;)</pre>
 </p>
 </li></ul>
 				</div>

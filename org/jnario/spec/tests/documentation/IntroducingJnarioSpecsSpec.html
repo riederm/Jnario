@@ -53,13 +53,13 @@ package demo
 
 import java.util.Stack
 
-describe "A Stack"{
-  fact "initial size is 0" {
+describe &quot;A Stack&quot;{
+  fact &quot;initial size is 0&quot; {
     new Stack().size =&gt; 0
   }
-  fact "increases its size when pushing an element"{
+  fact &quot;increases its size when pushing an element&quot;{
     val subject = new Stack&lt;String&gt;
-    subject.push("A String")
+    subject.push(&quot;A String&quot;)
     subject.size =&gt; 1
   }
 }</pre>
@@ -82,11 +82,11 @@ package demo
 
 import java.util.Stack
 
-describe "A Stack"{
+describe &quot;A Stack&quot;{
   fact new Stack().size should be 0
-  fact "increases its size when pushing an element"{
+  fact &quot;increases its size when pushing an element&quot;{
     val subject = new Stack&lt;String&gt;
-    subject.push("A String")
+    subject.push(&quot;A String&quot;)
     subject.size =&gt; 1
   }
 }</pre>
@@ -98,13 +98,13 @@ package demo
 
 import java.util.Stack
 
-describe "A Stack"{
+describe &quot;A Stack&quot;{
   Stack&lt;String&gt; subject = new Stack&lt;String&gt;
-  fact "initially empty" {
+  fact &quot;initially empty&quot; {
     subject.size =&gt; 0
   }
-  fact "increases its size when pushing an element"{
-    subject.push("A String")
+  fact &quot;increases its size when pushing an element&quot;{
+    subject.push(&quot;A String&quot;)
     subject.size =&gt; 1
   }
 }</pre>
@@ -127,8 +127,8 @@ import java.util.Stack
 
 describe Stack{
   fact subject.size should be 0
-  fact "increases its size when pushing an element"{
-    subject.push("A String")
+  fact &quot;increases its size when pushing an element&quot;{
+    subject.push(&quot;A String&quot;)
     subject.size =&gt; 1
   }
 }</pre>
@@ -151,18 +151,18 @@ import java.util.Stack
 import java.util.EmptyStackException
 
 describe Stack{
-  context "when empty"{
+  context &quot;when empty&quot;{
     fact subject.size =&gt; 0
     fact subject.pop throws EmptyStackException
   }
-  context "with elements"{
-    before subject.add("an element")
-    fact "pop decreases size"{
+  context &quot;with elements&quot;{
+    before subject.add(&quot;an element&quot;)
+    fact &quot;pop decreases size&quot;{
       subject.pop
       subject.size =&gt; 0
     }  
-    fact "pop removes last element"{
-      subject.pop =&gt; "an element"
+    fact &quot;pop removes last element&quot;{
+      subject.pop =&gt; &quot;an element&quot;
     }    
   }
 }</pre>
@@ -213,21 +213,21 @@ import java.util.EmptyStackException
  * (source [Wikipedia](http://en.wikipedia.org/wiki/Stack)).
  */
 describe Stack{
-  context "when empty"{
+  context &quot;when empty&quot;{
     fact subject.size =&gt; 0
     fact subject.pop throws EmptyStackException
   }
   /*
-   * A stack with a single element: "an element".
+   * A stack with a single element: &quot;an element&quot;.
    */
-  context "with elements"{
-    before subject.add("an element")
-    fact "pop decreases size"{
+  context &quot;with elements&quot;{
+    before subject.add(&quot;an element&quot;)
+    fact &quot;pop decreases size&quot;{
       subject.pop
       subject.size =&gt; 0
     }  
-    fact "pop removes last element"{
-      subject.pop =&gt; "an element"
+    fact &quot;pop removes last element&quot;{
+      subject.pop =&gt; &quot;an element&quot;
     }    
   }
 }</pre>
@@ -245,24 +245,24 @@ describe Stack{
 	after all
 </pre>
 <pre class="prettyprint lang-spec">
-describe "Setup & Teardown" {
+describe &quot;Setup &amp; Teardown&quot; {
   before all{
-    println("before all")
+    println(&quot;before all&quot;)
   }  
   before{
-    println("before")
+    println(&quot;before&quot;)
   }
-  fact "should do stuff" {
-    println("do stuff")
+  fact &quot;should do stuff&quot; {
+    println(&quot;do stuff&quot;)
   }
-  fact "should do more stuff" {
-    println("do more stuff")
+  fact &quot;should do more stuff&quot; {
+    println(&quot;do more stuff&quot;)
   }
   after{
-    println("after")
+    println(&quot;after&quot;)
   }
   after all{
-    println("after all")
+    println(&quot;after all&quot;)
   }
 }</pre>
 </p>
@@ -295,26 +295,26 @@ query: SELECT * FROM content
 closeDatabaseConnection
 </pre>
 <pre class="prettyprint lang-spec">
-describe "Spec Extensions"{
+describe &quot;Spec Extensions&quot;{
   extension DatabaseExtension db = new DatabaseExtension
-  fact query("SELECT * FROM content")        
+  fact query(&quot;SELECT * FROM content&quot;)        
 }</pre>
 </p>
 </li><li><p  id="Helper_methods"><strong>Helper methods</strong>
 <p>Helper methods can be directly declared in Jnario files. They have the same syntax as in Xtend. Helper methods and fields can also be defined in nested contexts.</p>
 <pre class="prettyprint lang-spec">
-describe "Helper Methods & Fields"{
-  String subject = "World" 
-  fact "can access fields and methods"{
-    subject.greeting =&gt; "Hello World"
+describe &quot;Helper Methods &amp; Fields&quot;{
+  String subject = &quot;World&quot; 
+  fact &quot;can access fields and methods&quot;{
+    subject.greeting =&gt; &quot;Hello World&quot;
   }
   def greeting(String s){
-    return "Hello " + s
+    return &quot;Hello &quot; + s
   }
-  context "shouting"{
-    String emphasize = "!" 
-    fact "can access fields and methods from parent"{
-       subject.greeting.shout =&gt; "HELLO WORLD!"
+  context &quot;shouting&quot;{
+    String emphasize = &quot;!&quot; 
+    fact &quot;can access fields and methods from parent&quot;{
+       subject.greeting.shout =&gt; &quot;HELLO WORLD!&quot;
     }
     def shout(String s){
       return s.toUpperCase + emphasize
@@ -331,7 +331,7 @@ describe "Helper Methods & Fields"{
 <pre class="prettyprint lang-spec">
 assert true
 assert new Stack().empty
-assert "Hello".startsWith("H")</pre>
+assert &quot;Hello&quot;.startsWith(&quot;H&quot;)</pre>
 </p>
 </li><li><p  id="_should__and_____"><strong>'should' and `=>`</strong>
 <p>If you want to express how an object should behave, you can use <code>should</code>. It passes if the result of the left expression is equal to the result of the right expression. You can also use <code>not</code> to assert that both expressions have different results. You have already seen the short cut <code>=&gt;</code> which has the same effect as <code>should be</code>.</p>
@@ -346,18 +346,18 @@ false =&gt; false
 <pre class="prettyprint lang-spec">
 val x = 0 
 val y = 1 
-errorMessage[assert x == 1 && y == 0].is('''
-  Expected x == 1 && y == 0 but
+errorMessage[assert x == 1 &amp;&amp; y == 0].is('''
+  Expected x == 1 &amp;&amp; y == 0 but
        x == 1 is &lt;false&gt;
        x is &lt;0&gt;
        y == 0 is &lt;false&gt;
        y is &lt;1&gt;''')
        
-val greeting = "hello"        
-errorMessage[greeting.toUpperCase should not be "HELLO"].is('''
-  Expected greeting.toUpperCase should not be "HELLO" but
-       greeting.toUpperCase is "HELLO"
-       greeting is "hello"''')</pre>
+val greeting = &quot;hello&quot;        
+errorMessage[greeting.toUpperCase should not be &quot;HELLO&quot;].is('''
+  Expected greeting.toUpperCase should not be &quot;HELLO&quot; but
+       greeting.toUpperCase is &quot;HELLO&quot;
+       greeting is &quot;hello&quot;''')</pre>
 </p>
 </li></ul>
 				</div>

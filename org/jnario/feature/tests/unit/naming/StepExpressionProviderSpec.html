@@ -35,7 +35,7 @@ parseScenario('''
   Feature: Example
     Scenario: MyScenario
       Given a step with an implementation
-        "the implementation"
+        &quot;the implementation&quot;
 ''')
 //assert step.stepExpression == subject.expressionOf(step)</pre>
 </p>
@@ -48,7 +48,7 @@ parseScenario('''
         
     Scenario: MyScenario 2
       Given a step 
-        "the implementation"
+        &quot;the implementation&quot;
 ''')
 /*val expr = subject.expressionOf(step)
 assert expr != null

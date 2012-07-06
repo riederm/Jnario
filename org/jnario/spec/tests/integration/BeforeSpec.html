@@ -36,7 +36,7 @@ val spec = '
    
   import org.jnario.runner.Order
   
-  describe "Before"{
+  describe &quot;Before&quot;{
     
     static int beforeExecutionCount = 0
     
@@ -44,11 +44,11 @@ val spec = '
       beforeExecutionCount = beforeExecutionCount + 1
     }
 
-    fact "should be executed before each test (1)"{
+    fact &quot;should be executed before each test (1)&quot;{
       beforeExecutionCount should be 1
     }  
 
-    fact "should be executed before each test (2)"{
+    fact &quot;should be executed before each test (2)&quot;{
       beforeExecutionCount should be 2
     }  
   }

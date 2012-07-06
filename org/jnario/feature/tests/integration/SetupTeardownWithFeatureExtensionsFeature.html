@@ -41,11 +41,11 @@ import org.junit.AfterClass
 
 class ExampleExtension {
   @Before def before(){
-    println("before")
+    println(&quot;before&quot;)
   }
   
   @After def after(){
-    println("after")
+    println(&quot;after&quot;)
   }
 }</pre>
 <ul>
@@ -61,14 +61,14 @@ Feature: Feature with extensions
     
   Scenario: Scenario 1
     Given a step 
-      println("step 1")
+      println(&quot;step 1&quot;)
     Then we have two steps
-    println("step 2")
+    println(&quot;step 2&quot;)
   Scenario: Scenario 2
     Given a step 
-      println("step 3")
+      println(&quot;step 3&quot;)
     Then we have two steps
-      println("step 4")</pre>
+      println(&quot;step 4&quot;)</pre>
 <ul>
 <li><p><strong>And</strong> execute the feature</p>
 <ul>

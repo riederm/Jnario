@@ -39,7 +39,7 @@ val spec = '
   
   describe Assert {
   
-    fact "should resolve target class"{
+    fact &quot;should resolve target class&quot;{
     }  
         
   }
@@ -51,11 +51,11 @@ assertThat(execute(spec), successful)</pre>
 val spec = '
   package bootstrap
 
-  describe "ExampleGroup" {
+  describe &quot;ExampleGroup&quot; {
   
     int i = 0
   
-    fact "should be able to declare void helper methods"{
+    fact &quot;should be able to declare void helper methods&quot;{
       inc()
       i =&gt; 1
     }
@@ -64,11 +64,11 @@ val spec = '
       i = i + 1 
     }  
     
-    fact "should be able to declare helper methods with parameter and return type"{
+    fact &quot;should be able to declare helper methods with parameter and return type&quot;{
       inc2(i) =&gt; 1 
     }
     
-    fact "should be able to use helper methods as extensions"{
+    fact &quot;should be able to use helper methods as extensions&quot;{
       i.inc2 =&gt; 1 
     }
       
@@ -76,7 +76,7 @@ val spec = '
       value + 1 
     }
     
-    fact "should be able to declare helper methods with inferred return type"{
+    fact &quot;should be able to declare helper methods with inferred return type&quot;{
       // will not compile otherwise
     }
     
@@ -84,7 +84,7 @@ val spec = '
       5
     }
     
-    fact "should automatically rethrow all exceptions"{
+    fact &quot;should automatically rethrow all exceptions&quot;{
       // will not compile otherwise
     }
       
@@ -92,13 +92,13 @@ val spec = '
       throw new java.io.IOException()
     }
   
-    describe "Nested Examples"{
+    describe &quot;Nested Examples&quot;{
       
-      fact "should support extensions methods from parent example group"{
+      fact &quot;should support extensions methods from parent example group&quot;{
         i.inc2 =&gt; 1 
       }
       
-      fact "should support extension methods from nested example group"{
+      fact &quot;should support extension methods from nested example group&quot;{
         i.inc5 =&gt; 1 
       }
       

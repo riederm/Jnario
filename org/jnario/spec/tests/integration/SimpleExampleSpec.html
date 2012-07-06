@@ -33,9 +33,9 @@
 val spec = '
   package bootstrap
   
-  describe "Example" {
+  describe &quot;Example&quot; {
   
-    fact "should pass"{
+    fact &quot;should pass&quot;{
         org::junit::Assert::assertTrue(true) 
     } 
         
@@ -49,16 +49,16 @@ org::junit::Assert::assertThat(result, org::jnario::jnario::test::util::ResultMa
 val spec = '
   package bootstrap
 
-  describe "Example" {
+  describe &quot;Example&quot; {
   
-    fact "should fail"{
-        org::junit::Assert::assertFalse("reason of failure", true)
+    fact &quot;should fail&quot;{
+        org::junit::Assert::assertFalse(&quot;reason of failure&quot;, true)
     } 
         
   }
 '
 val result = org::jnario::jnario::test::util::SpecExecutor::execute(spec)
-org::junit::Assert::assertThat(result, org::jnario::jnario::test::util::ResultMatchers::hasSingleFailureContaining("reason of failure"))</pre>
+org::junit::Assert::assertThat(result, org::jnario::jnario::test::util::ResultMatchers::hasSingleFailureContaining(&quot;reason of failure&quot;))</pre>
 </p>
 </li></ul>
 				</div>

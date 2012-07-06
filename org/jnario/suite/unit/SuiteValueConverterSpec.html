@@ -32,22 +32,22 @@
 <p></p>
 <ul><li><p  id="escapes_dashes"><strong>escapes dashes</strong>
 <pre class="prettyprint lang-spec">
-subject.toString("##suite - with dash") =&gt; "##suite \\- with dash"</pre>
+subject.toString(&quot;##suite - with dash&quot;) =&gt; &quot;##suite \\- with dash&quot;</pre>
 </p>
 </li><li><p  id="escapes_hashs"><strong>escapes hashs</strong>
 <pre class="prettyprint lang-spec">
-subject.toString("##suite # with hash") =&gt; "##suite \\# with hash"</pre>
+subject.toString(&quot;##suite # with hash&quot;) =&gt; &quot;##suite \\# with hash&quot;</pre>
 </p>
 </li></ul>
 <h3 id="null">ToValue[String, INode]</h3>
 <p></p>
 <ul><li><p  id="removes_escape_character_for_dashes"><strong>removes escape character for dashes</strong>
 <pre class="prettyprint lang-spec">
-subject.toValue("##suite \\- with dash", null) =&gt; "##suite - with dash"</pre>
+subject.toValue(&quot;##suite \\- with dash&quot;, null) =&gt; &quot;##suite - with dash&quot;</pre>
 </p>
 </li><li><p  id="removes_escape_character_for__hashs"><strong>removes escape character for  hashs</strong>
 <pre class="prettyprint lang-spec">
-subject.toValue("##suite \\# with hash", null) =&gt; "##suite # with hash"</pre>
+subject.toValue(&quot;##suite \\# with hash&quot;, null) =&gt; &quot;##suite # with hash&quot;</pre>
 </p>
 </li></ul>
 				</div>

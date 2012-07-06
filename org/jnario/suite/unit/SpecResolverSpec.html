@@ -35,11 +35,11 @@ parseSuite('''
   import demo.*
   #My Suite
   
-  - "My Spec"
-  - "My Feature"
+  - &quot;My Spec&quot;
+  - &quot;My Feature&quot;
 ''')
 
-resolvedSpecs(firstSuite) =&gt; set("MySpecSpec", "MyFeatureFeature")</pre>
+resolvedSpecs(firstSuite) =&gt; set(&quot;MySpecSpec&quot;, &quot;MyFeatureFeature&quot;)</pre>
 </p>
 </li></ul><h3 id="evaluates_regular_expressions">Evaluates regular expressions</h3>
 <p></p>
@@ -53,7 +53,7 @@ import demo.*
 - \demo\.My.*\
       ''')
       
-      resolvedSpecs(m.firstSuite) =&gt; set("MySpecSpec", "MyFeatureFeature")</pre>
+      resolvedSpecs(m.firstSuite) =&gt; set(&quot;MySpecSpec&quot;, &quot;MyFeatureFeature&quot;)</pre>
 </p>
 </li><li><p  id="example_2"><strong>example 2</strong>
 <pre class="prettyprint lang-spec">
@@ -65,7 +65,7 @@ m.parseSuite('''
   - \.*Spec\
 ''')
 
-resolvedSpecs(m.firstSuite) =&gt; set("MySpecSpec")</pre>
+resolvedSpecs(m.firstSuite) =&gt; set(&quot;MySpecSpec&quot;)</pre>
 </p>
 </li><li><p  id="returns_empty_list_on_null_input"><strong>returns empty list on null input</strong>
 <pre class="prettyprint lang-spec">
@@ -93,7 +93,7 @@ m.parseSuite('''
   - \.*\
 ''')
 
-resolvedSpecs(m.firstSuite) =&gt; set("MySpecSpec", "MyFeatureFeature", "StringSpec")</pre>
+resolvedSpecs(m.firstSuite) =&gt; set(&quot;MySpecSpec&quot;, &quot;MyFeatureFeature&quot;, &quot;StringSpec&quot;)</pre>
 </p>
 </li></ul>
 				</div>

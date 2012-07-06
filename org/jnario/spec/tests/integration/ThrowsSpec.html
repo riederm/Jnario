@@ -36,7 +36,7 @@
   import java.util.Stack
   import java.util.EmptyStackException
   
-  describe "throws" {
+  describe &quot;throws&quot; {
     fact new Stack&lt;String&gt;().pop throws EmptyStackException 
   }
 '''.executesSuccessfully</pre>
@@ -48,7 +48,7 @@
   
   import java.util.Stack
   
-  describe "throws" {
+  describe &quot;throws&quot; {
     fact new Stack&lt;String&gt;().pop throws Throwable 
   }
 '''.executesSuccessfully</pre>
@@ -58,7 +58,7 @@
 '''
   package bootstrap
   
-  describe "throws" {
+  describe &quot;throws&quot; {
     fact 1 + 1 throws RuntimeException 
   }
 '''.executionFails</pre>

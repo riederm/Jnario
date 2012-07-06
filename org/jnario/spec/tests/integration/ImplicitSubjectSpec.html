@@ -46,10 +46,10 @@ import static org.hamcrest.CoreMatchers.*
 
 describe String {
   
-  String subject = "overridden"
+  String subject = &quot;overridden&quot;
 
-  fact "subject should be overridden"{
-    subject should be "overridden"
+  fact &quot;subject should be overridden&quot;{
+    subject should be &quot;overridden&quot;
   } 
       
 }</pre>
@@ -62,8 +62,8 @@ import static org.hamcrest.CoreMatchers.*
 
 describe String {
   
-  fact "throws NoSuchFieldException because subject will not be created"{
-    typeof(StringSpec).getField("subject") throws NoSuchFieldException
+  fact &quot;throws NoSuchFieldException because subject will not be created&quot;{
+    typeof(StringSpec).getField(&quot;subject&quot;) throws NoSuchFieldException
   } 
       
 }</pre>
@@ -74,9 +74,9 @@ package bootstrap
 
 describe String {
 
-  describe "Nested ExampleGroup"{
-    fact "should inherit the subject"{
-    subject should be ""
+  describe &quot;Nested ExampleGroup&quot;{
+    fact &quot;should inherit the subject&quot;{
+    subject should be &quot;&quot;
   }
 }
     
@@ -90,8 +90,8 @@ import static org.hamcrest.CoreMatchers.*
 
 describe String {
   
-  describe java.util.ArrayList "Nested ExampleGroup with different target type"{
-    fact "can override the subject"{
+  describe java.util.ArrayList &quot;Nested ExampleGroup with different target type&quot;{
+    fact &quot;can override the subject&quot;{
       assert subject.empty
     }
   }
@@ -107,7 +107,7 @@ describe Integer{
     
     Integer subject = 0
     
-    fact "can be manually assigned from within sub specification"{
+    fact &quot;can be manually assigned from within sub specification&quot;{
       subject should be 0
     } 
   }
@@ -120,18 +120,18 @@ package bootstrap
 
 describe String {
   describe String{
-    fact "should generate subject for superclass"{
-      assert typeof(StringSpec).getDeclaredField("subject") != null
+    fact &quot;should generate subject for superclass&quot;{
+      assert typeof(StringSpec).getDeclaredField(&quot;subject&quot;) != null
     }
-    fact "should not generate subject for subclass"{
-      typeof(StringStringSpec).getDeclaredField("subject") throws NoSuchFieldException
+    fact &quot;should not generate subject for subclass&quot;{
+      typeof(StringStringSpec).getDeclaredField(&quot;subject&quot;) throws NoSuchFieldException
     }
-    fact "uses subject"{
+    fact &quot;uses subject&quot;{
     subject.toString
   }
   }
   
-  fact "uses subject"{
+  fact &quot;uses subject&quot;{
     subject.toString
   }
 }</pre>

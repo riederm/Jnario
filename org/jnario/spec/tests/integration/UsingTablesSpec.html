@@ -34,15 +34,15 @@
 <pre class="prettyprint lang-spec">
 package bootstrap
 
-describe "Example Tables"{
+describe &quot;Example Tables&quot;{
   
   def myExamples{
     |    input      |  result       |  
-    | "Hello World" | "HELLO WORLD" | 
-    | "Hallo Welt"  | "HALLO WELT"  |
+    | &quot;Hello World&quot; | &quot;HELLO WORLD&quot; | 
+    | &quot;Hallo Welt&quot;  | &quot;HALLO WELT&quot;  |
   } 
   
-  fact "can be accessed via the table name"{
+  fact &quot;can be accessed via the table name&quot;{
     myExamples.forEach[   
       input.toUpperCase should be result
     ] 
@@ -54,14 +54,14 @@ describe "Example Tables"{
 <pre class="prettyprint lang-spec">
 package bootstrap
 
-describe "Example Tables"{
+describe &quot;Example Tables&quot;{
   
   def{
     | a | b | 
     | 0 | 1 |
   }
 
-  fact "name is optional"{    
+  fact &quot;name is optional&quot;{    
     examples should not be null
   }     
 }</pre>
@@ -71,15 +71,15 @@ describe "Example Tables"{
 <pre class="prettyprint lang-spec">
 package bootstrap
 
-describe "Example Tables"{
+describe &quot;Example Tables&quot;{
   
   def myExampleWithClosures{
     | input |       operation            | result |
-    |   "a" | [String s | s.toUpperCase] |   "A"  |
-    |   "B" | [String s | s.toLowerCase] |   "b"  | 
+    |   &quot;a&quot; | [String s | s.toUpperCase] |   &quot;A&quot;  |
+    |   &quot;B&quot; | [String s | s.toLowerCase] |   &quot;b&quot;  | 
   }  
 
-  fact "supports closures as values"{   
+  fact &quot;supports closures as values&quot;{   
     myExampleWithClosures.forEach[
       operation.apply(input) should be result
     ]
@@ -91,21 +91,21 @@ describe "Example Tables"{
 <pre class="prettyprint lang-spec">
 package bootstrap
 
-describe "Example Tables"{
+describe &quot;Example Tables&quot;{
   
-  String field = "Hello"
+  String field = &quot;Hello&quot;
 
   def method(){
-    "World"
+    &quot;World&quot;
   }  
 
   def myExampleWithMemberCalls{
     | input    | result  |
-    | field    | "Hello" |
-    | method() | "World" | 
+    | field    | &quot;Hello&quot; |
+    | method() | &quot;World&quot; | 
   }       
    
-  fact "supports closures as values"{   
+  fact &quot;supports closures as values&quot;{   
     myExampleWithMemberCalls.forEach[
       input should be result
     ] 
@@ -119,14 +119,14 @@ package bootstrap
 
 import java.util.*
 
-describe "Example Tables"{
+describe &quot;Example Tables&quot;{
   def examplesWithType{
     |          list            |
     | new ArrayList&lt;String&gt;()  |
     | new LinkedList&lt;String&gt;() |
   }     
 
-  fact "computes the common super type"{
+  fact &quot;computes the common super type&quot;{
     examplesWithType.forEach[
       assert list.empty // works only if the type of list has been inferred as List&lt;String&gt;
     ]

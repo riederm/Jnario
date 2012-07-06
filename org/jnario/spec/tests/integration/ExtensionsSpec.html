@@ -36,28 +36,28 @@ execute('''
 
   import org.jnario.spec.tests.integration.ExtensionExample
 
-  describe "Extension"{
+  describe &quot;Extension&quot;{
     extension static ExtensionExample = new ExtensionExample()
 
-    fact "test 1"{
-      ExtensionExample::executedMethods += "ExtensionSpec#test1"
+    fact &quot;test 1&quot;{
+      ExtensionExample::executedMethods += &quot;ExtensionSpec#test1&quot;
     }
     
-    fact "test 2"{
-      ExtensionExample::executedMethods += "ExtensionSpec#test2"
+    fact &quot;test 2&quot;{
+      ExtensionExample::executedMethods += &quot;ExtensionSpec#test2&quot;
     }
   }
 ''')
  
 executedMethods =&gt;
-     list("ExtensionExample#beforeClass", 
-      "ExtensionExample#before",  
-      "ExtensionSpec#test1",  
-      "ExtensionExample#after",  
-      "ExtensionExample#before",
-      "ExtensionSpec#test2",  
-      "ExtensionExample#after",
-      "ExtensionExample#afterClass")</pre>
+     list(&quot;ExtensionExample#beforeClass&quot;, 
+      &quot;ExtensionExample#before&quot;,  
+      &quot;ExtensionSpec#test1&quot;,  
+      &quot;ExtensionExample#after&quot;,  
+      &quot;ExtensionExample#before&quot;,
+      &quot;ExtensionSpec#test2&quot;,  
+      &quot;ExtensionExample#after&quot;,
+      &quot;ExtensionExample#afterClass&quot;)</pre>
 </p>
 </li></ul>
 				</div>

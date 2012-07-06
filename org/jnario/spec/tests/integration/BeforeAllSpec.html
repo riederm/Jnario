@@ -34,7 +34,7 @@
 val spec = '
   package bootstrap 
   
-  describe "BeforeAll"{
+  describe &quot;BeforeAll&quot;{
     
     static int beforeExecutionCount = 0
     
@@ -42,11 +42,11 @@ val spec = '
       beforeExecutionCount = beforeExecutionCount + 1
     }
     
-    fact "should be executed before all tests (1)"{
+    fact &quot;should be executed before all tests (1)&quot;{
       beforeExecutionCount should be 1
     }  
     
-    fact "should be executed before all tests (2)"{
+    fact &quot;should be executed before all tests (2)&quot;{
       beforeExecutionCount should be 1
     }  
   }

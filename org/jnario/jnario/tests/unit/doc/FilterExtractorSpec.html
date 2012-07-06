@@ -40,27 +40,27 @@
 	<tbody>
 	<tr>
 		<td>null</td>
-		<td>""</td>
+		<td>&quot;&quot;</td>
 	</tr>
 	<tr>
-		<td>"string"</td>
-		<td>"string"</td>
+		<td>&quot;string&quot;</td>
+		<td>&quot;string&quot;</td>
 	</tr>
 	<tr>
-		<td>"@filter(bbb)"</td>
-		<td>""</td>
+		<td>&quot;@filter(bbb)&quot;</td>
+		<td>&quot;&quot;</td>
 	</tr>
 	<tr>
-		<td>"text @filter(bbb) text"</td>
-		<td>"text text"</td>
+		<td>&quot;text @filter(bbb) text&quot;</td>
+		<td>&quot;text text&quot;</td>
 	</tr>
 	<tr>
-		<td>"text@filter(bbb) text"</td>
-		<td>"text@filter(bbb) text"</td>
+		<td>&quot;text@filter(bbb) text&quot;</td>
+		<td>&quot;text@filter(bbb) text&quot;</td>
 	</tr>
 	<tr>
-		<td>"text @filter(bbb) text @filter(.*) text"</td>
-		<td>"text text text"</td>
+		<td>&quot;text @filter(bbb) text @filter(.*) text&quot;</td>
+		<td>&quot;text text text&quot;</td>
 	</tr>
 	</tbody>
 </table>
@@ -79,16 +79,16 @@
 		<td>&lt;String&gt;emptyList</td>
 	</tr>
 	<tr>
-		<td>"string"</td>
+		<td>&quot;string&quot;</td>
 		<td>&lt;String&gt;emptyList</td>
 	</tr>
 	<tr>
-		<td>"@filter(bbb)"</td>
-		<td>newArrayList("bbb")</td>
+		<td>&quot;@filter(bbb)&quot;</td>
+		<td>newArrayList(&quot;bbb&quot;)</td>
 	</tr>
 	<tr>
-		<td>"text @filter(bbb) text  @filter(.*)"</td>
-		<td>newArrayList("bbb", ".*")</td>
+		<td>&quot;text @filter(bbb) text  @filter(.*)&quot;</td>
+		<td>newArrayList(&quot;bbb&quot;, &quot;.*&quot;)</td>
 	</tr>
 	</tbody>
 </table>

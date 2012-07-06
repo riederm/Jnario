@@ -34,15 +34,15 @@
 val spec = '
   package bootstrap 
   
-  describe "AfterAll"{
+  describe &quot;AfterAll&quot;{
     
     static int afterExecutionCount = 0
     
-    fact "should be executed after all tests (1)"{
+    fact &quot;should be executed after all tests (1)&quot;{
       afterExecutionCount should be 0
     }  
     
-    fact "should be executed after all tests (2)"{
+    fact &quot;should be executed after all tests (2)&quot;{
       afterExecutionCount should be 0
     }  
     

@@ -37,9 +37,9 @@ val spec = '
   import com.google.inject.Singleton
 
   @Singleton      
-  describe "Annotations" {
+  describe &quot;Annotations&quot; {
   
-  fact "should support class annotations for describe"{
+  fact &quot;should support class annotations for describe&quot;{
       val annotation = typeof(AnnotationsSpec).getAnnotation(typeof(Singleton))
       annotation should not be null
     } 
@@ -56,11 +56,11 @@ val spec = '
   import com.google.inject.Inject
   import static org.hamcrest.CoreMatchers.*
 
-  describe "Annotations" {
+  describe &quot;Annotations&quot; {
   
     @Inject      
-    fact "example"{
-      val annotation = typeof(AnnotationsSpec).getMethod("example").getAnnotation(typeof(Inject))
+    fact &quot;example&quot;{
+      val annotation = typeof(AnnotationsSpec).getMethod(&quot;example&quot;).getAnnotation(typeof(Inject))
       annotation should not be null
     } 
         
@@ -75,11 +75,11 @@ val spec = '
   
   import com.google.inject.Singleton
   
-  describe "Annotations" {
+  describe &quot;Annotations&quot; {
   
     @Singleton
-    context "Context"{
-      fact "example"{
+    context &quot;Context&quot;{
+      fact &quot;example&quot;{
         assert typeof(AnnotationsContextSpec).isAnnotationPresent(typeof(Singleton))
       } 
     }      
@@ -95,13 +95,13 @@ val spec = '
   import com.google.inject.Inject
   import static org.hamcrest.CoreMatchers.*
   
-  describe "Annotations" {
+  describe &quot;Annotations&quot; {
   
     @Inject    
     String myField
       
-    fact "example"{
-      val annotation = typeof(AnnotationsSpec).getDeclaredField("myField").getAnnotation(typeof(Inject))
+    fact &quot;example&quot;{
+      val annotation = typeof(AnnotationsSpec).getDeclaredField(&quot;myField&quot;).getAnnotation(typeof(Inject))
       annotation should not be null
     } 
         

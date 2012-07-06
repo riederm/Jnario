@@ -31,33 +31,33 @@
 <ul><li><p  id="uses_spec_description"><strong>uses spec description</strong>
 <pre class="prettyprint lang-spec">
 parseSpec('''
-  describe "My Spec"{}''')
-qualifiedName =&gt; "My Spec"</pre>
+  describe &quot;My Spec&quot;{}''')
+qualifiedName =&gt; &quot;My Spec&quot;</pre>
 </p>
 </li><li><p  id="trims_spec_description_whitespace"><strong>trims spec description whitespace</strong>
 <pre class="prettyprint lang-spec">
 parseSpec('''
-  describe "My Spec  "{}''')
-qualifiedName =&gt; "My Spec"</pre>
+  describe &quot;My Spec  &quot;{}''')
+qualifiedName =&gt; &quot;My Spec&quot;</pre>
 </p>
 </li><li><p  id="uses_referenced_type"><strong>uses referenced type</strong>
 <pre class="prettyprint lang-spec">
 parseSpec('''
   describe org.junit.Assert{}''')
-qualifiedName =&gt; "Assert"</pre>
+qualifiedName =&gt; &quot;Assert&quot;</pre>
 </p>
 </li><li><p  id="uses_referenced_type_and_description"><strong>uses referenced type and description</strong>
 <pre class="prettyprint lang-spec">
 parseSpec('''
-  describe org.junit.Assert "My Spec"{}''')
-qualifiedName =&gt; "Assert My Spec"</pre>
+  describe org.junit.Assert &quot;My Spec&quot;{}''')
+qualifiedName =&gt; &quot;Assert My Spec&quot;</pre>
 </p>
 </li><li><p  id="adds_spec_package"><strong>adds spec package</strong>
 <pre class="prettyprint lang-spec">
 parseSpec('''
   package test
-  describe "My Spec"{}''')
-qualifiedName =&gt; "test.My Spec"</pre>
+  describe &quot;My Spec&quot;{}''')
+qualifiedName =&gt; &quot;test.My Spec&quot;</pre>
 </p>
 </li></ul>
 				</div>

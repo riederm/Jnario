@@ -32,25 +32,25 @@
 <pre class="prettyprint lang-spec">
 generateEmptyExampleDoc()
 
-assert generatedFile("js/prettify.js") != null
-assert generatedFile("js/lang-jnario.js") != null</pre>
+assert generatedFile(&quot;js/prettify.js&quot;) != null
+assert generatedFile(&quot;js/lang-jnario.js&quot;) != null</pre>
 </p>
 </li><li><p  id="generates_css_helper_files"><strong>generates css helper files</strong>
 <pre class="prettyprint lang-spec">
 generateEmptyExampleDoc()
 
-assert generatedFile("css/bootstrap-responsive.min.css") != null
-assert generatedFile("css/custom.css") != null
-assert generatedFile("css/prettify.css") != null</pre>
+assert generatedFile(&quot;css/bootstrap-responsive.min.css&quot;) != null
+assert generatedFile(&quot;css/custom.css&quot;) != null
+assert generatedFile(&quot;css/prettify.css&quot;) != null</pre>
 </p>
 </li><li><p  id="generates_scenario_title_and_heading"><strong>generates scenario title and heading</strong>
 <pre class="prettyprint lang-spec">
 generateEmptyExampleDoc()
 
-val scenarioDoc = generatedFile("ExampleSpec.html")
-assert scenarioDoc != null && 
-    scenarioDoc.contains("&lt;title&gt;Example&lt;/title&gt;")
-    scenarioDoc.contains("&lt;h1&gt;Example&lt;/h1&gt;")</pre>
+val scenarioDoc = generatedFile(&quot;ExampleSpec.html&quot;)
+assert scenarioDoc != null &amp;&amp; 
+    scenarioDoc.contains(&quot;&lt;title&gt;Example&lt;/title&gt;&quot;)
+    scenarioDoc.contains(&quot;&lt;h1&gt;Example&lt;/h1&gt;&quot;)</pre>
 </p>
 </li><li><p  id="generates_scenario_documentation"><strong>generates scenario documentation</strong>
 <pre class="prettyprint lang-spec">
@@ -67,9 +67,9 @@ generateDoc('''
   } 
 ''')
 
-val scenarioDoc = generatedFile("ExampleSpec.html")
-assert scenarioDoc.contains("&lt;p&gt;This is an example.&lt;/p&gt;")
-assert !scenarioDoc.contains("Irrelevant documentation.")</pre>
+val scenarioDoc = generatedFile(&quot;ExampleSpec.html&quot;)
+assert scenarioDoc.contains(&quot;&lt;p&gt;This is an example.&lt;/p&gt;&quot;)
+assert !scenarioDoc.contains(&quot;Irrelevant documentation.&quot;)</pre>
 </p>
 </li><li><p  id="generates_example_documentation"><strong>generates example documentation</strong>
 <pre class="prettyprint lang-spec">
@@ -78,17 +78,17 @@ generateDoc('''
     /*
      * Example documentation
      */
-    fact "should do stuff"{
+    fact &quot;should do stuff&quot;{
       var x = 0
       x = x + 1
     }
   } 
 ''')
-val scenarioDoc = generatedFile("ExampleSpec.html")
+val scenarioDoc = generatedFile(&quot;ExampleSpec.html&quot;)
 assert scenarioDoc.contains('''
 &lt;strong&gt;should do stuff&lt;/strong&gt;
 &lt;p&gt;Example documentation&lt;/p&gt;
-&lt;pre class="prettyprint lang-spec"&gt;
+&lt;pre class=&quot;prettyprint lang-spec&quot;&gt;
 var x = 0
 x = x + 1&lt;/pre&gt;
 &lt;/p&gt;'''.toString())</pre>
@@ -103,8 +103,8 @@ generateDoc('''
     
   } 
 ''')
-val scenarioDoc = generatedFile("ExampleSpec.html")
-assert scenarioDoc.contains("&lt;h1&gt;Example Heading&lt;/h1&gt;")</pre>
+val scenarioDoc = generatedFile(&quot;ExampleSpec.html&quot;)
+assert scenarioDoc.contains(&quot;&lt;h1&gt;Example Heading&lt;/h1&gt;&quot;)</pre>
 </p>
 </li><li><p  id="generates_table_for_example_tables"><strong>generates table for example tables</strong>
 <pre class="prettyprint lang-spec">
@@ -116,12 +116,12 @@ generateDoc('''
     }
   } 
 ''')
-val scenarioDoc = generatedFile("ExampleSpec.html")
-assert scenarioDoc.contains('&lt;h4 id="myExample"&gt;MyExample&lt;/h4&gt;')
-assert scenarioDoc.contains("&lt;th&gt;a&lt;/th&gt;")
-assert scenarioDoc.contains("&lt;th&gt;b&lt;/th&gt;")
-assert scenarioDoc.contains("&lt;td&gt;1&lt;/td&gt;")
-assert scenarioDoc.contains("&lt;td&gt;2&lt;/td&gt;")</pre>
+val scenarioDoc = generatedFile(&quot;ExampleSpec.html&quot;)
+assert scenarioDoc.contains('&lt;h4 id=&quot;myExample&quot;&gt;MyExample&lt;/h4&gt;')
+assert scenarioDoc.contains(&quot;&lt;th&gt;a&lt;/th&gt;&quot;)
+assert scenarioDoc.contains(&quot;&lt;th&gt;b&lt;/th&gt;&quot;)
+assert scenarioDoc.contains(&quot;&lt;td&gt;1&lt;/td&gt;&quot;)
+assert scenarioDoc.contains(&quot;&lt;td&gt;2&lt;/td&gt;&quot;)</pre>
 </p>
 </li><li><p  id="filters_code_based_on_regex_in_filter_annotation"><strong>filters code based on regex in filter annotation</strong>
 <pre class="prettyprint lang-spec">
@@ -130,13 +130,12 @@ generateDoc('''
     /*
      * @filter(bbb)
      */
-    fact "should do stuff"{
-      "aaabbbaaa"
+    fact &quot;should do stuff&quot;{
+      &quot;aaabbbaaa&quot;
     }
   } 
 ''')
-val scenarioDoc = generatedFile("ExampleSpec.html")
-println(scenarioDoc)
+val scenarioDoc = generatedFile(&quot;ExampleSpec.html&quot;)
 assert scenarioDoc.contains('aaaaaa')</pre>
 </p>
 </li></ul>
