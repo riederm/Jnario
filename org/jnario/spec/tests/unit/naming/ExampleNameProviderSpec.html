@@ -34,13 +34,20 @@
 <pre class="prettyprint lang-spec">
 firstJavaClassName(&quot;describe 'My Example'&quot;) should not contain &quot; &quot;</pre>
 </p>
-</li><li><p  id="should_append__Spec__to_class_name"><strong>should append 'Spec' to class name</strong>
+</li><li><p  id="should_append_Spec_to_class_name"><strong>should append 'Spec' to class name</strong>
 <pre class="prettyprint lang-spec">
 firstJavaClassName(&quot;describe 'My Example'&quot;) =&gt; endsWith('Spec')</pre>
 </p>
 </li><li><p  id="should_prepend_target_type_name"><strong>should prepend target type name</strong>
 <pre class="prettyprint lang-spec">
 firstJavaClassName(&quot;describe org.junit.Assert 'My Example'&quot;) =&gt; startsWith(&quot;Assert&quot;)</pre>
+</p>
+</li><li><p  id="should_prepend_unresolved_target_type_name"><strong>should prepend unresolved target type name</strong>
+<pre class="prettyprint lang-spec">
+firstJavaClassName(&quot;describe Unresolved&quot;) =&gt; startsWith(&quot;UnresolvedSpec&quot;)
+firstJavaClassName(&quot;describe java.Unresolved&quot;) =&gt; startsWith(&quot;UnresolvedSpec&quot;)
+firstJavaClassName(&quot;describe Unresolved$SubClass&quot;) =&gt; startsWith(&quot;SubClassSpec&quot;)
+firstJavaClassName(&quot;describe java.Unresolved&lt;String&gt;&quot;) =&gt; startsWith(&quot;UnresolvedSpec&quot;)</pre>
 </p>
 </li><li><p  id="should_convert_description_to_camel_case"><strong>should convert description to camel case</strong>
 <pre class="prettyprint lang-spec">
@@ -179,7 +186,7 @@ secondMethodName(&quot;after{}
          after{}&quot;) =&gt; &quot;after2&quot;</pre>
 </p>
 </li></ul>
-<h3 id="toFieldName_ExampleTable_">ToFieldName[ExampleTable]</h3>
+<h3 id="toFieldName_ExampleTable">ToFieldName[ExampleTable]</h3>
 <p></p>
 <ul><li><p  id="should_use_the_example_name"><strong>should use the example name</strong>
 <pre class="prettyprint lang-spec">
@@ -191,7 +198,7 @@ val exampleTable = '''
 '''.parse.first(typeof(ExampleTable))
 subject.toFieldName(exampleTable) =&gt; &quot;myExample&quot;</pre>
 </p>
-</li><li><p  id="should_use__examples__if_no_name_is_given"><strong>should use 'examples' if no name is given</strong>
+</li><li><p  id="should_use_examples_if_no_name_is_given"><strong>should use 'examples' if no name is given</strong>
 <pre class="prettyprint lang-spec">
 val exampleTable = '''
   describe 'My Context'{
@@ -211,6 +218,11 @@ describeFirst(&quot;describe 'My Description'&quot;) =&gt; &quot;My Description&
 </li><li><p  id="should_use_the_target_type"><strong>should use the target type</strong>
 <pre class="prettyprint lang-spec">
 describeFirst(&quot;describe org.junit.Assert&quot;) =&gt; &quot;Assert&quot;</pre>
+</p>
+</li><li><p  id="should_use_the_unresolved_target_type"><strong>should use the unresolved target type</strong>
+<pre class="prettyprint lang-spec">
+describeFirst(&quot;describe Unresolved&quot;) =&gt; &quot;Unresolved&quot;
+describeFirst(&quot;describe org.Unresolved&quot;) =&gt; &quot;Unresolved&quot;</pre>
 </p>
 </li><li><p  id="should_combine_target_type_and_description"><strong>should combine target type and description</strong>
 <pre class="prettyprint lang-spec">
@@ -247,7 +259,7 @@ describeFirst(text) =&gt; 'Example 2'</pre>
 <pre class="prettyprint lang-spec">
 describeFirst(&quot;'should do stuff' {true}&quot;) =&gt; &quot;should do stuff&quot;</pre>
 </p>
-</li><li><p  id="appends___PENDING___to_pending_example_descriptions"><strong>appends '[PENDING]' to pending example descriptions</strong>
+</li><li><p  id="appends_PENDING_to_pending_example_descriptions"><strong>appends '[PENDING]' to pending example descriptions</strong>
 <pre class="prettyprint lang-spec">
 describeFirst(&quot;'should do stuff'&quot;) =&gt; &quot;should do stuff [PENDING]&quot;
 describeFirst(&quot;'should do stuff'{}&quot;) =&gt; &quot;should do stuff [PENDING]&quot;</pre>
