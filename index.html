@@ -1,54 +1,54 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Jnario</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description"
+	<meta charset="utf-8">
+	<title>Jnario - Executable Specifications for Java</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description"
 	content="Jnario is a framework for writing executable specifications
           for Java. It provides two different languages, one for writing 
           high-level acceptance specifications and one for writing low-level unit
           specifications, effectively enabling BDD in Java.">
-<meta name="author" content="Sebastian Benz">
+	<meta name="author" content="Sebastian Benz">
 
-<link rel="canonical" href="http://jnario.org">
-<!-- Le styles -->
-<link href="css/prettify.css" rel="stylesheet">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/jnario.min.css" rel="stylesheet">
-<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-<link href="css/jnario-responsive.min.css" rel="stylesheet">
-<!-- <link
+	<link rel="canonical" href="http://jnario.org">
+	<!-- Le styles -->
+	<link href="css/prettify.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="css/jnario-responsive.min.css" rel="stylesheet">
+	<!-- <link
 	href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
 	rel="stylesheet" type="text/css">
-<link
+	<link
 	href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
 	rel="stylesheet" type="text/css">
-<link
+	<link
 	href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
-	rel="stylesheet" type="text/css"> -->
+	rel="stylesheet" type="text/css">
+	-->
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 
-<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-<!-- Le fav and touch icons -->
-<link rel="shortcut icon" href="ico/favicon.ico">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	<!-- Le fav and touch icons -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114"
 	href="ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	<link rel="apple-touch-icon-precomposed" sizes="72x72"
 	href="ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
+	<link rel="apple-touch-icon-precomposed"
 	href="ico/apple-touch-icon-57-precomposed.png">
 
-<script type="text/javascript"
+
+	<script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
 
 <body data-spy="scroll">
-	<!-- navbar -->
+		<!-- navbar -->
+	<!--
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
@@ -66,135 +66,241 @@
 						<li><a href="#about">About</a></li>
 					</ul>
 				</div>
-				<!--/.nav-collapse -->
 			</div>
 		</div>
 	</div>
+-->
 	<!-- the header -->
 	<header class="header">
-		<div id="home" class="hero-unit container">
-			<h1>Jnario</h1>
-			<p>Executable Specifications for Java.</p>
-			<div id="myCarousel" class="carousel slide hidden-phone">
-				<div class="carousel-inner">
-					<div class="item active">
-						<img src="img/featuretour1.png" alt="">
-						<div class="carousel-caption">
-							<h4>Describe your features in plain text...</h4>
-						</div>
-					</div>
-					<div class="item">
-						<img src="img/featuretour2.png" alt="">
-						<div class="carousel-caption">
-							<h4>...make them executable...</h4>
-						</div>
-					</div>
-					<div class="item">
-						<img src="img/featuretour3.png" alt="">
-						<div class="carousel-caption">
-							<h4>...run as plain JUnit tests...</h4>
-						</div>
-					</div>
-					<div class="item">
-						<img src="img/featuretour4.png" alt="">
-						<div class="carousel-caption">
-							<h4>...write specs for your java classes...</h4>
-						</div>
-					</div>
-					<div class="item">
-						<img src="img/featuretour5.png" alt="">
-						<div class="carousel-caption">
-							<h4>...execute with JUnit...</h4>
-						</div>
-					</div>
-					<div class="item">
-						<img src="img/featuretour6.png" alt="">
-						<div class="carousel-caption">
-							<h4>...generate documentation.</h4>
-						</div>
-					</div>
-				</div>
-				<a class="left carousel-control" href="#myCarousel"
-					data-slide="prev">&lsaquo;</a> <a class="right carousel-control"
-					href="#myCarousel" data-slide="next">&rsaquo;</a>
-			</div>
-			<div class="bs-links  hidden-phone">
-				<ul class="quick-links">
-					<li class="tweet-btn"><a href="https://twitter.com/share"
-						class="twitter-share-button"
-						data-text="Jnario - Executable Specifications for Java"
-						data-via="sebabenz">Tweet</a></li>
-					<li><iframe class="github-btn"
-							src="http://markdotto.github.com/github-buttons/github-btn.html?user=bmwcarit&repo=jnario&type=watch&count=true"
-							allowtransparency="true" frameborder="0" scrolling="0"
-							width="112px" height="20px"></iframe></li>
-					<li><a
-						href='http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=250367'
-						title='Drag and drop into a running Eclipse Indigo workspace to install Jnario'>
-							<img id="install_button"
-							src='http://marketplace.eclipse.org/misc/installbutton.png' />
-					</a></li>
-				</ul>
-			</div>
+		<div class="container hero-unit">
+			<div id="home" class="">
+				<h1>Jnario</h1>
+				<p>Executable Specifications for Java.</p>
+				<p>
+				<a href="org/jnario/JnarioDocumentationSuite.html">
+					<button class="btn btn-primary btn-large" href="">
+						Documentation
+					</button>
+				</a>
 
+				<a href="org/jnario/jnario/documentation/InstallingJnarioSpec.html">
+					<button class="btn btn-primary btn-large" href="">
+						Download
+					</button>
+				</a>
+			</p>
+
+			</div>
 		</div>
 	</header>
 
-	<!-- the content -->
-	<div class="content">
-		<div class="container">
-			<section id="introduction" class="row">
-				<h1>Introduction</h1>
-				<p>
-					<strong>Jnario</strong> provides two domain-specific
-					languages specifically designed for writing expressive and clutter-free tests. 
-					One language is for writing high-level acceptance specifications and one for
-					writing low&#150;level specifications. Both are really easy to
-					integrate into existing projects as they compile to plain JUnit
-					tests. Jnario is based on <a href="http://www.xtext.org">Xtext</a>
-					and <a href="http://www.xtend-lang.org">Xtend</a>. This means you
-					have the <a href="http://www.eclipse.org/xtend/#noisereduction">expressiveness</a>
-					of Xtend together with the <a
-						href="http://www.eclipse.org/Xtext/#FeatureList">first class
-						tooling support</a> provided by Xtext, such as refactoring, code
-					completion and debugging.
-				</p>
-				<h2>Features</h2>
-				<ul>
-					<li>Full interoperability with Java.</li>
-					<li>Generate <a
-						href="org/jnario/spec/tests/documentation/IntroducingJnarioSpecsSpec.html#Generating_Documentation">
-							documentation</a> from your specifications.
-					</li>
-					<li><a
-						href="org/jnario/spec/tests/integration/AssertionSpec.html">Self-explanatory
-							assertions</a>.</li>
-					<li>Based on <a href="http://www.eclipse.org/xtend/">Xtend</a>.
-					</li>
-					<li>Easy to integrate into existing Java projects.</li>
-					<li>Great Eclipse tooling support (including debugging).</li>
-				</ul>
-				<h2>Acceptance Specifications</h2>
-				<p>
-					Acceptance specifications in Jnario focus on the <a
-						href="http://www.slideshare.net/lunivore/behavior-driven-development-11754474">design</a>
-					and <a href="http://dannorth.net/whats-in-a-story/">communication</a>
-					part of developing software. You can describe the features of your
-					application in a business readable language similar to <a
-						href="http://cukes.info/">Cucumber</a>, but with one major
-					difference: you don't need to implement a separate parser for your
-					steps. Instead, you can directly inline the necessary code to make
-					your specification executable.
-				</p>
-				<pre class="prettyprint lang-feature">
- Feature: Addition
+<!-- the content -->
+<div class="content light">
+	<div class="container">
+		<section >
+			<div class="row">
+				<div class="span4">
+					<h3>Clutter-free specs for Java</h3>
+					<p>Jnario is a language making it possible to write concise tests that can effectively document the behavior of your Java programs.</p>
+				</div>
+				<div class="span7 offset1">
+<pre class="prettyprint lang-spec  linenums">
+describe "The String 'Hello World'"{
+  facts "about Hello World" => [
+    length should be 11
+    it should startWith "Hello"
+    it should endWith "World"
+    it should contain "Wor"
+  ]
+}</pre>
+
+				</div>
+			   </div>
+			<div class="row">
+				<div class="span4">
+					<h3>Specify executable scenarios</h3>
+					<p>It is also possible to write executable acceptance specifications similiar to <a href="http://www.cukes.info">Cucumber</a>, but with less maintenance overhead.</p>
+				</div>
+				<div class="span7 offset1">
+<pre class="prettyprint lang-feature  linenums">
+Feature: Jnario Introduction
+  In order to demonstrate Jnario
+  As a Developer
+  I want the Jnario homepage to show examples 
+
+  Scenario: Example on Homepage
+    Given the Jnario homepage
+    When I open it in the browser
+    Then it should show an example specification
+</pre>
+
+				</div>
+			   </div>
+			<div class="row">
+				<div class="span4">
+					<h3>Compile to Java - run with JUnit</h3>
+					<p>Jnario is easy to integrate into existing projects as specs compile into idiomatic Java source code being executable with Junit. 
+					</p>
+				</div>
+				<div class="span7 offset1">
+					<img src="img/spec_run1.png" width="370px"></div>
+			</div>
+			<div class="row">
+				<div class="span4">
+					<h3>Full Java interoperability</h3>
+					<p>Jnario's type system resembles the one of Java making it easy to interact with Java objects.</p>
+				</div>
+				<div class="span7 offset1">
+					<pre class="prettyprint lang-spec linenums">
+import java.util.ArrayList
+
+describe ArrayList{
+  fact "adding increases size"{
+    val list = new ArrayList&lt;String&gt;()
+    list.size => 0
+    list.add("something")
+    list.size => 1
+  }
+}</pre>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span4">
+					<h3>Built with Xtend</h3>
+					<p>This means when writing specs with Jnario, you can use all the goodness of <a href="http://www.xtend-lang.org">Xtend</a> resulting in less boilerplate code in your specs.</p>
+				</div>
+				<div class="span7 offset1">
+					<pre class="prettyprint lang-spec linenums">
+describe "Map/Reduce"{
+  fact "count chars in a list"{
+    val l = list("red", "blue", "green")
+    l.map[length].reduce[sum, length | sum + length] => 12
+  }
+}</pre>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<div class="content green">
+	<div class="container">
+		<section >
+			<div class="row">
+				<div class="span12">
+					<h1>Unit & integration specs</h1>
+				</div>
+
+				<div class="span4">
+					<h3>Write facts about your code</h3>
+					<p>
+						Describe the intended behavior of your code using examples. A fact can be as simple as a single expression asserting a certain property. You can use <code>should</code> or <code>=></code> to describe the desired behavior of your objects.
+					</p>
+				</div>
+				<div class="span7 offset1">
+					<pre class="prettyprint lang-spec linenums">
+describe Stack{
+  val stack = new Stack
+  context "empty"{
+    fact stack.pop throws EmptyStackException
+  }
+  context "one element"{
+    before stack.add("something")
+    fact stack.pop => "something"
+  }
+}</pre>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span4">
+					<h3>A DSL designed for testing</h3>
+					<p>
+						Jnario syntax is specifially tailored to the purpose of writing tests. For example, Jnario supports tables for simplify specifying different sets of inputs and expected outputs.
+					</p>
+				</div>
+				<div class="span7 offset1">
+					<pre class="prettyprint lang-spec linenums">
+describe "Arithmetic"{
+  def additions{
+        |  a  |  b  |  sum  |
+        |  1  |  2  |   3   |
+        |  4  |  5  |   9   |
+        | 10  | 11  |  20   | 
+        | 21  | 21  |  42   | 
+  }
+  fact additions.forEach[a + b => sum]
+}</pre>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span4">
+					<h3>Self-explaining assertions</h3>
+					<p>
+						A failed assertion prints the values of all evaluated sub-expressions. This means you don’t need to debug your tests anymore to find the exact reason why it failed.
+					</p>
+				</div>
+				<div class="span7 offset1">
+					<pre class="prettyprint lang-spec linenums">
+java.lang.AssertionError: additions failed
+
+        | a      | b      | sum     |
+        | 1      | 2      | 3       | ✓
+        | 4      | 5      | 9       | ✓
+        | 10     | 11     | 20      | ✘     (1)
+        | 21     | 21     | 42      | ✓
+
+(1) Expected a + b => sum but
+         a + b is 21
+         a is 10
+         b is 11
+         sum is 20</pre>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<div class="content dark">
+	<div class="container">
+		<section>
+			<div class="row">
+				<div class="span12">
+					<h1>Acceptance specs</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span4">
+					<h3>Cucumber-style scenarios...</h3>
+					<p>
+						With Jnario you can create executable acceptance specifications that are easily readable and understandable to business users, developers and testers, similar to <a href="http://www.cukes.info">Cucumber</a>.
+					</p>
+				</div>
+				<div class="span7 offset1">
+					<pre class="prettyprint lang-feature linenums">
+Feature: Addition
 
   In order to avoid silly mistakes
   As a math idiot
   I want to be told the sum of two numbers
   
   Scenario: Add two numbers
-    <span class="code">Calculator calculator = new Calculator()</span>
+    Given I have entered "50" into the calculator
+    And I have entered "70" into the calculator
+    When I press "add"
+    Then the result should be "120" </pre>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span4">
+					<h3>...with a twist...</h3>
+					<p>
+						There is one big difference between Jnario and Cucumber. You don’t need to create separate step definitions to make your steps executable. You can directly add the necessary code below your steps.
+					</p>
+				</div>
+				<div class="span7 offset1">
+					<pre class="prettyprint lang-feature linenums">
+Feature: addition
+  ...
+  Scenario: Add two numbers
+    <span class="code">val calculator = new Calculator()</span>
     Given I have entered "50" into the calculator
       <span class="code">calculator.enter(args.first)</span>
     And I have entered "70" into the calculator
@@ -202,128 +308,309 @@
       <span class="code">calculator.press(args.first)</span>
     Then the result should be "120" 
       <span class="code">calculator.result =&gt; args.first</span></pre>
-				<h2>Specifications</h2>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="span4">
+					<h3>...and proper tooling</h3>
+					<p>
+						Mixing code and text in your specs is not a problem, as you can hide the code in the editor to improve readability. 
+					</p>
+				</div>
+				<div class="span7 offset1" >
+					<iframe  src="http://player.vimeo.com/video/45933775?title=0&byline=0&portrait=0" width="540" height="340" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+</div>
+<div class="content light">
+<div class="container">
+	<section id="suites">
+		<div class="row">
+			<div class="span12">
+				<h1>Jnario Suites</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span4">
+				<h3>Orchestrate spec execution</h3>
 				<p>
-					The goal of Jnario is to make it possible to write tests
-					without boilerplate. Compare the following example specification to
-					the same example <a href="https://gist.github.com/2209317">
-						implemented in Java</a>.
+					Use suites to groups multiple specifications and execute them together. You can either directly reference specs or include multiple specs at the same time using regular expressions.
 				</p>
-				<pre class="prettyprint lang-spec">
-package example
+			</div>
+			<div class="span7 offset1">
+				<pre class="prettyprint lang-suite linenums">
+package demo
 
-import java.util.Stack
+import specs.*
+import features.*
 
-describe Stack{
-  context "empty stack"{
-    fact subject.size should be 0
-    fact subject.pop throws Exception
-  }
-  context "stack with one element"{ 
-    before subject.add("element")
-    fact subject.size should be 1
-    fact "pop decreases size"{
-      subject.pop
-      subject.size =&gt; 0 
-    }
-  }   
-}</pre>
-			</section>
+#My Suite
 
-			<section id="installation" class="row">
-				<h1>Installation</h1>
-				<p>Jnario consists of three parts:</p>
-				<ol>
-					<li><strong>Runtime:</strong> the Jnario runtime environment
-						required for executing specifications.</li>
-					<li><strong>Compiler:</strong> the Jnario compiler translates
-						specification files (*.feature, *.spec, *.suite) into Java
-						classes.</li>
-					<li><strong>IDE (optional):</strong> the IDE provides Editors
-						with syntax highlighting, code completion, validation and debugger
-						for Eclipse.</li>
-				</ol>
-				<h3>Installing the Jnario Tooling</h3>
+- "My Feature"
+- "My Spec"</pre>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span4">
+				<h3>...and document</h3>
+				<p>
+					Jnario generates HTML documents for suites making them a great way to provide additional documentation. You can use suites to document the overall architecture of your application with links to other specifications describing the different parts in more detail.
+				</p>
+			</div>
+			<div class="span7 offset1">
+				<pre class="prettyprint lang-suite linenums">
+package demo
+
+import specs.*
+
+#My Suite
+
+This is the description of the suite. It is possible to use 
+[Markdown](http://daringfireball.net/projects/markdown)
+for **formatting** the text and adding images or links. 
+
+##My Specs
+
+This is a subsection in which we list all our unit specs:
+
+- "My Spec": this is an example unit spec.
+   with a multiline description.
+
+##My Features
+
+...and here we list all our features using a regular expression:
+
+- \.*features.*\</pre>
+			</div>
+		</div>
+	</section>
+</div>
+</div>
+<div class="content green">
+	<div class="container">
+		<section>
+			<div class="row">
+				<div class="span12">
+					<h1>Generate documentation from your specs</h1>
+					<p>Specs are a great way to document the behavior of your code. For example, the complete <a href="org/jnario/JnarioDocumentationSuite.html">Jnario documentation</a> is generated from specs written with Jnario. Specs can be transformed into a corresponding HTML documents. Here are some example specs with their generated documentation (you can click on the images to enlarge).</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span5">
+					<a href="img/spec.png"><img src="img/spec.png" width="400" height="355"></a>
+				</div>
+				<div class="span6 offset1">
+					<a href="img/spec_doc.png"><img src="img/spec_doc.png" width="400" height="355"></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span5">
+					<a href="img/feature.png"><img src="img/feature.png" width="400" height="270"></a>
+				</div>
+				<div class="span6 offset1">
+					<a href="img/feature_doc.png"><img src="img/feature_doc.png" width="400" height="270"></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span5">
+					<a href="img/suite.png"><img src="img/suite.png" width="400" height="302"></a>
+				</div>
+				<div class="span6 offset1">
+					<a href="img/suite_doc.png"><img src="img/suite_doc.png" width="400" height="302"></a>
+				</div>
+			</div>
+	</section>
+</div>
+</div>
+<div class="content light">
+<div class="container">
+	<section>
+		<div class="row">
+			<div class="span12">
+				<h1>Getting Started</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span8">
+				<p>
+					Learn how to write specifications in Jnario. 
+				</p>
 				<ul>
-					<li>The Jnario IDE with integrated compiler requires <a
-						href="http://www.eclipse.org/downloads/">Eclipse &#8805;3.6</a> with <a
-						href="http://www.xtext.org">Xtext 2.3</a> and <a
-						href="http://www.eclipse.org/xtend/">Xtend 2.3</a>. If you install Eclipse
-						from the <a href="http://www.xtext.org">Xtext site</a> you will get a working Eclipse version and Xtext and Xtend
-						are already included. <br>
-						Jnario will be officially released in End of June 2012, but you can install the
-						latest stable snapshots via this update site: <pre>http://www.jnario.org/updates/snapshot/</pre>
+					<li>
+						<a href="org/jnario/spec/tests/documentation/IntroducingJnarioSpecsSpec.html">Specs Tutorial</a>
 					</li>
-					<li>Compiling specs via <a href="http://maven.apache.org/">Maven</a>
-						will be available soon.
+					<li>
+						<a href="org/jnario/feature/documentation/IntroducingJnarioFeaturesSpec.html">Features Tutorial</a>
+					</li>
+					<li>
+						<a href="org/jnario/suite/documentation/IntroducingJnarioSuitesSpec.html">Suites Tutorial</a>
+					</li>
+					<li>
+						<a href="org/jnario/jnario/documentation/20FactsAboutXtendSpec.html">All you need to know about Xtend</a>
 					</li>
 				</ul>
-				<h3>Installing the Jnario Runtime</h3>
-				<p>Jnario compiles to Java and depends on the following
-					libraries at runtime:</p>
-				<ul>
-					<li><a href="http://www.junit.org/">JUnit 4</a> - used for
-						test execution</li>
-					<li><a href="http://www.eclipse.org/xtend/">Xtend Runtime
-							Library</a> - many of Xtend's functionality is not built into the
-						language itself but is provided via this library</li>
-					<li><a href="http://code.google.com/p/guava-libraries/">Google
-							Guava </a>- Google's core Java library</li>
-					<li><a
-						href="http://jnario.org/updates/snapshot/org.jnario.lib-0.1.0-SNAPSHOT.jar">Jnario
-							Lib</a> - the Jnario runtime</li>
-				</ul>
-				<p>There are different ways to add these libraries to your
-					project:</p>
-				<ul>
-					<li><p>Inside Eclipse you can add these libraries via
-							quickfix:</p>
-						<p>
-							<img src="img/quickfix.png">
-						</p></li>
-					<li>If you are developing Eclipse plugins add a plugin
-						dependency to "org.jnario.lib".</li>
-					<li>Support for <a href="http://maven.apache.org/">Maven</a>
-						is coming soon...
-					</li>
-				</ul>
+				<p>For more information visit the
+					<a href="org/jnario/JnarioDocumentationSuite.html">Jnario documentation</a>.</p>
+			</div>
+		</div>
 
-			</section>
+		<div class="row">
+			<div class="span4">
+				<h2>Eclipse Setup</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span8">
+				<p>
+					The Jnario tooling can be installed via the
+					<a href="http://marketplace.eclipse.org/content/jnario">Eclipse Marketplace</a>	or update site.
+				</p>
+				<p>Official releases:&nbsp;&nbsp;
+						<strong><a href="http://www.jnario.org/updates/releases/">http://www.jnario.org/updates/releases/</a></strong></p>
+				<p>Stable Snapshots:	<strong><a href="http://www.jnario.org/updates/snapshot/">http://www.jnario.org/updates/snapshot/</a></strong></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span12">
+				<h2>Maven Setup</h2>
+			</div>
+		</div>
 
-			<section id="support" class="row">
+		<div class="row">
+			<div class="span4">
+				<p>
+					Installing the runtime library to execute specs.
+				</p>
+			</div>
+			<div class="span7 offset1">
+				<p><pre class="prettyprint">
+&lt;dependency&gt;
+  &lt;groupId&gt;org.jnario&lt;/groupId&gt;
+  &lt;artifactId&gt;org.jnario.lib.maven&lt;/artifactId&gt;
+  &lt;version&gt;0.1.0&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</pre></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span4">
+				<p>
+					Compiling specs to Java with Maven.
+				</p>
+			</div>
+			<div class="span7 offset1">
+					<p><pre class="prettyprint">
+&lt;plugins&gt;
+  &lt;plugin&gt;
+    &lt;groupId&gt;org.jnario&lt;/groupId&gt;
+    &lt;artifactId&gt;jnario-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;0.1.0&lt;/version&gt;
+    &lt;executions&gt;
+      &lt;execution&gt;
+        &lt;goals&gt;
+          &lt;goal&gt;testCompile&lt;/goal&gt;
+        &lt;/goals&gt;
+      &lt;/execution&gt;
+    &lt;/executions&gt;
+  &lt;/plugin&gt;
+&lt;/plugins&gt;
+</pre></p>
+			</div>	
+		</div>
+<!--
+		<div class="row">
+			<div class="span5">
+				<p>Configure Surefire for executing the generated specs.</p>
+			</div>
+			<div class="span7 ">
+					<p><pre class="prettyprint">
+&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+  &lt;configuration&gt;
+    &lt;includes&gt;
+      &lt;include&gt;**/*Spec.java&lt;/include&gt;
+      &lt;include&gt;**/*Feature.java&lt;/include&gt;
+      &lt;include&gt;**/*Test.java&lt;/include&gt;
+      &lt;include&gt;**/*TestCase.java&lt;/include&gt;
+     &lt;/includes&gt;
+  &lt;/configuration&gt;
+&lt;/plugin&gt;
+</pre></p>
+			</div>
+		</div>
+	</div>
+-->
+		<div class="row">
+			<div class="span12">
 				<h1>Support</h1>
+				<p>
 				<ul>
-					<li>Submit issues and feature request at <a
-						href="https://github.com/bmwcarit/Jnario/issues">Github Issues</a>.
+					<li>
+						Submit issues and feature request at
+						<a
+						href="https://github.com/bmwcarit/Jnario/issues">Github Issues</a>
+						.
 					</li>
-					<li>For general questions head over to the <a
-						href="http://groups.google.com/group/jnario">discussion group</a>.
+					<li>
+						For general questions head over to the
+						<a
+						href="http://groups.google.com/group/jnario">mailing list</a>
+						.
 					</li>
-					<li>Visit <a href="https://github.com/bmwcarit/Jnario">Github</a>
+					<li>
+						Visit
+						<a href="https://github.com/bmwcarit/Jnario">Github</a>
 						for the source code.
 					</li>
 				</ul>
-			</section>
-			<section id="about" class="row">
+				</p>
+			</div>
+		</div>
+</div>
+<!-- /container -->
+<div class="content header ">
+  <div class="container">
+	<footer>
+		<div class="row">
+			<div class="span12">
 				<h1>About</h1>
 
 				<p>
-					Jnario has been built at <a href="http://www.bmw-carit.de">BMW
-						Car IT GmbH</a> by <a href="http://www.twitter.com/sebabenz">Sebastian
-						Benz</a> and <a href="https://plus.google.com/109000223715946154011/">Birgit Engelmann</a>. Code licensed under the <a
-						href="http://www.eclipse.org/legal/epl-v10.html">Eclipse
-						Public License v1.0</a>.
+					Jnario has been built at
+					<a href="http://www.bmw-carit.de">
+						BMW
+						Car IT GmbH
+					</a>
+					by
+					<a href="http://www.twitter.com/sebabenz">
+						Sebastian
+						Benz
+					</a>
+					and
+					<a href="https://plus.google.com/109000223715946154011/">Birgit Engelmann</a>. Code licensed under the
+					<a
+						href="http://www.eclipse.org/legal/epl-v10.html">
+						Eclipse
+						Public License v1.0
+					</a>.
 				</p>
-			</section>
+			</div>
 		</div>
-	</div>
-	<!-- /container -->
+	</footer>
+</div>
+</div>
+<!-- /container -->
 
-	<!-- Le javascript -->
-	<script src="js/jnario.min.js"></script>
-	<script src="js/application.js"></script>
+<!-- Le javascript -->
+<script src="js/jnario.min.js"></script>
+<script src="js/application.js"></script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push([ '_setAccount', 'UA-30225034-1' ]);
 		_gaq.push([ '_trackPageview' ]);
@@ -339,7 +626,7 @@ describe Stack{
 			s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
-	<script>
+<script>
 		!function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (!d.getElementById(id)) {
@@ -353,5 +640,3 @@ describe Stack{
 
 </body>
 </html>
-
-
