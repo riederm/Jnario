@@ -53,6 +53,18 @@ iframe {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
+.header img {
+  padding: 6px;
+  margin-top: -1080px;
+  border-width: 2px;
+  border: 1px solid #bcd279;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
 img {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
@@ -4491,7 +4503,7 @@ a.badge:hover {
   color: #ffffff;
 }
 .hero-unit {
-  padding-top: 230px;
+  padding-top: 200px;
   padding-left: 0px;
   position: relative;
 }
