@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>OperationNameProvider</title>
+<title>Compiler</title>
 <meta name="description" content="">
 <meta name="author" content="Jnario">
 
@@ -24,16 +24,52 @@
 	<div class="container">
 		<div class="content">
 			<div class="page-header">
-				<h1>OperationNameProvider</h1>
+				<h1>Compiler</h1>
 			</div>
 			<div class="row">
 				<div class="span12">
-<h3 id="should_name_methods_similar_to_JavaDoc_links">Should name methods similar to JavaDoc links</h3>
-<ul><li><p id="nameOf_simpleOperation_simpleOperation"><strong>nameOf["simpleOperation"] => "simpleOperation"</strong></p>
-</li><li><p id="nameOf_operationWithSingleArgument_operationWithSingleArgument_String"><strong>nameOf["operationWithSingleArgument"] => "operationWithSingleArgument[String]"</strong></p>
-</li><li><p id="nameOf_operationWithMultipleArguments_operationWithMultipleArguments_String_Object_int"><strong>nameOf["operationWithMultipleArguments"] => "operationWithMultipleArguments[String, Object, int]"</strong></p>
-</li><li><p id="nameOf_operationWithTypedArguments_operationWithTypedArguments_List_String_List_extends_String"><strong>nameOf["operationWithTypedArguments"] => "operationWithTypedArguments[List<String>, List<? extends String>]"</strong></p>
-</li><li><p id="nameOf_operationWithVarArg_operationWithVarArg_String"><strong>nameOf["operationWithVarArg"] => "operationWithVarArg[String[]]"</strong></p>
+<ul><li><p id="long_boolean_expressions_compile_correctly"><strong>long boolean expressions compile correctly</strong></p>
+<pre class="prettyprint lang-spec">
+'''
+describe &quot;Something with an expression&quot;{
+  fact &quot;a fact with an if&quot;{
+    val x = 4
+    if(x &gt; 4 &amp;&amp; x &gt; 5){
+      
+    }
+  }
+}
+'''.executesSuccessfully</pre>
+</li><li><p id="assert_with_multiple_bool_expressions"><strong>assert with multiple bool expressions</strong></p>
+<pre class="prettyprint lang-spec">
+'''
+describe &quot;Something with an expression&quot;{
+  fact &quot;a fact with an if&quot;{
+    val x = 6
+    assert x &gt; 4 &amp;&amp; x &gt; 5
+  }
+}
+'''.executesSuccessfully</pre>
+</li><li><p id="with_multiple_bool_expressions"><strong>=> with multiple bool expressions</strong></p>
+<pre class="prettyprint lang-spec">
+'''
+describe &quot;Something with an expression&quot;{
+  fact &quot;a fact with =&gt;&quot;{
+    val x = 6
+    (x &gt; 4 &amp;&amp; x &gt; 5) =&gt; true
+  }
+}
+'''.executesSuccessfully</pre>
+</li><li><p id="should_with_multiple_bool_expressions"><strong>should with multiple bool expressions</strong></p>
+<pre class="prettyprint lang-spec">
+'''
+describe &quot;Something with an expression&quot;{
+  fact &quot;a fact with should&quot;{
+    val x = 6
+    x &gt; 4 &amp;&amp; x &gt; 5 should be true
+  }
+}
+'''.executesSuccessfully</pre>
 </li></ul>
 				</div>
 			</div>
