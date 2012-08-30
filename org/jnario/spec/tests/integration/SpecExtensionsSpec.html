@@ -61,8 +61,8 @@ public class ExtensionExample {
     return EXECUTED_METHODS;
   }
 }
-</pre>
-<ul><li><p id="all_setup_and_tear_down_methods_in_extensions_will_be_executed"><strong>all setup and tear down methods in extensions will be executed</strong></p>
+</pre><p>When you declare an instance of this class as an extension field in your spec, all the setup and tear down methods will be executed before/after each fact/spec, respectively:</p>
+<ul><li><p id="Example"><strong>Example:</strong></p>
 <pre class="prettyprint lang-spec">
 execute('''
   package bootstrap
