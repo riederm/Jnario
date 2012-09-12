@@ -35,21 +35,21 @@
 					<div class="span12">
 						  <div class="tab-content">
 							  	<div class="tab-pane active" id="spec">
-<h2 id="deadCells">DeadCells</h2>
+<h3 id="dead_cells">Dead cells</h3>
 <ul><li><p id="with_no_live_cells_there_are_no_dead_cells"><strong>with no live cells there are no dead cells</strong></p>
 <pre class="prettyprint lang-spec linenums">
 worldWith(emptyList).deadCells =&gt; emptySet</pre>
 </li><li><p id="with_a_live_cell_all_neighbours_are_dead_cells"><strong>with a live cell all neighbours are dead cells</strong></p>
 <pre class="prettyprint lang-spec linenums">
-worldWithLiveCell.deadCells =&gt; livingCell.neighbours</pre>
+worldWithLiveCell.deadCells =&gt; liveCell.neighbours</pre>
 </li><li><p id="with_a_live_cell_all_non_living_neighbours_are_dead_cells"><strong>with a live cell all non-living neighbours are dead cells</strong></p>
 <pre class="prettyprint lang-spec linenums">
 worldWithTwoLiveNeighbours.deadCells =&gt; allNonLivingNeighbours</pre>
 </li></ul>
-<h2 id="livingNeighbours_CellLocation">LivingNeighbours[CellLocation]</h2>
+<h3 id="living_Neighbours">Living Neighbours</h3>
 <ul><li><p id="returns_number_of_live_neighbours"><strong>returns number of live neighbours</strong></p>
 <pre class="prettyprint lang-spec linenums">
-worldWithTwoLiveNeighbours.livingNeighbours(livingCell) =&gt; 1</pre>
+worldWithTwoLiveNeighbours.livingNeighbours(liveCell) =&gt; 1</pre>
 </li></ul>
 							</div>
 						    <div class="tab-pane" id="source">
@@ -58,39 +58,40 @@ worldWithTwoLiveNeighbours.livingNeighbours(livingCell) =&gt; 1</pre>
 <pre class="prettyprint lang-spec linenums">
 package gameoflife.specs
 
+import gameoflife.World
+
 import static gameoflife.CellLocation.*
 import static gameoflife.World.*
-import gameoflife.World
   
 describe World{
   
-  val livingCell = cell(0,0)
+  val liveCell = cell(0,0)
   val anotherLivingCell = cell(1, 1)
   
-  val worldWithLiveCell = worldWith(list(livingCell))
-  val worldWithTwoLiveNeighbours = worldWith(list(livingCell, anotherLivingCell))
+  val worldWithLiveCell = worldWith(list(liveCell))
+  val worldWithTwoLiveNeighbours = worldWith(list(liveCell, anotherLivingCell))
   
-  context deadCells{
+  context &quot;dead cells&quot;{
     fact &quot;with no live cells there are no dead cells&quot;{
       worldWith(emptyList).deadCells =&gt; emptySet
     }
     fact &quot;with a live cell all neighbours are dead cells&quot;{
-      worldWithLiveCell.deadCells =&gt; livingCell.neighbours
+      worldWithLiveCell.deadCells =&gt; liveCell.neighbours
     }
     fact &quot;with a live cell all non-living neighbours are dead cells&quot;{
       worldWithTwoLiveNeighbours.deadCells =&gt; allNonLivingNeighbours
     }
     
     def allNonLivingNeighbours(){
-      val allNonLivingNeighbours = (livingCell.neighbours + anotherLivingCell.neighbours).toSet
+      val allNonLivingNeighbours = (liveCell.neighbours + anotherLivingCell.neighbours).toSet
       allNonLivingNeighbours.remove(anotherLivingCell)
-      allNonLivingNeighbours.remove(livingCell)
+      allNonLivingNeighbours.remove(liveCell)
       allNonLivingNeighbours
     }
   }
-  context livingNeighbours{
+  describe &quot;living Neighbours&quot;{
     fact &quot;returns number of live neighbours&quot;{
-      worldWithTwoLiveNeighbours.livingNeighbours(livingCell) =&gt; 1
+      worldWithTwoLiveNeighbours.livingNeighbours(liveCell) =&gt; 1
     }
   }
 }

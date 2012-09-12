@@ -35,10 +35,10 @@
 					<div class="span12">
 						  <div class="tab-content">
 							  	<div class="tab-pane active" id="spec">
-<h2 id="adding_cell_locations">Adding cell locations</h2>
+<h3 id="Calculating_relative_cell_locations">Calculating relative cell locations</h3>
 <ul><li><p id="cell_1_1_plus_cell_3_4_cell_2_5"><strong>cell[-1, 1].plus[cell[3,4]] => cell[2,5]</strong></p>
 </li></ul>
-<h2 id="neighbours">Neighbours</h2>
+<h3 id="cell_neighbours">Cell neighbours</h3>
 <ul><li><p id="are_adjacent_cells"><strong>are adjacent cells</strong></p>
 <pre class="prettyprint lang-spec linenums">
 val cell = cell(5, 5)
@@ -61,10 +61,10 @@ import static gameoflife.World.*
 import gameoflife.CellLocation
 
 describe CellLocation{
-  context &quot;adding cell locations&quot;{
+  describe &quot;Calculating relative cell locations&quot;{
     fact cell(-1, 1).plus(cell(3,4)) =&gt; cell(2,5)
   } 
-  context neighbours {
+  describe &quot;cell neighbours&quot; {
     fact &quot;are adjacent cells&quot;{
       val cell = cell(5, 5)
       val expectedNeighbours = set(

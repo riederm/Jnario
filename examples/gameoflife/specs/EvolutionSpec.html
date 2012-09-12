@@ -35,13 +35,14 @@
 					<div class="span12">
 						  <div class="tab-content">
 							  	<div class="tab-pane active" id="spec">
-<h2 id="dead_cells">Dead cells</h2>
+<p>Responsible for evolving cells in the world. The evolution is parameterized by two rules, the first rule deciding whether a live cell stays alive and the second rule deciding whether a dead cell becomes alive.</p>
+<h3 id="dead_cells">Dead cells</h3>
 <ul><li><p id="become_alive_if_rule_says_so"><strong>become alive if rule says so</strong></p>
 <pre class="prettyprint lang-spec linenums">
 val evolution = new Evolution(dontCare, allDeadLive)
 evolution.evolve(worldWithLiveCell).livingCells =&gt; livingCell.neighbours</pre>
 </li></ul>
-<h2 id="live_cells">Live cells</h2>
+<h3 id="live_cells">Live cells</h3>
 <ul><li><p id="stay_alive_if_rule_says_so"><strong>stay alive if rule says so</strong></p>
 <pre class="prettyprint lang-spec linenums">
 val evolution = new Evolution(allLiveStayAlive, dontCare)
@@ -59,6 +60,12 @@ import static gameoflife.World.*
 import gameoflife.Rule
 import gameoflife.Evolution
 
+/*
+ * Responsible for evolving cells in the world. The 
+ * evolution is parameterized by two rules, the first 
+ * rule deciding whether a live cell  stays alive and the second
+ * rule deciding whether a dead cell becomes alive.
+ */
 describe Evolution{
   
   val livingCell = cell(0,0)
