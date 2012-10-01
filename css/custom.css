@@ -235,9 +235,13 @@ img{
   }
 }
 
+.failed{
+	background-color:#f00;
+}
+
 .nav-tabs > li > a{
 	margin-top: 10px;
-	padding-bottom: 6px;
+	padding-bottom: 2px;
 	margin-bottom: 0px;
 }
 
