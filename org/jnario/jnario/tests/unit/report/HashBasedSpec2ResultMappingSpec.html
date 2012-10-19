@@ -42,7 +42,7 @@ subject.getResult(anyExecutable) =&gt; typeof(NotRun)</pre>
 <ul><li><p id="matches_if_classname_and_name_are_equal"><strong>matches if classname and name are equal</strong></p>
 <pre class="prettyprint lang-spec linenums">
 m.parseSpec(
-'''
+''' 
   package example
   describe &quot;Something&quot;{
     fact &quot;a fact&quot;{&quot;&quot;}
@@ -231,6 +231,7 @@ scenario.result =&gt; typeof(Failed)</pre>
 <pre class="prettyprint lang-spec linenums">
 package org.jnario.jnario.tests.unit.report
 
+import static org.hamcrest.CoreMatchers.*
 import com.google.inject.Inject
 import org.jnario.Executable
 import org.jnario.feature.feature.Step
@@ -281,7 +282,7 @@ describe HashBasedSpec2ResultMapping {
     
     fact &quot;matches if classname and name are equal&quot;{
       m.parseSpec(
-      '''
+      ''' 
         package example
         describe &quot;Something&quot;{
           fact &quot;a fact&quot;{&quot;&quot;}

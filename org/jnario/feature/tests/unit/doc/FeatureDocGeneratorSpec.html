@@ -58,8 +58,7 @@ val actual =
             List&lt;String&gt; list = new ArrayList&lt;String&gt;(); // should escape angle brackets
             Systen.out.println('Hello World');
           }
-        }
-      ''' 
+        }''' 
         input = args.first
         println(args.last)
       When I do something that is pending.
@@ -95,6 +94,7 @@ val expected = '''
   '''.toString
 
 assertEquals(expected, actual)</pre>
+</li><li><p id="Includes_failure_state_in_Feature"><strong>Includes failure state in Feature [PENDING]</strong></p>
 </li></ul>
 							</div>
 						    <div class="tab-pane" id="source">
@@ -148,8 +148,7 @@ describe FeatureDocGenerator {
                 List&lt;String&gt; list = new ArrayList&lt;String&gt;(); // should escape angle brackets
                 Systen.out.println('Hello World');
               }
-            }
-          ''' 
+            }''' 
             input = args.first
             println(args.last)
           When I do something that is pending.
@@ -185,6 +184,10 @@ describe FeatureDocGenerator {
       '''.toString
     
     assertEquals(expected, actual)
+  }
+  
+  fact &quot;Includes failure state in Feature&quot;{
+    
   }
   
   def generateDoc(CharSequence input){
