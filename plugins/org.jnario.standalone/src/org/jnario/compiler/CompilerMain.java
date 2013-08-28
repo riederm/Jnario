@@ -53,7 +53,8 @@ public class CompilerMain {
 				jnarioCompiler.setSourcePath(argument);
 			}
 		}
-		jnarioCompiler.compile();
+		int result = jnarioCompiler.compile();
+		System.exit(result);
 	}
 	
 	private static void printUsage() {
