@@ -87,7 +87,7 @@ Workflow {
 			fragment = parser.antlr.XtextAntlrGeneratorFragment {
 				options = auto-inject {}
 				antlrParam = "-Xconversiontimeout"
-				antlrParam = "10000"
+				antlrParam = "100000"
 				options = {
 					classSplitting = true
 				}
@@ -127,7 +127,7 @@ Workflow {
 			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {
 				options = auto-inject {}
 				antlrParam = "-Xconversiontimeout"
-				antlrParam = "10000"
+				antlrParam = "100000"
 				options = {
 					classSplitting = true
 				}

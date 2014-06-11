@@ -24,6 +24,7 @@ import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
+import org.eclipse.xtext.common.types.util.TypeReferences;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
@@ -35,6 +36,8 @@ import org.eclipse.xtext.xbase.XNullLiteral;
 import org.eclipse.xtext.xbase.XSwitchExpression;
 import org.eclipse.xtext.xbase.XbaseFactory;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
+import org.eclipse.xtext.xbase.typesystem.IBatchTypeResolver;
+import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference;
 import org.jnario.Assertion;
 import org.jnario.MockLiteral;
 import org.jnario.Should;
@@ -55,6 +58,12 @@ public class JnarioCompiler extends XtendCompiler {
 	@Inject
 	private JnarioExpressionHelper expressionHelper;
 	
+	@Inject
+	private TypeReferences typeReferences; 
+	
+	@Inject
+	private IBatchTypeResolver typeResolver;
+
 	@Inject ISerializer serializer;
 
 	@Override
@@ -196,7 +205,7 @@ public class JnarioCompiler extends XtendCompiler {
 		}
 		for (int i = 0; i < argumentTypes.length; i++) {
 			String argumentType = argumentTypes[i];
-			JvmTypeReference actual = getTypeReferences().getTypeForName(argumentType, jvmOperation);
+			JvmTypeReference actual = typeReferences.getTypeForName(argumentType, jvmOperation);
 			JvmTypeReference expected = jvmOperation.getParameters().get(i).getParameterType();
 //			System.out.println(expected.getQualifiedName() + "=>" + actual.getQualifiedName());
 			if(!expected.getQualifiedName().equals(actual.getQualifiedName())){
@@ -211,7 +220,7 @@ public class JnarioCompiler extends XtendCompiler {
 	}
 
 	public void _toJavaExpression(MockLiteral expr, ITreeAppendable b) {
-		JvmType mockito = getTypeReferences().findDeclaredType(MockingSupport.CLASS_NAME, expr);
+		JvmType mockito = typeReferences.findDeclaredType(MockingSupport.CLASS_NAME, expr);
 		b.append(mockito).append(".mock(");
 		b.append(expr.getType()).append(".class");
 		b.append(")");
@@ -258,8 +267,11 @@ public class JnarioCompiler extends XtendCompiler {
 	}
 
 	private boolean isVoid(XExpression expr) {
-		JvmTypeReference type = getTypeProvider().getType(expr);
-		return getTypeReferences().is(type, Void.TYPE);
+		
+		LightweightTypeReference type = typeResolver.resolveTypes(expr).getActualType(expr);
+		if (type != null)
+			return typeReferences.is(type.toTypeReference(), Void.TYPE);
+		return false; // TODO CHECK THIS
 	}
 	
 	private JvmType jvmType(Class<?> type, EObject context) {
@@ -267,7 +279,7 @@ public class JnarioCompiler extends XtendCompiler {
 	}
 
 	private JvmType jvmType(String type, EObject context) {
-		JvmTypeReference jvmTypeReference = getTypeReferences().getTypeForName(type, context);
+		JvmTypeReference jvmTypeReference = typeReferences.getTypeForName(type, context);
 		if(jvmTypeReference == null){
 			return null;
 		}

@@ -12,11 +12,15 @@ import static org.eclipse.xtext.xbase.ui.highlighting.XbaseHighlightingConfigura
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.xtend.core.xtend.XtendMember;
 import org.eclipse.xtend.ide.highlighting.XtendHighlightingCalculator;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XbasePackage;
+import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
+import org.eclipse.xtext.xbase.ui.highlighting.XbaseHighlightingConfiguration;
 import org.jnario.Should;
 
 @SuppressWarnings("restriction")
@@ -37,6 +41,13 @@ public class JnarioHighlightingCalculator extends XtendHighlightingCalculator {
 			}
 		}else{
 			super.computeFeatureCallHighlighting(featureCall, acceptor);
+		}
+	}
+
+	protected void highlightDeprecatedXtendAnnotationTarget(
+			IHighlightedPositionAcceptor acceptor, XtendMember target) {
+		for (XAnnotation annotation : target.getAnnotations()) {
+			highlightDeprecatedXtendAnnotationTarget(acceptor, target, annotation);
 		}
 	}
 }

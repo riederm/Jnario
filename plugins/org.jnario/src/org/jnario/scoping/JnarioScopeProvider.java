@@ -7,14 +7,9 @@
  *******************************************************************************/
 package org.jnario.scoping;
 
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.xtend.core.scoping.XtendScopeProvider;
-import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.xbase.XAbstractFeatureCall;
-import org.eclipse.xtext.xbase.XBinaryOperation;
-import org.eclipse.xtext.xbase.annotations.typesystem.XbaseWithAnnotationsBatchScopeProvider;
+import org.eclipse.xtend.core.scoping.XtendImportedNamespaceScopeProvider;
 
-public class JnarioScopeProvider extends XtendScopeProvider {
+public class JnarioScopeProvider extends XtendImportedNamespaceScopeProvider {
 
 //	@Override
 //	protected IScope createFeatureCallScope(XAbstractFeatureCall call,

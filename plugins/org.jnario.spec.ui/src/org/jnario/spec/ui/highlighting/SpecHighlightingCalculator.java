@@ -13,6 +13,7 @@ import static org.eclipse.xtext.xbase.ui.highlighting.XbaseHighlightingConfigura
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtend.core.xtend.XtendField;
 import org.eclipse.xtend.core.xtend.XtendFunction;
 import org.eclipse.xtend.core.xtend.XtendMember;
@@ -21,6 +22,7 @@ import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.xbase.XExpression;
+import org.eclipse.xtext.xbase.ui.highlighting.XbaseHighlightingConfiguration;
 import org.jnario.ExampleTable;
 import org.jnario.JnarioPackage;
 import org.jnario.spec.spec.Example;

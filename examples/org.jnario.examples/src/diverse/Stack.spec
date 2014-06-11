@@ -12,7 +12,8 @@ import java.util.Stack
 
 describe Stack{
 	context "empty"{
-		fact subject.empty should be true
+		fact subject.empty() should be true
+		fact subject.isEmpty() should be true
 		fact subject.pop() throws EmptyStackException
 	}
  	context "not empty"{

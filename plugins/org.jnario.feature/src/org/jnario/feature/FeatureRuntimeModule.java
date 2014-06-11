@@ -14,14 +14,13 @@ import org.eclipse.xtend.core.compiler.UnicodeAwarePostProcessor;
 import org.eclipse.xtend.core.compiler.XtendGenerator;
 import org.eclipse.xtend.core.compiler.XtendOutputConfigurationProvider;
 import org.eclipse.xtend.core.compiler.batch.XtendBatchCompiler;
-import org.eclipse.xtend.core.formatting.XtendFormatter;
 import org.eclipse.xtend.core.imports.XtendImportsConfiguration;
 import org.eclipse.xtend.core.jvmmodel.IXtendJvmAssociations;
 import org.eclipse.xtend.core.linking.LinkingProxyAwareResource;
 import org.eclipse.xtend.core.linking.URIEncoder;
 import org.eclipse.xtend.core.resource.XtendResourceDescriptionManager;
-import org.eclipse.xtend.core.typesystem.DispatchAndExtensionAwareReentrantTypeResolver;
 import org.eclipse.xtend.core.typesystem.TypeDeclarationAwareBatchTypeResolver;
+import org.eclipse.xtend.core.typesystem.XtendReentrantTypeResolver;
 import org.eclipse.xtend.core.validation.XtendConfigurableIssueCodes;
 import org.eclipse.xtend.core.validation.XtendEarlyExitValidator;
 import org.eclipse.xtend.core.xtend.XtendFactory;
@@ -69,7 +68,7 @@ import org.eclipse.xtext.xbase.imports.IImportsConfiguration;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
-import org.eclipse.xtext.xbase.scoping.batch.ImplicitlyImportedTypes;
+import org.eclipse.xtext.xbase.scoping.batch.ImplicitlyImportedFeatures;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 import org.eclipse.xtext.xbase.typesystem.internal.DefaultBatchTypeResolver;
 import org.eclipse.xtext.xbase.typesystem.internal.DefaultReentrantTypeResolver;
@@ -85,7 +84,6 @@ import org.jnario.documentation.XtendDocumentationProvider;
 import org.jnario.feature.compiler.FeatureBatchCompiler;
 import org.jnario.feature.conversion.FeatureValueConverterService;
 import org.jnario.feature.doc.FeatureDocGenerator;
-import org.jnario.feature.formatting.FeatureFormatter;
 import org.jnario.feature.formatting.FeatureFormatter2;
 import org.jnario.feature.generator.FeatureCompiler;
 import org.jnario.feature.generator.FeatureJvmModelGenerator;
@@ -135,7 +133,7 @@ public class FeatureRuntimeModule extends
 				FeatureExecutableProvider.class);
 		binder.bind(Executable2ResultMapping.class).to(
 				HashBasedSpec2ResultMapping.class);
-		binder.bind(ImplicitlyImportedTypes.class).to(
+		binder.bind(ImplicitlyImportedFeatures.class).to(
 				JnarioImplicitlyImportedTypes.class);
 		binder.bind(ScopeProviderAccess.class).to(
 				FeatureScopeProviderAccess.class);
@@ -252,7 +250,7 @@ public class FeatureRuntimeModule extends
 
 	@Override
 	public Class<? extends DefaultReentrantTypeResolver> bindDefaultReentrantTypeResolver() {
-		return DispatchAndExtensionAwareReentrantTypeResolver.class;
+		return XtendReentrantTypeResolver.class;
 	}
 	
 	public Class<? extends XbaseCompiler> bindXbaseCompiler() {

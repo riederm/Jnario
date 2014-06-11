@@ -19,10 +19,9 @@ import org.eclipse.xtext.common.types.util.TypeReferences;
 import org.eclipse.xtext.validation.AbstractDeclarativeValidator;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.XBinaryOperation;
-import org.eclipse.xtext.xbase.XExpression;
-import org.eclipse.xtext.xbase.typing.ITypeProvider;
-import org.eclipse.xtext.xbase.util.XExpressionHelper;
-import org.jnario.Assertion;
+import org.eclipse.xtext.xbase.typesystem.IBatchTypeResolver;
+import org.eclipse.xtext.xbase.typesystem.IResolvedTypes;
+import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference;
 import org.jnario.ExampleCell;
 import org.jnario.ExampleRow;
 import org.jnario.ExampleTable;
@@ -45,7 +44,7 @@ public class JnarioJavaValidator extends AbstractDeclarativeValidator {
 	private static final String ILLEGAL_ASSERTION_EXPRESSION = "invalid type: expecting boolean";
 	
 	@Inject 
-	private ITypeProvider typeProvider;
+	private IBatchTypeResolver typeResolver;
 	
 	@Inject
 	private JnarioExpressionHelper expressionHelper;
@@ -101,8 +100,11 @@ public class JnarioJavaValidator extends AbstractDeclarativeValidator {
 	@Check
 	public void checkExpressionsInTableDoNotReturnVoid(ExampleRow row){
 		for (ExampleCell cell : row.getCells()) {
-			JvmTypeReference actualType = typeProvider.getType(cell.getExpression());
-			if(typeReferences.is(actualType, Void.TYPE)){
+			LightweightTypeReference type = typeResolver.resolveTypes(cell.getExpression()).getActualType(cell.getExpression());
+			if (type == null) {
+				continue; // CHECK THIS
+			}
+			if(typeReferences.is(type.getType(), Void.TYPE)){
 				error("Expression must not be void", cell, null, 0);
 			}
 		}
