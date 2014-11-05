@@ -11,6 +11,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.List;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -54,15 +55,15 @@ public class SuiteDocGenerator extends AbstractDocGenerator {
     this.initResultMapping(spec2ResultMapping);
     EList<EObject> _contents = input.getContents();
     Iterable<SuiteFile> _filter = Iterables.<SuiteFile>filter(_contents, SuiteFile.class);
-    final Procedure1<SuiteFile> _function = new Procedure1<SuiteFile>() {
-      public void apply(final SuiteFile it) {
+    final Consumer<SuiteFile> _function = new Consumer<SuiteFile>() {
+      public void accept(final SuiteFile it) {
         final HtmlFile htmlFile = SuiteDocGenerator.this.createHtmlFile(it);
         EList<XtendTypeDeclaration> _xtendTypes = it.getXtendTypes();
         XtendTypeDeclaration _head = IterableExtensions.<XtendTypeDeclaration>head(_xtendTypes);
         SuiteDocGenerator.this._htmlFileBuilder.generate(_head, fsa, htmlFile);
       }
     };
-    IterableExtensions.<SuiteFile>forEach(_filter, _function);
+    _filter.forEach(_function);
   }
   
   public HtmlFile createHtmlFile(final SuiteFile file) {

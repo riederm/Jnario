@@ -11,6 +11,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -26,7 +27,6 @@ import org.eclipse.xtext.generator.OutputConfiguration;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.doc.HtmlAssets;
 import org.jnario.ui.builder.NullFileCallBack;
 
@@ -45,8 +45,8 @@ public class JnarioBuilderParticipant extends XtendBuilderParticipant {
     super.build(context, monitor);
     IProject _builtProject = context.getBuiltProject();
     List<? extends IContainer> _sourceFolders = this.sourceFolders.getSourceFolders(_builtProject);
-    final Procedure1<IContainer> _function = new Procedure1<IContainer>() {
-      public void apply(final IContainer source) {
+    final Consumer<IContainer> _function = new Consumer<IContainer>() {
+      public void accept(final IContainer source) {
         List<IResourceDescription.Delta> _relevantDeltas = JnarioBuilderParticipant.this.getRelevantDeltas(context);
         final Function1<IResourceDescription.Delta, Boolean> _function = new Function1<IResourceDescription.Delta, Boolean>() {
           public Boolean apply(final IResourceDescription.Delta it) {
@@ -63,7 +63,7 @@ public class JnarioBuilderParticipant extends XtendBuilderParticipant {
         }
       }
     };
-    IterableExtensions.forEach(_sourceFolders, _function);
+    _sourceFolders.forEach(_function);
   }
   
   private EclipseResourceFileSystemAccess2 createFsa(final IXtextBuilderParticipant.IBuildContext context, final IContainer source) {

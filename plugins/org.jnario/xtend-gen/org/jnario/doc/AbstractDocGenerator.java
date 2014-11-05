@@ -12,6 +12,7 @@ import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
@@ -37,7 +38,6 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.ExampleCell;
 import org.jnario.ExampleColumn;
 import org.jnario.ExampleRow;
@@ -89,20 +89,20 @@ public abstract class AbstractDocGenerator implements IGenerator {
     this.initResultMapping(spec2ResultMapping);
     EList<EObject> _contents = input.getContents();
     Iterable<XtendFile> _filter = Iterables.<XtendFile>filter(_contents, XtendFile.class);
-    final Procedure1<XtendFile> _function = new Procedure1<XtendFile>() {
-      public void apply(final XtendFile it) {
+    final Consumer<XtendFile> _function = new Consumer<XtendFile>() {
+      public void accept(final XtendFile it) {
         EList<XtendTypeDeclaration> _xtendTypes = it.getXtendTypes();
         Iterable<XtendClass> _filter = Iterables.<XtendClass>filter(_xtendTypes, XtendClass.class);
-        final Procedure1<XtendClass> _function = new Procedure1<XtendClass>() {
-          public void apply(final XtendClass it) {
+        final Consumer<XtendClass> _function = new Consumer<XtendClass>() {
+          public void accept(final XtendClass it) {
             HtmlFile _createHtmlFile = AbstractDocGenerator.this.createHtmlFile(it);
             AbstractDocGenerator.this._htmlFileBuilder.generate(it, fsa, _createHtmlFile);
           }
         };
-        IterableExtensions.<XtendClass>forEach(_filter, _function);
+        _filter.forEach(_function);
       }
     };
-    IterableExtensions.<XtendFile>forEach(_filter, _function);
+    _filter.forEach(_function);
   }
   
   protected Executable2ResultMapping initResultMapping(final Executable2ResultMapping spec2ResultMapping) {

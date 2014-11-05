@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend.core.formatting.XtendFormatter;
@@ -87,8 +88,8 @@ public class JnarioFormatter extends XtendFormatter {
   private FormattingDataFactory _formattingDataFactory;
   
   private void formatRows(final EList<ExampleRow> rows, final FormattableDocument format) {
-    final Procedure1<ExampleRow> _function = new Procedure1<ExampleRow>() {
-      public void apply(final ExampleRow it) {
+    final Consumer<ExampleRow> _function = new Consumer<ExampleRow>() {
+      public void accept(final ExampleRow it) {
         INode _nodeForEObject = JnarioFormatter.this._nodeModelAccess.nodeForEObject(it);
         final Procedure1<FormattingDataInit> _function = new Procedure1<FormattingDataInit>() {
           public void apply(final FormattingDataInit it) {
@@ -99,12 +100,12 @@ public class JnarioFormatter extends XtendFormatter {
         format.operator_add(_append);
       }
     };
-    IterableExtensions.<ExampleRow>forEach(rows, _function);
+    rows.forEach(_function);
   }
   
   private void formatColumns(final EList<ExampleColumn> columns, final FormattableDocument format) {
-    final Procedure1<ExampleColumn> _function = new Procedure1<ExampleColumn>() {
-      public void apply(final ExampleColumn it) {
+    final Consumer<ExampleColumn> _function = new Consumer<ExampleColumn>() {
+      public void accept(final ExampleColumn it) {
         final INode nameNode = JnarioFormatter.this._nodeModelAccess.nodeForFeature(it, JnarioPackage.Literals.EXAMPLE_COLUMN__NAME);
         final INode typeNode = JnarioFormatter.this._nodeModelAccess.nodeForFeature(it, JnarioPackage.Literals.EXAMPLE_COLUMN__TYPE);
         int _xifexpression = (int) 0;
@@ -160,8 +161,8 @@ public class JnarioFormatter extends XtendFormatter {
         Function1<? super FormattableDocument, ? extends Iterable<FormattingData>> _prepend_1 = JnarioFormatter.this._formattingDataFactory.prepend(_nodeForKeyword, _function_3);
         format.operator_add(_prepend_1);
         EList<ExampleCell> _cells_1 = it.getCells();
-        final Procedure1<ExampleCell> _function_4 = new Procedure1<ExampleCell>() {
-          public void apply(final ExampleCell it) {
+        final Consumer<ExampleCell> _function_4 = new Consumer<ExampleCell>() {
+          public void accept(final ExampleCell it) {
             XExpression _expression = it.getExpression();
             INode _nodeForEObject = JnarioFormatter.this._nodeModelAccess.nodeForEObject(_expression);
             final Procedure1<FormattingDataInit> _function = new Procedure1<FormattingDataInit>() {
@@ -186,10 +187,10 @@ public class JnarioFormatter extends XtendFormatter {
             format.operator_add(_append);
           }
         };
-        IterableExtensions.<ExampleCell>forEach(_cells_1, _function_4);
+        _cells_1.forEach(_function_4);
       }
     };
-    IterableExtensions.<ExampleColumn>forEach(columns, _function);
+    columns.forEach(_function);
     ExampleColumn _last = IterableExtensions.<ExampleColumn>last(columns);
     INode _nodeForEObject = this._nodeModelAccess.nodeForEObject(_last);
     final Procedure1<FormattingDataInit> _function_1 = new Procedure1<FormattingDataInit>() {

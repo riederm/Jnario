@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -156,13 +157,13 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
     final ArrayList<JvmGenericType> children = CollectionLiterals.<JvmGenericType>newArrayList();
     EList<XtendMember> _members = exampleGroup.getMembers();
     Iterable<ExampleGroup> _filter = Iterables.<ExampleGroup>filter(_members, ExampleGroup.class);
-    final Procedure1<ExampleGroup> _function_1 = new Procedure1<ExampleGroup>() {
-      public void apply(final ExampleGroup child) {
+    final Consumer<ExampleGroup> _function_1 = new Consumer<ExampleGroup>() {
+      public void accept(final ExampleGroup child) {
         JvmGenericType _infer = SpecJvmModelInferrer.this.infer(acceptor, child, javaType, doLater, preIndexingPhase);
         children.add(_infer);
       }
     };
-    IterableExtensions.<ExampleGroup>forEach(_filter, _function_1);
+    _filter.forEach(_function_1);
     boolean _isEmpty = children.isEmpty();
     boolean _not = (!_isEmpty);
     if (_not) {
@@ -455,8 +456,8 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
           assignments.add("super(cellNames);");
           SpecJvmModelInferrer.this.index = 0;
           EList<ExampleColumn> _columns = table.getColumns();
-          final Procedure1<ExampleColumn> _function_3 = new Procedure1<ExampleColumn>() {
-            public void apply(final ExampleColumn column) {
+          final Consumer<ExampleColumn> _function_3 = new Consumer<ExampleColumn>() {
+            public void accept(final ExampleColumn column) {
               JvmTypeReference _xifexpression = null;
               JvmTypeReference _type = column.getType();
               boolean _notEquals = (!Objects.equal(_type, null));
@@ -490,31 +491,31 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
               assignments.add(_plus_3);
             }
           };
-          IterableExtensions.<ExampleColumn>forEach(_columns, _function_3);
+          _columns.forEach(_function_3);
           EList<ExampleRow> _rows = table.getRows();
-          final Procedure1<ExampleRow> _function_4 = new Procedure1<ExampleRow>() {
-            public void apply(final ExampleRow it) {
+          final Consumer<ExampleRow> _function_4 = new Consumer<ExampleRow>() {
+            public void accept(final ExampleRow it) {
               EList<ExampleCell> _cells = it.getCells();
-              final Procedure1<ExampleCell> _function = new Procedure1<ExampleCell>() {
-                public void apply(final ExampleCell it) {
+              final Consumer<ExampleCell> _function = new Consumer<ExampleCell>() {
+                public void accept(final ExampleCell it) {
                   String _initMethodName = SpecJvmModelInferrer.this.initMethodName(table, SpecJvmModelInferrer.this.index);
                   SpecJvmModelInferrer.this.generateCellInitializerMethod(specType, _initMethodName, it);
                   SpecJvmModelInferrer.this.index = (SpecJvmModelInferrer.this.index + 1);
                 }
               };
-              IterableExtensions.<ExampleCell>forEach(_cells, _function);
+              _cells.forEach(_function);
             }
           };
-          IterableExtensions.<ExampleRow>forEach(_rows, _function_4);
+          _rows.forEach(_function_4);
           final Procedure1<ITreeAppendable> _function_5 = new Procedure1<ITreeAppendable>() {
             public void apply(final ITreeAppendable a) {
-              final Procedure1<String> _function = new Procedure1<String>() {
-                public void apply(final String it) {
+              final Consumer<String> _function = new Consumer<String>() {
+                public void accept(final String it) {
                   ITreeAppendable _append = a.append(it);
                   _append.newLine();
                 }
               };
-              IterableExtensions.<String>forEach(assignments, _function);
+              assignments.forEach(_function);
             }
           };
           SpecJvmModelInferrer.this._extendedJvmTypesBuilder.setBody(constructor, _function_5);
