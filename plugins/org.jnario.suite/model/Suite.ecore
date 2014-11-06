@@ -12,6 +12,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//Reference" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SuiteFile" eSuperTypes="../../org.eclipse.xtend.core/model/Xtend.ecore#//XtendFile"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SuiteFile" eSuperTypes="../../org.jnario/model/Jnario.ecore#//JnarioFile"/>
   <eClassifiers xsi:type="ecore:EClass" name="Reference" abstract="true" interface="true"/>
 </ecore:EPackage>
