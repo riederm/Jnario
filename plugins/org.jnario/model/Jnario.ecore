@@ -51,8 +51,12 @@
         eType="#//JnarioTypeDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="package" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="JnarioClass" eSuperTypes="#//JnarioTypeDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="JnarioClass" eSuperTypes="#//JnarioTypeDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extends" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JnarioMember" eSuperTypes="#//JnarioAnnotationTarget">
+    <eOperations name="isStatic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifiers" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotationInfo" eType="#//JnarioAnnotationTarget"

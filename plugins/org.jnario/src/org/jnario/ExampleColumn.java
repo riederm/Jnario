@@ -10,7 +10,6 @@ package org.jnario;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmTypeReference;
-import org.eclipse.xtend.core.xtend.XtendField;
 import org.eclipse.xtext.xbase.XExpression;
 
 /**

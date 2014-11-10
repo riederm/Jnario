@@ -9,7 +9,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtend.core.xtend.XtendField;
-import org.eclipse.xtend.core.xtend.XtendMember;
 import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations;
@@ -18,6 +17,7 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.util.XbaseUsageCrossReferencer;
+import org.jnario.JnarioMember;
 import org.jnario.feature.feature.Step;
 import org.jnario.feature.jvmmodel.StepExpressionProvider;
 import org.jnario.feature.jvmmodel.VisibleMembersCalculator;
@@ -40,7 +40,7 @@ public class StepContextProvider {
     Set<XtendField> _xblockexpression = null;
     {
       final XExpression expr = this._stepExpressionProvider.expressionOf(step);
-      Iterable<XtendMember> _allVisibleMembers = this._visibleMembersCalculator.allVisibleMembers(step);
+      Iterable<JnarioMember> _allVisibleMembers = this._visibleMembersCalculator.allVisibleMembers(step);
       Iterable<XtendField> _filter = Iterables.<XtendField>filter(_allVisibleMembers, XtendField.class);
       final Function1<XtendField, Boolean> _function = new Function1<XtendField, Boolean>() {
         public Boolean apply(final XtendField it) {

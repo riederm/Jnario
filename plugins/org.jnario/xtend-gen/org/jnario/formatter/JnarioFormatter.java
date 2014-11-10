@@ -7,18 +7,6 @@ import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtend.core.formatting.XtendFormatter;
-import org.eclipse.xtend.core.xtend.AnonymousClass;
-import org.eclipse.xtend.core.xtend.RichString;
-import org.eclipse.xtend.core.xtend.XtendAnnotationType;
-import org.eclipse.xtend.core.xtend.XtendClass;
-import org.eclipse.xtend.core.xtend.XtendConstructor;
-import org.eclipse.xtend.core.xtend.XtendEnum;
-import org.eclipse.xtend.core.xtend.XtendField;
-import org.eclipse.xtend.core.xtend.XtendFile;
-import org.eclipse.xtend.core.xtend.XtendFunction;
-import org.eclipse.xtend.core.xtend.XtendInterface;
-import org.eclipse.xtend.core.xtend.XtendParameter;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
@@ -57,6 +45,7 @@ import org.eclipse.xtext.xbase.formatting.FormattingData;
 import org.eclipse.xtext.xbase.formatting.FormattingDataFactory;
 import org.eclipse.xtext.xbase.formatting.FormattingDataInit;
 import org.eclipse.xtext.xbase.formatting.NodeModelAccess;
+import org.eclipse.xtext.xbase.formatting.XbaseFormatter2;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -66,8 +55,6 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xtype.XFunctionTypeRef;
-import org.eclipse.xtext.xtype.XImportDeclaration;
-import org.eclipse.xtext.xtype.XImportSection;
 import org.jnario.ExampleCell;
 import org.jnario.ExampleColumn;
 import org.jnario.ExampleRow;
@@ -75,10 +62,11 @@ import org.jnario.ExampleTable;
 import org.jnario.JnarioPackage;
 
 /**
+ * TODO NO_XTEND - Verify implementation
  * @author Sebastian Benz - Initial contribution and API
  */
 @SuppressWarnings("all")
-public class JnarioFormatter extends XtendFormatter {
+public class JnarioFormatter extends XbaseFormatter2 {
   @Inject
   @Extension
   private NodeModelAccess _nodeModelAccess;
@@ -283,35 +271,8 @@ public class JnarioFormatter extends XtendFormatter {
   }
   
   protected void format(final EObject table, final FormattableDocument format) {
-    if (table instanceof AnonymousClass) {
-      _format((AnonymousClass)table, format);
-      return;
-    } else if (table instanceof XtendAnnotationType) {
-      _format((XtendAnnotationType)table, format);
-      return;
-    } else if (table instanceof XtendClass) {
-      _format((XtendClass)table, format);
-      return;
-    } else if (table instanceof XtendConstructor) {
-      _format((XtendConstructor)table, format);
-      return;
-    } else if (table instanceof XtendEnum) {
-      _format((XtendEnum)table, format);
-      return;
-    } else if (table instanceof XtendFunction) {
-      _format((XtendFunction)table, format);
-      return;
-    } else if (table instanceof XtendInterface) {
-      _format((XtendInterface)table, format);
-      return;
-    } else if (table instanceof JvmTypeParameter) {
+    if (table instanceof JvmTypeParameter) {
       _format((JvmTypeParameter)table, format);
-      return;
-    } else if (table instanceof RichString) {
-      _format((RichString)table, format);
-      return;
-    } else if (table instanceof XtendField) {
-      _format((XtendField)table, format);
       return;
     } else if (table instanceof JvmFormalParameter) {
       _format((JvmFormalParameter)table, format);
@@ -339,9 +300,6 @@ public class JnarioFormatter extends XtendFormatter {
       return;
     } else if (table instanceof ExampleTable) {
       _format((ExampleTable)table, format);
-      return;
-    } else if (table instanceof XtendParameter) {
-      _format((XtendParameter)table, format);
       return;
     } else if (table instanceof JvmGenericArrayTypeReference) {
       _format((JvmGenericArrayTypeReference)table, format);
@@ -397,9 +355,6 @@ public class JnarioFormatter extends XtendFormatter {
     } else if (table instanceof XAnnotation) {
       _format((XAnnotation)table, format);
       return;
-    } else if (table instanceof XtendFile) {
-      _format((XtendFile)table, format);
-      return;
     } else if (table instanceof JvmTypeConstraint) {
       _format((JvmTypeConstraint)table, format);
       return;
@@ -408,12 +363,6 @@ public class JnarioFormatter extends XtendFormatter {
       return;
     } else if (table instanceof XExpression) {
       _format((XExpression)table, format);
-      return;
-    } else if (table instanceof XImportDeclaration) {
-      _format((XImportDeclaration)table, format);
-      return;
-    } else if (table instanceof XImportSection) {
-      _format((XImportSection)table, format);
       return;
     } else if (table != null) {
       _format(table, format);

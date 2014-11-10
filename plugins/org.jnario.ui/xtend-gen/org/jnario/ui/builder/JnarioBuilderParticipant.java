@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.xtend.ide.builder.XtendBuilderParticipant;
+import org.eclipse.xtext.builder.BuilderParticipant;
 import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2;
 import org.eclipse.xtext.builder.EclipseSourceFolderProvider;
 import org.eclipse.xtext.builder.IXtextBuilderParticipant;
@@ -31,7 +31,7 @@ import org.jnario.doc.HtmlAssets;
 import org.jnario.ui.builder.NullFileCallBack;
 
 @SuppressWarnings("all")
-public class JnarioBuilderParticipant extends XtendBuilderParticipant {
+public class JnarioBuilderParticipant extends BuilderParticipant {
   @Inject
   private Provider<EclipseResourceFileSystemAccess2> fileSystemAccessProvider;
   

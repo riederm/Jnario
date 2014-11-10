@@ -3,17 +3,6 @@ package org.jnario.feature.formatting;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtend.core.xtend.AnonymousClass;
-import org.eclipse.xtend.core.xtend.RichString;
-import org.eclipse.xtend.core.xtend.XtendAnnotationType;
-import org.eclipse.xtend.core.xtend.XtendClass;
-import org.eclipse.xtend.core.xtend.XtendConstructor;
-import org.eclipse.xtend.core.xtend.XtendEnum;
-import org.eclipse.xtend.core.xtend.XtendField;
-import org.eclipse.xtend.core.xtend.XtendFile;
-import org.eclipse.xtend.core.xtend.XtendFunction;
-import org.eclipse.xtend.core.xtend.XtendInterface;
-import org.eclipse.xtend.core.xtend.XtendParameter;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
@@ -53,8 +42,6 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xtype.XFunctionTypeRef;
-import org.eclipse.xtext.xtype.XImportDeclaration;
-import org.eclipse.xtext.xtype.XImportSection;
 import org.jnario.ExampleTable;
 import org.jnario.feature.feature.Background;
 import org.jnario.feature.feature.Scenario;
@@ -99,35 +86,8 @@ public class FeatureFormatter2 extends JnarioFormatter {
     } else if (background instanceof Scenario) {
       _format((Scenario)background, format);
       return;
-    } else if (background instanceof AnonymousClass) {
-      _format((AnonymousClass)background, format);
-      return;
-    } else if (background instanceof XtendAnnotationType) {
-      _format((XtendAnnotationType)background, format);
-      return;
-    } else if (background instanceof XtendClass) {
-      _format((XtendClass)background, format);
-      return;
-    } else if (background instanceof XtendConstructor) {
-      _format((XtendConstructor)background, format);
-      return;
-    } else if (background instanceof XtendEnum) {
-      _format((XtendEnum)background, format);
-      return;
-    } else if (background instanceof XtendFunction) {
-      _format((XtendFunction)background, format);
-      return;
-    } else if (background instanceof XtendInterface) {
-      _format((XtendInterface)background, format);
-      return;
     } else if (background instanceof JvmTypeParameter) {
       _format((JvmTypeParameter)background, format);
-      return;
-    } else if (background instanceof RichString) {
-      _format((RichString)background, format);
-      return;
-    } else if (background instanceof XtendField) {
-      _format((XtendField)background, format);
       return;
     } else if (background instanceof JvmFormalParameter) {
       _format((JvmFormalParameter)background, format);
@@ -155,9 +115,6 @@ public class FeatureFormatter2 extends JnarioFormatter {
       return;
     } else if (background instanceof ExampleTable) {
       _format((ExampleTable)background, format);
-      return;
-    } else if (background instanceof XtendParameter) {
-      _format((XtendParameter)background, format);
       return;
     } else if (background instanceof JvmGenericArrayTypeReference) {
       _format((JvmGenericArrayTypeReference)background, format);
@@ -213,9 +170,6 @@ public class FeatureFormatter2 extends JnarioFormatter {
     } else if (background instanceof XAnnotation) {
       _format((XAnnotation)background, format);
       return;
-    } else if (background instanceof XtendFile) {
-      _format((XtendFile)background, format);
-      return;
     } else if (background instanceof JvmTypeConstraint) {
       _format((JvmTypeConstraint)background, format);
       return;
@@ -224,12 +178,6 @@ public class FeatureFormatter2 extends JnarioFormatter {
       return;
     } else if (background instanceof XExpression) {
       _format((XExpression)background, format);
-      return;
-    } else if (background instanceof XImportDeclaration) {
-      _format((XImportDeclaration)background, format);
-      return;
-    } else if (background instanceof XImportSection) {
-      _format((XImportSection)background, format);
       return;
     } else if (background != null) {
       _format(background, format);

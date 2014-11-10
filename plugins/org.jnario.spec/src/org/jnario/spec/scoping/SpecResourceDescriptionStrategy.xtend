@@ -9,7 +9,6 @@ package org.jnario.spec.scoping
 
 import com.google.common.collect.ImmutableMap$Builder
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.xtend.core.resource.XtendResourceDescriptionStrategy
 import org.jnario.spec.spec.ExampleGroup
 
 import static java.lang.String.*

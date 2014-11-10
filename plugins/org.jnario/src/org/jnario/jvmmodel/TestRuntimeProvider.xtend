@@ -6,8 +6,6 @@ import java.util.NoSuchElementException
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.common.types.util.TypeReferences
 
-import static org.jnario.jvmmodel.TestRuntimeProvider.*
-import org.jnario.runner.ExampleGroupRunner
 
 class TestRuntimeProvider {
 	

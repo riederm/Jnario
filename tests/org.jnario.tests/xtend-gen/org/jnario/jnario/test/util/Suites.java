@@ -8,7 +8,6 @@
 package org.jnario.jnario.test.util;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.xtend.core.xtend.XtendTypeDeclaration;
 import org.eclipse.xtext.xbase.lib.CollectionExtensions;
 import org.jnario.Specification;
 import org.jnario.suite.suite.Reference;
@@ -22,10 +21,8 @@ public class Suites {
   private final static SuiteFactory factory = SuiteFactory.eINSTANCE;
   
   public static SuiteFile suiteFile(final Suite... suites) {
-    final SuiteFile file = Suites.factory.createSuiteFile();
-    EList<XtendTypeDeclaration> _xtendTypes = file.getXtendTypes();
-    CollectionExtensions.<Suite>addAll(_xtendTypes, suites);
-    return file;
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from EList<XtendTypeDeclaration> to Collection<? super Suite>");
   }
   
   public static Suite suiteWith(final String name, final SpecReference... references) {
@@ -50,17 +47,8 @@ public class Suites {
   }
   
   public static Suite suite(final String name, final String packageName) {
-    Suite _xblockexpression = null;
-    {
-      final Suite suite = Suites.factory.createSuite();
-      suite.setName(name);
-      final SuiteFile file = Suites.factory.createSuiteFile();
-      file.setPackage(packageName);
-      EList<XtendTypeDeclaration> _xtendTypes = file.getXtendTypes();
-      _xtendTypes.add(suite);
-      _xblockexpression = suite;
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from Suite to Iterable<? extends XtendTypeDeclaration>");
   }
   
   public static SpecReference specReference(final Specification spec) {

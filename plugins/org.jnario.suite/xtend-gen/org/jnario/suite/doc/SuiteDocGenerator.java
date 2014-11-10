@@ -35,7 +35,6 @@ import org.jnario.suite.suite.SpecReference;
 import org.jnario.suite.suite.Suite;
 import org.jnario.suite.suite.SuiteFile;
 import org.jnario.util.Strings;
-import org.jnario.util.XtendTypes;
 
 @SuppressWarnings("all")
 public class SuiteDocGenerator extends AbstractDocGenerator {
@@ -230,26 +229,9 @@ public class SuiteDocGenerator extends AbstractDocGenerator {
   }
   
   public String linkTo(final EObject context, final Specification spec) {
-    String _xblockexpression = null;
-    {
-      String _xifexpression = null;
-      String _packageName = XtendTypes.packageName(spec);
-      boolean _equals = Objects.equal(_packageName, null);
-      if (_equals) {
-        _xifexpression = "";
-      } else {
-        String _packageName_1 = XtendTypes.packageName(spec);
-        _xifexpression = _packageName_1.replace(".", "/");
-      }
-      final String path = _xifexpression;
-      String _root = this.root(context);
-      String _plus = (_root + path);
-      String _plus_1 = (_plus + "/");
-      String _javaClassName = this._suiteClassNameProvider.toJavaClassName(spec);
-      String _htmlFileName = this.htmlFileName(_javaClassName);
-      _xblockexpression = (_plus_1 + _htmlFileName);
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method getPackageName(EObject) is not visible"
+      + "\nThe method getPackageName(EObject) is not visible");
   }
   
   public String text(final Reference ref) {

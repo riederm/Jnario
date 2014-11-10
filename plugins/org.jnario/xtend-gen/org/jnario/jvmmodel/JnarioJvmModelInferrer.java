@@ -10,24 +10,16 @@ package org.jnario.jvmmodel;
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import java.util.NoSuchElementException;
-import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtend.core.jvmmodel.XtendJvmModelInferrer;
-import org.eclipse.xtend.core.xtend.XtendClass;
-import org.eclipse.xtend.core.xtend.XtendField;
-import org.eclipse.xtend.core.xtend.XtendFile;
-import org.eclipse.xtend.core.xtend.XtendTypeDeclaration;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
-import org.eclipse.xtext.common.types.JvmField;
-import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmType;
-import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.util.TypeReferences;
+import org.eclipse.xtext.documentation.IFileHeaderProvider;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.xbase.XExpression;
@@ -35,33 +27,46 @@ import org.eclipse.xtext.xbase.XTypeLiteral;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
-import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations;
+import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociator;
+import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.jnario.JnarioClass;
+import org.jnario.JnarioFile;
+import org.jnario.JnarioTypeDeclaration;
 import org.jnario.jvmmodel.JnarioNameProvider;
 import org.jnario.jvmmodel.TestRuntimeProvider;
 import org.jnario.jvmmodel.TestRuntimeSupport;
 import org.jnario.runner.Extends;
 
 /**
+ * TODO NO_XTEND - verify all methods. Remove unused.
  * @author Birgit Engelmann
  * @author Sebastian Benz
  */
 @SuppressWarnings("all")
-public class JnarioJvmModelInferrer extends XtendJvmModelInferrer {
+public abstract class JnarioJvmModelInferrer implements IJvmModelInferrer {
+  @Inject
+  @Extension
+  private IJvmModelAssociator _iJvmModelAssociator;
+  
+  @Inject
+  @Extension
+  private IFileHeaderProvider _iFileHeaderProvider;
+  
+  @Inject
+  @Extension
+  private JvmTypesBuilder _jvmTypesBuilder;
+  
   @Inject
   public XbaseCompiler compiler;
   
   @Inject
   @Extension
   private TypeReferences _typeReferences;
-  
-  @Inject
-  @Extension
-  private IJvmModelAssociations _iJvmModelAssociations;
   
   @Inject
   private TestRuntimeProvider runtime;
@@ -71,10 +76,6 @@ public class JnarioJvmModelInferrer extends XtendJvmModelInferrer {
   private JnarioNameProvider _jnarioNameProvider;
   
   private TestRuntimeSupport testRuntime;
-  
-  @Inject
-  @Extension
-  private JvmTypesBuilder jvmTypesBuilder;
   
   public void infer(final EObject obj, final IJvmDeclaredTypeAcceptor acceptor, final boolean preIndexingPhase) {
     try {
@@ -95,29 +96,6 @@ public class JnarioJvmModelInferrer extends XtendJvmModelInferrer {
     throw new UnsupportedOperationException();
   }
   
-  protected void transform(final XtendField source, final JvmGenericType container) {
-    super.transform(source, container);
-    Set<EObject> _jvmElements = this._iJvmModelAssociations.getJvmElements(source);
-    EObject _head = IterableExtensions.<EObject>head(_jvmElements);
-    final JvmField field = ((JvmField) _head);
-    boolean _equals = Objects.equal(field, null);
-    if (_equals) {
-      return;
-    }
-    JvmVisibility _visibility = field.getVisibility();
-    boolean _equals_1 = Objects.equal(_visibility, JvmVisibility.PRIVATE);
-    if (_equals_1) {
-      field.setVisibility(JvmVisibility.DEFAULT);
-    }
-    boolean _isExtension = source.isExtension();
-    if (_isExtension) {
-      field.setVisibility(JvmVisibility.PUBLIC);
-      EList<JvmAnnotationReference> _annotations = field.getAnnotations();
-      JvmAnnotationReference _annotation = this.jvmTypesBuilder.toAnnotation(source, org.jnario.runner.Extension.class);
-      this.jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotation);
-    }
-  }
-  
   public String serialize(final EObject obj) {
     ICompositeNode _node = NodeModelUtils.getNode(obj);
     String _text = null;
@@ -127,15 +105,15 @@ public class JnarioJvmModelInferrer extends XtendJvmModelInferrer {
     return _text;
   }
   
-  public XtendFile xtendFile(final EObject obj) {
-    return EcoreUtil2.<XtendFile>getContainerOfType(obj, XtendFile.class);
+  public JnarioFile jnarioFile(final EObject obj) {
+    return EcoreUtil2.<JnarioFile>getContainerOfType(obj, JnarioFile.class);
   }
   
   public String packageName(final EObject obj) {
-    XtendFile _xtendFile = this.xtendFile(obj);
+    JnarioFile _jnarioFile = this.jnarioFile(obj);
     String _package = null;
-    if (_xtendFile!=null) {
-      _package=_xtendFile.getPackage();
+    if (_jnarioFile!=null) {
+      _package=_jnarioFile.getPackage();
     }
     return _package;
   }
@@ -144,11 +122,11 @@ public class JnarioJvmModelInferrer extends XtendJvmModelInferrer {
     return this.testRuntime;
   }
   
-  protected void addSuperClass(final XtendClass xtendClass) {
-    EObject xtendType = xtendClass;
-    while (((!Objects.equal(xtendType, null)) && (xtendType instanceof XtendClass))) {
+  protected void addSuperClass(final JnarioClass jnarioClass) {
+    EObject xtendType = jnarioClass;
+    while (((!Objects.equal(xtendType, null)) && (xtendType instanceof JnarioClass))) {
       {
-        final XtendClass current = ((XtendClass) xtendType);
+        final JnarioClass current = ((JnarioClass) xtendType);
         EList<XAnnotation> _annotations = current.getAnnotations();
         final Function1<XAnnotation, Boolean> _function = new Function1<XAnnotation, Boolean>() {
           public Boolean apply(final XAnnotation it) {
@@ -164,20 +142,12 @@ public class JnarioJvmModelInferrer extends XtendJvmModelInferrer {
         };
         Iterable<XTypeLiteral> _map = IterableExtensions.<XAnnotation, XTypeLiteral>map(_filter, _function_1);
         for (final XTypeLiteral extendedType : _map) {
-          boolean _and = false;
-          EList<JvmTypeReference> _implements = current.getImplements();
-          boolean _isEmpty = _implements.isEmpty();
-          if (!_isEmpty) {
-            _and = false;
-          } else {
-            JvmType _type = extendedType.getType();
-            boolean _notEquals = (!Objects.equal(_type, null));
-            _and = _notEquals;
-          }
-          if (_and) {
+          JvmType _type = extendedType.getType();
+          boolean _notEquals = (!Objects.equal(_type, null));
+          if (_notEquals) {
             JvmType _type_1 = extendedType.getType();
             JvmParameterizedTypeReference _createTypeRef = this._typeReferences.createTypeRef(_type_1);
-            xtendClass.setExtends(_createTypeRef);
+            jnarioClass.setExtends(_createTypeRef);
             return;
           }
         }
@@ -205,9 +175,19 @@ public class JnarioJvmModelInferrer extends XtendJvmModelInferrer {
     return _and;
   }
   
-  protected void setNameAndAssociate(final XtendFile file, final XtendTypeDeclaration xtendType, final JvmDeclaredType javaType) {
-    super.setNameAndAssociate(file, xtendType, javaType);
-    String _javaClassName = this._jnarioNameProvider.toJavaClassName(xtendType);
+  protected void setNameAndAssociate(final JnarioFile file, final JnarioTypeDeclaration jnarioType, final JvmDeclaredType javaType) {
+    String _package = file.getPackage();
+    javaType.setPackageName(_package);
+    String _javaClassName = this._jnarioNameProvider.toJavaClassName(jnarioType);
     javaType.setSimpleName(_javaClassName);
+    javaType.setVisibility(JvmVisibility.PUBLIC);
+    this.setFileHeader(file, javaType);
+    this._iJvmModelAssociator.associatePrimary(jnarioType, javaType);
+  }
+  
+  protected void setFileHeader(final JnarioFile jnarioFile, final JvmDeclaredType jvmDeclaredType) {
+    Resource _eResource = jnarioFile.eResource();
+    String _fileHeader = this._iFileHeaderProvider.getFileHeader(_eResource);
+    this._jvmTypesBuilder.setFileHeader(jvmDeclaredType, _fileHeader);
   }
 }

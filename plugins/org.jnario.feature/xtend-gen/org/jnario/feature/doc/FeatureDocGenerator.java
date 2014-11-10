@@ -13,11 +13,11 @@ import java.util.regex.Matcher;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend.core.xtend.XtendClass;
-import org.eclipse.xtend.core.xtend.XtendMember;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.jnario.JnarioMember;
 import org.jnario.doc.AbstractDocGenerator;
 import org.jnario.doc.HtmlFile;
 import org.jnario.feature.feature.Feature;
@@ -74,8 +74,8 @@ public class FeatureDocGenerator extends AbstractDocGenerator {
     _builder.append(_markdown2Html, "");
     _builder.newLineIfNotEmpty();
     {
-      EList<XtendMember> _members = feature.getMembers();
-      for(final XtendMember member : _members) {
+      EList<JnarioMember> _members = feature.getMembers();
+      for(final JnarioMember member : _members) {
         CharSequence _generate = this.generate(member);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();

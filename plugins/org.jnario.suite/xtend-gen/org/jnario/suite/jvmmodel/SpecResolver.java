@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -163,7 +164,7 @@ public class SpecResolver {
     return IterableExtensions.<Specification>sortWith(_filter, _function_1);
   }
   
-  public List<Specification> resolveSpecs(final EObject suite) {
+  public List<Specification> resolveSpecs(final Notifier suite) {
     if (suite instanceof Suite) {
       return _resolveSpecs((Suite)suite);
     } else if (suite instanceof PatternReference) {

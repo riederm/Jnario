@@ -7,9 +7,6 @@ import java.util.Collection;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.xtend.core.xtend.XtendClass;
-import org.eclipse.xtend.core.xtend.XtendFunction;
-import org.eclipse.xtend.core.xtend.XtendMember;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmConstructor;
 import org.eclipse.xtext.common.types.JvmField;
@@ -28,6 +25,9 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.Executable;
+import org.jnario.JnarioClass;
+import org.jnario.JnarioFunction;
+import org.jnario.JnarioMember;
 import org.jnario.Specification;
 import org.jnario.jvmmodel.ExtendedJvmTypesBuilder;
 import org.jnario.jvmmodel.JnarioNameProvider;
@@ -47,16 +47,16 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
   @Extension
   private ExtendedJvmTypesBuilder _extendedJvmTypesBuilder;
   
-  public void afterAllMethod(final XtendMember before, final JvmOperation operation) {
+  public void afterAllMethod(final JnarioMember before, final JvmOperation operation) {
   }
   
-  public void afterMethod(final XtendMember before, final JvmOperation operation) {
+  public void afterMethod(final JnarioMember before, final JvmOperation operation) {
   }
   
-  public void beforeAllMethod(final XtendMember before, final JvmOperation operation) {
+  public void beforeAllMethod(final JnarioMember before, final JvmOperation operation) {
   }
   
-  public void beforeMethod(final XtendMember before, final JvmOperation operation) {
+  public void beforeMethod(final JnarioMember before, final JvmOperation operation) {
   }
   
   public void markAsPending(final Executable element, final JvmOperation operation) {
@@ -78,19 +78,19 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     }
   }
   
-  public void updateExampleGroup(final XtendClass exampleGroup, final JvmGenericType inferredType) {
+  public void updateExampleGroup(final JnarioClass exampleGroup, final JvmGenericType inferredType) {
     this.makeTestCase(exampleGroup, inferredType);
     this.addTestCase(inferredType, exampleGroup);
     Iterable<String> _children = this.children(exampleGroup);
     Iterable<Executable> _examples = this.examples(exampleGroup);
     this.addSuite(inferredType, exampleGroup, _children, _examples);
-    Iterable<XtendFunction> _befores = this.befores(exampleGroup);
+    Iterable<JnarioFunction> _befores = this.befores(exampleGroup);
     this.generateSetup("setUp", exampleGroup, inferredType, _befores);
-    Iterable<XtendFunction> _afters = this.afters(exampleGroup);
+    Iterable<JnarioFunction> _afters = this.afters(exampleGroup);
     this.generateSetup("tearDown", exampleGroup, inferredType, _afters);
   }
   
-  public boolean generateSetup(final String methodName, final XtendClass exampleGroup, final JvmGenericType type, final Iterable<XtendFunction> executables) {
+  public boolean generateSetup(final String methodName, final JnarioClass exampleGroup, final JvmGenericType type, final Iterable<JnarioFunction> executables) {
     boolean _xblockexpression = false;
     {
       final JvmTypeReference voidType = this._typeReferences.getTypeForName(Void.TYPE, exampleGroup);
@@ -109,7 +109,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
               _builder.append("();");
               _builder.newLineIfNotEmpty();
               {
-                for(final XtendFunction executable : executables) {
+                for(final JnarioFunction executable : executables) {
                   String _methodName = JUnit3RuntimeSupport.this._jnarioNameProvider.toMethodName(executable);
                   _builder.append(_methodName, "");
                   _builder.append("();");
@@ -128,33 +128,33 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     return _xblockexpression;
   }
   
-  private Iterable<XtendFunction> befores(final XtendClass exampleGroup) {
-    EList<XtendMember> _members = exampleGroup.getMembers();
-    Iterable<XtendFunction> _filter = Iterables.<XtendFunction>filter(_members, XtendFunction.class);
-    final Function1<XtendFunction, Boolean> _function = new Function1<XtendFunction, Boolean>() {
-      public Boolean apply(final XtendFunction it) {
+  private Iterable<JnarioFunction> befores(final JnarioClass exampleGroup) {
+    EList<JnarioMember> _members = exampleGroup.getMembers();
+    Iterable<JnarioFunction> _filter = Iterables.<JnarioFunction>filter(_members, JnarioFunction.class);
+    final Function1<JnarioFunction, Boolean> _function = new Function1<JnarioFunction, Boolean>() {
+      public Boolean apply(final JnarioFunction it) {
         EClass _eClass = it.eClass();
         String _name = _eClass.getName();
         return Boolean.valueOf(Objects.equal(_name, "Before"));
       }
     };
-    return IterableExtensions.<XtendFunction>filter(_filter, _function);
+    return IterableExtensions.<JnarioFunction>filter(_filter, _function);
   }
   
-  private Iterable<XtendFunction> afters(final XtendClass exampleGroup) {
-    EList<XtendMember> _members = exampleGroup.getMembers();
-    Iterable<XtendFunction> _filter = Iterables.<XtendFunction>filter(_members, XtendFunction.class);
-    final Function1<XtendFunction, Boolean> _function = new Function1<XtendFunction, Boolean>() {
-      public Boolean apply(final XtendFunction it) {
+  private Iterable<JnarioFunction> afters(final JnarioClass exampleGroup) {
+    EList<JnarioMember> _members = exampleGroup.getMembers();
+    Iterable<JnarioFunction> _filter = Iterables.<JnarioFunction>filter(_members, JnarioFunction.class);
+    final Function1<JnarioFunction, Boolean> _function = new Function1<JnarioFunction, Boolean>() {
+      public Boolean apply(final JnarioFunction it) {
         EClass _eClass = it.eClass();
         String _name = _eClass.getName();
         return Boolean.valueOf(Objects.equal(_name, "After"));
       }
     };
-    return IterableExtensions.<XtendFunction>filter(_filter, _function);
+    return IterableExtensions.<JnarioFunction>filter(_filter, _function);
   }
   
-  private boolean addSuite(final JvmGenericType it, final XtendClass context, final Iterable<String> children, final Iterable<Executable> tests) {
+  private boolean addSuite(final JvmGenericType it, final JnarioClass context, final Iterable<String> children, final Iterable<Executable> tests) {
     boolean _xblockexpression = false;
     {
       final JvmTypeReference testType = this._typeReferences.getTypeForName("junit.framework.Test", context);
@@ -204,7 +204,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     return _xblockexpression;
   }
   
-  private boolean makeTestCase(final XtendClass exampleGroup, final JvmGenericType inferredType) {
+  private boolean makeTestCase(final JnarioClass exampleGroup, final JvmGenericType inferredType) {
     boolean _xblockexpression = false;
     {
       final JvmTypeReference stringType = this._typeReferences.getTypeForName("java.lang.String", exampleGroup);
@@ -250,7 +250,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     return _xblockexpression;
   }
   
-  public Object addTestCase(final JvmGenericType inferredType, final XtendClass context) {
+  public Object addTestCase(final JvmGenericType inferredType, final JnarioClass context) {
     Object _xifexpression = null;
     EList<JvmTypeReference> _superTypes = inferredType.getSuperTypes();
     boolean _isEmpty = _superTypes.isEmpty();
@@ -274,8 +274,8 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     return _xifexpression;
   }
   
-  private Iterable<String> children(final XtendClass exampleGroup) {
-    EList<XtendMember> _members = exampleGroup.getMembers();
+  private Iterable<String> children(final JnarioClass exampleGroup) {
+    EList<JnarioMember> _members = exampleGroup.getMembers();
     Iterable<Specification> _filter = Iterables.<Specification>filter(_members, Specification.class);
     final Function1<Specification, String> _function = new Function1<Specification, String>() {
       public String apply(final Specification it) {
@@ -285,8 +285,8 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     return IterableExtensions.<Specification, String>map(_filter, _function);
   }
   
-  private Iterable<Executable> examples(final XtendClass exampleGroup) {
-    EList<XtendMember> _members = exampleGroup.getMembers();
+  private Iterable<Executable> examples(final JnarioClass exampleGroup) {
+    EList<JnarioMember> _members = exampleGroup.getMembers();
     Iterable<Executable> _filter = Iterables.<Executable>filter(_members, Executable.class);
     final Function1<Executable, Boolean> _function = new Function1<Executable, Boolean>() {
       public Boolean apply(final Executable it) {
@@ -306,7 +306,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     return ("test" + _methodName);
   }
   
-  public void updateFeature(final XtendClass feature, final JvmGenericType inferredType, final List<JvmTypeReference> scenarios) {
+  public void updateFeature(final JnarioClass feature, final JvmGenericType inferredType, final List<JvmTypeReference> scenarios) {
     this.addTestCase(inferredType, feature);
     final Function1<JvmTypeReference, String> _function = new Function1<JvmTypeReference, String>() {
       public String apply(final JvmTypeReference it) {
@@ -318,7 +318,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     this.addSuite(inferredType, feature, _map, _emptyList);
   }
   
-  public void updateScenario(final XtendClass scenario, final JvmGenericType inferredType) {
+  public void updateScenario(final JnarioClass scenario, final JvmGenericType inferredType) {
     final JvmTypeReference testType = this._typeReferences.getTypeForName("junit.framework.Test", scenario);
     final Iterable<Executable> tests = this.examples(scenario);
     EList<JvmMember> _members = inferredType.getMembers();
@@ -464,6 +464,6 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     this._extendedJvmTypesBuilder.<JvmOperation>operator_add(_members_4, _method_2);
   }
   
-  public void updateSuite(final XtendClass exampleGroup, final JvmGenericType inferredType) {
+  public void updateSuite(final JnarioClass exampleGroup, final JvmGenericType inferredType) {
   }
 }

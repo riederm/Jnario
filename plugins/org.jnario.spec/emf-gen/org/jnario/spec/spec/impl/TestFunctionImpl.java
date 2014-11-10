@@ -9,7 +9,7 @@ package org.jnario.spec.spec.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.xtend.core.xtend.impl.XtendFunctionImplCustom;
+import org.jnario.impl.JnarioFunctionImpl;
 
 import org.jnario.spec.spec.SpecPackage;
 import org.jnario.spec.spec.TestFunction;
@@ -23,7 +23,7 @@ import org.jnario.spec.spec.TestFunction;
  *
  * @generated
  */
-public class TestFunctionImpl extends XtendFunctionImplCustom implements TestFunction
+public class TestFunctionImpl extends JnarioFunctionImpl implements TestFunction
 {
 	/**
 	 * <!-- begin-user-doc -->

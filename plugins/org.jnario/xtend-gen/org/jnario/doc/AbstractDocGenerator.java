@@ -19,9 +19,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtend.core.xtend.XtendClass;
-import org.eclipse.xtend.core.xtend.XtendFile;
-import org.eclipse.xtend.core.xtend.XtendTypeDeclaration;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.generator.IFileSystemAccess;
@@ -43,6 +40,9 @@ import org.jnario.ExampleColumn;
 import org.jnario.ExampleRow;
 import org.jnario.ExampleTable;
 import org.jnario.Executable;
+import org.jnario.JnarioClass;
+import org.jnario.JnarioFile;
+import org.jnario.JnarioTypeDeclaration;
 import org.jnario.doc.CssClassProvider;
 import org.jnario.doc.DocumentationProvider;
 import org.jnario.doc.ErrorMessageProvider;
@@ -88,13 +88,13 @@ public abstract class AbstractDocGenerator implements IGenerator {
   public void doGenerate(final Resource input, final IFileSystemAccess fsa, final Executable2ResultMapping spec2ResultMapping) {
     this.initResultMapping(spec2ResultMapping);
     EList<EObject> _contents = input.getContents();
-    Iterable<XtendFile> _filter = Iterables.<XtendFile>filter(_contents, XtendFile.class);
-    final Consumer<XtendFile> _function = new Consumer<XtendFile>() {
-      public void accept(final XtendFile it) {
-        EList<XtendTypeDeclaration> _xtendTypes = it.getXtendTypes();
-        Iterable<XtendClass> _filter = Iterables.<XtendClass>filter(_xtendTypes, XtendClass.class);
-        final Consumer<XtendClass> _function = new Consumer<XtendClass>() {
-          public void accept(final XtendClass it) {
+    Iterable<JnarioFile> _filter = Iterables.<JnarioFile>filter(_contents, JnarioFile.class);
+    final Consumer<JnarioFile> _function = new Consumer<JnarioFile>() {
+      public void accept(final JnarioFile it) {
+        EList<JnarioTypeDeclaration> _xtendTypes = it.getXtendTypes();
+        Iterable<JnarioClass> _filter = Iterables.<JnarioClass>filter(_xtendTypes, JnarioClass.class);
+        final Consumer<JnarioClass> _function = new Consumer<JnarioClass>() {
+          public void accept(final JnarioClass it) {
             HtmlFile _createHtmlFile = AbstractDocGenerator.this.createHtmlFile(it);
             AbstractDocGenerator.this._htmlFileBuilder.generate(it, fsa, _createHtmlFile);
           }
@@ -109,7 +109,7 @@ public abstract class AbstractDocGenerator implements IGenerator {
     return this.spec2ResultMapping = spec2ResultMapping;
   }
   
-  public HtmlFile createHtmlFile(final XtendClass xtendClass) {
+  public HtmlFile createHtmlFile(final JnarioClass jnarioClass) {
     return HtmlFile.EMPTY_FILE;
   }
   
@@ -220,8 +220,8 @@ public abstract class AbstractDocGenerator implements IGenerator {
     return result;
   }
   
-  protected String root(final EObject xtendClass) {
-    final XtendFile specFile = EcoreUtil2.<XtendFile>getContainerOfType(xtendClass, XtendFile.class);
+  protected String root(final EObject jnarioClass) {
+    final JnarioFile specFile = EcoreUtil2.<JnarioFile>getContainerOfType(jnarioClass, JnarioFile.class);
     final String packageName = specFile.getPackage();
     boolean _equals = Objects.equal(packageName, null);
     if (_equals) {

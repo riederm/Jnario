@@ -2,7 +2,6 @@ package org.jnario.formatter
 
 import com.google.inject.Inject
 import org.eclipse.emf.common.util.EList
-import org.eclipse.xtend.core.formatting.XtendFormatter
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.nodemodel.INode
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
@@ -10,15 +9,17 @@ import org.eclipse.xtext.xbase.formatting.FormattableDocument
 import org.eclipse.xtext.xbase.formatting.FormattingDataFactory
 import org.eclipse.xtext.xbase.formatting.FormattingDataInit
 import org.eclipse.xtext.xbase.formatting.NodeModelAccess
+import org.eclipse.xtext.xbase.formatting.XbaseFormatter2
 import org.jnario.ExampleColumn
 import org.jnario.ExampleRow
 import org.jnario.ExampleTable
 import org.jnario.JnarioPackage
 
 /**
+ * TODO NO_XTEND - Verify implementation
  * @author Sebastian Benz - Initial contribution and API
  */
-class JnarioFormatter extends XtendFormatter {
+class JnarioFormatter extends XbaseFormatter2 {
 
 	@Inject extension NodeModelAccess
 	@Inject extension FormattingDataFactory

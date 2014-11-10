@@ -22,6 +22,7 @@ import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -29,7 +30,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtend.core.resource.XtendResourceDescriptionManager;
-import org.eclipse.xtend.core.xtend.XtendTypeDeclaration;
 import org.eclipse.xtext.builder.clustering.CurrentDescriptions;
 import org.eclipse.xtext.builder.impl.BuildData;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
@@ -43,8 +43,6 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.jnario.JnarioPackage;
-import org.jnario.Specification;
 import org.jnario.suite.suite.PatternReference;
 import org.jnario.suite.suite.Reference;
 import org.jnario.suite.suite.SpecReference;
@@ -330,21 +328,9 @@ public class SuiteResourceDescriptionManager extends XtendResourceDescriptionMan
   }
   
   public Iterable<IEObjectDescription> topLevelSpecs(final IResourceDescription resource, final ResourceSet resourceSet) {
-    Iterable<IEObjectDescription> _exportedObjectsByType = resource.getExportedObjectsByType(JnarioPackage.Literals.SPECIFICATION);
-    final Function1<IEObjectDescription, Boolean> _function = new Function1<IEObjectDescription, Boolean>() {
-      public Boolean apply(final IEObjectDescription it) {
-        boolean _xblockexpression = false;
-        {
-          EObject _eObjectOrProxy = it.getEObjectOrProxy();
-          EObject _resolve = EcoreUtil.resolve(_eObjectOrProxy, resourceSet);
-          final Specification spec = ((Specification) _resolve);
-          XtendTypeDeclaration _declaringType = spec.getDeclaringType();
-          _xblockexpression = Objects.equal(_declaringType, null);
-        }
-        return Boolean.valueOf(_xblockexpression);
-      }
-    };
-    return IterableExtensions.<IEObjectDescription>filter(_exportedObjectsByType, _function);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method declaringType is undefined for the type SuiteResourceDescriptionManager"
+      + "\n== cannot be resolved");
   }
   
   public boolean equals(final IEObjectDescription oldObj, final IEObjectDescription newObj) {
@@ -383,7 +369,7 @@ public class SuiteResourceDescriptionManager extends XtendResourceDescriptionMan
     return true;
   }
   
-  public List<PatternReference> resolvePatternReferences(final EObject suite) {
+  public List<PatternReference> resolvePatternReferences(final Notifier suite) {
     if (suite instanceof Suite) {
       return _resolvePatternReferences((Suite)suite);
     } else if (suite instanceof PatternReference) {

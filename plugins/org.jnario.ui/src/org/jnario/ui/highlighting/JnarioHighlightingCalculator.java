@@ -12,15 +12,15 @@ import static org.eclipse.xtext.xbase.ui.highlighting.XbaseHighlightingConfigura
 
 import java.util.List;
 
-import org.eclipse.xtend.ide.highlighting.XtendHighlightingCalculator;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XbasePackage;
+import org.eclipse.xtext.xbase.ui.highlighting.XbaseHighlightingCalculator;
 import org.jnario.Should;
 
 @SuppressWarnings("restriction")
-public class JnarioHighlightingCalculator extends XtendHighlightingCalculator {
+public class JnarioHighlightingCalculator extends XbaseHighlightingCalculator {
 
 	@Override
 	protected void computeFeatureCallHighlighting(
