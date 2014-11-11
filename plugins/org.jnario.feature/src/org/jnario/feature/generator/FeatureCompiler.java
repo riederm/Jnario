@@ -7,11 +7,11 @@
  *******************************************************************************/
 package org.jnario.feature.generator;
 
-import org.jnario.compiler.JnarioCompiler;
 
 /**
  * @author Birgit Engelmann - Initial contribution and API
  */
-public class FeatureCompiler extends JnarioCompiler {
-
-}
+// TODO NO_XTEND
+//public class FeatureCompiler extends JnarioCompiler {
+//
+//}

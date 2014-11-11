@@ -119,6 +119,15 @@ public interface FeaturePackage extends EPackage
 	int FEATURE__MEMBERS = JnarioPackage.SPECIFICATION__MEMBERS;
 
 	/**
+	 * The feature id for the '<em><b>Extends</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__EXTENDS = JnarioPackage.SPECIFICATION__EXTENDS;
+
+	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,13 +219,22 @@ public interface FeaturePackage extends EPackage
 	int SCENARIO__MEMBERS = JnarioPackage.EXECUTABLE_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Extends</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__EXTENDS = JnarioPackage.EXECUTABLE_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Scenario</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO_FEATURE_COUNT = JnarioPackage.EXECUTABLE_FEATURE_COUNT + 5;
+	int SCENARIO_FEATURE_COUNT = JnarioPackage.EXECUTABLE_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.jnario.feature.feature.impl.BackgroundImpl <em>Background</em>}' class.
@@ -272,6 +290,15 @@ public interface FeaturePackage extends EPackage
 	 * @ordered
 	 */
 	int BACKGROUND__MEMBERS = SCENARIO__MEMBERS;
+
+	/**
+	 * The feature id for the '<em><b>Extends</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BACKGROUND__EXTENDS = SCENARIO__EXTENDS;
 
 	/**
 	 * The number of structural features of the '<em>Background</em>' class.

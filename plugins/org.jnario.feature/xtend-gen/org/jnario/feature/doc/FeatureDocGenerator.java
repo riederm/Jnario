@@ -12,11 +12,11 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtend.core.xtend.XtendClass;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.jnario.JnarioClass;
 import org.jnario.JnarioMember;
 import org.jnario.doc.AbstractDocGenerator;
 import org.jnario.doc.HtmlFile;
@@ -37,7 +37,7 @@ public class FeatureDocGenerator extends AbstractDocGenerator {
   @Extension
   private StepNameProvider _stepNameProvider;
   
-  public HtmlFile createHtmlFile(final XtendClass xtendClass) {
+  public HtmlFile createHtmlFile(final JnarioClass xtendClass) {
     if ((!(xtendClass instanceof Feature))) {
       return HtmlFile.EMPTY_FILE;
     }

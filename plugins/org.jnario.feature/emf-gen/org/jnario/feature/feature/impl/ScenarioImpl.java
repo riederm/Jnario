@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.xtext.common.types.JvmTypeReference;
+
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 
 import org.jnario.JnarioAnnotationTarget;
@@ -48,6 +50,7 @@ import org.jnario.feature.feature.Step;
  *   <li>{@link org.jnario.feature.feature.impl.ScenarioImpl#getAnnotationInfo <em>Annotation Info</em>}</li>
  *   <li>{@link org.jnario.feature.feature.impl.ScenarioImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.jnario.feature.feature.impl.ScenarioImpl#getMembers <em>Members</em>}</li>
+ *   <li>{@link org.jnario.feature.feature.impl.ScenarioImpl#getExtends <em>Extends</em>}</li>
  * </ul>
  * </p>
  *
@@ -114,6 +117,16 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 * @ordered
 	 */
 	protected EList<JnarioMember> members;
+
+	/**
+	 * The cached value of the '{@link #getExtends() <em>Extends</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtends()
+	 * @generated
+	 * @ordered
+	 */
+	protected JvmTypeReference extends_;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -254,6 +267,54 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public JvmTypeReference getExtends()
+	{
+		return extends_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetExtends(JvmTypeReference newExtends, NotificationChain msgs)
+	{
+		JvmTypeReference oldExtends = extends_;
+		extends_ = newExtends;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FeaturePackage.SCENARIO__EXTENDS, oldExtends, newExtends);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtends(JvmTypeReference newExtends)
+	{
+		if (newExtends != extends_)
+		{
+			NotificationChain msgs = null;
+			if (extends_ != null)
+				msgs = ((InternalEObject)extends_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FeaturePackage.SCENARIO__EXTENDS, null, msgs);
+			if (newExtends != null)
+				msgs = ((InternalEObject)newExtends).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FeaturePackage.SCENARIO__EXTENDS, null, msgs);
+			msgs = basicSetExtends(newExtends, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FeaturePackage.SCENARIO__EXTENDS, newExtends, newExtends));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Step> getSteps()
 	{
 		// TODO: implement this method
@@ -267,6 +328,18 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 * @generated
 	 */
 	public EList<Step> getPendingSteps()
+	{
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isStatic()
 	{
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -301,6 +374,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 				return basicSetAnnotationInfo(null, msgs);
 			case FeaturePackage.SCENARIO__MEMBERS:
 				return ((InternalEList<?>)getMembers()).basicRemove(otherEnd, msgs);
+			case FeaturePackage.SCENARIO__EXTENDS:
+				return basicSetExtends(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -325,6 +400,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 				return getName();
 			case FeaturePackage.SCENARIO__MEMBERS:
 				return getMembers();
+			case FeaturePackage.SCENARIO__EXTENDS:
+				return getExtends();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -358,6 +435,9 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 				getMembers().clear();
 				getMembers().addAll((Collection<? extends JnarioMember>)newValue);
 				return;
+			case FeaturePackage.SCENARIO__EXTENDS:
+				setExtends((JvmTypeReference)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -387,6 +467,9 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 			case FeaturePackage.SCENARIO__MEMBERS:
 				getMembers().clear();
 				return;
+			case FeaturePackage.SCENARIO__EXTENDS:
+				setExtends((JvmTypeReference)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -411,6 +494,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case FeaturePackage.SCENARIO__MEMBERS:
 				return members != null && !members.isEmpty();
+			case FeaturePackage.SCENARIO__EXTENDS:
+				return extends_ != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -453,6 +538,7 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 		{
 			switch (derivedFeatureID)
 			{
+				case FeaturePackage.SCENARIO__EXTENDS: return JnarioPackage.JNARIO_CLASS__EXTENDS;
 				default: return -1;
 			}
 		}
@@ -497,6 +583,7 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 		{
 			switch (baseFeatureID)
 			{
+				case JnarioPackage.JNARIO_CLASS__EXTENDS: return FeaturePackage.SCENARIO__EXTENDS;
 				default: return -1;
 			}
 		}

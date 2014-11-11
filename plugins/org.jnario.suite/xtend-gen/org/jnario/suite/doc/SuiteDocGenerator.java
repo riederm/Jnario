@@ -11,7 +11,6 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -35,6 +34,7 @@ import org.jnario.suite.suite.SpecReference;
 import org.jnario.suite.suite.Suite;
 import org.jnario.suite.suite.SuiteFile;
 import org.jnario.util.Strings;
+import org.jnario.util.XtendTypes;
 
 @SuppressWarnings("all")
 public class SuiteDocGenerator extends AbstractDocGenerator {
@@ -51,18 +51,8 @@ public class SuiteDocGenerator extends AbstractDocGenerator {
   private HtmlFileBuilder _htmlFileBuilder;
   
   public void doGenerate(final Resource input, final IFileSystemAccess fsa, final Executable2ResultMapping spec2ResultMapping) {
-    this.initResultMapping(spec2ResultMapping);
-    EList<EObject> _contents = input.getContents();
-    Iterable<SuiteFile> _filter = Iterables.<SuiteFile>filter(_contents, SuiteFile.class);
-    final Consumer<SuiteFile> _function = new Consumer<SuiteFile>() {
-      public void accept(final SuiteFile it) {
-        final HtmlFile htmlFile = SuiteDocGenerator.this.createHtmlFile(it);
-        EList<XtendTypeDeclaration> _xtendTypes = it.getXtendTypes();
-        XtendTypeDeclaration _head = IterableExtensions.<XtendTypeDeclaration>head(_xtendTypes);
-        SuiteDocGenerator.this._htmlFileBuilder.generate(_head, fsa, htmlFile);
-      }
-    };
-    _filter.forEach(_function);
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from XtendTypeDeclaration to JnarioTypeDeclaration");
   }
   
   public HtmlFile createHtmlFile(final SuiteFile file) {
@@ -229,9 +219,26 @@ public class SuiteDocGenerator extends AbstractDocGenerator {
   }
   
   public String linkTo(final EObject context, final Specification spec) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getPackageName(EObject) is not visible"
-      + "\nThe method getPackageName(EObject) is not visible");
+    String _xblockexpression = null;
+    {
+      String _xifexpression = null;
+      String _packageName = XtendTypes.packageName(spec);
+      boolean _equals = Objects.equal(_packageName, null);
+      if (_equals) {
+        _xifexpression = "";
+      } else {
+        String _packageName_1 = XtendTypes.packageName(spec);
+        _xifexpression = _packageName_1.replace(".", "/");
+      }
+      final String path = _xifexpression;
+      String _root = this.root(context);
+      String _plus = (_root + path);
+      String _plus_1 = (_plus + "/");
+      String _javaClassName = this._suiteClassNameProvider.toJavaClassName(spec);
+      String _htmlFileName = this.htmlFileName(_javaClassName);
+      _xblockexpression = (_plus_1 + _htmlFileName);
+    }
+    return _xblockexpression;
   }
   
   public String text(final Reference ref) {

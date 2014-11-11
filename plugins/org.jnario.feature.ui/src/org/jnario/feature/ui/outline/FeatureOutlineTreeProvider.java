@@ -10,23 +10,14 @@
 */
 package org.jnario.feature.ui.outline;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtend.core.xtend.XtendTypeDeclaration;
-import org.eclipse.xtend.ide.outline.XtendFeatureNode;
-import org.eclipse.xtend.ide.outline.XtendOutlineTreeProvider;
-import org.eclipse.xtext.common.types.JvmConstructor;
-import org.eclipse.xtext.common.types.JvmDeclaredType;
-import org.eclipse.xtext.common.types.JvmFeature;
-import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
-import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
+import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.jnario.feature.feature.Background;
-import org.jnario.feature.feature.Feature;
 import org.jnario.feature.feature.Scenario;
 
 /**
  * @author Sebastian Benz - Initial contribution and API
  */
-public class FeatureOutlineTreeProvider extends XtendOutlineTreeProvider {
+public class FeatureOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 //	
 //	@Override

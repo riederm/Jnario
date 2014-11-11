@@ -19,10 +19,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.xtend.core.xtend.XtendClass;
-import org.eclipse.xtend.core.xtend.XtendField;
-import org.eclipse.xtend.core.xtend.XtendMember;
-import org.eclipse.xtend.core.xtend.XtendPackage;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -31,6 +27,10 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XNumberLiteral;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
+import org.jnario.JnarioClass;
+import org.jnario.JnarioField;
+import org.jnario.JnarioMember;
+import org.jnario.JnarioPackage;
 import org.jnario.feature.feature.Feature;
 import org.jnario.feature.feature.FeaturePackage;
 import org.jnario.feature.feature.Scenario;
@@ -60,22 +60,27 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 		
 		@Override
 		public Boolean caseScenario(Scenario scenario) {
-			for (XtendMember member : scenario.getMembers()) {
-				if(member.eClass() == XtendPackage.Literals.XTEND_FIELD){
-					XtendField field = (XtendField) member;
-					highlightXtendField(field, acceptor);
+			for (JnarioMember member : scenario.getMembers()) {
+				if(member.eClass() == JnarioPackage.Literals.JNARIO_FIELD){
+					JnarioField field = (JnarioField) member;
+
+					// TODO NO_XTEND
+					// highlightXtendField(field, acceptor);
+					
 //					XExpression initializer = field.getInitialValue();
 //					highlightRichStrings(initializer, acceptor);
 				}
-				for (XAnnotation annotation : member.getAnnotations()) {
-					highlightDeprecatedXtendAnnotationTarget(acceptor, member, annotation);
-				}
+
+// TODO NO_XTEND
+//				for (XAnnotation annotation : member.getAnnotations()) {
+//					highlightDeprecatedXtendAnnotationTarget(acceptor, member, annotation);
+//				}
 			}
 			return highlightXtendClassName(scenario, SCENARIO_ID);
 		}
 
-		private Boolean highlightXtendClassName(XtendClass object, String id) {
-			List<INode> nodes = findNodesForFeature(object, XtendPackage.Literals.XTEND_TYPE_DECLARATION__NAME);
+		private Boolean highlightXtendClassName(JnarioClass object, String id) {
+			List<INode> nodes = findNodesForFeature(object, JnarioPackage.Literals.JNARIO_TYPE_DECLARATION__NAME);
 			for (INode node : nodes) {
 				highlightNode(node, id, acceptor);
 			}
@@ -84,7 +89,7 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 		
 		@Override
 		public Boolean caseFeature(Feature feature) {
-			List<INode> nodes = findNodesForFeature(feature, XtendPackage.Literals.XTEND_TYPE_DECLARATION__NAME);
+			List<INode> nodes = findNodesForFeature(feature, JnarioPackage.Literals.JNARIO_TYPE_DECLARATION__NAME);
 			for (INode node : nodes) {
 				highlightNode(node, FeatureHighlightingConfiguration.FEATURE_ID, acceptor);
 			}
@@ -102,8 +107,8 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 		public Boolean caseStep(Step step) {
 			String description;
 			if(step != null && step.getName() != null){
-				description = getFirstWord(stepReferenceName(step, XtendPackage.Literals.XTEND_FUNCTION__NAME));
-				highlightStep(description, step, XtendPackage.Literals.XTEND_FUNCTION__NAME);
+				description = getFirstWord(stepReferenceName(step, JnarioPackage.Literals.JNARIO_FUNCTION__NAME));
+				highlightStep(description, step, JnarioPackage.Literals.JNARIO_FUNCTION__NAME);
 			}else if(step instanceof StepReference){
 				StepReference ref = (StepReference) step;
 				highlightFirstWordOfReference(ref, ref.getReference());
@@ -113,7 +118,7 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 			if (step instanceof StepReference) {
 				nodes = NodeModelUtils.findNodesForFeature(step, FeaturePackage.Literals.STEP_REFERENCE__REFERENCE);
 			}else{
-				nodes = NodeModelUtils.findNodesForFeature(step, XtendPackage.Literals.XTEND_FUNCTION__NAME);
+				nodes = NodeModelUtils.findNodesForFeature(step, JnarioPackage.Literals.JNARIO_FUNCTION__NAME);
 			}
 			INode lastChild = nodes.get(nodes.size()-1);
 			String text = lastChild.getText();
@@ -175,7 +180,7 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 			}
 			else{
 				name = step.getName();
-				offset = offset(step, XtendPackage.Literals.XTEND_FUNCTION__NAME);
+				offset = offset(step, JnarioPackage.Literals.JNARIO_FUNCTION__NAME);
 			}
 			if(name != null){
 				argumentsProvider.findStepArguments(step, new StepArgumentsProvider.ArgumentAcceptor() {

@@ -426,6 +426,18 @@ public class StepImpl extends MinimalEObjectImpl.Container implements Step
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isStatic()
+	{
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isPending()
 	{
 		// TODO: implement this method

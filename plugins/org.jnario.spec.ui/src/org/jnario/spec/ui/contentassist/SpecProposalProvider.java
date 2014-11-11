@@ -21,6 +21,7 @@ import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.common.types.xtext.ui.JdtVariableCompletions;
 import org.eclipse.xtext.common.types.xtext.ui.JdtVariableCompletions.VariableType;
@@ -32,6 +33,7 @@ import org.jnario.JnarioClass;
 import org.jnario.JnarioField;
 import org.jnario.JnarioPackage;
 import org.jnario.JnarioParameter;
+import org.jnario.spec.services.SpecGrammarAccess;
 import org.jnario.spec.spec.SpecPackage;
 import org.jnario.spec.spec.TestFunction;
 
@@ -43,8 +45,8 @@ import com.google.inject.Inject;
 @SuppressWarnings("restriction")
 public class SpecProposalProvider extends AbstractSpecProposalProvider {
 	
-	@Inject
-	private JdtVariableCompletions completions;
+	@Inject private JdtVariableCompletions completions;
+	@Inject private SpecGrammarAccess grammarAccess;
 	
 	@Override
 	public void completeXAnnotation_AnnotationType(EObject model, Assignment assignment, ContentAssistContext context,
@@ -145,8 +147,7 @@ public class SpecProposalProvider extends AbstractSpecProposalProvider {
 			for(JnarioParameter sibling: siblings) {
 				alreadyTaken.add(sibling.getName());
 			}
-			// TODO NO_XTEND
-			// alreadyTaken.addAll(getAllKeywords());
+			alreadyTaken.addAll(getAllKeywords());
 			completions.getVariableProposals(model, JnarioPackage.Literals.JNARIO_PARAMETER__PARAMETER_TYPE,
 					VariableType.PARAMETER, alreadyTaken, new JdtVariableCompletions.CompletionDataAcceptor() {
 						public void accept(String replaceText, StyledString label, Image img) {
@@ -185,8 +186,7 @@ public class SpecProposalProvider extends AbstractSpecProposalProvider {
 			for(JnarioField sibling: siblings) {
 				alreadyTaken.add(sibling.getName());
 			}
-			// TODO NO_XTEND
-//			alreadyTaken.addAll(getAllKeywords());
+			alreadyTaken.addAll(getAllKeywords());
 			completions.getVariableProposals(model, JnarioPackage.Literals.JNARIO_FIELD__TYPE,
 					VariableType.INSTANCE_FIELD, alreadyTaken, new JdtVariableCompletions.CompletionDataAcceptor() {
 						public void accept(String replaceText, StyledString label, Image img) {
@@ -199,4 +199,7 @@ public class SpecProposalProvider extends AbstractSpecProposalProvider {
 	}
 	
 
+	protected Set<String> getAllKeywords() {
+		return GrammarUtil.getAllKeywords(grammarAccess.getGrammar());
+	}
 }

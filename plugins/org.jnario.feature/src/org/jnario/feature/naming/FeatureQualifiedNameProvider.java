@@ -14,13 +14,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtend.core.naming.XtendQualifiedNameProvider;
-import org.eclipse.xtend.core.xtend.XtendFile;
-import org.eclipse.xtend.core.xtend.XtendTypeDeclaration;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.util.IResourceScopeCache;
-import org.jnario.feature.feature.Feature;
+import org.eclipse.xtext.xbase.scoping.XbaseQualifiedNameProvider;
+import org.jnario.JnarioFile;
 import org.jnario.feature.feature.Scenario;
 import org.jnario.feature.feature.Step;
 import org.jnario.feature.feature.StepReference;
@@ -32,7 +29,7 @@ import com.google.inject.Provider;
  * @author Birgit Engelmann - Initial contribution and API
  * @author Sebastian Benz 
  */
-public class FeatureQualifiedNameProvider extends XtendQualifiedNameProvider {
+public class FeatureQualifiedNameProvider extends XbaseQualifiedNameProvider {
 
 	private StepNameProvider stepNameProvider;
 	@Inject
@@ -108,7 +105,7 @@ public class FeatureQualifiedNameProvider extends XtendQualifiedNameProvider {
 	}
 
 	public String getPackageName(EObject obj) {
-		XtendFile file = getContainerOfType(obj, XtendFile.class);
+		JnarioFile file = getContainerOfType(obj, JnarioFile.class);
 		return file.getPackage();
 	}
 

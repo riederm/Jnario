@@ -62,7 +62,7 @@ public class SuiteJvmModelInferrer extends JnarioJvmModelInferrer {
   
   public void doInfer(final EObject e, final IJvmDeclaredTypeAcceptor acceptor, final boolean preIndexingPhase) {
     throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Suite to XtendTypeDeclaration");
+      + "\nThe method xtendFile is undefined for the type SuiteJvmModelInferrer");
   }
   
   public JvmGenericType infer(final SuiteNode node, final IJvmDeclaredTypeAcceptor acceptor, final List<Runnable> doLater, final boolean preIndexingPhase) {
