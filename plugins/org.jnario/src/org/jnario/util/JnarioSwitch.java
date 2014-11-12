@@ -14,6 +14,7 @@ import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XBinaryOperation;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.XTypeLiteral;
+import org.jnario.*;
 import org.jnario.Assertion;
 import org.jnario.ExampleCell;
 import org.jnario.ExampleColumn;

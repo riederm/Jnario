@@ -108,7 +108,9 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 	}
 
 	
-	def initialize(JnarioClass source, JvmGenericType inferredJvmType) {
+	override initialize(JnarioClass source, JvmGenericType inferredJvmType) {
+	    // TODO NO_XTEND consider call super.initialize(...) here
+
 		inferredJvmType.setVisibility(JvmVisibility::PUBLIC);
 		translateAnnotationsTo(source.getAnnotations(), inferredJvmType);
 		inferredJvmType.annotations += source.toAnnotation(typeof(Named), source.describe)

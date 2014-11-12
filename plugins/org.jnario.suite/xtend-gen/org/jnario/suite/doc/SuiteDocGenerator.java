@@ -11,17 +11,18 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.List;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtend.core.xtend.XtendClass;
-import org.eclipse.xtend.core.xtend.XtendTypeDeclaration;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.jnario.JnarioClass;
+import org.jnario.JnarioTypeDeclaration;
 import org.jnario.Specification;
 import org.jnario.doc.AbstractDocGenerator;
 import org.jnario.doc.HtmlFile;
@@ -51,14 +52,24 @@ public class SuiteDocGenerator extends AbstractDocGenerator {
   private HtmlFileBuilder _htmlFileBuilder;
   
   public void doGenerate(final Resource input, final IFileSystemAccess fsa, final Executable2ResultMapping spec2ResultMapping) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from XtendTypeDeclaration to JnarioTypeDeclaration");
+    this.initResultMapping(spec2ResultMapping);
+    EList<EObject> _contents = input.getContents();
+    Iterable<SuiteFile> _filter = Iterables.<SuiteFile>filter(_contents, SuiteFile.class);
+    final Consumer<SuiteFile> _function = new Consumer<SuiteFile>() {
+      public void accept(final SuiteFile it) {
+        final HtmlFile htmlFile = SuiteDocGenerator.this.createHtmlFile(it);
+        EList<JnarioTypeDeclaration> _xtendTypes = it.getXtendTypes();
+        JnarioTypeDeclaration _head = IterableExtensions.<JnarioTypeDeclaration>head(_xtendTypes);
+        SuiteDocGenerator.this._htmlFileBuilder.generate(_head, fsa, htmlFile);
+      }
+    };
+    _filter.forEach(_function);
   }
   
   public HtmlFile createHtmlFile(final SuiteFile file) {
     HtmlFile _xblockexpression = null;
     {
-      EList<XtendTypeDeclaration> _xtendTypes = file.getXtendTypes();
+      EList<JnarioTypeDeclaration> _xtendTypes = file.getXtendTypes();
       final Iterable<Suite> suites = Iterables.<Suite>filter(_xtendTypes, Suite.class);
       boolean _isEmpty = IterableExtensions.isEmpty(suites);
       if (_isEmpty) {
@@ -89,7 +100,7 @@ public class SuiteDocGenerator extends AbstractDocGenerator {
     return _xblockexpression;
   }
   
-  public HtmlFile createHtmlFile(final XtendClass file) {
+  public HtmlFile createHtmlFile(final JnarioClass file) {
     HtmlFile _xblockexpression = null;
     {
       final Suite suite = ((Suite) file);

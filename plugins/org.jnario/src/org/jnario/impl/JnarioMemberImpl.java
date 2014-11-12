@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.xtext.common.types.JvmVisibility;
 import org.jnario.JnarioAnnotationTarget;
 import org.jnario.JnarioMember;
 import org.jnario.JnarioPackage;
@@ -242,6 +243,75 @@ public class JnarioMemberImpl extends JnarioAnnotationTargetImpl implements Jnar
 		result.append(modifiers);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public JvmVisibility getDeclaredVisibility() {
+		for(String modifier: getModifiers()) {
+			if(equal(modifier, "public")) 
+				return JvmVisibility.PUBLIC;
+			if(equal(modifier, "package")) 
+				return JvmVisibility.DEFAULT;
+			if(equal(modifier, "protected")) 
+				return JvmVisibility.PROTECTED;
+			if(equal(modifier, "private")) 
+				return JvmVisibility.PRIVATE;
+		}
+		return null;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public JvmVisibility getDefaultVisibility() {
+		return JvmVisibility.PUBLIC;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isTransient() {
+		for(String modifier: getModifiers()) { 
+			if(equal(modifier, "abstract")) 
+				return false;
+			if(equal(modifier, "final")) 
+				return true;
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isFinal() {
+		for(String modifier: getModifiers()) { 
+			if(equal(modifier, "abstract")) 
+				return false;
+			if(equal(modifier, "final")) 
+				return true;
+		}
+		return false;
+	}
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public JvmVisibility getVisibility() {
+		JvmVisibility declaredVisibility = getDeclaredVisibility();
+		return declaredVisibility == null ? getDefaultVisibility() : declaredVisibility;
 	}
 
 } //JnarioMemberImpl

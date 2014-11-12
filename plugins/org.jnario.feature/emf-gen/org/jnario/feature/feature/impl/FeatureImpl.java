@@ -164,8 +164,7 @@ public class FeatureImpl extends SpecificationImpl implements Feature
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case FeaturePackage.FEATURE__DESCRIPTION:
 				return getDescription();
 			case FeaturePackage.FEATURE__SCENARIOS:
@@ -186,8 +185,7 @@ public class FeatureImpl extends SpecificationImpl implements Feature
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case FeaturePackage.FEATURE__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
@@ -210,8 +208,7 @@ public class FeatureImpl extends SpecificationImpl implements Feature
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case FeaturePackage.FEATURE__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
@@ -233,8 +230,7 @@ public class FeatureImpl extends SpecificationImpl implements Feature
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case FeaturePackage.FEATURE__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case FeaturePackage.FEATURE__SCENARIOS:

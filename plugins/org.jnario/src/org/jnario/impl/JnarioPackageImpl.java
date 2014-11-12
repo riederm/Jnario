@@ -915,6 +915,14 @@ public class JnarioPackageImpl extends EPackageImpl implements JnarioPackage {
 
 		addEOperation(jnarioMemberEClass, ecorePackage.getEBoolean(), "isStatic", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(jnarioMemberEClass, theTypesPackage.getJvmVisibility(), "getVisibility", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(jnarioMemberEClass, theTypesPackage.getJvmVisibility(), "getDeclaredVisibility", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(jnarioMemberEClass, theTypesPackage.getJvmVisibility(), "getDefaultVisibility", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(jnarioMemberEClass, ecorePackage.getEBoolean(), "isFinal", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(jnarioFunctionEClass, JnarioFunction.class, "JnarioFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getJnarioFunction_Name(), ecorePackage.getEString(), "name", null, 0, 1, JnarioFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getJnarioFunction_Expression(), theXbasePackage.getXExpression(), null, "expression", null, 0, 1, JnarioFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -927,6 +935,12 @@ public class JnarioPackageImpl extends EPackageImpl implements JnarioPackage {
 		initEReference(getJnarioField_Type(), theTypesPackage.getJvmTypeReference(), null, "type", null, 0, 1, JnarioField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJnarioField_Name(), ecorePackage.getEString(), "name", null, 0, 1, JnarioField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getJnarioField_InitialValue(), theXbasePackage.getXExpression(), null, "initialValue", null, 0, 1, JnarioField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(jnarioFieldEClass, ecorePackage.getEBoolean(), "isTransient", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(jnarioFieldEClass, ecorePackage.getEBoolean(), "isVolatile", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(jnarioFieldEClass, ecorePackage.getEBoolean(), "isExtension", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(jnarioTypeDeclarationEClass, JnarioTypeDeclaration.class, "JnarioTypeDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getJnarioTypeDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, JnarioTypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

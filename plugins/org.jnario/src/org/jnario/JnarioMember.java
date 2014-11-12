@@ -8,6 +8,7 @@
 package org.jnario;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.common.types.JvmVisibility;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,5 +77,37 @@ public interface JnarioMember extends JnarioAnnotationTarget {
 	 * @generated
 	 */
 	boolean isStatic();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	JvmVisibility getVisibility();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	JvmVisibility getDeclaredVisibility();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	JvmVisibility getDefaultVisibility();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	boolean isFinal();
 
 } // JnarioMember

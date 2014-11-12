@@ -44,7 +44,7 @@ class SuiteJvmModelInferrer extends JnarioJvmModelInferrer {
 		val suites = suiteFile.xtendTypes.filter(typeof(Suite)).toList
 		suites.forEach[
 			val javaType = typesFactory.createJvmGenericType();
-			setNameAndAssociate(it.xtendFile, it, javaType);
+			setNameAndAssociate(it.jnarioFile, it, javaType);
 		]
 
 		val nodes = suiteFile.buildNodeModel

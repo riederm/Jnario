@@ -34,7 +34,7 @@ import org.jnario.spec.spec.SpecPackage;
  *
  * @generated
  */
-public class ExampleImpl extends TestFunctionImplCustom implements Example
+public class ExampleImpl extends TestFunctionImpl implements Example
 {
 	/**
 	 * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
@@ -106,8 +106,7 @@ public class ExampleImpl extends TestFunctionImplCustom implements Example
 	{
 		XExpression oldExpr = expr;
 		expr = newExpr;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpecPackage.EXAMPLE__EXPR, oldExpr, newExpr);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -121,8 +120,7 @@ public class ExampleImpl extends TestFunctionImplCustom implements Example
 	 */
 	public void setExpr(XExpression newExpr)
 	{
-		if (newExpr != expr)
-		{
+		if (newExpr != expr) {
 			NotificationChain msgs = null;
 			if (expr != null)
 				msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpecPackage.EXAMPLE__EXPR, null, msgs);
@@ -166,8 +164,7 @@ public class ExampleImpl extends TestFunctionImplCustom implements Example
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpecPackage.EXAMPLE__EXPR:
 				return basicSetExpr(null, msgs);
 		}
@@ -182,8 +179,7 @@ public class ExampleImpl extends TestFunctionImplCustom implements Example
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpecPackage.EXAMPLE__EXPR:
 				return getExpr();
 			case SpecPackage.EXAMPLE__PENDING:
@@ -200,8 +196,7 @@ public class ExampleImpl extends TestFunctionImplCustom implements Example
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpecPackage.EXAMPLE__EXPR:
 				setExpr((XExpression)newValue);
 				return;
@@ -220,8 +215,7 @@ public class ExampleImpl extends TestFunctionImplCustom implements Example
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpecPackage.EXAMPLE__EXPR:
 				setExpr((XExpression)null);
 				return;
@@ -240,8 +234,7 @@ public class ExampleImpl extends TestFunctionImplCustom implements Example
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case SpecPackage.EXAMPLE__EXPR:
 				return expr != null;
 			case SpecPackage.EXAMPLE__PENDING:

@@ -33,7 +33,7 @@ import org.jnario.feature.feature.StepReference;
  *
  * @generated
  */
-public class StepReferenceImpl extends StepImplCustom implements StepReference
+public class StepReferenceImpl extends StepImpl implements StepReference
 {
 	/**
 	 * The cached value of the '{@link #getReference() <em>Reference</em>}' reference.
@@ -83,12 +83,10 @@ public class StepReferenceImpl extends StepImplCustom implements StepReference
 	 */
 	public StepImplementation getReference()
 	{
-		if (reference != null && reference.eIsProxy())
-		{
+		if (reference != null && reference.eIsProxy()) {
 			InternalEObject oldReference = (InternalEObject)reference;
 			reference = (StepImplementation)eResolveProxy(oldReference);
-			if (reference != oldReference)
-			{
+			if (reference != oldReference) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FeaturePackage.STEP_REFERENCE__REFERENCE, oldReference, reference));
 			}
@@ -126,12 +124,10 @@ public class StepReferenceImpl extends StepImplCustom implements StepReference
 	 */
 	public Step getSyntheticStepReference()
 	{
-		if (syntheticStepReference != null && syntheticStepReference.eIsProxy())
-		{
+		if (syntheticStepReference != null && syntheticStepReference.eIsProxy()) {
 			InternalEObject oldSyntheticStepReference = (InternalEObject)syntheticStepReference;
 			syntheticStepReference = (Step)eResolveProxy(oldSyntheticStepReference);
-			if (syntheticStepReference != oldSyntheticStepReference)
-			{
+			if (syntheticStepReference != oldSyntheticStepReference) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FeaturePackage.STEP_REFERENCE__SYNTHETIC_STEP_REFERENCE, oldSyntheticStepReference, syntheticStepReference));
 			}
@@ -170,8 +166,7 @@ public class StepReferenceImpl extends StepImplCustom implements StepReference
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case FeaturePackage.STEP_REFERENCE__REFERENCE:
 				if (resolve) return getReference();
 				return basicGetReference();
@@ -190,8 +185,7 @@ public class StepReferenceImpl extends StepImplCustom implements StepReference
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case FeaturePackage.STEP_REFERENCE__REFERENCE:
 				setReference((StepImplementation)newValue);
 				return;
@@ -210,8 +204,7 @@ public class StepReferenceImpl extends StepImplCustom implements StepReference
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case FeaturePackage.STEP_REFERENCE__REFERENCE:
 				setReference((StepImplementation)null);
 				return;
@@ -230,8 +223,7 @@ public class StepReferenceImpl extends StepImplCustom implements StepReference
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case FeaturePackage.STEP_REFERENCE__REFERENCE:
 				return reference != null;
 			case FeaturePackage.STEP_REFERENCE__SYNTHETIC_STEP_REFERENCE:

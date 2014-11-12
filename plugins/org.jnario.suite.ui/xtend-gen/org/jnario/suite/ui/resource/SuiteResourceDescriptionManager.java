@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.xtend.core.resource.XtendResourceDescriptionManager;
 import org.eclipse.xtext.builder.clustering.CurrentDescriptions;
 import org.eclipse.xtext.builder.impl.BuildData;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.resource.DerivedStateAwareResourceDescriptionManager;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescriptions;
@@ -50,7 +50,7 @@ import org.jnario.suite.suite.Suite;
 import org.jnario.suite.suite.SuitePackage;
 
 @SuppressWarnings("all")
-public class SuiteResourceDescriptionManager extends XtendResourceDescriptionManager {
+public class SuiteResourceDescriptionManager extends DerivedStateAwareResourceDescriptionManager {
   private final static Logger logger = Logger.getLogger(SuiteResourceDescriptionManager.class);
   
   private final static HashSet<String> FILE_EXTENSIONS = CollectionLiterals.<String>newHashSet("suite", "spec", "feature");

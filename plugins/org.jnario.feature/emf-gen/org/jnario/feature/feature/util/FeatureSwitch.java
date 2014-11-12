@@ -54,8 +54,7 @@ public class FeatureSwitch<T>
 	 */
 	public FeatureSwitch()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = FeaturePackage.eINSTANCE;
 		}
 	}
@@ -81,12 +80,10 @@ public class FeatureSwitch<T>
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject)
 	{
-		if (theEClass.eContainer() == modelPackage)
-		{
+		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else
-		{
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -104,10 +101,8 @@ public class FeatureSwitch<T>
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID)
-		{
-			case FeaturePackage.FEATURE:
-			{
+		switch (classifierID) {
+			case FeaturePackage.FEATURE: {
 				Feature feature = (Feature)theEObject;
 				T result = caseFeature(feature);
 				if (result == null) result = caseSpecification(feature);
@@ -119,8 +114,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.BACKGROUND:
-			{
+			case FeaturePackage.BACKGROUND: {
 				Background background = (Background)theEObject;
 				T result = caseBackground(background);
 				if (result == null) result = caseScenario(background);
@@ -132,8 +126,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.SCENARIO:
-			{
+			case FeaturePackage.SCENARIO: {
 				Scenario scenario = (Scenario)theEObject;
 				T result = caseScenario(scenario);
 				if (result == null) result = caseExecutable(scenario);
@@ -144,8 +137,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.STEP:
-			{
+			case FeaturePackage.STEP: {
 				Step step = (Step)theEObject;
 				T result = caseStep(step);
 				if (result == null) result = caseExecutable(step);
@@ -155,8 +147,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.GIVEN:
-			{
+			case FeaturePackage.GIVEN: {
 				Given given = (Given)theEObject;
 				T result = caseGiven(given);
 				if (result == null) result = caseStepImplementation(given);
@@ -168,8 +159,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.WHEN:
-			{
+			case FeaturePackage.WHEN: {
 				When when = (When)theEObject;
 				T result = caseWhen(when);
 				if (result == null) result = caseStepImplementation(when);
@@ -181,8 +171,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.THEN:
-			{
+			case FeaturePackage.THEN: {
 				Then then = (Then)theEObject;
 				T result = caseThen(then);
 				if (result == null) result = caseStepImplementation(then);
@@ -194,8 +183,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.AND:
-			{
+			case FeaturePackage.AND: {
 				And and = (And)theEObject;
 				T result = caseAnd(and);
 				if (result == null) result = caseStepImplementation(and);
@@ -207,16 +195,14 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.FEATURE_FILE:
-			{
+			case FeaturePackage.FEATURE_FILE: {
 				FeatureFile featureFile = (FeatureFile)theEObject;
 				T result = caseFeatureFile(featureFile);
 				if (result == null) result = caseJnarioFile(featureFile);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.GIVEN_REFERENCE:
-			{
+			case FeaturePackage.GIVEN_REFERENCE: {
 				GivenReference givenReference = (GivenReference)theEObject;
 				T result = caseGivenReference(givenReference);
 				if (result == null) result = caseStepReference(givenReference);
@@ -228,8 +214,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.WHEN_REFERENCE:
-			{
+			case FeaturePackage.WHEN_REFERENCE: {
 				WhenReference whenReference = (WhenReference)theEObject;
 				T result = caseWhenReference(whenReference);
 				if (result == null) result = caseStepReference(whenReference);
@@ -241,8 +226,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.THEN_REFERENCE:
-			{
+			case FeaturePackage.THEN_REFERENCE: {
 				ThenReference thenReference = (ThenReference)theEObject;
 				T result = caseThenReference(thenReference);
 				if (result == null) result = caseStepReference(thenReference);
@@ -254,8 +238,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.AND_REFERENCE:
-			{
+			case FeaturePackage.AND_REFERENCE: {
 				AndReference andReference = (AndReference)theEObject;
 				T result = caseAndReference(andReference);
 				if (result == null) result = caseStepReference(andReference);
@@ -267,8 +250,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.STEP_REFERENCE:
-			{
+			case FeaturePackage.STEP_REFERENCE: {
 				StepReference stepReference = (StepReference)theEObject;
 				T result = caseStepReference(stepReference);
 				if (result == null) result = caseStep(stepReference);
@@ -279,8 +261,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.STEP_IMPLEMENTATION:
-			{
+			case FeaturePackage.STEP_IMPLEMENTATION: {
 				StepImplementation stepImplementation = (StepImplementation)theEObject;
 				T result = caseStepImplementation(stepImplementation);
 				if (result == null) result = caseStep(stepImplementation);
@@ -291,8 +272,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.BUT:
-			{
+			case FeaturePackage.BUT: {
 				But but = (But)theEObject;
 				T result = caseBut(but);
 				if (result == null) result = caseStepImplementation(but);
@@ -304,8 +284,7 @@ public class FeatureSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeaturePackage.BUT_REFERENCE:
-			{
+			case FeaturePackage.BUT_REFERENCE: {
 				ButReference butReference = (ButReference)theEObject;
 				T result = caseButReference(butReference);
 				if (result == null) result = caseStepReference(butReference);

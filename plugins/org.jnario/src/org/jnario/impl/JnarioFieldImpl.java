@@ -7,18 +7,16 @@
  */
 package org.jnario.impl;
 
+import static org.eclipse.xtext.util.Strings.equal;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.xtext.common.types.JvmTypeReference;
-
+import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.xbase.XExpression;
-
 import org.jnario.JnarioField;
 import org.jnario.JnarioPackage;
 
@@ -207,6 +205,32 @@ public class JnarioFieldImpl extends JnarioMemberImpl implements JnarioField {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isTransient() {
+		for(String modifier: getModifiers()) { 
+			if(equal(modifier, "transient")) 
+				return true;
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isVolatile() {
+		for(String modifier: getModifiers()) { 
+			if(equal(modifier, "volatile")) 
+				return true;
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -314,4 +338,26 @@ public class JnarioFieldImpl extends JnarioMemberImpl implements JnarioField {
 		return result.toString();
 	}
 
+	@Override
+	public JvmVisibility getDefaultVisibility() {
+		return JvmVisibility.PRIVATE;
+	}
+	
+	@Override
+	public boolean isFinal() {
+		for(String modifier: getModifiers()) { 
+			if(equal(modifier, "var")) 
+				return false;
+			if(equal(modifier, "val") || equal(modifier, "final")) 
+				return true;
+		}
+		return false;
+	}
+	public boolean isExtension() {
+		for(String modifier: getModifiers()) { 
+			if(equal(modifier, "extension")) 
+				return true;
+		}
+		return false;
+	}
 } //JnarioFieldImpl

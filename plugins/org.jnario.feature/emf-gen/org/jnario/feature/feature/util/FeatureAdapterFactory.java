@@ -51,8 +51,7 @@ public class FeatureAdapterFactory extends AdapterFactoryImpl
 	 */
 	public FeatureAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = FeaturePackage.eINSTANCE;
 		}
 	}
@@ -68,12 +67,10 @@ public class FeatureAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -86,136 +83,109 @@ public class FeatureAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected FeatureSwitch<Adapter> modelSwitch =
-		new FeatureSwitch<Adapter>()
-		{
+		new FeatureSwitch<Adapter>() {
 			@Override
-			public Adapter caseFeature(Feature object)
-			{
+			public Adapter caseFeature(Feature object) {
 				return createFeatureAdapter();
 			}
 			@Override
-			public Adapter caseBackground(Background object)
-			{
+			public Adapter caseBackground(Background object) {
 				return createBackgroundAdapter();
 			}
 			@Override
-			public Adapter caseScenario(Scenario object)
-			{
+			public Adapter caseScenario(Scenario object) {
 				return createScenarioAdapter();
 			}
 			@Override
-			public Adapter caseStep(Step object)
-			{
+			public Adapter caseStep(Step object) {
 				return createStepAdapter();
 			}
 			@Override
-			public Adapter caseGiven(Given object)
-			{
+			public Adapter caseGiven(Given object) {
 				return createGivenAdapter();
 			}
 			@Override
-			public Adapter caseWhen(When object)
-			{
+			public Adapter caseWhen(When object) {
 				return createWhenAdapter();
 			}
 			@Override
-			public Adapter caseThen(Then object)
-			{
+			public Adapter caseThen(Then object) {
 				return createThenAdapter();
 			}
 			@Override
-			public Adapter caseAnd(And object)
-			{
+			public Adapter caseAnd(And object) {
 				return createAndAdapter();
 			}
 			@Override
-			public Adapter caseFeatureFile(FeatureFile object)
-			{
+			public Adapter caseFeatureFile(FeatureFile object) {
 				return createFeatureFileAdapter();
 			}
 			@Override
-			public Adapter caseGivenReference(GivenReference object)
-			{
+			public Adapter caseGivenReference(GivenReference object) {
 				return createGivenReferenceAdapter();
 			}
 			@Override
-			public Adapter caseWhenReference(WhenReference object)
-			{
+			public Adapter caseWhenReference(WhenReference object) {
 				return createWhenReferenceAdapter();
 			}
 			@Override
-			public Adapter caseThenReference(ThenReference object)
-			{
+			public Adapter caseThenReference(ThenReference object) {
 				return createThenReferenceAdapter();
 			}
 			@Override
-			public Adapter caseAndReference(AndReference object)
-			{
+			public Adapter caseAndReference(AndReference object) {
 				return createAndReferenceAdapter();
 			}
 			@Override
-			public Adapter caseStepReference(StepReference object)
-			{
+			public Adapter caseStepReference(StepReference object) {
 				return createStepReferenceAdapter();
 			}
 			@Override
-			public Adapter caseStepImplementation(StepImplementation object)
-			{
+			public Adapter caseStepImplementation(StepImplementation object) {
 				return createStepImplementationAdapter();
 			}
 			@Override
-			public Adapter caseBut(But object)
-			{
+			public Adapter caseBut(But object) {
 				return createButAdapter();
 			}
 			@Override
-			public Adapter caseButReference(ButReference object)
-			{
+			public Adapter caseButReference(ButReference object) {
 				return createButReferenceAdapter();
 			}
 			@Override
-			public Adapter caseExecutable(Executable object)
-			{
+			public Adapter caseExecutable(Executable object) {
 				return createExecutableAdapter();
 			}
 			@Override
-			public Adapter caseJnarioAnnotationTarget(JnarioAnnotationTarget object)
-			{
+			public Adapter caseJnarioAnnotationTarget(JnarioAnnotationTarget object) {
 				return createJnarioAnnotationTargetAdapter();
 			}
 			@Override
-			public Adapter caseJnarioMember(JnarioMember object)
-			{
+			public Adapter caseJnarioMember(JnarioMember object) {
 				return createJnarioMemberAdapter();
 			}
 			@Override
-			public Adapter caseJnarioTypeDeclaration(JnarioTypeDeclaration object)
-			{
+			public Adapter caseJnarioTypeDeclaration(JnarioTypeDeclaration object) {
 				return createJnarioTypeDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseJnarioClass(JnarioClass object)
-			{
+			public Adapter caseJnarioClass(JnarioClass object) {
 				return createJnarioClassAdapter();
 			}
 			@Override
-			public Adapter caseSpecification(Specification object)
-			{
+			public Adapter caseSpecification(Specification object) {
 				return createSpecificationAdapter();
 			}
 			@Override
-			public Adapter caseJnarioFunction(JnarioFunction object)
-			{
+			public Adapter caseJnarioFunction(JnarioFunction object) {
 				return createJnarioFunctionAdapter();
 			}
 			@Override
-			public Adapter caseJnarioFile(JnarioFile object)
-			{
+			public Adapter caseJnarioFile(JnarioFile object) {
 				return createJnarioFileAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

@@ -33,16 +33,13 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory
 	 */
 	public static FeatureFactory init()
 	{
-		try
-		{
+		try {
 			FeatureFactory theFeatureFactory = (FeatureFactory)EPackage.Registry.INSTANCE.getEFactory(FeaturePackage.eNS_URI);
-			if (theFeatureFactory != null)
-			{
+			if (theFeatureFactory != null) {
 				return theFeatureFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new FeatureFactoryImpl();
@@ -67,8 +64,7 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case FeaturePackage.FEATURE: return createFeature();
 			case FeaturePackage.BACKGROUND: return createBackground();
 			case FeaturePackage.SCENARIO: return createScenario();
@@ -98,7 +94,7 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory
 	 */
 	public Feature createFeature()
 	{
-		FeatureImplCustom feature = new FeatureImplCustom();
+		FeatureImpl feature = new FeatureImpl();
 		return feature;
 	}
 
@@ -109,7 +105,7 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory
 	 */
 	public Background createBackground()
 	{
-		BackgroundImplCustom background = new BackgroundImplCustom();
+		BackgroundImpl background = new BackgroundImpl();
 		return background;
 	}
 
@@ -120,7 +116,7 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory
 	 */
 	public Scenario createScenario()
 	{
-		ScenarioImplCustom scenario = new ScenarioImplCustom();
+		ScenarioImpl scenario = new ScenarioImpl();
 		return scenario;
 	}
 
@@ -131,7 +127,7 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory
 	 */
 	public Step createStep()
 	{
-		StepImplCustom step = new StepImplCustom();
+		StepImpl step = new StepImpl();
 		return step;
 	}
 
@@ -186,7 +182,7 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory
 	 */
 	public FeatureFile createFeatureFile()
 	{
-		FeatureFileImplCustom featureFile = new FeatureFileImplCustom();
+		FeatureFileImpl featureFile = new FeatureFileImpl();
 		return featureFile;
 	}
 
@@ -241,7 +237,7 @@ public class FeatureFactoryImpl extends EFactoryImpl implements FeatureFactory
 	 */
 	public StepReference createStepReference()
 	{
-		StepReferenceImplCustom stepReference = new StepReferenceImplCustom();
+		StepReferenceImpl stepReference = new StepReferenceImpl();
 		return stepReference;
 	}
 

@@ -33,19 +33,16 @@ public class SpecFactoryImpl extends EFactoryImpl implements SpecFactory
 	 */
 	public static SpecFactory init()
 	{
-		try
-		{
+		try {
 			SpecFactory theSpecFactory = (SpecFactory)EPackage.Registry.INSTANCE.getEFactory(SpecPackage.eNS_URI);
-			if (theSpecFactory != null)
-			{
+			if (theSpecFactory != null) {
 				return theSpecFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new SpecFactoryImplCustom();
+		return new SpecFactoryImpl();
 	}
 
 	/**
@@ -67,8 +64,7 @@ public class SpecFactoryImpl extends EFactoryImpl implements SpecFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case SpecPackage.SPEC_FILE: return createSpecFile();
 			case SpecPackage.EXAMPLE_GROUP: return createExampleGroup();
 			case SpecPackage.EXAMPLE: return createExample();
@@ -87,7 +83,7 @@ public class SpecFactoryImpl extends EFactoryImpl implements SpecFactory
 	 */
 	public SpecFile createSpecFile()
 	{
-		SpecFileImplCustom specFile = new SpecFileImplCustom();
+		SpecFileImpl specFile = new SpecFileImpl();
 		return specFile;
 	}
 
@@ -98,7 +94,7 @@ public class SpecFactoryImpl extends EFactoryImpl implements SpecFactory
 	 */
 	public ExampleGroup createExampleGroup()
 	{
-		ExampleGroupImplCustom exampleGroup = new ExampleGroupImplCustom();
+		ExampleGroupImpl exampleGroup = new ExampleGroupImpl();
 		return exampleGroup;
 	}
 
@@ -109,7 +105,7 @@ public class SpecFactoryImpl extends EFactoryImpl implements SpecFactory
 	 */
 	public Example createExample()
 	{
-		ExampleImplCustom example = new ExampleImplCustom();
+		ExampleImpl example = new ExampleImpl();
 		return example;
 	}
 
@@ -142,7 +138,7 @@ public class SpecFactoryImpl extends EFactoryImpl implements SpecFactory
 	 */
 	public TestFunction createTestFunction()
 	{
-		TestFunctionImplCustom testFunction = new TestFunctionImplCustom();
+		TestFunctionImpl testFunction = new TestFunctionImpl();
 		return testFunction;
 	}
 

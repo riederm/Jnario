@@ -14,10 +14,10 @@ import java.util.WeakHashMap
 import java.util.regex.Pattern
 import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.resource.ResourceSet
-import org.eclipse.xtend.core.resource.XtendResourceDescriptionManager
 import org.eclipse.xtext.builder.clustering.CurrentDescriptions
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.xtext.resource.DerivedStateAwareResourceDescriptionManager
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.resource.IResourceDescription
 import org.eclipse.xtext.resource.IResourceDescription.Delta
@@ -32,7 +32,7 @@ import org.jnario.suite.suite.SuitePackage
 import static java.util.Collections.*
 import static org.eclipse.emf.ecore.util.EcoreUtil.resolve
 
-class SuiteResourceDescriptionManager extends XtendResourceDescriptionManager {
+class SuiteResourceDescriptionManager extends DerivedStateAwareResourceDescriptionManager {
 
 	static val Logger logger = Logger.getLogger(SuiteResourceDescriptionManager);
 

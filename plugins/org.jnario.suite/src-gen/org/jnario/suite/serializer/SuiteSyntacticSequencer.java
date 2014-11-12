@@ -18,15 +18,8 @@ import org.jnario.suite.services.SuiteGrammarAccess;
 public class SuiteSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected SuiteGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_AnnotationField_SemicolonKeyword_2_0_2_q;
-	protected AbstractElementAlias match_AnnotationField_SemicolonKeyword_2_3_6_q;
-	protected AbstractElementAlias match_File_SemicolonKeyword_0_2_q;
 	protected AbstractElementAlias match_Import_SemicolonKeyword_2_q;
-	protected AbstractElementAlias match_Member_SemicolonKeyword_2_0_4_q;
-	protected AbstractElementAlias match_Member_SemicolonKeyword_2_1_9_2_q;
-	protected AbstractElementAlias match_Member_SemicolonKeyword_2_5_6_q;
 	protected AbstractElementAlias match_SuiteFile_SemicolonKeyword_1_2_q;
-	protected AbstractElementAlias match_Type_SemicolonKeyword_2_2_6_q;
 	protected AbstractElementAlias match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q;
 	protected AbstractElementAlias match_XBlockExpression_SemicolonKeyword_2_1_q;
 	protected AbstractElementAlias match_XExpressionInClosure_SemicolonKeyword_1_1_q;
@@ -38,15 +31,8 @@ public class SuiteSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (SuiteGrammarAccess) access;
-		match_AnnotationField_SemicolonKeyword_2_0_2_q = new TokenAlias(false, true, grammarAccess.getAnnotationFieldAccess().getSemicolonKeyword_2_0_2());
-		match_AnnotationField_SemicolonKeyword_2_3_6_q = new TokenAlias(false, true, grammarAccess.getAnnotationFieldAccess().getSemicolonKeyword_2_3_6());
-		match_File_SemicolonKeyword_0_2_q = new TokenAlias(false, true, grammarAccess.getFileAccess().getSemicolonKeyword_0_2());
 		match_Import_SemicolonKeyword_2_q = new TokenAlias(false, true, grammarAccess.getImportAccess().getSemicolonKeyword_2());
-		match_Member_SemicolonKeyword_2_0_4_q = new TokenAlias(false, true, grammarAccess.getMemberAccess().getSemicolonKeyword_2_0_4());
-		match_Member_SemicolonKeyword_2_1_9_2_q = new TokenAlias(false, true, grammarAccess.getMemberAccess().getSemicolonKeyword_2_1_9_2());
-		match_Member_SemicolonKeyword_2_5_6_q = new TokenAlias(false, true, grammarAccess.getMemberAccess().getSemicolonKeyword_2_5_6());
 		match_SuiteFile_SemicolonKeyword_1_2_q = new TokenAlias(false, true, grammarAccess.getSuiteFileAccess().getSemicolonKeyword_1_2());
-		match_Type_SemicolonKeyword_2_2_6_q = new TokenAlias(false, true, grammarAccess.getTypeAccess().getSemicolonKeyword_2_2_6());
 		match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getXAnnotationAccess().getLeftParenthesisKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getXAnnotationAccess().getRightParenthesisKeyword_3_2()));
 		match_XBlockExpression_SemicolonKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getXBlockExpressionAccess().getSemicolonKeyword_2_1());
 		match_XExpressionInClosure_SemicolonKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getXExpressionInClosureAccess().getSemicolonKeyword_1_1());
@@ -93,24 +79,10 @@ public class SuiteSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_AnnotationField_SemicolonKeyword_2_0_2_q.equals(syntax))
-				emit_AnnotationField_SemicolonKeyword_2_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_AnnotationField_SemicolonKeyword_2_3_6_q.equals(syntax))
-				emit_AnnotationField_SemicolonKeyword_2_3_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_File_SemicolonKeyword_0_2_q.equals(syntax))
-				emit_File_SemicolonKeyword_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Import_SemicolonKeyword_2_q.equals(syntax))
+			if(match_Import_SemicolonKeyword_2_q.equals(syntax))
 				emit_Import_SemicolonKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Member_SemicolonKeyword_2_0_4_q.equals(syntax))
-				emit_Member_SemicolonKeyword_2_0_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Member_SemicolonKeyword_2_1_9_2_q.equals(syntax))
-				emit_Member_SemicolonKeyword_2_1_9_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Member_SemicolonKeyword_2_5_6_q.equals(syntax))
-				emit_Member_SemicolonKeyword_2_5_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_SuiteFile_SemicolonKeyword_1_2_q.equals(syntax))
 				emit_SuiteFile_SemicolonKeyword_1_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Type_SemicolonKeyword_2_2_6_q.equals(syntax))
-				emit_Type_SemicolonKeyword_2_2_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q.equals(syntax))
 				emit_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_XBlockExpression_SemicolonKeyword_2_1_q.equals(syntax))
@@ -133,30 +105,6 @@ public class SuiteSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * Syntax:
 	 *     ';'?
 	 */
-	protected void emit_AnnotationField_SemicolonKeyword_2_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     ';'?
-	 */
-	protected void emit_AnnotationField_SemicolonKeyword_2_3_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     ';'?
-	 */
-	protected void emit_File_SemicolonKeyword_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     ';'?
-	 */
 	protected void emit_Import_SemicolonKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
@@ -165,39 +113,7 @@ public class SuiteSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * Syntax:
 	 *     ';'?
 	 */
-	protected void emit_Member_SemicolonKeyword_2_0_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     ';'?
-	 */
-	protected void emit_Member_SemicolonKeyword_2_1_9_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     ';'?
-	 */
-	protected void emit_Member_SemicolonKeyword_2_5_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     ';'?
-	 */
 	protected void emit_SuiteFile_SemicolonKeyword_1_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     ';'?
-	 */
-	protected void emit_Type_SemicolonKeyword_2_2_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
