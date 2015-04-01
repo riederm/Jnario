@@ -60,6 +60,7 @@ public class FeatureFormatter2 extends JnarioFormatter {
   protected void _format(final Scenario scenario, final FormattableDocument format) {
     INode _nodeForEObject = this._nodeModelAccess.nodeForEObject(scenario);
     final Procedure1<FormattingDataInit> _function = new Procedure1<FormattingDataInit>() {
+      @Override
       public void apply(final FormattingDataInit it) {
         it.increaseIndentation();
       }
@@ -71,6 +72,7 @@ public class FeatureFormatter2 extends JnarioFormatter {
   protected void _format(final Background background, final FormattableDocument format) {
     INode _nodeForEObject = this._nodeModelAccess.nodeForEObject(background);
     final Procedure1<FormattingDataInit> _function = new Procedure1<FormattingDataInit>() {
+      @Override
       public void apply(final FormattingDataInit it) {
         it.increaseIndentation();
       }

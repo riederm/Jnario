@@ -43,6 +43,7 @@ public class StepContextProvider {
       Iterable<JnarioMember> _allVisibleMembers = this._visibleMembersCalculator.allVisibleMembers(step);
       Iterable<JnarioField> _filter = Iterables.<JnarioField>filter(_allVisibleMembers, JnarioField.class);
       final Function1<JnarioField, Boolean> _function = new Function1<JnarioField, Boolean>() {
+        @Override
         public Boolean apply(final JnarioField it) {
           boolean _xblockexpression = false;
           {

@@ -98,6 +98,7 @@ public abstract class JnarioJvmModelInferrer implements IJvmModelInferrer {
   @Extension
   private TypesFactory typesFactory;
   
+  @Override
   public void infer(final EObject obj, final IJvmDeclaredTypeAcceptor acceptor, final boolean preIndexingPhase) {
     try {
       TestRuntimeSupport _get = this.runtime.get(obj);
@@ -150,12 +151,14 @@ public abstract class JnarioJvmModelInferrer implements IJvmModelInferrer {
         final JnarioClass current = ((JnarioClass) xtendType);
         EList<XAnnotation> _annotations = current.getAnnotations();
         final Function1<XAnnotation, Boolean> _function = new Function1<XAnnotation, Boolean>() {
+          @Override
           public Boolean apply(final XAnnotation it) {
             return Boolean.valueOf(JnarioJvmModelInferrer.this.hasExtendsAnnotation(it));
           }
         };
         Iterable<XAnnotation> _filter = IterableExtensions.<XAnnotation>filter(_annotations, _function);
         final Function1<XAnnotation, XTypeLiteral> _function_1 = new Function1<XAnnotation, XTypeLiteral>() {
+          @Override
           public XTypeLiteral apply(final XAnnotation it) {
             XExpression _value = it.getValue();
             return ((XTypeLiteral) _value);
@@ -214,6 +217,7 @@ public abstract class JnarioJvmModelInferrer implements IJvmModelInferrer {
   
   protected void initialize(final JnarioClass source, final JvmGenericType inferredJvmType) {
     final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {
+      @Override
       public void apply(final JvmGenericType it) {
         it.setVisibility(JvmVisibility.PUBLIC);
         boolean _isStatic = source.isStatic();
@@ -286,6 +290,7 @@ public abstract class JnarioJvmModelInferrer implements IJvmModelInferrer {
     if (_or) {
       JvmField _createJvmField = this.typesFactory.createJvmField();
       final Procedure1<JvmField> _function = new Procedure1<JvmField>() {
+        @Override
         public void apply(final JvmField it) {
           String _computeFieldName = JnarioJvmModelInferrer.this.computeFieldName(source);
           it.setSimpleName(_computeFieldName);

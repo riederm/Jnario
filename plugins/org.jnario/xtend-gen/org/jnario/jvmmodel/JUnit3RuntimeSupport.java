@@ -47,27 +47,34 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
   @Extension
   private ExtendedJvmTypesBuilder _extendedJvmTypesBuilder;
   
+  @Override
   public void afterAllMethod(final JnarioMember before, final JvmOperation operation) {
   }
   
+  @Override
   public void afterMethod(final JnarioMember before, final JvmOperation operation) {
   }
   
+  @Override
   public void beforeAllMethod(final JnarioMember before, final JvmOperation operation) {
   }
   
+  @Override
   public void beforeMethod(final JnarioMember before, final JvmOperation operation) {
   }
   
+  @Override
   public void markAsPending(final Executable element, final JvmOperation operation) {
   }
   
+  @Override
   public void addChildren(final Specification context, final JvmGenericType parent, final Collection<JvmTypeReference> children) {
     EClass _eClass = context.eClass();
     String _name = _eClass.getName();
     boolean _equals = Objects.equal(_name, "Suite");
     if (_equals) {
       final Function1<JvmTypeReference, String> _function = new Function1<JvmTypeReference, String>() {
+        @Override
         public String apply(final JvmTypeReference it) {
           return it.getSimpleName();
         }
@@ -78,6 +85,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     }
   }
   
+  @Override
   public void updateExampleGroup(final JnarioClass exampleGroup, final JvmGenericType inferredType) {
     this.makeTestCase(exampleGroup, inferredType);
     this.addTestCase(inferredType, exampleGroup);
@@ -96,12 +104,14 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
       final JvmTypeReference voidType = this._typeReferences.getTypeForName(Void.TYPE, exampleGroup);
       EList<JvmMember> _members = type.getMembers();
       final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+        @Override
         public void apply(final JvmOperation it) {
           it.setVisibility(JvmVisibility.PUBLIC);
           EList<JvmTypeReference> _exceptions = it.getExceptions();
           JvmTypeReference _typeForName = JUnit3RuntimeSupport.this._typeReferences.getTypeForName(Exception.class, exampleGroup);
           JUnit3RuntimeSupport.this._extendedJvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeForName);
           final Procedure1<ITreeAppendable> _function = new Procedure1<ITreeAppendable>() {
+            @Override
             public void apply(final ITreeAppendable it) {
               StringConcatenation _builder = new StringConcatenation();
               _builder.append("super.");
@@ -132,6 +142,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     EList<JnarioMember> _members = exampleGroup.getMembers();
     Iterable<JnarioFunction> _filter = Iterables.<JnarioFunction>filter(_members, JnarioFunction.class);
     final Function1<JnarioFunction, Boolean> _function = new Function1<JnarioFunction, Boolean>() {
+      @Override
       public Boolean apply(final JnarioFunction it) {
         EClass _eClass = it.eClass();
         String _name = _eClass.getName();
@@ -145,6 +156,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     EList<JnarioMember> _members = exampleGroup.getMembers();
     Iterable<JnarioFunction> _filter = Iterables.<JnarioFunction>filter(_members, JnarioFunction.class);
     final Function1<JnarioFunction, Boolean> _function = new Function1<JnarioFunction, Boolean>() {
+      @Override
       public Boolean apply(final JnarioFunction it) {
         EClass _eClass = it.eClass();
         String _name = _eClass.getName();
@@ -160,9 +172,11 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
       final JvmTypeReference testType = this._typeReferences.getTypeForName("junit.framework.Test", context);
       EList<JvmMember> _members = it.getMembers();
       final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+        @Override
         public void apply(final JvmOperation it) {
           it.setStatic(true);
           final Procedure1<ITreeAppendable> _function = new Procedure1<ITreeAppendable>() {
+            @Override
             public void apply(final ITreeAppendable it) {
               StringConcatenation _builder = new StringConcatenation();
               _builder.append("org.jnario.junit3.JnarioTestSuite suite = new org.jnario.junit3.JnarioTestSuite(\"");
@@ -213,11 +227,13 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
       this._extendedJvmTypesBuilder.<JvmField>operator_add(_members, _field);
       EList<JvmMember> _members_1 = inferredType.getMembers();
       final Procedure1<JvmConstructor> _function = new Procedure1<JvmConstructor>() {
+        @Override
         public void apply(final JvmConstructor it) {
           EList<JvmFormalParameter> _parameters = it.getParameters();
           JvmFormalParameter _parameter = JUnit3RuntimeSupport.this._extendedJvmTypesBuilder.toParameter(exampleGroup, "name", stringType);
           JUnit3RuntimeSupport.this._extendedJvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
           final Procedure1<ITreeAppendable> _function = new Procedure1<ITreeAppendable>() {
+            @Override
             public void apply(final ITreeAppendable it) {
               StringConcatenation _builder = new StringConcatenation();
               _builder.append("setName(name);");
@@ -233,8 +249,10 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
       this._extendedJvmTypesBuilder.<JvmConstructor>operator_add(_members_1, _constructor);
       EList<JvmMember> _members_2 = inferredType.getMembers();
       final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+        @Override
         public void apply(final JvmOperation it) {
           final Procedure1<ITreeAppendable> _function = new Procedure1<ITreeAppendable>() {
+            @Override
             public void apply(final ITreeAppendable it) {
               StringConcatenation _builder = new StringConcatenation();
               _builder.append("return org.jnario.runner.NameProvider.create().nameOf(getClass(), __name);");
@@ -278,6 +296,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     EList<JnarioMember> _members = exampleGroup.getMembers();
     Iterable<Specification> _filter = Iterables.<Specification>filter(_members, Specification.class);
     final Function1<Specification, String> _function = new Function1<Specification, String>() {
+      @Override
       public String apply(final Specification it) {
         return JUnit3RuntimeSupport.this._jnarioNameProvider.toJavaClassName(it);
       }
@@ -289,6 +308,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     EList<JnarioMember> _members = exampleGroup.getMembers();
     Iterable<Executable> _filter = Iterables.<Executable>filter(_members, Executable.class);
     final Function1<Executable, Boolean> _function = new Function1<Executable, Boolean>() {
+      @Override
       public Boolean apply(final Executable it) {
         return Boolean.valueOf((!(it instanceof Specification)));
       }
@@ -296,6 +316,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     return IterableExtensions.<Executable>filter(_filter, _function);
   }
   
+  @Override
   public void markAsTestMethod(final Executable element, final JvmOperation operation) {
     String _testName = this.testName(element);
     operation.setSimpleName(_testName);
@@ -306,9 +327,11 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     return ("test" + _methodName);
   }
   
+  @Override
   public void updateFeature(final JnarioClass feature, final JvmGenericType inferredType, final List<JvmTypeReference> scenarios) {
     this.addTestCase(inferredType, feature);
     final Function1<JvmTypeReference, String> _function = new Function1<JvmTypeReference, String>() {
+      @Override
       public String apply(final JvmTypeReference it) {
         return it.getSimpleName();
       }
@@ -318,14 +341,17 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     this.addSuite(inferredType, feature, _map, _emptyList);
   }
   
+  @Override
   public void updateScenario(final JnarioClass scenario, final JvmGenericType inferredType) {
     final JvmTypeReference testType = this._typeReferences.getTypeForName("junit.framework.Test", scenario);
     final Iterable<Executable> tests = this.examples(scenario);
     EList<JvmMember> _members = inferredType.getMembers();
     final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      @Override
       public void apply(final JvmOperation it) {
         it.setStatic(true);
         final Procedure1<ITreeAppendable> _function = new Procedure1<ITreeAppendable>() {
+          @Override
           public void apply(final ITreeAppendable it) {
             StringConcatenation _builder = new StringConcatenation();
             _builder.append("org.jnario.junit3.JnarioTestSuite suite = new org.jnario.junit3.JnarioTestSuite(\"");
@@ -383,11 +409,13 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     this._extendedJvmTypesBuilder.<JvmField>operator_add(_members_1, _field);
     EList<JvmMember> _members_2 = inferredType.getMembers();
     final Procedure1<JvmConstructor> _function_1 = new Procedure1<JvmConstructor>() {
+      @Override
       public void apply(final JvmConstructor it) {
         EList<JvmFormalParameter> _parameters = it.getParameters();
         JvmFormalParameter _parameter = JUnit3RuntimeSupport.this._extendedJvmTypesBuilder.toParameter(scenario, "testQueue", queueType);
         JUnit3RuntimeSupport.this._extendedJvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
         final Procedure1<ITreeAppendable> _function = new Procedure1<ITreeAppendable>() {
+          @Override
           public void apply(final ITreeAppendable it) {
             StringConcatenation _builder = new StringConcatenation();
             _builder.append("setName(testQueue.next());");
@@ -404,12 +432,14 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     final JvmTypeReference voidType = this._typeReferences.getTypeForName(Void.TYPE, scenario);
     EList<JvmMember> _members_3 = inferredType.getMembers();
     final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      @Override
       public void apply(final JvmOperation it) {
         it.setVisibility(JvmVisibility.PUBLIC);
         EList<JvmTypeReference> _exceptions = it.getExceptions();
         JvmTypeReference _typeForName = JUnit3RuntimeSupport.this._typeReferences.getTypeForName(Exception.class, scenario);
         JUnit3RuntimeSupport.this._extendedJvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeForName);
         final Procedure1<ITreeAppendable> _function = new Procedure1<ITreeAppendable>() {
+          @Override
           public void apply(final ITreeAppendable it) {
             StringConcatenation _builder = new StringConcatenation();
             _builder.append("if(testQueue.isRunning()){");
@@ -432,12 +462,14 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     this._extendedJvmTypesBuilder.<JvmOperation>operator_add(_members_3, _method_1);
     EList<JvmMember> _members_4 = inferredType.getMembers();
     final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      @Override
       public void apply(final JvmOperation it) {
         it.setVisibility(JvmVisibility.PUBLIC);
         EList<JvmTypeReference> _exceptions = it.getExceptions();
         JvmTypeReference _typeForName = JUnit3RuntimeSupport.this._typeReferences.getTypeForName(Exception.class, scenario);
         JUnit3RuntimeSupport.this._extendedJvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeForName);
         final Procedure1<ITreeAppendable> _function = new Procedure1<ITreeAppendable>() {
+          @Override
           public void apply(final ITreeAppendable it) {
             StringConcatenation _builder = new StringConcatenation();
             _builder.append("if(testQueue.isDone()){");
@@ -464,6 +496,7 @@ public class JUnit3RuntimeSupport implements TestRuntimeSupport {
     this._extendedJvmTypesBuilder.<JvmOperation>operator_add(_members_4, _method_2);
   }
   
+  @Override
   public void updateSuite(final JnarioClass exampleGroup, final JvmGenericType inferredType) {
   }
 }

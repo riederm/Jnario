@@ -21,7 +21,7 @@ import org.jnario.feature.feature.StepImplementation;
  *
  * @generated
  */
-public class StepImplementationImpl extends StepImpl implements StepImplementation
+public class StepImplementationImpl extends StepImplCustom implements StepImplementation
 {
 	/**
 	 * <!-- begin-user-doc -->

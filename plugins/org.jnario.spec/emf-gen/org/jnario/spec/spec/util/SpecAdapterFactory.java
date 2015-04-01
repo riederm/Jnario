@@ -51,7 +51,8 @@ public class SpecAdapterFactory extends AdapterFactoryImpl
 	 */
 	public SpecAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = SpecPackage.eINSTANCE;
 		}
 	}
@@ -67,10 +68,12 @@ public class SpecAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -83,65 +86,81 @@ public class SpecAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected SpecSwitch<Adapter> modelSwitch =
-		new SpecSwitch<Adapter>() {
+		new SpecSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseSpecFile(SpecFile object) {
+			public Adapter caseSpecFile(SpecFile object)
+			{
 				return createSpecFileAdapter();
 			}
 			@Override
-			public Adapter caseExampleGroup(ExampleGroup object) {
+			public Adapter caseExampleGroup(ExampleGroup object)
+			{
 				return createExampleGroupAdapter();
 			}
 			@Override
-			public Adapter caseExample(Example object) {
+			public Adapter caseExample(Example object)
+			{
 				return createExampleAdapter();
 			}
 			@Override
-			public Adapter caseBefore(Before object) {
+			public Adapter caseBefore(Before object)
+			{
 				return createBeforeAdapter();
 			}
 			@Override
-			public Adapter caseAfter(After object) {
+			public Adapter caseAfter(After object)
+			{
 				return createAfterAdapter();
 			}
 			@Override
-			public Adapter caseTestFunction(TestFunction object) {
+			public Adapter caseTestFunction(TestFunction object)
+			{
 				return createTestFunctionAdapter();
 			}
 			@Override
-			public Adapter caseJnarioFile(JnarioFile object) {
+			public Adapter caseJnarioFile(JnarioFile object)
+			{
 				return createJnarioFileAdapter();
 			}
 			@Override
-			public Adapter caseExecutable(Executable object) {
+			public Adapter caseExecutable(Executable object)
+			{
 				return createExecutableAdapter();
 			}
 			@Override
-			public Adapter caseJnarioAnnotationTarget(JnarioAnnotationTarget object) {
+			public Adapter caseJnarioAnnotationTarget(JnarioAnnotationTarget object)
+			{
 				return createJnarioAnnotationTargetAdapter();
 			}
 			@Override
-			public Adapter caseJnarioMember(JnarioMember object) {
+			public Adapter caseJnarioMember(JnarioMember object)
+			{
 				return createJnarioMemberAdapter();
 			}
 			@Override
-			public Adapter caseJnarioTypeDeclaration(JnarioTypeDeclaration object) {
+			public Adapter caseJnarioTypeDeclaration(JnarioTypeDeclaration object)
+			{
 				return createJnarioTypeDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseJnarioClass(JnarioClass object) {
+			public Adapter caseJnarioClass(JnarioClass object)
+			{
 				return createJnarioClassAdapter();
 			}
 			@Override
-			public Adapter caseSpecification(Specification object) {
+			public Adapter caseSpecification(Specification object)
+			{
 				return createSpecificationAdapter();
 			}
 			@Override
-			public Adapter caseJnarioFunction(JnarioFunction object) {
+			public Adapter caseJnarioFunction(JnarioFunction object)
+			{
 				return createJnarioFunctionAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};

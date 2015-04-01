@@ -21,7 +21,7 @@ import org.jnario.spec.spec.SpecPackage;
  *
  * @generated
  */
-public class BeforeImpl extends TestFunctionImpl implements Before
+public class BeforeImpl extends TestFunctionImplCustom implements Before
 {
 	/**
 	 * <!-- begin-user-doc -->

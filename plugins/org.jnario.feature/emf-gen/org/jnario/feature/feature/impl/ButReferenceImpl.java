@@ -21,7 +21,7 @@ import org.jnario.feature.feature.FeaturePackage;
  *
  * @generated
  */
-public class ButReferenceImpl extends StepReferenceImpl implements ButReference
+public class ButReferenceImpl extends StepReferenceImplCustom implements ButReference
 {
 	/**
 	 * <!-- begin-user-doc -->

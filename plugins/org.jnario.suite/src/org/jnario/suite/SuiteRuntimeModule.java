@@ -28,6 +28,7 @@ import org.eclipse.xtext.parser.impl.TokenRegionProvider;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.resource.IResourceDescriptions;
 import org.eclipse.xtext.resource.impl.EagerResourceSetBasedResourceDescriptions;
+import org.eclipse.xtext.resource.persistence.IResourceStorageFacade;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
@@ -41,6 +42,7 @@ import org.eclipse.xtext.xbase.file.RuntimeWorkspaceConfigProvider;
 import org.eclipse.xtext.xbase.file.WorkspaceConfig;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
+import org.eclipse.xtext.xbase.resource.BatchLinkableResourceStorageFacade;
 import org.jnario.conversion.JnarioJavaIDValueConverter;
 import org.jnario.doc.AbstractDocGenerator;
 import org.jnario.doc.DocOutputConfigurationProvider;
@@ -242,6 +244,10 @@ public class SuiteRuntimeModule extends org.jnario.suite.AbstractSuiteRuntimeMod
 		binder.bind(IResourceDescriptions.class).to(EagerResourceSetBasedResourceDescriptions.class);
 	}
 	
+	public Class<? extends IResourceStorageFacade> bindResourceStorageFacade() {
+		return BatchLinkableResourceStorageFacade.class;
+	}
+
 	public Class<? extends AbstractFileSystemSupport> bindAbstractFileSystemSupport() {
 		return JavaIOFileSystemSupport.class;
 	}

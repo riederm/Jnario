@@ -33,6 +33,7 @@ public class JUnit4RuntimeSupport implements TestRuntimeSupport {
   @Inject
   private TypeReferences typeReferences;
   
+  @Override
   public void addChildren(final Specification context, final JvmGenericType parent, final Collection<JvmTypeReference> children) {
     boolean _isEmpty = children.isEmpty();
     boolean _not = (!_isEmpty);
@@ -43,36 +44,42 @@ public class JUnit4RuntimeSupport implements TestRuntimeSupport {
     }
   }
   
+  @Override
   public void afterAllMethod(final JnarioMember after, final JvmOperation operation) {
     EList<JvmAnnotationReference> _annotations = operation.getAnnotations();
     JvmAnnotationReference _annotation = this._jvmTypesBuilder.toAnnotation(after, "org.junit.AfterClass");
     this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotation);
   }
   
+  @Override
   public void afterMethod(final JnarioMember after, final JvmOperation operation) {
     EList<JvmAnnotationReference> _annotations = operation.getAnnotations();
     JvmAnnotationReference _annotation = this._jvmTypesBuilder.toAnnotation(after, "org.junit.After");
     this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotation);
   }
   
+  @Override
   public void beforeAllMethod(final JnarioMember before, final JvmOperation operation) {
     EList<JvmAnnotationReference> _annotations = operation.getAnnotations();
     JvmAnnotationReference _annotation = this._jvmTypesBuilder.toAnnotation(before, "org.junit.BeforeClass");
     this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotation);
   }
   
+  @Override
   public void beforeMethod(final JnarioMember before, final JvmOperation operation) {
     EList<JvmAnnotationReference> _annotations = operation.getAnnotations();
     JvmAnnotationReference _annotation = this._jvmTypesBuilder.toAnnotation(before, "org.junit.Before");
     this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotation);
   }
   
+  @Override
   public void markAsPending(final Executable element, final JvmOperation operation) {
     EList<JvmAnnotationReference> _annotations = operation.getAnnotations();
     JvmAnnotationReference _annotation = this._jvmTypesBuilder.toAnnotation(element, "org.junit.Ignore");
     this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotation);
   }
   
+  @Override
   public void updateExampleGroup(final JnarioClass exampleGroup, final JvmGenericType inferredType) {
     EList<JvmAnnotationReference> _annotations = inferredType.getAnnotations();
     JvmTypeReference _typeForName = this.getTypeForName(ExampleGroupRunner.class, exampleGroup);
@@ -80,12 +87,14 @@ public class JUnit4RuntimeSupport implements TestRuntimeSupport {
     this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotation);
   }
   
+  @Override
   public void markAsTestMethod(final Executable element, final JvmOperation operation) {
     EList<JvmAnnotationReference> _annotations = operation.getAnnotations();
     JvmAnnotationReference _annotation = this._jvmTypesBuilder.toAnnotation(element, "org.junit.Test");
     this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotation);
   }
   
+  @Override
   public void updateFeature(final JnarioClass feature, final JvmGenericType inferredType, final List<JvmTypeReference> scenarios) {
     EList<JvmAnnotationReference> _annotations = inferredType.getAnnotations();
     JvmTypeReference _typeForName = this.getTypeForName(FeatureRunner.class, feature);
@@ -93,6 +102,7 @@ public class JUnit4RuntimeSupport implements TestRuntimeSupport {
     this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotation);
   }
   
+  @Override
   public void updateScenario(final JnarioClass scenario, final JvmGenericType inferredType) {
     EList<JvmAnnotationReference> _annotations = inferredType.getAnnotations();
     JvmTypeReference _typeForName = this.getTypeForName(FeatureRunner.class, scenario);
@@ -100,6 +110,7 @@ public class JUnit4RuntimeSupport implements TestRuntimeSupport {
     this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotation);
   }
   
+  @Override
   public void updateSuite(final JnarioClass exampleGroup, final JvmGenericType inferredType) {
     EList<JvmAnnotationReference> _annotations = inferredType.getAnnotations();
     JvmTypeReference _typeForName = this.getTypeForName(ExampleGroupRunner.class, exampleGroup);

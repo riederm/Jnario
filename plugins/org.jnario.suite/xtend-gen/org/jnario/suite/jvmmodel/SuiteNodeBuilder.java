@@ -73,6 +73,7 @@ public class SuiteNodeBuilder {
   public SuiteNode createNode(final Suite current, final SuiteNode parent) {
     EList<Reference> _elements = current.getElements();
     final Function1<Reference, List<Specification>> _function = new Function1<Reference, List<Specification>>() {
+      @Override
       public List<Specification> apply(final Reference it) {
         return SuiteNodeBuilder.this._specResolver.resolveSpecs(it);
       }

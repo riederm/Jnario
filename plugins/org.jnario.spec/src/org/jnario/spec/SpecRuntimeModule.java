@@ -24,6 +24,7 @@ import org.eclipse.xtext.parser.IParser;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.resource.IResourceDescriptions;
 import org.eclipse.xtext.resource.impl.EagerResourceSetBasedResourceDescriptions;
+import org.eclipse.xtext.resource.persistence.IResourceStorageFacade;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.validation.CompositeEValidator;
@@ -38,6 +39,7 @@ import org.eclipse.xtext.xbase.formatting.IBasicFormatter;
 import org.eclipse.xtext.xbase.formatting.NodeModelAccess;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
+import org.eclipse.xtext.xbase.resource.BatchLinkableResourceStorageFacade;
 import org.eclipse.xtext.xbase.scoping.batch.ImplicitlyImportedFeatures;
 import org.eclipse.xtext.xbase.scoping.batch.XbaseBatchScopeProvider;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
@@ -249,6 +251,10 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 		binder.bind(IResourceDescriptions.class).to(EagerResourceSetBasedResourceDescriptions.class);
 	}
 	
+	public Class<? extends IResourceStorageFacade> bindResourceStorageFacade() {
+		return BatchLinkableResourceStorageFacade.class;
+	}
+
 	public Class<? extends AbstractFileSystemSupport> bindAbstractFileSystemSupport() {
 		return JavaIOFileSystemSupport.class;
 	}

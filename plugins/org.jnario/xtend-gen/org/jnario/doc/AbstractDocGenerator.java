@@ -12,7 +12,6 @@ import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
@@ -35,6 +34,7 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.ExampleCell;
 import org.jnario.ExampleColumn;
 import org.jnario.ExampleRow;
@@ -81,6 +81,7 @@ public abstract class AbstractDocGenerator implements IGenerator {
   @Extension
   private Executable2ResultMapping spec2ResultMapping;
   
+  @Override
   public void doGenerate(final Resource input, final IFileSystemAccess fsa) {
     this.doGenerate(input, fsa, this.spec2ResultMapping);
   }
@@ -89,20 +90,22 @@ public abstract class AbstractDocGenerator implements IGenerator {
     this.initResultMapping(spec2ResultMapping);
     EList<EObject> _contents = input.getContents();
     Iterable<JnarioFile> _filter = Iterables.<JnarioFile>filter(_contents, JnarioFile.class);
-    final Consumer<JnarioFile> _function = new Consumer<JnarioFile>() {
-      public void accept(final JnarioFile it) {
+    final Procedure1<JnarioFile> _function = new Procedure1<JnarioFile>() {
+      @Override
+      public void apply(final JnarioFile it) {
         EList<JnarioTypeDeclaration> _xtendTypes = it.getXtendTypes();
         Iterable<JnarioClass> _filter = Iterables.<JnarioClass>filter(_xtendTypes, JnarioClass.class);
-        final Consumer<JnarioClass> _function = new Consumer<JnarioClass>() {
-          public void accept(final JnarioClass it) {
+        final Procedure1<JnarioClass> _function = new Procedure1<JnarioClass>() {
+          @Override
+          public void apply(final JnarioClass it) {
             HtmlFile _createHtmlFile = AbstractDocGenerator.this.createHtmlFile(it);
             AbstractDocGenerator.this._htmlFileBuilder.generate(it, fsa, _createHtmlFile);
           }
         };
-        _filter.forEach(_function);
+        IterableExtensions.<JnarioClass>forEach(_filter, _function);
       }
     };
-    _filter.forEach(_function);
+    IterableExtensions.<JnarioFile>forEach(_filter, _function);
   }
   
   protected Executable2ResultMapping initResultMapping(final Executable2ResultMapping spec2ResultMapping) {
@@ -229,6 +232,7 @@ public abstract class AbstractDocGenerator implements IGenerator {
     }
     final String[] fragments = packageName.split("\\.");
     final Function1<String, String> _function = new Function1<String, String>() {
+      @Override
       public String apply(final String s) {
         return "../";
       }

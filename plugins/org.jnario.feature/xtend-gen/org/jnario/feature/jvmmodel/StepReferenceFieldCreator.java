@@ -47,6 +47,7 @@ public class StepReferenceFieldCreator {
     EList<Step> _steps = scenario.getSteps();
     Iterable<StepReference> _filter = Iterables.<StepReference>filter(_steps, StepReference.class);
     final Function1<StepReference, Boolean> _function = new Function1<StepReference, Boolean>() {
+      @Override
       public Boolean apply(final StepReference it) {
         StepImplementation _reference = it.getReference();
         XExpression _expression = null;
@@ -75,12 +76,14 @@ public class StepReferenceFieldCreator {
   private Set<String> getExistingFieldNames(final Iterable<JnarioMember> members) {
     Iterable<JnarioField> _filter = Iterables.<JnarioField>filter(members, JnarioField.class);
     final Function1<JnarioField, Boolean> _function = new Function1<JnarioField, Boolean>() {
+      @Override
       public Boolean apply(final JnarioField it) {
         return Boolean.valueOf((!Objects.equal(it, null)));
       }
     };
     Iterable<JnarioField> _filter_1 = IterableExtensions.<JnarioField>filter(_filter, _function);
     final Function1<JnarioField, String> _function_1 = new Function1<JnarioField, String>() {
+      @Override
       public String apply(final JnarioField it) {
         return it.getName();
       }

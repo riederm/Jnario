@@ -6,6 +6,7 @@ org.eclipse.xtext.*
 org.eclipse.xtend.*
 .DS_Store
 *._trace
+*.xtendbin
 *.smap
 .launch
 *.swp

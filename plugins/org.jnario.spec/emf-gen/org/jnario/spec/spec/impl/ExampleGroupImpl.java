@@ -154,7 +154,8 @@ public class ExampleGroupImpl extends SpecificationImpl implements ExampleGroup
 	{
 		JvmTypeReference oldTargetType = targetType;
 		targetType = newTargetType;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpecPackage.EXAMPLE_GROUP__TARGET_TYPE, oldTargetType, newTargetType);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -168,7 +169,8 @@ public class ExampleGroupImpl extends SpecificationImpl implements ExampleGroup
 	 */
 	public void setTargetType(JvmTypeReference newTargetType)
 	{
-		if (newTargetType != targetType) {
+		if (newTargetType != targetType)
+		{
 			NotificationChain msgs = null;
 			if (targetType != null)
 				msgs = ((InternalEObject)targetType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpecPackage.EXAMPLE_GROUP__TARGET_TYPE, null, msgs);
@@ -188,10 +190,12 @@ public class ExampleGroupImpl extends SpecificationImpl implements ExampleGroup
 	 */
 	public JvmOperation getTargetOperation()
 	{
-		if (targetOperation != null && targetOperation.eIsProxy()) {
+		if (targetOperation != null && targetOperation.eIsProxy())
+		{
 			InternalEObject oldTargetOperation = (InternalEObject)targetOperation;
 			targetOperation = (JvmOperation)eResolveProxy(oldTargetOperation);
-			if (targetOperation != oldTargetOperation) {
+			if (targetOperation != oldTargetOperation)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SpecPackage.EXAMPLE_GROUP__TARGET_OPERATION, oldTargetOperation, targetOperation));
 			}
@@ -229,10 +233,12 @@ public class ExampleGroupImpl extends SpecificationImpl implements ExampleGroup
 	 */
 	public ExampleGroup getContract()
 	{
-		if (contract != null && contract.eIsProxy()) {
+		if (contract != null && contract.eIsProxy())
+		{
 			InternalEObject oldContract = (InternalEObject)contract;
 			contract = (ExampleGroup)eResolveProxy(oldContract);
-			if (contract != oldContract) {
+			if (contract != oldContract)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SpecPackage.EXAMPLE_GROUP__CONTRACT, oldContract, contract));
 			}
@@ -271,7 +277,8 @@ public class ExampleGroupImpl extends SpecificationImpl implements ExampleGroup
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case SpecPackage.EXAMPLE_GROUP__TARGET_TYPE:
 				return basicSetTargetType(null, msgs);
 		}
@@ -286,7 +293,8 @@ public class ExampleGroupImpl extends SpecificationImpl implements ExampleGroup
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case SpecPackage.EXAMPLE_GROUP__PREAMBLE:
 				return getPreamble();
 			case SpecPackage.EXAMPLE_GROUP__TARGET_TYPE:
@@ -309,7 +317,8 @@ public class ExampleGroupImpl extends SpecificationImpl implements ExampleGroup
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case SpecPackage.EXAMPLE_GROUP__PREAMBLE:
 				setPreamble((String)newValue);
 				return;
@@ -334,7 +343,8 @@ public class ExampleGroupImpl extends SpecificationImpl implements ExampleGroup
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case SpecPackage.EXAMPLE_GROUP__PREAMBLE:
 				setPreamble(PREAMBLE_EDEFAULT);
 				return;
@@ -359,7 +369,8 @@ public class ExampleGroupImpl extends SpecificationImpl implements ExampleGroup
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case SpecPackage.EXAMPLE_GROUP__PREAMBLE:
 				return PREAMBLE_EDEFAULT == null ? preamble != null : !PREAMBLE_EDEFAULT.equals(preamble);
 			case SpecPackage.EXAMPLE_GROUP__TARGET_TYPE:

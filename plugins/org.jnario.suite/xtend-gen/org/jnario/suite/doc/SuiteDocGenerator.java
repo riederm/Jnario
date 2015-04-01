@@ -11,7 +11,6 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -51,19 +50,21 @@ public class SuiteDocGenerator extends AbstractDocGenerator {
   @Extension
   private HtmlFileBuilder _htmlFileBuilder;
   
+  @Override
   public void doGenerate(final Resource input, final IFileSystemAccess fsa, final Executable2ResultMapping spec2ResultMapping) {
     this.initResultMapping(spec2ResultMapping);
     EList<EObject> _contents = input.getContents();
     Iterable<SuiteFile> _filter = Iterables.<SuiteFile>filter(_contents, SuiteFile.class);
-    final Consumer<SuiteFile> _function = new Consumer<SuiteFile>() {
-      public void accept(final SuiteFile it) {
+    final Procedure1<SuiteFile> _function = new Procedure1<SuiteFile>() {
+      @Override
+      public void apply(final SuiteFile it) {
         final HtmlFile htmlFile = SuiteDocGenerator.this.createHtmlFile(it);
         EList<JnarioTypeDeclaration> _xtendTypes = it.getXtendTypes();
         JnarioTypeDeclaration _head = IterableExtensions.<JnarioTypeDeclaration>head(_xtendTypes);
         SuiteDocGenerator.this._htmlFileBuilder.generate(_head, fsa, htmlFile);
       }
     };
-    _filter.forEach(_function);
+    IterableExtensions.<SuiteFile>forEach(_filter, _function);
   }
   
   public HtmlFile createHtmlFile(final SuiteFile file) {
@@ -77,6 +78,7 @@ public class SuiteDocGenerator extends AbstractDocGenerator {
       }
       final Suite rootSuite = IterableExtensions.<Suite>head(suites);
       final Procedure1<HtmlFile> _function = new Procedure1<HtmlFile>() {
+        @Override
         public void apply(final HtmlFile it) {
           String _javaClassName = SuiteDocGenerator.this._suiteClassNameProvider.toJavaClassName(rootSuite);
           it.setName(_javaClassName);
@@ -100,11 +102,13 @@ public class SuiteDocGenerator extends AbstractDocGenerator {
     return _xblockexpression;
   }
   
+  @Override
   public HtmlFile createHtmlFile(final JnarioClass file) {
     HtmlFile _xblockexpression = null;
     {
       final Suite suite = ((Suite) file);
       final Procedure1<HtmlFile> _function = new Procedure1<HtmlFile>() {
+        @Override
         public void apply(final HtmlFile it) {
           String _javaClassName = SuiteDocGenerator.this._suiteClassNameProvider.toJavaClassName(suite);
           it.setName(_javaClassName);

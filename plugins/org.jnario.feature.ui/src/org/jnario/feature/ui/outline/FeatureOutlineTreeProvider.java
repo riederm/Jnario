@@ -11,7 +11,6 @@
 package org.jnario.feature.ui.outline;
 
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
-import org.jnario.feature.feature.Background;
 import org.jnario.feature.feature.Scenario;
 
 /**
@@ -52,7 +51,7 @@ public class FeatureOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		return element.getMembers().isEmpty() && element.getSteps().isEmpty();
 	}
 	
-	protected boolean _isLeaf(Background element) {
+	protected boolean _isLeaf(org.jnario.feature.feature.Background element) {
 		return element.getMembers().isEmpty() && element.getSteps().isEmpty();
 	}
 	

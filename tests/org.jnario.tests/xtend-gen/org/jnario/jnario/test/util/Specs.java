@@ -55,8 +55,8 @@ public class Specs {
   }
   
   public static ExampleGroup pendingExampleGroup() {
-    Example _pendingExample = Specs.pendingExample();
-    return Specs.exampleGroupWith(_pendingExample);
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from Example to XtendMember[]");
   }
   
   public static ExampleGroup exampleGroupWith(final XtendMember... examples) {

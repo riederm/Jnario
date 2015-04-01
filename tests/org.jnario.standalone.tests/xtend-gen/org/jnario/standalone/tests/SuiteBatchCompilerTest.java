@@ -72,6 +72,7 @@ public class SuiteBatchCompilerTest {
     batchCompiler.setDeleteTempDirectory(true);
     batchCompiler.setUseCurrentClassLoaderAsParent(true);
     final Provider<ResourceSet> _function = new Provider<ResourceSet>() {
+      @Override
       public ResourceSet get() {
         XtextResourceSet _resourceSet = SuiteBatchCompilerTest.this.modelStore.getResourceSet();
         return ((ResourceSet) _resourceSet);
@@ -98,6 +99,7 @@ public class SuiteBatchCompilerTest {
       SpecStandaloneSetup _specStandaloneSetup = new SpecStandaloneSetup();
       SuiteStandaloneSetup _suiteStandaloneSetup = new SuiteStandaloneSetup();
       final Procedure1<ISetup> _function = new Procedure1<ISetup>() {
+        @Override
         public void apply(final ISetup it) {
           Injector _createInjectorAndDoEMFRegistration = it.createInjectorAndDoEMFRegistration();
           final XtendBatchCompiler compiler = _createInjectorAndDoEMFRegistration.<XtendBatchCompiler>getInstance(XtendBatchCompiler.class);
@@ -107,6 +109,7 @@ public class SuiteBatchCompilerTest {
       IterableExtensions.forEach(Collections.<ISetup>unmodifiableList(CollectionLiterals.<ISetup>newArrayList(_featureStandaloneSetup, _specStandaloneSetup, _suiteStandaloneSetup)), _function);
       final File outputDir = new File((SuiteBatchCompilerTest.OUTPUT_DIRECTORY + "/test"));
       final FilenameFilter _function_1 = new FilenameFilter() {
+        @Override
         public boolean accept(final File dir, final String name) {
           return name.endsWith(".java");
         }

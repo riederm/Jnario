@@ -31,6 +31,7 @@ public class StepsProvider {
       EList<EObject> _contents = _eResource_1.getContents();
       final Iterable<FeatureFile> featureFiles = Iterables.<FeatureFile>filter(_contents, FeatureFile.class);
       final Function1<FeatureFile, EList<JnarioTypeDeclaration>> _function = new Function1<FeatureFile, EList<JnarioTypeDeclaration>>() {
+        @Override
         public EList<JnarioTypeDeclaration> apply(final FeatureFile it) {
           return it.getXtendTypes();
         }
@@ -39,6 +40,7 @@ public class StepsProvider {
       Iterable<JnarioTypeDeclaration> _flatten = Iterables.<JnarioTypeDeclaration>concat(_map);
       final Iterable<Feature> features = Iterables.<Feature>filter(_flatten, Feature.class);
       final Function1<Feature, Iterable<Scenario>> _function_1 = new Function1<Feature, Iterable<Scenario>>() {
+        @Override
         public Iterable<Scenario> apply(final Feature it) {
           Iterable<Scenario> _xblockexpression = null;
           {
@@ -58,6 +60,7 @@ public class StepsProvider {
       Iterable<Scenario> _flatten_1 = Iterables.<Scenario>concat(_map_1);
       final Iterable<Scenario> scenarios = IterableExtensions.<Scenario>filterNull(_flatten_1);
       final Function1<Scenario, EList<Step>> _function_2 = new Function1<Scenario, EList<Step>>() {
+        @Override
         public EList<Step> apply(final Scenario it) {
           return it.getSteps();
         }

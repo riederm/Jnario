@@ -64,6 +64,7 @@ public class JnarioStandaloneCompilerTest {
     batchCompiler.setDeleteTempDirectory(true);
     batchCompiler.setUseCurrentClassLoaderAsParent(true);
     final Provider<ResourceSet> _function = new Provider<ResourceSet>() {
+      @Override
       public ResourceSet get() {
         XtextResourceSet _resourceSet = JnarioStandaloneCompilerTest.this.modelStore.getResourceSet();
         return ((ResourceSet) _resourceSet);
@@ -90,6 +91,7 @@ public class JnarioStandaloneCompilerTest {
       this.compile(compiler);
       final File outputDir = new File((JnarioStandaloneCompilerTest.OUTPUT_DIRECTORY + "/linking"));
       final FilenameFilter _function = new FilenameFilter() {
+        @Override
         public boolean accept(final File dir, final String name) {
           return name.endsWith(".java");
         }

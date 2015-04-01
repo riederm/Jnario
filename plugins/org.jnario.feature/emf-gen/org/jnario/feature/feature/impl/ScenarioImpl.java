@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.common.types.JvmTypeReference;
-
 import org.eclipse.xtext.common.types.JvmVisibility;
+
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 
 import org.jnario.JnarioAnnotationTarget;
@@ -157,7 +157,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 */
 	public EList<XAnnotation> getAnnotations()
 	{
-		if (annotations == null) {
+		if (annotations == null)
+		{
 			annotations = new EObjectContainmentEList<XAnnotation>(XAnnotation.class, this, FeaturePackage.SCENARIO__ANNOTATIONS);
 		}
 		return annotations;
@@ -170,7 +171,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 */
 	public EList<String> getModifiers()
 	{
-		if (modifiers == null) {
+		if (modifiers == null)
+		{
 			modifiers = new EDataTypeEList<String>(String.class, this, FeaturePackage.SCENARIO__MODIFIERS);
 		}
 		return modifiers;
@@ -195,7 +197,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	{
 		JnarioAnnotationTarget oldAnnotationInfo = annotationInfo;
 		annotationInfo = newAnnotationInfo;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FeaturePackage.SCENARIO__ANNOTATION_INFO, oldAnnotationInfo, newAnnotationInfo);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -209,7 +212,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 */
 	public void setAnnotationInfo(JnarioAnnotationTarget newAnnotationInfo)
 	{
-		if (newAnnotationInfo != annotationInfo) {
+		if (newAnnotationInfo != annotationInfo)
+		{
 			NotificationChain msgs = null;
 			if (annotationInfo != null)
 				msgs = ((InternalEObject)annotationInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FeaturePackage.SCENARIO__ANNOTATION_INFO, null, msgs);
@@ -252,7 +256,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 */
 	public EList<JnarioMember> getMembers()
 	{
-		if (members == null) {
+		if (members == null)
+		{
 			members = new EObjectContainmentEList<JnarioMember>(JnarioMember.class, this, FeaturePackage.SCENARIO__MEMBERS);
 		}
 		return members;
@@ -277,7 +282,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	{
 		JvmTypeReference oldExtends = extends_;
 		extends_ = newExtends;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FeaturePackage.SCENARIO__EXTENDS, oldExtends, newExtends);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -291,7 +297,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 */
 	public void setExtends(JvmTypeReference newExtends)
 	{
-		if (newExtends != extends_) {
+		if (newExtends != extends_)
+		{
 			NotificationChain msgs = null;
 			if (extends_ != null)
 				msgs = ((InternalEObject)extends_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FeaturePackage.SCENARIO__EXTENDS, null, msgs);
@@ -345,7 +352,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmVisibility getVisibility() {
+	public JvmVisibility getVisibility()
+	{
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -356,7 +364,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmVisibility getDeclaredVisibility() {
+	public JvmVisibility getDeclaredVisibility()
+	{
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -367,7 +376,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmVisibility getDefaultVisibility() {
+	public JvmVisibility getDefaultVisibility()
+	{
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -378,7 +388,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isFinal() {
+	public boolean isFinal()
+	{
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -404,7 +415,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case FeaturePackage.SCENARIO__ANNOTATIONS:
 				return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
 			case FeaturePackage.SCENARIO__ANNOTATION_INFO:
@@ -425,7 +437,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case FeaturePackage.SCENARIO__ANNOTATIONS:
 				return getAnnotations();
 			case FeaturePackage.SCENARIO__MODIFIERS:
@@ -451,7 +464,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case FeaturePackage.SCENARIO__ANNOTATIONS:
 				getAnnotations().clear();
 				getAnnotations().addAll((Collection<? extends XAnnotation>)newValue);
@@ -485,7 +499,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case FeaturePackage.SCENARIO__ANNOTATIONS:
 				getAnnotations().clear();
 				return;
@@ -516,7 +531,8 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case FeaturePackage.SCENARIO__ANNOTATIONS:
 				return annotations != null && !annotations.isEmpty();
 			case FeaturePackage.SCENARIO__MODIFIERS:
@@ -541,28 +557,36 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == JnarioAnnotationTarget.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == JnarioAnnotationTarget.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case FeaturePackage.SCENARIO__ANNOTATIONS: return JnarioPackage.JNARIO_ANNOTATION_TARGET__ANNOTATIONS;
 				default: return -1;
 			}
 		}
-		if (baseClass == JnarioMember.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == JnarioMember.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case FeaturePackage.SCENARIO__MODIFIERS: return JnarioPackage.JNARIO_MEMBER__MODIFIERS;
 				case FeaturePackage.SCENARIO__ANNOTATION_INFO: return JnarioPackage.JNARIO_MEMBER__ANNOTATION_INFO;
 				default: return -1;
 			}
 		}
-		if (baseClass == JnarioTypeDeclaration.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == JnarioTypeDeclaration.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case FeaturePackage.SCENARIO__NAME: return JnarioPackage.JNARIO_TYPE_DECLARATION__NAME;
 				case FeaturePackage.SCENARIO__MEMBERS: return JnarioPackage.JNARIO_TYPE_DECLARATION__MEMBERS;
 				default: return -1;
 			}
 		}
-		if (baseClass == JnarioClass.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == JnarioClass.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case FeaturePackage.SCENARIO__EXTENDS: return JnarioPackage.JNARIO_CLASS__EXTENDS;
 				default: return -1;
 			}
@@ -578,28 +602,36 @@ public class ScenarioImpl extends MinimalEObjectImpl.Container implements Scenar
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == JnarioAnnotationTarget.class) {
-			switch (baseFeatureID) {
+		if (baseClass == JnarioAnnotationTarget.class)
+		{
+			switch (baseFeatureID)
+			{
 				case JnarioPackage.JNARIO_ANNOTATION_TARGET__ANNOTATIONS: return FeaturePackage.SCENARIO__ANNOTATIONS;
 				default: return -1;
 			}
 		}
-		if (baseClass == JnarioMember.class) {
-			switch (baseFeatureID) {
+		if (baseClass == JnarioMember.class)
+		{
+			switch (baseFeatureID)
+			{
 				case JnarioPackage.JNARIO_MEMBER__MODIFIERS: return FeaturePackage.SCENARIO__MODIFIERS;
 				case JnarioPackage.JNARIO_MEMBER__ANNOTATION_INFO: return FeaturePackage.SCENARIO__ANNOTATION_INFO;
 				default: return -1;
 			}
 		}
-		if (baseClass == JnarioTypeDeclaration.class) {
-			switch (baseFeatureID) {
+		if (baseClass == JnarioTypeDeclaration.class)
+		{
+			switch (baseFeatureID)
+			{
 				case JnarioPackage.JNARIO_TYPE_DECLARATION__NAME: return FeaturePackage.SCENARIO__NAME;
 				case JnarioPackage.JNARIO_TYPE_DECLARATION__MEMBERS: return FeaturePackage.SCENARIO__MEMBERS;
 				default: return -1;
 			}
 		}
-		if (baseClass == JnarioClass.class) {
-			switch (baseFeatureID) {
+		if (baseClass == JnarioClass.class)
+		{
+			switch (baseFeatureID)
+			{
 				case JnarioPackage.JNARIO_CLASS__EXTENDS: return FeaturePackage.SCENARIO__EXTENDS;
 				default: return -1;
 			}

@@ -148,7 +148,9 @@ class SuiteResourceDescriptionManager extends DerivedStateAwareResourceDescripti
 		resource.getExportedObjectsByType(JnarioPackage.Literals.SPECIFICATION)
 		.filter[
 			val spec = resolve(it.getEObjectOrProxy, resourceSet) as Specification
-			spec.declaringType == null
+			// TODO NO_XTEND
+			// spec.declaringType == null
+			true
 		]
 	}
 

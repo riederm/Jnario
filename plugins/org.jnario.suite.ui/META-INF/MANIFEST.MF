@@ -30,7 +30,7 @@ Require-Bundle: org.jnario.suite;visibility:=reexport,
  org.jnario.spec.ui;bundle-version="1.0.0",
  org.eclipse.jdt.debug.ui
 Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: J2SE-1.6
 Export-Package: org.jnario.suite.ui.contentassist,
  org.jnario.suite.ui.contentassist.antlr,
  org.jnario.suite.ui.internal,

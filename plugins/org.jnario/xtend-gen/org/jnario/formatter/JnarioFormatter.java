@@ -4,7 +4,6 @@ import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
@@ -76,10 +75,12 @@ public class JnarioFormatter extends XbaseFormatter2 {
   private FormattingDataFactory _formattingDataFactory;
   
   private void formatRows(final EList<ExampleRow> rows, final FormattableDocument format) {
-    final Consumer<ExampleRow> _function = new Consumer<ExampleRow>() {
-      public void accept(final ExampleRow it) {
+    final Procedure1<ExampleRow> _function = new Procedure1<ExampleRow>() {
+      @Override
+      public void apply(final ExampleRow it) {
         INode _nodeForEObject = JnarioFormatter.this._nodeModelAccess.nodeForEObject(it);
         final Procedure1<FormattingDataInit> _function = new Procedure1<FormattingDataInit>() {
+          @Override
           public void apply(final FormattingDataInit it) {
             it.newLine();
           }
@@ -88,12 +89,13 @@ public class JnarioFormatter extends XbaseFormatter2 {
         format.operator_add(_append);
       }
     };
-    rows.forEach(_function);
+    IterableExtensions.<ExampleRow>forEach(rows, _function);
   }
   
   private void formatColumns(final EList<ExampleColumn> columns, final FormattableDocument format) {
-    final Consumer<ExampleColumn> _function = new Consumer<ExampleColumn>() {
-      public void accept(final ExampleColumn it) {
+    final Procedure1<ExampleColumn> _function = new Procedure1<ExampleColumn>() {
+      @Override
+      public void apply(final ExampleColumn it) {
         final INode nameNode = JnarioFormatter.this._nodeModelAccess.nodeForFeature(it, JnarioPackage.Literals.EXAMPLE_COLUMN__NAME);
         final INode typeNode = JnarioFormatter.this._nodeModelAccess.nodeForFeature(it, JnarioPackage.Literals.EXAMPLE_COLUMN__TYPE);
         int _xifexpression = (int) 0;
@@ -111,6 +113,7 @@ public class JnarioFormatter extends XbaseFormatter2 {
         Integer _elvis = null;
         EList<ExampleCell> _cells = it.getCells();
         final Function1<ExampleCell, Integer> _function = new Function1<ExampleCell, Integer>() {
+          @Override
           public Integer apply(final ExampleCell it) {
             XExpression _expression = it.getExpression();
             INode _nodeForEObject = JnarioFormatter.this._nodeModelAccess.nodeForEObject(_expression);
@@ -119,6 +122,7 @@ public class JnarioFormatter extends XbaseFormatter2 {
         };
         List<Integer> _map = ListExtensions.<ExampleCell, Integer>map(_cells, _function);
         final Function2<Integer, Integer, Integer> _function_1 = new Function2<Integer, Integer, Integer>() {
+          @Override
           public Integer apply(final Integer p1, final Integer p2) {
             return Integer.valueOf(Math.max((p1).intValue(), (p2).intValue()));
           }
@@ -134,6 +138,7 @@ public class JnarioFormatter extends XbaseFormatter2 {
         final int columnLength = ((1 + maxLength) - headerLength);
         INode _nodeForEObject = JnarioFormatter.this._nodeModelAccess.nodeForEObject(it);
         final Procedure1<FormattingDataInit> _function_2 = new Procedure1<FormattingDataInit>() {
+          @Override
           public void apply(final FormattingDataInit it) {
             it.oneSpace();
           }
@@ -142,6 +147,7 @@ public class JnarioFormatter extends XbaseFormatter2 {
         format.operator_add(_prepend);
         ILeafNode _nodeForKeyword = JnarioFormatter.this._nodeModelAccess.nodeForKeyword(it, "|");
         final Procedure1<FormattingDataInit> _function_3 = new Procedure1<FormattingDataInit>() {
+          @Override
           public void apply(final FormattingDataInit it) {
             JnarioFormatter.this.spaces(it, columnLength);
           }
@@ -149,11 +155,13 @@ public class JnarioFormatter extends XbaseFormatter2 {
         Function1<? super FormattableDocument, ? extends Iterable<FormattingData>> _prepend_1 = JnarioFormatter.this._formattingDataFactory.prepend(_nodeForKeyword, _function_3);
         format.operator_add(_prepend_1);
         EList<ExampleCell> _cells_1 = it.getCells();
-        final Consumer<ExampleCell> _function_4 = new Consumer<ExampleCell>() {
-          public void accept(final ExampleCell it) {
+        final Procedure1<ExampleCell> _function_4 = new Procedure1<ExampleCell>() {
+          @Override
+          public void apply(final ExampleCell it) {
             XExpression _expression = it.getExpression();
             INode _nodeForEObject = JnarioFormatter.this._nodeModelAccess.nodeForEObject(_expression);
             final Procedure1<FormattingDataInit> _function = new Procedure1<FormattingDataInit>() {
+              @Override
               public void apply(final FormattingDataInit it) {
                 it.oneSpace();
               }
@@ -167,6 +175,7 @@ public class JnarioFormatter extends XbaseFormatter2 {
             XExpression _expression_2 = it.getExpression();
             INode _nodeForEObject_2 = JnarioFormatter.this._nodeModelAccess.nodeForEObject(_expression_2);
             final Procedure1<FormattingDataInit> _function_1 = new Procedure1<FormattingDataInit>() {
+              @Override
               public void apply(final FormattingDataInit it) {
                 JnarioFormatter.this.spaces(it, length);
               }
@@ -175,13 +184,14 @@ public class JnarioFormatter extends XbaseFormatter2 {
             format.operator_add(_append);
           }
         };
-        _cells_1.forEach(_function_4);
+        IterableExtensions.<ExampleCell>forEach(_cells_1, _function_4);
       }
     };
-    columns.forEach(_function);
+    IterableExtensions.<ExampleColumn>forEach(columns, _function);
     ExampleColumn _last = IterableExtensions.<ExampleColumn>last(columns);
     INode _nodeForEObject = this._nodeModelAccess.nodeForEObject(_last);
     final Procedure1<FormattingDataInit> _function_1 = new Procedure1<FormattingDataInit>() {
+      @Override
       public void apply(final FormattingDataInit it) {
         it.newLine();
       }
@@ -193,6 +203,7 @@ public class JnarioFormatter extends XbaseFormatter2 {
   public String spaces(final FormattingDataInit init, final int i) {
     IntegerRange _upTo = new IntegerRange(1, i);
     final Function2<String, Integer, String> _function = new Function2<String, Integer, String>() {
+      @Override
       public String apply(final String p1, final Integer p2) {
         return (p1 + " ");
       }
@@ -221,6 +232,7 @@ public class JnarioFormatter extends XbaseFormatter2 {
   private Integer getMultilineLength(final FormattableDocument format, final INode node) {
     String[] _splittedMultilineCell = this.getSplittedMultilineCell(format, node);
     final Function1<String, Integer> _function = new Function1<String, Integer>() {
+      @Override
       public Integer apply(final String it) {
         String _trim = it.trim();
         return Integer.valueOf(_trim.length());
@@ -228,6 +240,7 @@ public class JnarioFormatter extends XbaseFormatter2 {
     };
     List<Integer> _map = ListExtensions.<String, Integer>map(((List<String>)Conversions.doWrapArray(_splittedMultilineCell)), _function);
     final Function2<Integer, Integer, Integer> _function_1 = new Function2<Integer, Integer, Integer>() {
+      @Override
       public Integer apply(final Integer p1, final Integer p2) {
         return Integer.valueOf(Math.max((p1).intValue(), (p2).intValue()));
       }
@@ -238,6 +251,7 @@ public class JnarioFormatter extends XbaseFormatter2 {
   protected void _format(final ExampleTable table, final FormattableDocument format) {
     ILeafNode _nodeForKeyword = this._nodeModelAccess.nodeForKeyword(table, "{");
     final Procedure1<FormattingDataInit> _function = new Procedure1<FormattingDataInit>() {
+      @Override
       public void apply(final FormattingDataInit it) {
         it.increaseIndentation();
         it.newLine();
@@ -247,6 +261,7 @@ public class JnarioFormatter extends XbaseFormatter2 {
     format.operator_add(_append);
     ILeafNode _nodeForKeyword_1 = this._nodeModelAccess.nodeForKeyword(table, "}");
     final Procedure1<FormattingDataInit> _function_1 = new Procedure1<FormattingDataInit>() {
+      @Override
       public void apply(final FormattingDataInit it) {
         it.decreaseIndentation();
       }
@@ -262,6 +277,7 @@ public class JnarioFormatter extends XbaseFormatter2 {
   /**
    * Hack: No node for type Void - prevent NullPointerException
    */
+  @Override
   protected void _format(final JvmParameterizedTypeReference type, final FormattableDocument format) {
     ICompositeNode _findActualNodeFor = NodeModelUtils.findActualNodeFor(type);
     boolean _notEquals = (!Objects.equal(_findActualNodeFor, null));

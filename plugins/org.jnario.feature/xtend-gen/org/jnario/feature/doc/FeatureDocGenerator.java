@@ -37,12 +37,14 @@ public class FeatureDocGenerator extends AbstractDocGenerator {
   @Extension
   private StepNameProvider _stepNameProvider;
   
+  @Override
   public HtmlFile createHtmlFile(final JnarioClass xtendClass) {
     if ((!(xtendClass instanceof Feature))) {
       return HtmlFile.EMPTY_FILE;
     }
     final Feature feature = ((Feature) xtendClass);
     final Procedure1<HtmlFile> _function = new Procedure1<HtmlFile>() {
+      @Override
       public void apply(final HtmlFile it) {
         String _javaClassName = FeatureDocGenerator.this._featureClassNameProvider.toJavaClassName(feature);
         it.setName(_javaClassName);

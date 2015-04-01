@@ -43,6 +43,7 @@ public class SpecDocGenerator extends AbstractDocGenerator {
   @Extension
   private FilterExtractor _filterExtractor;
   
+  @Override
   public HtmlFile createHtmlFile(final JnarioClass xtendClass) {
     HtmlFile _xblockexpression = null;
     {
@@ -51,6 +52,7 @@ public class SpecDocGenerator extends AbstractDocGenerator {
       }
       final ExampleGroup exampleGroup = ((ExampleGroup) xtendClass);
       final Procedure1<HtmlFile> _function = new Procedure1<HtmlFile>() {
+        @Override
         public void apply(final HtmlFile it) {
           String _javaClassName = SpecDocGenerator.this._exampleNameProvider.toJavaClassName(exampleGroup);
           it.setName(_javaClassName);
@@ -90,6 +92,7 @@ public class SpecDocGenerator extends AbstractDocGenerator {
     boolean inList = false;
     EList<JnarioMember> _members = exampleGroup.getMembers();
     final Function1<JnarioMember, Boolean> _function = new Function1<JnarioMember, Boolean>() {
+      @Override
       public Boolean apply(final JnarioMember it) {
         boolean _or = false;
         if (((it instanceof Example) || (it instanceof ExampleGroup))) {

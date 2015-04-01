@@ -87,6 +87,7 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
   
   public JnarioStandaloneCompiler(final List<? extends ISetup> setups) {
     final Function1<ISetup, Injector> _function = new Function1<ISetup, Injector>() {
+      @Override
       public Injector apply(final ISetup it) {
         return it.createInjectorAndDoEMFRegistration();
       }
@@ -97,6 +98,7 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
     Injector _head = IterableExtensions.<Injector>head(this.injectors);
     _head.injectMembers(this);
     final Function1<Injector, Pair<String, Injector>> _function_1 = new Function1<Injector, Pair<String, Injector>>() {
+      @Override
       public Pair<String, Injector> apply(final Injector it) {
         Pair<String, Injector> _xblockexpression = null;
         {
@@ -112,10 +114,12 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
     this.injectorMap = _newHashMap;
   }
   
+  @Override
   protected ResourceSet loadXtendFiles(final ResourceSet resourceSet) {
     EList<Adapter> _eAdapters = resourceSet.eAdapters();
     _eAdapters.add(
       new FlatResourceSetBasedAllContainersState(resourceSet) {
+        @Override
         public Collection<URI> getContainedURIs(final String containerHandle) {
           ResourceSet _resourceSet = this.getResourceSet();
           EList<Resource> _resources = _resourceSet.getResources();
@@ -136,8 +140,10 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
     final PathTraverser pathTraverser = new PathTraverser();
     final List<String> sourcePathDirectories = this.getSourcePathDirectories();
     final Predicate<URI> _function = new Predicate<URI>() {
+      @Override
       public boolean apply(final URI src) {
         final Function1<NameBasedFilter, Boolean> _function = new Function1<NameBasedFilter, Boolean>() {
+          @Override
           public Boolean apply(final NameBasedFilter it) {
             return Boolean.valueOf(it.matches(src));
           }
@@ -148,6 +154,7 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
     final Multimap<String, URI> pathes = pathTraverser.resolvePathes(sourcePathDirectories, _function);
     Set<String> _keySet = pathes.keySet();
     final Procedure1<String> _function_1 = new Procedure1<String>() {
+      @Override
       public void apply(final String src) {
         final URI baseDir = URI.createFileURI((src + "/"));
         Joiner _on = Joiner.on("_");
@@ -176,6 +183,7 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
   
   public List<NameBasedFilter> getNameBasedFilters() {
     final Function1<Injector, NameBasedFilter> _function = new Function1<Injector, NameBasedFilter>() {
+      @Override
       public NameBasedFilter apply(final Injector it) {
         NameBasedFilter _xblockexpression = null;
         {
@@ -191,6 +199,7 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
     return JnarioStandaloneCompiler.<Injector, NameBasedFilter>eagerMap(this.injectors, _function);
   }
   
+  @Override
   public File createStubs(final ResourceSet resourceSet) {
     final File outputDirectory = this.createTempDir("stubs");
     final JavaIoFileSystemAccess fileSystemAccess = this.javaIoFileSystemAccessProvider.get();
@@ -199,6 +208,7 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
     EList<Resource> _resources = resourceSet.getResources();
     ArrayList<Resource> _newArrayList = Lists.<Resource>newArrayList(_resources);
     final Procedure1<Resource> _function = new Procedure1<Resource>() {
+      @Override
       public void apply(final Resource it) {
         IResourceDescription.Manager _findResourceDescriptionManager = JnarioStandaloneCompiler.this.findResourceDescriptionManager(it);
         final IResourceDescription description = _findResourceDescriptionManager.getResourceDescription(it);
@@ -221,6 +231,7 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
     return _get.<T>getInstance(type);
   }
   
+  @Override
   public void generateJavaFiles(final ResourceSet resourceSet) {
     final JavaIoFileSystemAccess javaIoFileSystemAccess = this.javaIoFileSystemAccessProvider.get();
     javaIoFileSystemAccess.setOutputPath(this.outputPath);
@@ -246,6 +257,7 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
       }
     }
     final Function1<IEObjectDescription, Boolean> _function = new Function1<IEObjectDescription, Boolean>() {
+      @Override
       public Boolean apply(final IEObjectDescription it) {
         String _userData = it.getUserData(JvmTypesResourceDescriptionStrategy.IS_NESTED_TYPE);
         return Boolean.valueOf(Objects.equal(_userData, null));
@@ -253,6 +265,7 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
     };
     Iterable<IEObjectDescription> _filter = IterableExtensions.<IEObjectDescription>filter(exportedObjectsByType, _function);
     final Procedure1<IEObjectDescription> _function_1 = new Procedure1<IEObjectDescription>() {
+      @Override
       public void apply(final IEObjectDescription eObjectDescription) {
         EObject _eObjectOrProxy = eObjectDescription.getEObjectOrProxy();
         final JvmDeclaredType jvmGenericType = ((JvmDeclaredType) _eObjectOrProxy);

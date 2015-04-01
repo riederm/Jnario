@@ -54,7 +54,8 @@ public class SpecSwitch<T>
 	 */
 	public SpecSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = SpecPackage.eINSTANCE;
 		}
 	}
@@ -80,10 +81,12 @@ public class SpecSwitch<T>
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject)
 	{
-		if (theEClass.eContainer() == modelPackage) {
+		if (theEClass.eContainer() == modelPackage)
+		{
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else {
+		else
+		{
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -101,15 +104,18 @@ public class SpecSwitch<T>
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case SpecPackage.SPEC_FILE: {
+		switch (classifierID)
+		{
+			case SpecPackage.SPEC_FILE:
+			{
 				SpecFile specFile = (SpecFile)theEObject;
 				T result = caseSpecFile(specFile);
 				if (result == null) result = caseJnarioFile(specFile);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SpecPackage.EXAMPLE_GROUP: {
+			case SpecPackage.EXAMPLE_GROUP:
+			{
 				ExampleGroup exampleGroup = (ExampleGroup)theEObject;
 				T result = caseExampleGroup(exampleGroup);
 				if (result == null) result = caseSpecification(exampleGroup);
@@ -121,7 +127,8 @@ public class SpecSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SpecPackage.EXAMPLE: {
+			case SpecPackage.EXAMPLE:
+			{
 				Example example = (Example)theEObject;
 				T result = caseExample(example);
 				if (result == null) result = caseTestFunction(example);
@@ -132,7 +139,8 @@ public class SpecSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SpecPackage.BEFORE: {
+			case SpecPackage.BEFORE:
+			{
 				Before before = (Before)theEObject;
 				T result = caseBefore(before);
 				if (result == null) result = caseTestFunction(before);
@@ -142,7 +150,8 @@ public class SpecSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SpecPackage.AFTER: {
+			case SpecPackage.AFTER:
+			{
 				After after = (After)theEObject;
 				T result = caseAfter(after);
 				if (result == null) result = caseTestFunction(after);
@@ -152,7 +161,8 @@ public class SpecSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SpecPackage.TEST_FUNCTION: {
+			case SpecPackage.TEST_FUNCTION:
+			{
 				TestFunction testFunction = (TestFunction)theEObject;
 				T result = caseTestFunction(testFunction);
 				if (result == null) result = caseJnarioFunction(testFunction);
