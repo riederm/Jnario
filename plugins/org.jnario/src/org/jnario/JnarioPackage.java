@@ -72,69 +72,6 @@ public interface JnarioPackage extends EPackage {
 	int EXAMPLE_TABLE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXAMPLE_TABLE__ANNOTATIONS = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXAMPLE_TABLE__MODIFIERS = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Annotation Info</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXAMPLE_TABLE__ANNOTATION_INFO = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXAMPLE_TABLE__NAME = XbasePackage.XEXPRESSION_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Rows</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXAMPLE_TABLE__ROWS = XbasePackage.XEXPRESSION_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXAMPLE_TABLE__COLUMNS = XbasePackage.XEXPRESSION_FEATURE_COUNT + 5;
-
-	/**
-	 * The number of structural features of the '<em>Example Table</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXAMPLE_TABLE_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 6;
-
-	/**
 	 * The meta object id for the '{@link org.jnario.impl.ExampleRowImpl <em>Example Row</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -143,6 +80,213 @@ public interface JnarioPackage extends EPackage {
 	 * @generated
 	 */
 	int EXAMPLE_ROW = 1;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.AssertionImpl <em>Assertion</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.AssertionImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getAssertion()
+	 * @generated
+	 */
+	int ASSERTION = 2;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.ExampleColumnImpl <em>Example Column</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.ExampleColumnImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getExampleColumn()
+	 * @generated
+	 */
+	int EXAMPLE_COLUMN = 3;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.ShouldImpl <em>Should</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.ShouldImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getShould()
+	 * @generated
+	 */
+	int SHOULD = 4;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.ShouldThrowImpl <em>Should Throw</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.ShouldThrowImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getShouldThrow()
+	 * @generated
+	 */
+	int SHOULD_THROW = 5;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.SpecificationImpl <em>Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.SpecificationImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getSpecification()
+	 * @generated
+	 */
+	int SPECIFICATION = 6;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.Executable <em>Executable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.Executable
+	 * @see org.jnario.impl.JnarioPackageImpl#getExecutable()
+	 * @generated
+	 */
+	int EXECUTABLE = 7;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.MockLiteralImpl <em>Mock Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.MockLiteralImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getMockLiteral()
+	 * @generated
+	 */
+	int MOCK_LITERAL = 8;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.JnarioAnnotationTargetImpl <em>Annotation Target</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.JnarioAnnotationTargetImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getJnarioAnnotationTarget()
+	 * @generated
+	 */
+	int JNARIO_ANNOTATION_TARGET = 16;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JNARIO_ANNOTATION_TARGET__ANNOTATIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Annotation Target</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JNARIO_ANNOTATION_TARGET_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.JnarioMemberImpl <em>Member</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.JnarioMemberImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getJnarioMember()
+	 * @generated
+	 */
+	int JNARIO_MEMBER = 12;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JNARIO_MEMBER__ANNOTATIONS = JNARIO_ANNOTATION_TARGET__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JNARIO_MEMBER__MODIFIERS = JNARIO_ANNOTATION_TARGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Annotation Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JNARIO_MEMBER__ANNOTATION_INFO = JNARIO_ANNOTATION_TARGET_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Member</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JNARIO_MEMBER_FEATURE_COUNT = JNARIO_ANNOTATION_TARGET_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXAMPLE_TABLE__ANNOTATIONS = JNARIO_MEMBER__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXAMPLE_TABLE__MODIFIERS = JNARIO_MEMBER__MODIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Annotation Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXAMPLE_TABLE__ANNOTATION_INFO = JNARIO_MEMBER__ANNOTATION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXAMPLE_TABLE__NAME = JNARIO_MEMBER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Rows</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXAMPLE_TABLE__ROWS = JNARIO_MEMBER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXAMPLE_TABLE__COLUMNS = JNARIO_MEMBER_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Example Table</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXAMPLE_TABLE_FEATURE_COUNT = JNARIO_MEMBER_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Cells</b></em>' containment reference list.
@@ -172,16 +316,6 @@ public interface JnarioPackage extends EPackage {
 	int EXAMPLE_ROW_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.jnario.impl.AssertionImpl <em>Assertion</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.AssertionImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getAssertion()
-	 * @generated
-	 */
-	int ASSERTION = 2;
-
-	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,16 +332,6 @@ public interface JnarioPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSERTION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.ExampleColumnImpl <em>Example Column</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.ExampleColumnImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getExampleColumn()
-	 * @generated
-	 */
-	int EXAMPLE_COLUMN = 3;
 
 	/**
 	 * The feature id for the '<em><b>Table</b></em>' container reference.
@@ -253,16 +377,6 @@ public interface JnarioPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXAMPLE_COLUMN_FEATURE_COUNT = 4;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.ShouldImpl <em>Should</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.ShouldImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getShould()
-	 * @generated
-	 */
-	int SHOULD = 4;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -364,16 +478,6 @@ public interface JnarioPackage extends EPackage {
 	int SHOULD_FEATURE_COUNT = XbasePackage.XBINARY_OPERATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.jnario.impl.ShouldThrowImpl <em>Should Throw</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.ShouldThrowImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getShouldThrow()
-	 * @generated
-	 */
-	int SHOULD_THROW = 5;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -399,26 +503,6 @@ public interface JnarioPackage extends EPackage {
 	 * @ordered
 	 */
 	int SHOULD_THROW_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.SpecificationImpl <em>Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.SpecificationImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getSpecification()
-	 * @generated
-	 */
-	int SPECIFICATION = 6;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.Executable <em>Executable</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.Executable
-	 * @see org.jnario.impl.JnarioPackageImpl#getExecutable()
-	 * @generated
-	 */
-	int EXECUTABLE = 7;
 
 	/**
 	 * The number of structural features of the '<em>Executable</em>' class.
@@ -493,16 +577,6 @@ public interface JnarioPackage extends EPackage {
 	int SPECIFICATION_FEATURE_COUNT = EXECUTABLE_FEATURE_COUNT + 6;
 
 	/**
-	 * The meta object id for the '{@link org.jnario.impl.MockLiteralImpl <em>Mock Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.MockLiteralImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getMockLiteral()
-	 * @generated
-	 */
-	int MOCK_LITERAL = 8;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -528,81 +602,6 @@ public interface JnarioPackage extends EPackage {
 	 * @ordered
 	 */
 	int MOCK_LITERAL_FEATURE_COUNT = XbasePackage.XTYPE_LITERAL_FEATURE_COUNT + 0;
-
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.JnarioAnnotationTargetImpl <em>Annotation Target</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.JnarioAnnotationTargetImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getJnarioAnnotationTarget()
-	 * @generated
-	 */
-	int JNARIO_ANNOTATION_TARGET = 16;
-
-	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JNARIO_ANNOTATION_TARGET__ANNOTATIONS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Annotation Target</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JNARIO_ANNOTATION_TARGET_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.JnarioMemberImpl <em>Member</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.JnarioMemberImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getJnarioMember()
-	 * @generated
-	 */
-	int JNARIO_MEMBER = 12;
-
-	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JNARIO_MEMBER__ANNOTATIONS = JNARIO_ANNOTATION_TARGET__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JNARIO_MEMBER__MODIFIERS = JNARIO_ANNOTATION_TARGET_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Annotation Info</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JNARIO_MEMBER__ANNOTATION_INFO = JNARIO_ANNOTATION_TARGET_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Member</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JNARIO_MEMBER_FEATURE_COUNT = JNARIO_ANNOTATION_TARGET_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.jnario.impl.JnarioFunctionImpl <em>Function</em>}' class.

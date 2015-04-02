@@ -28,7 +28,7 @@ import org.eclipse.xtext.xbase.XExpression;
  * @model
  * @generated
  */
-public interface ExampleTable extends XExpression, JnarioMember {
+public interface ExampleTable extends JnarioMember, XExpression {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

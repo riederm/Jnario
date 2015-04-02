@@ -847,8 +847,8 @@ public class JnarioPackageImpl extends EPackageImpl implements JnarioPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		exampleTableEClass.getESuperTypes().add(theXbasePackage.getXExpression());
 		exampleTableEClass.getESuperTypes().add(this.getJnarioMember());
+		exampleTableEClass.getESuperTypes().add(theXbasePackage.getXExpression());
 		assertionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
 		shouldEClass.getESuperTypes().add(theXbasePackage.getXBinaryOperation());
 		shouldThrowEClass.getESuperTypes().add(theXbasePackage.getXExpression());

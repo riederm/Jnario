@@ -112,8 +112,8 @@ public class JnarioSwitch<T> {
 			case JnarioPackage.EXAMPLE_TABLE: {
 				ExampleTable exampleTable = (ExampleTable)theEObject;
 				T result = caseExampleTable(exampleTable);
-				if (result == null) result = caseXExpression(exampleTable);
 				if (result == null) result = caseJnarioMember(exampleTable);
+				if (result == null) result = caseXExpression(exampleTable);
 				if (result == null) result = caseJnarioAnnotationTarget(exampleTable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

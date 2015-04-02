@@ -7,6 +7,8 @@
  */
 package org.jnario.impl;
 
+import static org.eclipse.xtext.util.Strings.equal;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -287,56 +289,67 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isStatic() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		for(String modifier: getModifiers()) { 
+			if(equal(modifier, "strictfp")) 
+				return true;
+		}
+		return false;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public JvmVisibility getVisibility() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		JvmVisibility declaredVisibility = getDeclaredVisibility();
+		return declaredVisibility == null ? getDefaultVisibility() : declaredVisibility;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public JvmVisibility getDeclaredVisibility() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		for(String modifier: getModifiers()) {
+			if(equal(modifier, "public")) 
+				return JvmVisibility.PUBLIC;
+			if(equal(modifier, "package")) 
+				return JvmVisibility.DEFAULT;
+			if(equal(modifier, "protected")) 
+				return JvmVisibility.PROTECTED;
+			if(equal(modifier, "private")) 
+				return JvmVisibility.PRIVATE;
+		}
+		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public JvmVisibility getDefaultVisibility() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return JvmVisibility.PUBLIC;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isFinal() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		for(String modifier: getModifiers()) { 
+			if(equal(modifier, "abstract")) 
+				return false;
+			if(equal(modifier, "final")) 
+				return true;
+		}
+		return false;
 	}
 
 	/**
