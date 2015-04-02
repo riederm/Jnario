@@ -2,14 +2,17 @@ package org.jnario.feature.formatting;
 
 import com.google.inject.Inject;
 import java.util.Arrays;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmTypeConstraint;
 import org.eclipse.xtext.common.types.JvmTypeParameter;
 import org.eclipse.xtext.common.types.JvmWildcardTypeReference;
-import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.formatting2.IFormattableDocument;
+import org.eclipse.xtext.formatting2.IHiddenRegionFormatter;
+import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegion;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.xbase.XAssignment;
 import org.eclipse.xtext.xbase.XBasicForLoopExpression;
 import org.eclipse.xtext.xbase.XBinaryOperation;
@@ -33,55 +36,48 @@ import org.eclipse.xtext.xbase.XTypeLiteral;
 import org.eclipse.xtext.xbase.XVariableDeclaration;
 import org.eclipse.xtext.xbase.XWhileExpression;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
-import org.eclipse.xtext.xbase.formatting.FormattableDocument;
-import org.eclipse.xtext.xbase.formatting.FormattingData;
-import org.eclipse.xtext.xbase.formatting.FormattingDataFactory;
-import org.eclipse.xtext.xbase.formatting.FormattingDataInit;
-import org.eclipse.xtext.xbase.formatting.NodeModelAccess;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xtype.XFunctionTypeRef;
+import org.eclipse.xtext.xtype.XImportDeclaration;
+import org.eclipse.xtext.xtype.XImportSection;
 import org.jnario.ExampleTable;
 import org.jnario.feature.feature.Background;
 import org.jnario.feature.feature.Scenario;
+import org.jnario.feature.services.FeatureGrammarAccess;
 import org.jnario.formatter.JnarioFormatter;
 
 @SuppressWarnings("all")
 public class FeatureFormatter2 extends JnarioFormatter {
   @Inject
   @Extension
-  private NodeModelAccess _nodeModelAccess;
+  private FeatureGrammarAccess _featureGrammarAccess;
   
-  @Inject
-  @Extension
-  private FormattingDataFactory _formattingDataFactory;
-  
-  protected void _format(final Scenario scenario, final FormattableDocument format) {
-    INode _nodeForEObject = this._nodeModelAccess.nodeForEObject(scenario);
-    final Procedure1<FormattingDataInit> _function = new Procedure1<FormattingDataInit>() {
+  protected void _format(final Scenario scenario, @Extension final IFormattableDocument format) {
+    ParserRule _scenarioRule = this._featureGrammarAccess.getScenarioRule();
+    ISemanticRegion _regionForRuleCallTo = this.regionAccess.regionForRuleCallTo(scenario, _scenarioRule);
+    final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
       @Override
-      public void apply(final FormattingDataInit it) {
+      public void apply(final IHiddenRegionFormatter it) {
         it.increaseIndentation();
       }
     };
-    Function1<? super FormattableDocument, ? extends Iterable<FormattingData>> _prepend = this._formattingDataFactory.prepend(_nodeForEObject, _function);
-    format.operator_add(_prepend);
+    format.prepend(_regionForRuleCallTo, _function);
   }
   
-  protected void _format(final Background background, final FormattableDocument format) {
-    INode _nodeForEObject = this._nodeModelAccess.nodeForEObject(background);
-    final Procedure1<FormattingDataInit> _function = new Procedure1<FormattingDataInit>() {
+  protected void _format(final Background background, @Extension final IFormattableDocument format) {
+    ParserRule _scenarioRule = this._featureGrammarAccess.getScenarioRule();
+    ISemanticRegion _regionForRuleCallTo = this.regionAccess.regionForRuleCallTo(background, _scenarioRule);
+    final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
       @Override
-      public void apply(final FormattingDataInit it) {
+      public void apply(final IHiddenRegionFormatter it) {
         it.increaseIndentation();
       }
     };
-    Function1<? super FormattableDocument, ? extends Iterable<FormattingData>> _prepend = this._formattingDataFactory.prepend(_nodeForEObject, _function);
-    format.operator_add(_prepend);
+    format.prepend(_regionForRuleCallTo, _function);
   }
   
-  protected void format(final EObject background, final FormattableDocument format) {
+  public void format(final Object background, final IFormattableDocument format) {
     if (background instanceof Background) {
       _format((Background)background, format);
       return;
@@ -93,6 +89,9 @@ public class FeatureFormatter2 extends JnarioFormatter {
       return;
     } else if (background instanceof JvmFormalParameter) {
       _format((JvmFormalParameter)background, format);
+      return;
+    } else if (background instanceof XtextResource) {
+      _format((XtextResource)background, format);
       return;
     } else if (background instanceof XAssignment) {
       _format((XAssignment)background, format);
@@ -181,11 +180,17 @@ public class FeatureFormatter2 extends JnarioFormatter {
     } else if (background instanceof XExpression) {
       _format((XExpression)background, format);
       return;
-    } else if (background != null) {
-      _format(background, format);
+    } else if (background instanceof XImportDeclaration) {
+      _format((XImportDeclaration)background, format);
+      return;
+    } else if (background instanceof XImportSection) {
+      _format((XImportSection)background, format);
       return;
     } else if (background == null) {
       _format((Void)null, format);
+      return;
+    } else if (background != null) {
+      _format(background, format);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +

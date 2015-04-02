@@ -109,6 +109,8 @@ Workflow {
 				generateJavaMain = false
 			}
 
+            fragment = formatting2.Formatter2Fragment {}
+
 			// labeling API
 			fragment = labeling.LabelProviderFragment {}
 

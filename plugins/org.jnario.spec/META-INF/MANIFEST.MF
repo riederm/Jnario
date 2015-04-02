@@ -29,7 +29,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.jnario.spec,
  org.jnario.spec.compiler,
  org.jnario.spec.doc,
- org.jnario.spec.formatting,
+ org.jnario.spec.formatting2,
  org.jnario.spec.jvmmodel,
  org.jnario.spec.naming,
  org.jnario.spec.parser.antlr,

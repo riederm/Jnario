@@ -35,7 +35,6 @@ import org.eclipse.xtext.xbase.file.FileLocationsImpl;
 import org.eclipse.xtext.xbase.file.JavaIOFileSystemSupport;
 import org.eclipse.xtext.xbase.file.RuntimeWorkspaceConfigProvider;
 import org.eclipse.xtext.xbase.file.WorkspaceConfig;
-import org.eclipse.xtext.xbase.formatting.IBasicFormatter;
 import org.eclipse.xtext.xbase.formatting.NodeModelAccess;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
@@ -62,7 +61,6 @@ import org.jnario.report.HashBasedSpec2ResultMapping;
 import org.jnario.scoping.JnarioImplicitlyImportedFeatures;
 import org.jnario.spec.conversion.SpecValueConverterService;
 import org.jnario.spec.doc.SpecDocGenerator;
-import org.jnario.spec.formatting.SpecFormatter;
 import org.jnario.spec.jvmmodel.SpecExecutableProvider;
 import org.jnario.spec.jvmmodel.SpecJvmModelInferrer;
 import org.jnario.spec.naming.ExampleNameProvider;
@@ -184,10 +182,6 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 //		return XtendLinkingDiagnosticMessageProvider.class;
 //	}
 	
-	public Class<? extends IBasicFormatter> bindIBasicFormatter() {
-		return SpecFormatter.class;
-	}
-
 //	public Class<? extends IImportsConfiguration> bindIImportsConfiguration() {
 //		return XtendImportsConfiguration.class;
 //	}

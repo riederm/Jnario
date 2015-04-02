@@ -35,11 +35,9 @@ import org.eclipse.xtext.xbase.compiler.JvmModelGenerator;
 import org.eclipse.xtext.xbase.compiler.output.TraceAwarePostProcessor;
 import org.eclipse.xtext.xbase.featurecalls.IdentifiableSimpleNameProvider;
 import org.eclipse.xtext.xbase.file.AbstractFileSystemSupport;
-import org.eclipse.xtext.xbase.file.FileLocationsImpl;
 import org.eclipse.xtext.xbase.file.JavaIOFileSystemSupport;
 import org.eclipse.xtext.xbase.file.RuntimeWorkspaceConfigProvider;
 import org.eclipse.xtext.xbase.file.WorkspaceConfig;
-import org.eclipse.xtext.xbase.formatting.IBasicFormatter;
 import org.eclipse.xtext.xbase.formatting.NodeModelAccess;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
@@ -55,7 +53,6 @@ import org.jnario.doc.DocOutputConfigurationProvider;
 import org.jnario.documentation.XtendDocumentationProvider;
 import org.jnario.feature.conversion.FeatureValueConverterService;
 import org.jnario.feature.doc.FeatureDocGenerator;
-import org.jnario.feature.formatting.FeatureFormatter2;
 import org.jnario.feature.generator.FeatureJvmModelGenerator;
 import org.jnario.feature.jvmmodel.FeatureExecutableProvider;
 import org.jnario.feature.jvmmodel.FeatureJvmModelInferrer;
@@ -286,6 +283,7 @@ public class FeatureRuntimeModule extends
 //		return FileLocationsImpl.class;
 //	}
 	
+	
 	public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProvider() {
 		return XtendDocumentationProvider.class;
 	}
@@ -305,10 +303,6 @@ public class FeatureRuntimeModule extends
 	
 	public Class<? extends NodeModelAccess> bindNodeModelAccess(){
 		return JnarioNodeModelAccess.class;
-	}
-	
-	public Class<? extends IBasicFormatter> bindIBasicFormatter() {
-		return FeatureFormatter2.class;
 	}
 	
 	// TODO NO_XTEND
