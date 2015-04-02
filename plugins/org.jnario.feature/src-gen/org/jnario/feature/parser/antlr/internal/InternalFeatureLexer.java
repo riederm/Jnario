@@ -12,125 +12,125 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalFeatureLexer extends Lexer {
+    public static final int RULE_ID=13;
+    public static final int T__29=29;
+    public static final int RULE_ANY_OTHER=28;
+    public static final int EOF=-1;
+    public static final int T__93=93;
+    public static final int T__94=94;
+    public static final int T__91=91;
     public static final int RULE_HEX=15;
-    public static final int T__50=50;
+    public static final int T__92=92;
+    public static final int T__90=90;
+    public static final int RULE_SCENARIO_TEXT=7;
+    public static final int RULE_BACKGROUND_TEXT=6;
+    public static final int RULE_MNL=18;
+    public static final int RULE_DECIMAL=17;
+    public static final int T__99=99;
+    public static final int T__98=98;
+    public static final int T__97=97;
+    public static final int T__96=96;
+    public static final int T__95=95;
+    public static final int T__80=80;
+    public static final int T__81=81;
+    public static final int T__82=82;
+    public static final int T__83=83;
+    public static final int RULE_TEXT=5;
+    public static final int T__85=85;
+    public static final int T__84=84;
+    public static final int T__87=87;
+    public static final int T__86=86;
+    public static final int RULE_IN_RICH_STRING=24;
+    public static final int T__89=89;
+    public static final int T__88=88;
+    public static final int RULE_ML_COMMENT=25;
+    public static final int RULE_STRING=14;
+    public static final int T__71=71;
+    public static final int T__72=72;
+    public static final int RULE_STEP_WITH_ARGS=20;
+    public static final int T__70=70;
+    public static final int T__76=76;
+    public static final int T__75=75;
+    public static final int T__74=74;
+    public static final int T__73=73;
+    public static final int T__79=79;
+    public static final int T__78=78;
+    public static final int T__77=77;
+    public static final int T__68=68;
+    public static final int T__69=69;
+    public static final int T__66=66;
+    public static final int T__67=67;
+    public static final int T__64=64;
+    public static final int T__65=65;
+    public static final int T__62=62;
+    public static final int RULE_RICH_TEXT=22;
+    public static final int T__63=63;
+    public static final int T__118=118;
+    public static final int T__119=119;
     public static final int RULE_THEN_TEXT=10;
-    public static final int RULE_FEATURE_TEXT=4;
-    public static final int T__59=59;
+    public static final int T__116=116;
+    public static final int T__117=117;
+    public static final int T__114=114;
+    public static final int T__115=115;
+    public static final int T__121=121;
+    public static final int T__120=120;
+    public static final int T__61=61;
+    public static final int T__60=60;
     public static final int T__55=55;
     public static final int T__56=56;
+    public static final int RULE_BUT_TEXT=12;
     public static final int T__57=57;
-    public static final int RULE_BACKGROUND_TEXT=6;
     public static final int T__58=58;
     public static final int T__51=51;
     public static final int T__52=52;
     public static final int T__53=53;
     public static final int T__54=54;
-    public static final int T__60=60;
-    public static final int T__61=61;
-    public static final int RULE_ID=13;
-    public static final int RULE_COLON=19;
-    public static final int RULE_MNL=18;
-    public static final int RULE_INT=16;
-    public static final int T__66=66;
-    public static final int RULE_ML_COMMENT=25;
-    public static final int T__67=67;
-    public static final int T__68=68;
-    public static final int T__69=69;
-    public static final int T__62=62;
-    public static final int T__63=63;
-    public static final int T__64=64;
-    public static final int T__65=65;
-    public static final int RULE_STEP_WITH_ARGS=20;
-    public static final int RULE_SCENARIO_TEXT=7;
+    public static final int RULE_WHEN_TEXT=9;
     public static final int RULE_GIVEN_TEXT=8;
-    public static final int T__37=37;
-    public static final int T__38=38;
-    public static final int T__39=39;
+    public static final int T__107=107;
+    public static final int T__108=108;
+    public static final int T__109=109;
+    public static final int T__59=59;
+    public static final int T__103=103;
+    public static final int T__104=104;
+    public static final int T__105=105;
+    public static final int T__106=106;
+    public static final int T__111=111;
+    public static final int T__110=110;
+    public static final int RULE_INT=16;
+    public static final int T__113=113;
+    public static final int T__112=112;
+    public static final int T__50=50;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__46=46;
+    public static final int T__47=47;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int T__48=48;
+    public static final int T__49=49;
+    public static final int RULE_NL=23;
+    public static final int RULE_SPACES=21;
+    public static final int T__102=102;
+    public static final int T__101=101;
+    public static final int T__100=100;
+    public static final int RULE_SL_COMMENT=26;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int RULE_COLON=19;
+    public static final int T__32=32;
     public static final int T__33=33;
     public static final int T__34=34;
     public static final int T__35=35;
     public static final int T__36=36;
-    public static final int T__30=30;
-    public static final int T__31=31;
-    public static final int T__32=32;
-    public static final int RULE_AND_TEXT=11;
-    public static final int RULE_BUT_TEXT=12;
-    public static final int T__48=48;
-    public static final int T__49=49;
-    public static final int T__44=44;
-    public static final int T__45=45;
-    public static final int T__46=46;
-    public static final int T__47=47;
-    public static final int T__40=40;
-    public static final int T__41=41;
-    public static final int T__42=42;
-    public static final int T__43=43;
-    public static final int T__91=91;
-    public static final int T__100=100;
-    public static final int T__92=92;
-    public static final int T__93=93;
-    public static final int T__102=102;
-    public static final int T__94=94;
-    public static final int T__101=101;
-    public static final int T__90=90;
-    public static final int T__99=99;
-    public static final int T__95=95;
-    public static final int T__96=96;
-    public static final int T__97=97;
-    public static final int T__98=98;
-    public static final int RULE_DECIMAL=17;
-    public static final int T__29=29;
-    public static final int RULE_TEXT=5;
-    public static final int T__70=70;
-    public static final int T__121=121;
-    public static final int RULE_WHEN_TEXT=9;
-    public static final int T__71=71;
-    public static final int T__72=72;
-    public static final int T__120=120;
-    public static final int RULE_STRING=14;
-    public static final int RULE_SL_COMMENT=26;
-    public static final int RULE_IN_RICH_STRING=24;
-    public static final int T__77=77;
-    public static final int T__119=119;
-    public static final int T__78=78;
-    public static final int T__118=118;
-    public static final int T__79=79;
-    public static final int T__73=73;
-    public static final int T__115=115;
-    public static final int EOF=-1;
-    public static final int T__74=74;
-    public static final int T__114=114;
-    public static final int T__75=75;
-    public static final int T__117=117;
-    public static final int T__76=76;
-    public static final int T__116=116;
-    public static final int T__80=80;
-    public static final int T__111=111;
-    public static final int T__81=81;
-    public static final int T__110=110;
-    public static final int T__82=82;
-    public static final int T__113=113;
-    public static final int RULE_RICH_TEXT=22;
-    public static final int T__83=83;
-    public static final int T__112=112;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
     public static final int RULE_WS=27;
-    public static final int RULE_ANY_OTHER=28;
-    public static final int RULE_SPACES=21;
-    public static final int T__88=88;
-    public static final int T__108=108;
-    public static final int T__89=89;
-    public static final int T__107=107;
-    public static final int T__109=109;
-    public static final int RULE_NL=23;
-    public static final int T__84=84;
-    public static final int T__104=104;
-    public static final int T__85=85;
-    public static final int T__103=103;
-    public static final int T__86=86;
-    public static final int T__106=106;
-    public static final int T__87=87;
-    public static final int T__105=105;
+    public static final int RULE_AND_TEXT=11;
+    public static final int RULE_FEATURE_TEXT=4;
 
     // delegates
     // delegators
@@ -4517,8 +4517,8 @@ public class InternalFeatureLexer extends Lexer {
     static final String DFA1_acceptS =
         "\3\uffff\1\1\17\uffff\1\2\1\uffff\1\2";
     static final String DFA1_specialS =
-        "\1\4\1\5\1\17\1\uffff\1\6\1\20\1\7\1\21\1\10\1\22\1\11\1\0\1\12"+
-        "\1\1\1\13\1\2\1\14\1\3\1\15\1\uffff\1\16\1\uffff}>";
+        "\1\0\1\1\1\10\1\uffff\1\3\1\11\1\2\1\12\1\14\1\13\1\15\1\7\1\16"+
+        "\1\6\1\17\1\5\1\20\1\4\1\21\1\uffff\1\22\1\uffff}>";
     static final String[] DFA1_transitionS = {
             "\102\3\1\1\20\3\1\2\uffac\3",
             "\141\3\1\4\uff9e\3",
@@ -4581,46 +4581,6 @@ public class InternalFeatureLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA1_11 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_11=='r') ) {s = 13;}
-
-                        else if ( ((LA1_11>='\u0000' && LA1_11<='q')||(LA1_11>='s' && LA1_11<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA1_13 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_13=='i') ) {s = 15;}
-
-                        else if ( ((LA1_13>='\u0000' && LA1_13<='h')||(LA1_13>='j' && LA1_13<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA1_15 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_15=='o') ) {s = 17;}
-
-                        else if ( ((LA1_15>='\u0000' && LA1_15<='n')||(LA1_15>='p' && LA1_15<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA1_17 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_17==':') ) {s = 19;}
-
-                        else if ( ((LA1_17>='\u0000' && LA1_17<='9')||(LA1_17>=';' && LA1_17<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
                         int LA1_0 = input.LA(1);
 
                         s = -1;
@@ -4632,7 +4592,7 @@ public class InternalFeatureLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
-                    case 5 : 
+                    case 1 : 
                         int LA1_1 = input.LA(1);
 
                         s = -1;
@@ -4642,17 +4602,7 @@ public class InternalFeatureLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
-                    case 6 : 
-                        int LA1_4 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_4=='c') ) {s = 6;}
-
-                        else if ( ((LA1_4>='\u0000' && LA1_4<='b')||(LA1_4>='d' && LA1_4<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
+                    case 2 : 
                         int LA1_6 = input.LA(1);
 
                         s = -1;
@@ -4662,77 +4612,57 @@ public class InternalFeatureLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
+                    case 3 : 
+                        int LA1_4 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_4=='c') ) {s = 6;}
+
+                        else if ( ((LA1_4>='\u0000' && LA1_4<='b')||(LA1_4>='d' && LA1_4<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA1_17 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_17==':') ) {s = 19;}
+
+                        else if ( ((LA1_17>='\u0000' && LA1_17<='9')||(LA1_17>=';' && LA1_17<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA1_15 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_15=='o') ) {s = 17;}
+
+                        else if ( ((LA1_15>='\u0000' && LA1_15<='n')||(LA1_15>='p' && LA1_15<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA1_13 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_13=='i') ) {s = 15;}
+
+                        else if ( ((LA1_13>='\u0000' && LA1_13<='h')||(LA1_13>='j' && LA1_13<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA1_11 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_11=='r') ) {s = 13;}
+
+                        else if ( ((LA1_11>='\u0000' && LA1_11<='q')||(LA1_11>='s' && LA1_11<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
                     case 8 : 
-                        int LA1_8 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_8=='g') ) {s = 10;}
-
-                        else if ( ((LA1_8>='\u0000' && LA1_8<='f')||(LA1_8>='h' && LA1_8<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 9 : 
-                        int LA1_10 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_10=='r') ) {s = 12;}
-
-                        else if ( ((LA1_10>='\u0000' && LA1_10<='q')||(LA1_10>='s' && LA1_10<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 10 : 
-                        int LA1_12 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_12=='o') ) {s = 14;}
-
-                        else if ( ((LA1_12>='\u0000' && LA1_12<='n')||(LA1_12>='p' && LA1_12<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 11 : 
-                        int LA1_14 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_14=='u') ) {s = 16;}
-
-                        else if ( ((LA1_14>='\u0000' && LA1_14<='t')||(LA1_14>='v' && LA1_14<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 12 : 
-                        int LA1_16 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_16=='n') ) {s = 18;}
-
-                        else if ( ((LA1_16>='\u0000' && LA1_16<='m')||(LA1_16>='o' && LA1_16<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 13 : 
-                        int LA1_18 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_18=='d') ) {s = 20;}
-
-                        else if ( ((LA1_18>='\u0000' && LA1_18<='c')||(LA1_18>='e' && LA1_18<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 14 : 
-                        int LA1_20 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA1_20==':') ) {s = 21;}
-
-                        else if ( ((LA1_20>='\u0000' && LA1_20<='9')||(LA1_20>=';' && LA1_20<='\uFFFF')) ) {s = 3;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 15 : 
                         int LA1_2 = input.LA(1);
 
                         s = -1;
@@ -4742,7 +4672,7 @@ public class InternalFeatureLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
-                    case 16 : 
+                    case 9 : 
                         int LA1_5 = input.LA(1);
 
                         s = -1;
@@ -4752,7 +4682,7 @@ public class InternalFeatureLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
-                    case 17 : 
+                    case 10 : 
                         int LA1_7 = input.LA(1);
 
                         s = -1;
@@ -4762,13 +4692,83 @@ public class InternalFeatureLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
-                    case 18 : 
+                    case 11 : 
                         int LA1_9 = input.LA(1);
 
                         s = -1;
                         if ( (LA1_9=='a') ) {s = 11;}
 
                         else if ( ((LA1_9>='\u0000' && LA1_9<='`')||(LA1_9>='b' && LA1_9<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 12 : 
+                        int LA1_8 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_8=='g') ) {s = 10;}
+
+                        else if ( ((LA1_8>='\u0000' && LA1_8<='f')||(LA1_8>='h' && LA1_8<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 13 : 
+                        int LA1_10 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_10=='r') ) {s = 12;}
+
+                        else if ( ((LA1_10>='\u0000' && LA1_10<='q')||(LA1_10>='s' && LA1_10<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 14 : 
+                        int LA1_12 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_12=='o') ) {s = 14;}
+
+                        else if ( ((LA1_12>='\u0000' && LA1_12<='n')||(LA1_12>='p' && LA1_12<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 15 : 
+                        int LA1_14 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_14=='u') ) {s = 16;}
+
+                        else if ( ((LA1_14>='\u0000' && LA1_14<='t')||(LA1_14>='v' && LA1_14<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 16 : 
+                        int LA1_16 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_16=='n') ) {s = 18;}
+
+                        else if ( ((LA1_16>='\u0000' && LA1_16<='m')||(LA1_16>='o' && LA1_16<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 17 : 
+                        int LA1_18 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_18=='d') ) {s = 20;}
+
+                        else if ( ((LA1_18>='\u0000' && LA1_18<='c')||(LA1_18>='e' && LA1_18<='\uFFFF')) ) {s = 3;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 18 : 
+                        int LA1_20 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA1_20==':') ) {s = 21;}
+
+                        else if ( ((LA1_20>='\u0000' && LA1_20<='9')||(LA1_20>=';' && LA1_20<='\uFFFF')) ) {s = 3;}
 
                         if ( s>=0 ) return s;
                         break;

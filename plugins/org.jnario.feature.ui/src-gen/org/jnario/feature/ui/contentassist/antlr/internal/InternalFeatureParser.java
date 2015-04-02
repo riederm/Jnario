@@ -25,125 +25,125 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_HEX", "RULE_INT", "RULE_DECIMAL", "RULE_FEATURE_TEXT", "RULE_TEXT", "RULE_BACKGROUND_TEXT", "RULE_SCENARIO_TEXT", "RULE_GIVEN_TEXT", "RULE_WHEN_TEXT", "RULE_THEN_TEXT", "RULE_AND_TEXT", "RULE_BUT_TEXT", "RULE_STRING", "RULE_MNL", "RULE_COLON", "RULE_STEP_WITH_ARGS", "RULE_SPACES", "RULE_RICH_TEXT", "RULE_NL", "RULE_IN_RICH_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'='", "'||'", "'&&'", "'throws'", "'public'", "'private'", "'protected'", "'package'", "'abstract'", "'static'", "'dispatch'", "'final'", "'strictfp'", "'native'", "'volatile'", "'synchronized'", "'transient'", "'val'", "'var'", "'def'", "'override'", "'+='", "'-='", "'*='", "'/='", "'%='", "'=='", "'!='", "'==='", "'!=='", "'>='", "'>'", "'<'", "'->'", "'..<'", "'..'", "'=>'", "'<>'", "'?:'", "'+'", "'-'", "'*'", "'**'", "'/'", "'%'", "'!'", "'++'", "'--'", "'.'", "'extends'", "'import'", "'extension'", "'super'", "'false'", "';'", "'should'", "'throw'", "'instanceof'", "'not'", "'assert'", "'@'", "'('", "')'", "','", "']'", "'#'", "'['", "'as'", "'{'", "'}'", "'if'", "'else'", "'switch'", "':'", "'default'", "'case'", "'for'", "'while'", "'do'", "'new'", "'null'", "'typeof'", "'return'", "'try'", "'finally'", "'catch'", "'?'", "'&'", "'...'", "'::'", "'?.'", "'|'", "'true'"
     };
+    public static final int RULE_ID=4;
+    public static final int T__29=29;
+    public static final int RULE_ANY_OTHER=28;
+    public static final int EOF=-1;
+    public static final int T__93=93;
+    public static final int T__94=94;
+    public static final int T__91=91;
     public static final int RULE_HEX=5;
-    public static final int T__50=50;
+    public static final int T__92=92;
+    public static final int T__90=90;
+    public static final int RULE_SCENARIO_TEXT=11;
+    public static final int RULE_BACKGROUND_TEXT=10;
+    public static final int RULE_MNL=18;
+    public static final int RULE_DECIMAL=7;
+    public static final int T__99=99;
+    public static final int T__98=98;
+    public static final int T__97=97;
+    public static final int T__96=96;
+    public static final int T__95=95;
+    public static final int T__80=80;
+    public static final int T__81=81;
+    public static final int T__82=82;
+    public static final int T__83=83;
+    public static final int RULE_TEXT=9;
+    public static final int T__85=85;
+    public static final int T__84=84;
+    public static final int T__87=87;
+    public static final int RULE_IN_RICH_STRING=24;
+    public static final int T__86=86;
+    public static final int T__89=89;
+    public static final int T__88=88;
+    public static final int RULE_ML_COMMENT=25;
+    public static final int RULE_STRING=17;
+    public static final int T__71=71;
+    public static final int RULE_STEP_WITH_ARGS=20;
+    public static final int T__72=72;
+    public static final int T__70=70;
+    public static final int T__76=76;
+    public static final int T__75=75;
+    public static final int T__74=74;
+    public static final int T__73=73;
+    public static final int T__79=79;
+    public static final int T__78=78;
+    public static final int T__77=77;
+    public static final int T__68=68;
+    public static final int T__69=69;
+    public static final int T__66=66;
+    public static final int T__67=67;
+    public static final int T__64=64;
+    public static final int T__65=65;
+    public static final int T__62=62;
+    public static final int RULE_RICH_TEXT=22;
+    public static final int T__63=63;
+    public static final int T__118=118;
+    public static final int T__119=119;
     public static final int RULE_THEN_TEXT=14;
-    public static final int RULE_FEATURE_TEXT=8;
-    public static final int T__59=59;
+    public static final int T__116=116;
+    public static final int T__117=117;
+    public static final int T__114=114;
+    public static final int T__115=115;
+    public static final int T__121=121;
+    public static final int T__120=120;
+    public static final int T__61=61;
+    public static final int T__60=60;
     public static final int T__55=55;
     public static final int T__56=56;
+    public static final int RULE_BUT_TEXT=16;
     public static final int T__57=57;
-    public static final int RULE_BACKGROUND_TEXT=10;
     public static final int T__58=58;
     public static final int T__51=51;
     public static final int T__52=52;
     public static final int T__53=53;
     public static final int T__54=54;
-    public static final int T__60=60;
-    public static final int T__61=61;
-    public static final int RULE_ID=4;
-    public static final int RULE_COLON=19;
-    public static final int RULE_MNL=18;
-    public static final int RULE_INT=6;
-    public static final int T__66=66;
-    public static final int RULE_ML_COMMENT=25;
-    public static final int T__67=67;
-    public static final int T__68=68;
-    public static final int T__69=69;
-    public static final int T__62=62;
-    public static final int T__63=63;
-    public static final int T__64=64;
-    public static final int T__65=65;
-    public static final int RULE_STEP_WITH_ARGS=20;
-    public static final int RULE_SCENARIO_TEXT=11;
+    public static final int RULE_WHEN_TEXT=13;
     public static final int RULE_GIVEN_TEXT=12;
-    public static final int T__37=37;
-    public static final int T__38=38;
-    public static final int T__39=39;
+    public static final int T__107=107;
+    public static final int T__108=108;
+    public static final int T__109=109;
+    public static final int T__59=59;
+    public static final int T__103=103;
+    public static final int T__104=104;
+    public static final int T__105=105;
+    public static final int T__106=106;
+    public static final int T__111=111;
+    public static final int T__110=110;
+    public static final int RULE_INT=6;
+    public static final int T__113=113;
+    public static final int T__112=112;
+    public static final int T__50=50;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__46=46;
+    public static final int T__47=47;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int T__48=48;
+    public static final int T__49=49;
+    public static final int RULE_NL=23;
+    public static final int RULE_SPACES=21;
+    public static final int T__102=102;
+    public static final int T__101=101;
+    public static final int T__100=100;
+    public static final int RULE_SL_COMMENT=26;
+    public static final int T__30=30;
+    public static final int RULE_COLON=19;
+    public static final int T__31=31;
+    public static final int T__32=32;
     public static final int T__33=33;
     public static final int T__34=34;
     public static final int T__35=35;
     public static final int T__36=36;
-    public static final int T__30=30;
-    public static final int T__31=31;
-    public static final int T__32=32;
-    public static final int RULE_AND_TEXT=15;
-    public static final int RULE_BUT_TEXT=16;
-    public static final int T__48=48;
-    public static final int T__49=49;
-    public static final int T__44=44;
-    public static final int T__45=45;
-    public static final int T__46=46;
-    public static final int T__47=47;
-    public static final int T__40=40;
-    public static final int T__41=41;
-    public static final int T__42=42;
-    public static final int T__43=43;
-    public static final int T__91=91;
-    public static final int T__100=100;
-    public static final int T__92=92;
-    public static final int T__93=93;
-    public static final int T__102=102;
-    public static final int T__94=94;
-    public static final int T__101=101;
-    public static final int T__90=90;
-    public static final int T__99=99;
-    public static final int T__95=95;
-    public static final int T__96=96;
-    public static final int T__97=97;
-    public static final int T__98=98;
-    public static final int RULE_DECIMAL=7;
-    public static final int T__29=29;
-    public static final int RULE_TEXT=9;
-    public static final int T__70=70;
-    public static final int T__121=121;
-    public static final int RULE_WHEN_TEXT=13;
-    public static final int T__71=71;
-    public static final int T__72=72;
-    public static final int T__120=120;
-    public static final int RULE_STRING=17;
-    public static final int RULE_SL_COMMENT=26;
-    public static final int RULE_IN_RICH_STRING=24;
-    public static final int T__77=77;
-    public static final int T__119=119;
-    public static final int T__78=78;
-    public static final int T__118=118;
-    public static final int T__79=79;
-    public static final int T__73=73;
-    public static final int T__115=115;
-    public static final int EOF=-1;
-    public static final int T__74=74;
-    public static final int T__114=114;
-    public static final int T__75=75;
-    public static final int T__117=117;
-    public static final int T__76=76;
-    public static final int T__116=116;
-    public static final int T__80=80;
-    public static final int T__111=111;
-    public static final int T__81=81;
-    public static final int T__110=110;
-    public static final int T__82=82;
-    public static final int T__113=113;
-    public static final int RULE_RICH_TEXT=22;
-    public static final int T__83=83;
-    public static final int T__112=112;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
     public static final int RULE_WS=27;
-    public static final int RULE_ANY_OTHER=28;
-    public static final int RULE_SPACES=21;
-    public static final int T__88=88;
-    public static final int T__108=108;
-    public static final int T__89=89;
-    public static final int T__107=107;
-    public static final int T__109=109;
-    public static final int RULE_NL=23;
-    public static final int T__84=84;
-    public static final int T__104=104;
-    public static final int T__85=85;
-    public static final int T__103=103;
-    public static final int T__86=86;
-    public static final int T__106=106;
-    public static final int T__87=87;
-    public static final int T__105=105;
+    public static final int RULE_AND_TEXT=15;
+    public static final int RULE_FEATURE_TEXT=8;
 
     // delegates
     // delegators
@@ -9922,11 +9922,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
             if ( (LA8_0==RULE_WHEN_TEXT) ) {
                 int LA8_1 = input.LA(2);
 
-                if ( ((LA8_1>=RULE_ID && LA8_1<=RULE_DECIMAL)||LA8_1==RULE_STRING||LA8_1==38||LA8_1==44||(LA8_1>=46 && LA8_1<=47)||LA8_1==61||(LA8_1>=68 && LA8_1<=69)||LA8_1==74||(LA8_1>=78 && LA8_1<=82)||LA8_1==85||LA8_1==88||LA8_1==90||(LA8_1>=94 && LA8_1<=95)||LA8_1==97||LA8_1==99||LA8_1==101||(LA8_1>=105 && LA8_1<=112)||LA8_1==121) ) {
-                    alt8=1;
-                }
-                else if ( (LA8_1==EOF||LA8_1==RULE_SCENARIO_TEXT||(LA8_1>=RULE_THEN_TEXT && LA8_1<=RULE_BUT_TEXT)) ) {
+                if ( (LA8_1==EOF||LA8_1==RULE_SCENARIO_TEXT||(LA8_1>=RULE_THEN_TEXT && LA8_1<=RULE_BUT_TEXT)) ) {
                     alt8=2;
+                }
+                else if ( ((LA8_1>=RULE_ID && LA8_1<=RULE_DECIMAL)||LA8_1==RULE_STRING||LA8_1==38||LA8_1==44||(LA8_1>=46 && LA8_1<=47)||LA8_1==61||(LA8_1>=68 && LA8_1<=69)||LA8_1==74||(LA8_1>=78 && LA8_1<=82)||LA8_1==85||LA8_1==88||LA8_1==90||(LA8_1>=94 && LA8_1<=95)||LA8_1==97||LA8_1==99||LA8_1==101||(LA8_1>=105 && LA8_1<=112)||LA8_1==121) ) {
+                    alt8=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -10021,11 +10021,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
             if ( (LA9_0==RULE_AND_TEXT) ) {
                 int LA9_1 = input.LA(2);
 
-                if ( (LA9_1==EOF||LA9_1==RULE_SCENARIO_TEXT||(LA9_1>=RULE_THEN_TEXT && LA9_1<=RULE_BUT_TEXT)) ) {
-                    alt9=2;
-                }
-                else if ( ((LA9_1>=RULE_ID && LA9_1<=RULE_DECIMAL)||LA9_1==RULE_STRING||LA9_1==38||LA9_1==44||(LA9_1>=46 && LA9_1<=47)||LA9_1==61||(LA9_1>=68 && LA9_1<=69)||LA9_1==74||(LA9_1>=78 && LA9_1<=82)||LA9_1==85||LA9_1==88||LA9_1==90||(LA9_1>=94 && LA9_1<=95)||LA9_1==97||LA9_1==99||LA9_1==101||(LA9_1>=105 && LA9_1<=112)||LA9_1==121) ) {
+                if ( ((LA9_1>=RULE_ID && LA9_1<=RULE_DECIMAL)||LA9_1==RULE_STRING||LA9_1==38||LA9_1==44||(LA9_1>=46 && LA9_1<=47)||LA9_1==61||(LA9_1>=68 && LA9_1<=69)||LA9_1==74||(LA9_1>=78 && LA9_1<=82)||LA9_1==85||LA9_1==88||LA9_1==90||(LA9_1>=94 && LA9_1<=95)||LA9_1==97||LA9_1==99||LA9_1==101||(LA9_1>=105 && LA9_1<=112)||LA9_1==121) ) {
                     alt9=1;
+                }
+                else if ( (LA9_1==EOF||LA9_1==RULE_SCENARIO_TEXT||(LA9_1>=RULE_THEN_TEXT && LA9_1<=RULE_BUT_TEXT)) ) {
+                    alt9=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -10038,11 +10038,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
             else if ( (LA9_0==RULE_BUT_TEXT) ) {
                 int LA9_2 = input.LA(2);
 
-                if ( ((LA9_2>=RULE_ID && LA9_2<=RULE_DECIMAL)||LA9_2==RULE_STRING||LA9_2==38||LA9_2==44||(LA9_2>=46 && LA9_2<=47)||LA9_2==61||(LA9_2>=68 && LA9_2<=69)||LA9_2==74||(LA9_2>=78 && LA9_2<=82)||LA9_2==85||LA9_2==88||LA9_2==90||(LA9_2>=94 && LA9_2<=95)||LA9_2==97||LA9_2==99||LA9_2==101||(LA9_2>=105 && LA9_2<=112)||LA9_2==121) ) {
-                    alt9=3;
-                }
-                else if ( (LA9_2==EOF||LA9_2==RULE_SCENARIO_TEXT||(LA9_2>=RULE_THEN_TEXT && LA9_2<=RULE_BUT_TEXT)) ) {
+                if ( (LA9_2==EOF||LA9_2==RULE_SCENARIO_TEXT||(LA9_2>=RULE_THEN_TEXT && LA9_2<=RULE_BUT_TEXT)) ) {
                     alt9=4;
+                }
+                else if ( ((LA9_2>=RULE_ID && LA9_2<=RULE_DECIMAL)||LA9_2==RULE_STRING||LA9_2==38||LA9_2==44||(LA9_2>=46 && LA9_2<=47)||LA9_2==61||(LA9_2>=68 && LA9_2<=69)||LA9_2==74||(LA9_2>=78 && LA9_2<=82)||LA9_2==85||LA9_2==88||LA9_2==90||(LA9_2>=94 && LA9_2<=95)||LA9_2==97||LA9_2==99||LA9_2==101||(LA9_2>=105 && LA9_2<=112)||LA9_2==121) ) {
+                    alt9=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -10282,11 +10282,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
             if ( (LA11_0==RULE_AND_TEXT) ) {
                 int LA11_1 = input.LA(2);
 
-                if ( (LA11_1==EOF||LA11_1==RULE_SCENARIO_TEXT||(LA11_1>=RULE_AND_TEXT && LA11_1<=RULE_BUT_TEXT)) ) {
-                    alt11=2;
-                }
-                else if ( ((LA11_1>=RULE_ID && LA11_1<=RULE_DECIMAL)||LA11_1==RULE_STRING||LA11_1==38||LA11_1==44||(LA11_1>=46 && LA11_1<=47)||LA11_1==61||(LA11_1>=68 && LA11_1<=69)||LA11_1==74||(LA11_1>=78 && LA11_1<=82)||LA11_1==85||LA11_1==88||LA11_1==90||(LA11_1>=94 && LA11_1<=95)||LA11_1==97||LA11_1==99||LA11_1==101||(LA11_1>=105 && LA11_1<=112)||LA11_1==121) ) {
+                if ( ((LA11_1>=RULE_ID && LA11_1<=RULE_DECIMAL)||LA11_1==RULE_STRING||LA11_1==38||LA11_1==44||(LA11_1>=46 && LA11_1<=47)||LA11_1==61||(LA11_1>=68 && LA11_1<=69)||LA11_1==74||(LA11_1>=78 && LA11_1<=82)||LA11_1==85||LA11_1==88||LA11_1==90||(LA11_1>=94 && LA11_1<=95)||LA11_1==97||LA11_1==99||LA11_1==101||(LA11_1>=105 && LA11_1<=112)||LA11_1==121) ) {
                     alt11=1;
+                }
+                else if ( (LA11_1==EOF||LA11_1==RULE_SCENARIO_TEXT||(LA11_1>=RULE_AND_TEXT && LA11_1<=RULE_BUT_TEXT)) ) {
+                    alt11=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -10299,11 +10299,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
             else if ( (LA11_0==RULE_BUT_TEXT) ) {
                 int LA11_2 = input.LA(2);
 
-                if ( ((LA11_2>=RULE_ID && LA11_2<=RULE_DECIMAL)||LA11_2==RULE_STRING||LA11_2==38||LA11_2==44||(LA11_2>=46 && LA11_2<=47)||LA11_2==61||(LA11_2>=68 && LA11_2<=69)||LA11_2==74||(LA11_2>=78 && LA11_2<=82)||LA11_2==85||LA11_2==88||LA11_2==90||(LA11_2>=94 && LA11_2<=95)||LA11_2==97||LA11_2==99||LA11_2==101||(LA11_2>=105 && LA11_2<=112)||LA11_2==121) ) {
-                    alt11=3;
-                }
-                else if ( (LA11_2==EOF||LA11_2==RULE_SCENARIO_TEXT||(LA11_2>=RULE_AND_TEXT && LA11_2<=RULE_BUT_TEXT)) ) {
+                if ( (LA11_2==EOF||LA11_2==RULE_SCENARIO_TEXT||(LA11_2>=RULE_AND_TEXT && LA11_2<=RULE_BUT_TEXT)) ) {
                     alt11=4;
+                }
+                else if ( ((LA11_2>=RULE_ID && LA11_2<=RULE_DECIMAL)||LA11_2==RULE_STRING||LA11_2==38||LA11_2==44||(LA11_2>=46 && LA11_2<=47)||LA11_2==61||(LA11_2>=68 && LA11_2<=69)||LA11_2==74||(LA11_2>=78 && LA11_2<=82)||LA11_2==85||LA11_2==88||LA11_2==90||(LA11_2>=94 && LA11_2<=95)||LA11_2==97||LA11_2==99||LA11_2==101||(LA11_2>=105 && LA11_2<=112)||LA11_2==121) ) {
+                    alt11=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -12545,11 +12545,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                 {
                 int LA26_1 = input.LA(2);
 
-                if ( (LA26_1==EOF||(LA26_1>=RULE_ID && LA26_1<=RULE_DECIMAL)||(LA26_1>=RULE_SCENARIO_TEXT && LA26_1<=RULE_STRING)||(LA26_1>=30 && LA26_1<=47)||(LA26_1>=50 && LA26_1<=86)||(LA26_1>=88 && LA26_1<=114)||(LA26_1>=118 && LA26_1<=119)||LA26_1==121) ) {
-                    alt26=2;
-                }
-                else if ( (LA26_1==29) ) {
+                if ( (LA26_1==29) ) {
                     alt26=1;
+                }
+                else if ( (LA26_1==EOF||(LA26_1>=RULE_ID && LA26_1<=RULE_DECIMAL)||(LA26_1>=RULE_SCENARIO_TEXT && LA26_1<=RULE_STRING)||(LA26_1>=30 && LA26_1<=47)||(LA26_1>=50 && LA26_1<=86)||(LA26_1>=88 && LA26_1<=114)||(LA26_1>=118 && LA26_1<=119)||LA26_1==121) ) {
+                    alt26=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -12602,11 +12602,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                 {
                 int LA26_4 = input.LA(2);
 
-                if ( (LA26_4==29) ) {
-                    alt26=1;
-                }
-                else if ( (LA26_4==EOF||(LA26_4>=RULE_ID && LA26_4<=RULE_DECIMAL)||(LA26_4>=RULE_SCENARIO_TEXT && LA26_4<=RULE_STRING)||(LA26_4>=30 && LA26_4<=47)||(LA26_4>=50 && LA26_4<=86)||(LA26_4>=88 && LA26_4<=114)||(LA26_4>=118 && LA26_4<=119)||LA26_4==121) ) {
+                if ( (LA26_4==EOF||(LA26_4>=RULE_ID && LA26_4<=RULE_DECIMAL)||(LA26_4>=RULE_SCENARIO_TEXT && LA26_4<=RULE_STRING)||(LA26_4>=30 && LA26_4<=47)||(LA26_4>=50 && LA26_4<=86)||(LA26_4>=88 && LA26_4<=114)||(LA26_4>=118 && LA26_4<=119)||LA26_4==121) ) {
                     alt26=2;
+                }
+                else if ( (LA26_4==29) ) {
+                    alt26=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -13127,11 +13127,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                 {
                 int LA29_2 = input.LA(2);
 
-                if ( (LA29_2==EOF||(LA29_2>=RULE_ID && LA29_2<=RULE_DECIMAL)||LA29_2==RULE_STRING||LA29_2==38||LA29_2==44||LA29_2==61||(LA29_2>=68 && LA29_2<=69)||LA29_2==74||(LA29_2>=78 && LA29_2<=82)||LA29_2==85||LA29_2==88||LA29_2==90||(LA29_2>=94 && LA29_2<=95)||LA29_2==97||LA29_2==99||LA29_2==101||(LA29_2>=105 && LA29_2<=112)||LA29_2==121) ) {
-                    alt29=4;
-                }
-                else if ( (LA29_2==29) ) {
+                if ( (LA29_2==29) ) {
                     alt29=2;
+                }
+                else if ( (LA29_2==EOF||(LA29_2>=RULE_ID && LA29_2<=RULE_DECIMAL)||LA29_2==RULE_STRING||LA29_2==38||LA29_2==44||LA29_2==61||(LA29_2>=68 && LA29_2<=69)||LA29_2==74||(LA29_2>=78 && LA29_2<=82)||LA29_2==85||LA29_2==88||LA29_2==90||(LA29_2>=94 && LA29_2<=95)||LA29_2==97||LA29_2==99||LA29_2==101||(LA29_2>=105 && LA29_2<=112)||LA29_2==121) ) {
+                    alt29=4;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -13502,11 +13502,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
             if ( (LA31_0==60) ) {
                 int LA31_1 = input.LA(2);
 
-                if ( (LA31_1==EOF||(LA31_1>=RULE_ID && LA31_1<=RULE_DECIMAL)||LA31_1==RULE_STRING||LA31_1==38||LA31_1==44||LA31_1==61||(LA31_1>=68 && LA31_1<=69)||LA31_1==74||(LA31_1>=78 && LA31_1<=82)||LA31_1==85||LA31_1==88||LA31_1==90||(LA31_1>=94 && LA31_1<=95)||LA31_1==97||LA31_1==99||LA31_1==101||(LA31_1>=105 && LA31_1<=112)||LA31_1==121) ) {
-                    alt31=2;
-                }
-                else if ( (LA31_1==60) ) {
+                if ( (LA31_1==60) ) {
                     alt31=1;
+                }
+                else if ( (LA31_1==EOF||(LA31_1>=RULE_ID && LA31_1<=RULE_DECIMAL)||LA31_1==RULE_STRING||LA31_1==38||LA31_1==44||LA31_1==61||(LA31_1>=68 && LA31_1<=69)||LA31_1==74||(LA31_1>=78 && LA31_1<=82)||LA31_1==85||LA31_1==88||LA31_1==90||(LA31_1>=94 && LA31_1<=95)||LA31_1==97||LA31_1==99||LA31_1==101||(LA31_1>=105 && LA31_1<=112)||LA31_1==121) ) {
+                    alt31=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -14851,11 +14851,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
             if ( (LA43_0==94) ) {
                 int LA43_1 = input.LA(2);
 
-                if ( (LA43_1==97) ) {
-                    alt43=1;
-                }
-                else if ( (LA43_1==95) ) {
+                if ( (LA43_1==95) ) {
                     alt43=2;
+                }
+                else if ( (LA43_1==97) ) {
+                    alt43=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -78879,95 +78879,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
 
     // Delegated rules
 
-    public final boolean synpred188_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred188_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred66_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred66_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred119_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred119_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred225_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred225_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred32_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred32_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred249_InternalFeature() {
         state.backtracking++;
         int start = input.mark();
         try {
             synpred249_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred166_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred166_InternalFeature_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -78991,67 +78907,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred183_InternalFeature() {
+    public final boolean synpred114_InternalFeature() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred183_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred92_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred92_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred237_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred237_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred231_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred231_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred212_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred212_InternalFeature_fragment(); // can never throw exception
+            synpred114_InternalFeature_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -79075,137 +78935,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred239_InternalFeature() {
+    public final boolean synpred212_InternalFeature() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred239_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred246_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred246_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred106_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred106_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred187_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred187_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred31_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred31_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred125_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred125_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred190_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred190_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred193_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred193_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred248_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred248_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred184_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred184_InternalFeature_fragment(); // can never throw exception
+            synpred212_InternalFeature_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -79229,11 +78963,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred93_InternalFeature() {
+    public final boolean synpred183_InternalFeature() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred93_InternalFeature_fragment(); // can never throw exception
+            synpred183_InternalFeature_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -79243,11 +78977,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred181_InternalFeature() {
+    public final boolean synpred225_InternalFeature() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred181_InternalFeature_fragment(); // can never throw exception
+            synpred225_InternalFeature_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -79257,123 +78991,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred202_InternalFeature() {
+    public final boolean synpred248_InternalFeature() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred202_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred67_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred67_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred172_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred172_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred242_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred242_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred240_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred240_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred226_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred226_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred118_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred118_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred186_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred186_InternalFeature_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred189_InternalFeature() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred189_InternalFeature_fragment(); // can never throw exception
+            synpred248_InternalFeature_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -79397,11 +79019,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred191_InternalFeature() {
+    public final boolean synpred202_InternalFeature() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred191_InternalFeature_fragment(); // can never throw exception
+            synpred202_InternalFeature_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -79411,11 +79033,123 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred114_InternalFeature() {
+    public final boolean synpred92_InternalFeature() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred114_InternalFeature_fragment(); // can never throw exception
+            synpred92_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred66_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred66_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred32_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred32_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred231_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred231_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred166_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred166_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred187_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred187_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred193_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred193_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred240_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred240_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred186_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred186_InternalFeature_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -79439,6 +79173,76 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
+    public final boolean synpred246_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred246_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred31_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred31_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred226_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred226_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred67_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred67_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred237_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred237_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred185_InternalFeature() {
         state.backtracking++;
         int start = input.mark();
@@ -79453,11 +79257,207 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
+    public final boolean synpred191_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred191_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred106_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred106_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred125_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred125_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred119_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred119_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred181_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred181_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred184_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred184_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred172_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred172_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred190_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred190_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred93_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred93_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred118_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred118_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred239_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred239_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred188_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred188_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred238_InternalFeature() {
         state.backtracking++;
         int start = input.mark();
         try {
             synpred238_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred189_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred189_InternalFeature_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred242_InternalFeature() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred242_InternalFeature_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -80106,14 +80106,14 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
     static final String DFA30_maxS =
         "\1\103\2\uffff\1\100\7\uffff";
     static final String DFA30_acceptS =
-        "\1\uffff\1\1\1\2\1\uffff\1\4\1\5\1\7\1\10\1\11\1\6\1\3";
+        "\1\uffff\1\1\1\2\1\uffff\1\4\1\5\1\7\1\10\1\11\1\3\1\6";
     static final String DFA30_specialS =
         "\13\uffff}>";
     static final String[] DFA30_transitionS = {
             "\1\3\1\6\1\1\1\2\1\4\1\5\1\7\1\10",
             "",
             "",
-            "\1\11\3\uffff\1\12",
+            "\1\12\3\uffff\1\11",
             "",
             "",
             "",
@@ -80719,23 +80719,23 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
     static final String DFA61_eotS =
         "\7\uffff";
     static final String DFA61_eofS =
-        "\2\uffff\1\4\3\uffff\1\4";
+        "\2\uffff\1\4\2\uffff\1\4\1\uffff";
     static final String DFA61_minS =
-        "\1\4\1\uffff\1\10\1\4\2\uffff\1\10";
+        "\1\4\1\uffff\1\10\1\4\1\uffff\1\10\1\uffff";
     static final String DFA61_maxS =
-        "\1\46\1\uffff\1\131\1\106\2\uffff\1\131";
+        "\1\46\1\uffff\1\131\1\106\1\uffff\1\131\1\uffff";
     static final String DFA61_acceptS =
-        "\1\uffff\1\1\2\uffff\1\2\1\3\1\uffff";
+        "\1\uffff\1\1\2\uffff\1\2\1\uffff\1\3";
     static final String DFA61_specialS =
         "\7\uffff}>";
     static final String[] DFA61_transitionS = {
             "\1\2\41\uffff\1\1",
             "",
             "\1\4\104\uffff\1\3\1\uffff\1\4\3\uffff\1\4\5\uffff\1\4",
-            "\1\6\101\uffff\1\5",
+            "\1\5\101\uffff\1\6",
             "",
-            "",
-            "\1\4\104\uffff\1\3\1\uffff\1\4\3\uffff\1\4\5\uffff\1\4"
+            "\1\4\104\uffff\1\3\1\uffff\1\4\3\uffff\1\4\5\uffff\1\4",
+            ""
     };
 
     static final short[] DFA61_eot = DFA.unpackEncodedString(DFA61_eotS);
@@ -80774,31 +80774,31 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
     static final String DFA85_eotS =
         "\7\uffff";
     static final String DFA85_eofS =
-        "\1\uffff\1\4\1\uffff\1\2\1\uffff\1\4\1\2";
+        "\1\uffff\1\3\2\uffff\1\2\1\3\1\2";
     static final String DFA85_minS =
-        "\2\4\1\uffff\1\4\1\uffff\2\4";
+        "\2\4\2\uffff\3\4";
     static final String DFA85_maxS =
-        "\1\132\1\137\1\uffff\1\137\1\uffff\2\137";
+        "\1\132\1\137\2\uffff\3\137";
     static final String DFA85_acceptS =
-        "\2\uffff\1\1\1\uffff\1\2\2\uffff";
+        "\2\uffff\1\1\1\2\3\uffff";
     static final String DFA85_specialS =
         "\7\uffff}>";
     static final String[] DFA85_transitionS = {
             "\1\1\74\uffff\1\2\30\uffff\1\2",
-            "\1\3\6\uffff\4\4\16\uffff\1\4\3\uffff\17\4\15\uffff\1\2\3"+
-            "\uffff\1\4\13\uffff\1\2\2\uffff\1\4\2\uffff\1\4\5\uffff\2\4"+
+            "\1\4\6\uffff\4\3\16\uffff\1\3\3\uffff\17\3\15\uffff\1\2\3"+
+            "\uffff\1\3\13\uffff\1\2\2\uffff\1\3\2\uffff\1\3\5\uffff\2\3"+
             "\4\uffff\1\2",
             "",
-            "\1\5\6\uffff\4\2\16\uffff\1\2\3\uffff\17\2\15\uffff\1\4\3"+
-            "\uffff\1\2\13\uffff\1\4\2\uffff\1\2\2\uffff\1\2\5\uffff\2\2"+
-            "\4\uffff\1\4",
             "",
-            "\1\6\6\uffff\4\4\16\uffff\1\4\3\uffff\17\4\15\uffff\1\2\3"+
-            "\uffff\1\4\13\uffff\1\2\2\uffff\1\4\2\uffff\1\4\5\uffff\2\4"+
+            "\1\5\6\uffff\4\2\16\uffff\1\2\3\uffff\17\2\15\uffff\1\3\3"+
+            "\uffff\1\2\13\uffff\1\3\2\uffff\1\2\2\uffff\1\2\5\uffff\2\2"+
+            "\4\uffff\1\3",
+            "\1\6\6\uffff\4\3\16\uffff\1\3\3\uffff\17\3\15\uffff\1\2\3"+
+            "\uffff\1\3\13\uffff\1\2\2\uffff\1\3\2\uffff\1\3\5\uffff\2\3"+
             "\4\uffff\1\2",
-            "\1\5\6\uffff\4\2\16\uffff\1\2\3\uffff\17\2\15\uffff\1\4\3"+
-            "\uffff\1\2\13\uffff\1\4\2\uffff\1\2\2\uffff\1\2\5\uffff\2\2"+
-            "\4\uffff\1\4"
+            "\1\5\6\uffff\4\2\16\uffff\1\2\3\uffff\17\2\15\uffff\1\3\3"+
+            "\uffff\1\2\13\uffff\1\3\2\uffff\1\2\2\uffff\1\2\5\uffff\2\2"+
+            "\4\uffff\1\3"
     };
 
     static final short[] DFA85_eot = DFA.unpackEncodedString(DFA85_eotS);
@@ -81069,7 +81069,7 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
     static final String DFA107_acceptS =
         "\10\uffff\1\2\1\1";
     static final String DFA107_specialS =
-        "\1\uffff\1\0\1\2\1\3\1\5\1\1\1\6\1\4\2\uffff}>";
+        "\1\uffff\1\6\1\5\1\0\1\3\1\2\1\1\1\4\2\uffff}>";
     static final String[] DFA107_transitionS = {
             "\4\10\3\uffff\7\10\14\uffff\22\10\2\uffff\1\1\1\2\1\3\1\4\1"+
             "\5\5\10\1\7\1\6\31\10\1\uffff\33\10\3\uffff\2\10\1\uffff\1\10",
@@ -81121,10 +81121,10 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA107_1 = input.LA(1);
+                        int LA107_3 = input.LA(1);
 
                          
-                        int index107_1 = input.index();
+                        int index107_3 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred181_InternalFeature()) ) {s = 9;}
@@ -81132,10 +81132,25 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index107_1);
+                        input.seek(index107_3);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
+                        int LA107_6 = input.LA(1);
+
+                         
+                        int index107_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred181_InternalFeature()) ) {s = 9;}
+
+                        else if ( (true) ) {s = 8;}
+
+                         
+                        input.seek(index107_6);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
                         int LA107_5 = input.LA(1);
 
                          
@@ -81150,26 +81165,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                         input.seek(index107_5);
                         if ( s>=0 ) return s;
                         break;
-                    case 2 : 
-                        int LA107_2 = input.LA(1);
-
-                         
-                        int index107_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred181_InternalFeature()) ) {s = 9;}
-
-                        else if ( (true) ) {s = 8;}
-
-                         
-                        input.seek(index107_2);
-                        if ( s>=0 ) return s;
-                        break;
                     case 3 : 
-                        int LA107_3 = input.LA(1);
+                        int LA107_4 = input.LA(1);
 
                          
-                        int index107_3 = input.index();
+                        int index107_4 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred181_InternalFeature()) ) {s = 9;}
@@ -81177,7 +81177,7 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index107_3);
+                        input.seek(index107_4);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
@@ -81196,10 +81196,10 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA107_4 = input.LA(1);
+                        int LA107_2 = input.LA(1);
 
                          
-                        int index107_4 = input.index();
+                        int index107_2 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred181_InternalFeature()) ) {s = 9;}
@@ -81207,14 +81207,14 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index107_4);
+                        input.seek(index107_2);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA107_6 = input.LA(1);
+                        int LA107_1 = input.LA(1);
 
                          
-                        int index107_6 = input.index();
+                        int index107_1 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred181_InternalFeature()) ) {s = 9;}
@@ -81222,7 +81222,7 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index107_6);
+                        input.seek(index107_1);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -81244,7 +81244,7 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
     static final String DFA112_acceptS =
         "\1\uffff\1\2\10\uffff\1\1";
     static final String DFA112_specialS =
-        "\2\uffff\1\7\1\3\1\5\1\6\1\1\1\0\1\4\1\2\1\uffff}>";
+        "\2\uffff\1\6\1\0\1\5\1\4\1\1\1\7\1\2\1\3\1\uffff}>";
     static final String[] DFA112_transitionS = {
             "\4\1\3\uffff\7\1\14\uffff\22\1\2\uffff\12\1\1\3\1\2\1\5\1\6"+
             "\1\7\1\4\1\10\1\11\23\1\1\uffff\33\1\3\uffff\2\1\1\uffff\1\1",
@@ -81297,10 +81297,10 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA112_7 = input.LA(1);
+                        int LA112_3 = input.LA(1);
 
                          
-                        int index112_7 = input.index();
+                        int index112_3 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred186_InternalFeature()) ) {s = 10;}
@@ -81308,7 +81308,7 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index112_7);
+                        input.seek(index112_3);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
@@ -81327,6 +81327,21 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
+                        int LA112_8 = input.LA(1);
+
+                         
+                        int index112_8 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred186_InternalFeature()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index112_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
                         int LA112_9 = input.LA(1);
 
                          
@@ -81341,26 +81356,11 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                         input.seek(index112_9);
                         if ( s>=0 ) return s;
                         break;
-                    case 3 : 
-                        int LA112_3 = input.LA(1);
-
-                         
-                        int index112_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred186_InternalFeature()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index112_3);
-                        if ( s>=0 ) return s;
-                        break;
                     case 4 : 
-                        int LA112_8 = input.LA(1);
+                        int LA112_5 = input.LA(1);
 
                          
-                        int index112_8 = input.index();
+                        int index112_5 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred186_InternalFeature()) ) {s = 10;}
@@ -81368,7 +81368,7 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index112_8);
+                        input.seek(index112_5);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
@@ -81387,21 +81387,6 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA112_5 = input.LA(1);
-
-                         
-                        int index112_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred186_InternalFeature()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index112_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
                         int LA112_2 = input.LA(1);
 
                          
@@ -81414,6 +81399,21 @@ public class InternalFeatureParser extends AbstractInternalContentAssistParser {
 
                          
                         input.seek(index112_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA112_7 = input.LA(1);
+
+                         
+                        int index112_7 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred186_InternalFeature()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index112_7);
                         if ( s>=0 ) return s;
                         break;
             }

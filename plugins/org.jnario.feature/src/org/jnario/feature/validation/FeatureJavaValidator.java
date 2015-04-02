@@ -78,13 +78,6 @@ public class FeatureJavaValidator extends AbstractFeatureJavaValidator {
 	}
 	
 	@Check(CheckType.FAST)
-	public void checkName(Step fnc) {
-		if (fnc.getName() == null || fnc.getName().trim().length() == 0) {
-			error("Name missing", JnarioPackage.Literals.JNARIO_FUNCTION__NAME);
-		}
-	}
-	
-	@Check(CheckType.FAST)
 	public void checkFeaturesHaveAName(Scenario scenario){
 		if (scenario instanceof Background) {
 			return;
