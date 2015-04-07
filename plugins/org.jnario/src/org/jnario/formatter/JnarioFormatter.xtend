@@ -73,7 +73,10 @@ class JnarioFormatter extends XbaseWithAnnotationsFormatter {
 			increaseIndentation
 			newLine
 		]
-		table.regionForKeyword("}").prepend[decreaseIndentation]
+		table.regionForKeyword("}").prepend[
+		    decreaseIndentation
+		    newLine
+		]
 		formatRows(table.rows, format)
 		formatColumns(table.columns, format)
 	}

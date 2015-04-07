@@ -3,7 +3,6 @@
  */
 package org.jnario.spec.formatting2;
 
-import com.google.inject.Inject;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
@@ -60,7 +59,6 @@ import org.jnario.JnarioTypeDeclaration;
 import org.jnario.Should;
 import org.jnario.ShouldThrow;
 import org.jnario.formatter.JnarioFormatter;
-import org.jnario.spec.services.SpecGrammarAccess;
 import org.jnario.spec.spec.After;
 import org.jnario.spec.spec.Before;
 import org.jnario.spec.spec.Example;
@@ -69,10 +67,6 @@ import org.jnario.spec.spec.SpecFile;
 
 @SuppressWarnings("all")
 public class SpecFormatter extends JnarioFormatter {
-  @Inject
-  @Extension
-  private SpecGrammarAccess _specGrammarAccess;
-  
   protected void _format(final SpecFile specfile, @Extension final IFormattableDocument document) {
     XImportSection _importSection = specfile.getImportSection();
     this.format(_importSection, document);
@@ -82,37 +76,13 @@ public class SpecFormatter extends JnarioFormatter {
     }
   }
   
-  protected void _format(final JnarioTypeDeclaration jnariotypedeclaration, @Extension final IFormattableDocument document) {
-    ISemanticRegion _regionForKeyword = this.regionAccess.regionForKeyword(jnariotypedeclaration, "{");
-    final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
-      @Override
-      public void apply(final IHiddenRegionFormatter it) {
-        it.increaseIndentation();
-        it.newLine();
-      }
-    };
-    document.append(_regionForKeyword, _function);
-    ISemanticRegion _regionForKeyword_1 = this.regionAccess.regionForKeyword(jnariotypedeclaration, "}");
-    final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
-      @Override
-      public void apply(final IHiddenRegionFormatter it) {
-        it.decreaseIndentation();
-      }
-    };
-    document.append(_regionForKeyword_1, _function_1);
-    EList<XAnnotation> _annotations = jnariotypedeclaration.getAnnotations();
-    for (final XAnnotation annotations : _annotations) {
-      this.format(annotations, document);
-    }
-  }
-  
   protected void _format(final ExampleGroup examplegroup, @Extension final IFormattableDocument document) {
     ISemanticRegion _regionForKeyword = this.regionAccess.regionForKeyword(examplegroup, "{");
     final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
         it.increaseIndentation();
-        it.newLine();
+        it.setNewLines(1, 1, 2);
       }
     };
     document.append(_regionForKeyword, _function);
@@ -121,9 +91,10 @@ public class SpecFormatter extends JnarioFormatter {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
         it.decreaseIndentation();
+        it.newLine();
       }
     };
-    document.append(_regionForKeyword_1, _function_1);
+    document.prepend(_regionForKeyword_1, _function_1);
     JvmTypeReference _targetType = examplegroup.getTargetType();
     this.format(_targetType, document);
     EList<JnarioMember> _members = examplegroup.getMembers();
@@ -311,9 +282,6 @@ public class SpecFormatter extends JnarioFormatter {
       return;
     } else if (examplegroup instanceof JnarioFunction) {
       _format((JnarioFunction)examplegroup, document);
-      return;
-    } else if (examplegroup instanceof JnarioTypeDeclaration) {
-      _format((JnarioTypeDeclaration)examplegroup, document);
       return;
     } else if (examplegroup instanceof JvmGenericArrayTypeReference) {
       _format((JvmGenericArrayTypeReference)examplegroup, document);

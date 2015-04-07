@@ -6,7 +6,7 @@ Bundle-Version: 1.1.0.qualifier
 Bundle-SymbolicName: org.jnario.tests; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.xtext,
+ org.eclipse.xtext;bundle-version="[2.8.0,2.9.0)";visibility:=reexport,
  org.eclipse.xtext.junit4;visibility:=reexport,
  org.junit;visibility:=reexport,
  org.eclipse.xtext.xbase;bundle-version="2.8.1",

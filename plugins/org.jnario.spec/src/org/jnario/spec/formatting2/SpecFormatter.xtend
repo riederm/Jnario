@@ -3,7 +3,6 @@
  */
 package org.jnario.spec.formatting2;
 
-import com.google.inject.Inject
 import org.eclipse.xtext.common.types.JvmTypeParameter
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.formatting2.IFormattableDocument
@@ -14,7 +13,6 @@ import org.jnario.Assertion
 import org.jnario.ExampleCell
 import org.jnario.ExampleColumn
 import org.jnario.ExampleRow
-import org.jnario.ExampleTable
 import org.jnario.JnarioField
 import org.jnario.JnarioFunction
 import org.jnario.JnarioMember
@@ -23,7 +21,6 @@ import org.jnario.JnarioTypeDeclaration
 import org.jnario.Should
 import org.jnario.ShouldThrow
 import org.jnario.formatter.JnarioFormatter
-import org.jnario.spec.services.SpecGrammarAccess
 import org.jnario.spec.spec.After
 import org.jnario.spec.spec.Before
 import org.jnario.spec.spec.Example
@@ -32,38 +29,36 @@ import org.jnario.spec.spec.SpecFile
 
 class SpecFormatter extends JnarioFormatter {
 
-	@Inject extension SpecGrammarAccess
-
 	def dispatch void format(SpecFile specfile, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
 		format(specfile.getImportSection(), document);
 		for (JnarioTypeDeclaration xtendTypes : specfile.getXtendTypes()) {
 			format(xtendTypes, document);
 		}
 	}
 
-	def dispatch void format(JnarioTypeDeclaration jnariotypedeclaration, extension IFormattableDocument document) {
-		jnariotypedeclaration.regionForKeyword("{").append[
-		    increaseIndentation
-		    newLine
-		]
-		jnariotypedeclaration.regionForKeyword("}").append[
-		    decreaseIndentation
+// TODO NO_XTEND Remove it not needed
+//	def dispatch void format(JnarioTypeDeclaration jnariotypedeclaration, extension IFormattableDocument document) {
+//		jnariotypedeclaration.regionForKeyword("{").append[
+//		    increaseIndentation
+//		    setNewLines(1, 1, 2)
+//		]
+//		jnariotypedeclaration.regionForKeyword("}").append[
+//		    decreaseIndentation
 //		    newLine
-		]
-		for (XAnnotation annotations : jnariotypedeclaration.getAnnotations()) {
-			format(annotations, document);
-		}
-	}
+//		]
+//		for (XAnnotation annotations : jnariotypedeclaration.getAnnotations()) {
+//			format(annotations, document);
+//		}
+//	}
 
 	def dispatch void format(ExampleGroup examplegroup, extension IFormattableDocument document) {
         examplegroup.regionForKeyword("{").append[
             increaseIndentation
-            newLine
+            setNewLines(1, 1, 2)
         ]
-        examplegroup.regionForKeyword("}").append[
+        examplegroup.regionForKeyword("}").prepend[
             decreaseIndentation
-//          newLine
+            newLine
         ]
 		format(examplegroup.getTargetType(), document);
 		for (JnarioMember members : examplegroup.getMembers()) {

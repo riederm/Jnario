@@ -251,6 +251,7 @@ public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
         it.decreaseIndentation();
+        it.newLine();
       }
     };
     format.prepend(_regionForKeyword_1, _function_1);
