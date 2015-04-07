@@ -13,16 +13,15 @@ import org.eclipse.xtext.generator.JavaIoFileSystemAccess
 import org.jnario.doc.HtmlAssets
 import static org.jnario.doc.DocOutputConfigurationProvider.*
 
-// TODO NO_XTEND
-//class HtmlAssetsCompiler extends JnarioDocCompiler{
-//	
-//	@Inject Provider<JavaIoFileSystemAccess> filesystemAccessProvider
-//	@Inject HtmlAssets htmlAssets
-//	
-//	override compile(){
-//		val fsa = filesystemAccessProvider.get
-//		fsa.setOutputPath(ASSET_OUTPUT, outputPath)
-//		htmlAssets.generate(fsa)	
-//		return true
-//	}		
-//}
+class HtmlAssetsCompiler extends JnarioDocCompiler{
+	
+	@Inject Provider<JavaIoFileSystemAccess> filesystemAccessProvider
+	@Inject HtmlAssets htmlAssets
+	
+	override compile(){
+		val fsa = filesystemAccessProvider.get
+		fsa.setOutputPath(ASSET_OUTPUT, outputPath)
+		htmlAssets.generate(fsa)	
+		return true
+	}		
+}

@@ -17,6 +17,8 @@ import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.log4j.BasicConfigurator;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtend.lib.Property;
 import org.eclipse.xtext.ISetup;
@@ -27,6 +29,9 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Pure;
+import org.jnario.compiler.CompilerMain;
+import org.jnario.compiler.HtmlAssetsCompiler;
+import org.jnario.compiler.JnarioDocCompiler;
 import org.jnario.compiler.StandaloneResourceProvider;
 import org.jnario.feature.FeatureStandaloneSetup;
 import org.jnario.report.HashBasedSpec2ResultMapping;
@@ -138,20 +143,32 @@ public class DocCompilerMain {
   }
   
   private int generateDocs(final Provider<ResourceSet> resourceSet) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nJnarioDocCompiler cannot be resolved to a type."
-      + "\nThe method setResourceSetProvider is undefined for the type DocCompilerMain"
-      + "\nThe method setExecutable2ResultMapping is undefined for the type DocCompilerMain"
-      + "\nThe method compile is undefined for the type DocCompilerMain"
-      + "\nInvalid number of arguments. The method setOutputPath(String) is not applicable for the arguments (void,String)"
-      + "\nInvalid number of arguments. The method setClassPath(String) is not applicable for the arguments (void,String)"
-      + "\nInvalid number of arguments. The method setFileEncoding(String) is not applicable for the arguments (void,String)"
-      + "\nInvalid number of arguments. The method setSourcePath(String) is not applicable for the arguments (void,String)"
-      + "\nType mismatch: cannot convert from void to String"
-      + "\nType mismatch: cannot convert from void to String"
-      + "\nType mismatch: cannot convert from void to String"
-      + "\nType mismatch: cannot convert from void to String"
-      + "\n! cannot be resolved");
+    for (final ISetup setup : DocCompilerMain.SETUPS) {
+      {
+        final Injector injector = setup.createInjectorAndDoEMFRegistration();
+        final JnarioDocCompiler jnarioCompiler = injector.<JnarioDocCompiler>getInstance(JnarioDocCompiler.class);
+        String _outputPath = this.getOutputPath();
+        jnarioCompiler.setOutputPath(_outputPath);
+        String _classPath = this.getClassPath();
+        jnarioCompiler.setClassPath(_classPath);
+        String _fileEncoding = this.getFileEncoding();
+        jnarioCompiler.setFileEncoding(_fileEncoding);
+        String _sourcePath = this.getSourcePath();
+        jnarioCompiler.setSourcePath(_sourcePath);
+        ResourceSet _get = resourceSet.get();
+        EList<Adapter> _eAdapters = _get.eAdapters();
+        _eAdapters.clear();
+        jnarioCompiler.setResourceSetProvider(resourceSet);
+        HashBasedSpec2ResultMapping _createSpec2ResultMapping = this.createSpec2ResultMapping();
+        jnarioCompiler.setExecutable2ResultMapping(_createSpec2ResultMapping);
+        boolean _compile = jnarioCompiler.compile();
+        boolean _not = (!_compile);
+        if (_not) {
+          return CompilerMain.COMPILATION_ERROR;
+        }
+      }
+    }
+    return CompilerMain.OK;
   }
   
   private static void printUsage() {
@@ -175,12 +192,15 @@ public class DocCompilerMain {
     return resultMapping;
   }
   
-  public Object generateCssAndJsFiles(final Injector injector) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nHtmlAssetsCompiler cannot be resolved to a type."
-      + "\nThe method compile is undefined for the type DocCompilerMain"
-      + "\nInvalid number of arguments. The method setOutputPath(String) is not applicable for the arguments (void,String)"
-      + "\nType mismatch: cannot convert from void to String");
+  public boolean generateCssAndJsFiles(final Injector injector) {
+    boolean _xblockexpression = false;
+    {
+      final HtmlAssetsCompiler assetsCompiler = injector.<HtmlAssetsCompiler>getInstance(HtmlAssetsCompiler.class);
+      String _outputPath = this.getOutputPath();
+      assetsCompiler.setOutputPath(_outputPath);
+      _xblockexpression = assetsCompiler.compile();
+    }
+    return _xblockexpression;
   }
   
   public void addExecutionResults(final HashBasedSpec2ResultMapping resultMapping, final File reportFolder) {

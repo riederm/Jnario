@@ -165,8 +165,7 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
 		scenario.members.filter(typeof(JnarioField)).forEach[
 //			initializeName
 
-// TODO NO_XTEND
-//			transform2(it, inferredJvmType)
+			transform(it, inferredJvmType)
 		]   		
    		val annotations = inferredJvmType.annotations
    		testRuntime.updateScenario(scenario, inferredJvmType)

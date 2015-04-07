@@ -292,6 +292,7 @@ public class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
     final Procedure1<JnarioField> _function = new Procedure1<JnarioField>() {
       @Override
       public void apply(final JnarioField it) {
+        FeatureJvmModelInferrer.this.transform(it, inferredJvmType);
       }
     };
     IterableExtensions.<JnarioField>forEach(_filter, _function);

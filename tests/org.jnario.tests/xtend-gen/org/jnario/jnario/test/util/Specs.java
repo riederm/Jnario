@@ -7,10 +7,12 @@
  */
 package org.jnario.jnario.test.util;
 
-import org.eclipse.xtend.core.xtend.XtendMember;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.XBlockExpression;
 import org.eclipse.xtext.xbase.XBooleanLiteral;
 import org.eclipse.xtext.xbase.XbaseFactory;
+import org.eclipse.xtext.xbase.lib.CollectionExtensions;
+import org.jnario.JnarioMember;
 import org.jnario.jnario.test.util.Features;
 import org.jnario.spec.spec.Example;
 import org.jnario.spec.spec.ExampleGroup;
@@ -55,17 +57,23 @@ public class Specs {
   }
   
   public static ExampleGroup pendingExampleGroup() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Example to XtendMember[]");
+    Example _pendingExample = Specs.pendingExample();
+    return Specs.exampleGroupWith(_pendingExample);
   }
   
-  public static ExampleGroup exampleGroupWith(final XtendMember... examples) {
+  public static ExampleGroup exampleGroupWith(final JnarioMember... examples) {
     return Specs.exampleGroup("with examples", examples);
   }
   
-  public static ExampleGroup exampleGroup(final String name, final XtendMember... examples) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from EList<JnarioMember> to Collection<? super XtendMember>");
+  public static ExampleGroup exampleGroup(final String name, final JnarioMember... examples) {
+    ExampleGroup _xblockexpression = null;
+    {
+      final ExampleGroup group = Specs.exampleGroup(name);
+      EList<JnarioMember> _members = group.getMembers();
+      CollectionExtensions.<JnarioMember>addAll(_members, examples);
+      _xblockexpression = group;
+    }
+    return _xblockexpression;
   }
   
   public static ExampleGroup exampleGroup(final String name) {

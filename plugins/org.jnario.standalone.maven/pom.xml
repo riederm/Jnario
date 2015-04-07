@@ -55,6 +55,7 @@
       <groupId>org.eclipse.xtext</groupId>
       <artifactId>org.eclipse.xtext.dependencies</artifactId>
       <version>${xtend.version}</version>
+      <type>pom</type>
     </dependency>
     <dependency>
       <groupId>org.ow2.asm</groupId>

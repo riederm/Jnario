@@ -9,12 +9,17 @@ package org.jnario.standalone.tests;
 
 import com.google.inject.Inject;
 import java.io.File;
+import java.io.FilenameFilter;
+import java.util.List;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.util.Files;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.jnario.jnario.test.util.ExtendedSpecInjectorProvider;
+import org.jnario.spec.compiler.SpecBatchCompiler;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +29,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SpecBatchCompilerTest {
   @Inject
-  private /* SpecBatchCompiler */Object batchCompiler;
+  private SpecBatchCompiler batchCompiler;
   
   private static String OUTPUT_DIRECTORY = "./test-result";
   
@@ -34,11 +39,18 @@ public class SpecBatchCompilerTest {
   
   @Before
   public void onSetup() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nsourcePath cannot be resolved"
-      + "\noutputPath cannot be resolved"
-      + "\ndeleteTempDirectory cannot be resolved"
-      + "\nuseCurrentClassLoaderAsParent cannot be resolved");
+    try {
+      this.batchCompiler.setSourcePath(SpecBatchCompilerTest.XTEND_SRC_DIRECTORY);
+      this.batchCompiler.setOutputPath(SpecBatchCompilerTest.OUTPUT_DIRECTORY);
+      this.batchCompiler.setDeleteTempDirectory(true);
+      this.batchCompiler.setUseCurrentClassLoaderAsParent(true);
+      File _file = new File(SpecBatchCompilerTest.OUTPUT_DIRECTORY);
+      _file.mkdir();
+      File _file_1 = new File(SpecBatchCompilerTest.OUTPUT_DIRECTORY);
+      Files.cleanFolder(_file_1, null, true, false);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   @After
@@ -59,7 +71,16 @@ public class SpecBatchCompilerTest {
   
   @Test
   public void testCompileTestData() {
-    throw new Error("Unresolved compilation problems:"
-      + "\ncompile cannot be resolved");
+    this.batchCompiler.compile();
+    File _file = new File((SpecBatchCompilerTest.OUTPUT_DIRECTORY + "/test"));
+    final FilenameFilter _function = new FilenameFilter() {
+      @Override
+      public boolean accept(final File dir, final String name) {
+        return name.endsWith(".java");
+      }
+    };
+    String[] _list = _file.list(_function);
+    int _size = ((List<String>)Conversions.doWrapArray(_list)).size();
+    Assert.assertEquals(3, _size);
   }
 }
