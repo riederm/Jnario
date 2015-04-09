@@ -18,7 +18,6 @@ import org.apache.log4j.Logger
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
-import org.eclipse.xtend.core.compiler.batch.XtendBatchCompiler
 import org.eclipse.xtext.ISetup
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.TypesPackage
@@ -41,8 +40,10 @@ import org.jnario.suite.SuiteStandaloneSetup
 
 import static org.jnario.compiler.JnarioStandaloneCompiler.*
 import java.util.ArrayList
+import java.util.Collection
+import java.util.Collections
 
-class JnarioStandaloneCompiler extends XtendBatchCompiler {
+class JnarioStandaloneCompiler extends AbstractBatchCompiler {
 	
 	final static val log = Logger.getLogger(JnarioStandaloneCompiler.getName())
 	
@@ -103,6 +104,13 @@ class JnarioStandaloneCompiler extends XtendBatchCompiler {
 		]
 		return resourceSet;
 	}
+// TODO REMOVE ME    
+//    def Iterable<? extends URI> reverse(Collection<URI> uris) {
+//        val list = newArrayList
+//        list.addAll(uris)
+//        Collections.reverse(list)
+//        list
+//    }
 	
 	def getNameBasedFilters() {
 		injectors.eagerMap[
@@ -117,8 +125,10 @@ class JnarioStandaloneCompiler extends XtendBatchCompiler {
 		val fileSystemAccess = javaIoFileSystemAccessProvider.get();
 		fileSystemAccess.setOutputPath(outputDirectory.toString());
 		Lists.newArrayList(resourceSet.getResources()).forEach[
-			val description = findResourceDescriptionManager(it).getResourceDescription(it);
-			stubGenerator.doGenerateStubs(fileSystemAccess, description);
+			val description = findResourceDescriptionManager(it)?.getResourceDescription(it);
+			if (description != null) {
+    			stubGenerator.doGenerateStubs(fileSystemAccess, description);
+			}
 		
 		]
 		return outputDirectory;
@@ -129,7 +139,7 @@ class JnarioStandaloneCompiler extends XtendBatchCompiler {
 	}
 	
 	def <T> T getInstance(Resource resource, Class<T> type) {
-	  injectorMap.get(resource.URI.fileExtension.toLowerCase).getInstance(type)
+	  injectorMap.get(resource.URI.fileExtension.toLowerCase)?.getInstance(type)
 	}
 
 	override generateJavaFiles(ResourceSet resourceSet) {

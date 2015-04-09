@@ -82,7 +82,10 @@ class SuiteResourceDescriptionManager extends DerivedStateAwareResourceDescripti
 
 			val suites = candidate.getExportedObjectsByType(SuitePackage.Literals.SUITE)
 			val matchers = suites
-				.map[resolve(it.getEObjectOrProxy as Suite, resourceSet) as Suite]
+				.map[
+				    // TODO Check if one of the involved java projects was closed prior to resolve call
+				    resolve(it.getEObjectOrProxy as Suite, resourceSet) as Suite
+				]
 				.filter[!it.eIsProxy]
 				.map [resolvePatternReferences.map[Pattern::compile(pattern)]]
 				.flatten

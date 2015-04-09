@@ -20,6 +20,7 @@ import org.eclipse.xtext.generator.IFilePostProcessor;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
 import org.eclipse.xtext.linking.ILinkingService;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parser.IParser;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.resource.IResourceDescriptions;
@@ -44,6 +45,7 @@ import org.eclipse.xtext.xbase.scoping.batch.XbaseBatchScopeProvider;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 import org.eclipse.xtext.xbase.typesystem.internal.DefaultReentrantTypeResolver;
 import org.eclipse.xtext.xbase.util.XExpressionHelper;
+import org.jnario.compiler.JnarioBatchCompiler;
 import org.jnario.compiler.JnarioExpressionHelper;
 import org.jnario.conversion.JnarioJavaIDValueConverter;
 import org.jnario.doc.AbstractDocGenerator;
@@ -59,11 +61,13 @@ import org.jnario.linking.JnarioLinkingService;
 import org.jnario.report.Executable2ResultMapping;
 import org.jnario.report.HashBasedSpec2ResultMapping;
 import org.jnario.scoping.JnarioImplicitlyImportedFeatures;
+import org.jnario.spec.compiler.SpecBatchCompiler;
 import org.jnario.spec.conversion.SpecValueConverterService;
 import org.jnario.spec.doc.SpecDocGenerator;
 import org.jnario.spec.jvmmodel.SpecExecutableProvider;
 import org.jnario.spec.jvmmodel.SpecJvmModelInferrer;
 import org.jnario.spec.naming.ExampleNameProvider;
+import org.jnario.spec.naming.SpecQualifiedNameProvider;
 import org.jnario.spec.scoping.SpecBatchScopeProvider;
 import org.jnario.spec.scoping.SpecImportedNamespaceScopeProvider;
 import org.jnario.spec.scoping.SpecResourceDescriptionStrategy;
@@ -76,7 +80,6 @@ import com.google.inject.name.Names;
 /**
  * @author Sebastian Benz - Initial contribution and API
  */
-@SuppressWarnings("restriction")
 public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule {
 
 	@Override
@@ -92,7 +95,7 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 		binder.bind(ImplicitlyImportedFeatures.class).to(JnarioImplicitlyImportedFeatures.class);
 		binder.bind(boolean.class).annotatedWith(
 				Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR)).toInstance(false);
-//		binder.bind(XtendBatchCompiler.class).to(SpecBatchCompiler.class);
+		binder.bind(JnarioBatchCompiler.class).to(SpecBatchCompiler.class);
 	}
 	
 	public Class<? extends JvmTypesBuilder> bindJvmTypesBuilder(){
@@ -120,10 +123,6 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 		return JnarioJavaIoFileSystemAccess.class;
 	}
 	
-//	public Class<? extends org.jnario.compiler.JnarioBatchCompiler> bindJnarioBatchCompiler(){
-//		return SpecBatchCompiler.class;
-//	}
-	
 	public XbaseFactory bindXbaseFactory() {
 		return XbaseFactory.eINSTANCE;
 	}
@@ -150,10 +149,10 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 			.to(SpecImportedNamespaceScopeProvider.class);
 	}
 
-//	@Override
-//	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-//		return SpecQualifiedNameProvider.class;
-//	}
+	@Override
+	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return SpecQualifiedNameProvider.class;
+	}
 	
 	@Override
 	public Class <? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {

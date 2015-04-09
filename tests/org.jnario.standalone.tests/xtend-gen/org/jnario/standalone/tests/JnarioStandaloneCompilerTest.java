@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.List;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.xtend.core.compiler.batch.XtendBatchCompiler;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.resource.XtextResourceSet;
@@ -22,6 +21,7 @@ import org.eclipse.xtext.util.Files;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.jnario.compiler.AbstractBatchCompiler;
 import org.jnario.compiler.JnarioStandaloneCompiler;
 import org.jnario.jnario.test.util.ExtendedSuiteInjectorProvider;
 import org.jnario.jnario.test.util.ModelStore;
@@ -58,7 +58,7 @@ public class JnarioStandaloneCompilerTest {
     }
   }
   
-  public void compile(final XtendBatchCompiler batchCompiler) {
+  public void compile(final AbstractBatchCompiler batchCompiler) {
     batchCompiler.setSourcePath(JnarioStandaloneCompilerTest.XTEND_SRC_DIRECTORY);
     batchCompiler.setOutputPath(JnarioStandaloneCompilerTest.OUTPUT_DIRECTORY);
     batchCompiler.setDeleteTempDirectory(true);

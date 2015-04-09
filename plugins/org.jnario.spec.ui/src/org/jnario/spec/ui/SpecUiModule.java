@@ -415,10 +415,6 @@ public class SpecUiModule extends org.jnario.spec.ui.AbstractSpecUiModule {
 //		return XtendExpressionUtil.class;
 //	}
 //	
-//	public Class<? extends ILinker> bindILinker() {
-//		return Linker.class;
-//	}
-//	
 //	public Class<? extends OutlineWithEditorLinker> bindOutlineWithEditorLinker() {
 //		return XtendOutlineWithEditorLinker.class;
 //	}

@@ -422,10 +422,6 @@ public class SuiteUiModule extends org.jnario.suite.ui.AbstractSuiteUiModule {
 	}
 	
 // TODO NO_XTEND
-//	public Class<? extends ILinker> bindILinker() {
-//		return Linker.class;
-//	}
-//	
 //	public Class<? extends OutlineWithEditorLinker> bindOutlineWithEditorLinker() {
 //		return XtendOutlineWithEditorLinker.class;
 //	}

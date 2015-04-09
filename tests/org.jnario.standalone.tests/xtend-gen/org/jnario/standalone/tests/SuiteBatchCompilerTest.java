@@ -16,7 +16,6 @@ import java.io.FilenameFilter;
 import java.util.Collections;
 import java.util.List;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.xtend.core.compiler.batch.XtendBatchCompiler;
 import org.eclipse.xtext.ISetup;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipse.xtext.junit4.XtextRunner;
@@ -28,6 +27,8 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.jnario.compiler.AbstractBatchCompiler;
+import org.jnario.compiler.JnarioBatchCompiler;
 import org.jnario.feature.FeatureStandaloneSetup;
 import org.jnario.jnario.test.util.ExtendedSuiteInjectorProvider;
 import org.jnario.jnario.test.util.ModelStore;
@@ -66,7 +67,7 @@ public class SuiteBatchCompilerTest {
     }
   }
   
-  public void compile(final XtendBatchCompiler batchCompiler) {
+  public void compile(final AbstractBatchCompiler batchCompiler) {
     batchCompiler.setSourcePath(SuiteBatchCompilerTest.XTEND_SRC_DIRECTORY);
     batchCompiler.setOutputPath(SuiteBatchCompilerTest.OUTPUT_DIRECTORY);
     batchCompiler.setDeleteTempDirectory(true);
@@ -102,7 +103,7 @@ public class SuiteBatchCompilerTest {
         @Override
         public void apply(final ISetup it) {
           Injector _createInjectorAndDoEMFRegistration = it.createInjectorAndDoEMFRegistration();
-          final XtendBatchCompiler compiler = _createInjectorAndDoEMFRegistration.<XtendBatchCompiler>getInstance(XtendBatchCompiler.class);
+          final JnarioBatchCompiler compiler = _createInjectorAndDoEMFRegistration.<JnarioBatchCompiler>getInstance(JnarioBatchCompiler.class);
           SuiteBatchCompilerTest.this.compile(compiler);
         }
       };

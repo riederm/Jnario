@@ -43,6 +43,7 @@ import org.eclipse.xtext.xbase.file.WorkspaceConfig;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
 import org.eclipse.xtext.xbase.resource.BatchLinkableResourceStorageFacade;
+import org.jnario.compiler.JnarioBatchCompiler;
 import org.jnario.conversion.JnarioJavaIDValueConverter;
 import org.jnario.doc.AbstractDocGenerator;
 import org.jnario.doc.DocOutputConfigurationProvider;
@@ -56,6 +57,7 @@ import org.jnario.jvmmodel.JnarioSignatureHashBuilder;
 import org.jnario.report.Executable2ResultMapping;
 import org.jnario.report.HashBasedSpec2ResultMapping;
 import org.jnario.scoping.JnarioResourceDescriptionStrategy;
+import org.jnario.suite.compiler.SuiteBatchCompiler;
 import org.jnario.suite.conversion.SuiteValueConverterService;
 import org.jnario.suite.doc.SuiteDocGenerator;
 import org.jnario.suite.generator.SuiteGenerator;
@@ -72,7 +74,6 @@ import com.google.inject.name.Names;
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
-@SuppressWarnings("restriction")
 public class SuiteRuntimeModule extends org.jnario.suite.AbstractSuiteRuntimeModule {
 
 	@Override
@@ -87,8 +88,8 @@ public class SuiteRuntimeModule extends org.jnario.suite.AbstractSuiteRuntimeMod
 		binder.bind(Executable2ResultMapping.class).to(HashBasedSpec2ResultMapping.class);
 		binder.bind(boolean.class).annotatedWith(
 				Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR)).toInstance(false);
+		binder.bind(JnarioBatchCompiler.class).to(SuiteBatchCompiler.class);
 // TODO NO_XTEND
-//		binder.bind(XtendBatchCompiler.class).to(SuiteBatchCompiler.class);
 //		binder.bind(AnnotationProcessor.class).to(JnarioAnnotationProcessor.class);
 	}
 	
@@ -118,10 +119,6 @@ public class SuiteRuntimeModule extends org.jnario.suite.AbstractSuiteRuntimeMod
 	}
 
 // TODO NO_XTEND
-//	public Class<? extends org.jnario.compiler.JnarioBatchCompiler> bindJnarioBatchCompiler(){
-//		return SuiteBatchCompiler.class;
-//	}
-//	
 //	public Class<? extends XExpressionHelper> bindXExpressionHelper() {
 //		return XtendExpressionHelper.class;
 //	}
@@ -159,7 +156,7 @@ public class SuiteRuntimeModule extends org.jnario.suite.AbstractSuiteRuntimeMod
 //	public Class<? extends IOutputConfigurationProvider> bindIOutputConfigurationProvider() {
 //		return XtendOutputConfigurationProvider.class;
 //	}
-	
+
 	@Override
 	public Class<? extends IScopeProvider> bindIScopeProvider() {
 		return SuiteScopeProvider.class;
@@ -231,11 +228,6 @@ public class SuiteRuntimeModule extends org.jnario.suite.AbstractSuiteRuntimeMod
 //		return org.eclipse.xtend.core.validation.CachingResourceValidatorImpl.class;
 //	}
 	
-	@Override
-	public Class<? extends ILinker> bindILinker() {
-		return Linker.class;
-	}
-	
 	/**
 	 * @since 2.4.2
 	 */
@@ -243,7 +235,7 @@ public class SuiteRuntimeModule extends org.jnario.suite.AbstractSuiteRuntimeMod
 	public void configureIResourceDescriptions(com.google.inject.Binder binder) {
 		binder.bind(IResourceDescriptions.class).to(EagerResourceSetBasedResourceDescriptions.class);
 	}
-	
+
 	public Class<? extends IResourceStorageFacade> bindResourceStorageFacade() {
 		return BatchLinkableResourceStorageFacade.class;
 	}

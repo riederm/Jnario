@@ -12,9 +12,10 @@ import com.google.common.io.Files
 import com.google.inject.Inject
 import java.io.File
 import org.eclipse.emf.ecore.resource.ResourceSet
-import org.eclipse.xtend.core.compiler.batch.XtendBatchCompiler
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
+import org.jnario.compiler.AbstractBatchCompiler
+import org.jnario.compiler.JnarioBatchCompiler
 import org.jnario.feature.FeatureStandaloneSetup
 import org.jnario.jnario.test.util.ExtendedSuiteInjectorProvider
 import org.jnario.jnario.test.util.ModelStore
@@ -46,7 +47,7 @@ class SuiteBatchCompilerTest {
         new File(OUTPUT_DIRECTORY).mkdir
 	}
  
-	def void compile(XtendBatchCompiler batchCompiler) { 
+	def void compile(AbstractBatchCompiler batchCompiler) { 
         batchCompiler.sourcePath = XTEND_SRC_DIRECTORY
         batchCompiler.outputPath = OUTPUT_DIRECTORY
         batchCompiler.deleteTempDirectory = true
@@ -64,7 +65,7 @@ class SuiteBatchCompilerTest {
 	@Test
 	def void testCompileTestData() {
 		#[new FeatureStandaloneSetup, new SpecStandaloneSetup, new SuiteStandaloneSetup].forEach[
-			val compiler = it.createInjectorAndDoEMFRegistration.getInstance(XtendBatchCompiler)
+			val compiler = it.createInjectorAndDoEMFRegistration.getInstance(JnarioBatchCompiler)
 			compile(compiler)
 		]
 

@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.xtend.core.compiler.batch.XtendBatchCompiler;
 import org.eclipse.xtext.ISetup;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.TypesPackage;
@@ -59,12 +58,13 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.jnario.compiler.AbstractBatchCompiler;
 import org.jnario.feature.FeatureStandaloneSetup;
 import org.jnario.spec.SpecStandaloneSetup;
 import org.jnario.suite.SuiteStandaloneSetup;
 
 @SuppressWarnings("all")
-public class JnarioStandaloneCompiler extends XtendBatchCompiler {
+public class JnarioStandaloneCompiler extends AbstractBatchCompiler {
   private final static Logger log = Logger.getLogger(JnarioStandaloneCompiler.class.getName());
   
   @Inject
@@ -211,8 +211,15 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
       @Override
       public void apply(final Resource it) {
         IResourceDescription.Manager _findResourceDescriptionManager = JnarioStandaloneCompiler.this.findResourceDescriptionManager(it);
-        final IResourceDescription description = _findResourceDescriptionManager.getResourceDescription(it);
-        JnarioStandaloneCompiler.this.stubGenerator.doGenerateStubs(fileSystemAccess, description);
+        IResourceDescription _resourceDescription = null;
+        if (_findResourceDescriptionManager!=null) {
+          _resourceDescription=_findResourceDescriptionManager.getResourceDescription(it);
+        }
+        final IResourceDescription description = _resourceDescription;
+        boolean _notEquals = (!Objects.equal(description, null));
+        if (_notEquals) {
+          JnarioStandaloneCompiler.this.stubGenerator.doGenerateStubs(fileSystemAccess, description);
+        }
       }
     };
     IterableExtensions.<Resource>forEach(_newArrayList, _function);
@@ -228,7 +235,11 @@ public class JnarioStandaloneCompiler extends XtendBatchCompiler {
     String _fileExtension = _uRI.fileExtension();
     String _lowerCase = _fileExtension.toLowerCase();
     Injector _get = this.injectorMap.get(_lowerCase);
-    return _get.<T>getInstance(type);
+    T _instance = null;
+    if (_get!=null) {
+      _instance=_get.<T>getInstance(type);
+    }
+    return _instance;
   }
   
   @Override

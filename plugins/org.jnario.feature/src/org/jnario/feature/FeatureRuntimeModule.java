@@ -46,11 +46,13 @@ import org.eclipse.xtext.xbase.scoping.batch.ImplicitlyImportedFeatures;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 import org.eclipse.xtext.xbase.typesystem.internal.ScopeProviderAccess;
 import org.eclipse.xtext.xbase.util.XExpressionHelper;
+import org.jnario.compiler.JnarioBatchCompiler;
 import org.jnario.compiler.JnarioExpressionHelper;
 import org.jnario.conversion.JnarioJavaIDValueConverter;
 import org.jnario.doc.AbstractDocGenerator;
 import org.jnario.doc.DocOutputConfigurationProvider;
 import org.jnario.documentation.XtendDocumentationProvider;
+import org.jnario.feature.compiler.FeatureBatchCompiler;
 import org.jnario.feature.conversion.FeatureValueConverterService;
 import org.jnario.feature.doc.FeatureDocGenerator;
 import org.jnario.feature.generator.FeatureJvmModelGenerator;
@@ -110,7 +112,7 @@ public class FeatureRuntimeModule extends
 				.annotatedWith(
 						Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR))
 				.toInstance(false);
-//		binder.bind(XtendBatchCompiler.class).to(FeatureBatchCompiler.class);
+		binder.bind(JnarioBatchCompiler.class).to(FeatureBatchCompiler.class);
 //		binder.bind(AnnotationProcessor.class).to(JnarioAnnotationProcessor.class);
 	}
 
