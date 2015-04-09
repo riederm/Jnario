@@ -72,6 +72,9 @@ public class SuiteBatchCompilerTest {
     batchCompiler.setOutputPath(SuiteBatchCompilerTest.OUTPUT_DIRECTORY);
     batchCompiler.setDeleteTempDirectory(true);
     batchCompiler.setUseCurrentClassLoaderAsParent(true);
+    Class<? extends SuiteBatchCompilerTest> _class = this.getClass();
+    ClassLoader _classLoader = _class.getClassLoader();
+    batchCompiler.setCurrentClassLoader(_classLoader);
     final Provider<ResourceSet> _function = new Provider<ResourceSet>() {
       @Override
       public ResourceSet get() {

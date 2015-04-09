@@ -52,6 +52,7 @@ class SuiteBatchCompilerTest {
         batchCompiler.outputPath = OUTPUT_DIRECTORY
         batchCompiler.deleteTempDirectory = true
         batchCompiler.useCurrentClassLoaderAsParent = true
+        batchCompiler.currentClassLoader = class.classLoader
 		batchCompiler.setResourceSetProvider([|resourceSet as ResourceSet])
 		batchCompiler.compile()
 	}

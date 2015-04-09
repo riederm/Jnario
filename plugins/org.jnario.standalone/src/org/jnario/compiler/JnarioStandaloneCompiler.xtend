@@ -12,6 +12,7 @@ import com.google.common.collect.Lists
 import com.google.inject.Inject
 import com.google.inject.Injector
 import java.io.File
+import java.util.ArrayList
 import java.util.List
 import java.util.Map
 import org.apache.log4j.Logger
@@ -39,9 +40,6 @@ import org.jnario.spec.SpecStandaloneSetup
 import org.jnario.suite.SuiteStandaloneSetup
 
 import static org.jnario.compiler.JnarioStandaloneCompiler.*
-import java.util.ArrayList
-import java.util.Collection
-import java.util.Collections
 
 class JnarioStandaloneCompiler extends AbstractBatchCompiler {
 	
@@ -144,6 +142,7 @@ class JnarioStandaloneCompiler extends AbstractBatchCompiler {
 
 	override generateJavaFiles(ResourceSet resourceSet) {
 		val javaIoFileSystemAccess = javaIoFileSystemAccessProvider.get();
+		val outputPath = this.outputPath // Workaround for java.lang.IllegalAccessError: tried to access field org.jnario.compiler.AbstractBatchCompiler.outputPath from class org.jnario.compiler.JnarioStandaloneCompiler$9
 		javaIoFileSystemAccess.setOutputPath(outputPath);
 		javaIoFileSystemAccess.setWriteTrace(writeTraceFiles);
 		val resourceDescriptions = getResourceDescriptions(resourceSet);

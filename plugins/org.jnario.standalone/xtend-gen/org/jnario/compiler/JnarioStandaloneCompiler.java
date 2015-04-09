@@ -245,7 +245,8 @@ public class JnarioStandaloneCompiler extends AbstractBatchCompiler {
   @Override
   public void generateJavaFiles(final ResourceSet resourceSet) {
     final JavaIoFileSystemAccess javaIoFileSystemAccess = this.javaIoFileSystemAccessProvider.get();
-    javaIoFileSystemAccess.setOutputPath(this.outputPath);
+    final String outputPath = this.outputPath;
+    javaIoFileSystemAccess.setOutputPath(outputPath);
     javaIoFileSystemAccess.setWriteTrace(this.writeTraceFiles);
     final ResourceSetBasedResourceDescriptions resourceDescriptions = this.getResourceDescriptions(resourceSet);
     final Iterable<IEObjectDescription> exportedObjectsByType = resourceDescriptions.getExportedObjectsByType(TypesPackage.Literals.JVM_DECLARED_TYPE);
@@ -263,7 +264,7 @@ public class JnarioStandaloneCompiler extends AbstractBatchCompiler {
         }
         String _plus = ((("Compiling " + Integer.valueOf(size)) + " source ") + _xifexpression);
         String _plus_1 = (_plus + " to ");
-        String _plus_2 = (_plus_1 + this.outputPath);
+        String _plus_2 = (_plus_1 + outputPath);
         JnarioStandaloneCompiler.log.info(_plus_2);
       }
     }
@@ -292,7 +293,7 @@ public class JnarioStandaloneCompiler extends AbstractBatchCompiler {
         boolean _isDebugEnabled = JnarioStandaloneCompiler.log.isDebugEnabled();
         if (_isDebugEnabled) {
           String _javaFileName = JnarioStandaloneCompiler.this.getJavaFileName(qualifiedName);
-          String _plus = ((("write \'" + JnarioStandaloneCompiler.this.outputPath) + File.separator) + _javaFileName);
+          String _plus = ((("write \'" + outputPath) + File.separator) + _javaFileName);
           String _plus_1 = (_plus + "\'");
           JnarioStandaloneCompiler.log.debug(_plus_1);
         }

@@ -37,6 +37,7 @@ class SpecBatchCompilerTest {
         batchCompiler.outputPath = OUTPUT_DIRECTORY
         batchCompiler.deleteTempDirectory = true
         batchCompiler.useCurrentClassLoaderAsParent = true
+        batchCompiler.currentClassLoader = class.classLoader
         new File(OUTPUT_DIRECTORY).mkdir
         cleanFolder(new File(OUTPUT_DIRECTORY), null, true, false)
 	}
