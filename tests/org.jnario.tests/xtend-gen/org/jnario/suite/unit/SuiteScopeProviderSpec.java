@@ -7,11 +7,9 @@
  */
 package org.jnario.suite.unit;
 
-import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.ScopeTestExtension;
 import org.jnario.jnario.test.util.SuiteTestCreator;
@@ -32,59 +30,20 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class SuiteScopeProviderSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ScopeTestExtension _scopeTestExtension;
+  ScopeTestExtension _scopeTestExtension;
   
   @Extension
-  @org.jnario.runner.Extension
-  public SuitePackage _suitePackage = SuitePackage.eINSTANCE;
+  SuitePackage _suitePackage = SuitePackage.eINSTANCE;
   
   @Before
   public void before() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package test");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("#MySuite");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("- \"My Spec Reference\"\t");
-    _builder.newLine();
-    _builder.newLine();
-    this._scopeTestExtension.parseSuite(_builder);
+    this._scopeTestExtension.parseSuite("\r\n\t\t\tpackage test\r\n\t\t\t\r\n\t\t\t#MySuite\r\n\t\t\t\r\n\t\t\t- \"My Spec Reference\"\t\r\n\t\t\r\n\t\t");
   }
   
   @Before
   public void before2() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package test");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"RootSpec\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("describe \"SubSpec 1\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("describe \"SubSpec 2\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._scopeTestExtension.parseSpec(_builder);
+    this._scopeTestExtension.parseSpec("\r\n\t\t\tpackage test\r\n\t\t\t\r\n\t\t\tdescribe \"RootSpec\"{\r\n\t\t\t\t\r\n\t\t\t\tdescribe \"SubSpec 1\"{\r\n\t\t\t\t}\r\n\t\t\t\t\r\n\t\t\t\tdescribe \"SubSpec 2\"{\r\n\t\t\t\t}\r\n\t\t\t\t\r\n\t\t\t}\r\n\t\t");
   }
   
   @Test

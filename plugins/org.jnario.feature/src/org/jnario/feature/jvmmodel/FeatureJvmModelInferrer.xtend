@@ -15,7 +15,6 @@ import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.xtext.common.types.util.TypeReferences
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import org.eclipse.xtext.xbase.XConstructorCall
 import org.eclipse.xtext.xbase.XExpression
 import org.eclipse.xtext.xbase.XVariableDeclaration
@@ -27,7 +26,6 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociator
 import org.jnario.JnarioClass
 import org.jnario.JnarioField
 import org.jnario.JnarioFile
-import org.jnario.JnarioFunction
 import org.jnario.feature.feature.Background
 import org.jnario.feature.feature.Feature
 import org.jnario.feature.feature.FeatureFile
@@ -74,7 +72,7 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
 	
 	@Inject extension JvmFieldReferenceUpdater
 	
-	@Inject TypesFactory typesFactory
+	@Inject extension TypesFactory typesFactory
 	
    override doInfer(EObject object, IJvmDeclaredTypeAcceptor acceptor, boolean preIndexingPhase) {
    		if (!(object instanceof JnarioFile))
@@ -141,6 +139,7 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
    	
 	def toClass(JnarioClass xtendClass, List<JvmGenericType> scenarios, IJvmDeclaredTypeAcceptor acceptor, List<Runnable> doLater, boolean preIndexingPhase){
    		val javaType = typesFactory.createJvmGenericType
+   		xtendClass.eResource.contents += javaType
    		setNameAndAssociate(xtendClass.jnarioFile, xtendClass, javaType)
    		acceptor.accept(javaType)
    		if (!preIndexingPhase) {
@@ -153,7 +152,7 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
    		val annotations = inferredJvmType.annotations
    		if(!scenarios.empty)
    			testRuntime.addChildren(feature, inferredJvmType, scenarios.map[createTypeRef])
-   		annotations += feature.toAnnotation(typeof(Named), feature.describe)
+   		annotations += Named.annotationRef(feature.describe)
    		
    		// TODO NO_XTEND
    		// super.initialize(feature, inferredJvmType)
@@ -169,11 +168,11 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
 		]   		
    		val annotations = inferredJvmType.annotations
    		testRuntime.updateScenario(scenario, inferredJvmType)
-   		annotations += scenario.toAnnotation(typeof(Named), scenario.describe)
+   		annotations += Named.annotationRef(scenario.describe)
    		val feature = scenario.feature
 		var start = 0
    		
-   		feature.annotations.translateAnnotationsTo(inferredJvmType)
+   		inferredJvmType.addAnnotations(feature.annotations)
    		
    		val background = feature.background
    		
@@ -294,8 +293,12 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
 			markAsPending(step, scenario)
 			associatePrimary(step, it)
 			testRuntime.markAsTestMethod(step, it)
-			annotations += step.toAnnotation(typeof(Order), order.intValue)
-			annotations += step.toAnnotation(typeof(Named), step.describe)
+			annotations += Order.annotationRef => [
+			    explicitValues += createJvmIntAnnotationValue => [
+			        values += order.intValue
+			    ]
+		    ]
+			annotations += Named.annotationRef(step.describe)
 		]	
 		order + 1
    	}
@@ -315,11 +318,15 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
 			step.generateStepValues
 			body = stepExpression
 			testRuntime.markAsTestMethod(step, it)
-			annotations += step.toAnnotation(typeof(Order), order.intValue)
+			annotations += Order.annotationRef => [
+                explicitValues += createJvmIntAnnotationValue => [
+                    values += order.intValue
+                ]
+			]
 			var name = step.describe
 			associatePrimary(step, it)
 			markAsPending(step, scenario)
-			annotations += step.toAnnotation(typeof(Named), name)
+			annotations += Named.annotationRef(name)
 		]	
 		order + 1
 	}

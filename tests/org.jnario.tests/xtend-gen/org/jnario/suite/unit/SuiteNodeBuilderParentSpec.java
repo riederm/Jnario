@@ -7,7 +7,6 @@
  */
 package org.jnario.suite.unit;
 
-import com.google.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -30,10 +29,8 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class SuiteNodeBuilderParentSpec extends SuiteNodeBuilderSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public SuiteNodeBuilder _suiteNodeBuilder;
+  SuiteNodeBuilder _suiteNodeBuilder;
   
   public ExampleTable<SuiteNodeBuilderParentSpecExamples> _initSuiteNodeBuilderParentSpecExamples() {
     return ExampleTable.create("examples", 
@@ -104,6 +101,7 @@ public class SuiteNodeBuilderParentSpec extends SuiteNodeBuilderSpec {
   @Order(1)
   public void _parentIsSuiteWithLessHashes() throws Exception {
     final Procedure1<SuiteNodeBuilderParentSpecExamples> _function = new Procedure1<SuiteNodeBuilderParentSpecExamples>() {
+      @Override
       public void apply(final SuiteNodeBuilderParentSpecExamples it) {
         List<Suite> _suites = it.getSuites();
         int _position = it.getPosition();

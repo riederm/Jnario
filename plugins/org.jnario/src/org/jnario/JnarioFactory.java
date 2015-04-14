@@ -180,6 +180,24 @@ public interface JnarioFactory extends EFactory {
 	JnarioParameter createJnarioParameter();
 
 	/**
+	 * Returns a new object of class '<em>Rich String</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rich String</em>'.
+	 * @generated
+	 */
+	RichString createRichString();
+
+	/**
+	 * Returns a new object of class '<em>Rich String Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rich String Literal</em>'.
+	 * @generated
+	 */
+	RichStringLiteral createRichStringLiteral();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

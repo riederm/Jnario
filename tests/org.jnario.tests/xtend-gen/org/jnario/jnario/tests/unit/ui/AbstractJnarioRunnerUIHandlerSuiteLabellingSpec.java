@@ -300,6 +300,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   @Order(1)
   public void _allCases() throws Exception {
     final Procedure1<AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases> _function = new Procedure1<AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases>() {
+      @Override
       public void apply(final AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases it) {
         Function1<TestSuiteElement, ? extends TestElement> _left = it.getLeft();
         Function1<TestSuiteElement, TestCaseElement> _right = it.getRight();
@@ -328,11 +329,13 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   
   public Function1<TestSuiteElement, TestSuiteElement> suite(final Function1<? super TestSuiteElement, ? extends TestElement>... elementConstructors) {
     final Function1<TestSuiteElement, TestSuiteElement> _function = new Function1<TestSuiteElement, TestSuiteElement>() {
+      @Override
       public TestSuiteElement apply(final TestSuiteElement parent) {
         TestSuiteElement _xblockexpression = null;
         {
           final TestSuiteElement suite = new TestSuiteElement(parent, "id", "name", 10);
           final Procedure1<Function1<? super TestSuiteElement, ? extends TestElement>> _function = new Procedure1<Function1<? super TestSuiteElement, ? extends TestElement>>() {
+            @Override
             public void apply(final Function1<? super TestSuiteElement, ? extends TestElement> it) {
               it.apply(suite);
             }
@@ -348,6 +351,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   
   public Function1<TestSuiteElement, TestCaseElement> tc() {
     final Function1<TestSuiteElement, TestCaseElement> _function = new Function1<TestSuiteElement, TestCaseElement>() {
+      @Override
       public TestCaseElement apply(final TestSuiteElement suite) {
         return new TestCaseElement(suite, "id", "tc");
       }
@@ -357,10 +361,12 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   
   public Function1<TestSuiteElement, TestCaseElement> ign() {
     final Function1<TestSuiteElement, TestCaseElement> _function = new Function1<TestSuiteElement, TestCaseElement>() {
+      @Override
       public TestCaseElement apply(final TestSuiteElement suite) {
         Function1<TestSuiteElement, TestCaseElement> _tc = AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.tc();
         TestCaseElement _apply = _tc.apply(suite);
         final Procedure1<TestCaseElement> _function = new Procedure1<TestCaseElement>() {
+          @Override
           public void apply(final TestCaseElement it) {
             it.setName("tc-ign");
             it.setIgnored(true);
@@ -374,10 +380,12 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   
   public Function1<TestSuiteElement, TestCaseElement> pend() {
     final Function1<TestSuiteElement, TestCaseElement> _function = new Function1<TestSuiteElement, TestCaseElement>() {
+      @Override
       public TestCaseElement apply(final TestSuiteElement suite) {
         Function1<TestSuiteElement, TestCaseElement> _ign = AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.ign();
         TestCaseElement _apply = _ign.apply(suite);
         final Procedure1<TestCaseElement> _function = new Procedure1<TestCaseElement>() {
+          @Override
           public void apply(final TestCaseElement it) {
             it.setName("tc [PENDING]");
           }

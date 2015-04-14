@@ -1,10 +1,8 @@
 package org.jnario.jnario.tests.unit.report;
 
 import java.util.ArrayList;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.util.StringInputStream;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.jnario.jnario.test.util.Strings;
 import org.jnario.report.Failed;
 import org.jnario.report.Passed;
@@ -33,38 +31,11 @@ public class SpecResultParserSpec {
   
   final static double EXECUTION_TIME = 0.01;
   
-  final static String FAILURE_MESSAGE = new Function0<String>() {
-    public String apply() {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("a message");
-      _builder.newLine();
-      _builder.append("withnewline");
-      String _platformIndependent = Strings.platformIndependent(_builder);
-      return _platformIndependent;
-    }
-  }.apply();
+  final static String FAILURE_MESSAGE = Strings.platformIndependent("\r\n\t\t\t\t\t\t\t\t\ta message\r\n\t\t\t\t\t\t\t\t\twithnewline");
   
   final static String FAILURE_TYPE = "java.lang.AssertionError";
   
-  final static String STACKTRACE = new Function0<String>() {
-    public String apply() {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("\t");
-      _builder.append("at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("at java.lang.reflect.Constructor.newInstance(Constructor.java:513)");
-      _builder.newLine();
-      String _platformIndependent = Strings.platformIndependent(_builder);
-      return _platformIndependent;
-    }
-  }.apply();
+  final static String STACKTRACE = Strings.platformIndependent("\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)\r\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)\r\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:513)\r\n\t\t\t\t\t");
   
   final static String XML_STACKTRACE = ((SpecResultParserSpec.FAILURE_MESSAGE + "\n") + SpecResultParserSpec.STACKTRACE);
   
@@ -74,16 +45,7 @@ public class SpecResultParserSpec {
   @Named("parses successfull specs from xml")
   @Order(1)
   public void _parsesSuccessfullSpecsFromXml() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<testcase time=\"");
-    _builder.append(SpecResultParserSpec.EXECUTION_TIME, "");
-    _builder.append("\" classname=\"");
-    _builder.append(SpecResultParserSpec.CLASSNAME, "");
-    _builder.append("\" name=\"");
-    _builder.append(SpecResultParserSpec.NAME, "");
-    _builder.append("\"/>");
-    _builder.newLineIfNotEmpty();
-    CharSequence _xml = this.toXml(_builder);
+    String _xml = this.toXml((((((("\r\n\t\t  <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\"/>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Passed _passingSpec = this.passingSpec();
@@ -94,26 +56,7 @@ public class SpecResultParserSpec {
   @Named("parses specs with failure from xml")
   @Order(2)
   public void _parsesSpecsWithFailureFromXml() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<testcase time=\"");
-    _builder.append(SpecResultParserSpec.EXECUTION_TIME, "");
-    _builder.append("\" classname=\"");
-    _builder.append(SpecResultParserSpec.CLASSNAME, "");
-    _builder.append("\" name=\"");
-    _builder.append(SpecResultParserSpec.NAME, "");
-    _builder.append("\">");
-    _builder.newLineIfNotEmpty();
-    _builder.append("<failure message=\"");
-    _builder.append(SpecResultParserSpec.FAILURE_MESSAGE, "");
-    _builder.append("\" type=\"");
-    _builder.append(SpecResultParserSpec.FAILURE_TYPE, "");
-    _builder.append("\">");
-    _builder.append(SpecResultParserSpec.XML_STACKTRACE, "");
-    _builder.append("</failure>");
-    _builder.newLineIfNotEmpty();
-    _builder.append("</testcase>");
-    _builder.newLine();
-    CharSequence _xml = this.toXml(_builder);
+    String _xml = this.toXml((((((((((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <failure message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</failure>\r\n\t\t   </testcase>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Failed _failingSpec = this.failingSpec();
@@ -124,26 +67,7 @@ public class SpecResultParserSpec {
   @Named("parses specs with error from xml")
   @Order(3)
   public void _parsesSpecsWithErrorFromXml() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<testcase time=\"");
-    _builder.append(SpecResultParserSpec.EXECUTION_TIME, "");
-    _builder.append("\" classname=\"");
-    _builder.append(SpecResultParserSpec.CLASSNAME, "");
-    _builder.append("\" name=\"");
-    _builder.append(SpecResultParserSpec.NAME, "");
-    _builder.append("\">");
-    _builder.newLineIfNotEmpty();
-    _builder.append("<error message=\"");
-    _builder.append(SpecResultParserSpec.FAILURE_MESSAGE, "");
-    _builder.append("\" type=\"");
-    _builder.append(SpecResultParserSpec.FAILURE_TYPE, "");
-    _builder.append("\">");
-    _builder.append(SpecResultParserSpec.XML_STACKTRACE, "");
-    _builder.append("</error>");
-    _builder.newLineIfNotEmpty();
-    _builder.append("</testcase>");
-    _builder.newLine();
-    CharSequence _xml = this.toXml(_builder);
+    String _xml = this.toXml((((((((((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <error message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</error>\r\n\t\t   </testcase>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Failed _failingSpec = this.failingSpec();
@@ -154,34 +78,7 @@ public class SpecResultParserSpec {
   @Named("parses multiple spec results")
   @Order(4)
   public void _parsesMultipleSpecResults() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<testcase time=\"");
-    _builder.append(SpecResultParserSpec.EXECUTION_TIME, "");
-    _builder.append("\" classname=\"");
-    _builder.append(SpecResultParserSpec.CLASSNAME, "");
-    _builder.append("\" name=\"");
-    _builder.append(SpecResultParserSpec.NAME, "");
-    _builder.append("\"/>");
-    _builder.newLineIfNotEmpty();
-    _builder.append("<testcase time=\"");
-    _builder.append(SpecResultParserSpec.EXECUTION_TIME, "");
-    _builder.append("\" classname=\"");
-    _builder.append(SpecResultParserSpec.CLASSNAME, "");
-    _builder.append("\" name=\"");
-    _builder.append(SpecResultParserSpec.NAME, "");
-    _builder.append("\">");
-    _builder.newLineIfNotEmpty();
-    _builder.append("<error message=\"");
-    _builder.append(SpecResultParserSpec.FAILURE_MESSAGE, "");
-    _builder.append("\" type=\"");
-    _builder.append(SpecResultParserSpec.FAILURE_TYPE, "");
-    _builder.append("\">");
-    _builder.append(SpecResultParserSpec.XML_STACKTRACE, "");
-    _builder.append("</error>");
-    _builder.newLineIfNotEmpty();
-    _builder.append("</testcase>");
-    _builder.newLine();
-    CharSequence _xml = this.toXml(_builder);
+    String _xml = this.toXml((((((((((((((((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\"/>\r\n\t\t   <testcase time=\"") + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <error message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</error>\r\n\t\t   </testcase>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Passed _passingSpec = this.passingSpec();
@@ -195,21 +92,7 @@ public class SpecResultParserSpec {
   @Named("created pending results")
   @Order(5)
   public void _createdPendingResults() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<testcase time=\"");
-    _builder.append(SpecResultParserSpec.EXECUTION_TIME, "");
-    _builder.append("\" classname=\"");
-    _builder.append(SpecResultParserSpec.CLASSNAME, "");
-    _builder.append("\" name=\"");
-    _builder.append(SpecResultParserSpec.NAME, "");
-    _builder.append("\">");
-    _builder.newLineIfNotEmpty();
-    _builder.append(" ");
-    _builder.append("<skipped/>");
-    _builder.newLine();
-    _builder.append("</testcase>");
-    _builder.newLine();
-    CharSequence _xml = this.toXml(_builder);
+    String _xml = this.toXml((((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t    <skipped/>\r\n\t\t   </testcase>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Pending _pendingSpec = this.pendingSpec();
@@ -220,14 +103,7 @@ public class SpecResultParserSpec {
   @Named("decodes escaped strings")
   @Order(6)
   public void _decodesEscapedStrings() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<testcase time=\"");
-    _builder.append(SpecResultParserSpec.EXECUTION_TIME, "");
-    _builder.append("\" classname=\"");
-    _builder.append(SpecResultParserSpec.CLASSNAME, "");
-    _builder.append("\" name=\"When I entered \\&quot;50\\&quot; and \\&quot;70\\&quot;\"/>");
-    _builder.newLineIfNotEmpty();
-    CharSequence _xml = this.toXml(_builder);
+    String _xml = this.toXml((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"When I entered \\&quot;50\\&quot; and \\&quot;70\\&quot;\"/>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "When I entered \"50\" and \"70\"", SpecResultParserSpec.EXECUTION_TIME);
@@ -238,14 +114,7 @@ public class SpecResultParserSpec {
   @Named("removes \\\',\\\' from escaped strings")
   @Order(7)
   public void _removesFromEscapedStrings() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<testcase time=\"");
-    _builder.append(SpecResultParserSpec.EXECUTION_TIME, "");
-    _builder.append("\" classname=\"");
-    _builder.append(SpecResultParserSpec.CLASSNAME, "");
-    _builder.append("\" name=\"cell[-1\\u002C 1].plus[cell[3\\u002C4]] =&gt; cell[2\\u002C5]\"/>");
-    _builder.newLineIfNotEmpty();
-    CharSequence _xml = this.toXml(_builder);
+    String _xml = this.toXml((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"cell[-1\\u002C 1].plus[cell[3\\u002C4]] =&gt; cell[2\\u002C5]\"/>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "cell[-1, 1].plus[cell[3,4]] => cell[2,5]", SpecResultParserSpec.EXECUTION_TIME);
@@ -256,17 +125,10 @@ public class SpecResultParserSpec {
   @Named("supports encoding")
   @Order(8)
   public void _supportsEncoding() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<testcase time=\"");
-    _builder.append(SpecResultParserSpec.EXECUTION_TIME, "");
-    _builder.append("\" classname=\"");
-    _builder.append(SpecResultParserSpec.CLASSNAME, "");
-    _builder.append("\" name=\"L\\u00D6sung\"/>");
-    _builder.newLineIfNotEmpty();
-    CharSequence _xml = this.toXml(_builder);
+    String _xml = this.toXml((((("\r\n\t\t<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"L\\u00D6sung\"/>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
-    Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "LÖsung", SpecResultParserSpec.EXECUTION_TIME);
+    Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "L\u00D6sung", SpecResultParserSpec.EXECUTION_TIME);
     _verify.accept(_passed);
   }
   
@@ -274,14 +136,7 @@ public class SpecResultParserSpec {
   @Named("supports escaped chars")
   @Order(9)
   public void _supportsEscapedChars() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<testcase time=\"");
-    _builder.append(SpecResultParserSpec.EXECUTION_TIME, "");
-    _builder.append("\" classname=\"");
-    _builder.append(SpecResultParserSpec.CLASSNAME, "");
-    _builder.append("\" name=\"\\&quot;http:\\/\\/www.google.de\\&quot;\"/>");
-    _builder.newLineIfNotEmpty();
-    CharSequence _xml = this.toXml(_builder);
+    String _xml = this.toXml((((("\r\n\t\t<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"\\&quot;http:\\/\\/www.google.de\\&quot;\"/>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "\"http://www.google.de\"", SpecResultParserSpec.EXECUTION_TIME);
@@ -302,18 +157,8 @@ public class SpecResultParserSpec {
     return new Failed(SpecResultParserSpec.CLASSNAME, SpecResultParserSpec.NAME, SpecResultParserSpec.EXECUTION_TIME, _newArrayList);
   }
   
-  public CharSequence toXml(final CharSequence content) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
-    _builder.newLine();
-    _builder.append("<testsuite failures=\"1\" time=\"0.017\" errors=\"0\" skipped=\"0\" tests=\"1\" name=\"example.AddingValuesSpec\">");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append(content, "\t");
-    _builder.newLineIfNotEmpty();
-    _builder.append("</testsuite>\t");
-    _builder.newLine();
-    return _builder;
+  public String toXml(final CharSequence content) {
+    return (("\r\n\t\t<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n\t\t<testsuite failures=\"1\" time=\"0.017\" errors=\"0\" skipped=\"0\" tests=\"1\" name=\"example.AddingValuesSpec\">\r\n\t\t\t" + content) + "\r\n\t\t</testsuite>\t\r\n\t");
   }
   
   public void parse(final CharSequence content) {

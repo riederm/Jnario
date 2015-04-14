@@ -7,8 +7,6 @@
  */
 package org.jnario.spec.tests.integration;
 
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.SpecTestCreator;
@@ -47,10 +45,8 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class CustomizingTheSpecCreationSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public BehaviorExecutor _behaviorExecutor;
+  BehaviorExecutor _behaviorExecutor;
   
   /**
    * This example uses the Google Guice to instantiate the specification.
@@ -60,35 +56,6 @@ public class CustomizingTheSpecCreationSpec {
   @Named("Example")
   @Order(1)
   public void _example() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("import org.jnario.runner.CreateWith");
-    _builder.newLine();
-    _builder.append("import org.jnario.jnario.test.util.GuiceSpecCreator");
-    _builder.newLine();
-    _builder.append("import com.google.inject.Inject");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("@CreateWith(typeof(GuiceSpecCreator))");
-    _builder.newLine();
-    _builder.append("describe \"Something\" {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("@Inject String toInject");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact toInject should not be null");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n      package bootstrap\r\n      \r\n      import org.jnario.runner.CreateWith\r\n      import org.jnario.jnario.test.util.GuiceSpecCreator\r\n      import com.google.inject.Inject\r\n      \r\n      @CreateWith(typeof(GuiceSpecCreator))\r\n      describe \"Something\" {\r\n        \r\n        @Inject String toInject\r\n        \r\n        fact toInject should not be null\r\n            \r\n      }\r\n    ");
   }
 }

@@ -2086,8 +2086,15 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tCOLON;
 	private final TerminalRule tNL;
 	private final TerminalRule tSPACES;
+	private final TerminalRule tID;
+	private final TerminalRule tHEX_DIGIT;
+	private final TerminalRule tUNICODE_ESCAPE;
 	private final TerminalRule tRICH_TEXT;
+	private final TerminalRule tSTRING;
 	private final TerminalRule tIN_RICH_STRING;
+	private final TerminalRule tIDENTIFIER_START;
+	private final TerminalRule tIDENTIFIER_PART;
+	private final TerminalRule tIDENTIFIER_PART_IMPL;
 	private final StaticQualifierElements pStaticQualifier;
 	
 	private final Grammar grammar;
@@ -2141,8 +2148,15 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		this.tCOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COLON");
 		this.tNL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NL");
 		this.tSPACES = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SPACES");
+		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID");
+		this.tHEX_DIGIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HEX_DIGIT");
+		this.tUNICODE_ESCAPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UNICODE_ESCAPE");
 		this.tRICH_TEXT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RICH_TEXT");
+		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
 		this.tIN_RICH_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IN_RICH_STRING");
+		this.tIDENTIFIER_START = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENTIFIER_START");
+		this.tIDENTIFIER_PART = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENTIFIER_PART");
+		this.tIDENTIFIER_PART_IMPL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENTIFIER_PART_IMPL");
 		this.pStaticQualifier = new StaticQualifierElements();
 	}
 	
@@ -2580,25 +2594,103 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		return tSPACES;
 	} 
 
+	//terminal ID:
+	//	"^"? (IDENTIFIER_START | UNICODE_ESCAPE) (IDENTIFIER_PART | UNICODE_ESCAPE)*;
+	public TerminalRule getIDRule() {
+		return tID;
+	} 
+
+	//terminal fragment HEX_DIGIT:
+	//	"0".."9" | "a".."f" | "A".."F";
+	public TerminalRule getHEX_DIGITRule() {
+		return tHEX_DIGIT;
+	} 
+
+	//terminal fragment UNICODE_ESCAPE:
+	//	"\\" "u" (HEX_DIGIT (HEX_DIGIT (HEX_DIGIT HEX_DIGIT?)?)?)?;
+	public TerminalRule getUNICODE_ESCAPERule() {
+		return tUNICODE_ESCAPE;
+	} 
+
 	//terminal RICH_TEXT:
 	//	"\'\'\'" IN_RICH_STRING* ("\'\'\'" | ("\'" "\'"?)? EOF);
 	public TerminalRule getRICH_TEXTRule() {
 		return tRICH_TEXT;
 	} 
 
-	////terminal RICH_TEXT_START : "'''" IN_RICH_STRING* ("'" "'"?)? '  ';
-	////terminal RICH_TEXT_END : '  ' IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF) ;
-	//
-	////terminal RICH_TEXT_INBETWEEN : '  ' IN_RICH_STRING* ("'" "'"?)? '  ';
-	//
-	////terminal COMMENT_RICH_TEXT_INBETWEEN: "    " !('\n'|'\r')* ('\r'? '\n' IN_RICH_STRING* ("'" "'"?)? '  ')?;
-	//
-	////terminal COMMENT_RICH_TEXT_END: "    " !('\n'|'\r')* (('\r'? '\n' IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF)) | EOF);
-	//
+	/// *
+	//TODO NO_XTEND
+	//terminal RICH_TEXT_START : "'''" IN_RICH_STRING* ("'" "'"?)? '«';
+	//terminal RICH_TEXT_END : '»' IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF) ;
+	//terminal RICH_TEXT_INBETWEEN : '»' IN_RICH_STRING* ("'" "'"?)? '«';
+	//terminal COMMENT_RICH_TEXT_INBETWEEN: "««" !('\n'|'\r')* ('\r'? '\n' IN_RICH_STRING* ("'" "'"?)? '«')?; 
+	//terminal COMMENT_RICH_TEXT_END: "««" !('\n'|'\r')* (('\r'? '\n' IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF)) | EOF); 
+	// * / terminal STRING:
+	//	RICH_TEXT | "\"" ("\\" . / * ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') * / | !("\\" | "\""))* "\""? | "\'" ("\\" .
+	//	/ * ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') * / | !("\\" | "\'"))* "\'"?;
+	public TerminalRule getSTRINGRule() {
+		return tSTRING;
+	} 
+
 	//terminal fragment IN_RICH_STRING:
-	//	"\'\'" !("  " | "\'") | "\'" !("  " | "\'") | !("  " | "\'");
+	//	"\'\'" !("«" | "\'") | "\'" !("«" | "\'") | !("«" | "\'");
 	public TerminalRule getIN_RICH_STRINGRule() {
 		return tIN_RICH_STRING;
+	} 
+
+	//terminal fragment IDENTIFIER_START:
+	//	"$" | "A".."Z" | "_" | "a".."z" | "¢".."¥" | "ª" | "µ" | "º" | "À".."Ö" | "Ø".."ö" | "ø".."ȶ" | "ɐ".."ˁ" | "ˆ".."ˑ" |
+	//	"ˠ".."ˤ" | "ˮ" | "ͺ" | "Ά" | "Έ".."Ί" | "Ό" | "Ύ".."Ρ" | "Σ".."ώ" | "ϐ".."ϵ" | "Ϸ".."ϻ" | "Ѐ".."ҁ" | "Ҋ".."ӎ" |
+	//	"Ӑ".."ӵ" | "Ӹ".."ӹ" | "Ԁ".."ԏ" | "Ա".."Ֆ" | "ՙ" | "ա".."և" | "א".."ת" | "װ".."ײ" | "ء".."غ" | "ـ".."ي" | "ٮ".."ٯ" |
+	//	"ٱ".."ۓ" | "ە" | "ۥ".."ۦ" | "ۮ".."ۯ" | "ۺ".."ۼ" | "ۿ" | "ܐ" | "ܒ".."ܯ" | "ݍ".."ݏ" | "ހ".."ޥ" | "ޱ" | "ऄ".."ह" | "ऽ" |
+	//	"ॐ" | "क़".."ॡ" | "অ".."ঌ" | "এ".."ঐ" | "ও".."ন" | "প".."র" | "ল" | "শ".."হ" | "ঽ" | "ড়".."ঢ়" | "য়".."ৡ" | "ৰ".."৳" |
+	//	"ਅ".."ਊ" | "ਏ".."ਐ" | "ਓ".."ਨ" | "ਪ".."ਰ" | "ਲ".."ਲ਼" | "ਵ".."ਸ਼" | "ਸ".."ਹ" | "ਖ਼".."ੜ" | "ਫ਼" | "ੲ".."ੴ" | "અ".."ઍ" |
+	//	"એ".."ઑ" | "ઓ".."ન" | "પ".."ર" | "લ".."ળ" | "વ".."હ" | "ઽ" | "ૐ" | "ૠ".."ૡ" | "૱" | "ଅ".."ଌ" | "ଏ".."ଐ" | "ଓ".."ନ" |
+	//	"ପ".."ର" | "ଲ".."ଳ" | "ଵ".."ହ" | "ଽ" | "ଡ଼".."ଢ଼" | "ୟ".."ୡ" | "ୱ" | "ஃ" | "அ".."ஊ" | "எ".."ஐ" | "ஒ".."க" | "ங".."ச" |
+	//	"ஜ" | "ஞ".."ட" | "ண".."த" | "ந".."ப" | "ம".."வ" | "ஷ".."ஹ" | "௹" | "అ".."ఌ" | "ఎ".."ఐ" | "ఒ".."న" | "ప".."ళ" |
+	//	"వ".."హ" | "ౠ".."ౡ" | "ಅ".."ಌ" | "ಎ".."ಐ" | "ಒ".."ನ" | "ಪ".."ಳ" | "ವ".."ಹ" | "ಽ" | "ೞ" | "ೠ".."ೡ" | "അ".."ഌ" |
+	//	"എ".."ഐ" | "ഒ".."ന" | "പ".."ഹ" | "ൠ".."ൡ" | "අ".."ඖ" | "ක".."න" | "ඳ".."ර" | "ල" | "ව".."ෆ" | "ก".."ะ" | "า".."ำ" |
+	//	"฿".."ๆ" | "ກ".."ຂ" | "ຄ" | "ງ".."ຈ" | "ຊ" | "ຍ" | "ດ".."ທ" | "ນ".."ຟ" | "ມ".."ຣ" | "ລ" | "ວ" | "ສ".."ຫ" | "ອ".."ະ" |
+	//	"າ".."ຳ" | "ຽ" | "ເ".."ໄ" | "ໆ" | "ໜ".."ໝ" | "ༀ" | "ཀ".."ཇ" | "ཉ".."ཪ" | "ྈ".."ྋ" | "က".."အ" | "ဣ".."ဧ" | "ဩ".."ဪ" |
+	//	"ၐ".."ၕ" | "Ⴀ".."Ⴥ" | "ა".."ჸ" | "ᄀ".."ᅙ" | "ᅟ".."ᆢ" | "ᆨ".."ᇹ" | "ሀ".."ሆ" | "ለ".."ቆ" | "ቈ" | "ቊ".."ቍ" | "ቐ".."ቖ" |
+	//	"ቘ" | "ቚ".."ቝ" | "በ".."ኆ" | "ኈ" | "ኊ".."ኍ" | "ነ".."ኮ" | "ኰ" | "ኲ".."ኵ" | "ኸ".."ኾ" | "ዀ" | "ዂ".."ዅ" | "ወ".."ዎ" |
+	//	"ዐ".."ዖ" | "ዘ".."ዮ" | "ደ".."ጎ" | "ጐ" | "ጒ".."ጕ" | "ጘ".."ጞ" | "ጠ".."ፆ" | "ፈ".."ፚ" | "Ꭰ".."Ᏼ" | "ᐁ".."ᙬ" | "ᙯ".."ᙶ" |
+	//	"ᚁ".."ᚚ" | "ᚠ".."ᛪ" | "ᛮ".."ᛰ" | "ᜀ".."ᜌ" | "ᜎ".."ᜑ" | "ᜠ".."ᜱ" | "ᝀ".."ᝑ" | "ᝠ".."ᝬ" | "ᝮ".."ᝰ" | "ក".."ឳ" | "ៗ" |
+	//	"៛".."ៜ" | "ᠠ".."ᡷ" | "ᢀ".."ᢨ" | "ᤀ".."ᤜ" | "ᥐ".."ᥭ" | "ᥰ".."ᥴ" | "ᴀ".."ᵫ" | "Ḁ".."ẛ" | "Ạ".."ỹ" | "ἀ".."ἕ" |
+	//	"Ἐ".."Ἕ" | "ἠ".."ὅ" | "Ὀ".."Ὅ" | "ὐ".."ὗ" | "Ὑ" | "Ὓ" | "Ὕ" | "Ὗ".."ώ" | "ᾀ".."ᾴ" | "ᾶ".."ᾼ" | "ι" | "ῂ".."ῄ" |
+	//	"ῆ".."ῌ" | "ῐ".."ΐ" | "ῖ".."Ί" | "ῠ".."Ῥ" | "ῲ".."ῴ" | "ῶ".."ῼ" | "‿".."⁀" | "⁔" | "ⁱ" | "ⁿ" | "₠".."₱" | "ℂ" | "ℇ" |
+	//	"ℊ".."ℓ" | "ℕ" | "ℙ".."ℝ" | "ℤ" | "Ω" | "ℨ" | "K".."ℭ" | "ℯ".."ℱ" | "ℳ".."ℹ" | "ℽ".."ℿ" | "ⅅ".."ⅉ" | "Ⅰ".."Ↄ" |
+	//	"々".."〇" | "〡".."〩" | "〱".."〵" | "〸".."〼" | "ぁ".."ゖ" | "ゝ".."ゟ" | "ァ".."ヿ" | "ㄅ".."ㄬ" | "ㄱ".."ㆎ" | "ㆠ".."ㆷ" |
+	//	"ㇰ".."ㇿ" | "㐀".."䶵" | "一".."龥" | "ꀀ".."ꒌ" | "가".."힣" | "豈".."鶴" | "侮".."頻" | "ﬀ".."ﬆ" | "ﬓ".."ﬗ" | "יִ" | "ײַ".."ﬨ" |
+	//	"שׁ".."זּ" | "טּ".."לּ" | "מּ" | "נּ".."סּ" | "ףּ".."פּ" | "צּ".."ﮱ" | "ﯓ".."ﴽ" | "ﵐ".."ﶏ" | "ﶒ".."ﷇ" | "ﷰ".."﷼" | "︳".."︴" |
+	//	"﹍".."﹏" | "﹩" | "ﹰ".."ﹴ" | "ﹶ".."ﻼ" | "＄" | "Ａ".."Ｚ" | "＿" | "ａ".."ｚ" | "･".."ﾾ" | "ￂ".."ￇ" | "ￊ".."ￏ" | "ￒ".."ￗ" |
+	//	"ￚ".."ￜ" | "￠".."￡" | "￥".."￦";
+	public TerminalRule getIDENTIFIER_STARTRule() {
+		return tIDENTIFIER_START;
+	} 
+
+	//terminal fragment IDENTIFIER_PART:
+	//	IDENTIFIER_START | IDENTIFIER_PART_IMPL;
+	public TerminalRule getIDENTIFIER_PARTRule() {
+		return tIDENTIFIER_PART;
+	} 
+
+	//terminal fragment IDENTIFIER_PART_IMPL:
+	//	" ".."\b" | "".."" | "0".."9" | "".."" | "­" | "̀".."͗" | "͝".."ͯ" | "҃".."҆" | "֑".."֡" | "֣".."ֹ" | "ֻ".."ֽ" |
+	//	"ֿ" | "ׁ".."ׂ" | "ׄ" | "؀".."؃" | "ؐ".."ؕ" | "ً".."٘" | "٠".."٩" | "ٰ" | "ۖ".."۝" | "۟".."ۤ" | "ۧ".."ۨ" | "۪".."ۭ" |
+	//	"۰".."۹" | "܏" | "ܑ" | "ܰ".."݊" | "ަ".."ް" | "ँ".."ः" | "़" | "ा".."्" | "॑".."॔" | "ॢ".."ॣ" | "०".."९" | "ঁ".."ঃ" |
+	//	"়" | "া".."ৄ" | "ে".."ৈ" | "ো".."্" | "ৗ" | "ৢ".."ৣ" | "০".."৯" | "ਁ".."ਃ" | "਼" | "ਾ".."ੂ" | "ੇ".."ੈ" | "ੋ".."੍" |
+	//	"੦".."ੱ" | "ઁ".."ઃ" | "઼" | "ા".."ૅ" | "ે".."ૉ" | "ો".."્" | "ૢ".."ૣ" | "૦".."૯" | "ଁ".."ଃ" | "଼" | "ା".."ୃ" |
+	//	"େ".."ୈ" | "ୋ".."୍" | "ୖ".."ୗ" | "୦".."୯" | "ஂ" | "ா".."ூ" | "ெ".."ை" | "ொ".."்" | "ௗ" | "௧".."௯" | "ఁ".."ః" |
+	//	"ా".."ౄ" | "ె".."ై" | "ొ".."్" | "ౕ".."ౖ" | "౦".."౯" | "ಂ".."ಃ" | "಼" | "ಾ".."ೄ" | "ೆ".."ೈ" | "ೊ".."್" | "ೕ".."ೖ" |
+	//	"೦".."೯" | "ം".."ഃ" | "ാ".."ൃ" | "െ".."ൈ" | "ൊ".."്" | "ൗ" | "൦".."൯" | "ං".."ඃ" | "්" | "ා".."ු" | "ූ" | "ෘ".."ෟ" |
+	//	"ෲ".."ෳ" | "ั" | "ิ".."ฺ" | "็".."๎" | "๐".."๙" | "ັ" | "ິ".."ູ" | "ົ".."ຼ" | "່".."ໍ" | "໐".."໙" | "༘".."༙" |
+	//	"༠".."༩" | "༵" | "༷" | "༹" | "༾".."༿" | "ཱ".."྄" | "྆".."྇" | "ྐ".."ྗ" | "ྙ".."ྼ" | "࿆" | "ာ".."ဲ" | "ံ".."္" |
+	//	"၀".."၉" | "ၖ".."ၙ" | "፩".."፱" | "ᜒ".."᜔" | "ᜲ".."᜴" | "ᝒ".."ᝓ" | "ᝲ".."ᝳ" | "឴".."៓" | "៝" | "០".."៩" | "᠋".."᠍" |
+	//	"᠐".."᠙" | "ᢩ" | "ᤠ".."ᤫ" | "ᤰ".."᤻" | "᥆".."᥏" | "‌".."‏" | "‪".."‮" | "⁠".."⁣" | "⁪".."⁯" | "⃐".."⃜" | "⃡" |
+	//	"⃥".."⃪" | "〪".."〯" | "゙".."゚" | "ﬞ" | "︀".."️" | "︠".."︣" | "﻿" | "０".."９" | "￹".."￻";
+	public TerminalRule getIDENTIFIER_PART_IMPLRule() {
+		return tIDENTIFIER_PART_IMPL;
 	} 
 
 	/// **
@@ -3468,19 +3560,6 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	public ParserRule getQualifiedNameInStaticImportRule() {
 		return getQualifiedNameInStaticImportAccess().getRule();
 	}
-
-	//terminal ID:
-	//	"^"? ("a".."z" | "A".."Z" | "$" | "_") ("a".."z" | "A".."Z" | "$" | "_" | "0".."9")*;
-	public TerminalRule getIDRule() {
-		return gaXbaseWithAnnotations.getIDRule();
-	} 
-
-	//terminal STRING:
-	//	"\"" ("\\" . / * ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') * / | !("\\" | "\""))* "\""? | "\'" ("\\" .
-	//	/ * ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') * / | !("\\" | "\'"))* "\'"?;
-	public TerminalRule getSTRINGRule() {
-		return gaXbaseWithAnnotations.getSTRINGRule();
-	} 
 
 	//terminal ML_COMMENT:
 	//	"/ *"->"* /";

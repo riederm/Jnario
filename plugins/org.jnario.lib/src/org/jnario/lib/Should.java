@@ -84,6 +84,7 @@ public class Should{
 		if(isArray(actual) && isArray(expected)){
 			return Arrays.equals((Object[])actual, (Object[])expected);
 		}
+		System.out.println("Compare objects: " + actual + " and " + expected);
 		return Objects.equal(actual, expected);
 	}
 

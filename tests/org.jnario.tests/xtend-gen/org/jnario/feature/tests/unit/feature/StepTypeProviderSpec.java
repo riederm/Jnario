@@ -1,10 +1,8 @@
 package org.jnario.feature.tests.unit.feature;
 
-import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.jnario.feature.feature.FeatureFactory;
@@ -35,21 +33,16 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class StepTypeProviderSpec {
   @Extension
-  @org.jnario.runner.Extension
-  public FeatureFactory factory = FeatureFactory.eINSTANCE;
+  FeatureFactory factory = FeatureFactory.eINSTANCE;
   
   @Extension
-  @org.jnario.runner.Extension
-  public StepTypeProvider _stepTypeProvider = new StepTypeProvider();
+  StepTypeProvider _stepTypeProvider = new StepTypeProvider();
   
   @Extension
-  @org.jnario.runner.Extension
-  public FeaturePackage pack = FeaturePackage.eINSTANCE;
+  FeaturePackage pack = FeaturePackage.eINSTANCE;
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore _modelStore;
+  ModelStore _modelStore;
   
   @Test
   @Named("createGiven.expectedTypes => GIVEN")
@@ -139,25 +132,10 @@ public class StepTypeProviderSpec {
   @Named("\\\'\\\'\\\' Feature: something Scenario: scenario Given something And something else And something else \\\'\\\'\\\'.expectedTypes =>  GIVEN")
   @Order(7)
   public void _featureSomethingScenarioScenarioGivenSomethingAndSomethingElseAndSomethingElseExpectedTypesGIVEN() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: something");
-    _builder.newLine();
-    _builder.append("Scenario: scenario");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Given something");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("And something else");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("And something else");
-    _builder.newLine();
-    Set<EClass> _expectedTypes = this.expectedTypes(_builder);
+    Set<EClass> _expectedTypes = this.expectedTypes("\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tAnd something else\r\n\t\t\tAnd something else\r\n\t");
     boolean _doubleArrow = Should.<Set<EClass>>operator_doubleArrow(_expectedTypes, StepTypeProvider.GIVEN);
-    Assert.assertTrue("\nExpected \'\'\'\n\t\tFeature: something\n\t\tScenario: scenario\n\t\t\tGiven something\n\t\t\tAnd something else\n\t\t\tAnd something else\n\t\'\'\'.expectedTypes =>  GIVEN but"
-     + "\n     \'\'\'\n\t\tFeature: something\n\t\tScenario: scenario\n\t\t\tGiven something\n\t\t\tAnd something else\n\t\t\tAnd something else\n\t\'\'\'.expectedTypes is " + new org.hamcrest.StringDescription().appendValue(_expectedTypes).toString()
-     + "\n     \'\'\'\n\t\tFeature: something\n\t\tScenario: scenario\n\t\t\tGiven something\n\t\t\tAnd something else\n\t\t\tAnd something else\n\t\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder).toString()
+    Assert.assertTrue("\nExpected \'\'\'\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tAnd something else\r\n\t\t\tAnd something else\r\n\t\'\'\'.expectedTypes =>  GIVEN but"
+     + "\n     \'\'\'\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tAnd something else\r\n\t\t\tAnd something else\r\n\t\'\'\'.expectedTypes is " + new org.hamcrest.StringDescription().appendValue(_expectedTypes).toString()
      + "\n     GIVEN is " + new org.hamcrest.StringDescription().appendValue(StepTypeProvider.GIVEN).toString() + "\n", _doubleArrow);
     
   }
@@ -166,25 +144,10 @@ public class StepTypeProviderSpec {
   @Named("calculates actual type")
   @Order(8)
   public void _calculatesActualType() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: something");
-    _builder.newLine();
-    _builder.append("Scenario: scenario");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Given something");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("But something else");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("And something else");
-    _builder.newLine();
-    EClass _actualType = this.actualType(_builder);
+    EClass _actualType = this.actualType("\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tBut something else\r\n\t\t\tAnd something else\r\n\t");
     EClass _givenReference = this.pack.getGivenReference();
-    Assert.assertTrue("\nExpected \'\'\'\n\t\tFeature: something\n\t\tScenario: scenario\n\t\t\tGiven something\n\t\t\tBut something else\n\t\t\tAnd something else\n\t\'\'\'.actualType =>  givenReference but"
-     + "\n     \'\'\'\n\t\tFeature: something\n\t\tScenario: scenario\n\t\t\tGiven something\n\t\t\tBut something else\n\t\t\tAnd something else\n\t\'\'\'.actualType is " + new org.hamcrest.StringDescription().appendValue(_actualType).toString()
-     + "\n     \'\'\'\n\t\tFeature: something\n\t\tScenario: scenario\n\t\t\tGiven something\n\t\t\tBut something else\n\t\t\tAnd something else\n\t\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder).toString()
+    Assert.assertTrue("\nExpected \'\'\'\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tBut something else\r\n\t\t\tAnd something else\r\n\t\'\'\'.actualType =>  givenReference but"
+     + "\n     \'\'\'\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tBut something else\r\n\t\t\tAnd something else\r\n\t\'\'\'.actualType is " + new org.hamcrest.StringDescription().appendValue(_actualType).toString()
      + "\n     givenReference is " + new org.hamcrest.StringDescription().appendValue(_givenReference).toString() + "\n", Should.<EClass>operator_doubleArrow(_actualType, _givenReference));
     
   }

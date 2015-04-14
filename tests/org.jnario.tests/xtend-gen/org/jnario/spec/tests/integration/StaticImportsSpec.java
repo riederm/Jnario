@@ -7,8 +7,6 @@
  */
 package org.jnario.spec.tests.integration;
 
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.SpecTestCreator;
@@ -24,37 +22,13 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class StaticImportsSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public BehaviorExecutor _behaviorExecutor;
+  BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("should resolve static imports")
   @Order(1)
   public void _shouldResolveStaticImports() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("import static org.junit.Assert.*");
-    _builder.newLine();
-    _builder.append("describe \"Example\" {");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"should resolve static imports\"{");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("assertTrue(true) ");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("} ");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tpackage bootstrap\r\n\t\t\t\r\n\t\t\timport static org.junit.Assert.*\r\n\t\t\tdescribe \"Example\" {\r\n\t\t\t\r\n\t\t\t\tfact \"should resolve static imports\"{\r\n\t\t\t\t\tassertTrue(true) \r\n\t\t\t\t} \r\n\t\t\t\t\t\t\r\n\t\t\t}\r\n\t\t");
   }
 }

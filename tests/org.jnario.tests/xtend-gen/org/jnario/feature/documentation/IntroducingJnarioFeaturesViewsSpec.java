@@ -7,7 +7,6 @@
  */
 package org.jnario.feature.documentation;
 
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.jnario.feature.documentation.IntroducingJnarioFeaturesSpec;
 import org.jnario.jnario.test.util.FeatureExecutor;
 import org.jnario.runner.ExampleGroupRunner;
@@ -35,58 +34,7 @@ public class IntroducingJnarioFeaturesViewsSpec extends IntroducingJnarioFeature
   @Named("Displaying step definitions")
   @Order(1)
   public void _displayingStepDefinitions() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package demo");
-    _builder.newLine();
-    _builder.append("import org.jnario.feature.documentation.Calculator");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Feature: Calculator");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Background:");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Calculator calculator");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("int result");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Given a calculator");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("calculator = new Calculator");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Scenario: Adding two numbers");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("When adding two numbers \"5\" and \"6\". ");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("result = calculator.add(args.first.toInt, args.second.toInt)");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Then it prints \"11\"");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("result => args.first.toInt");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.newLine();
-    _builder.append("Scenario: Dividing two numbers");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("When entering two numbers \"10\" and \"5\" and pressing enter. ");
-    _builder.newLine();
-    _builder.append("   ");
-    _builder.append("result = calculator.divide(args.first.toInt, args.second.toInt)");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("Then it prints \"2\"");
-    _builder.newLine();
-    FeatureExecutor.isSuccessful(_builder);
+    FeatureExecutor.isSuccessful("\r\n\t       package demo\r\n\t       import org.jnario.feature.documentation.Calculator\r\n\r\n\t       Feature: Calculator\r\n\t       \r\n\t       Background:\r\n\t         Calculator calculator\r\n\t         int result\r\n\t         Given a calculator\r\n\t           calculator = new Calculator\r\n\t       \r\n\t       Scenario: Adding two numbers\r\n\t         When adding two numbers \"5\" and \"6\". \r\n\t           result = calculator.add(args.first.toInt, args.second.toInt)\r\n\t         Then it prints \"11\"\r\n\t           result => args.first.toInt\r\n\t           \r\n\t       Scenario: Dividing two numbers\r\n\t        When entering two numbers \"10\" and \"5\" and pressing enter. \r\n\t          result = calculator.divide(args.first.toInt, args.second.toInt)\r\n\t        Then it prints \"2\"\r\n         ");
   }
   
   /**
@@ -97,39 +45,6 @@ public class IntroducingJnarioFeaturesViewsSpec extends IntroducingJnarioFeature
   @Named("Hiding step definitions")
   @Order(2)
   public void _hidingStepDefinitions() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package demo");
-    _builder.newLine();
-    _builder.append("import org.jnario.feature.documentation.Calculator");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Feature: Calculator");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Background:");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Given a calculator");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Scenario: Adding two numbers");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("When adding two numbers \"5\" and \"6\". ");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Then it prints \"11\"");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.newLine();
-    _builder.append("Scenario: Dividing two numbers");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("When entering two numbers \"10\" and \"5\" and pressing enter. ");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("Then it prints \"2\"");
-    _builder.newLine();
-    FeatureExecutor.isSuccessful(_builder);
+    FeatureExecutor.isSuccessful("\r\n\t       package demo\r\n\t       import org.jnario.feature.documentation.Calculator\r\n\r\n\t       Feature: Calculator\r\n\t       \r\n\t       Background:\r\n\t         Given a calculator\r\n\t       \r\n\t       Scenario: Adding two numbers\r\n\t         When adding two numbers \"5\" and \"6\". \r\n\t         Then it prints \"11\"\r\n\t           \r\n\t       Scenario: Dividing two numbers\r\n\t        When entering two numbers \"10\" and \"5\" and pressing enter. \r\n\t        Then it prints \"2\"\r\n         ");
   }
 }

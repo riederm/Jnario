@@ -1,8 +1,6 @@
 package org.jnario.feature.tests.unit.naming;
 
 import com.google.common.base.Objects;
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -28,21 +26,14 @@ public class FeatureQualifiedNameProviderSpec {
   @Subject
   public FeatureQualifiedNameProvider subject;
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore _modelStore;
+  ModelStore _modelStore;
   
-  @Inject
   IQualifiedNameConverter converter;
   
   public String implementedStepName(final CharSequence s) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append(s, "");
-    _builder.newLineIfNotEmpty();
-    _builder.append("val x = \"\"");
-    _builder.newLine();
-    return this.stepName(_builder);
+    String _plus = (s + "\'\r\n\t\tval x = \"\"\r\n\t\t");
+    return this.stepName(_plus);
   }
   
   public String stepName(final CharSequence s) {
@@ -52,22 +43,16 @@ public class FeatureQualifiedNameProviderSpec {
   public String stepName(final CharSequence s, final String packageName) {
     String _xblockexpression = null;
     {
-      StringConcatenation _builder = new StringConcatenation();
-      {
-        boolean _notEquals = (!Objects.equal(packageName, null));
-        if (_notEquals) {
-          _builder.append("package ");
-          _builder.append(packageName, "");
-          _builder.newLineIfNotEmpty();
-        }
+      String _xifexpression = null;
+      boolean _notEquals = (!Objects.equal(packageName, null));
+      if (_notEquals) {
+        _xifexpression = ("package " + packageName);
+      } else {
+        String _plus = ("" + " \r\n\t\t\tFeature: MyFeature\r\n\t\t\tScenario: The Scenario\r\n\t\t\t");
+        String _plus_1 = (_plus + s);
+        _xifexpression = (_plus_1 + "\r\n\t\t\t");
       }
-      _builder.append("Feature: MyFeature");
-      _builder.newLine();
-      _builder.append("Scenario: The Scenario");
-      _builder.newLine();
-      _builder.append(s, "");
-      _builder.newLineIfNotEmpty();
-      final String input = _builder.toString();
+      final String input = _xifexpression;
       this._modelStore.parseScenario(input);
       Step _first = this._modelStore.<Step>first(Step.class);
       QualifiedName _fullyQualifiedName = this.subject.getFullyQualifiedName(_first);

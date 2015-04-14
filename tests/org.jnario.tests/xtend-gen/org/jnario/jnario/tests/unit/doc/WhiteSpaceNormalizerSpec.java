@@ -8,7 +8,6 @@
 package org.jnario.jnario.tests.unit.doc;
 
 import java.util.Arrays;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.doc.WhiteSpaceNormalizer;
 import org.jnario.jnario.tests.unit.doc.WhiteSpaceNormalizerSpecExamples;
@@ -142,6 +141,7 @@ public class WhiteSpaceNormalizerSpec {
   @Order(1)
   public void _shouldRemoveTrailingWhitespace() throws Exception {
     final Procedure1<WhiteSpaceNormalizerSpecExamples> _function = new Procedure1<WhiteSpaceNormalizerSpecExamples>() {
+      @Override
       public void apply(final WhiteSpaceNormalizerSpecExamples it) {
         String _input = it.getInput();
         String _normalize = WhiteSpaceNormalizerSpec.this.subject.normalize(_input);
@@ -161,16 +161,11 @@ public class WhiteSpaceNormalizerSpec {
   @Named("Linebreak at the end")
   @Order(2)
   public void _linebreakAtTheEnd() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("hello");
-    _builder.newLine();
-    _builder.append("world");
-    _builder.newLine();
-    String _normalize = this.subject.normalize(_builder);
+    String _normalize = this.subject.normalize(
+      "\r\n\t\thello\r\n\t\tworld\r\n\t\t");
     Assert.assertTrue("\nExpected subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\r\n\t\t\'\'\') => \"hello\\nworld\\n\" but"
      + "\n     subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\r\n\t\t\'\'\') is " + new org.hamcrest.StringDescription().appendValue(_normalize).toString()
-     + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString()
-     + "\n     \'\'\'\r\n\t\thello\r\n\t\tworld\r\n\t\t\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder).toString() + "\n", Should.<String>operator_doubleArrow(_normalize, "hello\nworld\n"));
+     + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString() + "\n", Should.<String>operator_doubleArrow(_normalize, "hello\nworld\n"));
     
   }
   
@@ -189,15 +184,11 @@ public class WhiteSpaceNormalizerSpec {
   @Named("No linebreak at the end")
   @Order(4)
   public void _noLinebreakAtTheEnd() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("hello");
-    _builder.newLine();
-    _builder.append("world");
-    String _normalize = this.subject.normalize(_builder);
+    String _normalize = this.subject.normalize(
+      "\r\n\t\thello\r\n\t\tworld");
     Assert.assertTrue("\nExpected subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\'\'\') => \"hello\\nworld\" but"
      + "\n     subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\'\'\') is " + new org.hamcrest.StringDescription().appendValue(_normalize).toString()
-     + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString()
-     + "\n     \'\'\'\r\n\t\thello\r\n\t\tworld\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder).toString() + "\n", Should.<String>operator_doubleArrow(_normalize, "hello\nworld"));
+     + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString() + "\n", Should.<String>operator_doubleArrow(_normalize, "hello\nworld"));
     
   }
 }

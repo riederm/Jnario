@@ -7,8 +7,6 @@
  */
 package org.jnario.spec.tests.integration;
 
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.SpecTestCreator;
@@ -33,10 +31,8 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class ImplicitSubjectSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public BehaviorExecutor _behaviorExecutor;
+  BehaviorExecutor _behaviorExecutor;
   
   /**
    * @filter('''|.executesSuccessfully)
@@ -45,23 +41,7 @@ public class ImplicitSubjectSpec {
   @Named("spec creates instance of target type")
   @Order(1)
   public void _specCreatesInstanceOfTargetType() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe String {");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact subject should not be null");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact subject should be typeof(String)");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n      package bootstrap\r\n      \r\n      describe String {\r\n      \r\n        fact subject should not be null\r\n        fact subject should be typeof(String)\r\n\r\n      }\r\n    ");
   }
   
   /**
@@ -71,32 +51,7 @@ public class ImplicitSubjectSpec {
   @Named("subject can be overridden within example group")
   @Order(2)
   public void _subjectCanBeOverriddenWithinExampleGroup() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe String {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("String subject = \"overridden\"");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact \"subject should be overridden\"{");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("subject should be \"overridden\"");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("} ");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n      package bootstrap\r\n\r\n      describe String {\r\n        \r\n        String subject = \"overridden\"\r\n      \r\n        fact \"subject should be overridden\"{\r\n          subject should be \"overridden\"\r\n        } \r\n            \r\n      }\r\n    ");
   }
   
   /**
@@ -106,32 +61,7 @@ public class ImplicitSubjectSpec {
   @Named("subjects can be instantiated manually")
   @Order(3)
   public void _subjectsCanBeInstantiatedManually() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe Integer {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("before subject = new Integer(42)");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact \"subject should be overridden\"{");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("subject should be 42");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("} ");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n      package bootstrap\r\n\r\n      describe Integer {\r\n        \r\n        before subject = new Integer(42)\r\n      \r\n        fact \"subject should be overridden\"{\r\n          subject should be 42\r\n        } \r\n            \r\n      }\r\n    ");
   }
   
   /**
@@ -141,28 +71,7 @@ public class ImplicitSubjectSpec {
   @Named("subjects will be only created if used")
   @Order(4)
   public void _subjectsWillBeOnlyCreatedIfUsed() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe String {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact \"throws NoSuchFieldException because subject will not be created\"{");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("typeof(StringSpec).getField(\"subject\") throws NoSuchFieldException");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("} ");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n      package bootstrap\r\n\r\n      describe String {\r\n        \r\n        fact \"throws NoSuchFieldException because subject will not be created\"{\r\n          typeof(StringSpec).getField(\"subject\") throws NoSuchFieldException\r\n        } \r\n            \r\n      }\r\n    ");
   }
   
   /**
@@ -172,32 +81,7 @@ public class ImplicitSubjectSpec {
   @Named("subjects can be accessed from nested ExampleGroups")
   @Order(5)
   public void _subjectsCanBeAccessedFromNestedExampleGroups() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe String {");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("describe \"Nested ExampleGroup\"{");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("fact \"should inherit the subject\"{");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("subject should be \"\"");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n      package bootstrap\r\n\r\n      describe String {\r\n      \r\n        describe \"Nested ExampleGroup\"{\r\n          fact \"should inherit the subject\"{\r\n          subject should be \"\"\r\n        }\r\n      }\r\n          \r\n      }\r\n    ");
   }
   
   /**
@@ -207,32 +91,7 @@ public class ImplicitSubjectSpec {
   @Named("subjects can be overridden from nested ExampleGroups")
   @Order(6)
   public void _subjectsCanBeOverriddenFromNestedExampleGroups() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe String {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("describe java.util.ArrayList \"Nested ExampleGroup with different target type\"{");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("fact \"can override the subject\"{");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("assert subject.empty");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n    package bootstrap\r\n\r\n    describe String {\r\n      \r\n      describe java.util.ArrayList \"Nested ExampleGroup with different target type\"{\r\n        fact \"can override the subject\"{\r\n          assert subject.empty\r\n        }\r\n      }\r\n    }\r\n    ");
   }
   
   /**
@@ -242,41 +101,7 @@ public class ImplicitSubjectSpec {
   @Named("subject will be only created in the subexample if is not used in the parent example group")
   @Order(7)
   public void _subjectWillBeOnlyCreatedInTheSubexampleIfIsNotUsedInTheParentExampleGroup() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe Integer{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("describe Integer {");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("Integer subject = 0");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("fact \"can be manually assigned from within sub specification\"{");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("subject should be 0");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("} ");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n      package bootstrap\r\n\r\n      describe Integer{\r\n        \r\n        describe Integer {\r\n          \r\n          Integer subject = 0\r\n          \r\n          fact \"can be manually assigned from within sub specification\"{\r\n            subject should be 0\r\n          } \r\n        }\r\n        \r\n      }\r\n    ");
   }
   
   /**
@@ -286,58 +111,6 @@ public class ImplicitSubjectSpec {
   @Named("subject will not be created in a sub example if is used in the parent example group")
   @Order(8)
   public void _subjectWillNotBeCreatedInASubExampleIfIsUsedInTheParentExampleGroup() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe String {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("describe String{");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("fact \"should generate subject for superclass\"{");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("assert typeof(StringSpec).getDeclaredField(\"subject\") != null");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("fact \"should not generate subject for subclass\"{");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("typeof(StringStringSpec).getDeclaredField(\"subject\") throws NoSuchFieldException");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("fact \"uses subject\"{");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("subject.toString");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact \"uses subject\"{");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("subject.toString");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n      package bootstrap\r\n\r\n      describe String {\r\n        describe String{\r\n          fact \"should generate subject for superclass\"{\r\n            assert typeof(StringSpec).getDeclaredField(\"subject\") != null\r\n          }\r\n          fact \"should not generate subject for subclass\"{\r\n            typeof(StringStringSpec).getDeclaredField(\"subject\") throws NoSuchFieldException\r\n          }\r\n          fact \"uses subject\"{\r\n          subject.toString\r\n        }\r\n        }\r\n        \r\n        fact \"uses subject\"{\r\n          subject.toString\r\n        }\r\n      }\r\n    ");
   }
 }

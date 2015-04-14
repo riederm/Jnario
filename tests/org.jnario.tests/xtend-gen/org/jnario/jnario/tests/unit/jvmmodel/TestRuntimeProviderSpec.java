@@ -1,6 +1,5 @@
 package org.jnario.jnario.tests.unit.jvmmodel;
 
-import com.google.inject.Inject;
 import com.google.inject.Provider;
 import java.util.NoSuchElementException;
 import org.eclipse.emf.ecore.EObject;
@@ -30,10 +29,8 @@ import org.mockito.stubbing.OngoingStubbing;
 public class TestRuntimeProviderSpec {
   public TestRuntimeProvider subject;
   
-  @Inject
   Provider<JUnit3RuntimeSupport> junit3Support;
   
-  @Inject
   Provider<JUnit4RuntimeSupport> junit4Support;
   
   final JvmTypeReference resultingType = Mockito.<JvmTypeReference>mock(JvmTypeReference.class);

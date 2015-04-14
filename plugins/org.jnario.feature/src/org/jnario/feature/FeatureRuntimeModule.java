@@ -32,6 +32,7 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.validation.CompositeEValidator;
 import org.eclipse.xtext.validation.NamesAreUniqueValidationHelper;
 import org.eclipse.xtext.xbase.compiler.JvmModelGenerator;
+import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.compiler.output.TraceAwarePostProcessor;
 import org.eclipse.xtext.xbase.featurecalls.IdentifiableSimpleNameProvider;
 import org.eclipse.xtext.xbase.file.AbstractFileSystemSupport;
@@ -55,6 +56,7 @@ import org.jnario.documentation.XtendDocumentationProvider;
 import org.jnario.feature.compiler.FeatureBatchCompiler;
 import org.jnario.feature.conversion.FeatureValueConverterService;
 import org.jnario.feature.doc.FeatureDocGenerator;
+import org.jnario.feature.generator.FeatureCompiler;
 import org.jnario.feature.generator.FeatureJvmModelGenerator;
 import org.jnario.feature.jvmmodel.FeatureExecutableProvider;
 import org.jnario.feature.jvmmodel.FeatureJvmModelInferrer;
@@ -221,9 +223,9 @@ public class FeatureRuntimeModule extends
 //		return XtendReentrantTypeResolver.class;
 //	}
 //	
-//	public Class<? extends XbaseCompiler> bindXbaseCompiler() {
-//		return FeatureCompiler.class;
-//	}
+	public Class<? extends XbaseCompiler> bindXbaseCompiler() {
+		return FeatureCompiler.class;
+	}
 //	
 //	public Class<? extends TraceAwarePostProcessor> bindTraceAwarePostProcessor() {
 //		return UnicodeAwarePostProcessor.class;

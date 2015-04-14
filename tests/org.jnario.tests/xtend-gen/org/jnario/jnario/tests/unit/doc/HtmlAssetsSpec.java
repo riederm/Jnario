@@ -8,7 +8,6 @@
 package org.jnario.jnario.tests.unit.doc;
 
 import com.google.common.base.Objects;
-import com.google.inject.Inject;
 import java.util.Map;
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess;
 import org.jnario.doc.DocOutputConfigurationProvider;
@@ -32,7 +31,6 @@ public class HtmlAssetsSpec {
   @Subject
   public HtmlAssets subject;
   
-  @Inject
   InMemoryFileSystemAccess fsa;
   
   @Before

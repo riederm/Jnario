@@ -7,8 +7,6 @@
  */
 package org.jnario.spec.tests.integration;
 
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.SpecTestCreator;
@@ -27,10 +25,8 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class UsingJUnitRulesInSpecsSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public BehaviorExecutor _behaviorExecutor;
+  BehaviorExecutor _behaviorExecutor;
   
   /**
    * @filter('''|.executesSuccessfully)
@@ -39,27 +35,6 @@ public class UsingJUnitRulesInSpecsSpec {
   @Named("Example Specification:")
   @Order(1)
   public void _exampleSpecification() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package test");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.newLine();
-    _builder.append("import org.junit.Rule");
-    _builder.newLine();
-    _builder.append("import org.junit.rules.TemporaryFolder");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe Rule{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("@Rule public val folder = new TemporaryFolder\t");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact folder.root should not be null");
-    _builder.newLine();
-    _builder.append("}\t\t");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n\t\tpackage test\r\n\t\t\t\t\r\n\t\timport org.junit.Rule\r\n\t\timport org.junit.rules.TemporaryFolder\r\n\t\t\r\n\t\tdescribe Rule{\r\n\t\t  @Rule public val folder = new TemporaryFolder\t\r\n\t\t\r\n\t\t  fact folder.root should not be null\r\n\t\t}\t\t\r\n\t\t");
   }
 }

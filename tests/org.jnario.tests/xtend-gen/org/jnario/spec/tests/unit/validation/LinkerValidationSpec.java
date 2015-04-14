@@ -1,9 +1,7 @@
 package org.jnario.spec.tests.unit.validation;
 
-import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.junit4.util.ParseHelper;
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper;
 import org.eclipse.xtext.validation.Issue;
@@ -26,38 +24,17 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class LinkerValidationSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ParseHelper<EObject> parseHelper;
+  ParseHelper<EObject> parseHelper;
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ValidationTestHelper validationTestHelper;
+  ValidationTestHelper validationTestHelper;
   
   @Test
   @Named("No validation errors")
   @Order(1)
   public void _noValidationErrors() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"something\"{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact \"x\" {");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("1 should not be 2");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder);
+    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          1 should not be 2\r\n        }\r\n      }\r\n    ");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertNoIssues(_validate);
   }
@@ -66,24 +43,7 @@ public class LinkerValidationSpec {
   @Named("Unknown variable")
   @Order(2)
   public void _unknownVariable() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"something\"{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact \"x\" {");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("println(abc)");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder);
+    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          println(abc)\r\n        }\r\n      }\r\n    ");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertIssues(_validate, 
       "The method or field abc is undefined");
@@ -93,24 +53,7 @@ public class LinkerValidationSpec {
   @Named("Unknown variable within should_be_0")
   @Order(3)
   public void _unknownVariableWithinShouldBe0() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"something\"{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact \"x\" {");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("abc should be 0");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder);
+    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          abc should be 0\r\n        }\r\n      }\r\n    ");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertIssues(_validate, 
       "The method or field abc is undefined");
@@ -120,24 +63,7 @@ public class LinkerValidationSpec {
   @Named("Unknown variable within should_be_null [Bug -137]")
   @Order(4)
   public void _unknownVariableWithinShouldBeNullBug137() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"something\"{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact \"x\" {");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("abc should be null");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder);
+    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          abc should be null\r\n        }\r\n      }\r\n    ");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertIssues(_validate, 
       "The method or field abc is undefined");
@@ -147,24 +73,7 @@ public class LinkerValidationSpec {
   @Named("Unknown variable within => null")
   @Order(5)
   public void _unknownVariableWithinNull() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"something\"{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact \"x\" {");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("abc => null");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder);
+    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          abc => null\r\n        }\r\n      }\r\n    ");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertIssues(_validate, 
       "The method or field abc is undefined");
@@ -174,27 +83,7 @@ public class LinkerValidationSpec {
   @Named("Method call with should be null")
   @Order(6)
   public void _methodCallWithShouldBeNull() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"something\"{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact \"x\" {");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("string => null");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("def getString() {\"\"}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder);
+    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          string => null\r\n        }\r\n        def getString() {\"\"}\r\n      }\r\n    ");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertNoIssues(_validate);
   }
@@ -203,27 +92,7 @@ public class LinkerValidationSpec {
   @Named("Null variable with should be null")
   @Order(7)
   public void _nullVariableWithShouldBeNull() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"something\"{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact \"x\" {");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("val withoutType = null");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("withoutType => null");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder);
+    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          val withoutType = null\r\n          withoutType => null\r\n        }\r\n      }\r\n    ");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertNoIssues(_validate);
   }
@@ -240,8 +109,10 @@ public class LinkerValidationSpec {
   public void assertIssues(final List<Issue> issues, final String... parts) {
     final StringBuilder sb = new StringBuilder();
     final Function1<Issue, Boolean> _function = new Function1<Issue, Boolean>() {
+      @Override
       public Boolean apply(final Issue it) {
         final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
+          @Override
           public Boolean apply(final String part) {
             String _message = it.getMessage();
             return Boolean.valueOf(_message.contains(part));
@@ -261,8 +132,10 @@ public class LinkerValidationSpec {
       }
     }
     final Function1<String, Boolean> _function_1 = new Function1<String, Boolean>() {
+      @Override
       public Boolean apply(final String part) {
         final Function1<Issue, Boolean> _function = new Function1<Issue, Boolean>() {
+          @Override
           public Boolean apply(final Issue it) {
             String _message = it.getMessage();
             return Boolean.valueOf(_message.contains(part));
@@ -284,13 +157,10 @@ public class LinkerValidationSpec {
     int _length = sb.length();
     boolean _greaterThan = (_length > 0);
     if (_greaterThan) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Issue mismatch");
-      _builder.newLine();
       String _string = sb.toString();
-      _builder.append(_string, "");
-      _builder.newLineIfNotEmpty();
-      org.junit.Assert.fail(_builder.toString());
+      String _plus = ("\r\n\t\t\tIssue mismatch\r\n\t\t\t" + _string);
+      String _plus_1 = (_plus + "\r\n\t\t");
+      org.junit.Assert.fail(_plus_1);
     }
   }
 }

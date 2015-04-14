@@ -7,16 +7,14 @@
  */
 package org.jnario.feature.tests.unit.validation;
 
-import com.google.inject.Inject;
 import java.util.Iterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtend.core.xtend.XtendFile;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics;
 import org.eclipse.xtext.junit4.validation.RegisteredValidatorTester;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.jnario.JnarioFile;
 import org.jnario.feature.tests.unit.validation.FeatureJavaValidatorFeaturesMustHaveDescriptionsSpec;
 import org.jnario.feature.tests.unit.validation.FeatureJavaValidatorScenariosMustHaveDescriptionsSpec;
 import org.jnario.feature.tests.unit.validation.FeatureJavaValidatorStepsMustHaveDescriptionsSpec;
@@ -40,27 +38,15 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class FeatureJavaValidatorSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore modelStore;
+  ModelStore modelStore;
   
   @Test
   @Named("no name clash between features and imported types")
   @Order(1)
   public void _noNameClashBetweenFeaturesAndImportedTypes() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("import java.util.Stack");
-    _builder.newLine();
-    _builder.append("Feature: Stack");
-    _builder.newLine();
-    _builder.append("Scenario: Example");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Stack stack");
-    _builder.newLine();
-    this.modelStore.parseScenario(_builder);
-    AssertableDiagnostics _validate = this.validate(XtendFile.class);
+    this.modelStore.parseScenario("\r\n\t\t\timport java.util.Stack\r\n\t\t\tFeature: Stack\r\n\t\t\tScenario: Example\r\n\t\t\t\tStack stack\r\n\t\t");
+    AssertableDiagnostics _validate = this.validate(JnarioFile.class);
     _validate.assertOK();
   }
   
@@ -78,6 +64,7 @@ public class FeatureJavaValidatorSpec {
     Query _query = Query.query(this.modelStore);
     final Iterator<? extends EObject> steps = _query.allOf(type);
     final Procedure1<EObject> _function = new Procedure1<EObject>() {
+      @Override
       public void apply(final EObject it) {
         final AssertableDiagnostics result = RegisteredValidatorTester.validateObj(it);
         test.apply(result);

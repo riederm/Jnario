@@ -7,7 +7,6 @@
  */
 package org.jnario.spec.tests.integration;
 
-import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.hamcrest.Matcher;
 import org.jnario.jnario.test.util.BehaviorExecutor;
@@ -30,10 +29,8 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class ExampleGroupSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public BehaviorExecutor _behaviorExecutor;
+  BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("should resolve target class")

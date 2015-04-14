@@ -9,7 +9,7 @@ package org.jnario.feature.tests.unit.validation
 
 import com.google.inject.Inject
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.xtend.core.xtend.XtendFile
+import org.jnario.JnarioFile
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics
 import org.eclipse.xtext.junit4.validation.RegisteredValidatorTester
 import org.eclipse.xtext.xbase.lib.Procedures$Procedure1
@@ -63,7 +63,7 @@ describe FeatureJavaValidator{
 			Scenario: Example
 				Stack stack
 		'''.parseScenario
-		validate(typeof(XtendFile)).assertOK
+		validate(typeof(JnarioFile)).assertOK
 	}
 	
 	def select(CharSequence input, Class<? extends EObject> type){

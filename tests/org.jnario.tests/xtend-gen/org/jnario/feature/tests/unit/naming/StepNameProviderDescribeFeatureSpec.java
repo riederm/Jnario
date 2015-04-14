@@ -7,7 +7,6 @@
  */
 package org.jnario.feature.tests.unit.naming;
 
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.jnario.feature.feature.Feature;
 import org.jnario.feature.tests.unit.naming.StepNameProviderSpec;
 import org.jnario.jnario.test.util.Features;
@@ -27,19 +26,7 @@ public class StepNameProviderDescribeFeatureSpec extends StepNameProviderSpec {
   @Named("removes multilines parameters")
   @Order(1)
   public void _removesMultilinesParameters() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Scenario: MyScenario 2");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Given a step with multiline parameter");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("\"the parameter\"");
-    _builder.newLine();
-    _builder.append("\t ");
-    _builder.append("1 + 1 => 2");
-    _builder.newLine();
-    this.parseScenario(_builder);
+    this.parseScenario("\r\n\t\t\t\t\tScenario: MyScenario 2\r\n\t\t\t\t\t\tGiven a step with multiline parameter\r\n\t\t\t\t\t\t\t\"the parameter\"\r\n\t\t\t\t\t\t 1 + 1 => 2\r\n\t\t\t");
     String _describeStep = this.describeStep();
     Assert.assertTrue("\nExpected describeStep => \'Given a step with multiline parameter\' but"
      + "\n     describeStep is " + new org.hamcrest.StringDescription().appendValue(_describeStep).toString() + "\n", Should.<String>operator_doubleArrow(_describeStep, "Given a step with multiline parameter"));

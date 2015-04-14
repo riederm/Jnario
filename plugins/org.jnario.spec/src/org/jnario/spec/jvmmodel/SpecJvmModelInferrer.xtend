@@ -53,7 +53,7 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 
 	@Inject extension ExampleNameProvider
 	
-	//@Inject extension ImplicitSubject 
+	@Inject extension ImplicitSubject 
 	
 //	@Inject extension SyntheticNameClashResolver
 	
@@ -129,11 +129,10 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 //		fixTypeParameters(inferredJvmType);
 		exampleIndex = 0
 		for (member : source.getMembers()) {
-			transformExamples(member, inferredJvmType);
+			transform(member, inferredJvmType);
 		}
 
-// TODO NO_XTEND Not sure about this one
-//      inferredJvmType.addImplicitSubject(source as ExampleGroup)
+      inferredJvmType.addImplicitSubject(source as ExampleGroup)
 
 // TODO NO_XTEND Not sure about this one
 //		appendSyntheticDispatchMethods(source, inferredJvmType);
@@ -152,21 +151,7 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 //	  }
 //	}
 	
-	def void transformExamples(JnarioMember sourceMember, JvmGenericType container) {
-		switch sourceMember {
-			Example: transform(sourceMember, container)
-			Before : transform(sourceMember, container)
-			After: transform(sourceMember, container)
-			ExampleTable: transform(sourceMember, container)
-//			JnarioFunction case sourceMember.name != null: transform(sourceMember, container, false)
-			JnarioField: transform(sourceMember, container)
-		}
-	}
-	
-	def transform(JnarioField field, JvmGenericType container) {
-	    
-	}
-	def transform(Example element, JvmGenericType container) {
+	def protected dispatch void transform(Example element, JvmGenericType container) {
 		exampleIndex = exampleIndex + 1
 		if(element.expression == null){
 			element.expression = XbaseFactory::eINSTANCE.createXBlockExpression
@@ -181,14 +166,14 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 		container.members += method
 	}
 	
-	def transform(Before element, JvmGenericType container) {
+	def protected dispatch void transform(Before element, JvmGenericType container) {
 		transformAround(element, container, 
 			[e, m | testRuntime.beforeMethod(e, m)], 
 			[e, m | testRuntime.beforeAllMethod(e, m)]
 		)
 	}
 	
-	def transform(After element, JvmGenericType container) {
+	def protected dispatch void  transform(After element, JvmGenericType container) {
 		transformAround(element, container, 
 			[e, m | testRuntime.afterMethod(e, m)], 
 			[e, m | testRuntime.afterAllMethod(e, m)]
@@ -215,6 +200,9 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 //			^static = true
 //		]
 //	}
+    override protected dispatch void transform(JnarioMember source, JvmGenericType container) {
+        
+    }
 	
 	def toMethod(TestFunction element, JvmGenericType container){
 		element.setReturnType(getTypeForName(Void::TYPE, element))
@@ -246,7 +234,7 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 		type.documentation = source.documentation
 	}
 	 
-	def transform(ExampleTable table, JvmGenericType specType){
+	def protected dispatch void transform(ExampleTable table, JvmGenericType specType){
 		associateTableWithSpec(specType, table)
 		table.jnarioFile.toClass(table.toJavaClassName)[exampleTableType |
 			exampleTableType.superTypes += getTypeForName(typeof(ExampleTableRow), table)

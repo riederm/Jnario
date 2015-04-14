@@ -469,7 +469,7 @@ describe "Introducing Jnario Specs"{
 			  extension DatabaseExtension db = new DatabaseExtension
 			  fact query("SELECT * FROM content")	      
 			}
-			'''
+			'''.executesSuccessfully
 		}
  
 		/*

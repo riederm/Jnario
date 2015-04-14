@@ -7,10 +7,8 @@
  */
 package org.jnario.suite.unit;
 
-import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -33,21 +31,13 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class SuiteNodeBuilderSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore m;
+  ModelStore m;
   
   public Resource parseSuite(final CharSequence s) {
     Resource _xblockexpression = null;
     {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("package test");
-      _builder.newLine();
-      _builder.newLine();
-      _builder.append(s, "");
-      _builder.newLineIfNotEmpty();
-      final String input = _builder.toString();
+      final String input = (("\r\n\t\tpackage test\r\n\t\t\r\n\t\t" + s) + "\r\n\t\t");
       _xblockexpression = this.m.parseSuite(input);
     }
     return _xblockexpression;
@@ -55,6 +45,7 @@ public class SuiteNodeBuilderSpec {
   
   public List<Suite> suites(final String... names) {
     final Function1<String, Suite> _function = new Function1<String, Suite>() {
+      @Override
       public Suite apply(final String it) {
         return SuiteNodeBuilderSpec.this.suite(it);
       }

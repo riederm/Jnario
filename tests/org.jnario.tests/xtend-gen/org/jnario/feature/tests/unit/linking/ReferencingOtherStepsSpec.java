@@ -7,8 +7,6 @@
  */
 package org.jnario.feature.tests.unit.linking;
 
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.feature.feature.Given;
 import org.jnario.feature.feature.GivenReference;
@@ -35,40 +33,14 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class ReferencingOtherStepsSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore m;
+  ModelStore m;
   
   @Test
   @Named("Steps can reference steps in the same feature")
   @Order(1)
   public void _stepsCanReferenceStepsInTheSameFeature() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package test");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Feature: My Feature");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Scenario: Scenario 1");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Given a step");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("val x = \"an implementation\"");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Scenario: Scenario 2");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Given a step");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.newLine();
-    this.m.parseScenario(_builder);
+    this.m.parseScenario("\r\n\t\t\tpackage test\r\n\t\t\t\r\n\t\t\tFeature: My Feature\r\n\t\t\t\r\n\t\t\t\tScenario: Scenario 1\r\n\t\t\t\t\tGiven a step\r\n\t\t\t\t\t\tval x = \"an implementation\"\r\n\t\t\t\tScenario: Scenario 2\r\n\t\t\t\t\tGiven a step\r\n\t\t\t\t\t\r\n\t\t");
     GivenReference _first = this.m.<GivenReference>first(GivenReference.class);
     StepImplementation _reference = _first.getReference();
     StepImplementation _first_1 = this.m.<StepImplementation>first(Given.class);
@@ -83,35 +55,7 @@ public class ReferencingOtherStepsSpec {
   @Named("Steps ignore trailing whitespace when referencing steps")
   @Order(2)
   public void _stepsIgnoreTrailingWhitespaceWhenReferencingSteps() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package test");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Feature: My Feature");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Scenario: Scenario 1");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Given a step");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("val x = \"an implementation\"");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Scenario: Scenario 2");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Given a step\t");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("//            ^ ");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("//   here is a whitespace");
-    _builder.newLine();
-    this.m.parseScenario(_builder);
+    this.m.parseScenario("\r\n\t\t\tpackage test\r\n\t\t\t\r\n\t\t\tFeature: My Feature\r\n\t\t\t\r\n\t\t\t\tScenario: Scenario 1\r\n\t\t\t\t\tGiven a step\r\n\t\t\t\t\t\tval x = \"an implementation\"\r\n\t\t\t\tScenario: Scenario 2\r\n\t\t\t\t\tGiven a step\t\r\n\t\t\t\t\t//            ^ \r\n\t\t\t\t\t//   here is a whitespace\r\n\t\t");
     GivenReference _first = this.m.<GivenReference>first(GivenReference.class);
     StepImplementation _reference = _first.getReference();
     StepImplementation _first_1 = this.m.<StepImplementation>first(Given.class);
@@ -126,38 +70,8 @@ public class ReferencingOtherStepsSpec {
   @Named("Steps can reference steps in features in the same package")
   @Order(3)
   public void _stepsCanReferenceStepsInFeaturesInTheSamePackage() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package test");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Feature: My Feature 1");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Scenario: Scenario 1");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Given a step");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("val x = \"an implementation\"");
-    _builder.newLine();
-    this.m.parseScenario(_builder);
-    StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("package test");
-    _builder_1.newLine();
-    _builder_1.newLine();
-    _builder_1.append("Feature: My Feature 2");
-    _builder_1.newLine();
-    _builder_1.append("\t");
-    _builder_1.append("Scenario: Scenario 2");
-    _builder_1.newLine();
-    _builder_1.append("\t\t");
-    _builder_1.append("Given a step");
-    _builder_1.newLine();
-    _builder_1.append("\t\t");
-    _builder_1.newLine();
-    this.m.parseScenario(_builder_1);
+    this.m.parseScenario("\r\n\t\t\tpackage test\r\n\t\t\t\r\n\t\t\tFeature: My Feature 1\r\n\t\t\t\r\n\t\t\t\tScenario: Scenario 1\r\n\t\t\t\t\tGiven a step\r\n\t\t\t\t\t\tval x = \"an implementation\"\r\n\t\t");
+    this.m.parseScenario("\r\n\t\t\tpackage test\r\n\t\t\t\r\n\t\t\tFeature: My Feature 2\r\n\t\t\t\tScenario: Scenario 2\r\n\t\t\t\t\tGiven a step\r\n\t\t\t\t\t\r\n\t\t");
     GivenReference _first = this.m.<GivenReference>first(GivenReference.class);
     StepImplementation _reference = _first.getReference();
     StepImplementation _first_1 = this.m.<StepImplementation>first(Given.class);
@@ -172,39 +86,8 @@ public class ReferencingOtherStepsSpec {
   @Named("Referencing steps in a different package requires an import statement")
   @Order(4)
   public void _referencingStepsInADifferentPackageRequiresAnImportStatement() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package test1");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Feature: My Feature 1");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Scenario: Scenario 1");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Given a step");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("val x = \"an implementation\"");
-    _builder.newLine();
-    this.m.parseScenario(_builder);
-    StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("package test2");
-    _builder_1.newLine();
-    _builder_1.append("import test1.*");
-    _builder_1.newLine();
-    _builder_1.append("Feature: My Feature 2");
-    _builder_1.newLine();
-    _builder_1.append("\t");
-    _builder_1.append("Scenario: Scenario 2");
-    _builder_1.newLine();
-    _builder_1.append("\t\t");
-    _builder_1.append("Given a step");
-    _builder_1.newLine();
-    _builder_1.append("\t\t");
-    _builder_1.newLine();
-    this.m.parseScenario(_builder_1);
+    this.m.parseScenario("\r\n\t\t\tpackage test1\r\n\t\t\t\r\n\t\t\tFeature: My Feature 1\r\n\t\t\t\r\n\t\t\t\tScenario: Scenario 1\r\n\t\t\t\t\tGiven a step\r\n\t\t\t\t\t\tval x = \"an implementation\"\r\n\t\t");
+    this.m.parseScenario("\r\n\t\t\tpackage test2\r\n\t\t\timport test1.*\r\n\t\t\tFeature: My Feature 2\r\n\t\t\t\tScenario: Scenario 2\r\n\t\t\t\t\tGiven a step\r\n\t\t\t\t\t\r\n\t\t");
     GivenReference _first = this.m.<GivenReference>first(GivenReference.class);
     StepImplementation _reference = _first.getReference();
     StepImplementation _first_1 = this.m.<StepImplementation>first(Given.class);

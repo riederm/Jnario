@@ -1,6 +1,5 @@
 package org.jnario.feature.tests.unit.naming;
 
-import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -22,10 +21,8 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class FeatureScopeProviderSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ScopeTestExtension e;
+  ScopeTestExtension e;
   
   public Set<String> targetOperationScope() {
     Set<String> _xblockexpression = null;

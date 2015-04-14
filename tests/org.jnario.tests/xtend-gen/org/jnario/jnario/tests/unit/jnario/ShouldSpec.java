@@ -7,8 +7,6 @@
  */
 package org.jnario.jnario.tests.unit.jnario;
 
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.Should;
 import org.jnario.jnario.test.util.BehaviorExecutor;
@@ -28,31 +26,17 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class ShouldSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore _modelStore;
+  ModelStore _modelStore;
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public BehaviorExecutor _behaviorExecutor;
+  BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("\\\'isNot\\\' is false if for \\\'1 should be 1")
   @Order(1)
   public void _isNotIsFalseIfFor1ShouldBe1() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.append("describe \"Should\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact 1 should be 1");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._modelStore.parseSpec(_builder);
+    this._modelStore.parseSpec("\r\n\t\t\tpackage bootstrap\r\n\t\t\tdescribe \"Should\"{\r\n\t\t\t\tfact 1 should be 1\r\n\t\t\t}\r\n\t\t");
     Query _query = this._modelStore.query();
     Should _first = _query.<Should>first(Should.class);
     boolean _isNot = _first.isNot();
@@ -68,17 +52,7 @@ public class ShouldSpec {
   @Named("\\\'isNot\\\' is true if for \\\'1 should not be 1")
   @Order(2)
   public void _isNotIsTrueIfFor1ShouldNotBe1() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.append("describe \"Should\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact 1 should not be 1");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._modelStore.parseSpec(_builder);
+    this._modelStore.parseSpec("\r\n\t\t\tpackage bootstrap\r\n\t\t\tdescribe \"Should\"{\r\n\t\t\t\tfact 1 should not be 1\r\n\t\t\t}\r\n\t\t");
     Query _query = this._modelStore.query();
     Should _first = _query.<Should>first(Should.class);
     boolean _isNot = _first.isNot();
@@ -92,128 +66,55 @@ public class ShouldSpec {
   @Named("short circuit invocation works in closures within assertions")
   @Order(3)
   public void _shortCircuitInvocationWorksInClosuresWithinAssertions() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Test\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact assert list(null, \"\").filter [ it != null && it.length > 2 ].empty");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tdescribe \"Test\"{\r\n\t\t\t\tfact assert list(null, \"\").filter [ it != null && it.length > 2 ].empty\r\n\t\t\t}\r\n\t\t");
   }
   
   @Test
   @Named("throw checks expected exception")
   @Order(4)
   public void _throwChecksExpectedException() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("import java.util.*");
-    _builder.newLine();
-    _builder.append("describe \"Test\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact new Stack().pop throws EmptyStackException");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\timport java.util.*\r\n\t\t\tdescribe \"Test\"{\r\n\t\t\t\tfact new Stack().pop throws EmptyStackException\r\n\t\t\t}\r\n\t\t");
   }
   
   @Test
   @Named("throw checks fails if no exception is thrown")
   @Order(5)
   public void _throwChecksFailsIfNoExceptionIsThrown() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Test\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"\" throws Exception");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executionFails(_builder);
+    this._behaviorExecutor.executionFails("\r\n\t\t\tdescribe \"Test\"{\r\n\t\t\t\tfact \"\" throws Exception\r\n\t\t\t}\r\n\t\t");
   }
   
   @Test
   @Named("throw checks fails if exception with different type is thrown")
   @Order(6)
   public void _throwChecksFailsIfExceptionWithDifferentTypeIsThrown() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("import java.util.*");
-    _builder.newLine();
-    _builder.append("describe \"Test\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact new Stack().pop throws NoSuchElementException");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executionFails(_builder);
+    this._behaviorExecutor.executionFails("\r\n\t\t\timport java.util.*\r\n\t\t\tdescribe \"Test\"{\r\n\t\t\t\tfact new Stack().pop throws NoSuchElementException\r\n\t\t\t}\r\n\t\t");
   }
   
   @Test
   @Named("compares arrays")
   @Order(7)
   public void _comparesArrays() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Test\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact list(\"red\").toArray => list(\"red\").toArray");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tdescribe \"Test\"{\r\n\t\t\t\tfact list(\"red\").toArray => list(\"red\").toArray\r\n\t\t\t}\r\n\t\t");
   }
   
   @Test
   @Named("infers throws type")
   @Order(8)
   public void _infersThrowsType() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("import java.util.*");
-    _builder.newLine();
-    _builder.append("describe \"Test\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact new Stack<String>().pop should throw EmptyStackException");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact new Stack<String>().pop throws EmptyStackException");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n\t\timport java.util.*\r\n\t\tdescribe \"Test\"{\r\n\t\t\tfact new Stack<String>().pop should throw EmptyStackException\r\n\t\t\tfact new Stack<String>().pop throws EmptyStackException\r\n\t\t}\r\n\t\t");
   }
   
   @Test
   @Named("should safely matches null values")
   @Order(9)
   public void _shouldSafelyMatchesNullValues() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Test\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"hello\" should not be null");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n\t\tdescribe \"Test\"{\r\n\t\t\tfact \"hello\" should not be null\r\n\t\t}\r\n\t\t");
   }
   
   @Test
   @Named("=> safely matches null values")
   @Order(10)
   public void _safelyMatchesNullValues() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Test\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact null => null");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n\t\tdescribe \"Test\"{\r\n\t\t\tfact null => null\r\n\t\t}\r\n\t\t");
   }
 }

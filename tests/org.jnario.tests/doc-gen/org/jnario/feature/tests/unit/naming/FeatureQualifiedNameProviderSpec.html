@@ -160,10 +160,9 @@ describe FeatureQualifiedNameProvider {
   }
   
   def implementedStepName(CharSequence s){
-    '''
-    &laquo;s&raquo;
+    (s + ''''
     val x = &quot;&quot;
-    '''.stepName
+    ''').stepName
   }
   
   def stepName(CharSequence s){
@@ -171,14 +170,12 @@ describe FeatureQualifiedNameProvider {
   }
   
   def stepName(CharSequence s, String packageName){
-    val input = '''
-      &laquo;IF packageName != null&raquo;
-      package &laquo;packageName&raquo;
-      &laquo;ENDIF&raquo;
+    val input = if (packageName != null) { &quot;package &quot; + packageName } else {&quot;&quot;}
+      + ''' 
       Feature: MyFeature
       Scenario: The Scenario
-      &laquo;s&raquo;
-    '''
+      ''' + s + '''
+      '''
     parseScenario(input)
     converter.toString(subject.getFullyQualifiedName(first(typeof(Step))))
   }

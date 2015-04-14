@@ -16,7 +16,6 @@ import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.util.Files;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.jnario.jnario.test.util.ExtendedSpecInjectorProvider;
 import org.jnario.spec.compiler.SpecBatchCompiler;
 import org.junit.After;
 import org.junit.Assert;
@@ -24,8 +23,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(XtextRunner.class)
-@InjectWith(ExtendedSpecInjectorProvider.class)
+@RunWith(XtextRunner.class)/* 
+@InjectWith(ExtendedSpecInjectorProvider.class) */
 @SuppressWarnings("all")
 public class SpecBatchCompilerTest {
   @Inject

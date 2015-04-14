@@ -7,8 +7,6 @@
  */
 package org.jnario.spec.tests.integration;
 
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.ConsoleRecorder;
@@ -59,68 +57,14 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class SpecExtensionsSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public BehaviorExecutor _behaviorExecutor;
+  BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("Example:")
   @Order(1)
   public void _example() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("import org.jnario.spec.tests.integration.ExtensionExample");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"Extension\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("extension static ExtensionExample = new ExtensionExample()");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("context \"Nested Spec\"{");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("fact println(\"test 3\")");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact println(\"test 1\")");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact println(\"test 2\")");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("before Class");
-    _builder_1.newLine();
-    _builder_1.append("before");
-    _builder_1.newLine();
-    _builder_1.append("test 3");
-    _builder_1.newLine();
-    _builder_1.append("after");
-    _builder_1.newLine();
-    _builder_1.append("before");
-    _builder_1.newLine();
-    _builder_1.append("test 1");
-    _builder_1.newLine();
-    _builder_1.append("after");
-    _builder_1.newLine();
-    _builder_1.append("before");
-    _builder_1.newLine();
-    _builder_1.append("test 2");
-    _builder_1.newLine();
-    _builder_1.append("after");
-    _builder_1.newLine();
-    _builder_1.append("after Class");
-    _builder_1.newLine();
-    this.prints(_builder, _builder_1.toString());
+    this.prints("\r\n\t\t\timport org.jnario.spec.tests.integration.ExtensionExample\r\n\r\n\t\t\tdescribe \"Extension\"{\r\n\t\t\t\textension static ExtensionExample = new ExtensionExample()\r\n\r\n\t\t\t\tcontext \"Nested Spec\"{\r\n\t\t\t\t\tfact println(\"test 3\")\r\n\t\t\t\t}\r\n\t\t\t\tfact println(\"test 1\")\r\n\t\t\t\tfact println(\"test 2\")\r\n\t\t\t\t\r\n\t\t\t}\r\n\t\t", "\r\n\t\t\t\tbefore Class\r\n\t\t\t\tbefore\r\n\t\t\t\ttest 3\r\n\t\t\t\tafter\r\n\t\t\t\tbefore\r\n\t\t\t\ttest 1\r\n\t\t\t\tafter\r\n\t\t\t\tbefore\r\n\t\t\t\ttest 2\r\n\t\t\t\tafter\r\n\t\t\t\tafter Class\r\n\t\t");
   }
   
   public void prints(final CharSequence spec, final String expected) {

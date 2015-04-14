@@ -13,8 +13,12 @@ import static com.google.common.collect.Maps.newHashMap;
 
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
+import org.eclipse.xtext.xbase.XExpression;
+import org.jnario.Assertion;
 import org.jnario.JnarioPackage;
 import org.jnario.spec.naming.ExampleNameProvider;
 import org.jnario.spec.spec.Example;
@@ -238,5 +242,13 @@ public class SpecJavaValidator extends AbstractSpecJavaValidator {
 //		}
 //		super.checkAbstract(function);
 //	}
+
+	protected boolean isValueExpectedRecursive(XExpression expr) {
+		EObject container = expr.eContainer();
+		if (container instanceof Assertion) {
+			return true;
+		}
+		return super.isValueExpectedRecursive(expr);
+	}
 
 }

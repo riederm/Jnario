@@ -8,7 +8,6 @@
 package org.jnario.feature.tests.unit.naming;
 
 import java.util.Arrays;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.feature.tests.unit.naming.StepNameProviderRemoveArgumentsSpecExamples;
 import org.jnario.feature.tests.unit.naming.StepNameProviderSpec;
@@ -57,14 +56,12 @@ public class StepNameProviderRemoveArgumentsSpec extends StepNameProviderSpec {
   @Order(1)
   public void _examplesDoPass() throws Exception {
     final Procedure1<StepNameProviderRemoveArgumentsSpecExamples> _function = new Procedure1<StepNameProviderRemoveArgumentsSpecExamples>() {
+      @Override
       public void apply(final StepNameProviderRemoveArgumentsSpecExamples it) {
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("Scenario: scenario");
-        _builder.newLine();
         String _step = it.getStep();
-        _builder.append(_step, "");
-        _builder.newLineIfNotEmpty();
-        StepNameProviderRemoveArgumentsSpec.this.parseScenario(_builder);
+        String _plus = ("\r\n\t\t\t\t\tScenario: scenario\r\n\t\t\t\t\t" + _step);
+        String _plus_1 = (_plus + "\r\n\t\t\t\t");
+        StepNameProviderRemoveArgumentsSpec.this.parseScenario(_plus_1);
         String _step_1 = it.getStep();
         String _removeArguments = StepNameProviderRemoveArgumentsSpec.this.subject.removeArguments(_step_1);
         String _result = it.getResult();

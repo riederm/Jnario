@@ -11,7 +11,6 @@ import com.google.common.base.Objects;
 import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Stack;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
@@ -93,6 +92,7 @@ public class UsingShouldSpec {
      + "\n     list(\"something\") is " + new org.hamcrest.StringDescription().appendValue(_list_1).toString() + "\n", _should_contain_3);
     
     final Procedure1<String> _function = new Procedure1<String>() {
+      @Override
       public void apply(final String it) {
         int _length = it.length();
         boolean _doubleArrow = Should.<Integer>operator_doubleArrow(Integer.valueOf(_length), Integer.valueOf(11));
@@ -244,6 +244,7 @@ public class UsingShouldSpec {
   @Order(3)
   public void _whyDidItFail() throws Exception {
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
+      @Override
       public void apply(final Boolean it) {
         Assert.assertTrue("\nExpected 1 + 1 => 1 but"
          + "\n     1 + 1 is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf((1 + 1))).toString() + "\n", Should.<Integer>operator_doubleArrow(Integer.valueOf((1 + 1)), Integer.valueOf(1)));
@@ -251,14 +252,10 @@ public class UsingShouldSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Expected 1 + 1 => 1 but");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("1 + 1 is <2>");
-    Helpers.is(_errorMessage, _builder);
+    Helpers.is(_errorMessage, "\r\n     Expected 1 + 1 => 1 but\r\n          1 + 1 is <2>");
     final String x = "hello";
     final Procedure1<Boolean> _function_1 = new Procedure1<Boolean>() {
+      @Override
       public void apply(final Boolean it) {
         String _upperCase = x.toUpperCase();
         Assert.assertFalse("\nExpected x.toUpperCase should not be \"HELLO\" but"
@@ -268,17 +265,10 @@ public class UsingShouldSpec {
       }
     };
     String _errorMessage_1 = Helpers.errorMessage(_function_1);
-    StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("Expected x.toUpperCase should not be \"HELLO\" but");
-    _builder_1.newLine();
-    _builder_1.append("     ");
-    _builder_1.append("x.toUpperCase is \"HELLO\"");
-    _builder_1.newLine();
-    _builder_1.append("     ");
-    _builder_1.append("x is \"hello\"");
-    Helpers.is(_errorMessage_1, _builder_1);
+    Helpers.is(_errorMessage_1, "\r\n      Expected x.toUpperCase should not be \"HELLO\" but\r\n           x.toUpperCase is \"HELLO\"\r\n           x is \"hello\"");
     final String y = "world";
     final Procedure1<Boolean> _function_2 = new Procedure1<Boolean>() {
+      @Override
       public void apply(final Boolean it) {
         Assert.assertTrue("\nExpected x => y but"
          + "\n     x is " + new org.hamcrest.StringDescription().appendValue(x).toString()
@@ -287,15 +277,7 @@ public class UsingShouldSpec {
       }
     };
     String _errorMessage_2 = Helpers.errorMessage(_function_2);
-    StringConcatenation _builder_2 = new StringConcatenation();
-    _builder_2.append("Expected x => y but");
-    _builder_2.newLine();
-    _builder_2.append("     ");
-    _builder_2.append("x is \"hello\"");
-    _builder_2.newLine();
-    _builder_2.append("     ");
-    _builder_2.append("y is \"world\"");
-    Helpers.is(_errorMessage_2, _builder_2);
+    Helpers.is(_errorMessage_2, "\r\n      Expected x => y but\r\n           x is \"hello\"\r\n           y is \"world\"");
   }
   
   /**
@@ -308,12 +290,14 @@ public class UsingShouldSpec {
   @Order(4)
   public void _waitForSomething() throws Exception {
     final Function1<Wait, Boolean> _function = new Function1<Wait, Boolean>() {
+      @Override
       public Boolean apply(final Wait it) {
         return Boolean.valueOf((1 > 0));
       }
     };
     Wait.waitUntil(_function);
     final Function1<Wait, Boolean> _function_1 = new Function1<Wait, Boolean>() {
+      @Override
       public Boolean apply(final Wait it) {
         boolean _xblockexpression = false;
         {

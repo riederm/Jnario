@@ -1,6 +1,5 @@
 package org.jnario.jnario.tests.unit.report;
 
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
@@ -32,18 +31,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("returns Pending if children are not executed and have no implementation")
   @Order(1)
   public void _returnsPendingIfChildrenAreNotExecutedAndHaveNoImplementation() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Root\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"fact 1\"");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"fact 2\"");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this.m.parseSpec(_builder);
+    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"fact 1\"\r\n\t\t\t\tfact \"fact 2\"\r\n\t\t\t}\r\n\t\t\t");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
     SpecExecution _result = this.result(_exampleGroup);
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result => typeof(Pending) but"
@@ -57,18 +45,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("returns NotRun if children are not executed but have an implementation")
   @Order(2)
   public void _returnsNotRunIfChildrenAreNotExecutedButHaveAnImplementation() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Root\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"fact 1\"{ \"with implementation\" }");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"fact 2\"{ \"with implementation\" }");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this.m.parseSpec(_builder);
+    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"fact 1\"{ \"with implementation\" }\r\n\t\t\t\tfact \"fact 2\"{ \"with implementation\" }\r\n\t\t\t}\r\n\t\t\t");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
     SpecExecution _result = this.result(_exampleGroup);
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result => typeof(NotRun) but"
@@ -82,18 +59,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("passes if all children pass")
   @Order(3)
   public void _passesIfAllChildrenPass() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Root\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 1\"{ \"with implementation\" }");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 2\"{ \"with implementation\" }");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this.m.parseSpec(_builder);
+    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"{ \"with implementation\" }\r\n\t\t\t\tfact \"Example 2\"{ \"with implementation\" }\r\n\t\t\t}\r\n\t\t\t");
     this.passes("Example 1", "Example 2");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
     SpecExecution _result = this.result(_exampleGroup);
@@ -108,18 +74,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("fails if one child has failed")
   @Order(4)
   public void _failsIfOneChildHasFailed() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Root\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 1\"{ \"with implementation\" }");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 2\"{ \"with implementation\" }");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this.m.parseSpec(_builder);
+    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"{ \"with implementation\" }\r\n\t\t\t\tfact \"Example 2\"{ \"with implementation\" }\r\n\t\t\t}\r\n\t\t\t");
     this.passes("Example 1");
     this.fails("Example 2");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
@@ -135,18 +90,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("execution time is sum of all child examples")
   @Order(5)
   public void _executionTimeIsSumOfAllChildExamples() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Root\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 1\"{ \"with implementation\" }");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 2\"{ \"with implementation\" }");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this.m.parseSpec(_builder);
+    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"{ \"with implementation\" }\r\n\t\t\t\tfact \"Example 2\"{ \"with implementation\" }\r\n\t\t\t}\r\n\t\t\t");
     this.exampleExecutedIn("Example 1", 1.0);
     this.exampleExecutedIn("Example 2", 2.0);
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
@@ -164,18 +108,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("class name is from spec")
   @Order(6)
   public void _classNameIsFromSpec() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Root\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 1\"{ \"with implementation\" }");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 2\"{ \"with implementation\" }");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this.m.parseSpec(_builder);
+    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"{ \"with implementation\" }\r\n\t\t\t\tfact \"Example 2\"{ \"with implementation\" }\r\n\t\t\t}\r\n\t\t\t");
     this.passes("Example 1");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
     SpecExecution _result = this.result(_exampleGroup);
@@ -192,18 +125,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("name is from spec")
   @Order(7)
   public void _nameIsFromSpec() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Root\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 1\"");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 2\"");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this.m.parseSpec(_builder);
+    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"\r\n\t\t\t\tfact \"Example 2\"\r\n\t\t\t}\r\n\t\t\t");
     this.passes("Example 1");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
     SpecExecution _result = this.result(_exampleGroup);
@@ -220,18 +142,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("caches calculated results")
   @Order(8)
   public void _cachesCalculatedResults() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Root\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 1\"");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"Example 2\"");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this.m.parseSpec(_builder);
+    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"\r\n\t\t\t\tfact \"Example 2\"\r\n\t\t\t}\r\n\t\t\t");
     this.passes("Example 1");
     final ExampleGroup exampleGroup = this.m.exampleGroup("Root");
     final SpecExecution first = this.result(exampleGroup);
@@ -248,21 +159,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("supports nested specs")
   @Order(9)
   public void _supportsNestedSpecs() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Root\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("describe \"Child\"{");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("fact \"Example 1\"{1 + 1 => 2}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}\t");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this.m.parseSpec(_builder);
+    this.m.parseSpec("\n\t\t\tdescribe \"Root\"{\n\t\t\t\tdescribe \"Child\"{\n\t\t\t\t\tfact \"Example 1\"{1 + 1 => 2}\n\t\t\t\t}\t\n\t\t\t}\n\t\t\t");
     HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME = "RootChildSpec";
     this.passes("Example 1");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
@@ -279,21 +176,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("supports nested specs referencing methods [PENDING]")
   @Order(10)
   public void _supportsNestedSpecsReferencingMethods() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe String{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("describe charAt{");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("fact \"Example 1\"{1 + 1 => 2}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}\t");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this.m.parseSpec(_builder);
+    this.m.parseSpec("\n\t\t\tdescribe String{\n\t\t\t\tdescribe charAt{\n\t\t\t\t\tfact \"Example 1\"{1 + 1 => 2}\n\t\t\t\t}\t\n\t\t\t}\n\t\t\t");
     HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME = "RootCharAtSpec";
     this.passes("Example 1");
     ExampleGroup _exampleGroup = this.m.exampleGroup("String");
@@ -317,6 +200,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   
   public void passes(final String... names) {
     final Procedure1<String> _function = new Procedure1<String>() {
+      @Override
       public void apply(final String it) {
         Passed _passingSpec = Passed.passingSpec(HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME, it, HashBasedSpec2ResultMappingSpec.anyExecutionTime);
         HashBasedSpec2ResultMappingExampleGroupSpec.this.subject.accept(_passingSpec);

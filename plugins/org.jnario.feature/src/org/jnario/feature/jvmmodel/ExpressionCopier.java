@@ -1,11 +1,16 @@
 package org.jnario.feature.jvmmodel;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.XFeatureCall;
 import org.eclipse.xtext.xbase.XMemberFeatureCall;
+import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociator;
 import org.jnario.JnarioField;
 import org.jnario.util.SourceAdapter;
@@ -22,8 +27,19 @@ public class ExpressionCopier{
 		
 		@Override
 		public EObject copy(EObject source) {
+			if (source == null) {
+				return null;
+			}
+
 			EObject target = super.copy(source);
-//			modelAssociator.associate(source, target);
+			//modelAssociator.associate(source, target);
+			source.eResource().getContents().add(target);
+			modelAssociator.removeAllAssociation(target);
+//			Set<EObject> jvmElements = jvmModelAssociations.getJvmElements(target);
+//			for (EObject eObject : new ArrayList<EObject>(jvmElements)) {
+//				modelAssociator.removeAllAssociation(eObject);
+//			}
+			
 			if (source instanceof XAbstractFeatureCall) {
 				XAbstractFeatureCall sourceFeatureCall = (XAbstractFeatureCall) source;
 				XAbstractFeatureCall targetFeatureCall = (XAbstractFeatureCall) target;
@@ -53,6 +69,7 @@ public class ExpressionCopier{
 	}
 
 	@Inject IJvmModelAssociator modelAssociator;
+	@Inject IJvmModelAssociations jvmModelAssociations;
 	
 	public <T extends EObject> T cloneWithProxies(T original) {
 		if (original == null)

@@ -41,6 +41,7 @@ public class ExampleNameProviderToMethodNameAfterSpec extends ExampleNameProvide
       "after \'my\texample\'", 
       "after \'my_example\'");
     final Procedure1<String> _function = new Procedure1<String>() {
+      @Override
       public void apply(final String it) {
         String _firstMethodName = ExampleNameProviderToMethodNameAfterSpec.this.firstMethodName(it);
         Assert.assertTrue("\nExpected firstMethodName => \'_myExample\' but"

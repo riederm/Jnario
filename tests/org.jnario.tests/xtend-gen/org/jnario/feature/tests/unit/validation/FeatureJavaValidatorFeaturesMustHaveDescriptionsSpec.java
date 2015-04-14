@@ -7,7 +7,6 @@
  */
 package org.jnario.feature.tests.unit.validation;
 
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics;
 import org.jnario.feature.feature.Feature;
 import org.jnario.feature.tests.unit.validation.FeatureJavaValidatorSpec;
@@ -25,10 +24,7 @@ public class FeatureJavaValidatorFeaturesMustHaveDescriptionsSpec extends Featur
   @Named("\\\'\\\'\\\' Feature: \\\'\\\'\\\'.select[typeof[Feature]].assertErrorContains[\\\"description\\\"]")
   @Order(1)
   public void _featureSelectTypeofFeatureAssertErrorContainsDescription() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: ");
-    _builder.newLine();
-    AssertableDiagnostics _select = this.select(_builder, Feature.class);
+    AssertableDiagnostics _select = this.select("\r\n\t\t\tFeature: \r\n\t\t", Feature.class);
     _select.assertErrorContains("description");
   }
 }

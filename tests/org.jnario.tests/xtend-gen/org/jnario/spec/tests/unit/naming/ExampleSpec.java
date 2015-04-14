@@ -7,11 +7,9 @@
  */
 package org.jnario.spec.tests.unit.naming;
 
-import com.google.inject.Inject;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.Query;
@@ -32,21 +30,11 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class ExampleSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore modelStore;
+  ModelStore modelStore;
   
   public Example parse(final String content) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"test\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append(content, "\t");
-    _builder.newLineIfNotEmpty();
-    _builder.append("}");
-    _builder.newLine();
-    final Resource spec = this.modelStore.parseSpec(_builder);
+    final Resource spec = this.modelStore.parseSpec((("\r\n\t\t\tdescribe \"test\"{\r\n\t\t\t\t" + content) + "\r\n\t\t\t}\r\n\t\t"));
     TreeIterator<EObject> _allContents = spec.getAllContents();
     Query _query = Query.query(_allContents);
     return _query.<Example>first(Example.class);

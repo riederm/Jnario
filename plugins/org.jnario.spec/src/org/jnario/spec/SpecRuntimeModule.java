@@ -30,6 +30,7 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.validation.CompositeEValidator;
 import org.eclipse.xtext.xbase.XbaseFactory;
+import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.compiler.output.TraceAwarePostProcessor;
 import org.eclipse.xtext.xbase.file.AbstractFileSystemSupport;
 import org.eclipse.xtext.xbase.file.FileLocationsImpl;
@@ -46,6 +47,7 @@ import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 import org.eclipse.xtext.xbase.typesystem.internal.DefaultReentrantTypeResolver;
 import org.eclipse.xtext.xbase.util.XExpressionHelper;
 import org.jnario.compiler.JnarioBatchCompiler;
+import org.jnario.compiler.JnarioCompiler;
 import org.jnario.compiler.JnarioExpressionHelper;
 import org.jnario.conversion.JnarioJavaIDValueConverter;
 import org.jnario.doc.AbstractDocGenerator;
@@ -204,10 +206,10 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 		return JnarioTypeResolver.class;
 	}
 	
-//	public Class<? extends XbaseCompiler> bindXbaseCompiler() {
-//		return JnarioCompiler.class;
-//	}
-//	
+	public Class<? extends XbaseCompiler> bindXbaseCompiler() {
+		return JnarioCompiler.class;
+	}
+
 //	public Class<? extends TraceAwarePostProcessor> bindTraceAwarePostProcessor() {
 //		return UnicodeAwarePostProcessor.class;
 //	}
@@ -304,6 +306,5 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 //	public Class<? extends ResourceChangeRegistry> bindResourceChangeRegistry() {
 //		return NopResourceChangeRegistry.class;
 //	}
-	
 	
 }

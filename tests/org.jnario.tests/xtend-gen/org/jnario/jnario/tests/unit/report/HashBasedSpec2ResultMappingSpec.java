@@ -1,7 +1,6 @@
 package org.jnario.jnario.tests.unit.report;
 
 import com.google.common.base.Objects;
-import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.Executable;
 import org.jnario.feature.feature.Background;
@@ -49,10 +48,8 @@ public class HashBasedSpec2ResultMappingSpec {
   
   final static String OTHER_SCENARIO_CLASSNAME = "test.MyFeatureFeatureMyOtherScenario";
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore m;
+  ModelStore m;
   
   final static double anyExecutionTime = 0.0;
   

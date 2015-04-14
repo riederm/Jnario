@@ -32,6 +32,14 @@ public class JnarioExpressionHelper extends XExpressionHelper {
 		}
 		return super.isShortCircuitOperation(featureCall);
 	}
+	
+	@Override
+	public boolean hasSideEffects(XExpression expr) {
+		if (expr instanceof Assertion) {
+			return true;
+		}
+		return super.hasSideEffects(expr);
+	}
 
 	protected boolean isInAssertion(XAbstractFeatureCall featureCall) {
 		Iterator<XExpression> context = concat(filterExpressions(featureCall.eAllContents()), filterExpressions(allParents(featureCall)));

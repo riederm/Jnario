@@ -8,8 +8,6 @@
 package org.jnario.feature.tests.unit.naming;
 
 import com.google.common.base.Objects;
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.feature.feature.Step;
@@ -39,28 +37,14 @@ public class StepExpressionProviderSpec {
   @Subject
   public StepExpressionProvider subject;
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore modelStore;
+  ModelStore modelStore;
   
   @Test
   @Named("should return the name for a step with definition")
   @Order(1)
   public void _shouldReturnTheNameForAStepWithDefinition() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: Example");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Scenario: MyScenario");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Given a step with an implementation");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("\"the implementation\"");
-    _builder.newLine();
-    this.modelStore.parseScenario(_builder);
+    this.modelStore.parseScenario("\r\n\t\t\tFeature: Example\r\n\t\t\t\tScenario: MyScenario\r\n\t\t\t\t\tGiven a step with an implementation\r\n\t\t\t\t\t\t\"the implementation\"\r\n\t\t");
     Step _step = this.step();
     XExpression _expression = _step.getExpression();
     Step _step_1 = this.step();
@@ -78,27 +62,7 @@ public class StepExpressionProviderSpec {
   @Named("should copy the referenced step\\\'s implementation and set the referencing step")
   @Order(2)
   public void _shouldCopyTheReferencedStepSImplementationAndSetTheReferencingStep() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: Example");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Scenario: MyScenario 1");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Given a step ");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Scenario: MyScenario 2");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Given a step ");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("\"the implementation\"");
-    _builder.newLine();
-    this.modelStore.parseScenario(_builder);
+    this.modelStore.parseScenario("\r\n\t\t\tFeature: Example\r\n\t\t\t\tScenario: MyScenario 1\r\n\t\t\t\t\tGiven a step \r\n\t\t\t\t\t\t\r\n\t\t\t\tScenario: MyScenario 2\r\n\t\t\t\t\tGiven a step \r\n\t\t\t\t\t\t\"the implementation\"\r\n\t\t");
     Step _step = this.step();
     final XExpression expr = this.subject.expressionOf(_step);
     boolean _notEquals = (!Objects.equal(expr, null));

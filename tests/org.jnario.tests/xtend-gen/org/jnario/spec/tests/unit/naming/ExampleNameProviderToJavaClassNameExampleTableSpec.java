@@ -7,7 +7,6 @@
  */
 package org.jnario.spec.tests.unit.naming;
 
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.jnario.ExampleTable;
 import org.jnario.jnario.test.util.Query;
 import org.jnario.lib.Assert;
@@ -32,21 +31,9 @@ public class ExampleNameProviderToJavaClassNameExampleTableSpec extends ExampleN
   @Named("should combine example and parent name")
   @Order(1)
   public void _shouldCombineExampleAndParentName() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \'My Context\'{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("def MyExample{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    String _exampleTableClassName = this.exampleTableClassName(_builder);
+    String _exampleTableClassName = this.exampleTableClassName("\r\n        describe \'My Context\'{\r\n          def MyExample{\r\n          }\r\n        }\r\n        ");
     Assert.assertTrue("\nExpected exampleTableClassName(\'\'\'\r\n        describe \'My Context\'{\r\n          def MyExample{\r\n          }\r\n        }\r\n        \'\'\') => \"MyContextSpecMyExample\" but"
-     + "\n     exampleTableClassName(\'\'\'\r\n        describe \'My Context\'{\r\n          def MyExample{\r\n          }\r\n        }\r\n        \'\'\') is " + new org.hamcrest.StringDescription().appendValue(_exampleTableClassName).toString()
-     + "\n     \'\'\'\r\n        describe \'My Context\'{\r\n          def MyExample{\r\n          }\r\n        }\r\n        \'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder).toString() + "\n", Should.<String>operator_doubleArrow(_exampleTableClassName, "MyContextSpecMyExample"));
+     + "\n     exampleTableClassName(\'\'\'\r\n        describe \'My Context\'{\r\n          def MyExample{\r\n          }\r\n        }\r\n        \'\'\') is " + new org.hamcrest.StringDescription().appendValue(_exampleTableClassName).toString() + "\n", Should.<String>operator_doubleArrow(_exampleTableClassName, "MyContextSpecMyExample"));
     
   }
   
@@ -54,21 +41,9 @@ public class ExampleNameProviderToJavaClassNameExampleTableSpec extends ExampleN
   @Named("should convert example name to first upper")
   @Order(2)
   public void _shouldConvertExampleNameToFirstUpper() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \'My Context\'{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("def myExample{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("} ");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    String _exampleTableClassName = this.exampleTableClassName(_builder);
+    String _exampleTableClassName = this.exampleTableClassName("\r\n        describe \'My Context\'{\r\n          def myExample{\r\n          } \r\n        }\r\n        ");
     Assert.assertTrue("\nExpected exampleTableClassName(\'\'\'\r\n        describe \'My Context\'{\r\n          def myExample{\r\n          } \r\n        }\r\n        \'\'\') => \"MyContextSpecMyExample\" but"
-     + "\n     exampleTableClassName(\'\'\'\r\n        describe \'My Context\'{\r\n          def myExample{\r\n          } \r\n        }\r\n        \'\'\') is " + new org.hamcrest.StringDescription().appendValue(_exampleTableClassName).toString()
-     + "\n     \'\'\'\r\n        describe \'My Context\'{\r\n          def myExample{\r\n          } \r\n        }\r\n        \'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder).toString() + "\n", Should.<String>operator_doubleArrow(_exampleTableClassName, "MyContextSpecMyExample"));
+     + "\n     exampleTableClassName(\'\'\'\r\n        describe \'My Context\'{\r\n          def myExample{\r\n          } \r\n        }\r\n        \'\'\') is " + new org.hamcrest.StringDescription().appendValue(_exampleTableClassName).toString() + "\n", Should.<String>operator_doubleArrow(_exampleTableClassName, "MyContextSpecMyExample"));
     
   }
   

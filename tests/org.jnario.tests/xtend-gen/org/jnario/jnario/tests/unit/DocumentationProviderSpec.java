@@ -25,6 +25,7 @@ public class DocumentationProviderSpec {
   String comment = "";
   
   final DocumentationProvider subject = new DocumentationProvider(new IEObjectDocumentationProvider() {
+    @Override
     public String getDocumentation(final EObject it) {
       return DocumentationProviderSpec.this.comment;
     }

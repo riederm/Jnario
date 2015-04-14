@@ -7,8 +7,6 @@
  */
 package org.jnario.spec.tests.integration;
 
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.SpecTestCreator;
@@ -24,70 +22,27 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class ThrowsSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public BehaviorExecutor _behaviorExecutor;
+  BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("passes if exception is thrown")
   @Order(1)
   public void _passesIfExceptionIsThrown() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("import java.util.Stack");
-    _builder.newLine();
-    _builder.append("import java.util.EmptyStackException");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"throws\" {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact new Stack<String>().pop throws EmptyStackException ");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tpackage bootstrap\r\n\t\t\t\r\n\t\t\timport java.util.Stack\r\n\t\t\timport java.util.EmptyStackException\r\n\t\t\t\r\n\t\t\tdescribe \"throws\" {\r\n\t\t\t  fact new Stack<String>().pop throws EmptyStackException \r\n\t\t\t}\r\n\t\t");
   }
   
   @Test
   @Named("passes if exception of expected sub type is thrown")
   @Order(2)
   public void _passesIfExceptionOfExpectedSubTypeIsThrown() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("import java.util.Stack");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"throws\" {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact new Stack<String>().pop throws Throwable ");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tpackage bootstrap\r\n\t\t\t\r\n\t\t\timport java.util.Stack\r\n\t\t\t\r\n\t\t\tdescribe \"throws\" {\r\n\t\t\t  fact new Stack<String>().pop throws Throwable \r\n\t\t\t}\r\n\t\t");
   }
   
   @Test
   @Named("fails if no exception is thrown")
   @Order(3)
   public void _failsIfNoExceptionIsThrown() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"throws\" {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact 1 + 1 throws RuntimeException ");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executionFails(_builder);
+    this._behaviorExecutor.executionFails("\r\n\t\t\tpackage bootstrap\r\n\t\t\t\r\n\t\t\tdescribe \"throws\" {\r\n\t\t\t  fact 1 + 1 throws RuntimeException \r\n\t\t\t}\r\n\t\t");
   }
 }

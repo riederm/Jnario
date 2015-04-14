@@ -8,13 +8,11 @@
 package org.jnario.feature.tests.unit.linking;
 
 import com.google.common.base.Objects;
-import com.google.inject.Inject;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.IParser;
@@ -49,7 +47,6 @@ public class StepArgumentsProviderSpec {
   @Subject
   public StepArgumentsProvider subject;
   
-  @Inject
   LazyLinkingResource resource;
   
   public ExampleTable<StepArgumentsProviderSpecExamples> _initStepArgumentsProviderSpecExamples() {
@@ -175,6 +172,7 @@ public class StepArgumentsProviderSpec {
   @Order(1)
   public void _extractsArgumentsFromStepDescriptions() throws Exception {
     final Procedure1<StepArgumentsProviderSpecExamples> _function = new Procedure1<StepArgumentsProviderSpecExamples>() {
+      @Override
       public void apply(final StepArgumentsProviderSpecExamples it) {
         String _step = it.getStep();
         Step _create = StepArgumentsProviderSpec.this.create(_step);
@@ -211,18 +209,7 @@ public class StepArgumentsProviderSpec {
       if (_equals) {
         return null;
       }
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Feature: dummy");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("Scenario: dummy ");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append(step, "\t\t");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t\t");
-      _builder.newLine();
-      final String scenario = _builder.toString();
+      final String scenario = (("\r\n\t\t\tFeature: dummy\r\n\t\t\t\tScenario: dummy \r\n\t\t\t\t\t" + step) + "\'\r\n\t\t\t\t\t\r\n\t\t");
       IParser _parser = this.resource.getParser();
       String _string = scenario.toString();
       StringInputStream _stringInputStream = new StringInputStream(_string);

@@ -7,7 +7,6 @@
  */
 package org.jnario.jnario.tests.unit.jnario;
 
-import com.google.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.resource.XtextResource;
@@ -33,7 +32,6 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class ExecutableIsPendingSuiteSpec extends ExecutableIsPendingSpec {
-  @Inject
   XtextResource resource;
   
   @Test

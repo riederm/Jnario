@@ -7,9 +7,7 @@
  */
 package org.jnario.feature.tests.unit.naming;
 
-import com.google.inject.Inject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.feature.feature.Feature;
 import org.jnario.feature.feature.FeatureFactory;
@@ -44,10 +42,8 @@ public class StepNameProviderSpec {
   @Subject
   public StepNameProvider subject;
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore modelStore;
+  ModelStore modelStore;
   
   public String desc(final Feature feature) {
     return this.subject.describe(feature);
@@ -83,12 +79,7 @@ public class StepNameProviderSpec {
   public Resource parseScenario(final CharSequence s) {
     Resource _xblockexpression = null;
     {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Feature: example");
-      _builder.newLine();
-      _builder.append(s, "");
-      _builder.newLineIfNotEmpty();
-      final String input = _builder.toString();
+      final String input = (("\r\n\t\t\tFeature: example\r\n\t\t\t" + s) + "\r\n\t\t");
       _xblockexpression = this.modelStore.parseScenario(input);
     }
     return _xblockexpression;

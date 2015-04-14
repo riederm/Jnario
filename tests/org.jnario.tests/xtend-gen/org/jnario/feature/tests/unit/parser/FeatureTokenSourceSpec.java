@@ -11,7 +11,6 @@ import java.util.List;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.parser.antlr.TokenAcceptor;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -45,10 +44,7 @@ public class FeatureTokenSourceSpec {
   @Named("Splits feature")
   @Order(1)
   public void _splitsFeature() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: example");
-    _builder.newLine();
-    this.setInput(_builder);
+    this.setInput("\r\n\t\t\tFeature: example\r\n\t\t\t");
     CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
     this.assertSplitsIn(_ken);
   }
@@ -57,9 +53,7 @@ public class FeatureTokenSourceSpec {
   @Named("Splits incomplete feature")
   @Order(2)
   public void _splitsIncompleteFeature() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: example");
-    this.setInput(_builder);
+    this.setInput("\r\n\t\t\tFeature: example");
     CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example", 1);
     this.assertSplitsIn(_ken);
   }
@@ -68,12 +62,7 @@ public class FeatureTokenSourceSpec {
   @Named("Splits incomplete feature with text")
   @Order(3)
   public void _splitsIncompleteFeatureWithText() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: example");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("some text");
-    this.setInput(_builder);
+    this.setInput("\r\n\t\t\tFeature: example\r\n\t\t\t some text");
     CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
     CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, " some text", 2);
     this.assertSplitsIn(_ken, _ken_1);
@@ -83,12 +72,7 @@ public class FeatureTokenSourceSpec {
   @Named("Splits incomplete feature with text and new line")
   @Order(4)
   public void _splitsIncompleteFeatureWithTextAndNewLine() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: example");
-    _builder.newLine();
-    _builder.append("some text");
-    _builder.newLine();
-    this.setInput(_builder);
+    this.setInput("\r\n\t\t\tFeature: example\r\n\t\t\tsome text\r\n\t\t\t");
     CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
     CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, "some text\n", 2);
     this.assertSplitsIn(_ken, _ken_1);
@@ -98,18 +82,7 @@ public class FeatureTokenSourceSpec {
   @Named("Splits feature with text and scenario")
   @Order(5)
   public void _splitsFeatureWithTextAndScenario() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: example");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Text1");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Text2");
-    _builder.newLine();
-    _builder.append("Scenario: scenario1");
-    _builder.newLine();
-    this.setInput(_builder);
+    this.setInput("\r\n\t\t\tFeature: example\r\n\t\t\t  Text1\r\n\t\t\t  Text2\r\n\t\t\tScenario: scenario1\r\n\t\t\t");
     CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
     CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, "  Text1\n  Text2\n", 2);
     CommonToken _ken_2 = this.token(InternalFeatureLexer.RULE_SCENARIO_TEXT, "Scenario: scenario1\n", 4);
@@ -120,19 +93,7 @@ public class FeatureTokenSourceSpec {
   @Named("splits feature with text and background")
   @Order(6)
   public void _splitsFeatureWithTextAndBackground() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: example");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Text1");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Text2");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Background: scenario1");
-    _builder.newLine();
-    this.setInput(_builder);
+    this.setInput("\r\n\t\t\tFeature: example\r\n\t\t\t  Text1\r\n\t\t\t  Text2\r\n\t\t\t  Background: scenario1\r\n\t\t\t");
     CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
     CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, "  Text1\n  Text2\n  ", 2);
     CommonToken _ken_2 = this.token(InternalFeatureLexer.RULE_BACKGROUND_TEXT, "Background: scenario1\n", 4);
@@ -143,16 +104,7 @@ public class FeatureTokenSourceSpec {
   @Named("splits feature with text")
   @Order(7)
   public void _splitsFeatureWithText() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: example");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Text1");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("Text2");
-    _builder.newLine();
-    this.setInput(_builder);
+    this.setInput("\r\n\t\t\tFeature: example\r\n\t\t\t  Text1\r\n\t\t\t  Text2\r\n\t\t\t");
     CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
     CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, "  Text1\n  Text2\n", 2);
     this.assertSplitsIn(_ken, _ken_1);
@@ -162,11 +114,7 @@ public class FeatureTokenSourceSpec {
   @Named("splits feature with scenario")
   @Order(8)
   public void _splitsFeatureWithScenario() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: example");
-    _builder.newLine();
-    _builder.append("Scenario: scenario1");
-    this.setInput(_builder);
+    this.setInput("\r\n\t\t\tFeature: example\r\n\t\t\tScenario: scenario1");
     CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
     CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_SCENARIO_TEXT, "Scenario: scenario1", 2);
     this.assertSplitsIn(_ken, _ken_1);
@@ -176,12 +124,7 @@ public class FeatureTokenSourceSpec {
   @Named("splits feature with scenario and line break")
   @Order(9)
   public void _splitsFeatureWithScenarioAndLineBreak() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: example");
-    _builder.newLine();
-    _builder.append("Scenario: scenario1");
-    _builder.newLine();
-    this.setInput(_builder);
+    this.setInput("\r\n\t\t\tFeature: example\r\n\t\t\tScenario: scenario1\r\n\t\t\t");
     CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
     CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_SCENARIO_TEXT, "Scenario: scenario1\n", 2);
     this.assertSplitsIn(_ken, _ken_1);
@@ -191,13 +134,7 @@ public class FeatureTokenSourceSpec {
   @Named("splits feature with background")
   @Order(10)
   public void _splitsFeatureWithBackground() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: example");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("Background:");
-    _builder.newLine();
-    this.setInput(_builder);
+    this.setInput("\r\n\t\t\tFeature: example\r\n\t\t\t Background:\r\n\t\t\t");
     CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
     CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, " ", 2);
     CommonToken _ken_2 = this.token(InternalFeatureLexer.RULE_BACKGROUND_TEXT, "Background:\n", 2);
@@ -218,6 +155,7 @@ public class FeatureTokenSourceSpec {
      + "\n     expectedTokens is " + new org.hamcrest.StringDescription().appendValue(((List<CommonToken>)Conversions.doWrapArray(expectedTokens))).toString() + "\n", _doubleArrow);
     
     final Procedure2<Token, Integer> _function = new Procedure2<Token, Integer>() {
+      @Override
       public void apply(final Token e, final Integer i) {
         final CommonToken expected = expectedTokens[(i).intValue()];
         final CommonToken actual = ((CommonToken) e);

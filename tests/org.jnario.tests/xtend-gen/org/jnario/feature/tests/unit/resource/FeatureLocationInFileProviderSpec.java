@@ -1,9 +1,7 @@
 package org.jnario.feature.tests.unit.resource;
 
-import com.google.inject.Inject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.util.ITextRegion;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.feature.feature.Scenario;
@@ -29,24 +27,14 @@ public class FeatureLocationInFileProviderSpec {
   
   CharSequence content;
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore _modelStore;
+  ModelStore _modelStore;
   
   @Test
   @Named("Scenario significant region spans over first line")
   @Order(1)
   public void _scenarioSignificantRegionSpansOverFirstLine() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: My Feature");
-    _builder.newLine();
-    _builder.append("Scenario: My Scenario");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Given something");
-    _builder.newLine();
-    this.parse(_builder);
+    this.parse("\r\n\t\t\tFeature: My Feature\r\n\t\t\tScenario: My Scenario\r\n\t\t\t\tGiven something\r\n\t\t");
     Scenario _firstScenario = this._modelStore.firstScenario();
     CharSequence _siginificantRegion = this.siginificantRegion(_firstScenario);
     this.is(_siginificantRegion, "Scenario: My Scenario");
@@ -56,36 +44,10 @@ public class FeatureLocationInFileProviderSpec {
   @Named("Scenario full text region spans over all steps")
   @Order(2)
   public void _scenarioFullTextRegionSpansOverAllSteps() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: My Feature");
-    _builder.newLine();
-    _builder.append("Scenario: My Scenario");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("String something");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Given something");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("And something else");
-    _builder.newLine();
-    this.parse(_builder);
+    this.parse("\r\n\t\t\tFeature: My Feature\r\n\t\t\tScenario: My Scenario\r\n\t\t\t\tString something\r\n\t\t\t\tGiven something\r\n\t\t\t\tAnd something else\r\n\t\t");
     Scenario _firstScenario = this._modelStore.firstScenario();
     CharSequence _region = this.region(_firstScenario);
-    StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("Scenario: My Scenario");
-    _builder_1.newLine();
-    _builder_1.append("\t");
-    _builder_1.append("String something");
-    _builder_1.newLine();
-    _builder_1.append("\t");
-    _builder_1.append("Given something");
-    _builder_1.newLine();
-    _builder_1.append("\t");
-    _builder_1.append("And something else");
-    _builder_1.newLine();
-    this.is(_region, _builder_1);
+    this.is(_region, "\r\n\t\t\tScenario: My Scenario\r\n\t\t\t\tString something\r\n\t\t\t\tGiven something\r\n\t\t\t\tAnd something else\r\n\t\t");
   }
   
   public void is(final CharSequence actual, final CharSequence expected) {

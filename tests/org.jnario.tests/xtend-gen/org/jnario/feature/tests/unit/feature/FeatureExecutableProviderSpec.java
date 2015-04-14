@@ -1,8 +1,6 @@
 package org.jnario.feature.tests.unit.feature;
 
-import com.google.inject.Inject;
 import java.util.List;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.Executable;
 import org.jnario.feature.feature.Feature;
@@ -30,25 +28,14 @@ public class FeatureExecutableProviderSpec {
   @Subject
   public FeatureExecutableProvider subject;
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore _modelStore;
+  ModelStore _modelStore;
   
   @Test
   @Named("returns background and scenarios")
   @Order(1)
   public void _returnsBackgroundAndScenarios() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: My feature");
-    _builder.newLine();
-    _builder.append("Background: My Background");
-    _builder.newLine();
-    _builder.append("Scenario: My first Scenario");
-    _builder.newLine();
-    _builder.append("Scenario: My second Scenario");
-    _builder.newLine();
-    this._modelStore.parseScenario(_builder);
+    this._modelStore.parseScenario("\r\n\t\tFeature: My feature\r\n\t\tBackground: My Background\r\n\t\tScenario: My first Scenario\r\n\t\tScenario: My second Scenario\r\n\t\t");
     Feature _feature = this._modelStore.feature();
     List<? extends Executable> _executables = this.executables(_feature);
     Scenario _scenario = this._modelStore.scenario("Background: My Background");
@@ -69,15 +56,7 @@ public class FeatureExecutableProviderSpec {
   @Named("returns steps")
   @Order(2)
   public void _returnsSteps() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: My feature");
-    _builder.newLine();
-    _builder.append("Scenario: My first Scenario");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Given something");
-    _builder.newLine();
-    this._modelStore.parseScenario(_builder);
+    this._modelStore.parseScenario("\r\n\t\tFeature: My feature\r\n\t\tScenario: My first Scenario\r\n\t\t\tGiven something\r\n\t\t");
     Scenario _scenario = this._modelStore.scenario("Scenario: My first Scenario");
     List<? extends Executable> _executables = this.executables(_scenario);
     Step _step = this._modelStore.step("Given something");
@@ -94,18 +73,7 @@ public class FeatureExecutableProviderSpec {
   @Named("returns sub steps")
   @Order(3)
   public void _returnsSubSteps() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Feature: My feature");
-    _builder.newLine();
-    _builder.append("Scenario: My first Scenario");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Given something");
-    _builder.newLine();
-    _builder.append("\t ");
-    _builder.append("And something else");
-    _builder.newLine();
-    this._modelStore.parseScenario(_builder);
+    this._modelStore.parseScenario("\r\n\t\tFeature: My feature\r\n\t\tScenario: My first Scenario\r\n\t\t\tGiven something\r\n\t\t\t And something else\r\n\t\t");
     Scenario _scenario = this._modelStore.scenario("Scenario: My first Scenario");
     List<? extends Executable> _executables = this.executables(_scenario);
     Step _step = this._modelStore.step("Given something");

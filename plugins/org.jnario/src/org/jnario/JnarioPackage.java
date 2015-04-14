@@ -1126,6 +1126,63 @@ public interface JnarioPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.jnario.impl.RichStringImpl <em>Rich String</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.RichStringImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getRichString()
+	 * @generated
+	 */
+	int RICH_STRING = 18;
+
+	/**
+	 * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_STRING__EXPRESSIONS = XbasePackage.XBLOCK_EXPRESSION__EXPRESSIONS;
+
+	/**
+	 * The number of structural features of the '<em>Rich String</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_STRING_FEATURE_COUNT = XbasePackage.XBLOCK_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.RichStringLiteralImpl <em>Rich String Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.RichStringLiteralImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getRichStringLiteral()
+	 * @generated
+	 */
+	int RICH_STRING_LITERAL = 19;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_STRING_LITERAL__VALUE = XbasePackage.XSTRING_LITERAL__VALUE;
+
+	/**
+	 * The number of structural features of the '<em>Rich String Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_STRING_LITERAL_FEATURE_COUNT = XbasePackage.XSTRING_LITERAL_FEATURE_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.jnario.ExampleTable <em>Example Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1691,6 +1748,26 @@ public interface JnarioPackage extends EPackage {
 	EAttribute getJnarioParameter_Extension();
 
 	/**
+	 * Returns the meta object for class '{@link org.jnario.RichString <em>Rich String</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Rich String</em>'.
+	 * @see org.jnario.RichString
+	 * @generated
+	 */
+	EClass getRichString();
+
+	/**
+	 * Returns the meta object for class '{@link org.jnario.RichStringLiteral <em>Rich String Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Rich String Literal</em>'.
+	 * @see org.jnario.RichStringLiteral
+	 * @generated
+	 */
+	EClass getRichStringLiteral();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2171,6 +2248,26 @@ public interface JnarioPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JNARIO_PARAMETER__EXTENSION = eINSTANCE.getJnarioParameter_Extension();
+
+		/**
+		 * The meta object literal for the '{@link org.jnario.impl.RichStringImpl <em>Rich String</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.jnario.impl.RichStringImpl
+		 * @see org.jnario.impl.JnarioPackageImpl#getRichString()
+		 * @generated
+		 */
+		EClass RICH_STRING = eINSTANCE.getRichString();
+
+		/**
+		 * The meta object literal for the '{@link org.jnario.impl.RichStringLiteralImpl <em>Rich String Literal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.jnario.impl.RichStringLiteralImpl
+		 * @see org.jnario.impl.JnarioPackageImpl#getRichStringLiteral()
+		 * @generated
+		 */
+		EClass RICH_STRING_LITERAL = eINSTANCE.getRichStringLiteral();
 
 	}
 

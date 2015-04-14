@@ -13,9 +13,6 @@ import org.jnario.runner.FeatureRunner;
 import org.jnario.runner.Named;
 import org.junit.runner.RunWith;
 
-/**
- * @author Birgit Engelmann - Initial contribution and API
- */
 @Contains(CalculatorFeatureSimpleCalculatorTestWithBackgroundAndReferences.class)
 @Named("Calculator")
 @RunWith(FeatureRunner.class)

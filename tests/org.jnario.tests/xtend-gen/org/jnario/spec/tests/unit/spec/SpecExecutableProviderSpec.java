@@ -1,9 +1,7 @@
 package org.jnario.spec.tests.unit.spec;
 
-import com.google.inject.Inject;
 import java.util.List;
 import java.util.Set;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.jnario.Executable;
@@ -31,27 +29,14 @@ public class SpecExecutableProviderSpec {
   @Subject
   public SpecExecutableProvider subject;
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore _modelStore;
+  ModelStore _modelStore;
   
   @Test
   @Named("returns all examples")
   @Order(1)
   public void _returnsAllExamples() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Something\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"fact 1\"");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("fact \"fact 2\"");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._modelStore.parseSpec(_builder);
+    this._modelStore.parseSpec("\r\n\t\tdescribe \"Something\"{\r\n\t\t\tfact \"fact 1\"\r\n\t\t\tfact \"fact 2\"\r\n\t\t}\r\n\t\t");
     ExampleGroup _exampleGroup = this._modelStore.exampleGroup("Something");
     List<Executable> _executables = this.executables(_exampleGroup);
     Example _example = this._modelStore.example("fact 1");
@@ -70,18 +55,7 @@ public class SpecExecutableProviderSpec {
   @Named("returns all sub example groups")
   @Order(2)
   public void _returnsAllSubExampleGroups() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Something\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("describe \"exampleGroup 1\"{}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("describe \"exampleGroup 2\"{}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._modelStore.parseSpec(_builder);
+    this._modelStore.parseSpec("\r\n\t\tdescribe \"Something\"{\r\n\t\t\tdescribe \"exampleGroup 1\"{}\r\n\t\t\tdescribe \"exampleGroup 2\"{}\r\n\t\t}\r\n\t\t");
     ExampleGroup _exampleGroup = this._modelStore.exampleGroup("Something");
     List<Executable> _executables = this.executables(_exampleGroup);
     ExampleGroup _exampleGroup_1 = this._modelStore.exampleGroup("exampleGroup 1");
@@ -100,30 +74,7 @@ public class SpecExecutableProviderSpec {
   @Named("returns all facts in sub example groups")
   @Order(3)
   public void _returnsAllFactsInSubExampleGroups() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Something\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("describe \"exampleGroup 1\"{");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("fact \"fact 1\"");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("describe \"exampleGroup 2\"{");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("fact \"fact 2\"");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._modelStore.parseSpec(_builder);
+    this._modelStore.parseSpec("\r\n\t\tdescribe \"Something\"{\r\n\t\t\tdescribe \"exampleGroup 1\"{\r\n\t\t\t\tfact \"fact 1\"\r\n\t\t\t}\r\n\t\t\tdescribe \"exampleGroup 2\"{\r\n\t\t\t\tfact \"fact 2\"\r\n\t\t\t}\r\n\t\t}\r\n\t\t");
     ExampleGroup _exampleGroup = this._modelStore.exampleGroup("Something");
     List<Executable> _executables = this.executables(_exampleGroup);
     Set<Executable> _set = IterableExtensions.<Executable>toSet(_executables);

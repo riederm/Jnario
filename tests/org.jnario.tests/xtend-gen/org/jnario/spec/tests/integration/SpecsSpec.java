@@ -7,8 +7,6 @@
  */
 package org.jnario.spec.tests.integration;
 
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.hamcrest.Matcher;
 import org.jnario.jnario.test.util.BehaviorExecutor;
@@ -28,57 +26,14 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class SpecsSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public BehaviorExecutor _behaviorExecutor;
+  BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("support anonymous class declaration")
   @Order(1)
   public void _supportAnonymousClassDeclaration() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("import java.util.HashMap");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("describe \'Anonymous classes\' {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("fact {");
-    _builder.newLine();
-    _builder.append("          ");
-    _builder.append("val test = new HashMap(){");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.newLine();
-    _builder.append("              ");
-    _builder.append("override get(Object key) {");
-    _builder.newLine();
-    _builder.append("                ");
-    _builder.append("\"Hello World\"");
-    _builder.newLine();
-    _builder.append("              ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("              ");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("test.get(null) => \"Hello World\"");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("}");
-    _builder.newLine();
-    final String spec = _builder.toString();
+    final String spec = "\r\n\t\t\tpackage bootstrap\r\n\t\t\t\r\n\t\t\timport java.util.HashMap\r\n\r\n      describe \'Anonymous classes\' {\r\n        fact {\r\n          val test = new HashMap(){\r\n      \r\n              override get(Object key) {\r\n                \"Hello World\"\r\n              }\r\n              \r\n            }\r\n            test.get(null) => \"Hello World\"\r\n        }\r\n      }\r\n\t\t";
     Result _execute = this._behaviorExecutor.execute(spec);
     Matcher<Result> _isSuccessful = ResultMatchers.isSuccessful();
     Assert.<Result>assertThat(_execute, _isSuccessful);

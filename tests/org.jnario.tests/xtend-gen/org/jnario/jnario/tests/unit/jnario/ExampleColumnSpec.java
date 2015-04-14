@@ -7,10 +7,8 @@
  */
 package org.jnario.jnario.tests.unit.jnario;
 
-import com.google.inject.Inject;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
@@ -36,15 +34,11 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class ExampleColumnSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore _modelStore;
+  ModelStore _modelStore;
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ISerializer _iSerializer;
+  ISerializer _iSerializer;
   
   public ExampleTable<ExampleColumnSpecExamples> _initExampleColumnSpecExamples() {
     return ExampleTable.create("examples", 
@@ -110,30 +104,9 @@ public class ExampleColumnSpec {
   @Named("calculates cells based on table")
   @Order(1)
   public void _calculatesCellsBasedOnTable() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package bootstrap");
-    _builder.newLine();
-    _builder.append("describe \"ExampleTable\"{");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("def{");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("| a | b |");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("| 1 | 2 |");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("| 3 | 4 |");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._modelStore.parseSpec(_builder);
+    this._modelStore.parseSpec("\r\n\t\t\tpackage bootstrap\r\n\t\t\tdescribe \"ExampleTable\"{\r\n\t\t\t\tdef{\r\n\t\t\t\t\t| a | b |\r\n\t\t\t\t\t| 1 | 2 |\r\n\t\t\t\t\t| 3 | 4 |\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t");
     final Procedure1<ExampleColumnSpecExamples> _function = new Procedure1<ExampleColumnSpecExamples>() {
+      @Override
       public void apply(final ExampleColumnSpecExamples it) {
         Query _query = ExampleColumnSpec.this._modelStore.query();
         org.jnario.ExampleTable _first = _query.<org.jnario.ExampleTable>first(org.jnario.ExampleTable.class);

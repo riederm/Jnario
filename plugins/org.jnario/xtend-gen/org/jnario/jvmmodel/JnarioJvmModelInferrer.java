@@ -8,6 +8,7 @@
 package org.jnario.jvmmodel;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
@@ -18,13 +19,20 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
+import org.eclipse.xtext.common.types.JvmExecutable;
 import org.eclipse.xtext.common.types.JvmField;
+import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference;
 import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.common.types.JvmMember;
+import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.JvmTypeConstraint;
+import org.eclipse.xtext.common.types.JvmTypeParameter;
+import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator;
 import org.eclipse.xtext.common.types.JvmTypeReference;
+import org.eclipse.xtext.common.types.JvmUpperBound;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
 import org.eclipse.xtext.common.types.TypesPackage;
@@ -38,9 +46,9 @@ import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.XTypeLiteral;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
+import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociator;
-import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -53,6 +61,7 @@ import org.jnario.JnarioField;
 import org.jnario.JnarioFile;
 import org.jnario.JnarioFunction;
 import org.jnario.JnarioMember;
+import org.jnario.JnarioParameter;
 import org.jnario.JnarioTypeDeclaration;
 import org.jnario.jvmmodel.JnarioNameProvider;
 import org.jnario.jvmmodel.TestRuntimeProvider;
@@ -65,10 +74,10 @@ import org.jnario.runner.Extends;
  * @author Sebastian Benz
  */
 @SuppressWarnings("all")
-public abstract class JnarioJvmModelInferrer implements IJvmModelInferrer {
+public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
   @Inject
   @Extension
-  private IJvmModelAssociator _iJvmModelAssociator;
+  private IJvmModelAssociator modelAssociator;
   
   @Inject
   @Extension
@@ -206,7 +215,7 @@ public abstract class JnarioJvmModelInferrer implements IJvmModelInferrer {
     javaType.setSimpleName(_javaClassName);
     javaType.setVisibility(JvmVisibility.PUBLIC);
     this.setFileHeader(file, javaType);
-    this._iJvmModelAssociator.associatePrimary(jnarioType, javaType);
+    this.modelAssociator.associatePrimary(jnarioType, javaType);
   }
   
   protected void setFileHeader(final JnarioFile jnarioFile, final JvmDeclaredType jvmDeclaredType) {
@@ -226,7 +235,7 @@ public abstract class JnarioJvmModelInferrer implements IJvmModelInferrer {
     };
     ObjectExtensions.<JvmGenericType>operator_doubleArrow(inferredJvmType, _function);
     EList<XAnnotation> _annotations = source.getAnnotations();
-    this._jvmTypesBuilder.translateAnnotationsTo(_annotations, inferredJvmType);
+    this._jvmTypesBuilder.addAnnotations(inferredJvmType, _annotations);
     final JvmTypeReference extendsClause = source.getExtends();
     boolean _or = false;
     boolean _equals = Objects.equal(extendsClause, null);
@@ -330,8 +339,8 @@ public abstract class JnarioJvmModelInferrer implements IJvmModelInferrer {
           }
           if (_and) {
             EList<JvmAnnotationReference> _annotations = it.getAnnotations();
-            JvmAnnotationReference _annotation = JnarioJvmModelInferrer.this._jvmTypesBuilder.toAnnotation(source, Extension.class);
-            _annotations.add(_annotation);
+            JvmAnnotationReference _annotationRef = JnarioJvmModelInferrer.this._annotationTypesBuilder.annotationRef(Extension.class);
+            JnarioJvmModelInferrer.this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotationRef);
           }
           EList<XAnnotation> _annotations_1 = source.getAnnotations();
           for (final XAnnotation anno : _annotations_1) {
@@ -351,8 +360,163 @@ public abstract class JnarioJvmModelInferrer implements IJvmModelInferrer {
       final JvmField field = ObjectExtensions.<JvmField>operator_doubleArrow(_createJvmField, _function);
       EList<JvmMember> _members = container.getMembers();
       _members.add(field);
-      this._iJvmModelAssociator.associatePrimary(source, field);
+      this.modelAssociator.associatePrimary(source, field);
       this._jvmTypesBuilder.copyDocumentationTo(source, field);
+      JvmVisibility _visibility = field.getVisibility();
+      boolean _equals = Objects.equal(_visibility, JvmVisibility.PRIVATE);
+      if (_equals) {
+        field.setVisibility(JvmVisibility.DEFAULT);
+      }
+    }
+  }
+  
+  protected void _transform(final JnarioFunction source, final JvmGenericType container) {
+    final JvmOperation operation = this.typesFactory.createJvmOperation();
+    operation.setAbstract(false);
+    operation.setNative(false);
+    operation.setSynchronized(false);
+    operation.setStrictFloatingPoint(false);
+    boolean _isAbstract = operation.isAbstract();
+    boolean _not = (!_isAbstract);
+    if (_not) {
+      boolean _isFinal = source.isFinal();
+      operation.setFinal(_isFinal);
+    }
+    EList<JvmMember> _members = container.getMembers();
+    _members.add(operation);
+    this.modelAssociator.associatePrimary(source, operation);
+    final String sourceName = source.getName();
+    final JvmVisibility visibility = source.getVisibility();
+    operation.setSimpleName(sourceName);
+    operation.setVisibility(visibility);
+    boolean _isStatic = source.isStatic();
+    operation.setStatic(_isStatic);
+    boolean _and = false;
+    boolean _and_1 = false;
+    boolean _isAbstract_1 = operation.isAbstract();
+    boolean _not_1 = (!_isAbstract_1);
+    if (!_not_1) {
+      _and_1 = false;
+    } else {
+      boolean _isStatic_1 = operation.isStatic();
+      boolean _not_2 = (!_isStatic_1);
+      _and_1 = _not_2;
+    }
+    if (!_and_1) {
+      _and = false;
+    } else {
+      boolean _isInterface = container.isInterface();
+      _and = _isInterface;
+    }
+    if (_and) {
+      operation.setDefault(true);
+    }
+    EList<JnarioParameter> _parameters = source.getParameters();
+    for (final JnarioParameter parameter : _parameters) {
+      this.translateParameter(operation, parameter);
+    }
+    final XExpression expression = source.getExpression();
+    JvmTypeReference returnType = null;
+    JvmTypeReference _returnType = source.getReturnType();
+    boolean _notEquals = (!Objects.equal(_returnType, null));
+    if (_notEquals) {
+      JvmTypeReference _returnType_1 = source.getReturnType();
+      JvmTypeReference _cloneWithProxies = this._jvmTypesBuilder.cloneWithProxies(_returnType_1);
+      returnType = _cloneWithProxies;
+    } else {
+      boolean _notEquals_1 = (!Objects.equal(expression, null));
+      if (_notEquals_1) {
+        JvmTypeReference _inferredType = this._jvmTypesBuilder.inferredType(expression);
+        returnType = _inferredType;
+      } else {
+        JvmTypeReference _inferredType_1 = this._jvmTypesBuilder.inferredType();
+        returnType = _inferredType_1;
+      }
+    }
+    operation.setReturnType(returnType);
+    EList<JvmTypeParameter> _typeParameters = source.getTypeParameters();
+    this.copyAndFixTypeParameters(_typeParameters, operation);
+    EList<JvmTypeReference> _exceptions = source.getExceptions();
+    for (final JvmTypeReference exception : _exceptions) {
+      EList<JvmTypeReference> _exceptions_1 = operation.getExceptions();
+      JvmTypeReference _cloneWithProxies_1 = this._jvmTypesBuilder.cloneWithProxies(exception);
+      this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions_1, _cloneWithProxies_1);
+    }
+    EList<XAnnotation> _annotations = source.getAnnotations();
+    this._jvmTypesBuilder.addAnnotations(operation, _annotations);
+    this._jvmTypesBuilder.setBody(operation, expression);
+    this._jvmTypesBuilder.copyDocumentationTo(source, operation);
+  }
+  
+  protected void translateParameter(final JvmExecutable executable, final JnarioParameter parameter) {
+    final JvmFormalParameter jvmParam = this.typesFactory.createJvmFormalParameter();
+    String _name = parameter.getName();
+    jvmParam.setName(_name);
+    boolean _isVarArg = parameter.isVarArg();
+    if (_isVarArg) {
+      executable.setVarArgs(true);
+      JvmTypeReference _parameterType = parameter.getParameterType();
+      JvmTypeReference _cloneWithProxies = this._jvmTypesBuilder.cloneWithProxies(_parameterType);
+      final JvmGenericArrayTypeReference arrayType = this._typeReferences.createArrayType(_cloneWithProxies);
+      jvmParam.setParameterType(arrayType);
+    } else {
+      JvmTypeReference _parameterType_1 = parameter.getParameterType();
+      JvmTypeReference _cloneWithProxies_1 = this._jvmTypesBuilder.cloneWithProxies(_parameterType_1);
+      jvmParam.setParameterType(_cloneWithProxies_1);
+    }
+    this.modelAssociator.associate(parameter, jvmParam);
+    EList<XAnnotation> _annotations = parameter.getAnnotations();
+    this._jvmTypesBuilder.addAnnotations(jvmParam, _annotations);
+    boolean _and = false;
+    boolean _isExtension = parameter.isExtension();
+    if (!_isExtension) {
+      _and = false;
+    } else {
+      JvmType _findDeclaredType = this._typeReferences.findDeclaredType(Extension.class, parameter);
+      boolean _notEquals = (!Objects.equal(_findDeclaredType, null));
+      _and = _notEquals;
+    }
+    if (_and) {
+      EList<JvmAnnotationReference> _annotations_1 = jvmParam.getAnnotations();
+      JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(Extension.class);
+      this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations_1, _annotationRef);
+    }
+    EList<JvmFormalParameter> _parameters = executable.getParameters();
+    this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, jvmParam);
+  }
+  
+  protected void copyAndFixTypeParameters(final List<JvmTypeParameter> typeParameters, final JvmTypeParameterDeclarator target) {
+    this.copyTypeParameters(typeParameters, target);
+    this.fixTypeParameters(target);
+  }
+  
+  protected void copyTypeParameters(final List<JvmTypeParameter> typeParameters, final JvmTypeParameterDeclarator target) {
+    for (final JvmTypeParameter typeParameter : typeParameters) {
+      {
+        final JvmTypeParameter clonedTypeParameter = this._jvmTypesBuilder.<JvmTypeParameter>cloneWithProxies(typeParameter);
+        boolean _notEquals = (!Objects.equal(clonedTypeParameter, null));
+        if (_notEquals) {
+          EList<JvmTypeParameter> _typeParameters = target.getTypeParameters();
+          _typeParameters.add(clonedTypeParameter);
+          this.modelAssociator.associate(typeParameter, clonedTypeParameter);
+        }
+      }
+    }
+  }
+  
+  protected void fixTypeParameters(final JvmTypeParameterDeclarator target) {
+    EList<JvmTypeParameter> _typeParameters = target.getTypeParameters();
+    for (final JvmTypeParameter typeParameter : _typeParameters) {
+      EList<JvmTypeConstraint> _constraints = typeParameter.getConstraints();
+      Iterable<JvmUpperBound> _filter = Iterables.<JvmUpperBound>filter(_constraints, JvmUpperBound.class);
+      boolean _isEmpty = IterableExtensions.isEmpty(_filter);
+      if (_isEmpty) {
+        final JvmUpperBound upperBound = this.typesFactory.createJvmUpperBound();
+        JvmTypeReference _typeForName = this._typeReferences.getTypeForName(Object.class, target);
+        upperBound.setTypeReference(_typeForName);
+        EList<JvmTypeConstraint> _constraints_1 = typeParameter.getConstraints();
+        this._jvmTypesBuilder.<JvmUpperBound>operator_add(_constraints_1, upperBound);
+      }
     }
   }
   
@@ -404,6 +568,9 @@ public abstract class JnarioJvmModelInferrer implements IJvmModelInferrer {
   protected void transform(final JnarioMember source, final JvmGenericType container) {
     if (source instanceof JnarioField) {
       _transform((JnarioField)source, container);
+      return;
+    } else if (source instanceof JnarioFunction) {
+      _transform((JnarioFunction)source, container);
       return;
     } else if (source != null) {
       _transform(source, container);

@@ -1,7 +1,5 @@
 package org.jnario.spec.tests.integration;
 
-import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.SpecTestCreator;
@@ -20,10 +18,8 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class DefiningXtendClassesInYourSpecsSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public BehaviorExecutor _behaviorExecutor;
+  BehaviorExecutor _behaviorExecutor;
   
   /**
    * @filter('''|.executesSuccessfully)
@@ -32,32 +28,7 @@ public class DefiningXtendClassesInYourSpecsSpec {
   @Named("either before...")
   @Order(1)
   public void _eitherBefore() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("@Data class Greeter{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("String name");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("def sayHello(){");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("\"Hello \" + name");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("describe \"Saying Hello\"{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact new Greeter(\"Sebastian\").sayHello => \"Hello Sebastian\"");
-    _builder.newLine();
-    _builder.append("}  \t");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n        @Data class Greeter{\r\n          String name\r\n          def sayHello(){\r\n            \"Hello \" + name\r\n          }\r\n        }\r\n\r\n        describe \"Saying Hello\"{\r\n          fact new Greeter(\"Sebastian\").sayHello => \"Hello Sebastian\"\r\n        }  \t\r\n\t\t");
   }
   
   /**
@@ -67,31 +38,6 @@ public class DefiningXtendClassesInYourSpecsSpec {
   @Named("...or after your specs")
   @Order(2)
   public void _orAfterYourSpecs() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("describe \"Saying Hello\"{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("fact new Greeter(\"Sebastian\").sayHello => \"Hello Sebastian\"");
-    _builder.newLine();
-    _builder.append("}  \t");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("@Data class Greeter{");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("String name");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("def sayHello(){");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("\"Hello \" + name");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder);
+    this._behaviorExecutor.executesSuccessfully("\r\n        describe \"Saying Hello\"{\r\n          fact new Greeter(\"Sebastian\").sayHello => \"Hello Sebastian\"\r\n        }  \t\r\n\r\n        @Data class Greeter{\r\n          String name\r\n          def sayHello(){\r\n            \"Hello \" + name\r\n          }\r\n        }\r\n\t\t");
   }
 }

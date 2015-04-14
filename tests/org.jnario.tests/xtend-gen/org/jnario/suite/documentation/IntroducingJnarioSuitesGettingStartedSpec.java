@@ -7,9 +7,7 @@
  */
 package org.jnario.suite.documentation;
 
-import com.google.inject.Inject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.Resources;
@@ -43,10 +41,8 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnarioSuitesSpec {
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore _modelStore;
+  ModelStore _modelStore;
   
   /**
    * A suite consists of a title and a list of references to other specifications, where
@@ -67,23 +63,11 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
   @Named("A simple Suite")
   @Order(1)
   public void _aSimpleSuite() throws Exception {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package demo");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("#My Suite");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("- \"My Feature\"");
-    _builder.newLine();
-    _builder.append("- \"My Spec\"");
-    _builder.newLine();
-    Resource _parseSuite = this._modelStore.parseSuite(_builder);
+    Resource _parseSuite = this._modelStore.parseSuite("\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t");
     int _nrOfParseAndLinkingErrors = Resources.nrOfParseAndLinkingErrors(_parseSuite);
     Assert.assertTrue("\nExpected \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\'.parseSuite.nrOfParseAndLinkingErrors => 2 but"
      + "\n     \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\'.parseSuite.nrOfParseAndLinkingErrors is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(_nrOfParseAndLinkingErrors)).toString()
-     + "\n     \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\'.parseSuite is " + new org.hamcrest.StringDescription().appendValue(_parseSuite).toString()
-     + "\n     \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder).toString() + "\n", Should.<Integer>operator_doubleArrow(Integer.valueOf(_nrOfParseAndLinkingErrors), Integer.valueOf(2)));
+     + "\n     \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\'.parseSuite is " + new org.hamcrest.StringDescription().appendValue(_parseSuite).toString() + "\n", Should.<Integer>operator_doubleArrow(Integer.valueOf(_nrOfParseAndLinkingErrors), Integer.valueOf(2)));
     
   }
   
@@ -124,50 +108,15 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
   @Order(2)
   public void _fixingTheErrors() throws Exception {
     this.parseExampleScenarioAndSpec();
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package demo");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("#My Suite");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("- \"My Feature\"");
-    _builder.newLine();
-    _builder.append("- \"My Spec\"");
-    _builder.newLine();
-    Resource _parseSuite = this._modelStore.parseSuite(_builder);
+    Resource _parseSuite = this._modelStore.parseSuite("\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t");
     Resources.hasNoParseAndLinkingErrors(_parseSuite);
   }
   
   public Resource parseExampleScenarioAndSpec() {
     Resource _xblockexpression = null;
     {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("package demo");
-      _builder.newLine();
-      _builder.append("Feature: My Feature");
-      _builder.newLine();
-      _builder.append("Scenario: My Scenario");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("When something happens");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("Then it happens");
-      _builder.newLine();
-      this._modelStore.parseScenario(_builder);
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("package demo");
-      _builder_1.newLine();
-      _builder_1.newLine();
-      _builder_1.append("describe \"My Spec\"{");
-      _builder_1.newLine();
-      _builder_1.append("\t");
-      _builder_1.append("fact \"hello\".length => 5");
-      _builder_1.newLine();
-      _builder_1.append("}");
-      _builder_1.newLine();
-      _xblockexpression = this._modelStore.parseSpec(_builder_1);
+      this._modelStore.parseScenario("\r\n\t\t\t\tpackage demo\r\n\t\t\t\tFeature: My Feature\r\n\t\t\t\tScenario: My Scenario\r\n\t\t\t\t\tWhen something happens\r\n\t\t\t\t\tThen it happens\r\n\t\t\t\t");
+      _xblockexpression = this._modelStore.parseSpec("\r\n\t\t\t\tpackage demo\r\n\t\t\t\t\r\n\t\t\t\tdescribe \"My Spec\"{\r\n\t\t\t\t\tfact \"hello\".length => 5\r\n\t\t\t\t}\r\n\t\t\t");
     }
     return _xblockexpression;
   }
@@ -207,41 +156,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
   @Order(3)
   public void _structuringASuite() throws Exception {
     this.parseExampleScenarioAndSpec();
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package demo");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("#My Suite");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("This is the description of the suite. It is possible to use ");
-    _builder.newLine();
-    _builder.append("[Markdown Syntax](http://daringfireball.net/projects/markdown/syntax)");
-    _builder.newLine();
-    _builder.append("for **formatting** the text and adding images or links. ");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("##My Features");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Here we list all our features...");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("- \"My Feature\": this is an example feature.");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("##My Specs");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("...and here are all our specs:");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("- \"My Spec\": this is an example spec.");
-    _builder.newLine();
-    _builder.append("   ");
-    _builder.append("with a multiline description.");
-    _builder.newLine();
-    Resource _parseSuite = this._modelStore.parseSuite(_builder);
+    Resource _parseSuite = this._modelStore.parseSuite("\r\n\t\t\tpackage demo\r\n\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\tThis is the description of the suite. It is possible to use \r\n\t\t\t[Markdown Syntax](http://daringfireball.net/projects/markdown/syntax)\r\n\t\t\tfor **formatting** the text and adding images or links. \r\n\t\t\t\r\n\t\t\t##My Features\r\n\t\t\t\r\n\t\t\tHere we list all our features...\r\n\t\t\t\r\n\t\t\t- \"My Feature\": this is an example feature.\r\n\t\t\t\r\n\t\t\t##My Specs\r\n\t\t\t\r\n\t\t\t...and here are all our specs:\r\n\t\t\t\r\n\t\t\t- \"My Spec\": this is an example spec.\r\n\t\t\t   with a multiline description.\r\n\t\t\t");
     Resources.hasNoParseAndLinkingErrors(_parseSuite);
   }
   
@@ -265,23 +180,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
   @Order(4)
   public void _selectingMultipleSpecifications() throws Exception {
     this.parseExampleScenarioAndSpec();
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package demo");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("#My Suite");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("// this will select all specs in the project");
-    _builder.newLine();
-    _builder.append("- \\.*\\ ");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("// this will select all specs that end with feature");
-    _builder.newLine();
-    _builder.append("- \\.*Feature\\");
-    _builder.newLine();
-    Resource _parseSuite = this._modelStore.parseSuite(_builder);
+    Resource _parseSuite = this._modelStore.parseSuite("\r\n\t\t\tpackage demo\r\n\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t// this will select all specs in the project\r\n\t\t\t- \\.*\\ \r\n\t\t\t\r\n\t\t\t// this will select all specs that end with feature\r\n\t\t\t- \\.*Feature\\\r\n\t\t\t");
     Resources.hasNoParseAndLinkingErrors(_parseSuite);
   }
 }

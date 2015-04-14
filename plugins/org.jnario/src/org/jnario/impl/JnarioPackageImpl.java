@@ -33,6 +33,8 @@ import org.jnario.JnarioPackage;
 import org.jnario.JnarioParameter;
 import org.jnario.JnarioTypeDeclaration;
 import org.jnario.MockLiteral;
+import org.jnario.RichString;
+import org.jnario.RichStringLiteral;
 import org.jnario.Should;
 import org.jnario.ShouldThrow;
 import org.jnario.Specification;
@@ -169,6 +171,20 @@ public class JnarioPackageImpl extends EPackageImpl implements JnarioPackage {
 	 * @generated
 	 */
 	private EClass jnarioParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass richStringEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass richStringLiteralEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -718,6 +734,24 @@ public class JnarioPackageImpl extends EPackageImpl implements JnarioPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRichString() {
+		return richStringEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRichStringLiteral() {
+		return richStringLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public JnarioFactory getJnarioFactory() {
 		return (JnarioFactory)getEFactoryInstance();
 	}
@@ -811,6 +845,10 @@ public class JnarioPackageImpl extends EPackageImpl implements JnarioPackage {
 		createEReference(jnarioParameterEClass, JNARIO_PARAMETER__PARAMETER_TYPE);
 		createEAttribute(jnarioParameterEClass, JNARIO_PARAMETER__VAR_ARG);
 		createEAttribute(jnarioParameterEClass, JNARIO_PARAMETER__EXTENSION);
+
+		richStringEClass = createEClass(RICH_STRING);
+
+		richStringLiteralEClass = createEClass(RICH_STRING_LITERAL);
 	}
 
 	/**
@@ -862,6 +900,8 @@ public class JnarioPackageImpl extends EPackageImpl implements JnarioPackage {
 		jnarioFieldEClass.getESuperTypes().add(this.getJnarioMember());
 		jnarioTypeDeclarationEClass.getESuperTypes().add(this.getJnarioMember());
 		jnarioParameterEClass.getESuperTypes().add(this.getJnarioAnnotationTarget());
+		richStringEClass.getESuperTypes().add(theXbasePackage.getXBlockExpression());
+		richStringLiteralEClass.getESuperTypes().add(theXbasePackage.getXStringLiteral());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(exampleTableEClass, ExampleTable.class, "ExampleTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -954,6 +994,10 @@ public class JnarioPackageImpl extends EPackageImpl implements JnarioPackage {
 		initEReference(getJnarioParameter_ParameterType(), theTypesPackage.getJvmTypeReference(), null, "parameterType", null, 0, 1, JnarioParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJnarioParameter_VarArg(), ecorePackage.getEBoolean(), "varArg", null, 0, 1, JnarioParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJnarioParameter_Extension(), ecorePackage.getEBoolean(), "extension", null, 0, 1, JnarioParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(richStringEClass, RichString.class, "RichString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(richStringLiteralEClass, RichStringLiteral.class, "RichStringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

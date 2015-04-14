@@ -8,13 +8,19 @@
 package org.jnario.jvmmodel
 
 import com.google.inject.Inject
+import java.util.List
 import java.util.NoSuchElementException
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.common.types.JvmExecutable
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference
 import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
+import org.eclipse.xtext.common.types.JvmTypeParameter
+import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
+import org.eclipse.xtext.common.types.JvmTypeReference
+import org.eclipse.xtext.common.types.JvmUpperBound
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.xtext.common.types.TypesPackage
@@ -25,15 +31,16 @@ import org.eclipse.xtext.util.Strings
 import org.eclipse.xtext.xbase.XTypeLiteral
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
+import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociator
-import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.jnario.JnarioClass
 import org.jnario.JnarioField
 import org.jnario.JnarioFile
 import org.jnario.JnarioFunction
 import org.jnario.JnarioMember
+import org.jnario.JnarioParameter
 import org.jnario.JnarioTypeDeclaration
 import org.jnario.runner.Extends
 
@@ -44,8 +51,8 @@ import static extension org.eclipse.xtext.nodemodel.util.NodeModelUtils.*
  * @author Birgit Engelmann
  * @author Sebastian Benz
  */
-abstract class JnarioJvmModelInferrer /* extends XtendJvmModelInferrer */ implements IJvmModelInferrer {
-    @Inject extension IJvmModelAssociator 
+abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
+    @Inject extension IJvmModelAssociator modelAssociator
     @Inject extension IFileHeaderProvider
     @Inject extension JvmTypesBuilder
 
@@ -174,7 +181,7 @@ abstract class JnarioJvmModelInferrer /* extends XtendJvmModelInferrer */ implem
             static = source.static
         ]
         
-        translateAnnotationsTo(source.getAnnotations(), inferredJvmType);
+        inferredJvmType.addAnnotations(source.getAnnotations())
         
         val extendsClause = source.getExtends();
         if (extendsClause == null || extendsClause.getType() == null) {
@@ -218,7 +225,7 @@ abstract class JnarioJvmModelInferrer /* extends XtendJvmModelInferrer */ implem
                 }
                 
                 if (source.extension && Extension.findDeclaredType(source) != null) {
-                    annotations.add(source.toAnnotation(Extension));
+                    annotations += Extension.annotationRef
                 }
                 
                 for (XAnnotation anno : source.getAnnotations()) {
@@ -234,9 +241,112 @@ abstract class JnarioJvmModelInferrer /* extends XtendJvmModelInferrer */ implem
             source.associatePrimary(field);
                 
             source.copyDocumentationTo(field)
+            
+            if(field.visibility == JvmVisibility::PRIVATE){
+                field.setVisibility(JvmVisibility::DEFAULT)
+            }
         }
     }
     
+    def protected dispatch void transform(JnarioFunction source, JvmGenericType container) {
+        val operation = typesFactory.createJvmOperation();
+        operation.setAbstract(false);
+        operation.setNative(false);
+        operation.setSynchronized(false);
+        operation.setStrictFloatingPoint(false);
+        if (!operation.isAbstract())
+            operation.setFinal(source.isFinal());
+        container.getMembers().add(operation);
+        source.associatePrimary(operation);
+        
+        val sourceName = source.getName();
+        val visibility = source.getVisibility();
+        operation.setSimpleName(sourceName);
+        operation.setVisibility(visibility);
+        operation.setStatic(source.isStatic());
+        if (!operation.isAbstract() && !operation.isStatic() && container.isInterface())
+            operation.setDefault(true);
+        for (JnarioParameter parameter : source.getParameters()) {
+            translateParameter(operation, parameter);
+        }
+        val expression = source.getExpression();
+//        val createExtensionInfo = source.createExtensionInfo
+        
+        var JvmTypeReference returnType = null;
+        if (source.getReturnType() != null) {
+            returnType = source.getReturnType.cloneWithProxies
+        } else /*if (createExtensionInfo != null) {
+            returnType = createExtensionInfo.createExpression.inferredType
+        } else */if (expression != null) {
+            returnType = expression.inferredType
+        } else {
+            returnType = inferredType
+        }
+        
+        operation.setReturnType(returnType);
+        copyAndFixTypeParameters(source.getTypeParameters(), operation);
+        for (JvmTypeReference exception : source.getExceptions()) {
+            operation.exceptions += exception.cloneWithProxies
+        }
+        operation.addAnnotations(source.annotations)
+
+//        if (source.isOverride() && generatorConfig.getJavaSourceVersion().isAtLeast(JAVA6)
+//                && !containsAnnotation(operation, Override.class)
+//                && typeReferences.findDeclaredType(Override.class, source) != null) {
+//            operation.getAnnotations().add(_annotationTypesBuilder.annotationRef(Override));
+//        }
+        /*if (createExtensionInfo != null) {
+            transformCreateExtension(source, createExtensionInfo, container, operation, returnType);
+        } else */{
+            setBody(operation, expression);
+        }
+        source.copyDocumentationTo(operation);
+    }
+    
+    def protected void translateParameter(JvmExecutable executable, JnarioParameter parameter) {
+        val jvmParam = typesFactory.createJvmFormalParameter();
+        jvmParam.setName(parameter.getName());
+        if (parameter.isVarArg()) {
+            executable.setVarArgs(true);
+            val arrayType = parameter.parameterType.cloneWithProxies.createArrayType
+            jvmParam.parameterType = arrayType
+        } else {
+            jvmParam.parameterType = parameter.parameterType.cloneWithProxies
+        }
+        modelAssociator.associate(parameter, jvmParam)
+        jvmParam.addAnnotations(parameter.annotations)
+        if (parameter.isExtension() && Extension.findDeclaredType(parameter) != null) {
+            jvmParam.annotations += Extension.annotationRef
+        }
+        executable.parameters += jvmParam
+    }
+
+    def protected void copyAndFixTypeParameters(List<JvmTypeParameter> typeParameters, JvmTypeParameterDeclarator target) {
+        copyTypeParameters(typeParameters, target);
+        fixTypeParameters(target);
+    }
+    
+    def protected void copyTypeParameters(List<JvmTypeParameter> typeParameters, JvmTypeParameterDeclarator target) {
+        for (JvmTypeParameter typeParameter : typeParameters) {
+            val clonedTypeParameter = typeParameter.cloneWithProxies
+            if (clonedTypeParameter != null) {
+                target.getTypeParameters().add(clonedTypeParameter);
+                modelAssociator.associate(typeParameter, clonedTypeParameter);
+            }
+        }
+    }
+    
+    def protected void fixTypeParameters(JvmTypeParameterDeclarator target) {
+        for (JvmTypeParameter typeParameter : target.getTypeParameters()) {
+            if (typeParameter.constraints.filter(JvmUpperBound).empty) {
+                val upperBound = typesFactory.createJvmUpperBound();
+                upperBound.typeReference = Object.getTypeForName(target)
+                typeParameter.constraints += upperBound
+            }
+        }
+    }
+
+
     def protected dispatch void transform(JnarioMember source, JvmGenericType container) {
         // TODO NO_XTEND Remove it
         throw new RuntimeException("Not implemented")

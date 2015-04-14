@@ -40,16 +40,13 @@ public class SuiteSpecFilterSpec {
   public SuiteSpecFilter subject;
   
   @Extension
-  @org.jnario.runner.Extension
-  public SuitePackage _suitePackage = SuitePackage.eINSTANCE;
+  SuitePackage _suitePackage = SuitePackage.eINSTANCE;
   
   @Extension
-  @org.jnario.runner.Extension
-  public SpecPackage _specPackage = SpecPackage.eINSTANCE;
+  SpecPackage _specPackage = SpecPackage.eINSTANCE;
   
   @Extension
-  @org.jnario.runner.Extension
-  public FeaturePackage _featurePackage = FeaturePackage.eINSTANCE;
+  FeaturePackage _featurePackage = FeaturePackage.eINSTANCE;
   
   @Test
   @Named("Suites pass")

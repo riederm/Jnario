@@ -8,7 +8,6 @@
 package org.jnario.spec.tests.integration;
 
 import com.google.common.base.Objects;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.jnario.test.util.Helpers;
 import org.jnario.lib.Assert;
@@ -38,6 +37,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
   public void _variableAccess() throws Exception {
     final boolean y = false;
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
+      @Override
       public void apply(final Boolean it) {
         Assert.assertTrue("\nExpected y but"
          + "\n     y is " + new org.hamcrest.StringDescription().appendValue(y).toString() + "\n", y);
@@ -45,12 +45,8 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Expected y but");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("y is <false>");
-    Helpers.is(_errorMessage, _builder);
+    Helpers.is(_errorMessage, 
+      "\r\n\t\t\tExpected y but\r\n\t\t\t     y is <false>");
   }
   
   /**
@@ -62,6 +58,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
   public void _filtersLiterals() throws Exception {
     final int x = 0;
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
+      @Override
       public void apply(final Boolean it) {
         Assert.assertTrue("\nExpected x == 42 but"
          + "\n     x is " + new org.hamcrest.StringDescription().appendValue(x).toString() + "\n", (x == 42));
@@ -69,12 +66,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Expected x == 42 but");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("x is <0>");
-    Helpers.is(_errorMessage, _builder);
+    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected x == 42 but\r\n\t\t\t       x is <0>");
   }
   
   /**
@@ -86,6 +78,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
   public void _notEquals() throws Exception {
     final int x = 42;
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
+      @Override
       public void apply(final Boolean it) {
         Assert.assertTrue("\nExpected !(x == 42) but"
          + "\n     x == 42 is " + new org.hamcrest.StringDescription().appendValue((x == 42)).toString()
@@ -94,15 +87,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Expected !(x == 42) but");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("x == 42 is <true>");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("x is <42>");
-    Helpers.is(_errorMessage, _builder);
+    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected !(x == 42) but\r\n\t\t\t       x == 42 is <true>\r\n\t\t\t       x is <42>");
   }
   
   /**
@@ -113,6 +98,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
   @Order(4)
   public void _functionCalls() throws Exception {
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
+      @Override
       public void apply(final Boolean it) {
         String _greet = AssertionNoMoreDebuggingSpec.this.greet("World");
         boolean _equals = Objects.equal(_greet, "Hello World!");
@@ -122,12 +108,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Expected greet(\"World\") == \"Hello World!\" but");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("greet(\"World\") is \"Hello World\"");
-    Helpers.is(_errorMessage, _builder);
+    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected greet(\"World\") == \"Hello World!\" but\r\n\t\t\t       greet(\"World\") is \"Hello World\"");
   }
   
   /**
@@ -138,6 +119,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
   @Order(5)
   public void _featureCalls() throws Exception {
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
+      @Override
       public void apply(final Boolean it) {
         String _upperCase = "Hello".toUpperCase();
         String _lowerCase = _upperCase.toLowerCase();
@@ -149,15 +131,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Expected \"Hello\".toUpperCase.toLowerCase == \"HELLO\" but");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("\"Hello\".toUpperCase.toLowerCase is \"hello\"");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("\"Hello\".toUpperCase is \"HELLO\"");
-    Helpers.is(_errorMessage, _builder);
+    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected \"Hello\".toUpperCase.toLowerCase == \"HELLO\" but\r\n\t\t\t       \"Hello\".toUpperCase.toLowerCase is \"hello\"\r\n\t\t\t       \"Hello\".toUpperCase is \"HELLO\"");
   }
   
   /**
@@ -170,6 +144,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
     final int x = 0;
     final int y = 1;
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
+      @Override
       public void apply(final Boolean it) {
         Assert.assertTrue("\nExpected x == 1 && y == 0 but"
          + "\n     x == 1 is " + new org.hamcrest.StringDescription().appendValue((x == 1)).toString()
@@ -180,21 +155,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Expected x == 1 && y == 0 but");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("x == 1 is <false>");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("x is <0>");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("y == 0 is <false>");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("y is <1>");
-    Helpers.is(_errorMessage, _builder);
+    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected x == 1 && y == 0 but\r\n\t\t\t       x == 1 is <false>\r\n\t\t\t       x is <0>\r\n\t\t\t       y == 0 is <false>\r\n\t\t\t       y is <1>");
   }
   
   /**
@@ -206,6 +167,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
   public void _removesDuplicateFeatureCalls() throws Exception {
     final int x = 0;
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
+      @Override
       public void apply(final Boolean it) {
         Assert.assertTrue("\nExpected x > 0 && x < 10 but"
          + "\n     x > 0 is " + new org.hamcrest.StringDescription().appendValue((x > 0)).toString()
@@ -215,18 +177,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Expected x > 0 && x < 10 but");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("x > 0 is <false>");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("x is <0>");
-    _builder.newLine();
-    _builder.append("     ");
-    _builder.append("x < 10 is <true>");
-    Helpers.is(_errorMessage, _builder);
+    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected x > 0 && x < 10 but\r\n\t\t\t       x > 0 is <false>\r\n\t\t\t       x is <0>\r\n\t\t\t       x < 10 is <true>");
   }
   
   /**

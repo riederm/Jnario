@@ -8,7 +8,6 @@
 package org.jnario.spec.tests.unit.naming;
 
 import com.google.common.collect.Iterables;
-import com.google.inject.Inject;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.common.types.JvmGenericType;
@@ -17,6 +16,7 @@ import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.access.ClasspathTypeProviderFactory;
 import org.eclipse.xtext.common.types.access.impl.ClasspathTypeProvider;
+import org.eclipse.xtext.common.types.access.impl.TypeResourceServices;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -30,7 +30,6 @@ import org.jnario.runner.Named;
 import org.jnario.spec.naming.OperationNameProvider;
 import org.jnario.spec.tests.unit.naming.OperationNameProviderShouldNameMethodsSimilarToJavaDocLinksSpec;
 import org.jnario.spec.tests.unit.naming.OperationNamesExample;
-import org.junit.Before;
 import org.junit.runner.RunWith;
 
 @Contains(OperationNameProviderShouldNameMethodsSimilarToJavaDocLinksSpec.class)
@@ -39,20 +38,17 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class OperationNameProviderSpec {
-  @Inject
   OperationNameProvider subject;
   
-  @Inject
-  ClasspathTypeProviderFactory typeProviderFactory = new ClasspathTypeProviderFactory(this.getClass().getClassLoader());
+  TypeResourceServices services;
+  
+  ClasspathTypeProviderFactory typeProviderFactory = new ClasspathTypeProviderFactory(this.getClass().getClassLoader(), this.services);
   
   Map<String, JvmOperation> operations;
   
-  @Inject
   @Extension
-  @org.jnario.runner.Extension
-  public ModelStore _modelStore;
+  ModelStore _modelStore;
   
-  @Before
   public void setup() {
     final ClasspathTypeProvider typeProvider = this.typeProviderFactory.createTypeProvider();
     String _name = OperationNamesExample.class.getName();
@@ -61,6 +57,7 @@ public class OperationNameProviderSpec {
     EList<JvmMember> _members = type.getMembers();
     final Iterable<JvmOperation> jvmOperations = Iterables.<JvmOperation>filter(_members, JvmOperation.class);
     final Function1<JvmOperation, String> _function = new Function1<JvmOperation, String>() {
+      @Override
       public String apply(final JvmOperation it) {
         return it.getSimpleName();
       }
