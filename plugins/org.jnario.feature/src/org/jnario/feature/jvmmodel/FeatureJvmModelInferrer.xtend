@@ -11,8 +11,10 @@ import com.google.inject.Inject
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.common.types.JvmConstructor
+import org.eclipse.xtext.common.types.JvmField
 import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmOperation
+import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.xtext.common.types.util.TypeReferences
 import org.eclipse.xtext.xbase.XConstructorCall
@@ -37,6 +39,7 @@ import org.jnario.feature.naming.StepNameProvider
 import org.jnario.jvmmodel.ExtendedJvmTypesBuilder
 import org.jnario.jvmmodel.JnarioJvmModelInferrer
 import org.jnario.lib.StepArguments
+import org.jnario.runner.Extension
 import org.jnario.runner.Named
 import org.jnario.runner.Order
 import org.jnario.util.SourceAdapter
@@ -73,6 +76,7 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
 	@Inject extension JvmFieldReferenceUpdater
 	
 	@Inject extension TypesFactory typesFactory
+//	@Inject ExpressionCopier copier
 	
    override doInfer(EObject object, IJvmDeclaredTypeAcceptor acceptor, boolean preIndexingPhase) {
    		if (!(object instanceof JnarioFile))
@@ -154,8 +158,15 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
    			testRuntime.addChildren(feature, inferredJvmType, scenarios.map[createTypeRef])
    		annotations += Named.annotationRef(feature.describe)
    		
-   		// TODO NO_XTEND
-   		// super.initialize(feature, inferredJvmType)
+        inferredJvmType => [
+            visibility = JvmVisibility.PUBLIC
+            static = feature.static
+        ]
+        
+        inferredJvmType.translateAnnotations(feature.annotations)
+        feature.copyDocumentationTo(inferredJvmType);
+        
+        
    		testRuntime.updateFeature(feature, inferredJvmType, scenarios.map[createTypeRef])
    	}
    	
@@ -172,7 +183,7 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
    		val feature = scenario.feature
 		var start = 0
    		
-   		inferredJvmType.addAnnotations(feature.annotations)
+   		inferredJvmType.translateAnnotations(feature.annotations)
    		
    		val background = feature.background
    		
@@ -211,17 +222,20 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
 		expr.updateReferences(originalType, inferredJvmType)
 	}
 
+    override protected void _transform(JnarioField source, JvmGenericType container) {
+        super._transform(source, container)
+        if (source.isExtension()){
+            val field = source.jvmElements.head as JvmField
+            if(field == null){
+                return
+            }
+            field.setVisibility(JvmVisibility::PUBLIC)
+            field.annotations += Extension.annotationRef
+        }
+    }
+
+//	
 // TODO NO_XTEND   	
-//	override protected transform(JnarioField source, JvmGenericType container) {
-//	  if(source.eContainer instanceof AnonymousClass){
-//      super.transform(source, container)
-//    }
-//	}
-//	
-//	def protected transform2(JnarioField source, JvmGenericType container) {
-//		super.transform(source, container)
-//	}
-//	
 //	
 //	override protected transform(JnarioFunction source, JvmGenericType container, boolean allowDispatch) {
 //	  if(source.eContainer instanceof AnonymousClass){

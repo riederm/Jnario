@@ -20,12 +20,10 @@ import org.eclipse.xtext.xbase.XNullLiteral
 import org.eclipse.xtext.xbase.XbaseFactory
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
-import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure2
 import org.jnario.ExampleCell
 import org.jnario.ExampleTable
 import org.jnario.JnarioClass
-import org.jnario.JnarioField
 import org.jnario.JnarioFile
 import org.jnario.JnarioMember
 import org.jnario.jvmmodel.ExtendedJvmTypesBuilder
@@ -57,9 +55,7 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 	
 //	@Inject extension SyntheticNameClashResolver
 	
-	@Inject TypesFactory typesFactory
-	
-	@Inject extension IJvmModelAssociations
+	@Inject extension TypesFactory typesFactory
 	
 	@Inject SpecIgnoringXtendJvmModelInferrer xtendJvmModelInferrer
 	
@@ -112,8 +108,8 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 	    // TODO NO_XTEND consider call super.initialize(...) here
 
 		inferredJvmType.setVisibility(JvmVisibility::PUBLIC);
-		translateAnnotationsTo(source.getAnnotations(), inferredJvmType);
-		inferredJvmType.annotations += source.toAnnotation(typeof(Named), source.describe)
+		inferredJvmType.addAnnotations(source.annotations.filter[it?.annotationType != null])
+		inferredJvmType.annotations += Named.annotationRef(source.describe)
 //		addDefaultConstructor(source, inferredJvmType);
 		if (source.getExtends() == null) {
 			val typeRefToObject = getTypeForName(typeof(Object), source);
@@ -161,8 +157,12 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 		if(element.pending){
 			testRuntime.markAsPending(element, method) 
 		}
-		method.annotations += element.toAnnotation(typeof(Named), element.describe)
-		method.annotations += element.toAnnotation(typeof(Order), exampleIndex)
+		method.annotations += Named.annotationRef(element.describe)
+		method.annotations += Order.annotationRef => [
+                explicitValues += createJvmIntAnnotationValue => [
+                    values += exampleIndex
+                ]
+            ]
 		container.members += method
 	}
 	
@@ -217,10 +217,10 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
         //if (createExtensionInfo != null) {
         //    transformCreateExtension(source, createExtensionInfo, container, operation, returnType);
         //} else {
-            setBody(operation, element.expression);
+            setBody(operation, element.expression)
         //}
-        operation.addAnnotations(element.getAnnotations());
-        element.copyDocumentationTo(operation);
+        operation.addAnnotations(element.annotations.filter[it?.annotationType != null])
+        element.copyDocumentationTo(operation)
 
         container.members.add(operation)
 

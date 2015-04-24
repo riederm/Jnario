@@ -26,6 +26,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmAnnotationValue;
 import org.eclipse.xtext.common.types.JvmConstructor;
+import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.common.types.JvmIntAnnotationValue;
 import org.eclipse.xtext.common.types.JvmMember;
@@ -33,6 +34,7 @@ import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
+import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
 import org.eclipse.xtext.common.types.util.TypeReferences;
 import org.eclipse.xtext.xbase.XConstructorCall;
@@ -282,14 +284,26 @@ public class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
     String _describe = this._stepNameProvider.describe(feature);
     JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(Named.class, _describe);
     this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(annotations, _annotationRef);
+    final Procedure1<JvmGenericType> _function_1 = new Procedure1<JvmGenericType>() {
+      @Override
+      public void apply(final JvmGenericType it) {
+        it.setVisibility(JvmVisibility.PUBLIC);
+        boolean _isStatic = feature.isStatic();
+        it.setStatic(_isStatic);
+      }
+    };
+    ObjectExtensions.<JvmGenericType>operator_doubleArrow(inferredJvmType, _function_1);
+    EList<XAnnotation> _annotations = feature.getAnnotations();
+    this.translateAnnotations(inferredJvmType, _annotations);
+    this._extendedJvmTypesBuilder.copyDocumentationTo(feature, inferredJvmType);
     TestRuntimeSupport _testRuntime_1 = this.getTestRuntime();
-    final Function1<JvmGenericType, JvmTypeReference> _function_1 = new Function1<JvmGenericType, JvmTypeReference>() {
+    final Function1<JvmGenericType, JvmTypeReference> _function_2 = new Function1<JvmGenericType, JvmTypeReference>() {
       @Override
       public JvmTypeReference apply(final JvmGenericType it) {
         return FeatureJvmModelInferrer.this._typeReferences.createTypeRef(it);
       }
     };
-    List<JvmTypeReference> _map_1 = ListExtensions.<JvmGenericType, JvmTypeReference>map(scenarios, _function_1);
+    List<JvmTypeReference> _map_1 = ListExtensions.<JvmGenericType, JvmTypeReference>map(scenarios, _function_2);
     _testRuntime_1.updateFeature(feature, inferredJvmType, _map_1);
   }
   
@@ -313,7 +327,7 @@ public class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
     final Feature feature = this.feature(scenario);
     int start = 0;
     EList<XAnnotation> _annotations = feature.getAnnotations();
-    this._extendedJvmTypesBuilder.addAnnotations(inferredJvmType, _annotations);
+    this.translateAnnotations(inferredJvmType, _annotations);
     final Background background = feature.getBackground();
     boolean _and = false;
     if (!(!(scenario instanceof Background))) {
@@ -388,6 +402,25 @@ public class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
     };
     final JvmGenericType originalType = IterableExtensions.<JvmGenericType>findFirst(_filter, _function);
     this._jvmFieldReferenceUpdater.updateReferences(expr, originalType, inferredJvmType);
+  }
+  
+  @Override
+  protected void _transform(final JnarioField source, final JvmGenericType container) {
+    super._transform(source, container);
+    boolean _isExtension = source.isExtension();
+    if (_isExtension) {
+      Set<EObject> _jvmElements = this._iJvmModelAssociations.getJvmElements(source);
+      EObject _head = IterableExtensions.<EObject>head(_jvmElements);
+      final JvmField field = ((JvmField) _head);
+      boolean _equals = Objects.equal(field, null);
+      if (_equals) {
+        return;
+      }
+      field.setVisibility(JvmVisibility.PUBLIC);
+      EList<JvmAnnotationReference> _annotations = field.getAnnotations();
+      JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(org.jnario.runner.Extension.class);
+      this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotationRef);
+    }
   }
   
   public void generateStepValues(final Step step) {

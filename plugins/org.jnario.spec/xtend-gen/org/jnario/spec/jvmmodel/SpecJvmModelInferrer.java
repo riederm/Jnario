@@ -17,10 +17,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
+import org.eclipse.xtext.common.types.JvmAnnotationValue;
 import org.eclipse.xtext.common.types.JvmConstructor;
 import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericType;
+import org.eclipse.xtext.common.types.JvmIntAnnotationValue;
 import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
@@ -37,7 +39,6 @@ import org.eclipse.xtext.xbase.XbaseFactory;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
-import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -93,11 +94,8 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
   private ImplicitSubject _implicitSubject;
   
   @Inject
-  private TypesFactory typesFactory;
-  
-  @Inject
   @Extension
-  private IJvmModelAssociations _iJvmModelAssociations;
+  private TypesFactory typesFactory;
   
   @Inject
   private SpecIgnoringXtendJvmModelInferrer xtendJvmModelInferrer;
@@ -183,11 +181,22 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
   public void initialize(final JnarioClass source, final JvmGenericType inferredJvmType) {
     inferredJvmType.setVisibility(JvmVisibility.PUBLIC);
     EList<XAnnotation> _annotations = source.getAnnotations();
-    this._extendedJvmTypesBuilder.translateAnnotationsTo(_annotations, inferredJvmType);
+    final Function1<XAnnotation, Boolean> _function = new Function1<XAnnotation, Boolean>() {
+      @Override
+      public Boolean apply(final XAnnotation it) {
+        JvmType _annotationType = null;
+        if (it!=null) {
+          _annotationType=it.getAnnotationType();
+        }
+        return Boolean.valueOf((!Objects.equal(_annotationType, null)));
+      }
+    };
+    Iterable<XAnnotation> _filter = IterableExtensions.<XAnnotation>filter(_annotations, _function);
+    this._extendedJvmTypesBuilder.addAnnotations(inferredJvmType, _filter);
     EList<JvmAnnotationReference> _annotations_1 = inferredJvmType.getAnnotations();
     String _describe = this._exampleNameProvider.describe(source);
-    JvmAnnotationReference _annotation = this._extendedJvmTypesBuilder.toAnnotation(source, Named.class, _describe);
-    this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations_1, _annotation);
+    JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(Named.class, _describe);
+    this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations_1, _annotationRef);
     JvmTypeReference _extends = source.getExtends();
     boolean _equals = Objects.equal(_extends, null);
     if (_equals) {
@@ -232,11 +241,28 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
     }
     EList<JvmAnnotationReference> _annotations = method.getAnnotations();
     String _describe = this._exampleNameProvider.describe(element);
-    JvmAnnotationReference _annotation = this._extendedJvmTypesBuilder.toAnnotation(element, Named.class, _describe);
-    this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotation);
+    JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(Named.class, _describe);
+    this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotationRef);
     EList<JvmAnnotationReference> _annotations_1 = method.getAnnotations();
-    JvmAnnotationReference _annotation_1 = this._extendedJvmTypesBuilder.toAnnotation(element, Order.class, Integer.valueOf(this.exampleIndex));
-    this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations_1, _annotation_1);
+    JvmAnnotationReference _annotationRef_1 = this._annotationTypesBuilder.annotationRef(Order.class);
+    final Procedure1<JvmAnnotationReference> _function = new Procedure1<JvmAnnotationReference>() {
+      @Override
+      public void apply(final JvmAnnotationReference it) {
+        EList<JvmAnnotationValue> _explicitValues = it.getExplicitValues();
+        JvmIntAnnotationValue _createJvmIntAnnotationValue = SpecJvmModelInferrer.this.typesFactory.createJvmIntAnnotationValue();
+        final Procedure1<JvmIntAnnotationValue> _function = new Procedure1<JvmIntAnnotationValue>() {
+          @Override
+          public void apply(final JvmIntAnnotationValue it) {
+            EList<Integer> _values = it.getValues();
+            SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<Integer>operator_add(_values, Integer.valueOf(SpecJvmModelInferrer.this.exampleIndex));
+          }
+        };
+        JvmIntAnnotationValue _doubleArrow = ObjectExtensions.<JvmIntAnnotationValue>operator_doubleArrow(_createJvmIntAnnotationValue, _function);
+        SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<JvmAnnotationValue>operator_add(_explicitValues, _doubleArrow);
+      }
+    };
+    JvmAnnotationReference _doubleArrow = ObjectExtensions.<JvmAnnotationReference>operator_doubleArrow(_annotationRef_1, _function);
+    this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations_1, _doubleArrow);
     EList<JvmMember> _members = container.getMembers();
     this._extendedJvmTypesBuilder.<JvmOperation>operator_add(_members, method);
   }
@@ -317,7 +343,18 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
       XExpression _expression = element.getExpression();
       this._extendedJvmTypesBuilder.setBody(operation, _expression);
       EList<XAnnotation> _annotations = element.getAnnotations();
-      this._extendedJvmTypesBuilder.addAnnotations(operation, _annotations);
+      final Function1<XAnnotation, Boolean> _function_1 = new Function1<XAnnotation, Boolean>() {
+        @Override
+        public Boolean apply(final XAnnotation it) {
+          JvmType _annotationType = null;
+          if (it!=null) {
+            _annotationType=it.getAnnotationType();
+          }
+          return Boolean.valueOf((!Objects.equal(_annotationType, null)));
+        }
+      };
+      Iterable<XAnnotation> _filter = IterableExtensions.<XAnnotation>filter(_annotations, _function_1);
+      this._extendedJvmTypesBuilder.addAnnotations(operation, _filter);
       this._extendedJvmTypesBuilder.copyDocumentationTo(element, operation);
       EList<JvmMember> _members = container.getMembers();
       _members.add(operation);

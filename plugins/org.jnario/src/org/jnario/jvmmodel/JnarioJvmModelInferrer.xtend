@@ -12,6 +12,7 @@ import java.util.List
 import java.util.NoSuchElementException
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.EcoreUtil2
+import org.eclipse.xtext.common.types.JvmAnnotationTarget
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmExecutable
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference
@@ -33,6 +34,7 @@ import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
+import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociator
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.jnario.JnarioClass
@@ -53,6 +55,7 @@ import static extension org.eclipse.xtext.nodemodel.util.NodeModelUtils.*
  */
 abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
     @Inject extension IJvmModelAssociator modelAssociator
+    @Inject extension IJvmModelAssociations
     @Inject extension IFileHeaderProvider
     @Inject extension JvmTypesBuilder
 
@@ -64,6 +67,7 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
 	TestRuntimeSupport testRuntime
 //	@Inject	extension JvmTypesBuilder jvmTypesBuilder
     @Inject extension TypesFactory typesFactory
+
 
 	override infer(EObject obj, IJvmDeclaredTypeAcceptor acceptor, boolean preIndexingPhase) {
 		try{
@@ -78,55 +82,6 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
 		throw new UnsupportedOperationException
 	}
 	
-//	def protected transform(XtendField source, JvmGenericType container) {
-//	  
-//	  
-//    if ((source.isExtension() && source.getType() != null) || source.getName() != null) {
-//      val field = typesFactory.createJvmField();
-//      val computeFieldName = computeFieldName(source);
-//      field.setSimpleName(computeFieldName);
-//      container.getMembers().add(field);
-//      associator.associatePrimary(source, field);
-//      field.setVisibility(source.getVisibility());
-//      field.setStatic(source.isStatic());
-//      field.setTransient(source.isTransient());
-//      field.setVolatile(source.isVolatile());
-//      field.setFinal(source.isFinal());
-//      if (source.getType() != null) {
-//        field.setType(jvmTypesBuilder.cloneWithProxies(source.getType()));
-//      } else if (source.getInitialValue() != null) {
-//        field.setType(jvmTypesBuilder.inferredType(source.getInitialValue()));
-//      }
-//      for (XAnnotation anno : source.getAnnotations()) {
-//        if (!annotationTranslationFilter.apply(anno))
-//          continue;
-//        JvmAnnotationReference annotationReference = jvmTypesBuilder.getJvmAnnotationReference(anno);
-//        if(annotationReference != null)
-//          field.getAnnotations().add(annotationReference);
-//      }
-//      if (source.isExtension() && typeReferences.findDeclaredType(Extension.class, source) != null) {
-//        field.getAnnotations().add(jvmTypesBuilder.toAnnotation(source, Extension.class));
-//      }
-//      jvmTypesBuilder.copyDocumentationTo(source, field);
-//      jvmTypesBuilder.setInitializer(field, source.getInitialValue());
-//      initializeLocalTypes(field, source.getInitialValue());
-//    }
-//	  
-//	  
-//	  
-//		super.transform(source, container)
-//		val field = source.jvmElements.head as JvmField
-//		if(field == null){
-//			return
-//		}
-//		if(field.visibility == JvmVisibility::PRIVATE){
-//			field.setVisibility(JvmVisibility::DEFAULT)
-//		}
-//		if (source.isExtension()){
-//			field.setVisibility(JvmVisibility::PUBLIC)
-//			field.annotations += source.toAnnotation(typeof(Extension))
-//		}
-//	}
 	
 	def serialize(EObject obj){
 		return obj.node?.text
@@ -181,7 +136,7 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
             static = source.static
         ]
         
-        inferredJvmType.addAnnotations(source.getAnnotations())
+        inferredJvmType.translateAnnotations(source.annotations)
         
         val extendsClause = source.getExtends();
         if (extendsClause == null || extendsClause.getType() == null) {
@@ -211,42 +166,81 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
 
     def protected dispatch void transform(JnarioField source, JvmGenericType container) {
         if ((source.isExtension() && source.getType() != null) || source.getName() != null) {
-            val field = typesFactory.createJvmField => [
+            typesFactory.createJvmField => [
                 simpleName = computeFieldName(source)
                 visibility = source.visibility
                 static = source.static
                 transient = source.transient
                 volatile = source.volatile
                 final = source.final
+                
+                container.members += it
+                
                 if (source.type!= null) {
                     type = source.type.cloneWithProxies
                 } else if (source.initialValue != null) {
                     type = source.initialValue.inferredType;
                 }
                 
+                if(visibility == JvmVisibility::PRIVATE){
+                    visibility = JvmVisibility::DEFAULT
+                }
+
                 if (source.extension && Extension.findDeclaredType(source) != null) {
                     annotations += Extension.annotationRef
                 }
+                translateAnnotations(source.annotations)
                 
-                for (XAnnotation anno : source.getAnnotations()) {
-                    val annotationReference = anno.getJvmAnnotationReference
-                    if(annotationReference != null) {
-                        annotations.add(annotationReference)
-                    }
-                }
                 
-                setInitializer(source.initialValue)
+                source.associatePrimary(it);
+                source.copyDocumentationTo(it)
+                
+                // TODO NO_XTEND
+                // initializeLocalTypes(it, source.getInitialValue());
+                initializer = source.initialValue
             ]
-            container.members.add(field);
-            source.associatePrimary(field);
-                
-            source.copyDocumentationTo(field)
-            
-            if(field.visibility == JvmVisibility::PRIVATE){
-                field.setVisibility(JvmVisibility::DEFAULT)
-            }
         }
     }
+ 
+//    def protected dispatch void transform(JnarioField source, JvmGenericType container) {
+//        if ((source.isExtension() && source.getType() != null) || source.getName() != null) {
+//            val field = typesFactory.createJvmField => [
+//                simpleName = computeFieldName(source)
+//                visibility = source.visibility
+//                static = source.static
+//                transient = source.transient
+//                volatile = source.volatile
+//                final = source.final
+//                if (source.type!= null) {
+//                    type = source.type.cloneWithProxies
+//                } else if (source.initialValue != null) {
+//                    type = source.initialValue.inferredType;
+//                }
+//                
+//                if (source.extension && Extension.findDeclaredType(source) != null) {
+//                    annotations += Extension.annotationRef
+//                }
+//                
+////                for (XAnnotation anno : source.getAnnotations()) {
+////                    val annotationReference = anno.getJvmAnnotationReference
+////                    if(annotationReference != null) {
+////                        annotations.add(annotationReference)
+////                    }
+////                }
+//                
+//                setInitializer(source.initialValue)
+//            ]
+//            container.members.add(field);
+//            source.associatePrimary(field);
+//                
+//            source.copyDocumentationTo(field)
+//            
+//            if(field.visibility == JvmVisibility::PRIVATE){
+//                field.setVisibility(JvmVisibility::DEFAULT)
+//            }
+//        }
+//    }
+// 
     
     def protected dispatch void transform(JnarioFunction source, JvmGenericType container) {
         val operation = typesFactory.createJvmOperation();
@@ -288,7 +282,7 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
         for (JvmTypeReference exception : source.getExceptions()) {
             operation.exceptions += exception.cloneWithProxies
         }
-        operation.addAnnotations(source.annotations)
+        operation.translateAnnotations(source.annotations)
 
 //        if (source.isOverride() && generatorConfig.getJavaSourceVersion().isAtLeast(JAVA6)
 //                && !containsAnnotation(operation, Override.class)
@@ -314,7 +308,7 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
             jvmParam.parameterType = parameter.parameterType.cloneWithProxies
         }
         modelAssociator.associate(parameter, jvmParam)
-        jvmParam.addAnnotations(parameter.annotations)
+        jvmParam.translateAnnotations(parameter.annotations)
         if (parameter.isExtension() && Extension.findDeclaredType(parameter) != null) {
             jvmParam.annotations += Extension.annotationRef
         }
@@ -348,8 +342,7 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
 
 
     def protected dispatch void transform(JnarioMember source, JvmGenericType container) {
-        // TODO NO_XTEND Remove it
-        throw new RuntimeException("Not implemented")
+        throw new RuntimeException("Not implemented for type: " + source.eClass)
     }
     
     def protected String computeFieldName(JnarioField field) {
@@ -376,5 +369,34 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
             }
         }
         name
+    }
+
+
+    /**
+     * Prevents error message
+     * <code>Cannot root object twice: JvmGenericType: org.jnario.jnario.tests.integration.ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingFailedSpecRuns ...</pre>.
+     * <br>
+     * <br> 
+     * This solution developed by Lorenzo BettiniFriend and published here
+     * https://www.eclipse.org/forums/index.php/t/864890/
+     * <br> 
+     * Thank you very much!
+     * 
+     */
+    def protected void translateAnnotations(JvmAnnotationTarget target, List<XAnnotation> annotations) {
+        var annotationsToAdd = annotations.filter[it?.annotationType != null]
+
+        for (a : annotationsToAdd) {
+            val annotationReference = a.getJvmAnnotationReference
+            if(annotationReference != null) {
+                val associatedElements = a.jvmElements.filter[it !== annotationReference].toList
+                if (!associatedElements.empty) {
+                    // transform it to List to avoid concurrent modification exception
+                    associatedElements.forEach[assoc|modelAssociator.removeAllAssociation(assoc)]
+                }
+                // println("Put annotation @" + a.annotationType.simpleName + " on " + target.simpleName)
+                target.annotations += annotationReference
+            }
+        }
     }
 }
