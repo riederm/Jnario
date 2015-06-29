@@ -124,7 +124,7 @@
               <groupId>org.jnario</groupId>
               <artifactId>org.jnario.target</artifactId>
               <version>${project.version}</version>
-              <classifier>Mars</classifier>
+              <classifier>mars</classifier>
             </artifact>
           </target>
           <ignoreTychoRepositories>true</ignoreTychoRepositories>
