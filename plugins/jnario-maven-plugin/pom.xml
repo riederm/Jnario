@@ -15,9 +15,9 @@
 	<repositories>
 		<repository>
         <id>xtend.snapshots</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        <url>https://oss.sonatype.org/content/repositories/central/</url>
         <releases>
-           <enabled>false</enabled>
+           <enabled>true</enabled>
         </releases>
         <snapshots>
           <enabled>true</enabled>
