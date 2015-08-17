@@ -7,6 +7,7 @@
  */
 package org.jnario.suite.unit;
 
+import com.google.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -30,6 +31,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SuiteNodeBuilderParentSpec extends SuiteNodeBuilderSpec {
   @Extension
+  @Inject
   SuiteNodeBuilder _suiteNodeBuilder;
   
   public ExampleTable<SuiteNodeBuilderParentSpecExamples> _initSuiteNodeBuilderParentSpecExamples() {

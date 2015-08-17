@@ -7,6 +7,7 @@
  */
 package org.jnario.jnario.tests.unit.jnario;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.Should;
 import org.jnario.jnario.test.util.BehaviorExecutor;
@@ -27,9 +28,11 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ShouldSpec {
   @Extension
+  @Inject
   ModelStore _modelStore;
   
   @Extension
+  @Inject
   BehaviorExecutor _behaviorExecutor;
   
   @Test

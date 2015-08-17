@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.integration;
 
+import com.google.inject.Inject;
 import java.util.Arrays;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
@@ -34,6 +35,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class UsingTablesSpec {
   @Extension
+  @Inject
   BehaviorExecutor _behaviorExecutor;
   
   /**

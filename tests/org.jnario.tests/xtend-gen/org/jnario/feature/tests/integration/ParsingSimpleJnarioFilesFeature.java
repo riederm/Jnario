@@ -13,6 +13,9 @@ import org.jnario.runner.FeatureRunner;
 import org.jnario.runner.Named;
 import org.junit.runner.RunWith;
 
+/**
+ * @author Birgit Engelmann - Initial contribution and API
+ */
 @Contains(ParsingSimpleJnarioFilesFeatureAndStuff.class)
 @Named("Parsing simple jnario files.")
 @RunWith(FeatureRunner.class)

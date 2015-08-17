@@ -13,6 +13,9 @@ import org.jnario.runner.FeatureRunner;
 import org.jnario.runner.Named;
 import org.junit.runner.RunWith;
 
+/**
+ * @author Sebastian Benz - Initial contribution and API
+ */
 @Contains(SetupTeardownWithFeatureExtensionsFeatureUsingAnExtension.class)
 @Named("Setup & Teardown with Feature Extensions")
 @RunWith(FeatureRunner.class)

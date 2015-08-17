@@ -7,6 +7,7 @@
  */
 package org.jnario.suite.unit;
 
+import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.xbase.lib.Conversions;
@@ -32,6 +33,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SuiteNodeBuilderSpec {
   @Extension
+  @Inject
   ModelStore m;
   
   public Resource parseSuite(final CharSequence s) {

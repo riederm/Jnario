@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.unit.validation;
 
+import com.google.inject.Inject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics;
 import org.eclipse.xtext.junit4.validation.RegisteredValidatorTester;
@@ -36,6 +37,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SpecJavaValidatorSpec {
   @Extension
+  @Inject
   ModelStore modelStore;
   
   @Test

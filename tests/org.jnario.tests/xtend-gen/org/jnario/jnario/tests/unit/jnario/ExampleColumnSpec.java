@@ -7,6 +7,7 @@
  */
 package org.jnario.jnario.tests.unit.jnario;
 
+import com.google.inject.Inject;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.serializer.ISerializer;
@@ -35,9 +36,11 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ExampleColumnSpec {
   @Extension
+  @Inject
   ModelStore _modelStore;
   
   @Extension
+  @Inject
   ISerializer _iSerializer;
   
   public ExampleTable<ExampleColumnSpecExamples> _initExampleColumnSpecExamples() {

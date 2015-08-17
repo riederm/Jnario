@@ -7,6 +7,7 @@
  */
 package org.jnario.feature.tests.unit.naming;
 
+import com.google.inject.Inject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.feature.feature.Feature;
@@ -43,6 +44,7 @@ public class StepNameProviderSpec {
   public StepNameProvider subject;
   
   @Extension
+  @Inject
   ModelStore modelStore;
   
   public String desc(final Feature feature) {

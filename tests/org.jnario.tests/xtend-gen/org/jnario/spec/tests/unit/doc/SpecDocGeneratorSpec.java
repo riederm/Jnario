@@ -8,6 +8,7 @@
 package org.jnario.spec.tests.unit.doc;
 
 import com.google.common.base.Objects;
+import com.google.inject.Inject;
 import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess;
@@ -34,8 +35,10 @@ public class SpecDocGeneratorSpec {
   public SpecDocGenerator subject;
   
   @Extension
+  @Inject
   ModelStore _modelStore;
   
+  @Inject
   InMemoryFileSystemAccess fsa;
   
   @Test

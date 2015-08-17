@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.unit.naming;
 
+import com.google.inject.Inject;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,6 +32,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ExampleSpec {
   @Extension
+  @Inject
   ModelStore modelStore;
   
   public Example parse(final String content) {

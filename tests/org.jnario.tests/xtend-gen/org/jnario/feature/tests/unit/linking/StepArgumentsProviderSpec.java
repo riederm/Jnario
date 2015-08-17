@@ -8,6 +8,7 @@
 package org.jnario.feature.tests.unit.linking;
 
 import com.google.common.base.Objects;
+import com.google.inject.Inject;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
@@ -47,6 +48,7 @@ public class StepArgumentsProviderSpec {
   @Subject
   public StepArgumentsProvider subject;
   
+  @Inject
   LazyLinkingResource resource;
   
   public ExampleTable<StepArgumentsProviderSpecExamples> _initStepArgumentsProviderSpecExamples() {

@@ -7,6 +7,7 @@
  */
 package org.jnario.suite.unit;
 
+import com.google.inject.Inject;
 import junit.framework.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -37,8 +38,10 @@ public class SuiteDocGeneratorSpec {
   public SuiteDocGenerator subject;
   
   @Extension
+  @Inject
   ModelStore _modelStore;
   
+  @Inject
   InMemoryFileSystemAccess fsa;
   
   @Before

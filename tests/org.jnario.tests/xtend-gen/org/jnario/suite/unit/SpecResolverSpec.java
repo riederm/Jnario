@@ -7,6 +7,7 @@
  */
 package org.jnario.suite.unit;
 
+import com.google.inject.Inject;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -47,9 +48,11 @@ public class SpecResolverSpec {
   public SpecResolver subject;
   
   @Extension
+  @Inject
   ModelStore m;
   
   @Extension
+  @Inject
   SuiteClassNameProvider _suiteClassNameProvider;
   
   @Before

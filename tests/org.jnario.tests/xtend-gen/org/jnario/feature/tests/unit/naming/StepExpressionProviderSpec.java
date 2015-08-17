@@ -8,6 +8,7 @@
 package org.jnario.feature.tests.unit.naming;
 
 import com.google.common.base.Objects;
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.feature.feature.Step;
@@ -38,6 +39,7 @@ public class StepExpressionProviderSpec {
   public StepExpressionProvider subject;
   
   @Extension
+  @Inject
   ModelStore modelStore;
   
   @Test

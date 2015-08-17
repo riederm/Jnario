@@ -7,6 +7,7 @@
  */
 package org.jnario.feature.tests.unit.doc;
 
+import com.google.inject.Inject;
 import java.util.Collection;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
@@ -46,10 +47,13 @@ public class FeatureDocGeneratorSpec {
   public FeatureDocGenerator subject;
   
   @Extension
+  @Inject
   ModelStore _modelStore;
   
+  @Inject
   InMemoryFileSystemAccess fsa;
   
+  @Inject
   Executable2ResultMapping mapping;
   
   @Test

@@ -1,5 +1,6 @@
 package org.jnario.feature.tests.unit.feature;
 
+import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.Executable;
@@ -29,6 +30,7 @@ public class FeatureExecutableProviderSpec {
   public FeatureExecutableProvider subject;
   
   @Extension
+  @Inject
   ModelStore _modelStore;
   
   @Test

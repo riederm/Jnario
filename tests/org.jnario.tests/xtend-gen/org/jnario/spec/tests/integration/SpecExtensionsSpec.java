@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.integration;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.ConsoleRecorder;
@@ -58,6 +59,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SpecExtensionsSpec {
   @Extension
+  @Inject
   BehaviorExecutor _behaviorExecutor;
   
   @Test

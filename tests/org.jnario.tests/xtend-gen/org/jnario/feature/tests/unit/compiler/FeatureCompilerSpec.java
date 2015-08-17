@@ -1,5 +1,6 @@
 package org.jnario.feature.tests.unit.compiler;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.FeatureTestCreator;
@@ -16,6 +17,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class FeatureCompilerSpec {
   @Extension
+  @Inject
   BehaviorExecutor _behaviorExecutor;
   
   @Test

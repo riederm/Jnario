@@ -7,6 +7,7 @@
  */
 package org.jnario.jnario.tests.unit.doc;
 
+import com.google.inject.Inject;
 import java.io.File;
 import org.eclipse.xtext.util.Files;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -19,6 +20,7 @@ import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
@@ -32,6 +34,8 @@ public class HtmlAssetsCompilerSpec {
   public HtmlAssetsCompiler subject;
   
   @Extension
+  @Inject
+  @Rule
   TemporaryFolder _temporaryFolder;
   
   @Test

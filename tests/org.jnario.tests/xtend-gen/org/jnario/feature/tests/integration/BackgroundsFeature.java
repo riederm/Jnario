@@ -16,6 +16,9 @@ import org.jnario.runner.FeatureRunner;
 import org.jnario.runner.Named;
 import org.junit.runner.RunWith;
 
+/**
+ * @author Birgit Engelmann - Initial contribution and API
+ */
 @Contains({ BackgroundsFeatureItIsPossibleToAddABackgroundToAFeature.class, BackgroundsFeatureGivenMethodsFromBackgroundsAreGeneratedInEveryScenarioClass.class, BackgroundsFeatureUsingFieldsFromBackgroundSteps.class, BackgroundsFeatureInstantiatingObjectsInBackgrounds.class })
 @Named("Backgrounds")
 @RunWith(FeatureRunner.class)

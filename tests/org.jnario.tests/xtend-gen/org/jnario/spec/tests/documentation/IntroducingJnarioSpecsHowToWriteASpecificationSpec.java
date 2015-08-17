@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.documentation;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.runner.ExampleGroupRunner;
@@ -55,6 +56,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends IntroducingJnarioSpecsSpec {
   @Extension
+  @Inject
   BehaviorExecutor _behaviorExecutor;
   
   /**

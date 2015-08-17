@@ -7,6 +7,7 @@
  */
 package org.jnario.suite.unit;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.ModelStore;
@@ -32,6 +33,7 @@ public class SuiteQualifiedNameProviderSpec {
   public SuiteQualifiedNameProvider subject;
   
   @Extension
+  @Inject
   ModelStore _modelStore;
   
   @Test

@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.unit.naming;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.hamcrest.Matcher;
@@ -33,6 +34,7 @@ public class SpecQualifiedNameProviderSpec {
   public SpecQualifiedNameProvider subject;
   
   @Extension
+  @Inject
   ModelStore _modelStore;
   
   @Test

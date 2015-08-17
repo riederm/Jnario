@@ -1,5 +1,6 @@
 package org.jnario.spec.tests.unit.validation;
 
+import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit4.util.ParseHelper;
@@ -25,9 +26,11 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class LinkerValidationSpec {
   @Extension
+  @Inject
   ParseHelper<EObject> parseHelper;
   
   @Extension
+  @Inject
   ValidationTestHelper validationTestHelper;
   
   @Test

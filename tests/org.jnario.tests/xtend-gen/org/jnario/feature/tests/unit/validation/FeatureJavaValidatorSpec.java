@@ -7,6 +7,7 @@
  */
 package org.jnario.feature.tests.unit.validation;
 
+import com.google.inject.Inject;
 import java.util.Iterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics;
@@ -39,6 +40,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class FeatureJavaValidatorSpec {
   @Extension
+  @Inject
   ModelStore modelStore;
   
   @Test

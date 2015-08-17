@@ -1,5 +1,6 @@
 package org.jnario.spec.tests.unit.spec;
 
+import com.google.inject.Inject;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -30,6 +31,7 @@ public class SpecExecutableProviderSpec {
   public SpecExecutableProvider subject;
   
   @Extension
+  @Inject
   ModelStore _modelStore;
   
   @Test

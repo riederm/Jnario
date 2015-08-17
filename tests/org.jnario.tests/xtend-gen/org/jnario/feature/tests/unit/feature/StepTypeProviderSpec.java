@@ -1,5 +1,6 @@
 package org.jnario.feature.tests.unit.feature;
 
+import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -42,6 +43,7 @@ public class StepTypeProviderSpec {
   FeaturePackage pack = FeaturePackage.eINSTANCE;
   
   @Extension
+  @Inject
   ModelStore _modelStore;
   
   @Test

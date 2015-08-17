@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.integration;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.SpecTestCreator;
@@ -23,6 +24,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class StaticImportsSpec {
   @Extension
+  @Inject
   BehaviorExecutor _behaviorExecutor;
   
   @Test

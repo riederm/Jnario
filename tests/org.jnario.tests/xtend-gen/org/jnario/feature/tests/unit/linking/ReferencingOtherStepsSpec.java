@@ -7,6 +7,7 @@
  */
 package org.jnario.feature.tests.unit.linking;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.feature.feature.Given;
 import org.jnario.feature.feature.GivenReference;
@@ -34,6 +35,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ReferencingOtherStepsSpec {
   @Extension
+  @Inject
   ModelStore m;
   
   @Test

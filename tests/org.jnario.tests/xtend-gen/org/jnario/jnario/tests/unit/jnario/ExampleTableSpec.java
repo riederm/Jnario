@@ -7,6 +7,7 @@
  */
 package org.jnario.jnario.tests.unit.jnario;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.ExampleTable;
 import org.jnario.jnario.test.util.ModelStore;
@@ -26,6 +27,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ExampleTableSpec {
   @Extension
+  @Inject
   ModelStore _modelStore;
   
   @Test

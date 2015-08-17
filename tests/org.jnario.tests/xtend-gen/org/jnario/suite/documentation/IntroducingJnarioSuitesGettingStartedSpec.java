@@ -7,6 +7,7 @@
  */
 package org.jnario.suite.documentation;
 
+import com.google.inject.Inject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.ModelStore;
@@ -42,6 +43,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnarioSuitesSpec {
   @Extension
+  @Inject
   ModelStore _modelStore;
   
   /**

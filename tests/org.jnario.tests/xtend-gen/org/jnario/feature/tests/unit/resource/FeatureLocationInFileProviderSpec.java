@@ -1,5 +1,6 @@
 package org.jnario.feature.tests.unit.resource;
 
+import com.google.inject.Inject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.util.ITextRegion;
@@ -28,6 +29,7 @@ public class FeatureLocationInFileProviderSpec {
   CharSequence content;
   
   @Extension
+  @Inject
   ModelStore _modelStore;
   
   @Test

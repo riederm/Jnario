@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.unit.scoping;
 
+import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -30,6 +31,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SpecScopeProviderSpec {
   @Extension
+  @Inject
   ScopeTestExtension _scopeTestExtension;
   
   @Test
