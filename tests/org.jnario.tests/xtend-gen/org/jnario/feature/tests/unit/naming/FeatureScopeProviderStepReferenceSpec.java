@@ -18,7 +18,7 @@ public class FeatureScopeProviderStepReferenceSpec extends FeatureScopeProviderS
   @Named("contains all implemented steps")
   @Order(1)
   public void _containsAllImplementedSteps() throws Exception {
-    this.e.parseFeature("\r\n\t\t\tpackage myPackage\r\n\t\t\tFeature: MyFeature\r\n\t\t\tScenario: MyScenario\r\n\t\t\t\tGiven a step\r\n\t\t\t\t\tval x = \"\"\r\n\t\t\t\tAnd a step\r\n\t\t\t\tAnd another step\r\n\t\t\t");
+    this.e.parseFeature("package myPackage\r\nFeature: MyFeature\r\nScenario: MyScenario\r\n\tGiven a step\r\n\t\tval x = \"\"\r\n\tAnd a step\r\n\tAnd another step\r\n");
     Set<String> _targetOperationScope = this.targetOperationScope();
     boolean _should_contain = Should.<String>should_contain(_targetOperationScope, "myPackage.a step");
     Assert.assertTrue("\nExpected targetOperationScope should contain \"myPackage.a step\" but"

@@ -104,7 +104,7 @@ public class IntroducingJnarioSpecsWritingAssertionsSpec extends IntroducingJnar
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected x == 1 && y == 0 but\r\n\t\t\t       x == 1 is <false>\r\n\t\t\t       x is <0>\r\n\t\t\t       y == 0 is <false>\r\n\t\t\t       y is <1>");
+    Helpers.is(_errorMessage, "Expected x == 1 && y == 0 but\r\n     x == 1 is <false>\r\n     x is <0>\r\n     y == 0 is <false>\r\n     y is <1>");
     final String greeting = "hello";
     final Procedure1<Boolean> _function_1 = new Procedure1<Boolean>() {
       @Override
@@ -117,6 +117,6 @@ public class IntroducingJnarioSpecsWritingAssertionsSpec extends IntroducingJnar
       }
     };
     String _errorMessage_1 = Helpers.errorMessage(_function_1);
-    Helpers.is(_errorMessage_1, "\r\n\t\t\t  Expected greeting.toUpperCase should not be \"HELLO\" but\r\n\t\t\t       greeting.toUpperCase is \"HELLO\"\r\n\t\t\t       greeting is \"hello\"");
+    Helpers.is(_errorMessage_1, "Expected greeting.toUpperCase should not be \"HELLO\" but\r\n     greeting.toUpperCase is \"HELLO\"\r\n     greeting is \"hello\"");
   }
 }

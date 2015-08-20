@@ -18,12 +18,12 @@ import org.junit.runner.RunWith;
 public class ShouldSpec {
   @Extension
   @Inject
-  BehaviorExecutor _behaviorExecutor;
+  public BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("Shows correct failure message in reused steps")
   @Order(1)
   public void _showsCorrectFailureMessageInReusedSteps() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\tpackage demo\r\n\r\n\t\tFeature: Failure messages when reusing steps\r\n\t\t\r\n\t\t\tScenario: name\r\n\t\t\t\r\n\t\t\t\tGiven a step\r\n\t\t\t\t\ttry{\r\n\t\t\t\t\t\t1 + 1 => 3\r\n\t\t\t\t\t}catch(AssertionError e){\r\n\t\t\t\t\t\te.message should contain \"1 + 1 => 3\"\r\n\t\t\t\t\t}\r\n\t\t\t\t\t\r\n\t\t\tScenario: name 2\t\t\r\n\t\t\t\tGiven a step\r\n\t\t\t\t\r\n\t\t");
+    this._behaviorExecutor.executesSuccessfully("package demo\r\n\r\nFeature: Failure messages when reusing steps\r\n\r\n\tScenario: name\r\n\t\r\n\t\tGiven a step\r\n\t\t\ttry{\r\n\t\t\t\t1 + 1 => 3\r\n\t\t\t}catch(AssertionError e){\r\n\t\t\t\te.message should contain \"1 + 1 => 3\"\r\n\t\t\t}\r\n\t\t\t\r\n\tScenario: name 2\t\t\r\n\t\tGiven a step\r\n\t\t\r\n");
   }
 }

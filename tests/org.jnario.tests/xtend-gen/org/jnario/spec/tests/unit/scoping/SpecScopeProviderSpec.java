@@ -32,7 +32,7 @@ import org.junit.runner.RunWith;
 public class SpecScopeProviderSpec {
   @Extension
   @Inject
-  ScopeTestExtension _scopeTestExtension;
+  public ScopeTestExtension _scopeTestExtension;
   
   @Test
   @Named("resolves operations from surrounding ExampleGroup\\\'s target")

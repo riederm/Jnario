@@ -353,6 +353,7 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
             _and = _notEquals_2;
           }
           if (_and) {
+            it.setVisibility(JvmVisibility.PUBLIC);
             EList<JvmAnnotationReference> _annotations = it.getAnnotations();
             JvmAnnotationReference _annotationRef = JnarioJvmModelInferrer.this._annotationTypesBuilder.annotationRef(Extension.class);
             JnarioJvmModelInferrer.this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotationRef);

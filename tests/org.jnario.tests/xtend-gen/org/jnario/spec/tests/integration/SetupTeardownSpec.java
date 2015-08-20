@@ -32,7 +32,7 @@ import org.junit.runner.RunWith;
 public class SetupTeardownSpec {
   @Extension
   @Inject
-  BehaviorExecutor _behaviorExecutor;
+  public BehaviorExecutor _behaviorExecutor;
   
   public void prints(final CharSequence spec, final String expected) {
     final ConsoleRecorder recording = ConsoleRecorder.start();

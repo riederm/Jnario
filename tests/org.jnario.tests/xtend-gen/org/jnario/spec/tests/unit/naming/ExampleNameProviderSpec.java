@@ -37,7 +37,7 @@ import org.junit.runner.RunWith;
 public class ExampleNameProviderSpec {
   @Extension
   @Inject
-  ModelStore modelStore;
+  public ModelStore modelStore;
   
   public Query parse(final CharSequence content) {
     final String contentWithPackage = ("package test\n" + content);

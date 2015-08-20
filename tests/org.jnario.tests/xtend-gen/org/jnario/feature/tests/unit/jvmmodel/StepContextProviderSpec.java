@@ -31,7 +31,7 @@ public class StepContextProviderSpec {
   
   @Extension
   @Inject
-  ModelStore m;
+  public ModelStore m;
   
   public Set<JnarioField> fields(final String... names) {
     Set<JnarioField> _xblockexpression = null;

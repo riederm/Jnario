@@ -29,7 +29,7 @@ import org.junit.runner.RunWith;
 public class PendingSpec {
   @Extension
   @Inject
-  BehaviorExecutor _behaviorExecutor;
+  public BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("ignores empty examples during example runs")

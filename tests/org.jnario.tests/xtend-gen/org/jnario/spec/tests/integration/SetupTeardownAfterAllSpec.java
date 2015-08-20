@@ -22,7 +22,7 @@ public class SetupTeardownAfterAllSpec extends SetupTeardownSpec {
   @Named("Execute once after all tests")
   @Order(1)
   public void _executeOnceAfterAllTests() throws Exception {
-    this.prints("\r\n\t\t\t\tdescribe \"After All\"{\r\n\t\t\t\t\tafter all{\r\n\t\t\t\t\t\tprintln(\"after all\")\r\n\t\t\t\t\t}\r\n\t\t\t\t\tfact println(\"fact 1\")\r\n\t\t\t\t\tfact println(\"fact 2\")\r\n\t\t\t\t}\r\n\t\t\t", 
-      "\r\n\t\t\t\tfact 1\r\n\t\t\t\tfact 2\r\n\t\t\t\tafter all\r\n\t\t\t");
+    this.prints("describe \"After All\"{\r\n\tafter all{\r\n\t\tprintln(\"after all\")\r\n\t}\r\n\tfact println(\"fact 1\")\r\n\tfact println(\"fact 2\")\r\n}\r\n", 
+      "fact 1\r\nfact 2\r\nafter all\r\n");
   }
 }

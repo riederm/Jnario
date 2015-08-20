@@ -57,7 +57,7 @@ import org.junit.runner.RunWith;
 public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends IntroducingJnarioSpecsSpec {
   @Extension
   @Inject
-  BehaviorExecutor _behaviorExecutor;
+  public BehaviorExecutor _behaviorExecutor;
   
   /**
    * The next step is to enrich our facts with the required logic to
@@ -82,7 +82,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
   @Named("Checking your facts")
   @Order(1)
   public void _checkingYourFacts() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t      package demo\r\n\t      \r\n\t      import java.util.Stack\r\n\t      \r\n\t      describe \"A Stack\"{\r\n\t        fact \"initial size is 0\" {\r\n\t          new Stack().size => 0\r\n\t        }\r\n\t        fact \"increases its size when pushing an element\"{\r\n\t          val subject = new Stack<String>\r\n\t          subject.push(\"A String\")\r\n\t          subject.size => 1\r\n\t        }\r\n\t      }\r\n\t      ");
+    this._behaviorExecutor.executesSuccessfully("package demo\r\n\r\nimport java.util.Stack\r\n\r\ndescribe \"A Stack\"{\r\n  fact \"initial size is 0\" {\r\n    new Stack().size => 0\r\n  }\r\n  fact \"increases its size when pushing an element\"{\r\n    val subject = new Stack<String>\r\n    subject.push(\"A String\")\r\n    subject.size => 1\r\n  }\r\n}\r\n");
   }
   
   /**
@@ -120,7 +120,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
   @Named("Less boilerplate")
   @Order(2)
   public void _lessBoilerplate() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\t\tpackage demo\r\n\t\t\t\t\r\n\t\t\t\timport java.util.Stack\r\n\t\t\t\t\r\n\t\t\t\tdescribe \"A Stack\"{\r\n\t\t\t\t  fact new Stack().size should be 0\r\n\t\t\t\t  fact \"increases its size when pushing an element\"{\r\n\t\t\t\t    val subject = new Stack<String>\r\n\t\t\t\t    subject.push(\"A String\")\r\n\t\t\t\t    subject.size => 1\r\n\t\t\t\t  }\r\n\t\t\t\t}\r\n\t\t      ");
+    this._behaviorExecutor.executesSuccessfully("package demo\r\n\r\nimport java.util.Stack\r\n\r\ndescribe \"A Stack\"{\r\n  fact new Stack().size should be 0\r\n  fact \"increases its size when pushing an element\"{\r\n    val subject = new Stack<String>\r\n    subject.push(\"A String\")\r\n    subject.size => 1\r\n  }\r\n}\r\n");
   }
   
   /**
@@ -135,7 +135,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
   @Named("Using Fields")
   @Order(3)
   public void _usingFields() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t      package demo\r\n\t\t      \r\n\t\t      import java.util.Stack\r\n\t\t      \r\n\t\t      describe \"A Stack\"{\r\n\t\t        Stack<String> subject = new Stack<String>\r\n\t\t        fact \"initially empty\" {\r\n\t\t          subject.size => 0\r\n\t\t        }\r\n\t\t        fact \"increases its size when pushing an element\"{\r\n\t\t          subject.push(\"A String\")\r\n\t\t          subject.size => 1\r\n\t\t        }\r\n\t\t      }\r\n\t\t      ");
+    this._behaviorExecutor.executesSuccessfully("package demo\r\n\r\nimport java.util.Stack\r\n\r\ndescribe \"A Stack\"{\r\n  Stack<String> subject = new Stack<String>\r\n  fact \"initially empty\" {\r\n    subject.size => 0\r\n  }\r\n  fact \"increases its size when pushing an element\"{\r\n    subject.push(\"A String\")\r\n    subject.size => 1\r\n  }\r\n}\r\n");
   }
   
   /**
@@ -170,7 +170,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
   @Named("Implicit Subjects")
   @Order(4)
   public void _implicitSubjects() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t      package demo\r\n\t\t      \r\n\t\t      import java.util.Stack\r\n\t\t      \r\n\t\t      describe Stack{\r\n\t\t        fact subject.size should be 0\r\n\t\t        fact \"increases its size when pushing an element\"{\r\n\t\t          subject.push(\"A String\")\r\n\t\t          subject.size => 1\r\n\t\t        }\r\n\t\t      }\r\n\t\t      ");
+    this._behaviorExecutor.executesSuccessfully("package demo\r\n\r\nimport java.util.Stack\r\n\r\ndescribe Stack{\r\n  fact subject.size should be 0\r\n  fact \"increases its size when pushing an element\"{\r\n    subject.push(\"A String\")\r\n    subject.size => 1\r\n  }\r\n}\r\n");
   }
   
   /**
@@ -200,7 +200,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
   @Named("Defining Contexts")
   @Order(5)
   public void _definingContexts() throws Exception {
-    this._behaviorExecutor.executesSuccessfully(" \r\n\t\t\tpackage demo\r\n\t\t\t\t      \r\n\t\t\timport java.util.Stack\r\n\t\t\timport java.util.EmptyStackException\r\n\t\t\t\r\n\t\t\tdescribe Stack{\r\n\t\t\t  context \"when empty\"{\r\n\t\t\t    fact subject.size => 0\r\n\t\t\t    fact subject.pop throws EmptyStackException\r\n\t\t\t  }\r\n\t\t\t  context \"with elements\"{\r\n\t\t\t    before subject.add(\"an element\")\r\n\t\t\t    fact \"pop decreases size\"{\r\n\t\t\t      subject.pop\r\n\t\t\t      subject.size => 0\r\n\t\t\t    }\t\r\n\t\t\t    fact \"pop removes last element\"{\r\n\t\t\t      subject.pop => \"an element\"\r\n\t\t\t    }\t\t\r\n\t\t\t  }\r\n\t\t\t}\r\n\t      ");
+    this._behaviorExecutor.executesSuccessfully("package demo\r\n\t      \r\nimport java.util.Stack\r\nimport java.util.EmptyStackException\r\n\r\ndescribe Stack{\r\n  context \"when empty\"{\r\n    fact subject.size => 0\r\n    fact subject.pop throws EmptyStackException\r\n  }\r\n  context \"with elements\"{\r\n    before subject.add(\"an element\")\r\n    fact \"pop decreases size\"{\r\n      subject.pop\r\n      subject.size => 0\r\n    }\t\r\n    fact \"pop removes last element\"{\r\n      subject.pop => \"an element\"\r\n    }\t\t\r\n  }\r\n}\r\n");
   }
   
   /**
@@ -249,7 +249,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
   @Named("Example Tables")
   @Order(6)
   public void _exampleTables() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tpackage demo \r\n\t\t\t\r\n\t\t\tdescribe \"Addition\" {\r\n\t\t\t  def additions{\r\n\t\t\t    | a | b | sum |\r\n\t\t\t    | 0 | 0 |  0  |\r\n\t\t\t    | 1 | 2 |  3  |\r\n\t\t\t    | 4 | 5 |  9  |\r\n\t\t\t  }\r\n\t\t\t  fact additions.forEach[a + b should be sum]\r\n\t\t\t}\r\n\t\t\t");
+    this._behaviorExecutor.executesSuccessfully("package demo \r\n\r\ndescribe \"Addition\" {\r\n  def additions{\r\n    | a | b | sum |\r\n    | 0 | 0 |  0  |\r\n    | 1 | 2 |  3  |\r\n    | 4 | 5 |  9  |\r\n  }\r\n  fact additions.forEach[a + b should be sum]\r\n}\r\n");
   }
   
   /**
@@ -269,7 +269,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
   @Named("Generating Documentation")
   @Order(7)
   public void _generatingDocumentation() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tpackage demo\r\n\t\t\t\t\t\t\t      \r\n\t\t\timport java.util.Stack\r\n\t\t\timport java.util.EmptyStackException\r\n\t\t\t\r\n\t\t\t/*\r\n\t\t\t * In computer science, a **stack** is a last in, first out \r\n\t\t\t * (LIFO) abstract data type and linear data structure. A \r\n\t\t\t * stack can have any abstract data type as an element, \r\n\t\t\t * but is characterized by two fundamental operations, \r\n\t\t\t * called push and pop. \r\n\t\t\t * (source [Wikipedia](http://en.wikipedia.org/wiki/Stack)).\r\n\t\t\t */\r\n\t\t\tdescribe Stack{\r\n\t\t\t  context \"when empty\"{\r\n\t\t\t    fact subject.size => 0\r\n\t\t\t    fact subject.pop throws EmptyStackException\r\n\t\t\t  }\r\n\t\t\t  /*\r\n\t\t\t   * A stack with a single element: \"an element\".\r\n\t\t\t   */\r\n\t\t\t  context \"with elements\"{\r\n\t\t\t    before subject.add(\"an element\")\r\n\t\t\t    fact \"pop decreases size\"{\r\n\t\t\t      subject.pop\r\n\t\t\t      subject.size => 0\r\n\t\t\t    }\t\r\n\t\t\t    fact \"pop removes last element\"{\r\n\t\t\t      subject.pop => \"an element\"\r\n\t\t\t    }\t\t\r\n\t\t\t  }\r\n\t\t\t} \r\n\t      ");
+    this._behaviorExecutor.executesSuccessfully("package demo\r\n\t\t\t\t      \r\nimport java.util.Stack\r\nimport java.util.EmptyStackException\r\n\r\n/*\r\n * In computer science, a **stack** is a last in, first out \r\n * (LIFO) abstract data type and linear data structure. A \r\n * stack can have any abstract data type as an element, \r\n * but is characterized by two fundamental operations, \r\n * called push and pop. \r\n * (source [Wikipedia](http://en.wikipedia.org/wiki/Stack)).\r\n */\r\ndescribe Stack{\r\n  context \"when empty\"{\r\n    fact subject.size => 0\r\n    fact subject.pop throws EmptyStackException\r\n  }\r\n  /*\r\n   * A stack with a single element: \"an element\".\r\n   */\r\n  context \"with elements\"{\r\n    before subject.add(\"an element\")\r\n    fact \"pop decreases size\"{\r\n      subject.pop\r\n      subject.size => 0\r\n    }\t\r\n    fact \"pop removes last element\"{\r\n      subject.pop => \"an element\"\r\n    }\t\t\r\n  }\r\n} \r\n");
   }
   
   /**
@@ -293,7 +293,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
   @Named("Setup & Teardown")
   @Order(8)
   public void _setupTeardown() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\t    describe \"Setup & Teardown\" {\r\n\t\t\t      before all{\r\n\t\t\t        println(\"before all\")\r\n\t\t\t      }  \r\n\t\t\t      before{\r\n\t\t\t        println(\"before\")\r\n\t\t\t      }\r\n\t\t\t      fact \"should do stuff\" {\r\n\t\t\t        println(\"do stuff\")\r\n\t\t\t      }\r\n\t\t\t      fact \"should do more stuff\" {\r\n\t\t\t        println(\"do more stuff\")\r\n\t\t\t      }\r\n\t\t\t      after{\r\n\t\t\t        println(\"after\")\r\n\t\t\t      }\r\n\t\t\t      after all{\r\n\t\t\t        println(\"after all\")\r\n\t\t\t      }\r\n\t\t\t    }  \r\n\t\t\t");
+    this._behaviorExecutor.executesSuccessfully("describe \"Setup & Teardown\" {\r\n  before all{\r\n    println(\"before all\")\r\n  }  \r\n  before{\r\n    println(\"before\")\r\n  }\r\n  fact \"should do stuff\" {\r\n    println(\"do stuff\")\r\n  }\r\n  fact \"should do more stuff\" {\r\n    println(\"do more stuff\")\r\n  }\r\n  after{\r\n    println(\"after\")\r\n  }\r\n  after all{\r\n    println(\"after all\")\r\n  }\r\n}  \r\n");
   }
   
   /**
@@ -344,7 +344,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
   @Named("Spec extensions")
   @Order(9)
   public void _specExtensions() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tdescribe \"Spec Extensions\"{\r\n\t\t\t  extension DatabaseExtension db = new DatabaseExtension\r\n\t\t\t  fact query(\"SELECT * FROM content\")\t      \r\n\t\t\t}\r\n\t\t\t");
+    this._behaviorExecutor.executesSuccessfully("describe \"Spec Extensions\"{\r\n  extension DatabaseExtension db = new DatabaseExtension\r\n  fact query(\"SELECT * FROM content\")\t      \r\n}\r\n");
   }
   
   /**
@@ -358,6 +358,6 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
   @Named("Helper methods")
   @Order(10)
   public void _helperMethods() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t      describe \"Helper Methods & Fields\"{\r\n\t        String subject = \"World\" \r\n\t        fact \"can access fields and methods\"{\r\n\t          subject.greeting => \"Hello World\"\r\n\t        }\r\n\t        def greeting(String s){\r\n\t          return \"Hello \" + s\r\n\t        }\r\n\t        context \"shouting\"{\r\n\t          String emphasize = \"!\" \r\n\t          fact \"can access fields and methods from parent\"{\r\n\t             subject.greeting.shout => \"HELLO WORLD!\"\r\n\t          }\r\n\t          def shout(String s){\r\n\t            return s.toUpperCase + emphasize\r\n\t          }\r\n\t        }\r\n\t      }\r\n\t      ");
+    this._behaviorExecutor.executesSuccessfully("describe \"Helper Methods & Fields\"{\r\n  String subject = \"World\" \r\n  fact \"can access fields and methods\"{\r\n    subject.greeting => \"Hello World\"\r\n  }\r\n  def greeting(String s){\r\n    return \"Hello \" + s\r\n  }\r\n  context \"shouting\"{\r\n    String emphasize = \"!\" \r\n    fact \"can access fields and methods from parent\"{\r\n       subject.greeting.shout => \"HELLO WORLD!\"\r\n    }\r\n    def shout(String s){\r\n      return s.toUpperCase + emphasize\r\n    }\r\n  }\r\n}\r\n");
   }
 }

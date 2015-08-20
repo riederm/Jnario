@@ -252,7 +252,7 @@ public class UsingShouldSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    Helpers.is(_errorMessage, "\r\n     Expected 1 + 1 => 1 but\r\n          1 + 1 is <2>");
+    Helpers.is(_errorMessage, "Expected 1 + 1 => 1 but\r\n     1 + 1 is <2>");
     final String x = "hello";
     final Procedure1<Boolean> _function_1 = new Procedure1<Boolean>() {
       @Override
@@ -265,7 +265,7 @@ public class UsingShouldSpec {
       }
     };
     String _errorMessage_1 = Helpers.errorMessage(_function_1);
-    Helpers.is(_errorMessage_1, "\r\n      Expected x.toUpperCase should not be \"HELLO\" but\r\n           x.toUpperCase is \"HELLO\"\r\n           x is \"hello\"");
+    Helpers.is(_errorMessage_1, "Expected x.toUpperCase should not be \"HELLO\" but\r\n     x.toUpperCase is \"HELLO\"\r\n     x is \"hello\"");
     final String y = "world";
     final Procedure1<Boolean> _function_2 = new Procedure1<Boolean>() {
       @Override
@@ -277,7 +277,7 @@ public class UsingShouldSpec {
       }
     };
     String _errorMessage_2 = Helpers.errorMessage(_function_2);
-    Helpers.is(_errorMessage_2, "\r\n      Expected x => y but\r\n           x is \"hello\"\r\n           y is \"world\"");
+    Helpers.is(_errorMessage_2, "Expected x => y but\r\n     x is \"hello\"\r\n     y is \"world\"");
   }
   
   /**

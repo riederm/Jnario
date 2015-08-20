@@ -41,13 +41,13 @@ import org.junit.runner.RunWith;
 public class FeatureJavaValidatorSpec {
   @Extension
   @Inject
-  ModelStore modelStore;
+  public ModelStore modelStore;
   
   @Test
   @Named("no name clash between features and imported types")
   @Order(1)
   public void _noNameClashBetweenFeaturesAndImportedTypes() throws Exception {
-    this.modelStore.parseScenario("\r\n\t\t\timport java.util.Stack\r\n\t\t\tFeature: Stack\r\n\t\t\tScenario: Example\r\n\t\t\t\tStack stack\r\n\t\t");
+    this.modelStore.parseScenario("import java.util.Stack\r\nFeature: Stack\r\nScenario: Example\r\n\tStack stack\r\n");
     AssertableDiagnostics _validate = this.validate(JnarioFile.class);
     _validate.assertOK();
   }

@@ -34,12 +34,12 @@ import org.junit.runner.RunWith;
 public class SuiteNodeBuilderSpec {
   @Extension
   @Inject
-  ModelStore m;
+  public ModelStore m;
   
   public Resource parseSuite(final CharSequence s) {
     Resource _xblockexpression = null;
     {
-      final String input = (("\r\n\t\tpackage test\r\n\t\t\r\n\t\t" + s) + "\r\n\t\t");
+      final String input = (("package test\r\n\r\n" + s) + "\r\n\t\t");
       _xblockexpression = this.m.parseSuite(input);
     }
     return _xblockexpression;

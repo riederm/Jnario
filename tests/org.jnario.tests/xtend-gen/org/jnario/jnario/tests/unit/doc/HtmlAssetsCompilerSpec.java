@@ -36,7 +36,7 @@ public class HtmlAssetsCompilerSpec {
   @Extension
   @Inject
   @Rule
-  TemporaryFolder _temporaryFolder;
+  public TemporaryFolder _temporaryFolder;
   
   @Test
   @Named("compiles css & js files to specified folder")

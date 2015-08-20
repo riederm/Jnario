@@ -51,7 +51,7 @@ public class HashBasedSpec2ResultMappingSpec {
   
   @Extension
   @Inject
-  ModelStore m;
+  public ModelStore m;
   
   final static double anyExecutionTime = 0.0;
   

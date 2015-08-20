@@ -34,13 +34,13 @@ public class SuiteQualifiedNameProviderSpec {
   
   @Extension
   @Inject
-  ModelStore _modelStore;
+  public ModelStore _modelStore;
   
   @Test
   @Named("removes suite prefix")
   @Order(1)
   public void _removesSuitePrefix() throws Exception {
-    this._modelStore.parseSuite("\r\n\t\t\t#My Suite");
+    this._modelStore.parseSuite("#My Suite");
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"My Suite\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "My Suite"));
@@ -51,7 +51,7 @@ public class SuiteQualifiedNameProviderSpec {
   @Named("removes suite trailing text")
   @Order(2)
   public void _removesSuiteTrailingText() throws Exception {
-    this._modelStore.parseSuite("\r\n\t\t\t#My Suite\r\n\t\t\twith description");
+    this._modelStore.parseSuite("#My Suite\r\nwith description");
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"My Suite\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "My Suite"));
@@ -62,7 +62,7 @@ public class SuiteQualifiedNameProviderSpec {
   @Named("add suite package")
   @Order(3)
   public void _addSuitePackage() throws Exception {
-    this._modelStore.parseSuite("\r\n\t\t\tpackage test\r\n\t\t\t#My Suite");
+    this._modelStore.parseSuite("package test\r\n#My Suite");
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"test.My Suite\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "test.My Suite"));
@@ -73,7 +73,7 @@ public class SuiteQualifiedNameProviderSpec {
   @Named("handles empty packages")
   @Order(4)
   public void _handlesEmptyPackages() throws Exception {
-    this._modelStore.parseSuite("\r\n\t\t\t#My Suite");
+    this._modelStore.parseSuite("#My Suite");
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"My Suite\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "My Suite"));
@@ -84,7 +84,7 @@ public class SuiteQualifiedNameProviderSpec {
   @Named("handles empty suites")
   @Order(5)
   public void _handlesEmptySuites() throws Exception {
-    this._modelStore.parseSuite("\r\n\t\t\t#\r\n\t\t");
+    this._modelStore.parseSuite("#\r\n");
     String _qualifiedName = this.qualifiedName();
     Assert.assertNull("\nExpected qualifiedName should be null\n     but is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", _qualifiedName);
     

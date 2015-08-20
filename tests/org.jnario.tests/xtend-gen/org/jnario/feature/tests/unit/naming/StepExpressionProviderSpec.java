@@ -40,13 +40,13 @@ public class StepExpressionProviderSpec {
   
   @Extension
   @Inject
-  ModelStore modelStore;
+  public ModelStore modelStore;
   
   @Test
   @Named("should return the name for a step with definition")
   @Order(1)
   public void _shouldReturnTheNameForAStepWithDefinition() throws Exception {
-    this.modelStore.parseScenario("\r\n\t\t\tFeature: Example\r\n\t\t\t\tScenario: MyScenario\r\n\t\t\t\t\tGiven a step with an implementation\r\n\t\t\t\t\t\t\"the implementation\"\r\n\t\t");
+    this.modelStore.parseScenario("Feature: Example\r\n\tScenario: MyScenario\r\n\t\tGiven a step with an implementation\r\n\t\t\t\"the implementation\"\r\n");
     Step _step = this.step();
     XExpression _expression = _step.getExpression();
     Step _step_1 = this.step();
@@ -64,7 +64,7 @@ public class StepExpressionProviderSpec {
   @Named("should copy the referenced step\\\'s implementation and set the referencing step")
   @Order(2)
   public void _shouldCopyTheReferencedStepSImplementationAndSetTheReferencingStep() throws Exception {
-    this.modelStore.parseScenario("\r\n\t\t\tFeature: Example\r\n\t\t\t\tScenario: MyScenario 1\r\n\t\t\t\t\tGiven a step \r\n\t\t\t\t\t\t\r\n\t\t\t\tScenario: MyScenario 2\r\n\t\t\t\t\tGiven a step \r\n\t\t\t\t\t\t\"the implementation\"\r\n\t\t");
+    this.modelStore.parseScenario("Feature: Example\r\n\tScenario: MyScenario 1\r\n\t\tGiven a step \r\n\t\t\t\r\n\tScenario: MyScenario 2\r\n\t\tGiven a step \r\n\t\t\t\"the implementation\"\r\n");
     Step _step = this.step();
     final XExpression expr = this.subject.expressionOf(_step);
     boolean _notEquals = (!Objects.equal(expr, null));

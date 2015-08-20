@@ -13,6 +13,9 @@ import org.jnario.runner.Named;
 import org.junit.runner.RunWith;
 import test.ExamplesFeatureExampleTables;
 
+/**
+ * @author Birgit Engelmann - Initial contribution and API
+ */
 @Contains(ExamplesFeatureExampleTables.class)
 @Named("Examples.")
 @RunWith(FeatureRunner.class)

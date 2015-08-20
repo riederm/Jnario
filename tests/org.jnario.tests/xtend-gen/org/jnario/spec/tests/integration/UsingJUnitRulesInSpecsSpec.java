@@ -28,7 +28,7 @@ import org.junit.runner.RunWith;
 public class UsingJUnitRulesInSpecsSpec {
   @Extension
   @Inject
-  BehaviorExecutor _behaviorExecutor;
+  public BehaviorExecutor _behaviorExecutor;
   
   /**
    * @filter('''|.executesSuccessfully)
@@ -37,6 +37,6 @@ public class UsingJUnitRulesInSpecsSpec {
   @Named("Example Specification:")
   @Order(1)
   public void _exampleSpecification() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\tpackage test\r\n\t\t\t\t\r\n\t\timport org.junit.Rule\r\n\t\timport org.junit.rules.TemporaryFolder\r\n\t\t\r\n\t\tdescribe Rule{\r\n\t\t  @Rule public val folder = new TemporaryFolder\t\r\n\t\t\r\n\t\t  fact folder.root should not be null\r\n\t\t}\t\t\r\n\t\t");
+    this._behaviorExecutor.executesSuccessfully("package test\r\n\t\t\r\nimport org.junit.Rule\r\nimport org.junit.rules.TemporaryFolder\r\n\r\ndescribe Rule{\r\n  @Rule public val folder = new TemporaryFolder\t\r\n\r\n  fact folder.root should not be null\r\n}\t\t\r\n");
   }
 }

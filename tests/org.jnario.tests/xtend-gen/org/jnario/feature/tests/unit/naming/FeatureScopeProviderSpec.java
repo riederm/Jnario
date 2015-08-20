@@ -24,7 +24,7 @@ import org.junit.runner.RunWith;
 public class FeatureScopeProviderSpec {
   @Extension
   @Inject
-  ScopeTestExtension e;
+  public ScopeTestExtension e;
   
   public Set<String> targetOperationScope() {
     Set<String> _xblockexpression = null;

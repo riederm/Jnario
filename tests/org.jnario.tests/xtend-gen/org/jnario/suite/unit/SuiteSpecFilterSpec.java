@@ -40,13 +40,13 @@ public class SuiteSpecFilterSpec {
   public SuiteSpecFilter subject;
   
   @Extension
-  SuitePackage _suitePackage = SuitePackage.eINSTANCE;
+  public SuitePackage _suitePackage = SuitePackage.eINSTANCE;
   
   @Extension
-  SpecPackage _specPackage = SpecPackage.eINSTANCE;
+  public SpecPackage _specPackage = SpecPackage.eINSTANCE;
   
   @Extension
-  FeaturePackage _featurePackage = FeaturePackage.eINSTANCE;
+  public FeaturePackage _featurePackage = FeaturePackage.eINSTANCE;
   
   @Test
   @Named("Suites pass")

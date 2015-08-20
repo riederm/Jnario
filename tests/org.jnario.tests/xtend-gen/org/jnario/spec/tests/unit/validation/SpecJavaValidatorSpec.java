@@ -38,7 +38,7 @@ import org.junit.runner.RunWith;
 public class SpecJavaValidatorSpec {
   @Extension
   @Inject
-  ModelStore modelStore;
+  public ModelStore modelStore;
   
   @Test
   @Ignore

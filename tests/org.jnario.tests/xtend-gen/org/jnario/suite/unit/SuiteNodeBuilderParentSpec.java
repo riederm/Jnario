@@ -32,7 +32,7 @@ import org.junit.runner.RunWith;
 public class SuiteNodeBuilderParentSpec extends SuiteNodeBuilderSpec {
   @Extension
   @Inject
-  SuiteNodeBuilder _suiteNodeBuilder;
+  public SuiteNodeBuilder _suiteNodeBuilder;
   
   public ExampleTable<SuiteNodeBuilderParentSpecExamples> _initSuiteNodeBuilderParentSpecExamples() {
     return ExampleTable.create("examples", 

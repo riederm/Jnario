@@ -32,13 +32,13 @@ public class SpecExecutableProviderSpec {
   
   @Extension
   @Inject
-  ModelStore _modelStore;
+  public ModelStore _modelStore;
   
   @Test
   @Named("returns all examples")
   @Order(1)
   public void _returnsAllExamples() throws Exception {
-    this._modelStore.parseSpec("\r\n\t\tdescribe \"Something\"{\r\n\t\t\tfact \"fact 1\"\r\n\t\t\tfact \"fact 2\"\r\n\t\t}\r\n\t\t");
+    this._modelStore.parseSpec("describe \"Something\"{\r\n\tfact \"fact 1\"\r\n\tfact \"fact 2\"\r\n}\r\n");
     ExampleGroup _exampleGroup = this._modelStore.exampleGroup("Something");
     List<Executable> _executables = this.executables(_exampleGroup);
     Example _example = this._modelStore.example("fact 1");
@@ -57,7 +57,7 @@ public class SpecExecutableProviderSpec {
   @Named("returns all sub example groups")
   @Order(2)
   public void _returnsAllSubExampleGroups() throws Exception {
-    this._modelStore.parseSpec("\r\n\t\tdescribe \"Something\"{\r\n\t\t\tdescribe \"exampleGroup 1\"{}\r\n\t\t\tdescribe \"exampleGroup 2\"{}\r\n\t\t}\r\n\t\t");
+    this._modelStore.parseSpec("describe \"Something\"{\r\n\tdescribe \"exampleGroup 1\"{}\r\n\tdescribe \"exampleGroup 2\"{}\r\n}\r\n");
     ExampleGroup _exampleGroup = this._modelStore.exampleGroup("Something");
     List<Executable> _executables = this.executables(_exampleGroup);
     ExampleGroup _exampleGroup_1 = this._modelStore.exampleGroup("exampleGroup 1");
@@ -76,7 +76,7 @@ public class SpecExecutableProviderSpec {
   @Named("returns all facts in sub example groups")
   @Order(3)
   public void _returnsAllFactsInSubExampleGroups() throws Exception {
-    this._modelStore.parseSpec("\r\n\t\tdescribe \"Something\"{\r\n\t\t\tdescribe \"exampleGroup 1\"{\r\n\t\t\t\tfact \"fact 1\"\r\n\t\t\t}\r\n\t\t\tdescribe \"exampleGroup 2\"{\r\n\t\t\t\tfact \"fact 2\"\r\n\t\t\t}\r\n\t\t}\r\n\t\t");
+    this._modelStore.parseSpec("describe \"Something\"{\r\n\tdescribe \"exampleGroup 1\"{\r\n\t\tfact \"fact 1\"\r\n\t}\r\n\tdescribe \"exampleGroup 2\"{\r\n\t\tfact \"fact 2\"\r\n\t}\r\n}\r\n");
     ExampleGroup _exampleGroup = this._modelStore.exampleGroup("Something");
     List<Executable> _executables = this.executables(_exampleGroup);
     Set<Executable> _set = IterableExtensions.<Executable>toSet(_executables);

@@ -36,7 +36,7 @@ import org.junit.runner.RunWith;
 public class UsingTablesSpec {
   @Extension
   @Inject
-  BehaviorExecutor _behaviorExecutor;
+  public BehaviorExecutor _behaviorExecutor;
   
   /**
    * Examples are stored within a table. Assertions for the table's values are
@@ -50,7 +50,7 @@ public class UsingTablesSpec {
   @Named("accessing values")
   @Order(1)
   public void _accessingValues() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n    package bootstrap\r\n    \r\n    describe \"Example Tables\"{\r\n      \r\n      def myExamples{\r\n        |    String input      |  String result       |  \r\n        | \"Hello World\" | \"HELLO WORLD\" | \r\n        | \"Hallo Welt\"  | \"HALLO WELT\"  |\r\n      } \r\n      \r\n      fact \"can be accessed via the table name\"{\r\n        myExamples.forEach[   \r\n          input.toUpperCase should be result\r\n        ] \r\n      }\r\n    }\r\n    ");
+    this._behaviorExecutor.executesSuccessfully("package bootstrap\r\n\r\ndescribe \"Example Tables\"{\r\n  \r\n  def myExamples{\r\n    |    String input      |  String result       |  \r\n    | \"Hello World\" | \"HELLO WORLD\" | \r\n    | \"Hallo Welt\"  | \"HALLO WELT\"  |\r\n  } \r\n  \r\n  fact \"can be accessed via the table name\"{\r\n    myExamples.forEach[   \r\n      input.toUpperCase should be result\r\n    ] \r\n  }\r\n}\r\n");
   }
   
   /**
@@ -61,7 +61,7 @@ public class UsingTablesSpec {
   @Named("Naming examples")
   @Order(2)
   public void _namingExamples() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n    package bootstrap\r\n    \r\n    describe \"Example Tables\"{\r\n      \r\n      def{\r\n        | a | b | \r\n        | 0 | 1 |\r\n      }\r\n\r\n      fact \"name is optional\"{    \r\n        examples should not be null\r\n      }     \r\n    } \r\n    ");
+    this._behaviorExecutor.executesSuccessfully("package bootstrap\r\n\r\ndescribe \"Example Tables\"{\r\n  \r\n  def{\r\n    | a | b | \r\n    | 0 | 1 |\r\n  }\r\n\r\n  fact \"name is optional\"{    \r\n    examples should not be null\r\n  }     \r\n} \r\n");
   }
   
   /**
@@ -72,7 +72,7 @@ public class UsingTablesSpec {
   @Named("Expressions in tables")
   @Order(3)
   public void _expressionsInTables() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n    package bootstrap\r\n    \r\n    describe \"Example Tables\"{\r\n      \r\n      def myExampleWithClosures{\r\n        | input |       operation            | result |\r\n        |   \"a\" | [String s | s.toUpperCase] |   \"A\"  |\r\n        |   \"B\" | [String s | s.toLowerCase] |   \"b\"  | \r\n      }  \r\n\r\n      fact \"supports closures as values\"{   \r\n        myExampleWithClosures.forEach[\r\n          operation.apply(input) should be result\r\n        ]\r\n      }       \r\n    }\r\n    ");
+    this._behaviorExecutor.executesSuccessfully("package bootstrap\r\n\r\ndescribe \"Example Tables\"{\r\n  \r\n  def myExampleWithClosures{\r\n    | input |       operation            | result |\r\n    |   \"a\" | [String s | s.toUpperCase] |   \"A\"  |\r\n    |   \"B\" | [String s | s.toLowerCase] |   \"b\"  | \r\n  }  \r\n\r\n  fact \"supports closures as values\"{   \r\n    myExampleWithClosures.forEach[\r\n      operation.apply(input) should be result\r\n    ]\r\n  }       \r\n}\r\n");
   }
   
   /**
@@ -83,7 +83,7 @@ public class UsingTablesSpec {
   @Named("Referencing members")
   @Order(4)
   public void _referencingMembers() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n    package bootstrap\r\n    \r\n    describe \"Example Tables\"{\r\n      \r\n      String field = \"Hello\"\r\n\r\n      def method(){\r\n        \"World\"\r\n      }  \r\n    \r\n      def myExampleWithMemberCalls{\r\n        | input    | result  |\r\n        | field    | \"Hello\" |\r\n        | method() | \"World\" | \r\n      }       \r\n       \r\n      fact \"supports closures as values\"{   \r\n        myExampleWithMemberCalls.forEach[\r\n          input should be result\r\n        ] \r\n      }   \r\n    }\r\n    ");
+    this._behaviorExecutor.executesSuccessfully("package bootstrap\r\n\r\ndescribe \"Example Tables\"{\r\n  \r\n  String field = \"Hello\"\r\n\r\n  def method(){\r\n    \"World\"\r\n  }  \r\n\r\n  def myExampleWithMemberCalls{\r\n    | input    | result  |\r\n    | field    | \"Hello\" |\r\n    | method() | \"World\" | \r\n  }       \r\n   \r\n  fact \"supports closures as values\"{   \r\n    myExampleWithMemberCalls.forEach[\r\n      input should be result\r\n    ] \r\n  }   \r\n}\r\n");
   }
   
   /**
@@ -95,7 +95,7 @@ public class UsingTablesSpec {
   @Named("Column type inference")
   @Order(5)
   public void _columnTypeInference() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n  package bootstrap\r\n  \r\n  import java.util.*\r\n\r\n  describe \"Example Tables\"{\r\n    def examplesWithTypeInference{\r\n      |          list            |\r\n      | null                     |\r\n      | new ArrayList<String>()  |\r\n      | new LinkedList<String>() |\r\n    }     \r\n\r\n    fact \"computes the common super type\"{\r\n      examplesWithTypeInference.forEach[\r\n      \tif(list != null){\r\n          assert list.empty // works only if the type of list has been inferred as List<String>\r\n      \t}\r\n      ]\r\n    }\r\n  }  \r\n  ");
+    this._behaviorExecutor.executesSuccessfully("package bootstrap\r\n\r\nimport java.util.*\r\n\r\ndescribe \"Example Tables\"{\r\n  def examplesWithTypeInference{\r\n    |          list            |\r\n    | null                     |\r\n    | new ArrayList<String>()  |\r\n    | new LinkedList<String>() |\r\n  }     \r\n\r\n  fact \"computes the common super type\"{\r\n    examplesWithTypeInference.forEach[\r\n    \tif(list != null){\r\n        assert list.empty // works only if the type of list has been inferred as List<String>\r\n    \t}\r\n    ]\r\n  }\r\n}  \r\n");
   }
   
   /**
@@ -106,7 +106,7 @@ public class UsingTablesSpec {
   @Named("Specifying column types")
   @Order(6)
   public void _specifyingColumnTypes() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\timport java.util.ArrayList\r\n\timport java.util.LinkedList\r\n\t\r\n\tdescribe \"Example Tables\"{\r\n\t  def examplesWithType{\r\n\t    | Iterable<String> list    |\r\n\t    | new ArrayList<String>()  |\r\n\t    | new LinkedList<String>() |\r\n\t  }\r\n\t    \r\n\t  fact \"computes the common super type\"{\r\n\t    examplesWithType.forEach[\r\n\t      assert list.empty\r\n\t    ]\r\n\t  }\r\n\t}\r\n  ");
+    this._behaviorExecutor.executesSuccessfully("import java.util.ArrayList\r\nimport java.util.LinkedList\r\n\r\ndescribe \"Example Tables\"{\r\n  def examplesWithType{\r\n    | Iterable<String> list    |\r\n    | new ArrayList<String>()  |\r\n    | new LinkedList<String>() |\r\n  }\r\n    \r\n  fact \"computes the common super type\"{\r\n    examplesWithType.forEach[\r\n      assert list.empty\r\n    ]\r\n  }\r\n}\r\n");
   }
   
   public ExampleTable<UsingTablesSpecExample> _initUsingTablesSpecExample() {
@@ -186,7 +186,7 @@ public class UsingTablesSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    Helpers.is(_errorMessage, "\r\n\t\t\texample failed\r\n\r\n\t\t\t        | value1     | value2     | sum     |\r\n\t\t\t        | 1          | 2          | 3       | \u2713\r\n\t\t\t        | 4          | 5          | 7       | \u2718     (1)\r\n\t\t\t        | 7          | 8          | 14      | \u2718     (2)\r\n\t\t\t\r\n\t\t\t(1) | 4          | 5          | 7       | \u2718\r\n\t\t\tjava.lang.AssertionError: \r\n\t\t\tExpected value1 + value2 => sum but\r\n\t\t\t     value1 + value2 is <9>\r\n\t\t\t     value1 is <4>\r\n\t\t\t     value2 is <5>\r\n\t\t\t     sum is <7>\r\n\t\t\t\r\n\t\t\t(2) | 7          | 8          | 14      | \u2718\r\n\t\t\tjava.lang.AssertionError: \r\n\t\t\tExpected value1 + value2 => sum but\r\n\t\t\t     value1 + value2 is <15>\r\n\t\t\t     value1 is <7>\r\n\t\t\t     value2 is <8>\r\n\t\t\t     sum is <14>");
+    Helpers.is(_errorMessage, "example failed\r\n\r\n        | value1     | value2     | sum     |\r\n        | 1          | 2          | 3       | \u2713\r\n        | 4          | 5          | 7       | \u2718     (1)\r\n        | 7          | 8          | 14      | \u2718     (2)\r\n\r\n(1) | 4          | 5          | 7       | \u2718\r\njava.lang.AssertionError: \r\nExpected value1 + value2 => sum but\r\n     value1 + value2 is <9>\r\n     value1 is <4>\r\n     value2 is <5>\r\n     sum is <7>\r\n\r\n(2) | 7          | 8          | 14      | \u2718\r\njava.lang.AssertionError: \r\nExpected value1 + value2 => sum but\r\n     value1 + value2 is <15>\r\n     value1 is <7>\r\n     value2 is <8>\r\n     sum is <14>");
   }
   
   /**
@@ -196,7 +196,7 @@ public class UsingTablesSpec {
   @Named("type inference uses null for one column with null value")
   @Order(8)
   public void _typeInferenceUsesNullForOneColumnWithNullValue() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tdescribe \"TableBug\" {\r\n\t\t\t    def gkzData {\r\n\t\t\t        | value |\r\n\t\t\t        | null  |\r\n\t\t\t    }\r\n\t\t\t}\r\n\t\t");
+    this._behaviorExecutor.executesSuccessfully("describe \"TableBug\" {\r\n    def gkzData {\r\n        | value |\r\n        | null  |\r\n    }\r\n}\r\n");
   }
   
   /**
@@ -206,6 +206,6 @@ public class UsingTablesSpec {
   @Named("Primitives & null")
   @Order(9)
   public void _primitivesNull() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tdescribe \"TableBug\" {\r\n\t\t\t    def gkzData {\r\n\t\t\t        | value |\r\n\t\t\t        | null  |\r\n\t\t\t        | 1     |\r\n\t\t\t    }\r\n\t\t\t}\r\n\t\t");
+    this._behaviorExecutor.executesSuccessfully("describe \"TableBug\" {\r\n    def gkzData {\r\n        | value |\r\n        | null  |\r\n        | 1     |\r\n    }\r\n}\r\n");
   }
 }

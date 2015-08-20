@@ -31,7 +31,7 @@ public class FeatureExecutableProviderSpec {
   
   @Extension
   @Inject
-  ModelStore _modelStore;
+  public ModelStore _modelStore;
   
   @Test
   @Named("returns background and scenarios")
@@ -58,7 +58,7 @@ public class FeatureExecutableProviderSpec {
   @Named("returns steps")
   @Order(2)
   public void _returnsSteps() throws Exception {
-    this._modelStore.parseScenario("\r\n\t\tFeature: My feature\r\n\t\tScenario: My first Scenario\r\n\t\t\tGiven something\r\n\t\t");
+    this._modelStore.parseScenario("Feature: My feature\r\nScenario: My first Scenario\r\n\tGiven something\r\n");
     Scenario _scenario = this._modelStore.scenario("Scenario: My first Scenario");
     List<? extends Executable> _executables = this.executables(_scenario);
     Step _step = this._modelStore.step("Given something");
@@ -75,7 +75,7 @@ public class FeatureExecutableProviderSpec {
   @Named("returns sub steps")
   @Order(3)
   public void _returnsSubSteps() throws Exception {
-    this._modelStore.parseScenario("\r\n\t\tFeature: My feature\r\n\t\tScenario: My first Scenario\r\n\t\t\tGiven something\r\n\t\t\t And something else\r\n\t\t");
+    this._modelStore.parseScenario("Feature: My feature\r\nScenario: My first Scenario\r\n\tGiven something\r\n\t And something else\r\n");
     Scenario _scenario = this._modelStore.scenario("Scenario: My first Scenario");
     List<? extends Executable> _executables = this.executables(_scenario);
     Step _step = this._modelStore.step("Given something");

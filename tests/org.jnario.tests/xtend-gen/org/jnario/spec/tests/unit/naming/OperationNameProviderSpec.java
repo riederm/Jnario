@@ -53,7 +53,7 @@ public class OperationNameProviderSpec {
   
   @Extension
   @Inject
-  ModelStore _modelStore;
+  public ModelStore _modelStore;
   
   @Before
   public void setup() {

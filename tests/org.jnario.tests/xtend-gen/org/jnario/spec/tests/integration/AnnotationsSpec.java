@@ -28,7 +28,7 @@ import org.junit.runner.RunWith;
 public class AnnotationsSpec {
   @Extension
   @Inject
-  BehaviorExecutor _behaviorExecutor;
+  public BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("should support class annotations for \\\'describe\\\'")

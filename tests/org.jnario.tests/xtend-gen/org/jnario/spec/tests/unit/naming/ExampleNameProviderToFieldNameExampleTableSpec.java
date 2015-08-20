@@ -31,7 +31,7 @@ public class ExampleNameProviderToFieldNameExampleTableSpec extends ExampleNameP
   @Named("should use the example name")
   @Order(1)
   public void _shouldUseTheExampleName() throws Exception {
-    Query _parse = this.parse("\r\n        describe \'My Context\'{\r\n          def myExample{\r\n          }\r\n        }\r\n      ");
+    Query _parse = this.parse("describe \'My Context\'{\r\n  def myExample{\r\n  }\r\n}\r\n");
     final ExampleTable exampleTable = _parse.<ExampleTable>first(ExampleTable.class);
     String _fieldName = this.subject.toFieldName(exampleTable);
     Assert.assertTrue("\nExpected subject.toFieldName(exampleTable) => \"myExample\" but"
@@ -45,7 +45,7 @@ public class ExampleNameProviderToFieldNameExampleTableSpec extends ExampleNameP
   @Named("should use \\\'examples\\\' if no name is given")
   @Order(2)
   public void _shouldUseExamplesIfNoNameIsGiven() throws Exception {
-    Query _parse = this.parse("\r\n        describe \'My Context\'{\r\n          def{\r\n          }\r\n        }\r\n      ");
+    Query _parse = this.parse("describe \'My Context\'{\r\n  def{\r\n  }\r\n}\r\n");
     final ExampleTable exampleTable = _parse.<ExampleTable>first(ExampleTable.class);
     String _fieldName = this.subject.toFieldName(exampleTable);
     Assert.assertTrue("\nExpected subject.toFieldName(exampleTable) => \"examples\" but"

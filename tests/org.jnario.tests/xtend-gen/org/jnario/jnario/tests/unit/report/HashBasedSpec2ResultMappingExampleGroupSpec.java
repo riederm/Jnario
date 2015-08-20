@@ -31,7 +31,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("returns Pending if children are not executed and have no implementation")
   @Order(1)
   public void _returnsPendingIfChildrenAreNotExecutedAndHaveNoImplementation() throws Exception {
-    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"fact 1\"\r\n\t\t\t\tfact \"fact 2\"\r\n\t\t\t}\r\n\t\t\t");
+    this.m.parseSpec("describe \"Root\"{\r\n\tfact \"fact 1\"\r\n\tfact \"fact 2\"\r\n}\r\n");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
     SpecExecution _result = this.result(_exampleGroup);
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result => typeof(Pending) but"
@@ -45,7 +45,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("returns NotRun if children are not executed but have an implementation")
   @Order(2)
   public void _returnsNotRunIfChildrenAreNotExecutedButHaveAnImplementation() throws Exception {
-    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"fact 1\"{ \"with implementation\" }\r\n\t\t\t\tfact \"fact 2\"{ \"with implementation\" }\r\n\t\t\t}\r\n\t\t\t");
+    this.m.parseSpec("describe \"Root\"{\r\n\tfact \"fact 1\"{ \"with implementation\" }\r\n\tfact \"fact 2\"{ \"with implementation\" }\r\n}\r\n");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
     SpecExecution _result = this.result(_exampleGroup);
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result => typeof(NotRun) but"
@@ -59,7 +59,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("passes if all children pass")
   @Order(3)
   public void _passesIfAllChildrenPass() throws Exception {
-    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"{ \"with implementation\" }\r\n\t\t\t\tfact \"Example 2\"{ \"with implementation\" }\r\n\t\t\t}\r\n\t\t\t");
+    this.m.parseSpec("describe \"Root\"{\r\n\tfact \"Example 1\"{ \"with implementation\" }\r\n\tfact \"Example 2\"{ \"with implementation\" }\r\n}\r\n");
     this.passes("Example 1", "Example 2");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
     SpecExecution _result = this.result(_exampleGroup);
@@ -74,7 +74,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("fails if one child has failed")
   @Order(4)
   public void _failsIfOneChildHasFailed() throws Exception {
-    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"{ \"with implementation\" }\r\n\t\t\t\tfact \"Example 2\"{ \"with implementation\" }\r\n\t\t\t}\r\n\t\t\t");
+    this.m.parseSpec("describe \"Root\"{\r\n\tfact \"Example 1\"{ \"with implementation\" }\r\n\tfact \"Example 2\"{ \"with implementation\" }\r\n}\r\n");
     this.passes("Example 1");
     this.fails("Example 2");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
@@ -90,7 +90,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("execution time is sum of all child examples")
   @Order(5)
   public void _executionTimeIsSumOfAllChildExamples() throws Exception {
-    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"{ \"with implementation\" }\r\n\t\t\t\tfact \"Example 2\"{ \"with implementation\" }\r\n\t\t\t}\r\n\t\t\t");
+    this.m.parseSpec("describe \"Root\"{\r\n\tfact \"Example 1\"{ \"with implementation\" }\r\n\tfact \"Example 2\"{ \"with implementation\" }\r\n}\r\n");
     this.exampleExecutedIn("Example 1", 1.0);
     this.exampleExecutedIn("Example 2", 2.0);
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
@@ -108,7 +108,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("class name is from spec")
   @Order(6)
   public void _classNameIsFromSpec() throws Exception {
-    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"{ \"with implementation\" }\r\n\t\t\t\tfact \"Example 2\"{ \"with implementation\" }\r\n\t\t\t}\r\n\t\t\t");
+    this.m.parseSpec("describe \"Root\"{\r\n\tfact \"Example 1\"{ \"with implementation\" }\r\n\tfact \"Example 2\"{ \"with implementation\" }\r\n}\r\n");
     this.passes("Example 1");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
     SpecExecution _result = this.result(_exampleGroup);
@@ -125,7 +125,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("name is from spec")
   @Order(7)
   public void _nameIsFromSpec() throws Exception {
-    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"\r\n\t\t\t\tfact \"Example 2\"\r\n\t\t\t}\r\n\t\t\t");
+    this.m.parseSpec("describe \"Root\"{\r\n\tfact \"Example 1\"\r\n\tfact \"Example 2\"\r\n}\r\n");
     this.passes("Example 1");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
     SpecExecution _result = this.result(_exampleGroup);
@@ -142,7 +142,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("caches calculated results")
   @Order(8)
   public void _cachesCalculatedResults() throws Exception {
-    this.m.parseSpec("\r\n\t\t\tdescribe \"Root\"{\r\n\t\t\t\tfact \"Example 1\"\r\n\t\t\t\tfact \"Example 2\"\r\n\t\t\t}\r\n\t\t\t");
+    this.m.parseSpec("describe \"Root\"{\r\n\tfact \"Example 1\"\r\n\tfact \"Example 2\"\r\n}\r\n");
     this.passes("Example 1");
     final ExampleGroup exampleGroup = this.m.exampleGroup("Root");
     final SpecExecution first = this.result(exampleGroup);
@@ -159,7 +159,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("supports nested specs")
   @Order(9)
   public void _supportsNestedSpecs() throws Exception {
-    this.m.parseSpec("\n\t\t\tdescribe \"Root\"{\n\t\t\t\tdescribe \"Child\"{\n\t\t\t\t\tfact \"Example 1\"{1 + 1 => 2}\n\t\t\t\t}\t\n\t\t\t}\n\t\t\t");
+    this.m.parseSpec("describe \"Root\"{\n\tdescribe \"Child\"{\n\t\tfact \"Example 1\"{1 + 1 => 2}\n\t}\t\n}\n");
     HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME = "RootChildSpec";
     this.passes("Example 1");
     ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
@@ -176,7 +176,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
   @Named("supports nested specs referencing methods [PENDING]")
   @Order(10)
   public void _supportsNestedSpecsReferencingMethods() throws Exception {
-    this.m.parseSpec("\n\t\t\tdescribe String{\n\t\t\t\tdescribe charAt{\n\t\t\t\t\tfact \"Example 1\"{1 + 1 => 2}\n\t\t\t\t}\t\n\t\t\t}\n\t\t\t");
+    this.m.parseSpec("describe String{\n\tdescribe charAt{\n\t\tfact \"Example 1\"{1 + 1 => 2}\n\t}\t\n}\n");
     HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME = "RootCharAtSpec";
     this.passes("Example 1");
     ExampleGroup _exampleGroup = this.m.exampleGroup("String");

@@ -32,7 +32,7 @@ import org.junit.runner.RunWith;
 public class ExampleGroupSpec {
   @Extension
   @Inject
-  BehaviorExecutor _behaviorExecutor;
+  public BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("should resolve target class")

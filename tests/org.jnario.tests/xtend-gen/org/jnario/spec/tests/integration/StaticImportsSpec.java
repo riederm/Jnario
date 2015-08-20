@@ -25,12 +25,12 @@ import org.junit.runner.RunWith;
 public class StaticImportsSpec {
   @Extension
   @Inject
-  BehaviorExecutor _behaviorExecutor;
+  public BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("should resolve static imports")
   @Order(1)
   public void _shouldResolveStaticImports() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tpackage bootstrap\r\n\t\t\t\r\n\t\t\timport static org.junit.Assert.*\r\n\t\t\tdescribe \"Example\" {\r\n\t\t\t\r\n\t\t\t\tfact \"should resolve static imports\"{\r\n\t\t\t\t\tassertTrue(true) \r\n\t\t\t\t} \r\n\t\t\t\t\t\t\r\n\t\t\t}\r\n\t\t");
+    this._behaviorExecutor.executesSuccessfully("package bootstrap\r\n\r\nimport static org.junit.Assert.*\r\ndescribe \"Example\" {\r\n\r\n\tfact \"should resolve static imports\"{\r\n\t\tassertTrue(true) \r\n\t} \r\n\t\t\t\r\n}\r\n");
   }
 }

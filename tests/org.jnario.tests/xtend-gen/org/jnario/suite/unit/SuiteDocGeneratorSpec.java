@@ -39,22 +39,22 @@ public class SuiteDocGeneratorSpec {
   
   @Extension
   @Inject
-  ModelStore _modelStore;
+  public ModelStore _modelStore;
   
   @Inject
   InMemoryFileSystemAccess fsa;
   
   @Before
   public void before() throws Exception {
-    this._modelStore.parseSpec("\r\n\t\tpackage test\r\n\t\tdescribe \"Red\"{\r\n\t\t}\r\n\t\tdescribe \"Blue\"{\r\n\t\t}\r\n\t\tdescribe \"Green\"{\r\n\t\t}\r\n\t\tdescribe \"Grey\"{\r\n\t\t}\r\n\t\t");
+    this._modelStore.parseSpec("package test\r\ndescribe \"Red\"{\r\n}\r\ndescribe \"Blue\"{\r\n}\r\ndescribe \"Green\"{\r\n}\r\ndescribe \"Grey\"{\r\n}\r\n");
   }
   
   @Test
   @Named("Generates suite doc with resolved specs")
   @Order(1)
   public void _generatesSuiteDocWithResolvedSpecs() throws Exception {
-    final String actual = this.generateDoc("\r\n\t\t\tpackage test\r\n\t\t\t\r\n\t\t\t#Heading\r\n\t\t\tHeading description.\r\n\t\t\t- \"Red\"\r\n\t\t\t- \"Blue\": with a description\r\n\t\t\t##Subheading\r\n\t\t\tSubheading description with **markdown**.\r\n\t\t\t- \\.*G.*\\\r\n\t\t");
-    final String expected = "\r\n\t\t<p>Heading description.</p>\r\n\t\t<ul>\r\n\t\t\t<li><a class=\"specref pending\" href=\"../test/RedSpec.html\">Red</a> <strong class=\"icon pending\">~</strong></li>\r\n\t\t\t<li><a class=\"specref pending\" href=\"../test/BlueSpec.html\">Blue</a> <strong class=\"icon pending\">~</strong>: with a description</li>\r\n\t\t</ul>\r\n\t\t<span id=\"Subheading\" class=\"suite pending\"><h2>Subheading</h2></span>\r\n\t\t<p>Subheading description with <strong>markdown</strong>.</p>\r\n\t\t<ul>\r\n\t\t\t<li><a class=\"specref pending\" href=\"../test/GreenSpec.html\">Green</a> <strong class=\"icon pending\">~</strong></li>\r\n\t\t\t<li><a class=\"specref pending\" href=\"../test/GreySpec.html\">Grey</a> <strong class=\"icon pending\">~</strong></li>\r\n\t\t</ul>\r\n\t\t".toString();
+    final String actual = this.generateDoc("package test\r\n\r\n#Heading\r\nHeading description.\r\n- \"Red\"\r\n- \"Blue\": with a description\r\n##Subheading\r\nSubheading description with **markdown**.\r\n- \\.*G.*\\\r\n");
+    final String expected = "<p>Heading description.</p>\r\n<ul>\r\n\t<li><a class=\"specref pending\" href=\"../test/RedSpec.html\">Red</a> <strong class=\"icon pending\">~</strong></li>\r\n\t<li><a class=\"specref pending\" href=\"../test/BlueSpec.html\">Blue</a> <strong class=\"icon pending\">~</strong>: with a description</li>\r\n</ul>\r\n<span id=\"Subheading\" class=\"suite pending\"><h2>Subheading</h2></span>\r\n<p>Subheading description with <strong>markdown</strong>.</p>\r\n<ul>\r\n\t<li><a class=\"specref pending\" href=\"../test/GreenSpec.html\">Green</a> <strong class=\"icon pending\">~</strong></li>\r\n\t<li><a class=\"specref pending\" href=\"../test/GreySpec.html\">Grey</a> <strong class=\"icon pending\">~</strong></li>\r\n</ul>\r\n".toString();
     Assert.assertEquals(expected, actual);
   }
   

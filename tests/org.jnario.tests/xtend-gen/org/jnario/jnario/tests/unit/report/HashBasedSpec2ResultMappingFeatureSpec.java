@@ -23,7 +23,7 @@ import org.junit.runner.RunWith;
 public class HashBasedSpec2ResultMappingFeatureSpec extends HashBasedSpec2ResultMappingSpec {
   @Before
   public void before() throws Exception {
-    this.m.parseScenario("\r\n\t\t\t\tpackage test \r\n\t\t\t\tFeature: My Feature\r\n\t\t\t\tScenario: My Scenario\r\n\t\t\t\tGiven a step\r\n\t\t\t\t\t\"with implementation\"\r\n\t\t\t\tScenario: My other Scenario\r\n\t\t\t\tGiven another step\r\n\t\t\t\t\t\"with implementation\"\r\n\t\t\t");
+    this.m.parseScenario("package test \r\nFeature: My Feature\r\nScenario: My Scenario\r\nGiven a step\r\n\t\"with implementation\"\r\nScenario: My other Scenario\r\nGiven another step\r\n\t\"with implementation\"\r\n");
   }
   
   @Test

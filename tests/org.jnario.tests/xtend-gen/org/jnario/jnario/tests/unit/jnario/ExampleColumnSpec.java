@@ -37,11 +37,11 @@ import org.junit.runner.RunWith;
 public class ExampleColumnSpec {
   @Extension
   @Inject
-  ModelStore _modelStore;
+  public ModelStore _modelStore;
   
   @Extension
   @Inject
-  ISerializer _iSerializer;
+  public ISerializer _iSerializer;
   
   public ExampleTable<ExampleColumnSpecExamples> _initExampleColumnSpecExamples() {
     return ExampleTable.create("examples", 
@@ -107,7 +107,7 @@ public class ExampleColumnSpec {
   @Named("calculates cells based on table")
   @Order(1)
   public void _calculatesCellsBasedOnTable() throws Exception {
-    this._modelStore.parseSpec("\r\n\t\t\tpackage bootstrap\r\n\t\t\tdescribe \"ExampleTable\"{\r\n\t\t\t\tdef{\r\n\t\t\t\t\t| a | b |\r\n\t\t\t\t\t| 1 | 2 |\r\n\t\t\t\t\t| 3 | 4 |\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t");
+    this._modelStore.parseSpec("package bootstrap\r\ndescribe \"ExampleTable\"{\r\n\tdef{\r\n\t\t| a | b |\r\n\t\t| 1 | 2 |\r\n\t\t| 3 | 4 |\r\n\t}\r\n}\r\n");
     final Procedure1<ExampleColumnSpecExamples> _function = new Procedure1<ExampleColumnSpecExamples>() {
       @Override
       public void apply(final ExampleColumnSpecExamples it) {

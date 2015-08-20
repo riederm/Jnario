@@ -18,13 +18,13 @@ import org.junit.runner.RunWith;
 public class FeatureCompilerSpec {
   @Extension
   @Inject
-  BehaviorExecutor _behaviorExecutor;
+  public BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("Handles empty closures correctly")
   @Order(1)
   public void _handlesEmptyClosuresCorrectly() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\tFeature: Empty Closures\r\n\t\t\tScenario: Defining Empty Closures\r\n\t\t\tWhen I define an empty closure\r\n\t\t\t\t[|].apply \r\n\t\t\tAnd  I define an empty closure\r\n\t\t");
+    this._behaviorExecutor.executesSuccessfully("Feature: Empty Closures\r\n\tScenario: Defining Empty Closures\r\n\tWhen I define an empty closure\r\n\t\t[|].apply \r\n\tAnd  I define an empty closure\r\n");
   }
   
   @Test
