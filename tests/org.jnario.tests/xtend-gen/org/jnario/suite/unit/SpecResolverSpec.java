@@ -7,6 +7,7 @@
  */
 package org.jnario.suite.unit;
 
+import com.google.inject.Inject;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -47,22 +48,24 @@ public class SpecResolverSpec {
   public SpecResolver subject;
   
   @Extension
-  ModelStore m;
+  @Inject
+  public ModelStore m;
   
   @Extension
-  SuiteClassNameProvider _suiteClassNameProvider;
+  @Inject
+  public SuiteClassNameProvider _suiteClassNameProvider;
   
   @Before
   public void before() throws Exception {
-    this.m.parseSpec("\r\n\t\t\tpackage demo\r\n\t\t\tdescribe \"My Spec\"{\r\n\t\t\t\t// this should be filtered\r\n\t\t\t\tdescribe \"My Internal Spec\"{\r\n\t\t\t\t\t\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tdescribe String{\r\n\t\t\t\t\r\n\t\t\t}\r\n\t\t");
-    this.m.parseScenario("\r\n\t\t\tpackage demo\r\n\t\t\tFeature: My Feature\r\n\t\t\tScenario My Scenario\r\n\t\t\t\tGiven nothing\r\n\t\t\t\tThen nothing\r\n\t\t");
+    this.m.parseSpec("package demo\r\ndescribe \"My Spec\"{\r\n\t// this should be filtered\r\n\tdescribe \"My Internal Spec\"{\r\n\t\t\r\n\t}\r\n}\r\ndescribe String{\r\n\t\r\n}\r\n");
+    this.m.parseScenario("package demo\r\nFeature: My Feature\r\nScenario My Scenario\r\n\tGiven nothing\r\n\tThen nothing\r\n");
   }
   
   @Test
   @Named("resolves referenced specs")
   @Order(1)
   public void _resolvesReferencedSpecs() throws Exception {
-    this.m.parseSuite("\r\n\t\t\tpackage demo\r\n\t\t\timport demo.*\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Spec\"\r\n\t\t\t- \"My Feature\"\r\n\t\t");
+    this.m.parseSuite("package demo\r\nimport demo.*\r\n#My Suite\r\n\r\n- \"My Spec\"\r\n- \"My Feature\"\r\n");
     Suite _firstSuite = this.m.firstSuite();
     List<String> _resolvedSpecs = this.resolvedSpecs(_firstSuite);
     Set<String> _set = IterableExtensions.<String>toSet(_resolvedSpecs);

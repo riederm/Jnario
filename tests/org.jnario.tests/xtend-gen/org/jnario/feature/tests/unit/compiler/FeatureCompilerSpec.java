@@ -1,5 +1,6 @@
 package org.jnario.feature.tests.unit.compiler;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.FeatureTestCreator;
@@ -16,13 +17,14 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class FeatureCompilerSpec {
   @Extension
-  BehaviorExecutor _behaviorExecutor;
+  @Inject
+  public BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("Handles empty closures correctly")
   @Order(1)
   public void _handlesEmptyClosuresCorrectly() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\tFeature: Empty Closures\r\n\t\t\tScenario: Defining Empty Closures\r\n\t\t\tWhen I define an empty closure\r\n\t\t\t\t[|].apply \r\n\t\t\tAnd  I define an empty closure\r\n\t\t");
+    this._behaviorExecutor.executesSuccessfully("Feature: Empty Closures\r\n\tScenario: Defining Empty Closures\r\n\tWhen I define an empty closure\r\n\t\t[|].apply \r\n\tAnd  I define an empty closure\r\n");
   }
   
   @Test

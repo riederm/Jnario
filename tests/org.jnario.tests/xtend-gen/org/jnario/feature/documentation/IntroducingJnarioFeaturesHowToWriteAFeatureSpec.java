@@ -111,7 +111,7 @@ public class IntroducingJnarioFeaturesHowToWriteAFeatureSpec extends Introducing
   @Named("Implementing Steps")
   @Order(1)
   public void _implementingSteps() throws Exception {
-    FeatureExecutor.isSuccessful("\r\n       package demo\r\n       \r\n       import org.jnario.feature.documentation.Calculator\r\n       \r\n       Feature: Calculator\r\n       \r\n       Scenario: Adding two numbers\r\n         Calculator calculator\r\n         int result\r\n         Given a calculator\r\n           calculator = new Calculator\r\n         When I add two numbers \"20\" and \"70\"\r\n           result = calculator.add(args.first.toInt, args.second.toInt)\r\n         Then it prints \"90\"\r\n           result => args.first.toInt\r\n         ");
+    FeatureExecutor.isSuccessful("package demo\r\n\r\nimport org.jnario.feature.documentation.Calculator\r\n\r\nFeature: Calculator\r\n\r\nScenario: Adding two numbers\r\n  Calculator calculator\r\n  int result\r\n  Given a calculator\r\n    calculator = new Calculator\r\n  When I add two numbers \"20\" and \"70\"\r\n    result = calculator.add(args.first.toInt, args.second.toInt)\r\n  Then it prints \"90\"\r\n    result => args.first.toInt\r\n");
   }
   
   /**
@@ -127,7 +127,7 @@ public class IntroducingJnarioFeaturesHowToWriteAFeatureSpec extends Introducing
   @Named("Background")
   @Order(2)
   public void _background() throws Exception {
-    FeatureExecutor.isSuccessful("\r\n       package demo\r\n       \r\n       import org.jnario.feature.documentation.Calculator\r\n       \r\n       Feature: Calculator\r\n       \r\n       Background:\r\n         Calculator calculator\r\n         int result\r\n         Given a calculator\r\n         \tcalculator = new Calculator\r\n       \r\n       Scenario: Adding two numbers\r\n         When I add two numbers \"20\" and \"70\"\r\n           result = calculator.add(args.first.toInt, args.second.toInt)\r\n         Then it prints \"90\"\r\n           result => args.first.toInt\r\n         \r\n       Scenario: Dividing two numbers\r\n        When I divide \"70\" by \"10\"\r\n        \t result = calculator.divide(args.first.toInt, args.second.toInt)\r\n        Then it prints \"7\"\r\n       ");
+    FeatureExecutor.isSuccessful("package demo\r\n\r\nimport org.jnario.feature.documentation.Calculator\r\n\r\nFeature: Calculator\r\n\r\nBackground:\r\n  Calculator calculator\r\n  int result\r\n  Given a calculator\r\n  \tcalculator = new Calculator\r\n\r\nScenario: Adding two numbers\r\n  When I add two numbers \"20\" and \"70\"\r\n    result = calculator.add(args.first.toInt, args.second.toInt)\r\n  Then it prints \"90\"\r\n    result => args.first.toInt\r\n  \r\nScenario: Dividing two numbers\r\n When I divide \"70\" by \"10\"\r\n \t result = calculator.divide(args.first.toInt, args.second.toInt)\r\n Then it prints \"7\"\r\n");
   }
   
   /**
@@ -147,6 +147,6 @@ public class IntroducingJnarioFeaturesHowToWriteAFeatureSpec extends Introducing
   @Named("Step references")
   @Order(3)
   public void _stepReferences() throws Exception {
-    FeatureExecutor.isSuccessful("\r\n\t       package demo\r\n\t       import org.jnario.feature.documentation.Calculator\r\n\r\n\t       Feature: Calculator\r\n\t       \r\n\t       Background:\r\n\t         Calculator calculator\r\n\t         int result\r\n\t         Given a calculator\r\n\t           calculator = new Calculator\r\n\t       \r\n\t       Scenario: Adding two numbers\r\n\t         When adding two numbers \"5\" and \"6\". \r\n\t           result = calculator.add(args.first.toInt, args.second.toInt)\r\n\t         Then it prints \"11\"\r\n\t           result => args.first.toInt\r\n\t           \r\n\t       Scenario: Dividing two numbers\r\n\t        When entering two numbers \"10\" and \"5\" and pressing enter. \r\n\t          result = calculator.divide(args.first.toInt, args.second.toInt)\r\n\t        Then it prints \"2\"\r\n         ");
+    FeatureExecutor.isSuccessful("package demo\r\nimport org.jnario.feature.documentation.Calculator\r\n\r\nFeature: Calculator\r\n\r\nBackground:\r\n  Calculator calculator\r\n  int result\r\n  Given a calculator\r\n    calculator = new Calculator\r\n\r\nScenario: Adding two numbers\r\n  When adding two numbers \"5\" and \"6\". \r\n    result = calculator.add(args.first.toInt, args.second.toInt)\r\n  Then it prints \"11\"\r\n    result => args.first.toInt\r\n    \r\nScenario: Dividing two numbers\r\n When entering two numbers \"10\" and \"5\" and pressing enter. \r\n   result = calculator.divide(args.first.toInt, args.second.toInt)\r\n Then it prints \"2\"\r\n");
   }
 }

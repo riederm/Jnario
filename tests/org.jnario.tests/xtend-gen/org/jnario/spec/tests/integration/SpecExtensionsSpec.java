@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.integration;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.ConsoleRecorder;
@@ -58,13 +59,14 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SpecExtensionsSpec {
   @Extension
-  BehaviorExecutor _behaviorExecutor;
+  @Inject
+  public BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("Example:")
   @Order(1)
   public void _example() throws Exception {
-    this.prints("\r\n\t\t\timport org.jnario.spec.tests.integration.ExtensionExample\r\n\r\n\t\t\tdescribe \"Extension\"{\r\n\t\t\t\textension static ExtensionExample = new ExtensionExample()\r\n\r\n\t\t\t\tcontext \"Nested Spec\"{\r\n\t\t\t\t\tfact println(\"test 3\")\r\n\t\t\t\t}\r\n\t\t\t\tfact println(\"test 1\")\r\n\t\t\t\tfact println(\"test 2\")\r\n\t\t\t\t\r\n\t\t\t}\r\n\t\t", "\r\n\t\t\t\tbefore Class\r\n\t\t\t\tbefore\r\n\t\t\t\ttest 3\r\n\t\t\t\tafter\r\n\t\t\t\tbefore\r\n\t\t\t\ttest 1\r\n\t\t\t\tafter\r\n\t\t\t\tbefore\r\n\t\t\t\ttest 2\r\n\t\t\t\tafter\r\n\t\t\t\tafter Class\r\n\t\t");
+    this.prints("import org.jnario.spec.tests.integration.ExtensionExample\r\n\r\ndescribe \"Extension\"{\r\n\textension static ExtensionExample = new ExtensionExample()\r\n\r\n\tcontext \"Nested Spec\"{\r\n\t\tfact println(\"test 3\")\r\n\t}\r\n\tfact println(\"test 1\")\r\n\tfact println(\"test 2\")\r\n\t\r\n}\r\n", "before Class\r\nbefore\r\ntest 3\r\nafter\r\nbefore\r\ntest 1\r\nafter\r\nbefore\r\ntest 2\r\nafter\r\nafter Class\r\n");
   }
   
   public void prints(final CharSequence spec, final String expected) {

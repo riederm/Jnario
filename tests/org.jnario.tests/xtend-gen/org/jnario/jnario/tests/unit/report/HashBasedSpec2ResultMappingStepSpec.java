@@ -34,7 +34,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
   @Order(1)
   public void _matchesIfClassnameAndNameAreEqual() throws Exception {
     this.m.parseScenario(
-      "\r\n\t\t\t\tpackage example\r\n\t\t\t\tFeature: Something\r\n\t\t\t\t\tScenario: MyScenario\r\n\t\t\t\t\t\tGiven a step\r\n\t\t\t\t\t\t\t1 + 1 => 2\r\n\t\t\t");
+      "package example\r\nFeature: Something\r\n\tScenario: MyScenario\r\n\t\tGiven a step\r\n\t\t\t1 + 1 => 2\r\n");
     this.subject.accept(this.aResult);
     Step _step = this.step();
     boolean _should_match = this.should_match(_step, this.aResult);
@@ -60,7 +60,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
   @Order(2)
   public void _includesPendingStateWhenMatching() throws Exception {
     this.m.parseScenario(
-      "\r\n\t\t\t\tpackage example\r\n\t\t\t\tFeature: Something\r\n\t\t\t\t\tScenario: MyScenario\r\n\t\t\t\t\t\tGiven a pending step\r\n\t\t\t");
+      "package example\r\nFeature: Something\r\n\tScenario: MyScenario\r\n\t\tGiven a pending step\r\n");
     this.subject.accept(this.pendingResult);
     Step _step = this.step();
     Assert.assertTrue("\nExpected step should match pendingResult but"
@@ -74,7 +74,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
   @Order(3)
   public void _handlesEscapedCharacters() throws Exception {
     this.m.parseScenario(
-      "\r\n\t\t\t\tpackage example\r\n\t\t\t\tFeature: Something\r\n\t\t\t\t\tScenario: MyScenario\r\n\t\t\t\t\tGiven step with uml\u00E4uts\r\n\t\t\t\t\t\t1 =>1\r\n\t\t\t");
+      "package example\r\nFeature: Something\r\n\tScenario: MyScenario\r\n\tGiven step with uml\u00E4uts\r\n\t\t1 =>1\r\n");
     this.subject.accept(this.resultWithUnicodeChars);
     Step _step = this.step();
     Assert.assertTrue("\nExpected step should match resultWithUnicodeChars but"
@@ -88,7 +88,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
   @Order(4)
   public void _handlesStepArguments() throws Exception {
     this.m.parseScenario(
-      "\r\n\t\t\t\tpackage example\r\n\t\t\t\tFeature: Something\r\n\t\t\t\t\tScenario: MyScenario\r\n\t\t\t\t\tGiven step with \"args\"\r\n\t\t\t\t\t\t1 =>1\r\n\t\t\t");
+      "package example\r\nFeature: Something\r\n\tScenario: MyScenario\r\n\tGiven step with \"args\"\r\n\t\t1 =>1\r\n");
     this.subject.accept(this.resultWithArgs);
     Step _step = this.step();
     Assert.assertTrue("\nExpected step should match resultWithArgs but"

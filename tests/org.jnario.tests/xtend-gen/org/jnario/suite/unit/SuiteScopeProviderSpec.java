@@ -7,6 +7,7 @@
  */
 package org.jnario.suite.unit;
 
+import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -31,19 +32,20 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SuiteScopeProviderSpec {
   @Extension
-  ScopeTestExtension _scopeTestExtension;
+  @Inject
+  public ScopeTestExtension _scopeTestExtension;
   
   @Extension
-  SuitePackage _suitePackage = SuitePackage.eINSTANCE;
+  public SuitePackage _suitePackage = SuitePackage.eINSTANCE;
   
   @Before
   public void before() throws Exception {
-    this._scopeTestExtension.parseSuite("\r\n\t\t\tpackage test\r\n\t\t\t\r\n\t\t\t#MySuite\r\n\t\t\t\r\n\t\t\t- \"My Spec Reference\"\t\r\n\t\t\r\n\t\t");
+    this._scopeTestExtension.parseSuite("package test\r\n\r\n#MySuite\r\n\r\n- \"My Spec Reference\"\t\r\n\r\n");
   }
   
   @Before
   public void before2() throws Exception {
-    this._scopeTestExtension.parseSpec("\r\n\t\t\tpackage test\r\n\t\t\t\r\n\t\t\tdescribe \"RootSpec\"{\r\n\t\t\t\t\r\n\t\t\t\tdescribe \"SubSpec 1\"{\r\n\t\t\t\t}\r\n\t\t\t\t\r\n\t\t\t\tdescribe \"SubSpec 2\"{\r\n\t\t\t\t}\r\n\t\t\t\t\r\n\t\t\t}\r\n\t\t");
+    this._scopeTestExtension.parseSpec("package test\r\n\r\ndescribe \"RootSpec\"{\r\n\t\r\n\tdescribe \"SubSpec 1\"{\r\n\t}\r\n\t\r\n\tdescribe \"SubSpec 2\"{\r\n\t}\r\n\t\r\n}\r\n");
   }
   
   @Test

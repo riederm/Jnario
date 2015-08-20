@@ -126,7 +126,7 @@ public class ExampleNameProviderToJavaClassNameExampleGroupSpec extends ExampleN
   @Named("should prefix numbers")
   @Order(6)
   public void _shouldPrefixNumbers() throws Exception {
-    final String name = this.firstJavaClassName("\r\n      \t\tdescribe \"2 Facts\"{}\r\n      ");
+    final String name = this.firstJavaClassName("describe \"2 Facts\"{}\r\n");
     Assert.assertTrue("\nExpected name => \'_2FactsSpec\' but"
      + "\n     name is " + new org.hamcrest.StringDescription().appendValue(name).toString() + "\n", Should.<String>operator_doubleArrow(name, "_2FactsSpec"));
     
@@ -137,7 +137,7 @@ public class ExampleNameProviderToJavaClassNameExampleGroupSpec extends ExampleN
   @Order(7)
   public void _shouldPrefixNumbersInNestedSpecs() throws Exception {
     final String name = this.secondJavaClassName(
-      "\r\n        describe \"2 Facts\"{\r\n              context \"Context\"\r\n        }\r\n        ");
+      "describe \"2 Facts\"{\r\n      context \"Context\"\r\n}\r\n");
     Assert.assertTrue("\nExpected name => \'_2FactsContextSpec\' but"
      + "\n     name is " + new org.hamcrest.StringDescription().appendValue(name).toString() + "\n", Should.<String>operator_doubleArrow(name, "_2FactsContextSpec"));
     
@@ -148,7 +148,7 @@ public class ExampleNameProviderToJavaClassNameExampleGroupSpec extends ExampleN
   @Order(8)
   public void _shouldAppendTheTargetOperationSNameAndParams() throws Exception {
     String _secondJavaClassName = this.secondJavaClassName(
-      "\r\n        describe org.junit.Assert{\r\n              context assertTrue(boolean) \r\n        }\r\n        ");
+      "describe org.junit.Assert{\r\n      context assertTrue(boolean) \r\n}\r\n");
     Matcher<String> _endsWith = Matchers.endsWith("AssertTrueBooleanSpec");
     Assert.assertTrue("\nExpected secondJavaClassName(\r\n        \'\'\'\r\n        describe org.junit.Assert{\r\n              context assertTrue(boolean) \r\n        }\r\n        \'\'\') => endsWith(\'AssertTrueBooleanSpec\') but"
      + "\n     secondJavaClassName(\r\n        \'\'\'\r\n        describe org.junit.Assert{\r\n              context assertTrue(boolean) \r\n        }\r\n        \'\'\') is " + new org.hamcrest.StringDescription().appendValue(_secondJavaClassName).toString()
@@ -161,7 +161,7 @@ public class ExampleNameProviderToJavaClassNameExampleGroupSpec extends ExampleN
   @Order(9)
   public void _shouldAppendTheDescription() throws Exception {
     String _secondJavaClassName = this.secondJavaClassName(
-      "\r\n        describe org.junit.Assert{\r\n          context \'assertTrue\' \r\n        }\r\n      ");
+      "describe org.junit.Assert{\r\n  context \'assertTrue\' \r\n}\r\n");
     Matcher<String> _endsWith = Matchers.endsWith("AssertTrueSpec");
     Assert.assertTrue("\nExpected secondJavaClassName(\r\n      \'\'\'\r\n        describe org.junit.Assert{\r\n          context \'assertTrue\' \r\n        }\r\n      \'\'\') => endsWith(\'AssertTrueSpec\') but"
      + "\n     secondJavaClassName(\r\n      \'\'\'\r\n        describe org.junit.Assert{\r\n          context \'assertTrue\' \r\n        }\r\n      \'\'\') is " + new org.hamcrest.StringDescription().appendValue(_secondJavaClassName).toString()
@@ -174,7 +174,7 @@ public class ExampleNameProviderToJavaClassNameExampleGroupSpec extends ExampleN
   @Order(10)
   public void _shouldPrependTheParentExampleGroupSName() throws Exception {
     String _secondJavaClassName = this.secondJavaClassName(
-      "\r\n      describe org.junit.Assert{\r\n        context assertTrue(boolean) \r\n      }\r\n      ");
+      "describe org.junit.Assert{\r\n  context assertTrue(boolean) \r\n}\r\n");
     Assert.assertTrue("\nExpected secondJavaClassName(\r\n      \'\'\'\r\n      describe org.junit.Assert{\r\n        context assertTrue(boolean) \r\n      }\r\n      \'\'\') => \'AssertAssertTrueBooleanSpec\' but"
      + "\n     secondJavaClassName(\r\n      \'\'\'\r\n      describe org.junit.Assert{\r\n        context assertTrue(boolean) \r\n      }\r\n      \'\'\') is " + new org.hamcrest.StringDescription().appendValue(_secondJavaClassName).toString() + "\n", Should.<String>operator_doubleArrow(_secondJavaClassName, "AssertAssertTrueBooleanSpec"));
     

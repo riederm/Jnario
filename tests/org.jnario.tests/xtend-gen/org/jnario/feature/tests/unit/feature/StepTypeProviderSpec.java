@@ -1,5 +1,6 @@
 package org.jnario.feature.tests.unit.feature;
 
+import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -33,16 +34,17 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class StepTypeProviderSpec {
   @Extension
-  FeatureFactory factory = FeatureFactory.eINSTANCE;
+  public FeatureFactory factory = FeatureFactory.eINSTANCE;
   
   @Extension
-  StepTypeProvider _stepTypeProvider = new StepTypeProvider();
+  public StepTypeProvider _stepTypeProvider = new StepTypeProvider();
   
   @Extension
-  FeaturePackage pack = FeaturePackage.eINSTANCE;
+  public FeaturePackage pack = FeaturePackage.eINSTANCE;
   
   @Extension
-  ModelStore _modelStore;
+  @Inject
+  public ModelStore _modelStore;
   
   @Test
   @Named("createGiven.expectedTypes => GIVEN")
@@ -132,7 +134,7 @@ public class StepTypeProviderSpec {
   @Named("\\\'\\\'\\\' Feature: something Scenario: scenario Given something And something else And something else \\\'\\\'\\\'.expectedTypes =>  GIVEN")
   @Order(7)
   public void _featureSomethingScenarioScenarioGivenSomethingAndSomethingElseAndSomethingElseExpectedTypesGIVEN() throws Exception {
-    Set<EClass> _expectedTypes = this.expectedTypes("\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tAnd something else\r\n\t\t\tAnd something else\r\n\t");
+    Set<EClass> _expectedTypes = this.expectedTypes("Feature: something\r\nScenario: scenario\r\n\tGiven something\r\n\tAnd something else\r\n\tAnd something else\r\n");
     boolean _doubleArrow = Should.<Set<EClass>>operator_doubleArrow(_expectedTypes, StepTypeProvider.GIVEN);
     Assert.assertTrue("\nExpected \'\'\'\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tAnd something else\r\n\t\t\tAnd something else\r\n\t\'\'\'.expectedTypes =>  GIVEN but"
      + "\n     \'\'\'\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tAnd something else\r\n\t\t\tAnd something else\r\n\t\'\'\'.expectedTypes is " + new org.hamcrest.StringDescription().appendValue(_expectedTypes).toString()
@@ -144,7 +146,7 @@ public class StepTypeProviderSpec {
   @Named("calculates actual type")
   @Order(8)
   public void _calculatesActualType() throws Exception {
-    EClass _actualType = this.actualType("\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tBut something else\r\n\t\t\tAnd something else\r\n\t");
+    EClass _actualType = this.actualType("Feature: something\r\nScenario: scenario\r\n\tGiven something\r\n\tBut something else\r\n\tAnd something else\r\n");
     EClass _givenReference = this.pack.getGivenReference();
     Assert.assertTrue("\nExpected \'\'\'\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tBut something else\r\n\t\t\tAnd something else\r\n\t\'\'\'.actualType =>  givenReference but"
      + "\n     \'\'\'\r\n\t\tFeature: something\r\n\t\tScenario: scenario\r\n\t\t\tGiven something\r\n\t\t\tBut something else\r\n\t\t\tAnd something else\r\n\t\'\'\'.actualType is " + new org.hamcrest.StringDescription().appendValue(_actualType).toString()

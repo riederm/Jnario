@@ -28,6 +28,6 @@ public class GivenWhenThenSpec {
   @Named("And, But")
   @Order(1)
   public void _andBut() throws Exception {
-    FeatureExecutor.isSuccessful("\r\n\t\t  Feature: And & But\r\n\t\t  Scenario: Multiple Givens\r\n\t\t    Given one thing\r\n\t\t      And another thing\r\n\t\t      And yet another thing\r\n\t\t    When I trigger something\r\n\t\t    Then happens something\r\n\t\t      But not more\r\n\t\t");
+    FeatureExecutor.isSuccessful("Feature: And & But\r\nScenario: Multiple Givens\r\n  Given one thing\r\n    And another thing\r\n    And yet another thing\r\n  When I trigger something\r\n  Then happens something\r\n    But not more\r\n");
   }
 }

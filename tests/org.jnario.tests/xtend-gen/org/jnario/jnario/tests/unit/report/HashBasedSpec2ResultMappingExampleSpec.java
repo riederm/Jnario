@@ -25,7 +25,7 @@ public class HashBasedSpec2ResultMappingExampleSpec extends HashBasedSpec2Result
   @Order(1)
   public void _matchesIfClassnameAndNameAreEqual() throws Exception {
     this.m.parseSpec(
-      " \r\n\t\t\t\tpackage example\r\n\t\t\t\tdescribe \"Something\"{\r\n\t\t\t\t\tfact \"a fact\"{\"\"}\r\n\t\t\t\t}\r\n\t\t\t");
+      "package example\r\ndescribe \"Something\"{\r\n\tfact \"a fact\"{\"\"}\r\n}\r\n");
     this.subject.accept(this.aResult);
     Example _example = this.example();
     boolean _should_match = this.should_match(_example, this.aResult);
@@ -51,7 +51,7 @@ public class HashBasedSpec2ResultMappingExampleSpec extends HashBasedSpec2Result
   @Order(2)
   public void _includesPendingStateWhenMatching() throws Exception {
     this.m.parseSpec(
-      "\r\n\t\t\t\tpackage example\r\n\t\t\t\tdescribe \"Something\"{\r\n\t\t\t\t\tfact \"a fact\"\r\n\t\t\t\t}\r\n\t\t\t");
+      "package example\r\ndescribe \"Something\"{\r\n\tfact \"a fact\"\r\n}\r\n");
     final Passed pendingResult = Passed.passingSpec("example.SomethingSpec", "a fact [PENDING]", HashBasedSpec2ResultMappingSpec.anyExecutionTime);
     this.subject.accept(pendingResult);
     Example _example = this.example();

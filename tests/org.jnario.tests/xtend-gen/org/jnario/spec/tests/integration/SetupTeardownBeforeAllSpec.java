@@ -22,7 +22,7 @@ public class SetupTeardownBeforeAllSpec extends SetupTeardownSpec {
   @Named("Executes before all tests")
   @Order(1)
   public void _executesBeforeAllTests() throws Exception {
-    this.prints("\r\n\t\t\t\tdescribe \"BeforeAll\"{\r\n\t\t\t\t\tbefore all{\r\n\t\t\t\t\t\tprintln(\"before all\")\r\n\t\t\t\t\t}\r\n\t\t\t\t\tfact println(\"fact 1\")\r\n\t\t\t\t\tfact println(\"fact 2\")\r\n\t\t\t\t}\r\n\t\t\t", 
-      "\r\n\t\t\t\tbefore all\r\n\t\t\t\tfact 1\r\n\t\t\t\tfact 2\r\n\t\t\t");
+    this.prints("describe \"BeforeAll\"{\r\n\tbefore all{\r\n\t\tprintln(\"before all\")\r\n\t}\r\n\tfact println(\"fact 1\")\r\n\tfact println(\"fact 2\")\r\n}\r\n", 
+      "before all\r\nfact 1\r\nfact 2\r\n");
   }
 }

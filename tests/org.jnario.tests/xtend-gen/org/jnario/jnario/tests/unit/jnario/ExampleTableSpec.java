@@ -7,6 +7,7 @@
  */
 package org.jnario.jnario.tests.unit.jnario;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.ExampleTable;
 import org.jnario.jnario.test.util.ModelStore;
@@ -26,13 +27,14 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ExampleTableSpec {
   @Extension
-  ModelStore _modelStore;
+  @Inject
+  public ModelStore _modelStore;
   
   @Test
   @Named("is valid if all rows have the same number of columns")
   @Order(1)
   public void _isValidIfAllRowsHaveTheSameNumberOfColumns() throws Exception {
-    this._modelStore.parseSpec("\r\n\t\t\tpackage bootstrap\r\n\t\t\tdescribe \"ExampleTable\"{\r\n\t\t\t\tdef{\r\n\t\t\t\t\t| a | b |\r\n\t\t\t\t\t| 1 | 2 |\r\n\t\t\t\t\t| 1 | 3 |\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t");
+    this._modelStore.parseSpec("package bootstrap\r\ndescribe \"ExampleTable\"{\r\n\tdef{\r\n\t\t| a | b |\r\n\t\t| 1 | 2 |\r\n\t\t| 1 | 3 |\r\n\t}\r\n}\r\n");
     Query _query = this._modelStore.query();
     ExampleTable _first = _query.<ExampleTable>first(ExampleTable.class);
     boolean _isValid = _first.isValid();
@@ -46,7 +48,7 @@ public class ExampleTableSpec {
   @Named("is invalid if one row has a different number of columns")
   @Order(2)
   public void _isInvalidIfOneRowHasADifferentNumberOfColumns() throws Exception {
-    this._modelStore.parseSpec("\r\n\t\t\tpackage bootstrap\r\n\t\t\tdescribe \"ExampleTable\"{\r\n\t\t\t\tdef{\r\n\t\t\t\t\t| a | b |\r\n\t\t\t\t\t| 1 | 2 |\r\n\t\t\t\t\t| 1 | \r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t");
+    this._modelStore.parseSpec("package bootstrap\r\ndescribe \"ExampleTable\"{\r\n\tdef{\r\n\t\t| a | b |\r\n\t\t| 1 | 2 |\r\n\t\t| 1 | \r\n\t}\r\n}\r\n");
     Query _query = this._modelStore.query();
     ExampleTable _first = _query.<ExampleTable>first(ExampleTable.class);
     boolean _isValid = _first.isValid();

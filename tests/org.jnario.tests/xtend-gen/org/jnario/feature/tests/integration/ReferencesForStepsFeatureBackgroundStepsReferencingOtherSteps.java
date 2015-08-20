@@ -26,8 +26,8 @@ import org.junit.runner.RunWith;
 @CreateWith(FeatureTestCreator.class)
 @SuppressWarnings("all")
 public class ReferencesForStepsFeatureBackgroundStepsReferencingOtherSteps extends ReferencesForStepsFeature {
-  @Inject
   @Extension
+  @Inject
   @org.jnario.runner.Extension
   public BehaviorExecutor behaviorExecutor;
   

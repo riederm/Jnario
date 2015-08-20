@@ -7,6 +7,7 @@
  */
 package org.jnario.suite.documentation;
 
+import com.google.inject.Inject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.ModelStore;
@@ -42,7 +43,8 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnarioSuitesSpec {
   @Extension
-  ModelStore _modelStore;
+  @Inject
+  public ModelStore _modelStore;
   
   /**
    * A suite consists of a title and a list of references to other specifications, where
@@ -63,7 +65,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
   @Named("A simple Suite")
   @Order(1)
   public void _aSimpleSuite() throws Exception {
-    Resource _parseSuite = this._modelStore.parseSuite("\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t");
+    Resource _parseSuite = this._modelStore.parseSuite("package demo\r\n\r\n#My Suite\r\n\r\n- \"My Feature\"\r\n- \"My Spec\"\r\n");
     int _nrOfParseAndLinkingErrors = Resources.nrOfParseAndLinkingErrors(_parseSuite);
     Assert.assertTrue("\nExpected \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\'.parseSuite.nrOfParseAndLinkingErrors => 2 but"
      + "\n     \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\'.parseSuite.nrOfParseAndLinkingErrors is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(_nrOfParseAndLinkingErrors)).toString()
@@ -108,15 +110,15 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
   @Order(2)
   public void _fixingTheErrors() throws Exception {
     this.parseExampleScenarioAndSpec();
-    Resource _parseSuite = this._modelStore.parseSuite("\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t");
+    Resource _parseSuite = this._modelStore.parseSuite("package demo\r\n\r\n#My Suite\r\n\r\n- \"My Feature\"\r\n- \"My Spec\"\r\n");
     Resources.hasNoParseAndLinkingErrors(_parseSuite);
   }
   
   public Resource parseExampleScenarioAndSpec() {
     Resource _xblockexpression = null;
     {
-      this._modelStore.parseScenario("\r\n\t\t\t\tpackage demo\r\n\t\t\t\tFeature: My Feature\r\n\t\t\t\tScenario: My Scenario\r\n\t\t\t\t\tWhen something happens\r\n\t\t\t\t\tThen it happens\r\n\t\t\t\t");
-      _xblockexpression = this._modelStore.parseSpec("\r\n\t\t\t\tpackage demo\r\n\t\t\t\t\r\n\t\t\t\tdescribe \"My Spec\"{\r\n\t\t\t\t\tfact \"hello\".length => 5\r\n\t\t\t\t}\r\n\t\t\t");
+      this._modelStore.parseScenario("package demo\r\nFeature: My Feature\r\nScenario: My Scenario\r\n\tWhen something happens\r\n\tThen it happens\r\n");
+      _xblockexpression = this._modelStore.parseSpec("package demo\r\n\r\ndescribe \"My Spec\"{\r\n\tfact \"hello\".length => 5\r\n}\r\n");
     }
     return _xblockexpression;
   }
@@ -156,7 +158,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
   @Order(3)
   public void _structuringASuite() throws Exception {
     this.parseExampleScenarioAndSpec();
-    Resource _parseSuite = this._modelStore.parseSuite("\r\n\t\t\tpackage demo\r\n\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\tThis is the description of the suite. It is possible to use \r\n\t\t\t[Markdown Syntax](http://daringfireball.net/projects/markdown/syntax)\r\n\t\t\tfor **formatting** the text and adding images or links. \r\n\t\t\t\r\n\t\t\t##My Features\r\n\t\t\t\r\n\t\t\tHere we list all our features...\r\n\t\t\t\r\n\t\t\t- \"My Feature\": this is an example feature.\r\n\t\t\t\r\n\t\t\t##My Specs\r\n\t\t\t\r\n\t\t\t...and here are all our specs:\r\n\t\t\t\r\n\t\t\t- \"My Spec\": this is an example spec.\r\n\t\t\t   with a multiline description.\r\n\t\t\t");
+    Resource _parseSuite = this._modelStore.parseSuite("package demo\r\n\r\n#My Suite\r\n\r\nThis is the description of the suite. It is possible to use \r\n[Markdown Syntax](http://daringfireball.net/projects/markdown/syntax)\r\nfor **formatting** the text and adding images or links. \r\n\r\n##My Features\r\n\r\nHere we list all our features...\r\n\r\n- \"My Feature\": this is an example feature.\r\n\r\n##My Specs\r\n\r\n...and here are all our specs:\r\n\r\n- \"My Spec\": this is an example spec.\r\n   with a multiline description.\r\n");
     Resources.hasNoParseAndLinkingErrors(_parseSuite);
   }
   
@@ -180,7 +182,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
   @Order(4)
   public void _selectingMultipleSpecifications() throws Exception {
     this.parseExampleScenarioAndSpec();
-    Resource _parseSuite = this._modelStore.parseSuite("\r\n\t\t\tpackage demo\r\n\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t// this will select all specs in the project\r\n\t\t\t- \\.*\\ \r\n\t\t\t\r\n\t\t\t// this will select all specs that end with feature\r\n\t\t\t- \\.*Feature\\\r\n\t\t\t");
+    Resource _parseSuite = this._modelStore.parseSuite("package demo\r\n\r\n#My Suite\r\n\r\n// this will select all specs in the project\r\n- \\.*\\ \r\n\r\n// this will select all specs that end with feature\r\n- \\.*Feature\\\r\n");
     Resources.hasNoParseAndLinkingErrors(_parseSuite);
   }
 }

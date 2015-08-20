@@ -1,6 +1,7 @@
 package org.jnario.feature.tests.unit.jvmmodel;
 
 import com.google.common.collect.Iterables;
+import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -29,7 +30,8 @@ public class StepContextProviderSpec {
   public StepContextProvider subject;
   
   @Extension
-  ModelStore m;
+  @Inject
+  public ModelStore m;
   
   public Set<JnarioField> fields(final String... names) {
     Set<JnarioField> _xblockexpression = null;

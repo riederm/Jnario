@@ -40,7 +40,7 @@ public class StepNameProviderNameOfSpec extends StepNameProviderSpec {
   @Named("returns the name for a step with definition")
   @Order(2)
   public void _returnsTheNameForAStepWithDefinition() throws Exception {
-    this.parseScenario("\r\n\t\t\t\t\tScenario: MyScenario\r\n\t\t\t\t\t\tGiven a step with an implementation\r\n\t\t\t\t\t\t\t1 + 1 => 2\r\n\t\t\t");
+    this.parseScenario("Scenario: MyScenario\r\n\tGiven a step with an implementation\r\n\t\t1 + 1 => 2\r\n");
     String _stepName = this.stepName();
     Assert.assertTrue("\nExpected stepName => \"Given a step with an implementation\" but"
      + "\n     stepName is " + new org.hamcrest.StringDescription().appendValue(_stepName).toString() + "\n", Should.<String>operator_doubleArrow(_stepName, "Given a step with an implementation"));
@@ -51,7 +51,7 @@ public class StepNameProviderNameOfSpec extends StepNameProviderSpec {
   @Named("returns the name for a step with resolved reference")
   @Order(3)
   public void _returnsTheNameForAStepWithResolvedReference() throws Exception {
-    this.parseScenario("\r\n\t\t\t\t\tScenario: MyScenario 2\r\n\t\t\t\t\t\tGiven a step with a resolved reference\r\n\t\t\t\t\tScenario: MyScenario 1\r\n\t\t\t\t\t\tGiven a step with a resolved reference\r\n\t\t\t\t\t\t\t\"implementation\"\r\n\t\t\t");
+    this.parseScenario("Scenario: MyScenario 2\r\n\tGiven a step with a resolved reference\r\nScenario: MyScenario 1\r\n\tGiven a step with a resolved reference\r\n\t\t\"implementation\"\r\n");
     String _stepName = this.stepName();
     Assert.assertTrue("\nExpected stepName => \"Given a step with a resolved reference\" but"
      + "\n     stepName is " + new org.hamcrest.StringDescription().appendValue(_stepName).toString() + "\n", Should.<String>operator_doubleArrow(_stepName, "Given a step with a resolved reference"));
@@ -62,7 +62,7 @@ public class StepNameProviderNameOfSpec extends StepNameProviderSpec {
   @Named("returns the name for a step with unresolved reference")
   @Order(4)
   public void _returnsTheNameForAStepWithUnresolvedReference() throws Exception {
-    this.parseScenario("\r\n\t\t\t\t\tScenario: MyScenario 2\r\n\t\t\t\t\t\tGiven a step with an unresolved reference\r\n\t\t\t");
+    this.parseScenario("Scenario: MyScenario 2\r\n\tGiven a step with an unresolved reference\r\n");
     String _stepName = this.stepName();
     Assert.assertTrue("\nExpected stepName => \"Given a step with an unresolved reference\" but"
      + "\n     stepName is " + new org.hamcrest.StringDescription().appendValue(_stepName).toString() + "\n", Should.<String>operator_doubleArrow(_stepName, "Given a step with an unresolved reference"));
@@ -73,7 +73,7 @@ public class StepNameProviderNameOfSpec extends StepNameProviderSpec {
   @Named("keeps parameter values")
   @Order(5)
   public void _keepsParameterValues() throws Exception {
-    this.parseScenario("\r\n\t\t\t\t\tScenario: MyScenario 2\r\n\t\t\t\t\t\tGiven a step with two values \"a\" and \"b\"\r\n\t\t\t\t\t\t 1 + 1 => 2\r\n\t\t\t");
+    this.parseScenario("Scenario: MyScenario 2\r\n\tGiven a step with two values \"a\" and \"b\"\r\n\t 1 + 1 => 2\r\n");
     String _stepName = this.stepName();
     Assert.assertTrue("\nExpected stepName => \'Given a step with two values \"a\" and \"b\"\' but"
      + "\n     stepName is " + new org.hamcrest.StringDescription().appendValue(_stepName).toString() + "\n", Should.<String>operator_doubleArrow(_stepName, "Given a step with two values \"a\" and \"b\""));

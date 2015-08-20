@@ -46,7 +46,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
     };
     String _errorMessage = Helpers.errorMessage(_function);
     Helpers.is(_errorMessage, 
-      "\r\n\t\t\tExpected y but\r\n\t\t\t     y is <false>");
+      "Expected y but\r\n     y is <false>");
   }
   
   /**
@@ -66,7 +66,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected x == 42 but\r\n\t\t\t       x is <0>");
+    Helpers.is(_errorMessage, "Expected x == 42 but\r\n     x is <0>");
   }
   
   /**
@@ -87,7 +87,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected !(x == 42) but\r\n\t\t\t       x == 42 is <true>\r\n\t\t\t       x is <42>");
+    Helpers.is(_errorMessage, "Expected !(x == 42) but\r\n     x == 42 is <true>\r\n     x is <42>");
   }
   
   /**
@@ -108,7 +108,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected greet(\"World\") == \"Hello World!\" but\r\n\t\t\t       greet(\"World\") is \"Hello World\"");
+    Helpers.is(_errorMessage, "Expected greet(\"World\") == \"Hello World!\" but\r\n     greet(\"World\") is \"Hello World\"");
   }
   
   /**
@@ -131,7 +131,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected \"Hello\".toUpperCase.toLowerCase == \"HELLO\" but\r\n\t\t\t       \"Hello\".toUpperCase.toLowerCase is \"hello\"\r\n\t\t\t       \"Hello\".toUpperCase is \"HELLO\"");
+    Helpers.is(_errorMessage, "Expected \"Hello\".toUpperCase.toLowerCase == \"HELLO\" but\r\n     \"Hello\".toUpperCase.toLowerCase is \"hello\"\r\n     \"Hello\".toUpperCase is \"HELLO\"");
   }
   
   /**
@@ -155,7 +155,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected x == 1 && y == 0 but\r\n\t\t\t       x == 1 is <false>\r\n\t\t\t       x is <0>\r\n\t\t\t       y == 0 is <false>\r\n\t\t\t       y is <1>");
+    Helpers.is(_errorMessage, "Expected x == 1 && y == 0 but\r\n     x == 1 is <false>\r\n     x is <0>\r\n     y == 0 is <false>\r\n     y is <1>");
   }
   
   /**
@@ -177,7 +177,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    Helpers.is(_errorMessage, "\r\n\t\t\t  Expected x > 0 && x < 10 but\r\n\t\t\t       x > 0 is <false>\r\n\t\t\t       x is <0>\r\n\t\t\t       x < 10 is <true>");
+    Helpers.is(_errorMessage, "Expected x > 0 && x < 10 but\r\n     x > 0 is <false>\r\n     x is <0>\r\n     x < 10 is <true>");
   }
   
   /**

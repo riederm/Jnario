@@ -1,5 +1,6 @@
 package org.jnario.feature.tests.unit.resource;
 
+import com.google.inject.Inject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.util.ITextRegion;
@@ -28,13 +29,14 @@ public class FeatureLocationInFileProviderSpec {
   CharSequence content;
   
   @Extension
-  ModelStore _modelStore;
+  @Inject
+  public ModelStore _modelStore;
   
   @Test
   @Named("Scenario significant region spans over first line")
   @Order(1)
   public void _scenarioSignificantRegionSpansOverFirstLine() throws Exception {
-    this.parse("\r\n\t\t\tFeature: My Feature\r\n\t\t\tScenario: My Scenario\r\n\t\t\t\tGiven something\r\n\t\t");
+    this.parse("Feature: My Feature\r\nScenario: My Scenario\r\n\tGiven something\r\n");
     Scenario _firstScenario = this._modelStore.firstScenario();
     CharSequence _siginificantRegion = this.siginificantRegion(_firstScenario);
     this.is(_siginificantRegion, "Scenario: My Scenario");
@@ -44,10 +46,10 @@ public class FeatureLocationInFileProviderSpec {
   @Named("Scenario full text region spans over all steps")
   @Order(2)
   public void _scenarioFullTextRegionSpansOverAllSteps() throws Exception {
-    this.parse("\r\n\t\t\tFeature: My Feature\r\n\t\t\tScenario: My Scenario\r\n\t\t\t\tString something\r\n\t\t\t\tGiven something\r\n\t\t\t\tAnd something else\r\n\t\t");
+    this.parse("Feature: My Feature\r\nScenario: My Scenario\r\n\tString something\r\n\tGiven something\r\n\tAnd something else\r\n");
     Scenario _firstScenario = this._modelStore.firstScenario();
     CharSequence _region = this.region(_firstScenario);
-    this.is(_region, "\r\n\t\t\tScenario: My Scenario\r\n\t\t\t\tString something\r\n\t\t\t\tGiven something\r\n\t\t\t\tAnd something else\r\n\t\t");
+    this.is(_region, "Scenario: My Scenario\r\n\tString something\r\n\tGiven something\r\n\tAnd something else\r\n");
   }
   
   public void is(final CharSequence actual, final CharSequence expected) {

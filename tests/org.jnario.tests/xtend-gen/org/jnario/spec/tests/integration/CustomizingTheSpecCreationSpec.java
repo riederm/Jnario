@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.integration;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.SpecTestCreator;
@@ -46,7 +47,8 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class CustomizingTheSpecCreationSpec {
   @Extension
-  BehaviorExecutor _behaviorExecutor;
+  @Inject
+  public BehaviorExecutor _behaviorExecutor;
   
   /**
    * This example uses the Google Guice to instantiate the specification.
@@ -56,6 +58,6 @@ public class CustomizingTheSpecCreationSpec {
   @Named("Example")
   @Order(1)
   public void _example() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n      package bootstrap\r\n      \r\n      import org.jnario.runner.CreateWith\r\n      import org.jnario.jnario.test.util.GuiceSpecCreator\r\n      import com.google.inject.Inject\r\n      \r\n      @CreateWith(typeof(GuiceSpecCreator))\r\n      describe \"Something\" {\r\n        \r\n        @Inject String toInject\r\n        \r\n        fact toInject should not be null\r\n            \r\n      }\r\n    ");
+    this._behaviorExecutor.executesSuccessfully("package bootstrap\r\n\r\nimport org.jnario.runner.CreateWith\r\nimport org.jnario.jnario.test.util.GuiceSpecCreator\r\nimport com.google.inject.Inject\r\n\r\n@CreateWith(typeof(GuiceSpecCreator))\r\ndescribe \"Something\" {\r\n  \r\n  @Inject String toInject\r\n  \r\n  fact toInject should not be null\r\n      \r\n}\r\n");
   }
 }

@@ -7,6 +7,7 @@
  */
 package org.jnario.feature.tests.unit.naming;
 
+import com.google.inject.Inject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.feature.feature.Feature;
@@ -43,7 +44,8 @@ public class StepNameProviderSpec {
   public StepNameProvider subject;
   
   @Extension
-  ModelStore modelStore;
+  @Inject
+  public ModelStore modelStore;
   
   public String desc(final Feature feature) {
     return this.subject.describe(feature);
@@ -79,7 +81,7 @@ public class StepNameProviderSpec {
   public Resource parseScenario(final CharSequence s) {
     Resource _xblockexpression = null;
     {
-      final String input = (("\r\n\t\t\tFeature: example\r\n\t\t\t" + s) + "\r\n\t\t");
+      final String input = (("Feature: example\r\n" + s) + "\r\n\t\t");
       _xblockexpression = this.modelStore.parseScenario(input);
     }
     return _xblockexpression;

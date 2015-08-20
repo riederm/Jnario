@@ -24,7 +24,7 @@ public class FeatureJavaValidatorFeaturesMustHaveDescriptionsSpec extends Featur
   @Named("\\\'\\\'\\\' Feature: \\\'\\\'\\\'.select[typeof[Feature]].assertErrorContains[\\\"description\\\"]")
   @Order(1)
   public void _featureSelectTypeofFeatureAssertErrorContainsDescription() throws Exception {
-    AssertableDiagnostics _select = this.select("\r\n\t\t\tFeature: \r\n\t\t", Feature.class);
+    AssertableDiagnostics _select = this.select("Feature: \r\n", Feature.class);
     _select.assertErrorContains("description");
   }
 }

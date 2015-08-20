@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.integration;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.SpecTestCreator;
@@ -23,26 +24,27 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ThrowsSpec {
   @Extension
-  BehaviorExecutor _behaviorExecutor;
+  @Inject
+  public BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("passes if exception is thrown")
   @Order(1)
   public void _passesIfExceptionIsThrown() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tpackage bootstrap\r\n\t\t\t\r\n\t\t\timport java.util.Stack\r\n\t\t\timport java.util.EmptyStackException\r\n\t\t\t\r\n\t\t\tdescribe \"throws\" {\r\n\t\t\t  fact new Stack<String>().pop throws EmptyStackException \r\n\t\t\t}\r\n\t\t");
+    this._behaviorExecutor.executesSuccessfully("package bootstrap\r\n\r\nimport java.util.Stack\r\nimport java.util.EmptyStackException\r\n\r\ndescribe \"throws\" {\r\n  fact new Stack<String>().pop throws EmptyStackException \r\n}\r\n");
   }
   
   @Test
   @Named("passes if exception of expected sub type is thrown")
   @Order(2)
   public void _passesIfExceptionOfExpectedSubTypeIsThrown() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\t\tpackage bootstrap\r\n\t\t\t\r\n\t\t\timport java.util.Stack\r\n\t\t\t\r\n\t\t\tdescribe \"throws\" {\r\n\t\t\t  fact new Stack<String>().pop throws Throwable \r\n\t\t\t}\r\n\t\t");
+    this._behaviorExecutor.executesSuccessfully("package bootstrap\r\n\r\nimport java.util.Stack\r\n\r\ndescribe \"throws\" {\r\n  fact new Stack<String>().pop throws Throwable \r\n}\r\n");
   }
   
   @Test
   @Named("fails if no exception is thrown")
   @Order(3)
   public void _failsIfNoExceptionIsThrown() throws Exception {
-    this._behaviorExecutor.executionFails("\r\n\t\t\tpackage bootstrap\r\n\t\t\t\r\n\t\t\tdescribe \"throws\" {\r\n\t\t\t  fact 1 + 1 throws RuntimeException \r\n\t\t\t}\r\n\t\t");
+    this._behaviorExecutor.executionFails("package bootstrap\r\n\r\ndescribe \"throws\" {\r\n  fact 1 + 1 throws RuntimeException \r\n}\r\n");
   }
 }

@@ -31,7 +31,7 @@ public class SpecResultParserSpec {
   
   final static double EXECUTION_TIME = 0.01;
   
-  final static String FAILURE_MESSAGE = Strings.platformIndependent("\r\n\t\t\t\t\t\t\t\t\ta message\r\n\t\t\t\t\t\t\t\t\twithnewline");
+  final static String FAILURE_MESSAGE = Strings.platformIndependent("a message\r\nwithnewline");
   
   final static String FAILURE_TYPE = "java.lang.AssertionError";
   
@@ -45,7 +45,7 @@ public class SpecResultParserSpec {
   @Named("parses successfull specs from xml")
   @Order(1)
   public void _parsesSuccessfullSpecsFromXml() throws Exception {
-    String _xml = this.toXml((((((("\r\n\t\t  <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\"/>\r\n\t\t"));
+    String _xml = this.toXml((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\"/>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Passed _passingSpec = this.passingSpec();
@@ -56,7 +56,7 @@ public class SpecResultParserSpec {
   @Named("parses specs with failure from xml")
   @Order(2)
   public void _parsesSpecsWithFailureFromXml() throws Exception {
-    String _xml = this.toXml((((((((((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <failure message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</failure>\r\n\t\t   </testcase>\r\n\t\t"));
+    String _xml = this.toXml((((((((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <failure message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</failure>\r\n\t\t   </testcase>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Failed _failingSpec = this.failingSpec();
@@ -67,7 +67,7 @@ public class SpecResultParserSpec {
   @Named("parses specs with error from xml")
   @Order(3)
   public void _parsesSpecsWithErrorFromXml() throws Exception {
-    String _xml = this.toXml((((((((((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <error message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</error>\r\n\t\t   </testcase>\r\n\t\t"));
+    String _xml = this.toXml((((((((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <error message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</error>\r\n\t\t   </testcase>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Failed _failingSpec = this.failingSpec();
@@ -78,7 +78,7 @@ public class SpecResultParserSpec {
   @Named("parses multiple spec results")
   @Order(4)
   public void _parsesMultipleSpecResults() throws Exception {
-    String _xml = this.toXml((((((((((((((((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\"/>\r\n\t\t   <testcase time=\"") + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <error message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</error>\r\n\t\t   </testcase>\r\n\t\t"));
+    String _xml = this.toXml((((((((((((((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\"/>\r\n\t\t   <testcase time=\"") + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <error message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</error>\r\n\t\t   </testcase>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Passed _passingSpec = this.passingSpec();
@@ -92,7 +92,7 @@ public class SpecResultParserSpec {
   @Named("created pending results")
   @Order(5)
   public void _createdPendingResults() throws Exception {
-    String _xml = this.toXml((((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t    <skipped/>\r\n\t\t   </testcase>\r\n\t\t"));
+    String _xml = this.toXml((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t    <skipped/>\r\n\t\t   </testcase>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Pending _pendingSpec = this.pendingSpec();
@@ -103,7 +103,7 @@ public class SpecResultParserSpec {
   @Named("decodes escaped strings")
   @Order(6)
   public void _decodesEscapedStrings() throws Exception {
-    String _xml = this.toXml((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"When I entered \\&quot;50\\&quot; and \\&quot;70\\&quot;\"/>\r\n\t\t"));
+    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"When I entered \\&quot;50\\&quot; and \\&quot;70\\&quot;\"/>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "When I entered \"50\" and \"70\"", SpecResultParserSpec.EXECUTION_TIME);
@@ -114,7 +114,7 @@ public class SpecResultParserSpec {
   @Named("removes \\\',\\\' from escaped strings")
   @Order(7)
   public void _removesFromEscapedStrings() throws Exception {
-    String _xml = this.toXml((((("\r\n\t\t   <testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"cell[-1\\u002C 1].plus[cell[3\\u002C4]] =&gt; cell[2\\u002C5]\"/>\r\n\t\t"));
+    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"cell[-1\\u002C 1].plus[cell[3\\u002C4]] =&gt; cell[2\\u002C5]\"/>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "cell[-1, 1].plus[cell[3,4]] => cell[2,5]", SpecResultParserSpec.EXECUTION_TIME);
@@ -125,7 +125,7 @@ public class SpecResultParserSpec {
   @Named("supports encoding")
   @Order(8)
   public void _supportsEncoding() throws Exception {
-    String _xml = this.toXml((((("\r\n\t\t<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"L\\u00D6sung\"/>\r\n\t\t"));
+    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"L\\u00D6sung\"/>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "L\u00D6sung", SpecResultParserSpec.EXECUTION_TIME);
@@ -136,7 +136,7 @@ public class SpecResultParserSpec {
   @Named("supports escaped chars")
   @Order(9)
   public void _supportsEscapedChars() throws Exception {
-    String _xml = this.toXml((((("\r\n\t\t<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"\\&quot;http:\\/\\/www.google.de\\&quot;\"/>\r\n\t\t"));
+    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"\\&quot;http:\\/\\/www.google.de\\&quot;\"/>\r\n\t\t"));
     this.parse(_xml);
     SpecExecutionAcceptor _verify = Mockito.<SpecExecutionAcceptor>verify(this.acceptor);
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "\"http://www.google.de\"", SpecResultParserSpec.EXECUTION_TIME);
@@ -158,7 +158,7 @@ public class SpecResultParserSpec {
   }
   
   public String toXml(final CharSequence content) {
-    return (("\r\n\t\t<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n\t\t<testsuite failures=\"1\" time=\"0.017\" errors=\"0\" skipped=\"0\" tests=\"1\" name=\"example.AddingValuesSpec\">\r\n\t\t\t" + content) + "\r\n\t\t</testsuite>\t\r\n\t");
+    return (("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<testsuite failures=\"1\" time=\"0.017\" errors=\"0\" skipped=\"0\" tests=\"1\" name=\"example.AddingValuesSpec\">\r\n" + content) + "</testsuite>\t\r\n");
   }
   
   public void parse(final CharSequence content) {

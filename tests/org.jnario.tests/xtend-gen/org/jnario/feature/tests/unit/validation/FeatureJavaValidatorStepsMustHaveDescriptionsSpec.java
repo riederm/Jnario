@@ -31,6 +31,6 @@ public class FeatureJavaValidatorStepsMustHaveDescriptionsSpec extends FeatureJa
         it.assertErrorContains("description");
       }
     };
-    this.allOf("\r\n\t\t\tFeature: A feature\r\n\t\t\t\tScenario: A scenario\r\n\t\t\t\t \tGiven \r\n\t\t\t\t \tWhen \r\n\t\t\t\t \tThen \r\n\t\t\t\t \t\r\n\t\t", Step.class, _function);
+    this.allOf("Feature: A feature\r\n\tScenario: A scenario\r\n\t \tGiven \r\n\t \tWhen \r\n\t \tThen \r\n\t \t\r\n", Step.class, _function);
   }
 }

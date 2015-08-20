@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.unit.naming;
 
+import com.google.inject.Inject;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,10 +32,11 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ExampleSpec {
   @Extension
-  ModelStore modelStore;
+  @Inject
+  public ModelStore modelStore;
   
   public Example parse(final String content) {
-    final Resource spec = this.modelStore.parseSpec((("\r\n\t\t\tdescribe \"test\"{\r\n\t\t\t\t" + content) + "\r\n\t\t\t}\r\n\t\t"));
+    final Resource spec = this.modelStore.parseSpec((("describe \"test\"{\r\n" + content) + "}\r\n"));
     TreeIterator<EObject> _allContents = spec.getAllContents();
     Query _query = Query.query(_allContents);
     return _query.<Example>first(Example.class);

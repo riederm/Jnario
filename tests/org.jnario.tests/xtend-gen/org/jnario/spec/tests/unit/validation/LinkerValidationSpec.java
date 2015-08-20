@@ -1,5 +1,6 @@
 package org.jnario.spec.tests.unit.validation;
 
+import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit4.util.ParseHelper;
@@ -25,16 +26,18 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class LinkerValidationSpec {
   @Extension
-  ParseHelper<EObject> parseHelper;
+  @Inject
+  public ParseHelper<EObject> parseHelper;
   
   @Extension
-  ValidationTestHelper validationTestHelper;
+  @Inject
+  public ValidationTestHelper validationTestHelper;
   
   @Test
   @Named("No validation errors")
   @Order(1)
   public void _noValidationErrors() throws Exception {
-    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          1 should not be 2\r\n        }\r\n      }\r\n    ");
+    EObject _parse = this.parseHelper.parse("package bootstrap\r\n\r\ndescribe \"something\"{\r\n  fact \"x\" {\r\n    1 should not be 2\r\n  }\r\n}\r\n");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertNoIssues(_validate);
   }
@@ -43,7 +46,7 @@ public class LinkerValidationSpec {
   @Named("Unknown variable")
   @Order(2)
   public void _unknownVariable() throws Exception {
-    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          println(abc)\r\n        }\r\n      }\r\n    ");
+    EObject _parse = this.parseHelper.parse("package bootstrap\r\n\r\ndescribe \"something\"{\r\n  fact \"x\" {\r\n    println(abc)\r\n  }\r\n}\r\n");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertIssues(_validate, 
       "The method or field abc is undefined");
@@ -53,7 +56,7 @@ public class LinkerValidationSpec {
   @Named("Unknown variable within should_be_0")
   @Order(3)
   public void _unknownVariableWithinShouldBe0() throws Exception {
-    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          abc should be 0\r\n        }\r\n      }\r\n    ");
+    EObject _parse = this.parseHelper.parse("package bootstrap\r\n\r\ndescribe \"something\"{\r\n  fact \"x\" {\r\n    abc should be 0\r\n  }\r\n}\r\n");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertIssues(_validate, 
       "The method or field abc is undefined");
@@ -63,7 +66,7 @@ public class LinkerValidationSpec {
   @Named("Unknown variable within should_be_null [Bug -137]")
   @Order(4)
   public void _unknownVariableWithinShouldBeNullBug137() throws Exception {
-    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          abc should be null\r\n        }\r\n      }\r\n    ");
+    EObject _parse = this.parseHelper.parse("package bootstrap\r\n\r\ndescribe \"something\"{\r\n  fact \"x\" {\r\n    abc should be null\r\n  }\r\n}\r\n");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertIssues(_validate, 
       "The method or field abc is undefined");
@@ -73,7 +76,7 @@ public class LinkerValidationSpec {
   @Named("Unknown variable within => null")
   @Order(5)
   public void _unknownVariableWithinNull() throws Exception {
-    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          abc => null\r\n        }\r\n      }\r\n    ");
+    EObject _parse = this.parseHelper.parse("package bootstrap\r\n\r\ndescribe \"something\"{\r\n  fact \"x\" {\r\n    abc => null\r\n  }\r\n}\r\n");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertIssues(_validate, 
       "The method or field abc is undefined");
@@ -83,7 +86,7 @@ public class LinkerValidationSpec {
   @Named("Method call with should be null")
   @Order(6)
   public void _methodCallWithShouldBeNull() throws Exception {
-    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          string => null\r\n        }\r\n        def getString() {\"\"}\r\n      }\r\n    ");
+    EObject _parse = this.parseHelper.parse("package bootstrap\r\n\r\ndescribe \"something\"{\r\n  fact \"x\" {\r\n    string => null\r\n  }\r\n  def getString() {\"\"}\r\n}\r\n");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertNoIssues(_validate);
   }
@@ -92,7 +95,7 @@ public class LinkerValidationSpec {
   @Named("Null variable with should be null")
   @Order(7)
   public void _nullVariableWithShouldBeNull() throws Exception {
-    EObject _parse = this.parseHelper.parse("\r\n      package bootstrap\r\n\r\n      describe \"something\"{\r\n        fact \"x\" {\r\n          val withoutType = null\r\n          withoutType => null\r\n        }\r\n      }\r\n    ");
+    EObject _parse = this.parseHelper.parse("package bootstrap\r\n\r\ndescribe \"something\"{\r\n  fact \"x\" {\r\n    val withoutType = null\r\n    withoutType => null\r\n  }\r\n}\r\n");
     List<Issue> _validate = this.validationTestHelper.validate(_parse);
     this.assertNoIssues(_validate);
   }
@@ -158,7 +161,7 @@ public class LinkerValidationSpec {
     boolean _greaterThan = (_length > 0);
     if (_greaterThan) {
       String _string = sb.toString();
-      String _plus = ("\r\n\t\t\tIssue mismatch\r\n\t\t\t" + _string);
+      String _plus = ("Issue mismatch\r\n" + _string);
       String _plus_1 = (_plus + "\r\n\t\t");
       org.junit.Assert.fail(_plus_1);
     }

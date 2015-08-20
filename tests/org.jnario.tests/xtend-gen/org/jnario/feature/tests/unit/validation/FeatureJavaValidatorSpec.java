@@ -7,6 +7,7 @@
  */
 package org.jnario.feature.tests.unit.validation;
 
+import com.google.inject.Inject;
 import java.util.Iterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics;
@@ -39,13 +40,14 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class FeatureJavaValidatorSpec {
   @Extension
-  ModelStore modelStore;
+  @Inject
+  public ModelStore modelStore;
   
   @Test
   @Named("no name clash between features and imported types")
   @Order(1)
   public void _noNameClashBetweenFeaturesAndImportedTypes() throws Exception {
-    this.modelStore.parseScenario("\r\n\t\t\timport java.util.Stack\r\n\t\t\tFeature: Stack\r\n\t\t\tScenario: Example\r\n\t\t\t\tStack stack\r\n\t\t");
+    this.modelStore.parseScenario("import java.util.Stack\r\nFeature: Stack\r\nScenario: Example\r\n\tStack stack\r\n");
     AssertableDiagnostics _validate = this.validate(JnarioFile.class);
     _validate.assertOK();
   }

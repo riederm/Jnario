@@ -1,5 +1,6 @@
 package org.jnario.spec.tests.integration;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.SpecTestCreator;
@@ -16,12 +17,13 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class DefiningSpecBaseClassesSpec {
   @Extension
-  BehaviorExecutor _behaviorExecutor;
+  @Inject
+  public BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("Extend annotation defines the super class")
   @Order(1)
   public void _extendAnnotationDefinesTheSuperClass() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("\r\n\t\timport org.jnario.runner.Extends\r\n\t\timport junit.framework.TestCase\r\n\r\n\t\t@Extends(typeof(TestCase)) \r\n\t\tdescribe \"A spec\"{\r\n\t\t\tfact typeof(ASpecSpec).superclass => typeof(TestCase)\r\n\t\t}\r\n\t\t");
+    this._behaviorExecutor.executesSuccessfully("import org.jnario.runner.Extends\r\nimport junit.framework.TestCase\r\n\r\n@Extends(typeof(TestCase)) \r\ndescribe \"A spec\"{\r\n\tfact typeof(ASpecSpec).superclass => typeof(TestCase)\r\n}\r\n");
   }
 }

@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.unit.naming;
 
+import com.google.inject.Inject;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -35,7 +36,8 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ExampleNameProviderSpec {
   @Extension
-  ModelStore modelStore;
+  @Inject
+  public ModelStore modelStore;
   
   public Query parse(final CharSequence content) {
     final String contentWithPackage = ("package test\n" + content);

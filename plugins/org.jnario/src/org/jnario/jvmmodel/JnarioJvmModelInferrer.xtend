@@ -187,6 +187,7 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
                 }
 
                 if (source.extension && Extension.findDeclaredType(source) != null) {
+                    visibility = JvmVisibility::PUBLIC
                     annotations += Extension.annotationRef
                 }
                 translateAnnotations(source.annotations)

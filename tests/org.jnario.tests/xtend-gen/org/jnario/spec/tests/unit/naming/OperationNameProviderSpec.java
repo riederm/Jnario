@@ -8,6 +8,7 @@
 package org.jnario.spec.tests.unit.naming;
 
 import com.google.common.collect.Iterables;
+import com.google.inject.Inject;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.common.types.JvmGenericType;
@@ -30,6 +31,7 @@ import org.jnario.runner.Named;
 import org.jnario.spec.naming.OperationNameProvider;
 import org.jnario.spec.tests.unit.naming.OperationNameProviderShouldNameMethodsSimilarToJavaDocLinksSpec;
 import org.jnario.spec.tests.unit.naming.OperationNamesExample;
+import org.junit.Before;
 import org.junit.runner.RunWith;
 
 @Contains(OperationNameProviderShouldNameMethodsSimilarToJavaDocLinksSpec.class)
@@ -38,17 +40,22 @@ import org.junit.runner.RunWith;
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class OperationNameProviderSpec {
+  @Inject
   OperationNameProvider subject;
   
+  @Inject
   TypeResourceServices services;
   
+  @Inject
   ClasspathTypeProviderFactory typeProviderFactory = new ClasspathTypeProviderFactory(this.getClass().getClassLoader(), this.services);
   
   Map<String, JvmOperation> operations;
   
   @Extension
-  ModelStore _modelStore;
+  @Inject
+  public ModelStore _modelStore;
   
+  @Before
   public void setup() {
     final ClasspathTypeProvider typeProvider = this.typeProviderFactory.createTypeProvider();
     String _name = OperationNamesExample.class.getName();

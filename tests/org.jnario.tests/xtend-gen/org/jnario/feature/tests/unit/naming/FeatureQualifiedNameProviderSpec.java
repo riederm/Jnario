@@ -1,6 +1,7 @@
 package org.jnario.feature.tests.unit.naming;
 
 import com.google.common.base.Objects;
+import com.google.inject.Inject;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -27,8 +28,10 @@ public class FeatureQualifiedNameProviderSpec {
   public FeatureQualifiedNameProvider subject;
   
   @Extension
-  ModelStore _modelStore;
+  @Inject
+  public ModelStore _modelStore;
   
+  @Inject
   IQualifiedNameConverter converter;
   
   public String implementedStepName(final CharSequence s) {
@@ -48,7 +51,7 @@ public class FeatureQualifiedNameProviderSpec {
       if (_notEquals) {
         _xifexpression = ("package " + packageName);
       } else {
-        String _plus = ("" + " \r\n\t\t\tFeature: MyFeature\r\n\t\t\tScenario: The Scenario\r\n\t\t\t");
+        String _plus = ("" + "Feature: MyFeature\r\nScenario: The Scenario\r\n");
         String _plus_1 = (_plus + s);
         _xifexpression = (_plus_1 + "\r\n\t\t\t");
       }

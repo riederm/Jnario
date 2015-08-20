@@ -162,7 +162,7 @@ public class WhiteSpaceNormalizerSpec {
   @Order(2)
   public void _linebreakAtTheEnd() throws Exception {
     String _normalize = this.subject.normalize(
-      "\r\n\t\thello\r\n\t\tworld\r\n\t\t");
+      "hello\r\nworld\r\n");
     Assert.assertTrue("\nExpected subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\r\n\t\t\'\'\') => \"hello\\nworld\\n\" but"
      + "\n     subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\r\n\t\t\'\'\') is " + new org.hamcrest.StringDescription().appendValue(_normalize).toString()
      + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString() + "\n", Should.<String>operator_doubleArrow(_normalize, "hello\nworld\n"));
@@ -185,7 +185,7 @@ public class WhiteSpaceNormalizerSpec {
   @Order(4)
   public void _noLinebreakAtTheEnd() throws Exception {
     String _normalize = this.subject.normalize(
-      "\r\n\t\thello\r\n\t\tworld");
+      "hello\r\nworld");
     Assert.assertTrue("\nExpected subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\'\'\') => \"hello\\nworld\" but"
      + "\n     subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\'\'\') is " + new org.hamcrest.StringDescription().appendValue(_normalize).toString()
      + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString() + "\n", Should.<String>operator_doubleArrow(_normalize, "hello\nworld"));

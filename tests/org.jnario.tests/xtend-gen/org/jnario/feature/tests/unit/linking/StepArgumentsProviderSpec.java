@@ -8,6 +8,7 @@
 package org.jnario.feature.tests.unit.linking;
 
 import com.google.common.base.Objects;
+import com.google.inject.Inject;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
@@ -47,6 +48,7 @@ public class StepArgumentsProviderSpec {
   @Subject
   public StepArgumentsProvider subject;
   
+  @Inject
   LazyLinkingResource resource;
   
   public ExampleTable<StepArgumentsProviderSpecExamples> _initStepArgumentsProviderSpecExamples() {
@@ -209,7 +211,7 @@ public class StepArgumentsProviderSpec {
       if (_equals) {
         return null;
       }
-      final String scenario = (("\r\n\t\t\tFeature: dummy\r\n\t\t\t\tScenario: dummy \r\n\t\t\t\t\t" + step) + "\'\r\n\t\t\t\t\t\r\n\t\t");
+      final String scenario = (("Feature: dummy\r\n\tScenario: dummy \r\n" + step) + "\'\r\n\t\t\t\t\t\r\n\t\t");
       IParser _parser = this.resource.getParser();
       String _string = scenario.toString();
       StringInputStream _stringInputStream = new StringInputStream(_string);

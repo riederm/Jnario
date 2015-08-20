@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.integration;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.ConsoleRecorder;
@@ -30,7 +31,8 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SetupTeardownSpec {
   @Extension
-  BehaviorExecutor _behaviorExecutor;
+  @Inject
+  public BehaviorExecutor _behaviorExecutor;
   
   public void prints(final CharSequence spec, final String expected) {
     final ConsoleRecorder recording = ConsoleRecorder.start();

@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.integration;
 
+import com.google.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.hamcrest.Matcher;
 import org.jnario.jnario.test.util.BehaviorExecutor;
@@ -27,7 +28,8 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class PendingSpec {
   @Extension
-  BehaviorExecutor _behaviorExecutor;
+  @Inject
+  public BehaviorExecutor _behaviorExecutor;
   
   @Test
   @Named("ignores empty examples during example runs")
