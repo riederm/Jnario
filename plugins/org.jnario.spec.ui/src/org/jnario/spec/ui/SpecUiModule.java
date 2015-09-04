@@ -37,6 +37,7 @@ import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
 import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.resource.IResourceUIServiceProvider;
 import org.eclipse.xtext.validation.IssueSeveritiesProvider;
 import org.eclipse.xtext.xbase.file.AbstractFileSystemSupport;
 import org.eclipse.xtext.xbase.file.WorkspaceConfig;
@@ -49,6 +50,7 @@ import org.eclipse.xtext.xbase.ui.file.EclipseWorkspaceConfigProvider;
 import org.eclipse.xtext.xbase.ui.jvmmodel.navigation.DerivedMemberAwareEditorOpener;
 import org.eclipse.xtext.xbase.ui.launching.JavaElementDelegate;
 import org.eclipse.xtext.xbase.ui.validation.XbaseIssueSeveritiesProvider;
+import org.jnario.ide.JnarioResourceUiServiceProvider;
 import org.jnario.spec.ui.editor.SpecFoldingRegionProvider;
 import org.jnario.spec.ui.generator.SpecGenerator;
 import org.jnario.spec.ui.highlighting.SpecHighlightingCalculator;
@@ -65,7 +67,6 @@ import com.google.inject.name.Names;
 /**
  * @author Sebastian Benz - Initial contribution and API
  */
-@SuppressWarnings("restriction")
 public class SpecUiModule extends org.jnario.spec.ui.AbstractSpecUiModule {
 	public SpecUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
@@ -427,5 +428,9 @@ public class SpecUiModule extends org.jnario.spec.ui.AbstractSpecUiModule {
 //		return XtendOutlineNodeFactory.class;
 //	}
 	
+	
+	public Class<? extends IResourceUIServiceProvider> bindIResourceUIServiceProvider() {
+		return JnarioResourceUiServiceProvider.class;
+	}
 
 }
