@@ -30,7 +30,7 @@ public class DefiningXtendClassesInYourSpecsSpec {
   @Named("either before...")
   @Order(1)
   public void _eitherBefore() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("@Data class Greeter{\r\n  String name\r\n  def sayHello(){\r\n    \"Hello \" + name\r\n  }\r\n}\r\n\r\ndescribe \"Saying Hello\"{\r\n  fact new Greeter(\"Sebastian\").sayHello => \"Hello Sebastian\"\r\n}  \t\r\n");
+    this._behaviorExecutor.executesSuccessfully("@Data class Greeter{\n  String name\n  def sayHello(){\n    \"Hello \" + name\n  }\n}\n\ndescribe \"Saying Hello\"{\n  fact new Greeter(\"Sebastian\").sayHello => \"Hello Sebastian\"\n}  \t\n");
   }
   
   /**
@@ -40,6 +40,6 @@ public class DefiningXtendClassesInYourSpecsSpec {
   @Named("...or after your specs")
   @Order(2)
   public void _orAfterYourSpecs() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("describe \"Saying Hello\"{\r\n  fact new Greeter(\"Sebastian\").sayHello => \"Hello Sebastian\"\r\n}  \t\r\n\r\n@Data class Greeter{\r\n  String name\r\n  def sayHello(){\r\n    \"Hello \" + name\r\n  }\r\n}\r\n");
+    this._behaviorExecutor.executesSuccessfully("describe \"Saying Hello\"{\n  fact new Greeter(\"Sebastian\").sayHello => \"Hello Sebastian\"\n}  \t\n\n@Data class Greeter{\n  String name\n  def sayHello(){\n    \"Hello \" + name\n  }\n}\n");
   }
 }
