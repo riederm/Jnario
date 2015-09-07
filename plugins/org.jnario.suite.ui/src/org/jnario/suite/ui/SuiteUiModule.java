@@ -41,6 +41,7 @@ import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.resource.IResourceUIServiceProvider;
 import org.eclipse.xtext.validation.IssueSeveritiesProvider;
 import org.eclipse.xtext.xbase.file.AbstractFileSystemSupport;
 import org.eclipse.xtext.xbase.file.WorkspaceConfig;
@@ -55,6 +56,7 @@ import org.eclipse.xtext.xbase.ui.jvmmodel.navigation.DerivedMemberAwareEditorOp
 import org.eclipse.xtext.xbase.ui.launching.JavaElementDelegate;
 import org.eclipse.xtext.xbase.ui.validation.XbaseIssueSeveritiesProvider;
 import org.jnario.feature.ui.hover.FeatureHoverSignatureProvider;
+import org.jnario.ide.JnarioResourceUiServiceProvider;
 import org.jnario.suite.generator.SuiteGenerator;
 import org.jnario.suite.ui.editor.SuiteDoubleClickStrategyProvider;
 import org.jnario.suite.ui.highlighting.SuiteHighlightingCalculator;
@@ -76,7 +78,6 @@ import com.google.inject.name.Names;
 /**
  * Use this class to register components to be used within the IDE.
  */
-@SuppressWarnings("restriction")
 public class SuiteUiModule extends org.jnario.suite.ui.AbstractSuiteUiModule {
 	public SuiteUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
@@ -436,5 +437,9 @@ public class SuiteUiModule extends org.jnario.suite.ui.AbstractSuiteUiModule {
 	
 	public Class<? extends Manager> bindIResourceDescription$Manager() {
 		return SuiteResourceDescriptionManager.class;
+	}
+	
+	public Class<? extends IResourceUIServiceProvider> bindIResourceUIServiceProvider() {
+		return JnarioResourceUiServiceProvider.class;
 	}
 }

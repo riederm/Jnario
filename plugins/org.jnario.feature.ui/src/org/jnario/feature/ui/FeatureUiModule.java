@@ -46,6 +46,7 @@ import org.eclipse.xtext.ui.editor.model.ITokenTypeToPartitionTypeMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.resource.IResourceUIServiceProvider;
 import org.eclipse.xtext.validation.IssueSeveritiesProvider;
 import org.eclipse.xtext.xbase.file.AbstractFileSystemSupport;
 import org.eclipse.xtext.xbase.file.WorkspaceConfig;
@@ -81,6 +82,7 @@ import org.jnario.feature.ui.labeling.FeatureLabelProvider;
 import org.jnario.feature.ui.launching.FeatureJavaElementDelegate;
 import org.jnario.feature.ui.parser.CustomFeatureLexer;
 import org.jnario.feature.ui.validator.FeatureUIValidator;
+import org.jnario.ide.JnarioResourceUiServiceProvider;
 import org.jnario.ui.builder.JnarioBuilderParticipant;
 import org.jnario.ui.builder.JnarioSourceRelativeFileSystemAccess;
 import org.jnario.ui.editor.XtendCopyQualifiedNameService;
@@ -490,5 +492,10 @@ public class FeatureUiModule extends org.jnario.feature.ui.AbstractFeatureUiModu
 //	public Class<? extends OutlineNodeFactory> bindOutlineNodeFactory() {
 //		return XtendOutlineNodeFactory.class;
 //	}
+
 	
+	public Class<? extends IResourceUIServiceProvider> bindIResourceUIServiceProvider() {
+		return JnarioResourceUiServiceProvider.class;
+	}
+
 }
