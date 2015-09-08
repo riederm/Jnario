@@ -210,6 +210,7 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
         val operation = typesFactory.createJvmOperation => [
             simpleName = element.toMethodName
             visibility = JvmVisibility.PUBLIC
+            ^static = element.isStatic
             returnType = getTypeForName(Void::TYPE, element)
         ]
 

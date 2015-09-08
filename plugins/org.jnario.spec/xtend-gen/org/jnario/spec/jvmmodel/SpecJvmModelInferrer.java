@@ -335,6 +335,8 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
           String _methodName = SpecJvmModelInferrer.this._exampleNameProvider.toMethodName(element);
           it.setSimpleName(_methodName);
           it.setVisibility(JvmVisibility.PUBLIC);
+          boolean _isStatic = element.isStatic();
+          it.setStatic(_isStatic);
           JvmTypeReference _typeForName = SpecJvmModelInferrer.this._typeReferences.getTypeForName(Void.TYPE, element);
           it.setReturnType(_typeForName);
         }
