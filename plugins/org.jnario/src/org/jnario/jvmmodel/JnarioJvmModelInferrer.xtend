@@ -265,14 +265,11 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
             translateParameter(operation, parameter);
         }
         val expression = source.getExpression();
-//        val createExtensionInfo = source.createExtensionInfo
         
         var JvmTypeReference returnType = null;
         if (source.getReturnType() != null) {
             returnType = source.getReturnType.cloneWithProxies
-        } else /*if (createExtensionInfo != null) {
-            returnType = createExtensionInfo.createExpression.inferredType
-        } else */if (expression != null) {
+        } else if (expression != null) {
             returnType = expression.inferredType
         } else {
             returnType = inferredType
@@ -290,11 +287,7 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
 //                && typeReferences.findDeclaredType(Override.class, source) != null) {
 //            operation.getAnnotations().add(_annotationTypesBuilder.annotationRef(Override));
 //        }
-        /*if (createExtensionInfo != null) {
-            transformCreateExtension(source, createExtensionInfo, container, operation, returnType);
-        } else */{
-            setBody(operation, expression);
-        }
+        setBody(operation, expression);
         source.copyDocumentationTo(operation);
     }
     

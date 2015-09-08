@@ -20,6 +20,7 @@ import org.eclipse.xtext.xbase.XNullLiteral
 import org.eclipse.xtext.xbase.XbaseFactory
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
+import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociator
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure2
 import org.jnario.ExampleCell
 import org.jnario.ExampleTable
@@ -46,18 +47,13 @@ import static extension org.eclipse.xtext.util.Strings.*
 class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 	
 	@Inject extension ExtendedJvmTypesBuilder
-	
 	@Inject extension TypeReferences
-
 	@Inject extension ExampleNameProvider
-	
 	@Inject extension ImplicitSubject 
-	
-//	@Inject extension SyntheticNameClashResolver
-	
+	@Inject extension SpecSyntheticNameClashResolver
 	@Inject extension TypesFactory typesFactory
-	
 	@Inject SpecIgnoringXtendJvmModelInferrer xtendJvmModelInferrer
+    @Inject IJvmModelAssociator modelAssociator
 	
     var exampleIndex = 0
 	var index = 0
@@ -134,7 +130,7 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 //		appendSyntheticDispatchMethods(source, inferredJvmType);
 		copyDocumentationTo(source, inferredJvmType);
 		
-//		resolveNameClashes(inferredJvmType);
+		resolveNameClashes(inferredJvmType);
 	}
 	 
 	
@@ -164,6 +160,7 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
                 ]
             ]
 		container.members += method
+        modelAssociator.associatePrimary(element, method);
 	}
 	
 	def protected dispatch void transform(Before element, JvmGenericType container) {
@@ -214,12 +211,8 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
             returnType = getTypeForName(Void::TYPE, element)
         ]
 
-        // TODO NO_XTEND
-        //if (createExtensionInfo != null) {
-        //    transformCreateExtension(source, createExtensionInfo, container, operation, returnType);
-        //} else {
-            setBody(operation, element.expression)
-        //}
+        setBody(operation, element.expression)
+
         operation.addAnnotations(element.annotations.filter[it?.annotationType != null])
         element.copyDocumentationTo(operation)
 
