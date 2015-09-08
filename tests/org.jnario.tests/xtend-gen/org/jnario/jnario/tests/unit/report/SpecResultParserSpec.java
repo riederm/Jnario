@@ -40,7 +40,7 @@ public class SpecResultParserSpec {
   
   final static String FAILURE_TYPE = "java.lang.AssertionError";
   
-  final static String STACKTRACE = Strings.platformIndependent("\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\nat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)\r\nat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)\r\nat java.lang.reflect.Constructor.newInstance(Constructor.java:513)\r\n    \t\t\t\t");
+  final static String STACKTRACE = Strings.platformIndependent("\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n    at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)\r\n    at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)\r\n    at java.lang.reflect.Constructor.newInstance(Constructor.java:513)\r\n");
   
   final static String XML_STACKTRACE = ((SpecResultParserSpec.FAILURE_MESSAGE + "\n") + SpecResultParserSpec.STACKTRACE);
   
@@ -48,7 +48,7 @@ public class SpecResultParserSpec {
   @Named("parses successfull specs from xml")
   @Order(1)
   public void _parsesSuccessfullSpecsFromXml() throws Exception {
-    String _xml = this.toXml((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\"/>\r\n\t\t"));
+    String _xml = this.toXml((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\"/>\r\n"));
     Passed _passingSpec = this.passingSpec();
     this.parse(_xml, _passingSpec);
   }
@@ -57,7 +57,7 @@ public class SpecResultParserSpec {
   @Named("parses specs with failure from xml")
   @Order(2)
   public void _parsesSpecsWithFailureFromXml() throws Exception {
-    String _xml = this.toXml((((((((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <failure message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</failure>\r\n\t\t   </testcase>\r\n\t\t"));
+    String _xml = this.toXml((((((((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <failure message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</failure>\r\n\t\t   </testcase>\r\n"));
     Failed _failingSpec = this.failingSpec();
     this.parse(_xml, _failingSpec);
   }
@@ -66,7 +66,7 @@ public class SpecResultParserSpec {
   @Named("parses specs with error from xml")
   @Order(3)
   public void _parsesSpecsWithErrorFromXml() throws Exception {
-    String _xml = this.toXml((((((((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <error message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</error>\r\n\t\t   </testcase>\r\n\t\t"));
+    String _xml = this.toXml((((((((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <error message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</error>\r\n\t\t   </testcase>\r\n"));
     Failed _failingSpec = this.failingSpec();
     this.parse(_xml, _failingSpec);
   }
@@ -75,7 +75,7 @@ public class SpecResultParserSpec {
   @Named("parses multiple spec results")
   @Order(4)
   public void _parsesMultipleSpecResults() throws Exception {
-    String _xml = this.toXml((((((((((((((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\"/>\r\n\t\t   <testcase time=\"") + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <error message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</error>\r\n\t\t   </testcase>\r\n\t\t"));
+    String _xml = this.toXml((((((((((((((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\"/>\r\n\t\t   <testcase time=\"") + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t   <error message=\"") + SpecResultParserSpec.FAILURE_MESSAGE) + "\" type=\"") + SpecResultParserSpec.FAILURE_TYPE) + "\">") + SpecResultParserSpec.XML_STACKTRACE) + "</error>\r\n\t\t   </testcase>\r\n"));
     Passed _passingSpec = this.passingSpec();
     Failed _failingSpec = this.failingSpec();
     this.parse(_xml, _passingSpec, _failingSpec);
@@ -85,7 +85,7 @@ public class SpecResultParserSpec {
   @Named("created pending results")
   @Order(5)
   public void _createdPendingResults() throws Exception {
-    String _xml = this.toXml((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t    <skipped/>\r\n\t\t   </testcase>\r\n\t\t"));
+    String _xml = this.toXml((((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"") + SpecResultParserSpec.NAME) + "\">\r\n\t\t    <skipped/>\r\n\t\t   </testcase>\r\n"));
     Pending _pendingSpec = this.pendingSpec();
     this.parse(_xml, _pendingSpec);
   }
@@ -94,7 +94,7 @@ public class SpecResultParserSpec {
   @Named("decodes escaped strings")
   @Order(6)
   public void _decodesEscapedStrings() throws Exception {
-    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"When I entered \\&quot;50\\&quot; and \\&quot;70\\&quot;\"/>\r\n\t\t"));
+    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"When I entered \\&quot;50\\&quot; and \\&quot;70\\&quot;\"/>\r\n"));
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "When I entered \"50\" and \"70\"", SpecResultParserSpec.EXECUTION_TIME);
     this.parse(_xml, _passed);
   }
@@ -103,7 +103,7 @@ public class SpecResultParserSpec {
   @Named("removes \\\',\\\' from escaped strings")
   @Order(7)
   public void _removesFromEscapedStrings() throws Exception {
-    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"cell[-1\\u002C 1].plus[cell[3\\u002C4]] =&gt; cell[2\\u002C5]\"/>\r\n\t\t"));
+    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"cell[-1\\u002C 1].plus[cell[3\\u002C4]] =&gt; cell[2\\u002C5]\"/>\r\n"));
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "cell[-1, 1].plus[cell[3,4]] => cell[2,5]", SpecResultParserSpec.EXECUTION_TIME);
     this.parse(_xml, _passed);
   }
@@ -112,7 +112,7 @@ public class SpecResultParserSpec {
   @Named("supports encoding")
   @Order(8)
   public void _supportsEncoding() throws Exception {
-    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"L\\u00D6sung\"/>\r\n\t\t"));
+    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"L\\u00D6sung\"/>\r\n"));
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "L\u00D6sung", SpecResultParserSpec.EXECUTION_TIME);
     this.parse(_xml, _passed);
   }
@@ -121,7 +121,7 @@ public class SpecResultParserSpec {
   @Named("supports escaped chars")
   @Order(9)
   public void _supportsEscapedChars() throws Exception {
-    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"\\&quot;http:\\/\\/www.google.de\\&quot;\"/>\r\n\t\t"));
+    String _xml = this.toXml((((("<testcase time=\"" + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME)) + "\" classname=\"") + SpecResultParserSpec.CLASSNAME) + "\" name=\"\\&quot;http:\\/\\/www.google.de\\&quot;\"/>\r\n"));
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "\"http://www.google.de\"", SpecResultParserSpec.EXECUTION_TIME);
     this.parse(_xml, _passed);
   }

@@ -22,10 +22,10 @@ describe SpecResultParser{
 	static val FAILURE_TYPE = "java.lang.AssertionError"
 	static val STACKTRACE = 
 					'''	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
-at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
-at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
-    				'''.platformIndependent
+    at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+    at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+    at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+                    '''.platformIndependent
 
 	static val XML_STACKTRACE = FAILURE_MESSAGE + "\n" + STACKTRACE
 	
