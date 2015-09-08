@@ -211,7 +211,7 @@ public class StepArgumentsProviderSpec {
       if (_equals) {
         return null;
       }
-      final String scenario = (("Feature: dummy\r\n\tScenario: dummy \r\n" + step) + "\'\r\n\t\t\t\t\t\r\n\t\t");
+      final String scenario = (("Feature: dummy\r\n\tScenario: dummy \r\n" + step) + "\'\r\n\t\t\t\t\t\r\n");
       IParser _parser = this.resource.getParser();
       String _string = scenario.toString();
       StringInputStream _stringInputStream = new StringInputStream(_string);

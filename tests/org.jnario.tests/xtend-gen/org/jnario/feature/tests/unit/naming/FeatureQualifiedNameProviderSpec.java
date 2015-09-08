@@ -35,7 +35,7 @@ public class FeatureQualifiedNameProviderSpec {
   IQualifiedNameConverter converter;
   
   public String implementedStepName(final CharSequence s) {
-    String _plus = (s + "\'\r\n\t\tval x = \"\"\r\n\t\t");
+    String _plus = (s + "\'\r\n\t\tval x = \"\"\r\n");
     return this.stepName(_plus);
   }
   
@@ -53,7 +53,7 @@ public class FeatureQualifiedNameProviderSpec {
       } else {
         String _plus = ("" + "Feature: MyFeature\r\nScenario: The Scenario\r\n");
         String _plus_1 = (_plus + s);
-        _xifexpression = (_plus_1 + "\r\n\t\t\t");
+        _xifexpression = (_plus_1 + "\r\n");
       }
       final String input = _xifexpression;
       this._modelStore.parseScenario(input);

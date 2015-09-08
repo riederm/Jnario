@@ -19,6 +19,7 @@ import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.generator.IFilePostProcessor;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
+import org.eclipse.xtext.linking.ILinkingDiagnosticMessageProvider;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parser.IParser;
@@ -59,6 +60,7 @@ import org.jnario.jvmmodel.ExecutableProvider;
 import org.jnario.jvmmodel.ExtendedJvmTypesBuilder;
 import org.jnario.jvmmodel.JnarioNameProvider;
 import org.jnario.jvmmodel.JnarioSignatureHashBuilder;
+import org.jnario.linking.JnarioLinkingDiagnosticMessageProvider;
 import org.jnario.linking.JnarioLinkingService;
 import org.jnario.report.Executable2ResultMapping;
 import org.jnario.report.HashBasedSpec2ResultMapping;
@@ -177,11 +179,11 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 //	public Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
 //		return XtendLocationInFileProvider.class;
 //	}
-//
-//	@Override
-//	public Class<? extends ILinkingDiagnosticMessageProvider> bindILinkingDiagnosticMessageProvider() {
-//		return XtendLinkingDiagnosticMessageProvider.class;
-//	}
+
+	@Override
+	public Class<? extends ILinkingDiagnosticMessageProvider> bindILinkingDiagnosticMessageProvider() {
+		return JnarioLinkingDiagnosticMessageProvider.class;
+	}
 	
 //	public Class<? extends IImportsConfiguration> bindIImportsConfiguration() {
 //		return XtendImportsConfiguration.class;

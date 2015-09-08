@@ -39,7 +39,7 @@ public class SuiteNodeBuilderSpec {
   public Resource parseSuite(final CharSequence s) {
     Resource _xblockexpression = null;
     {
-      final String input = (("package test\r\n\r\n" + s) + "\r\n\t\t");
+      final String input = (("package test\r\n\r\n" + s) + "\r\n");
       _xblockexpression = this.m.parseSuite(input);
     }
     return _xblockexpression;

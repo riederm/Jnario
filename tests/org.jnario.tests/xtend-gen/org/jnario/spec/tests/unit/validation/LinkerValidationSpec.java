@@ -162,7 +162,7 @@ public class LinkerValidationSpec {
     if (_greaterThan) {
       String _string = sb.toString();
       String _plus = ("Issue mismatch\r\n" + _string);
-      String _plus_1 = (_plus + "\r\n\t\t");
+      String _plus_1 = (_plus + "\r\n");
       org.junit.Assert.fail(_plus_1);
     }
   }
