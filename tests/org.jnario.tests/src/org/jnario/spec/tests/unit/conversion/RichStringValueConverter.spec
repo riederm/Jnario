@@ -1,13 +1,42 @@
 package org.jnario.spec.tests.unit.conversion
 
+import javax.inject.Inject
 import org.jnario.conversion.RichStringValueConverter
+import org.jnario.jnario.test.util.FeatureTestCreator
+import org.jnario.runner.CreateWith
 
 import static extension org.junit.Assert.*
 
+@CreateWith(typeof(FeatureTestCreator))
 describe "RichStringValueConverter unit test" {
+    
+    @Inject
+    RichStringValueConverter richStringValueConverter
+    
 	fact "toValueRemovesRichStringSignes" {
 		assertConverted(
 			"'''Test'''",
+			"Test"
+		)
+	}
+	
+	fact "toValueRemovesRichStringSignesBrokenEnd1" {
+		assertConverted(
+			"'''Test''",
+			"Test"
+		)
+	}
+	
+	fact "toValueRemovesRichStringSignesBrokenEnd2" {
+		assertConverted(
+			"'''Test'",
+			"Test"
+		)
+	}
+	
+	fact "toValueRemovesRichStringSignesBrokenEnd3" {
+		assertConverted(
+			"'''Test",
 			"Test"
 		)
 	}
@@ -174,7 +203,7 @@ describe "RichStringValueConverter unit test" {
 		)
 	}
 	
-	fact "void toValueIgnoresEmptyLinesAtTheEndWhenItKeepsIntendation" {
+	fact "toValueIgnoresEmptyLinesAtTheEndWhenItKeepsIntendation" {
 		assertConverted(
 			"'''Test\n" +
 			"   '''",
@@ -186,6 +215,57 @@ describe "RichStringValueConverter unit test" {
 			"Test\r\n"
 		)
 	}
+	
+	fact "toValueIgnoresEmptyLinesAtTheEndWhenItKeepsIntendationMultiline" {
+		assertConverted(
+			"'''Test\n" +
+			"  Test1\n" +
+			" Test3\n" +
+			"  \t  '''",
+			"Test\n" +
+			"  Test1\n" + 
+			" Test3\n"
+		)
+		assertConverted(
+			"'''Test\r\n" +
+			"  Test1\r\n" +
+			" Test3\r\n" +
+			"  \t  '''",
+			"Test\r\n" +
+			"  Test1\r\n" + 
+			" Test3\r\n"
+		)
+	}
+	
+	fact "toValueNotIgnoresSpacesIfNotInIndentation" {
+		assertConverted(
+			"'''Test\n" +
+			"  Test1\n" +
+			" Test3\n" +
+			"  \t x '''",
+			"Test\n" +
+			"  Test1\n" + 
+			" Test3\n" +
+            "  \t x "
+		)
+		assertConverted(
+			"'''Test\r\n" +
+			"  Test1\r\n" +
+			" Test3\r\n" +
+			"  \t x '''",
+			"Test\r\n" +
+			"  Test1\r\n" + 
+			" Test3\r\n" +
+            "  \t x "
+		)
+	}
+	
+    fact "toValueNotRemovesSpacesIfSingleLine" {
+        assertConverted(
+            "'''Test  '''",
+            "Test  "
+        )
+    }
 	
 	fact "toValueIgnoresEmptyLinesAtTheEnd" {
 		assertConverted(
@@ -210,7 +290,7 @@ describe "RichStringValueConverter unit test" {
 	}
 	
 	def assertConverted(String stringToConvert, String expected) {
-		val actual = new RichStringValueConverter().toValue(stringToConvert, null)
+		val actual = richStringValueConverter.toValue(stringToConvert, null)
 		expected.assertEquals(actual)		
 	}
 }

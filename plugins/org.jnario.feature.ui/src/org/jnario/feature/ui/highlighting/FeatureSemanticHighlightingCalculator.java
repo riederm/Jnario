@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -38,6 +39,7 @@ import org.jnario.feature.feature.Step;
 import org.jnario.feature.feature.StepReference;
 import org.jnario.feature.feature.util.FeatureSwitch;
 import org.jnario.feature.jvmmodel.StepArgumentsProvider;
+import org.jnario.feature.services.FeatureGrammarAccess;
 import org.jnario.ui.highlighting.JnarioHighlightingCalculator;
 import org.jnario.util.Strings;
 
@@ -197,6 +199,8 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 	@Inject
 	private StepArgumentsProvider argumentsProvider;
 
+	@Inject
+	private FeatureGrammarAccess featureGrammarAccess;
 
 	protected EObject root(XtextResource resource) {
 		return resource.getParseResult().getRootASTElement();
@@ -232,6 +236,11 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 				}
 			}
 		}
+	}
+
+	@Override
+	protected TerminalRule getRichStringTerminalRule() {
+		return featureGrammarAccess.getSTRINGRule();
 	}
 	
 //	private void highlightExampleHeader(ExampleTable table, IHighlightedPositionAcceptor acceptor){

@@ -1,4 +1,4 @@
-package org.jnario.ide;
+package org.jnario.ui;
 
 import org.eclipse.xtext.ui.resource.DefaultResourceUIServiceProvider;
 

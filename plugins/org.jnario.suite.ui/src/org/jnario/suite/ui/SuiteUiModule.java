@@ -56,7 +56,6 @@ import org.eclipse.xtext.xbase.ui.jvmmodel.navigation.DerivedMemberAwareEditorOp
 import org.eclipse.xtext.xbase.ui.launching.JavaElementDelegate;
 import org.eclipse.xtext.xbase.ui.validation.XbaseIssueSeveritiesProvider;
 import org.jnario.feature.ui.hover.FeatureHoverSignatureProvider;
-import org.jnario.ide.JnarioResourceUiServiceProvider;
 import org.jnario.suite.generator.SuiteGenerator;
 import org.jnario.suite.ui.editor.SuiteDoubleClickStrategyProvider;
 import org.jnario.suite.ui.highlighting.SuiteHighlightingCalculator;
@@ -67,6 +66,7 @@ import org.jnario.suite.ui.labeling.SuiteLabelProvider;
 import org.jnario.suite.ui.launching.SuiteJavaElementDelegate;
 import org.jnario.suite.ui.quickfix.SuiteQuickfixProvider;
 import org.jnario.suite.ui.resource.SuiteResourceDescriptionManager;
+import org.jnario.ui.JnarioResourceUiServiceProvider;
 import org.jnario.ui.builder.JnarioBuilderParticipant;
 import org.jnario.ui.builder.JnarioSourceRelativeFileSystemAccess;
 import org.jnario.ui.editor.XtendCopyQualifiedNameService;
