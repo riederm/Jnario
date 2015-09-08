@@ -65,7 +65,6 @@ public abstract class JnarioHighlightingCalculator extends XbaseHighlightingCalc
 			if (!node.getText().startsWith("'''")) {
 				return;
 			}
-			System.out.println(node.getText() + "   " + element);
 			List<TextRegion> regionList = jnarioRichStringProcessor.process(node.getText());
 			if (regionList != null) {
 				for (TextRegion textRegion : regionList) {
