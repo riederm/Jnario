@@ -9,6 +9,7 @@ package org.jnario.spec.tests.unit.validation
 
 import com.google.inject.Inject
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.junit4.validation.AssertableDiagnostics
 import org.eclipse.xtext.junit4.validation.RegisteredValidatorTester
 import org.eclipse.xtext.xbase.XBinaryOperation
 import org.jnario.Assertion
@@ -19,7 +20,6 @@ import org.jnario.jnario.test.util.Resources
 import org.jnario.jnario.test.util.SpecTestCreator
 import org.jnario.runner.CreateWith
 import org.jnario.spec.spec.ExampleGroup
-import org.jnario.spec.spec.SpecFile
 import org.jnario.spec.validation.SpecJavaValidator
 
 import static org.jnario.jnario.test.util.Query.*
@@ -57,7 +57,7 @@ describe SpecJavaValidator {
 		')
 
 		val validationResult = validate(typeof(ExampleGroup))
-		validationResult.assertOK
+		validationResult.assertOKWithMessage
 	}
 
 	fact "specs without description but different types are OK"{
@@ -73,14 +73,14 @@ describe SpecJavaValidator {
 		  }
 		')
 		val validationResult = validate(typeof(ExampleGroup))
-		validationResult.assertOK
+		validationResult.assertOKWithMessage
 	}
 
 	fact "specs with different method contexts are OK"{
 		parseSpec(
 			'
 			import java.util.Stack
-		  	describe Stack{
+		  	describe Stack<E>{
 				context push(E){
 				}
 				context push{
@@ -88,7 +88,7 @@ describe SpecJavaValidator {
 			}  
 		')
 		val validationResult = validate(typeof(ExampleGroup))
-		validationResult.assertOK
+		validationResult.assertOKWithMessage
 	}
 
 	pending fact "specs without description and same types are not OK"{
@@ -149,7 +149,7 @@ describe SpecJavaValidator {
 			} 
 		')
 		val validationResult = validate(typeof(XBinaryOperation))
-		validationResult.assertOK
+		validationResult.assertOKWithMessage
 	}
 
 	fact "should can compare object with a class"{
@@ -160,7 +160,7 @@ describe SpecJavaValidator {
 			} 
 		')
 		val validationResult = validate(typeof(XBinaryOperation))
-		validationResult.assertOK
+		validationResult.assertOKWithMessage
 	}
 
 	fact "should can compare with matcher"{
@@ -172,21 +172,8 @@ describe SpecJavaValidator {
 			} 
 		')
 		val validationResult = validate(typeof(XBinaryOperation))
-		validationResult.assertOK
+		validationResult.assertOKWithMessage
 	}
-
-	fact "should can define two classes in a spec" {
-		parseSpec(
-			'
-      class A {}
-      class B {}
-      describe "A"{
-      }
-    ')
-		val validationResult = validate(typeof(SpecFile))
-		validationResult.assertOK
-	}
-
 
 	def validate(Class<? extends EObject> type) {
 		
@@ -195,4 +182,12 @@ describe SpecJavaValidator {
 		return RegisteredValidatorTester::validateObj(target)
 	}
 
+	def private void assertOKWithMessage(AssertableDiagnostics it) {
+		if (diagnostic.children.size() != 0) {
+			println("Diagnostics:")
+			diagnostic.children.forEach[println("- " + message)]
+			fail("There are expected to be no diagnostics.");
+		}
+	}
+	
 }

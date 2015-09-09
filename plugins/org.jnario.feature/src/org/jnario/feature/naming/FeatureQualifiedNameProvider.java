@@ -18,6 +18,7 @@ import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.util.IResourceScopeCache;
 import org.eclipse.xtext.xbase.scoping.XbaseQualifiedNameProvider;
 import org.jnario.JnarioFile;
+import org.jnario.feature.feature.Feature;
 import org.jnario.feature.feature.Scenario;
 import org.jnario.feature.feature.Step;
 import org.jnario.feature.feature.StepReference;
@@ -46,18 +47,24 @@ public class FeatureQualifiedNameProvider extends XbaseQualifiedNameProvider {
 			return getStepName((Step) obj);
 		}
 		if(obj instanceof Scenario){
-			String typeName = ((Scenario)obj).getName();
-			if (typeName == null)
-				return null;
-			String packageName = getPackageName(obj);
-			if (packageName != null) {
-				return getConverter().toQualifiedName(packageName).append(typeName);
-			}
-			return QualifiedName.create(typeName);
+			return qualifiedNameFromName(obj, ((Scenario)obj).getName());
+		}
+		if (obj instanceof Feature) {
+			return qualifiedNameFromName(obj, ((Feature)obj).getName());
 		}
 		else{
 			return super.getFullyQualifiedName(obj);
 		}
+	}
+
+	private QualifiedName qualifiedNameFromName(EObject obj, String typeName) {
+		if (typeName == null)
+			return null;
+		String packageName = getPackageName(obj);
+		if (packageName != null) {
+			return getConverter().toQualifiedName(packageName).append(typeName);
+		}
+		return QualifiedName.create(typeName);
 	}
 
 	public QualifiedName getStepName(final Step step) {

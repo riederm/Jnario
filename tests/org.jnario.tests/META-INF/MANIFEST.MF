@@ -37,7 +37,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.objectweb.asm;bundle-version="5.0.1",
  org.objectweb.asm.tree;bundle-version="5.0.1",
  org.objectweb.asm.analysis;bundle-version="5.0.1",
- org.apache.commons.lang
+ org.apache.commons.lang,
+ org.eclipse.jdt.junit
 Import-Package: org.apache.commons.logging,
  org.apache.log4j,
  org.junit.runner;version="4.5.0",
