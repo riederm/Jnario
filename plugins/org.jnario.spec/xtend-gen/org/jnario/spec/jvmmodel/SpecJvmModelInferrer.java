@@ -39,6 +39,7 @@ import org.eclipse.xtext.xbase.XbaseFactory;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
+import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociator;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -65,6 +66,7 @@ import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.spec.jvmmodel.ImplicitSubject;
 import org.jnario.spec.jvmmodel.SpecIgnoringXtendJvmModelInferrer;
+import org.jnario.spec.jvmmodel.SpecSyntheticNameClashResolver;
 import org.jnario.spec.naming.ExampleNameProvider;
 import org.jnario.spec.spec.After;
 import org.jnario.spec.spec.Before;
@@ -95,10 +97,17 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
   
   @Inject
   @Extension
+  private SpecSyntheticNameClashResolver _specSyntheticNameClashResolver;
+  
+  @Inject
+  @Extension
   private TypesFactory typesFactory;
   
   @Inject
   private SpecIgnoringXtendJvmModelInferrer xtendJvmModelInferrer;
+  
+  @Inject
+  private IJvmModelAssociator modelAssociator;
   
   private int exampleIndex = 0;
   
@@ -221,6 +230,7 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
     }
     this._implicitSubject.addImplicitSubject(inferredJvmType, ((ExampleGroup) source));
     this._extendedJvmTypesBuilder.copyDocumentationTo(source, inferredJvmType);
+    this._specSyntheticNameClashResolver.resolveNameClashes(inferredJvmType);
   }
   
   protected void _transform(final Example element, final JvmGenericType container) {
@@ -265,6 +275,7 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
     this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations_1, _doubleArrow);
     EList<JvmMember> _members = container.getMembers();
     this._extendedJvmTypesBuilder.<JvmOperation>operator_add(_members, method);
+    this.modelAssociator.associatePrimary(element, method);
   }
   
   protected void _transform(final Before element, final JvmGenericType container) {
@@ -335,6 +346,8 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
           String _methodName = SpecJvmModelInferrer.this._exampleNameProvider.toMethodName(element);
           it.setSimpleName(_methodName);
           it.setVisibility(JvmVisibility.PUBLIC);
+          boolean _isStatic = element.isStatic();
+          it.setStatic(_isStatic);
           JvmTypeReference _typeForName = SpecJvmModelInferrer.this._typeReferences.getTypeForName(Void.TYPE, element);
           it.setReturnType(_typeForName);
         }

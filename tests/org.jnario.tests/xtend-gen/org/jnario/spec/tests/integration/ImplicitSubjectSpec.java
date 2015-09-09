@@ -33,6 +33,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ImplicitSubjectSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public BehaviorExecutor _behaviorExecutor;
   

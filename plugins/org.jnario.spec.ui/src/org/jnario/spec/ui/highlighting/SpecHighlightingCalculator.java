@@ -13,6 +13,7 @@ import static org.eclipse.xtext.xbase.ui.highlighting.XbaseHighlightingConfigura
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
@@ -23,6 +24,7 @@ import org.jnario.JnarioField;
 import org.jnario.JnarioFunction;
 import org.jnario.JnarioMember;
 import org.jnario.JnarioPackage;
+import org.jnario.spec.services.SpecGrammarAccess;
 import org.jnario.spec.spec.Example;
 import org.jnario.spec.spec.ExampleGroup;
 import org.jnario.spec.spec.SpecFile;
@@ -31,6 +33,7 @@ import org.jnario.spec.spec.TestFunction;
 import org.jnario.ui.highlighting.JnarioHighlightingCalculator;
 
 import com.google.common.collect.Iterables;
+import com.google.inject.Inject;
 
 /**
  * @author Sebastian Benz - Initial contribution and API
@@ -38,6 +41,9 @@ import com.google.common.collect.Iterables;
 @SuppressWarnings("restriction")
 public class SpecHighlightingCalculator extends JnarioHighlightingCalculator {
 
+	@Inject
+	private SpecGrammarAccess specGrammarAccess;
+	
 	@Override
 	protected void doProvideHighlightingFor(XtextResource resource, IHighlightedPositionAcceptor acceptor) {
 		EObject root = resource.getContents().get(0);
@@ -109,6 +115,11 @@ public class SpecHighlightingCalculator extends JnarioHighlightingCalculator {
 	private void highlighColumnNode(IHighlightedPositionAcceptor acceptor,
 			INode node) {
 		highlightNode(node, EXTENSION_METHOD_INVOCATION, acceptor);
+	}
+
+	@Override
+	protected TerminalRule getRichStringTerminalRule() {
+		return specGrammarAccess.getSTRINGRule();
 	}
 	
 

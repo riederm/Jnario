@@ -48,10 +48,12 @@ public class SpecResolverSpec {
   public SpecResolver subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore m;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public SuiteClassNameProvider _suiteClassNameProvider;
   
@@ -96,7 +98,7 @@ public class SpecResolverSpec {
     
   }
   
-  public List<String> resolvedSpecs(final Suite suite) {
+  public List<String> resolvedSpecs(@Extension final Suite suite) {
     List<Specification> _resolveSpecs = this.subject.resolveSpecs(suite);
     final Function1<Specification, String> _function = new Function1<Specification, String>() {
       @Override

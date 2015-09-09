@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.unit.naming;
 
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.ExampleTable;
 import org.jnario.jnario.test.util.Query;
 import org.jnario.lib.Assert;
@@ -47,7 +48,7 @@ public class ExampleNameProviderToJavaClassNameExampleTableSpec extends ExampleN
     
   }
   
-  public String exampleTableClassName(final CharSequence s) {
+  public String exampleTableClassName(@Extension final CharSequence s) {
     String _xblockexpression = null;
     {
       Query _parse = this.parse(s);

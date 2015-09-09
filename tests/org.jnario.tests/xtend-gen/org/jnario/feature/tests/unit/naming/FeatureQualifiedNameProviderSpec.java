@@ -28,22 +28,23 @@ public class FeatureQualifiedNameProviderSpec {
   public FeatureQualifiedNameProvider subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
   @Inject
   IQualifiedNameConverter converter;
   
-  public String implementedStepName(final CharSequence s) {
-    String _plus = (s + "\'\r\n\t\tval x = \"\"\r\n\t\t");
+  public String implementedStepName(@Extension final CharSequence s) {
+    String _plus = (s + "\nval x = \"\"\n");
     return this.stepName(_plus);
   }
   
-  public String stepName(final CharSequence s) {
+  public String stepName(@Extension final CharSequence s) {
     return this.stepName(s, "myPackage");
   }
   
-  public String stepName(final CharSequence s, final String packageName) {
+  public String stepName(@Extension final CharSequence s, @Extension final String packageName) {
     String _xblockexpression = null;
     {
       String _xifexpression = null;
@@ -51,11 +52,11 @@ public class FeatureQualifiedNameProviderSpec {
       if (_notEquals) {
         _xifexpression = ("package " + packageName);
       } else {
-        String _plus = ("" + "Feature: MyFeature\r\nScenario: The Scenario\r\n");
-        String _plus_1 = (_plus + s);
-        _xifexpression = (_plus_1 + "\r\n\t\t\t");
+        _xifexpression = "";
       }
-      final String input = _xifexpression;
+      String _plus = (_xifexpression + "\nFeature: MyFeature\nScenario: The Scenario\n");
+      String _plus_1 = (_plus + s);
+      final String input = (_plus_1 + "\n\n");
       this._modelStore.parseScenario(input);
       Step _first = this._modelStore.<Step>first(Step.class);
       QualifiedName _fullyQualifiedName = this.subject.getFullyQualifiedName(_first);

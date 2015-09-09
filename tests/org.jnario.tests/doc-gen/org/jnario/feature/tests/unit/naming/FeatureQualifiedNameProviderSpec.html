@@ -116,7 +116,6 @@ import org.jnario.jnario.test.util.FeatureTestCreator
 import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.jnario.feature.feature.Step
-import static org.eclipse.xtext.xbase.lib.IterableExtensions.*
 
 @CreateWith(typeof(FeatureTestCreator))
 describe FeatureQualifiedNameProvider {
@@ -146,7 +145,7 @@ describe FeatureQualifiedNameProvider {
       | &quot;strips dot at end&quot;       | &quot;Given a step with implementation.&quot;  | &quot;myPackage.a step with implementation&quot;  |
       | &quot;strips argument values&quot;     | &quot;Given a step with \&quot;arg\&quot;.&quot;      | 'myPackage.a step with &quot;&quot;'        |
       | &quot;removes double spaces&quot;     | &quot;Given  two spaces&quot;          | &quot;myPackage.two spaces&quot;          |
-      | &quot;removes double tabs&quot;     | &quot;Given a    two tabs&quot;        | &quot;myPackage.a two tabs&quot;            |
+      | &quot;removes double tabs&quot;     | &quot;Given a    two tabs&quot;        | &quot;myPackage.a two tabs&quot;          |
       | &quot;removes space after tab&quot;    | &quot;Given a   space after tab&quot;      | &quot;myPackage.a space after tab&quot;        |
       | &quot;removes space at end&quot;    | &quot;Given space at end &quot;          | &quot;myPackage.space at end&quot;          |
     }
@@ -160,7 +159,8 @@ describe FeatureQualifiedNameProvider {
   }
   
   def implementedStepName(CharSequence s){
-    (s + ''''
+    (s + '''
+
     val x = &quot;&quot;
     ''').stepName
   }
@@ -170,11 +170,13 @@ describe FeatureQualifiedNameProvider {
   }
   
   def stepName(CharSequence s, String packageName){
-    val input = if (packageName != null) { &quot;package &quot; + packageName } else {&quot;&quot;}
+    val input = (if (packageName != null) { &quot;package &quot; + packageName } else {&quot;&quot;})
       + ''' 
+
       Feature: MyFeature
       Scenario: The Scenario
       ''' + s + '''
+
       '''
     parseScenario(input)
     converter.toString(subject.getFullyQualifiedName(first(typeof(Step))))

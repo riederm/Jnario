@@ -18,6 +18,7 @@ import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.IParser;
 import org.eclipse.xtext.util.StringInputStream;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.feature.feature.Given;
@@ -204,14 +205,14 @@ public class StepArgumentsProviderSpec {
     
   }
   
-  public Step create(final String step) {
+  public Step create(@Extension final String step) {
     Step _xblockexpression = null;
     {
       boolean _equals = Objects.equal(step, null);
       if (_equals) {
         return null;
       }
-      final String scenario = (("Feature: dummy\r\n\tScenario: dummy \r\n" + step) + "\'\r\n\t\t\t\t\t\r\n\t\t");
+      final String scenario = (("Feature: dummy\r\n\tScenario: dummy \r\n" + step) + "\'\r\n\t\t\t\t\t\r\n");
       IParser _parser = this.resource.getParser();
       String _string = scenario.toString();
       StringInputStream _stringInputStream = new StringInputStream(_string);

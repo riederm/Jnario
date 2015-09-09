@@ -32,10 +32,12 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SuiteScopeProviderSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ScopeTestExtension _scopeTestExtension;
   
   @Extension
+  @org.jnario.runner.Extension
   public SuitePackage _suitePackage = SuitePackage.eINSTANCE;
   
   @Before

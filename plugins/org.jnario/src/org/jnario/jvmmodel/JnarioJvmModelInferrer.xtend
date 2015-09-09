@@ -47,6 +47,10 @@ import org.jnario.JnarioTypeDeclaration
 import org.jnario.runner.Extends
 
 import static extension org.eclipse.xtext.nodemodel.util.NodeModelUtils.*
+import org.eclipse.xtext.common.types.JvmAnnotationReference
+import org.eclipse.xtext.common.types.JvmAnnotationType
+import java.lang.annotation.Annotation
+import org.eclipse.emf.common.notify.Notifier
 
 /**
  * TODO NO_XTEND - verify all methods. Remove unused.
@@ -186,9 +190,10 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
                     visibility = JvmVisibility::DEFAULT
                 }
 
-                if (source.extension && Extension.findDeclaredType(source) != null) {
+                if (source.extension) {
                     visibility = JvmVisibility::PUBLIC
-                    annotations += Extension.annotationRef
+                    annotations.addAnnotationIfFound(org.eclipse.xtext.xbase.lib.Extension, source)
+                    annotations.addAnnotationIfFound(org.jnario.runner.Extension, source)
                 }
                 translateAnnotations(source.annotations)
                 
@@ -202,6 +207,14 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
             ]
         }
     }
+ 
+    def addAnnotationIfFound(List<JvmAnnotationReference> annotations, Class<? extends Annotation> annotationType, Notifier context) {
+        val jvmType = annotationType.findDeclaredType(context)
+        if (jvmType instanceof JvmAnnotationType) {
+            annotations += annotationType.annotationRef
+        }
+    }
+    
  
 //    def protected dispatch void transform(JnarioField source, JvmGenericType container) {
 //        if ((source.isExtension() && source.getType() != null) || source.getName() != null) {
@@ -265,14 +278,11 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
             translateParameter(operation, parameter);
         }
         val expression = source.getExpression();
-//        val createExtensionInfo = source.createExtensionInfo
         
         var JvmTypeReference returnType = null;
         if (source.getReturnType() != null) {
             returnType = source.getReturnType.cloneWithProxies
-        } else /*if (createExtensionInfo != null) {
-            returnType = createExtensionInfo.createExpression.inferredType
-        } else */if (expression != null) {
+        } else if (expression != null) {
             returnType = expression.inferredType
         } else {
             returnType = inferredType
@@ -290,11 +300,7 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
 //                && typeReferences.findDeclaredType(Override.class, source) != null) {
 //            operation.getAnnotations().add(_annotationTypesBuilder.annotationRef(Override));
 //        }
-        /*if (createExtensionInfo != null) {
-            transformCreateExtension(source, createExtensionInfo, container, operation, returnType);
-        } else */{
-            setBody(operation, expression);
-        }
+        setBody(operation, expression);
         source.copyDocumentationTo(operation);
     }
     
@@ -310,9 +316,10 @@ abstract class JnarioJvmModelInferrer  extends AbstractModelInferrer {
         }
         modelAssociator.associate(parameter, jvmParam)
         jvmParam.translateAnnotations(parameter.annotations)
-        if (parameter.isExtension() && Extension.findDeclaredType(parameter) != null) {
-            jvmParam.annotations += Extension.annotationRef
-        }
+
+        jvmParam.annotations.addAnnotationIfFound(org.eclipse.xtext.xbase.lib.Extension, parameter)
+//        jvmParam.annotations.addAnnotationIfFound(org.jnario.runner.Extension, parameter)
+
         executable.parameters += jvmParam
     }
 

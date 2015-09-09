@@ -35,6 +35,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ReferencingOtherStepsSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore m;
   

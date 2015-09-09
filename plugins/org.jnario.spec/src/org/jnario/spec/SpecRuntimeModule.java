@@ -19,6 +19,7 @@ import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.generator.IFilePostProcessor;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
+import org.eclipse.xtext.linking.ILinkingDiagnosticMessageProvider;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parser.IParser;
@@ -59,6 +60,8 @@ import org.jnario.jvmmodel.ExecutableProvider;
 import org.jnario.jvmmodel.ExtendedJvmTypesBuilder;
 import org.jnario.jvmmodel.JnarioNameProvider;
 import org.jnario.jvmmodel.JnarioSignatureHashBuilder;
+import org.jnario.jvmmodel.JnarioSyntheticNameClashResolver;
+import org.jnario.linking.JnarioLinkingDiagnosticMessageProvider;
 import org.jnario.linking.JnarioLinkingService;
 import org.jnario.report.Executable2ResultMapping;
 import org.jnario.report.HashBasedSpec2ResultMapping;
@@ -68,6 +71,7 @@ import org.jnario.spec.conversion.SpecValueConverterService;
 import org.jnario.spec.doc.SpecDocGenerator;
 import org.jnario.spec.jvmmodel.SpecExecutableProvider;
 import org.jnario.spec.jvmmodel.SpecJvmModelInferrer;
+import org.jnario.spec.jvmmodel.SpecSyntheticNameClashResolver;
 import org.jnario.spec.naming.ExampleNameProvider;
 import org.jnario.spec.naming.SpecQualifiedNameProvider;
 import org.jnario.spec.scoping.SpecBatchScopeProvider;
@@ -90,7 +94,7 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 //		binder.bind(FlexerFactory.class).in(Scopes.SINGLETON);
 		binder.bind(AbstractDocGenerator.class).to(SpecDocGenerator.class);
 		binder.bind(SignatureHashBuilder.class).to(JnarioSignatureHashBuilder.class);
-//		binder.bind(SyntheticNameClashResolver.class).to(SpecSyntheticNameClashResolver.class);
+		binder.bind(JnarioSyntheticNameClashResolver.class).to(SpecSyntheticNameClashResolver.class);
 		binder.bind(JnarioNameProvider.class).to(ExampleNameProvider.class);
 		binder.bind(ExecutableProvider.class).to(SpecExecutableProvider.class);
 		binder.bind(Executable2ResultMapping.class).to(HashBasedSpec2ResultMapping.class);
@@ -177,11 +181,11 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 //	public Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
 //		return XtendLocationInFileProvider.class;
 //	}
-//
-//	@Override
-//	public Class<? extends ILinkingDiagnosticMessageProvider> bindILinkingDiagnosticMessageProvider() {
-//		return XtendLinkingDiagnosticMessageProvider.class;
-//	}
+
+	@Override
+	public Class<? extends ILinkingDiagnosticMessageProvider> bindILinkingDiagnosticMessageProvider() {
+		return JnarioLinkingDiagnosticMessageProvider.class;
+	}
 	
 //	public Class<? extends IImportsConfiguration> bindIImportsConfiguration() {
 //		return XtendImportsConfiguration.class;

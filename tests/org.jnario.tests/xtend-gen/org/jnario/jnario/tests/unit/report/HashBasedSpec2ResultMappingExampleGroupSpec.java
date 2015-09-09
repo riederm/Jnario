@@ -1,6 +1,7 @@
 package org.jnario.jnario.tests.unit.report;
 
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.hamcrest.CoreMatchers;
@@ -188,17 +189,17 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
     
   }
   
-  public void exampleExecutedIn(final String name, final double time) {
+  public void exampleExecutedIn(@Extension final String name, @Extension final double time) {
     Passed _passingSpec = Passed.passingSpec(HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME, name, time);
     this.subject.accept(_passingSpec);
   }
   
-  public void fails(final String name) {
+  public void fails(@Extension final String name) {
     Failed _failingSpec = Failed.failingSpec(HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME, name, HashBasedSpec2ResultMappingSpec.anyExecutionTime, this.anyFailure);
     this.subject.accept(_failingSpec);
   }
   
-  public void passes(final String... names) {
+  public void passes(@Extension final String... names) {
     final Procedure1<String> _function = new Procedure1<String>() {
       @Override
       public void apply(final String it) {

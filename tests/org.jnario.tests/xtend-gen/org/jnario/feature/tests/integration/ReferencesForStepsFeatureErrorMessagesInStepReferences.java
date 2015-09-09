@@ -28,8 +28,8 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ReferencesForStepsFeatureErrorMessagesInStepReferences extends ReferencesForStepsFeature {
   @Extension
-  @Inject
   @org.jnario.runner.Extension
+  @Inject
   public BehaviorExecutor behaviorExecutor;
   
   CharSequence jnarioFile;

@@ -60,7 +60,7 @@ public class StepNameProviderRemoveArgumentsSpec extends StepNameProviderSpec {
       public void apply(final StepNameProviderRemoveArgumentsSpecExamples it) {
         String _step = it.getStep();
         String _plus = ("Scenario: scenario\r\n" + _step);
-        String _plus_1 = (_plus + "\r\n\t\t\t\t");
+        String _plus_1 = (_plus + "\r\n");
         StepNameProviderRemoveArgumentsSpec.this.parseScenario(_plus_1);
         String _step_1 = it.getStep();
         String _removeArguments = StepNameProviderRemoveArgumentsSpec.this.subject.removeArguments(_step_1);

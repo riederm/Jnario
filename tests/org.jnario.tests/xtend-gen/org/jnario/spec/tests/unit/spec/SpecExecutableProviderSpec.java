@@ -31,6 +31,7 @@ public class SpecExecutableProviderSpec {
   public SpecExecutableProvider subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
@@ -97,7 +98,7 @@ public class SpecExecutableProviderSpec {
     
   }
   
-  public List<Executable> executables(final Executable spec) {
+  public List<Executable> executables(@Extension final Executable spec) {
     return this.subject.getExecutables(spec);
   }
 }

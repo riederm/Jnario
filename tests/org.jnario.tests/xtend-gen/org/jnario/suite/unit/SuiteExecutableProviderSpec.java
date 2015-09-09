@@ -34,6 +34,7 @@ public class SuiteExecutableProviderSpec {
   public SuiteExecutableProvider subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore m;
   

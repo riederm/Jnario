@@ -30,10 +30,11 @@ public class StepContextProviderSpec {
   public StepContextProvider subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore m;
   
-  public Set<JnarioField> fields(final String... names) {
+  public Set<JnarioField> fields(@Extension final String... names) {
     Set<JnarioField> _xblockexpression = null;
     {
       final Set<String> expected = IterableExtensions.<String>toSet(((Iterable<String>)Conversions.doWrapArray(names)));
@@ -51,7 +52,7 @@ public class StepContextProviderSpec {
     return _xblockexpression;
   }
   
-  public Set<JnarioField> usedFields(final CharSequence content) {
+  public Set<JnarioField> usedFields(@Extension final CharSequence content) {
     Set<JnarioField> _xblockexpression = null;
     {
       this.m.parseScenario(content);

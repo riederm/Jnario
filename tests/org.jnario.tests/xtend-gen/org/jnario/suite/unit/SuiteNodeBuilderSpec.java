@@ -33,19 +33,20 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SuiteNodeBuilderSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore m;
   
-  public Resource parseSuite(final CharSequence s) {
+  public Resource parseSuite(@Extension final CharSequence s) {
     Resource _xblockexpression = null;
     {
-      final String input = (("package test\r\n\r\n" + s) + "\r\n\t\t");
+      final String input = (("package test\r\n\r\n" + s) + "\r\n");
       _xblockexpression = this.m.parseSuite(input);
     }
     return _xblockexpression;
   }
   
-  public List<Suite> suites(final String... names) {
+  public List<Suite> suites(@Extension final String... names) {
     final Function1<String, Suite> _function = new Function1<String, Suite>() {
       @Override
       public Suite apply(final String it) {
@@ -55,7 +56,7 @@ public class SuiteNodeBuilderSpec {
     return ListExtensions.<String, Suite>map(((List<String>)Conversions.doWrapArray(names)), _function);
   }
   
-  public Suite suite(final String name) {
+  public Suite suite(@Extension final String name) {
     Suite _xblockexpression = null;
     {
       final Suite suite = SuiteFactory.eINSTANCE.createSuite();

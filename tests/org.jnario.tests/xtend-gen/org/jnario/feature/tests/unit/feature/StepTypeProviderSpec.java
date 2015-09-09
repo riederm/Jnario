@@ -17,8 +17,8 @@ import org.jnario.feature.feature.ThenReference;
 import org.jnario.feature.feature.When;
 import org.jnario.feature.feature.WhenReference;
 import org.jnario.feature.jvmmodel.StepTypeProvider;
+import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.jnario.test.util.ModelStore;
-import org.jnario.jnario.test.util.SpecTestCreator;
 import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.CreateWith;
@@ -28,21 +28,25 @@ import org.jnario.runner.Order;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@CreateWith(SpecTestCreator.class)
+@CreateWith(FeatureTestCreator.class)
 @Named("StepTypeProvider")
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class StepTypeProviderSpec {
   @Extension
+  @org.jnario.runner.Extension
   public FeatureFactory factory = FeatureFactory.eINSTANCE;
   
   @Extension
+  @org.jnario.runner.Extension
   public StepTypeProvider _stepTypeProvider = new StepTypeProvider();
   
   @Extension
+  @org.jnario.runner.Extension
   public FeaturePackage pack = FeaturePackage.eINSTANCE;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
@@ -154,7 +158,7 @@ public class StepTypeProviderSpec {
     
   }
   
-  public EClass actualType(final CharSequence s) {
+  public EClass actualType(@Extension final CharSequence s) {
     EClass _xblockexpression = null;
     {
       this._modelStore.parseScenario(s);
@@ -166,7 +170,7 @@ public class StepTypeProviderSpec {
     return _xblockexpression;
   }
   
-  public Set<EClass> expectedTypes(final CharSequence s) {
+  public Set<EClass> expectedTypes(@Extension final CharSequence s) {
     Set<EClass> _xblockexpression = null;
     {
       this._modelStore.parseScenario(s);

@@ -27,6 +27,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class UsingJUnitRulesInSpecsSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public BehaviorExecutor _behaviorExecutor;
   

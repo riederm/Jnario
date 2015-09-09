@@ -31,6 +31,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ExampleGroupSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public BehaviorExecutor _behaviorExecutor;
   

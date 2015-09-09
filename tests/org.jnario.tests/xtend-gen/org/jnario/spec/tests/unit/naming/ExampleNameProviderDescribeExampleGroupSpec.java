@@ -7,6 +7,7 @@
  */
 package org.jnario.spec.tests.unit.naming;
 
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.Query;
 import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
@@ -116,13 +117,13 @@ public class ExampleNameProviderDescribeExampleGroupSpec extends ExampleNameProv
     
   }
   
-  public String describeFirst(final String content) {
+  public String describeFirst(@Extension final String content) {
     Query _parse = this.parse((content + "{}"));
     ExampleGroup _first = _parse.<ExampleGroup>first(ExampleGroup.class);
     return this.subject.describe(_first);
   }
   
-  public String describeSecond(final String content) {
+  public String describeSecond(@Extension final String content) {
     Query _parse = this.parse(content);
     ExampleGroup _second = _parse.<ExampleGroup>second(ExampleGroup.class);
     return this.subject.describe(_second);

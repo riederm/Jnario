@@ -9,6 +9,7 @@ import org.eclipse.jdt.internal.junit.model.TestRunSession;
 import org.eclipse.jdt.internal.junit.model.TestSuiteElement;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -322,12 +323,12 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
     Each.<AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases>forEach(this.cases, _function);
   }
   
-  public TestSuiteElement root(final Function1<? super TestSuiteElement, ? extends TestElement>... elementConstructors) {
+  public TestSuiteElement root(@Extension final Function1<? super TestSuiteElement, ? extends TestElement>... elementConstructors) {
     Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(elementConstructors);
     return _suite.apply(this.root);
   }
   
-  public Function1<TestSuiteElement, TestSuiteElement> suite(final Function1<? super TestSuiteElement, ? extends TestElement>... elementConstructors) {
+  public Function1<TestSuiteElement, TestSuiteElement> suite(@Extension final Function1<? super TestSuiteElement, ? extends TestElement>... elementConstructors) {
     final Function1<TestSuiteElement, TestSuiteElement> _function = new Function1<TestSuiteElement, TestSuiteElement>() {
       @Override
       public TestSuiteElement apply(final TestSuiteElement parent) {
@@ -396,7 +397,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
     return _function;
   }
   
-  public String label(final TestSuiteElement suite) {
+  public String label(@Extension final TestSuiteElement suite) {
     return this.handler.getSimpleLabel(this.part, suite);
   }
   

@@ -9,6 +9,7 @@ package org.jnario.feature.tests.unit.naming;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.JnarioMember;
 import org.jnario.feature.feature.Background;
 import org.jnario.feature.feature.Feature;
@@ -36,11 +37,11 @@ public class FeatureClassNameProviderSpec {
   
   static FeatureFactory factory = FeatureFactory.eINSTANCE;
   
-  public String className(final EObject obj) {
+  public String className(@Extension final EObject obj) {
     return this.subject.toJavaClassName(obj);
   }
   
-  public Background background(final String backgroundName, final String featureName) {
+  public Background background(@Extension final String backgroundName, @Extension final String featureName) {
     final Background result = FeatureClassNameProviderSpec.factory.createBackground();
     result.setName(("Background: " + backgroundName));
     final Feature feature = Features.feature(featureName);

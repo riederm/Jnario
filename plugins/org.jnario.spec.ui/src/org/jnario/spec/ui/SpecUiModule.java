@@ -36,6 +36,7 @@ import org.eclipse.xtext.ui.editor.findrefs.IReferenceFinder;
 import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
 import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.ui.resource.IResourceUIServiceProvider;
 import org.eclipse.xtext.validation.IssueSeveritiesProvider;
@@ -50,16 +51,17 @@ import org.eclipse.xtext.xbase.ui.file.EclipseWorkspaceConfigProvider;
 import org.eclipse.xtext.xbase.ui.jvmmodel.navigation.DerivedMemberAwareEditorOpener;
 import org.eclipse.xtext.xbase.ui.launching.JavaElementDelegate;
 import org.eclipse.xtext.xbase.ui.validation.XbaseIssueSeveritiesProvider;
-import org.jnario.ide.JnarioResourceUiServiceProvider;
 import org.jnario.spec.ui.editor.SpecFoldingRegionProvider;
 import org.jnario.spec.ui.generator.SpecGenerator;
 import org.jnario.spec.ui.highlighting.SpecHighlightingCalculator;
 import org.jnario.spec.ui.labeling.SpecLabelProvider;
 import org.jnario.spec.ui.launching.SpecJavaElementDelegate;
 import org.jnario.spec.ui.validator.SpecUIValidator;
+import org.jnario.ui.JnarioResourceUiServiceProvider;
 import org.jnario.ui.builder.JnarioBuilderParticipant;
 import org.jnario.ui.doc.JnarioHoverProvider;
 import org.jnario.ui.editor.XtendCopyQualifiedNameService;
+import org.jnario.ui.highlighting.JnarioHighlightingConfiguration;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -121,10 +123,10 @@ public class SpecUiModule extends org.jnario.spec.ui.AbstractSpecUiModule {
 //		return XtendAnnotationHover.class;
 //	}
 //	
-//	@Override
-//	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
-//		return XtendHighlightingConfiguration.class;
-//	}
+	@Override
+	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
+		return JnarioHighlightingConfiguration.class;
+	}
 //	
 //	@Override
 //	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {

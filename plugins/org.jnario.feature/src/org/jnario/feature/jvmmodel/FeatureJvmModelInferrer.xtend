@@ -222,17 +222,18 @@ class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
 		expr.updateReferences(originalType, inferredJvmType)
 	}
 
-    override protected void _transform(JnarioField source, JvmGenericType container) {
-        super._transform(source, container)
-        if (source.isExtension()){
-            val field = source.jvmElements.head as JvmField
-            if(field == null){
-                return
-            }
-            field.setVisibility(JvmVisibility::PUBLIC)
-            field.annotations += Extension.annotationRef
-        }
-    }
+// Seams unnecessary to me
+//    override protected void _transform(JnarioField source, JvmGenericType container) {
+//        super._transform(source, container)
+//        if (source.isExtension()){
+//            val field = source.jvmElements.head as JvmField
+//            if(field == null){
+//                return
+//            }
+//            field.setVisibility(JvmVisibility::PUBLIC)
+//            field.annotations += Extension.annotationRef
+//        }
+//    }
 
 //	
 // TODO NO_XTEND   	

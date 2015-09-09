@@ -27,8 +27,8 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ReferencesForStepsFeatureBackgroundStepsReferencingOtherSteps extends ReferencesForStepsFeature {
   @Extension
-  @Inject
   @org.jnario.runner.Extension
+  @Inject
   public BehaviorExecutor behaviorExecutor;
   
   CharSequence jnarioFile;

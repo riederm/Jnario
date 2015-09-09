@@ -24,6 +24,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class StaticImportsSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public BehaviorExecutor _behaviorExecutor;
   

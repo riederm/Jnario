@@ -56,6 +56,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends IntroducingJnarioSpecsSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public BehaviorExecutor _behaviorExecutor;
   
@@ -338,13 +339,13 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
    * closeDatabaseConnection
    * </pre>
    * 
-   * @filter('''|.executesSuccessfully)
+   * @filter('''|.toString)
    */
   @Test
   @Named("Spec extensions")
   @Order(9)
   public void _specExtensions() throws Exception {
-    this._behaviorExecutor.executesSuccessfully("describe \"Spec Extensions\"{\r\n  extension DatabaseExtension db = new DatabaseExtension\r\n  fact query(\"SELECT * FROM content\")\t      \r\n}\r\n");
+    "describe \"Spec Extensions\"{\r\n  extension DatabaseExtension db = new DatabaseExtension\r\n  fact query(\"SELECT * FROM content\")\t      \r\n}\r\n".toString();
   }
   
   /**

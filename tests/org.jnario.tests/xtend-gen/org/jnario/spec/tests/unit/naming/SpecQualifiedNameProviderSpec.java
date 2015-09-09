@@ -34,6 +34,7 @@ public class SpecQualifiedNameProviderSpec {
   public SpecQualifiedNameProvider subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   

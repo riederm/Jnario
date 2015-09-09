@@ -8,6 +8,7 @@
 package org.jnario.spec.tests.integration;
 
 import com.google.common.base.Objects;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.jnario.test.util.Helpers;
 import org.jnario.lib.Assert;
@@ -185,7 +186,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
    * errorMessage[assert {val x = "hello"; x} == ""].is('''''')
    * }
    */
-  public String greet(final String name) {
+  public String greet(@Extension final String name) {
     return ("Hello " + name);
   }
 }

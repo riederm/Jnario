@@ -1,6 +1,10 @@
 package org.jnario.spec.tests.unit.conversion;
 
+import javax.inject.Inject;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.conversion.RichStringValueConverter;
+import org.jnario.jnario.test.util.FeatureTestCreator;
+import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
@@ -8,10 +12,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+@CreateWith(FeatureTestCreator.class)
 @Named("RichStringValueConverter unit test")
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
 public class RichStringValueConverterUnitTestSpec {
+  @Inject
+  RichStringValueConverter richStringValueConverter;
+  
   @Test
   @Named("toValueRemovesRichStringSignes")
   @Order(1)
@@ -22,8 +30,35 @@ public class RichStringValueConverterUnitTestSpec {
   }
   
   @Test
-  @Named("toValueRemovesLineWithOnlyLineBreak")
+  @Named("toValueRemovesRichStringSignesBrokenEnd1")
   @Order(2)
+  public void _toValueRemovesRichStringSignesBrokenEnd1() throws Exception {
+    this.assertConverted(
+      "\'\'\'Test\'\'", 
+      "Test");
+  }
+  
+  @Test
+  @Named("toValueRemovesRichStringSignesBrokenEnd2")
+  @Order(3)
+  public void _toValueRemovesRichStringSignesBrokenEnd2() throws Exception {
+    this.assertConverted(
+      "\'\'\'Test\'", 
+      "Test");
+  }
+  
+  @Test
+  @Named("toValueRemovesRichStringSignesBrokenEnd3")
+  @Order(4)
+  public void _toValueRemovesRichStringSignesBrokenEnd3() throws Exception {
+    this.assertConverted(
+      "\'\'\'Test", 
+      "Test");
+  }
+  
+  @Test
+  @Named("toValueRemovesLineWithOnlyLineBreak")
+  @Order(5)
   public void _toValueRemovesLineWithOnlyLineBreak() throws Exception {
     this.assertConverted(
       ("\'\'\'\n" + 
@@ -37,7 +72,7 @@ public class RichStringValueConverterUnitTestSpec {
   
   @Test
   @Named("toValueRemovesIntendationToFirstCharacter")
-  @Order(3)
+  @Order(6)
   public void _toValueRemovesIntendationToFirstCharacter() throws Exception {
     this.assertConverted(
       ("\'\'\'\n" + 
@@ -51,7 +86,7 @@ public class RichStringValueConverterUnitTestSpec {
   
   @Test
   @Named("toValueCountsTabsAsOneSpaceWhenMixed")
-  @Order(4)
+  @Order(7)
   public void _toValueCountsTabsAsOneSpaceWhenMixed() throws Exception {
     this.assertConverted(
       (("\'\'\'\n" + 
@@ -69,7 +104,7 @@ public class RichStringValueConverterUnitTestSpec {
   
   @Test
   @Named("toValueRemovesIntendationToFirstCharacterMultiline")
-  @Order(5)
+  @Order(8)
   public void _toValueRemovesIntendationToFirstCharacterMultiline() throws Exception {
     this.assertConverted(
       (("\'\'\'\n" + 
@@ -87,7 +122,7 @@ public class RichStringValueConverterUnitTestSpec {
   
   @Test
   @Named("toValueRemovesIntendationToFirstCharacterMultiline2")
-  @Order(6)
+  @Order(9)
   public void _toValueRemovesIntendationToFirstCharacterMultiline2() throws Exception {
     this.assertConverted(
       ((("\'\'\'\n" + 
@@ -109,7 +144,7 @@ public class RichStringValueConverterUnitTestSpec {
   
   @Test
   @Named("toValueKeepsWhitespacesAfterLastCharacterWhenItKeepsIntendation")
-  @Order(7)
+  @Order(10)
   public void _toValueKeepsWhitespacesAfterLastCharacterWhenItKeepsIntendation() throws Exception {
     this.assertConverted(
       "\'\'\'Test   \'\'\'", 
@@ -118,7 +153,7 @@ public class RichStringValueConverterUnitTestSpec {
   
   @Test
   @Named("toValueIgnoresWhitespacesAfterLastCharacter")
-  @Order(8)
+  @Order(11)
   public void _toValueIgnoresWhitespacesAfterLastCharacter() throws Exception {
     this.assertConverted(
       (("\'\'\'\n" + 
@@ -136,7 +171,7 @@ public class RichStringValueConverterUnitTestSpec {
   
   @Test
   @Named("toValueIgnoresEmptyLinesBetweenCharacters")
-  @Order(9)
+  @Order(12)
   public void _toValueIgnoresEmptyLinesBetweenCharacters() throws Exception {
     this.assertConverted(
       ((("\'\'\'\n" + 
@@ -158,7 +193,7 @@ public class RichStringValueConverterUnitTestSpec {
   
   @Test
   @Named("toValueKeepsEmptyLinesBetweenCharactersWhenItKeepsIntendation")
-  @Order(10)
+  @Order(13)
   public void _toValueKeepsEmptyLinesBetweenCharactersWhenItKeepsIntendation() throws Exception {
     this.assertConverted(
       (("\'\'\'Line1\n" + 
@@ -178,7 +213,7 @@ public class RichStringValueConverterUnitTestSpec {
   
   @Test
   @Named("toValueKeepsLinesWithOnlyWhitespaces")
-  @Order(11)
+  @Order(14)
   public void _toValueKeepsLinesWithOnlyWhitespaces() throws Exception {
     this.assertConverted(
       (("\'\'\'\n" + 
@@ -195,9 +230,9 @@ public class RichStringValueConverterUnitTestSpec {
   }
   
   @Test
-  @Named("void toValueIgnoresEmptyLinesAtTheEndWhenItKeepsIntendation")
-  @Order(12)
-  public void _voidToValueIgnoresEmptyLinesAtTheEndWhenItKeepsIntendation() throws Exception {
+  @Named("toValueIgnoresEmptyLinesAtTheEndWhenItKeepsIntendation")
+  @Order(15)
+  public void _toValueIgnoresEmptyLinesAtTheEndWhenItKeepsIntendation() throws Exception {
     this.assertConverted(
       ("\'\'\'Test\n" + 
         "   \'\'\'"), 
@@ -209,8 +244,63 @@ public class RichStringValueConverterUnitTestSpec {
   }
   
   @Test
+  @Named("toValueIgnoresEmptyLinesAtTheEndWhenItKeepsIntendationMultiline")
+  @Order(16)
+  public void _toValueIgnoresEmptyLinesAtTheEndWhenItKeepsIntendationMultiline() throws Exception {
+    this.assertConverted(
+      ((("\'\'\'Test\n" + 
+        "  Test1\n") + 
+        " Test3\n") + 
+        "  \t  \'\'\'"), 
+      (("Test\n" + 
+        "  Test1\n") + 
+        " Test3\n"));
+    this.assertConverted(
+      ((("\'\'\'Test\r\n" + 
+        "  Test1\r\n") + 
+        " Test3\r\n") + 
+        "  \t  \'\'\'"), 
+      (("Test\r\n" + 
+        "  Test1\r\n") + 
+        " Test3\r\n"));
+  }
+  
+  @Test
+  @Named("toValueNotIgnoresSpacesIfNotInIndentation")
+  @Order(17)
+  public void _toValueNotIgnoresSpacesIfNotInIndentation() throws Exception {
+    this.assertConverted(
+      ((("\'\'\'Test\n" + 
+        "  Test1\n") + 
+        " Test3\n") + 
+        "  \t x \'\'\'"), 
+      ((("Test\n" + 
+        "  Test1\n") + 
+        " Test3\n") + 
+        "  \t x "));
+    this.assertConverted(
+      ((("\'\'\'Test\r\n" + 
+        "  Test1\r\n") + 
+        " Test3\r\n") + 
+        "  \t x \'\'\'"), 
+      ((("Test\r\n" + 
+        "  Test1\r\n") + 
+        " Test3\r\n") + 
+        "  \t x "));
+  }
+  
+  @Test
+  @Named("toValueNotRemovesSpacesIfSingleLine")
+  @Order(18)
+  public void _toValueNotRemovesSpacesIfSingleLine() throws Exception {
+    this.assertConverted(
+      "\'\'\'Test  \'\'\'", 
+      "Test  ");
+  }
+  
+  @Test
   @Named("toValueIgnoresEmptyLinesAtTheEnd")
-  @Order(13)
+  @Order(19)
   public void _toValueIgnoresEmptyLinesAtTheEnd() throws Exception {
     this.assertConverted(
       (("\'\'\'\n" + 
@@ -221,7 +311,7 @@ public class RichStringValueConverterUnitTestSpec {
   
   @Test
   @Named("mixNewLineStyles")
-  @Order(14)
+  @Order(20)
   public void _mixNewLineStyles() throws Exception {
     this.assertConverted(
       (((("\'\'\'\r" + 
@@ -234,9 +324,8 @@ public class RichStringValueConverterUnitTestSpec {
         "Line3\r"));
   }
   
-  public void assertConverted(final String stringToConvert, final String expected) {
-    RichStringValueConverter _richStringValueConverter = new RichStringValueConverter();
-    final String actual = _richStringValueConverter.toValue(stringToConvert, null);
+  public void assertConverted(@Extension final String stringToConvert, @Extension final String expected) {
+    final String actual = this.richStringValueConverter.toValue(stringToConvert, null);
     Assert.assertEquals(expected, actual);
   }
 }
