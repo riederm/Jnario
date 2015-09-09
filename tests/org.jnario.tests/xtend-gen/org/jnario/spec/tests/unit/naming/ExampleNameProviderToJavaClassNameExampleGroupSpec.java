@@ -9,6 +9,7 @@ package org.jnario.spec.tests.unit.naming;
 
 import java.util.ArrayList;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.hamcrest.Matcher;
@@ -180,14 +181,14 @@ public class ExampleNameProviderToJavaClassNameExampleGroupSpec extends ExampleN
     
   }
   
-  public String firstJavaClassName(final CharSequence content) {
+  public String firstJavaClassName(@Extension final CharSequence content) {
     String _plus = (content + "{}");
     Query _parse = this.parse(_plus);
     ExampleGroup _first = _parse.<ExampleGroup>first(ExampleGroup.class);
     return this.subject.toJavaClassName(_first);
   }
   
-  public String secondJavaClassName(final CharSequence content) {
+  public String secondJavaClassName(@Extension final CharSequence content) {
     String _plus = (content + "{}");
     Query _parse = this.parse(_plus);
     ExampleGroup _second = _parse.<ExampleGroup>second(ExampleGroup.class);

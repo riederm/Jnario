@@ -18,6 +18,7 @@ import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.IParser;
 import org.eclipse.xtext.util.StringInputStream;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.feature.feature.Given;
@@ -204,7 +205,7 @@ public class StepArgumentsProviderSpec {
     
   }
   
-  public Step create(final String step) {
+  public Step create(@Extension final String step) {
     Step _xblockexpression = null;
     {
       boolean _equals = Objects.equal(step, null);

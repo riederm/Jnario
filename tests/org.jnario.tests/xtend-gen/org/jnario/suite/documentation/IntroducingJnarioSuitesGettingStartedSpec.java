@@ -43,6 +43,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnarioSuitesSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   

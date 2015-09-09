@@ -27,6 +27,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class AnnotationsSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public BehaviorExecutor _behaviorExecutor;
   

@@ -26,10 +26,12 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class LinkerValidationSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ParseHelper<EObject> parseHelper;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ValidationTestHelper validationTestHelper;
   
@@ -100,7 +102,7 @@ public class LinkerValidationSpec {
     this.assertNoIssues(_validate);
   }
   
-  public boolean assertNoIssues(final List<Issue> issues) {
+  public boolean assertNoIssues(@Extension final List<Issue> issues) {
     int _size = issues.size();
     Assert.assertTrue("\nExpected issues.size => 0 but"
      + "\n     issues.size is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(_size)).toString()
@@ -109,7 +111,7 @@ public class LinkerValidationSpec {
     return Should.<Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(0));
   }
   
-  public void assertIssues(final List<Issue> issues, final String... parts) {
+  public void assertIssues(@Extension final List<Issue> issues, @Extension final String... parts) {
     final StringBuilder sb = new StringBuilder();
     final Function1<Issue, Boolean> _function = new Function1<Issue, Boolean>() {
       @Override

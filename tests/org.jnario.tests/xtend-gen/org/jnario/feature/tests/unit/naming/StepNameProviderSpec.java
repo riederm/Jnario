@@ -44,14 +44,15 @@ public class StepNameProviderSpec {
   public StepNameProvider subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore modelStore;
   
-  public String desc(final Feature feature) {
+  public String desc(@Extension final Feature feature) {
     return this.subject.describe(feature);
   }
   
-  public String desc(final Scenario scen) {
+  public String desc(@Extension final Scenario scen) {
     return this.subject.describe(scen);
   }
   
@@ -78,7 +79,7 @@ public class StepNameProviderSpec {
     return FeatureFactory.eINSTANCE.createGivenReference();
   }
   
-  public Resource parseScenario(final CharSequence s) {
+  public Resource parseScenario(@Extension final CharSequence s) {
     Resource _xblockexpression = null;
     {
       final String input = (("Feature: example\r\n" + s) + "\r\n");

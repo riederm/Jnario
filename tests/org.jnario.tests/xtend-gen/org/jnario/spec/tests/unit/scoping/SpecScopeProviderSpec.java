@@ -31,6 +31,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SpecScopeProviderSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ScopeTestExtension _scopeTestExtension;
   

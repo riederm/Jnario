@@ -59,6 +59,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SpecExtensionsSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public BehaviorExecutor _behaviorExecutor;
   
@@ -69,7 +70,7 @@ public class SpecExtensionsSpec {
     this.prints("import org.jnario.spec.tests.integration.ExtensionExample\r\n\r\ndescribe \"Extension\"{\r\n\textension static ExtensionExample = new ExtensionExample()\r\n\r\n\tcontext \"Nested Spec\"{\r\n\t\tfact println(\"test 3\")\r\n\t}\r\n\tfact println(\"test 1\")\r\n\tfact println(\"test 2\")\r\n\t\r\n}\r\n", "before Class\r\nbefore\r\ntest 3\r\nafter\r\nbefore\r\ntest 1\r\nafter\r\nbefore\r\ntest 2\r\nafter\r\nafter Class\r\n");
   }
   
-  public void prints(final CharSequence spec, final String expected) {
+  public void prints(@Extension final CharSequence spec, @Extension final String expected) {
     final ConsoleRecorder recording = ConsoleRecorder.start();
     this._behaviorExecutor.executesSuccessfully(spec);
     final String actual = recording.stop();

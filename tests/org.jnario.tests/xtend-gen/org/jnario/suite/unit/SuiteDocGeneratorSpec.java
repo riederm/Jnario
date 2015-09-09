@@ -38,6 +38,7 @@ public class SuiteDocGeneratorSpec {
   public SuiteDocGenerator subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
@@ -58,7 +59,7 @@ public class SuiteDocGeneratorSpec {
     Assert.assertEquals(expected, actual);
   }
   
-  public String generateDoc(final CharSequence input) {
+  public String generateDoc(@Extension final CharSequence input) {
     String _xblockexpression = null;
     {
       final Resource resource = this._modelStore.parseSuite(input);

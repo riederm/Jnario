@@ -11,6 +11,7 @@ import com.google.common.base.Objects;
 import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Stack;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
@@ -347,7 +348,7 @@ public class UsingShouldSpec {
     Assert.assertTrue(message, expectedException);
   }
   
-  public boolean should_eat(final String animal, final String food) {
+  public boolean should_eat(@Extension final String animal, @Extension final String food) {
     boolean _and = false;
     boolean _equals = Objects.equal(animal, "Monkey");
     if (!_equals) {

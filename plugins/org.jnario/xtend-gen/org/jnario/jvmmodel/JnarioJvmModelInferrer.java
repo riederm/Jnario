@@ -10,10 +10,12 @@ package org.jnario.jvmmodel;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
+import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -21,6 +23,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmAnnotationTarget;
+import org.eclipse.xtext.common.types.JvmAnnotationType;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmExecutable;
 import org.eclipse.xtext.common.types.JvmField;
@@ -343,23 +346,16 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
           if (_equals) {
             it.setVisibility(JvmVisibility.DEFAULT);
           }
-          boolean _and = false;
           boolean _isExtension = source.isExtension();
-          if (!_isExtension) {
-            _and = false;
-          } else {
-            JvmType _findDeclaredType = JnarioJvmModelInferrer.this._typeReferences.findDeclaredType(Extension.class, source);
-            boolean _notEquals_2 = (!Objects.equal(_findDeclaredType, null));
-            _and = _notEquals_2;
-          }
-          if (_and) {
+          if (_isExtension) {
             it.setVisibility(JvmVisibility.PUBLIC);
             EList<JvmAnnotationReference> _annotations = it.getAnnotations();
-            JvmAnnotationReference _annotationRef = JnarioJvmModelInferrer.this._annotationTypesBuilder.annotationRef(Extension.class);
-            JnarioJvmModelInferrer.this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotationRef);
+            JnarioJvmModelInferrer.this.addAnnotationIfFound(_annotations, Extension.class, source);
+            EList<JvmAnnotationReference> _annotations_1 = it.getAnnotations();
+            JnarioJvmModelInferrer.this.addAnnotationIfFound(_annotations_1, org.jnario.runner.Extension.class, source);
           }
-          EList<XAnnotation> _annotations_1 = source.getAnnotations();
-          JnarioJvmModelInferrer.this.translateAnnotations(it, _annotations_1);
+          EList<XAnnotation> _annotations_2 = source.getAnnotations();
+          JnarioJvmModelInferrer.this.translateAnnotations(it, _annotations_2);
           JnarioJvmModelInferrer.this.modelAssociator.associatePrimary(source, it);
           JnarioJvmModelInferrer.this._jvmTypesBuilder.copyDocumentationTo(source, it);
           XExpression _initialValue_2 = source.getInitialValue();
@@ -368,6 +364,20 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
       };
       ObjectExtensions.<JvmField>operator_doubleArrow(_createJvmField, _function);
     }
+  }
+  
+  public boolean addAnnotationIfFound(final List<JvmAnnotationReference> annotations, final Class<? extends Annotation> annotationType, final Notifier context) {
+    boolean _xblockexpression = false;
+    {
+      final JvmType jvmType = this._typeReferences.findDeclaredType(annotationType, context);
+      boolean _xifexpression = false;
+      if ((jvmType instanceof JvmAnnotationType)) {
+        JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(annotationType);
+        _xifexpression = annotations.add(_annotationRef);
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
   }
   
   protected void _transform(final JnarioFunction source, final JvmGenericType container) {
@@ -467,20 +477,8 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
     this.modelAssociator.associate(parameter, jvmParam);
     EList<XAnnotation> _annotations = parameter.getAnnotations();
     this.translateAnnotations(jvmParam, _annotations);
-    boolean _and = false;
-    boolean _isExtension = parameter.isExtension();
-    if (!_isExtension) {
-      _and = false;
-    } else {
-      JvmType _findDeclaredType = this._typeReferences.findDeclaredType(Extension.class, parameter);
-      boolean _notEquals = (!Objects.equal(_findDeclaredType, null));
-      _and = _notEquals;
-    }
-    if (_and) {
-      EList<JvmAnnotationReference> _annotations_1 = jvmParam.getAnnotations();
-      JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(Extension.class);
-      this._jvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations_1, _annotationRef);
-    }
+    EList<JvmAnnotationReference> _annotations_1 = jvmParam.getAnnotations();
+    this.addAnnotationIfFound(_annotations_1, Extension.class, parameter);
     EList<JvmFormalParameter> _parameters = executable.getParameters();
     this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, jvmParam);
   }

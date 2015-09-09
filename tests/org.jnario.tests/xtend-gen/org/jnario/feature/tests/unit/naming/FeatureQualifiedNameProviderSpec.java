@@ -28,22 +28,23 @@ public class FeatureQualifiedNameProviderSpec {
   public FeatureQualifiedNameProvider subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
   @Inject
   IQualifiedNameConverter converter;
   
-  public String implementedStepName(final CharSequence s) {
+  public String implementedStepName(@Extension final CharSequence s) {
     String _plus = (s + "\nval x = \"\"\n");
     return this.stepName(_plus);
   }
   
-  public String stepName(final CharSequence s) {
+  public String stepName(@Extension final CharSequence s) {
     return this.stepName(s, "myPackage");
   }
   
-  public String stepName(final CharSequence s, final String packageName) {
+  public String stepName(@Extension final CharSequence s, @Extension final String packageName) {
     String _xblockexpression = null;
     {
       String _xifexpression = null;

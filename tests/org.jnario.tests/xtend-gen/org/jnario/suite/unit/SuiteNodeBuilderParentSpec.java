@@ -31,6 +31,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SuiteNodeBuilderParentSpec extends SuiteNodeBuilderSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public SuiteNodeBuilder _suiteNodeBuilder;
   

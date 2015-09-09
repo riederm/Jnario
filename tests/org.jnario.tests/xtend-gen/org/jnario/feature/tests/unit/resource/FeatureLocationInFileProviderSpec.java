@@ -29,6 +29,7 @@ public class FeatureLocationInFileProviderSpec {
   CharSequence content;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
@@ -52,13 +53,13 @@ public class FeatureLocationInFileProviderSpec {
     this.is(_region, "Scenario: My Scenario\r\n\tString something\r\n\tGiven something\r\n\tAnd something else\r\n");
   }
   
-  public void is(final CharSequence actual, final CharSequence expected) {
+  public void is(@Extension final CharSequence actual, @Extension final CharSequence expected) {
     String _string = expected.toString();
     String _string_1 = actual.toString();
     Assert.assertEquals(_string, _string_1);
   }
   
-  public Resource parse(final CharSequence s) {
+  public Resource parse(@Extension final CharSequence s) {
     Resource _xblockexpression = null;
     {
       this.content = s;
@@ -67,19 +68,19 @@ public class FeatureLocationInFileProviderSpec {
     return _xblockexpression;
   }
   
-  public CharSequence siginificantRegion(final EObject object) {
+  public CharSequence siginificantRegion(@Extension final EObject object) {
     Scenario _firstScenario = this._modelStore.firstScenario();
     ITextRegion _significantTextRegion = this.subject.getSignificantTextRegion(_firstScenario);
     return this.toText(_significantTextRegion);
   }
   
-  public CharSequence region(final EObject object) {
+  public CharSequence region(@Extension final EObject object) {
     Scenario _firstScenario = this._modelStore.firstScenario();
     ITextRegion _fullTextRegion = this.subject.getFullTextRegion(_firstScenario);
     return this.toText(_fullTextRegion);
   }
   
-  public CharSequence toText(final ITextRegion region) {
+  public CharSequence toText(@Extension final ITextRegion region) {
     int _offset = region.getOffset();
     int _offset_1 = region.getOffset();
     int _length = region.getLength();

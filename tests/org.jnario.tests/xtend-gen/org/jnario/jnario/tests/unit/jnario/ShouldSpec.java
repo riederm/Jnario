@@ -28,10 +28,12 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ShouldSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public BehaviorExecutor _behaviorExecutor;
   

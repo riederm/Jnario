@@ -9,6 +9,7 @@ package org.jnario.spec.tests.unit.naming;
 
 import java.util.ArrayList;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.jnario.test.util.Query;
@@ -115,7 +116,7 @@ public class ExampleNameProviderToMethodNameAfterSpec extends ExampleNameProvide
     
   }
   
-  public String firstMethodName(final String content) {
+  public String firstMethodName(@Extension final String content) {
     String _xblockexpression = null;
     {
       final String contentWithContext = (("describe \'Context\'{" + content) + "}");
@@ -126,7 +127,7 @@ public class ExampleNameProviderToMethodNameAfterSpec extends ExampleNameProvide
     return _xblockexpression;
   }
   
-  public String secondMethodName(final String content) {
+  public String secondMethodName(@Extension final String content) {
     String _xblockexpression = null;
     {
       final String contentWithContext = (("describe \'Context\'{" + content) + "}");

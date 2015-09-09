@@ -52,6 +52,7 @@ public class OperationNameProviderSpec {
   Map<String, JvmOperation> operations;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
@@ -73,7 +74,7 @@ public class OperationNameProviderSpec {
     this.operations = _map;
   }
   
-  public String nameOf(final String operationName) {
+  public String nameOf(@Extension final String operationName) {
     String _xblockexpression = null;
     {
       final JvmOperation op = this.operations.get(operationName);

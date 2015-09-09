@@ -23,6 +23,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class FeatureScopeProviderSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ScopeTestExtension e;
   

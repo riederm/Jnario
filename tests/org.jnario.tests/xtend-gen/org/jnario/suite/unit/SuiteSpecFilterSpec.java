@@ -40,12 +40,15 @@ public class SuiteSpecFilterSpec {
   public SuiteSpecFilter subject;
   
   @Extension
+  @org.jnario.runner.Extension
   public SuitePackage _suitePackage = SuitePackage.eINSTANCE;
   
   @Extension
+  @org.jnario.runner.Extension
   public SpecPackage _specPackage = SpecPackage.eINSTANCE;
   
   @Extension
+  @org.jnario.runner.Extension
   public FeaturePackage _featurePackage = FeaturePackage.eINSTANCE;
   
   @Test
@@ -104,7 +107,7 @@ public class SuiteSpecFilterSpec {
     
   }
   
-  public IEObjectDescription desc(final EClass type) {
+  public IEObjectDescription desc(@Extension final EClass type) {
     Suite _suite = Suites.suite("mySuite");
     return EObjectDescription.create("name", _suite);
   }
@@ -117,7 +120,7 @@ public class SuiteSpecFilterSpec {
     return this.spec(SpecResourceDescriptionStrategy.FALSE);
   }
   
-  public IEObjectDescription spec(final String value) {
+  public IEObjectDescription spec(@Extension final String value) {
     IEObjectDescription _xblockexpression = null;
     {
       final ExampleGroup spec = Specs.exampleGroup("name");

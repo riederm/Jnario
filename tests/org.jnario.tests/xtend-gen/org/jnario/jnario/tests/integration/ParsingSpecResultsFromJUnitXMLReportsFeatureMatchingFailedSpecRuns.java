@@ -36,8 +36,8 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingFailedSpecRuns extends ParsingSpecResultsFromJUnitXMLReportsFeature {
   @Extension
-  @Inject
   @org.jnario.runner.Extension
+  @Inject
   public ModelStore _modelStore;
   
   @Inject

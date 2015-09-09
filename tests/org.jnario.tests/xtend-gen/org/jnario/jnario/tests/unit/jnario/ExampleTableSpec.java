@@ -27,6 +27,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ExampleTableSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   

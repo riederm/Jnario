@@ -35,6 +35,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class UsingTablesSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public BehaviorExecutor _behaviorExecutor;
   

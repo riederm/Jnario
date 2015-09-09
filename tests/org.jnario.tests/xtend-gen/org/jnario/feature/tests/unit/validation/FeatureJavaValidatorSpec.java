@@ -41,6 +41,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class FeatureJavaValidatorSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore modelStore;
   
@@ -53,7 +54,7 @@ public class FeatureJavaValidatorSpec {
     JnarioTestTools.assertOKWithMessage(_validate);
   }
   
-  public AssertableDiagnostics select(final CharSequence input, final Class<? extends EObject> type) {
+  public AssertableDiagnostics select(@Extension final CharSequence input, @Extension final Class<? extends EObject> type) {
     AssertableDiagnostics _xblockexpression = null;
     {
       this.modelStore.parseScenario(input);
@@ -62,7 +63,7 @@ public class FeatureJavaValidatorSpec {
     return _xblockexpression;
   }
   
-  public void allOf(final CharSequence input, final Class<? extends EObject> type, final Procedure1<AssertableDiagnostics> test) {
+  public void allOf(@Extension final CharSequence input, @Extension final Class<? extends EObject> type, @Extension final Procedure1<AssertableDiagnostics> test) {
     this.modelStore.parseScenario(input);
     Query _query = Query.query(this.modelStore);
     final Iterator<? extends EObject> steps = _query.allOf(type);
@@ -76,7 +77,7 @@ public class FeatureJavaValidatorSpec {
     IteratorExtensions.forEach(steps, _function);
   }
   
-  public AssertableDiagnostics validate(final Class<? extends EObject> type) {
+  public AssertableDiagnostics validate(@Extension final Class<? extends EObject> type) {
     Query _query = Query.query(this.modelStore);
     final EObject target = _query.first(type);
     return RegisteredValidatorTester.validateObj(target);

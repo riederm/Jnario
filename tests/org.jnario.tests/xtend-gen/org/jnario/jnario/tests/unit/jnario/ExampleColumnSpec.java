@@ -36,10 +36,12 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ExampleColumnSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ISerializer _iSerializer;
   

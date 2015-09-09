@@ -33,6 +33,7 @@ public class SuiteQualifiedNameProviderSpec {
   public SuiteQualifiedNameProvider subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   

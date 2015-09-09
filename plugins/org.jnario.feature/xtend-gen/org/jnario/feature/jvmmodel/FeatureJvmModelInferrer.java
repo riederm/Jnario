@@ -26,7 +26,6 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmAnnotationValue;
 import org.eclipse.xtext.common.types.JvmConstructor;
-import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.common.types.JvmIntAnnotationValue;
 import org.eclipse.xtext.common.types.JvmMember;
@@ -402,25 +401,6 @@ public class FeatureJvmModelInferrer extends JnarioJvmModelInferrer {
     };
     final JvmGenericType originalType = IterableExtensions.<JvmGenericType>findFirst(_filter, _function);
     this._jvmFieldReferenceUpdater.updateReferences(expr, originalType, inferredJvmType);
-  }
-  
-  @Override
-  protected void _transform(final JnarioField source, final JvmGenericType container) {
-    super._transform(source, container);
-    boolean _isExtension = source.isExtension();
-    if (_isExtension) {
-      Set<EObject> _jvmElements = this._iJvmModelAssociations.getJvmElements(source);
-      EObject _head = IterableExtensions.<EObject>head(_jvmElements);
-      final JvmField field = ((JvmField) _head);
-      boolean _equals = Objects.equal(field, null);
-      if (_equals) {
-        return;
-      }
-      field.setVisibility(JvmVisibility.PUBLIC);
-      EList<JvmAnnotationReference> _annotations = field.getAnnotations();
-      JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(org.jnario.runner.Extension.class);
-      this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotationRef);
-    }
   }
   
   public void generateStepValues(final Step step) {

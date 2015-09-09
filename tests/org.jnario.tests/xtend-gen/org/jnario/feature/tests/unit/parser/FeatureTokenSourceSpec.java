@@ -13,6 +13,7 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.eclipse.xtext.parser.antlr.TokenAcceptor;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
@@ -141,7 +142,7 @@ public class FeatureTokenSourceSpec {
     this.assertSplitsIn(_ken, _ken_1, _ken_2);
   }
   
-  public void assertSplitsIn(final CommonToken... expectedTokens) {
+  public void assertSplitsIn(@Extension final CommonToken... expectedTokens) {
     CommonToken _ken = this.token(this.input);
     this.split(_ken);
     final List<Token> actualTokens = IteratorExtensions.<Token>toList(this.tokenAcceptor);
@@ -190,13 +191,13 @@ public class FeatureTokenSourceSpec {
     IterableExtensions.<Token>forEach(actualTokens, _function);
   }
   
-  public CommonToken token(final int type, final String text, final int line) {
+  public CommonToken token(@Extension final int type, @Extension final String text, @Extension final int line) {
     final CommonToken result = new CommonToken(type, text);
     result.setLine(line);
     return result;
   }
   
-  public CommonToken token(final CharSequence text) {
+  public CommonToken token(@Extension final CharSequence text) {
     CommonToken _xblockexpression = null;
     {
       String _string = text.toString();
@@ -210,14 +211,14 @@ public class FeatureTokenSourceSpec {
     return _xblockexpression;
   }
   
-  public CharSequence setInput(final CharSequence input) {
+  public CharSequence setInput(@Extension final CharSequence input) {
     String _string = input.toString();
     String _replace = _string.replace("\r", "");
     String _plus = (FeatureTokenSourceSpec.prefix + _replace);
     return this.input = _plus;
   }
   
-  public void split(final Token token) {
+  public void split(@Extension final Token token) {
     this.subject.doSplitToken(token, this.tokenAcceptor);
   }
 }

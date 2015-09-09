@@ -35,6 +35,7 @@ public class SpecDocGeneratorSpec {
   public SpecDocGenerator subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
@@ -175,12 +176,12 @@ public class SpecDocGeneratorSpec {
     this.generateDoc("describe \'Example\'{\r\n\t\r\n} \r\n");
   }
   
-  public void generateDoc(final CharSequence input) {
+  public void generateDoc(@Extension final CharSequence input) {
     final Resource resource = this._modelStore.parseSpec(input);
     this.subject.doGenerate(resource, this.fsa);
   }
   
-  public String generatedFile(final String name) {
+  public String generatedFile(@Extension final String name) {
     Map<String, CharSequence> _files = this.fsa.getFiles();
     CharSequence _get = _files.get(("DOC_OUTPUT/" + name));
     String _string = null;

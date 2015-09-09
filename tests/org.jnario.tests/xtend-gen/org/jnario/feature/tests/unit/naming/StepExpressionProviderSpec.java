@@ -39,6 +39,7 @@ public class StepExpressionProviderSpec {
   public StepExpressionProvider subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore modelStore;
   

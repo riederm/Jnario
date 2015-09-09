@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.xtext.util.StringInputStream;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.Strings;
 import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
@@ -140,11 +141,11 @@ public class SpecResultParserSpec {
     return new Failed(SpecResultParserSpec.CLASSNAME, SpecResultParserSpec.NAME, SpecResultParserSpec.EXECUTION_TIME, _newArrayList);
   }
   
-  public String toXml(final CharSequence content) {
+  public String toXml(@Extension final CharSequence content) {
     return (("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<testsuite failures=\"1\" time=\"0.017\" errors=\"0\" skipped=\"0\" tests=\"1\" name=\"example.AddingValuesSpec\">\r\n" + content) + "</testsuite>\t\r\n");
   }
   
-  public void parse(final CharSequence content, final SpecExecution... expected) {
+  public void parse(@Extension final CharSequence content, @Extension final SpecExecution... expected) {
     final Iterator<SpecExecution> i = ((List<SpecExecution>)Conversions.doWrapArray(expected)).iterator();
     String _string = content.toString();
     StringInputStream _stringInputStream = new StringInputStream(_string);

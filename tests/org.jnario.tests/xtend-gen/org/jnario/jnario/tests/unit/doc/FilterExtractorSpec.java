@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
@@ -187,12 +188,12 @@ public class FilterExtractorSpec {
     Each.<FilterExtractorSpecFilterCreation>forEach(this.filterCreation, _function);
   }
   
-  public String stringAfterExtract(final String input) {
+  public String stringAfterExtract(@Extension final String input) {
     FilteringResult _apply = this.subject.apply(input);
     return _apply.getString();
   }
   
-  public List<String> extractedFilters(final String input) {
+  public List<String> extractedFilters(@Extension final String input) {
     FilteringResult _apply = this.subject.apply(input);
     List<Filter> _filters = _apply.getFilters();
     final Function1<Filter, String> _function = new Function1<Filter, String>() {

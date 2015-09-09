@@ -30,6 +30,7 @@ public class FeatureExecutableProviderSpec {
   public FeatureExecutableProvider subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
@@ -90,7 +91,7 @@ public class FeatureExecutableProviderSpec {
     
   }
   
-  public List<? extends Executable> executables(final Executable spec) {
+  public List<? extends Executable> executables(@Extension final Executable spec) {
     return this.subject.getExecutables(spec);
   }
 }

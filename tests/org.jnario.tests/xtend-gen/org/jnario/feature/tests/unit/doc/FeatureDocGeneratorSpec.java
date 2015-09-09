@@ -47,6 +47,7 @@ public class FeatureDocGeneratorSpec {
   public FeatureDocGenerator subject;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
@@ -90,7 +91,7 @@ public class FeatureDocGeneratorSpec {
     return this.mapping = _function;
   }
   
-  public CharSequence generateDocWithErrors(final CharSequence input) {
+  public CharSequence generateDocWithErrors(@Extension final CharSequence input) {
     CharSequence _xblockexpression = null;
     {
       final Resource resource = this._modelStore.parseScenario(input);
@@ -103,7 +104,7 @@ public class FeatureDocGeneratorSpec {
     return _xblockexpression;
   }
   
-  public String generateDoc(final CharSequence input) {
+  public String generateDoc(@Extension final CharSequence input) {
     final Resource resource = this._modelStore.parseScenario(input);
     EList<EObject> _contents = resource.getContents();
     EObject _head = IterableExtensions.<EObject>head(_contents);

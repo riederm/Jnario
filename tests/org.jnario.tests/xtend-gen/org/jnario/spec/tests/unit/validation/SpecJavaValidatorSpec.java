@@ -37,6 +37,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class SpecJavaValidatorSpec {
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore modelStore;
   
@@ -145,7 +146,7 @@ public class SpecJavaValidatorSpec {
     JnarioTestTools.assertOKWithMessage(validationResult);
   }
   
-  public AssertableDiagnostics validate(final Class<? extends EObject> type) {
+  public AssertableDiagnostics validate(@Extension final Class<? extends EObject> type) {
     XtextResourceSet _resourceSet = this.modelStore.getResourceSet();
     Resources.addContainerStateAdapter(_resourceSet);
     Query _query = Query.query(this.modelStore);

@@ -1,6 +1,7 @@
 package org.jnario.spec.tests.unit.conversion;
 
 import javax.inject.Inject;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.conversion.RichStringValueConverter;
 import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.runner.CreateWith;
@@ -323,7 +324,7 @@ public class RichStringValueConverterUnitTestSpec {
         "Line3\r"));
   }
   
-  public void assertConverted(final String stringToConvert, final String expected) {
+  public void assertConverted(@Extension final String stringToConvert, @Extension final String expected) {
     final String actual = this.richStringValueConverter.toValue(stringToConvert, null);
     Assert.assertEquals(expected, actual);
   }

@@ -34,15 +34,19 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class StepTypeProviderSpec {
   @Extension
+  @org.jnario.runner.Extension
   public FeatureFactory factory = FeatureFactory.eINSTANCE;
   
   @Extension
+  @org.jnario.runner.Extension
   public StepTypeProvider _stepTypeProvider = new StepTypeProvider();
   
   @Extension
+  @org.jnario.runner.Extension
   public FeaturePackage pack = FeaturePackage.eINSTANCE;
   
   @Extension
+  @org.jnario.runner.Extension
   @Inject
   public ModelStore _modelStore;
   
@@ -154,7 +158,7 @@ public class StepTypeProviderSpec {
     
   }
   
-  public EClass actualType(final CharSequence s) {
+  public EClass actualType(@Extension final CharSequence s) {
     EClass _xblockexpression = null;
     {
       this._modelStore.parseScenario(s);
@@ -166,7 +170,7 @@ public class StepTypeProviderSpec {
     return _xblockexpression;
   }
   
-  public Set<EClass> expectedTypes(final CharSequence s) {
+  public Set<EClass> expectedTypes(@Extension final CharSequence s) {
     Set<EClass> _xblockexpression = null;
     {
       this._modelStore.parseScenario(s);
