@@ -23,6 +23,7 @@ import org.jnario.spec.spec.ExampleGroup
 import org.jnario.spec.validation.SpecJavaValidator
 
 import static org.jnario.jnario.test.util.Query.*
+import static extension org.jnario.test.tools.JnarioTestTools.*
 
 @CreateWith(typeof(SpecTestCreator))
 describe SpecJavaValidator {
@@ -181,13 +182,4 @@ describe SpecJavaValidator {
 		val target = query(modelStore).first(type)
 		return RegisteredValidatorTester::validateObj(target)
 	}
-
-	def private void assertOKWithMessage(AssertableDiagnostics it) {
-		if (diagnostic.children.size() != 0) {
-			println("Diagnostics:")
-			diagnostic.children.forEach[println("- " + message)]
-			fail("There are expected to be no diagnostics.");
-		}
-	}
-	
 }

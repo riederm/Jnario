@@ -22,7 +22,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalSpecParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_HEX", "RULE_INT", "RULE_DECIMAL", "RULE_ML_COMMENT", "RULE_IDENTIFIER_START", "RULE_UNICODE_ESCAPE", "RULE_IDENTIFIER_PART", "RULE_HEX_DIGIT", "RULE_IN_RICH_STRING", "RULE_RICH_TEXT", "RULE_IDENTIFIER_PART_IMPL", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'describe'", "'{'", "'}'", "'('", "','", "')'", "'<'", "'>'", "'['", "']'", "'?'", "'extends'", "'super'", "'pending'", "'fact'", "'facts'", "'before'", "'all'", "'each'", "'after'", "'context'", "'def'", "'|'", "'extension'", "'='", "';'", "'throws'", "'should'", "'throw'", "'instanceof'", "'not'", "'assert'", "'public'", "'private'", "'protected'", "'abstract'", "'static'", "'dispatch'", "'final'", "'strictfp'", "'native'", "'volatile'", "'synchronized'", "'transient'", "'val'", "'var'", "'override'", "'...'", "'@'", "'#'", "'+='", "'-='", "'*='", "'/='", "'%='", "'>='", "'||'", "'&&'", "'=='", "'!='", "'==='", "'!=='", "'->'", "'..<'", "'..'", "'=>'", "'<>'", "'?:'", "'+'", "'-'", "'*'", "'**'", "'/'", "'%'", "'!'", "'as'", "'++'", "'--'", "'.'", "'::'", "'?.'", "'if'", "'else'", "'switch'", "':'", "'default'", "'case'", "'for'", "'while'", "'do'", "'import'", "'new'", "'false'", "'true'", "'null'", "'typeof'", "'return'", "'try'", "'finally'", "'catch'", "'&'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_HEX", "RULE_INT", "RULE_DECIMAL", "RULE_ML_COMMENT", "RULE_IDENTIFIER_START", "RULE_UNICODE_ESCAPE", "RULE_IDENTIFIER_PART", "RULE_HEX_DIGIT", "RULE_RICH_TEXT", "RULE_IN_RICH_STRING", "RULE_IDENTIFIER_PART_IMPL", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'describe'", "'{'", "'}'", "'('", "','", "')'", "'<'", "'>'", "'['", "']'", "'?'", "'extends'", "'super'", "'pending'", "'fact'", "'facts'", "'before'", "'all'", "'each'", "'after'", "'context'", "'def'", "'|'", "'extension'", "'='", "';'", "'throws'", "'should'", "'throw'", "'instanceof'", "'not'", "'assert'", "'public'", "'private'", "'protected'", "'abstract'", "'static'", "'dispatch'", "'final'", "'strictfp'", "'native'", "'volatile'", "'synchronized'", "'transient'", "'val'", "'var'", "'override'", "'...'", "'@'", "'#'", "'+='", "'-='", "'*='", "'/='", "'%='", "'>='", "'||'", "'&&'", "'=='", "'!='", "'==='", "'!=='", "'->'", "'..<'", "'..'", "'=>'", "'<>'", "'?:'", "'+'", "'-'", "'*'", "'**'", "'/'", "'%'", "'!'", "'as'", "'++'", "'--'", "'.'", "'::'", "'?.'", "'if'", "'else'", "'switch'", "':'", "'default'", "'case'", "'for'", "'while'", "'do'", "'import'", "'new'", "'false'", "'true'", "'null'", "'typeof'", "'return'", "'try'", "'finally'", "'catch'", "'&'"
     };
     public static final int RULE_ID=5;
     public static final int T__29=29;
@@ -59,7 +59,7 @@ public class InternalSpecParser extends AbstractInternalAntlrParser {
     public static final int T__85=85;
     public static final int T__84=84;
     public static final int T__87=87;
-    public static final int RULE_IN_RICH_STRING=14;
+    public static final int RULE_IN_RICH_STRING=15;
     public static final int T__86=86;
     public static final int T__89=89;
     public static final int T__88=88;
@@ -82,7 +82,7 @@ public class InternalSpecParser extends AbstractInternalAntlrParser {
     public static final int T__64=64;
     public static final int T__65=65;
     public static final int T__62=62;
-    public static final int RULE_RICH_TEXT=15;
+    public static final int RULE_RICH_TEXT=14;
     public static final int T__63=63;
     public static final int T__118=118;
     public static final int T__119=119;

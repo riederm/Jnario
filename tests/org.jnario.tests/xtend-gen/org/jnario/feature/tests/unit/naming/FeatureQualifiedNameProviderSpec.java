@@ -55,7 +55,7 @@ public class FeatureQualifiedNameProviderSpec {
       }
       String _plus = (_xifexpression + "\nFeature: MyFeature\nScenario: The Scenario\n");
       String _plus_1 = (_plus + s);
-      final String input = (_plus_1 + "\n\n\t\t\t");
+      final String input = (_plus_1 + "\n\n");
       this._modelStore.parseScenario(input);
       Step _first = this._modelStore.<Step>first(Step.class);
       QualifiedName _fullyQualifiedName = this.subject.getFullyQualifiedName(_first);

@@ -23,6 +23,8 @@ import org.jnario.runner.CreateWith
 
 import static org.jnario.jnario.test.util.Query.*
 
+import static extension org.jnario.test.tools.JnarioTestTools.*
+
 /**
  * @author Sebastian Benz - Initial contribution and API
  */
@@ -61,9 +63,9 @@ describe FeatureJavaValidator{
 			import java.util.Stack
 			Feature: Stack
 			Scenario: Example
-				Stack stack
+				Stack<?> stack
 		'''.parseScenario
-		validate(typeof(JnarioFile)).assertOK
+		validate(typeof(JnarioFile)).assertOKWithMessage
 	}
 	
 	def select(CharSequence input, Class<? extends EObject> type){

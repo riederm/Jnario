@@ -8,17 +8,12 @@
 package org.jnario.spec.tests.unit.validation;
 
 import com.google.inject.Inject;
-import java.util.List;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics;
 import org.eclipse.xtext.junit4.validation.RegisteredValidatorTester;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xbase.XBinaryOperation;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.Assertion;
 import org.jnario.ExampleCell;
 import org.jnario.ExampleTable;
@@ -31,6 +26,7 @@ import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.spec.spec.ExampleGroup;
+import org.jnario.test.tools.JnarioTestTools;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,7 +59,7 @@ public class SpecJavaValidatorSpec {
     this.modelStore.parseSpec(
       "\r\n\t\t\tpackage bootstrap\r\n\r\n\t\t\tdescribe \"Example\"{\r\n\t\t\t\tfact \"a***\" \r\n      \t\t\tfact \"a???\" \r\n\t\t\t} \r\n\t\t");
     final AssertableDiagnostics validationResult = this.validate(ExampleGroup.class);
-    this.assertOKWithMessage(validationResult);
+    JnarioTestTools.assertOKWithMessage(validationResult);
   }
   
   @Test
@@ -73,7 +69,7 @@ public class SpecJavaValidatorSpec {
     this.modelStore.parseSpec(
       "\r\n\t\t  package bootstrap\r\n\r\n\t\t  describe \"something\"{\r\n\t\t\t  describe String{\r\n\t\t\t  }\r\n\t\t\t  describe Integer{\r\n\t\t\t  }\t\r\n\t\t  }\r\n\t\t");
     final AssertableDiagnostics validationResult = this.validate(ExampleGroup.class);
-    this.assertOKWithMessage(validationResult);
+    JnarioTestTools.assertOKWithMessage(validationResult);
   }
   
   @Test
@@ -83,7 +79,7 @@ public class SpecJavaValidatorSpec {
     this.modelStore.parseSpec(
       "\r\n\t\t\timport java.util.Stack\r\n\t\t  \tdescribe Stack<E>{\r\n\t\t\t\tcontext push(E){\r\n\t\t\t\t}\r\n\t\t\t\tcontext push{\r\n\t\t\t\t}\r\n\t\t\t}  \r\n\t\t");
     final AssertableDiagnostics validationResult = this.validate(ExampleGroup.class);
-    this.assertOKWithMessage(validationResult);
+    JnarioTestTools.assertOKWithMessage(validationResult);
   }
   
   @Test
@@ -126,7 +122,7 @@ public class SpecJavaValidatorSpec {
     this.modelStore.parseSpec(
       "\r\n\t\t\tdescribe \"Example\"{\r\n\t\t\t\tfact 1 => 1\r\n\t\t\t} \r\n\t\t");
     final AssertableDiagnostics validationResult = this.validate(XBinaryOperation.class);
-    this.assertOKWithMessage(validationResult);
+    JnarioTestTools.assertOKWithMessage(validationResult);
   }
   
   @Test
@@ -136,7 +132,7 @@ public class SpecJavaValidatorSpec {
     this.modelStore.parseSpec(
       "\r\n\t\t\tdescribe \"Example\"{\r\n\t\t\t\tfact 1 => typeof(int)\r\n\t\t\t} \r\n\t\t");
     final AssertableDiagnostics validationResult = this.validate(XBinaryOperation.class);
-    this.assertOKWithMessage(validationResult);
+    JnarioTestTools.assertOKWithMessage(validationResult);
   }
   
   @Test
@@ -146,7 +142,7 @@ public class SpecJavaValidatorSpec {
     this.modelStore.parseSpec(
       "\r\n\t\t\timport static org.hamcrest.CoreMatchers.*\r\n\t\t\tdescribe \"Example\"{\r\n\t\t\t\tfact 1 => notNullValue\r\n\t\t\t} \r\n\t\t");
     final AssertableDiagnostics validationResult = this.validate(XBinaryOperation.class);
-    this.assertOKWithMessage(validationResult);
+    JnarioTestTools.assertOKWithMessage(validationResult);
   }
   
   public AssertableDiagnostics validate(final Class<? extends EObject> type) {
@@ -155,27 +151,5 @@ public class SpecJavaValidatorSpec {
     Query _query = Query.query(this.modelStore);
     final EObject target = _query.first(type);
     return RegisteredValidatorTester.validateObj(target);
-  }
-  
-  private void assertOKWithMessage(final AssertableDiagnostics it) {
-    Diagnostic _diagnostic = it.getDiagnostic();
-    List<Diagnostic> _children = _diagnostic.getChildren();
-    int _size = _children.size();
-    boolean _notEquals = (_size != 0);
-    if (_notEquals) {
-      InputOutput.<String>println("Diagnostics:");
-      Diagnostic _diagnostic_1 = it.getDiagnostic();
-      List<Diagnostic> _children_1 = _diagnostic_1.getChildren();
-      final Procedure1<Diagnostic> _function = new Procedure1<Diagnostic>() {
-        @Override
-        public void apply(final Diagnostic it) {
-          String _message = it.getMessage();
-          String _plus = ("- " + _message);
-          InputOutput.<String>println(_plus);
-        }
-      };
-      IterableExtensions.<Diagnostic>forEach(_children_1, _function);
-      it.fail("There are expected to be no diagnostics.");
-    }
   }
 }

@@ -1746,9 +1746,9 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tID;
 	private final TerminalRule tHEX_DIGIT;
 	private final TerminalRule tUNICODE_ESCAPE;
+	private final TerminalRule tSTRING;
 	private final TerminalRule tRICH_TEXT;
 	private final TerminalRule tIN_RICH_STRING;
-	private final TerminalRule tSTRING;
 	private final TerminalRule tIDENTIFIER_START;
 	private final TerminalRule tIDENTIFIER_PART;
 	private final TerminalRule tIDENTIFIER_PART_IMPL;
@@ -1783,9 +1783,9 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID");
 		this.tHEX_DIGIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HEX_DIGIT");
 		this.tUNICODE_ESCAPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UNICODE_ESCAPE");
+		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
 		this.tRICH_TEXT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RICH_TEXT");
 		this.tIN_RICH_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IN_RICH_STRING");
-		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
 		this.tIDENTIFIER_START = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENTIFIER_START");
 		this.tIDENTIFIER_PART = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENTIFIER_PART");
 		this.tIDENTIFIER_PART_IMPL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENTIFIER_PART_IMPL");
@@ -2113,32 +2113,23 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		return tUNICODE_ESCAPE;
 	} 
 
+	//terminal STRING:
+	//	RICH_TEXT | "\"" ("\\" . / * ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') * / | !("\\" | "\""))* "\""? | "\'" ("\\" .
+	//	/ * ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') * / | !("\\" | "\'"))* "\'"?;
+	public TerminalRule getSTRINGRule() {
+		return tSTRING;
+	} 
+
 	//terminal fragment RICH_TEXT:
 	//	"\'\'\'" IN_RICH_STRING* ("\'\'\'" | ("\'" "\'"?)? EOF);
 	public TerminalRule getRICH_TEXTRule() {
 		return tRICH_TEXT;
 	} 
 
-	/// *
-	//TODO NO_XTEND
-	//
-	//terminal RICH_TEXT_START : "'''" IN_RICH_STRING* ("'" "'"?)? '«';
-	//terminal RICH_TEXT_END : '»' IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF) ;
-	//terminal RICH_TEXT_INBETWEEN : '»' IN_RICH_STRING* ("'" "'"?)? '«';
-	//terminal COMMENT_RICH_TEXT_INBETWEEN: "««" !('\n'|'\r')* ('\r'? '\n' IN_RICH_STRING* ("'" "'"?)? '«')?; 
-	//terminal COMMENT_RICH_TEXT_END: "««" !('\n'|'\r')* (('\r'? '\n' IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF)) | EOF); 
-	// * /
 	//terminal fragment IN_RICH_STRING:
-	//	"\'\'" !("«" | "\'") | "\'" !("«" | "\'") | !("«" | "\'");
+	//	"\'\'" !"\'" | "\'" !"\'" | !"\'";
 	public TerminalRule getIN_RICH_STRINGRule() {
 		return tIN_RICH_STRING;
-	} 
-
-	//terminal STRING:
-	//	RICH_TEXT | "\"" ("\\" . / * ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') * / | !("\\" | "\""))* "\""? | "\'" ("\\" .
-	//	/ * ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') * / | !("\\" | "\'"))* "\'"?;
-	public TerminalRule getSTRINGRule() {
-		return tSTRING;
 	} 
 
 	//terminal fragment IDENTIFIER_START:

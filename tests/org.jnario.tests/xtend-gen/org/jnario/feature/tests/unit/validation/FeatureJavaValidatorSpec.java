@@ -27,6 +27,7 @@ import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
+import org.jnario.test.tools.JnarioTestTools;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -47,9 +48,9 @@ public class FeatureJavaValidatorSpec {
   @Named("no name clash between features and imported types")
   @Order(1)
   public void _noNameClashBetweenFeaturesAndImportedTypes() throws Exception {
-    this.modelStore.parseScenario("import java.util.Stack\r\nFeature: Stack\r\nScenario: Example\r\n\tStack stack\r\n");
+    this.modelStore.parseScenario("import java.util.Stack\r\nFeature: Stack\r\nScenario: Example\r\n\tStack<?> stack\r\n");
     AssertableDiagnostics _validate = this.validate(JnarioFile.class);
-    _validate.assertOK();
+    JnarioTestTools.assertOKWithMessage(_validate);
   }
   
   public AssertableDiagnostics select(final CharSequence input, final Class<? extends EObject> type) {
