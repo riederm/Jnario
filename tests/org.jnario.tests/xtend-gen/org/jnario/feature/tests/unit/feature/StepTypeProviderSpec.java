@@ -17,8 +17,8 @@ import org.jnario.feature.feature.ThenReference;
 import org.jnario.feature.feature.When;
 import org.jnario.feature.feature.WhenReference;
 import org.jnario.feature.jvmmodel.StepTypeProvider;
+import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.jnario.test.util.ModelStore;
-import org.jnario.jnario.test.util.SpecTestCreator;
 import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.CreateWith;
@@ -28,7 +28,7 @@ import org.jnario.runner.Order;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@CreateWith(SpecTestCreator.class)
+@CreateWith(FeatureTestCreator.class)
 @Named("StepTypeProvider")
 @RunWith(ExampleGroupRunner.class)
 @SuppressWarnings("all")
