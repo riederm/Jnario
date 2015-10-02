@@ -3,16 +3,14 @@ package org.jnario.formatter
 import org.eclipse.emf.common.util.EList
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.formatting2.IFormattableDocument
-import org.eclipse.xtext.nodemodel.INode
+import org.eclipse.xtext.formatting2.IHiddenRegionFormatter
+import org.eclipse.xtext.formatting2.regionaccess.ITextSegment
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import org.eclipse.xtext.xbase.annotations.formatting2.XbaseWithAnnotationsFormatter
-import org.eclipse.xtext.xbase.formatting.FormattingDataInit
 import org.jnario.ExampleColumn
 import org.jnario.ExampleRow
 import org.jnario.ExampleTable
 import org.jnario.JnarioPackage
-import org.eclipse.xtext.formatting2.ITextSegment
-import org.eclipse.xtext.formatting2.IHiddenRegionFormatter
 
 /**
  * TODO NO_XTEND - Verify implementation
@@ -27,7 +25,7 @@ class JnarioFormatter extends XbaseWithAnnotationsFormatter {
 
 	def private void formatColumns(EList<ExampleColumn> columns, extension IFormattableDocument format) {
 		columns.forEach [
-			val nameNode = regionForFeature(JnarioPackage.Literals.EXAMPLE_COLUMN__NAME)
+			val nameNode = regionFor.feature(JnarioPackage.Literals.EXAMPLE_COLUMN__NAME)
 			val typeNode = type
 			val headerLength = if (typeNode == null) {
 					nameNode.length
@@ -39,7 +37,7 @@ class JnarioFormatter extends XbaseWithAnnotationsFormatter {
 			val maxLength = Math.max(headerLength, maxExprLength)
 			val columnLength = 1 + maxLength - headerLength
 			prepend[oneSpace]
-			regionForKeyword("|").prepend[spaces(columnLength)]
+			regionFor.keyword("|").prepend[spaces(columnLength)]
 			cells.forEach [
 				expression.prepend[oneSpace]
 				val length = 1 + maxLength - getMultilineLastSegmentLength(format, expression.regionForEObject)
@@ -69,14 +67,11 @@ class JnarioFormatter extends XbaseWithAnnotationsFormatter {
 	}
 
 	def dispatch void format(ExampleTable table, extension IFormattableDocument format) {
-		table.regionForKeyword("{").append [
-			increaseIndentation
-			newLine
-		]
-		table.regionForKeyword("}").prepend[
-		    decreaseIndentation
-		    newLine
-		]
+		val open = table.regionFor.keyword("{").append[newLine]
+		val close = table.regionFor.keyword("}").prepend[newLine]
+		
+		interior(open, close) [indent]
+		
 		formatRows(table.rows, format)
 		formatColumns(table.columns, format)
 	}
