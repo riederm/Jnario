@@ -19,7 +19,6 @@ import org.eclipse.xtext.xbase.XBasicForLoopExpression;
 import org.eclipse.xtext.xbase.XBinaryOperation;
 import org.eclipse.xtext.xbase.XBlockExpression;
 import org.eclipse.xtext.xbase.XCastedExpression;
-import org.eclipse.xtext.xbase.XCatchClause;
 import org.eclipse.xtext.xbase.XClosure;
 import org.eclipse.xtext.xbase.XCollectionLiteral;
 import org.eclipse.xtext.xbase.XConstructorCall;
@@ -179,9 +178,6 @@ public class SuiteFormatter extends XbaseWithAnnotationsFormatter {
       return;
     } else if (suite instanceof JvmTypeConstraint) {
       _format((JvmTypeConstraint)suite, document);
-      return;
-    } else if (suite instanceof XCatchClause) {
-      _format((XCatchClause)suite, document);
       return;
     } else if (suite instanceof XExpression) {
       _format((XExpression)suite, document);

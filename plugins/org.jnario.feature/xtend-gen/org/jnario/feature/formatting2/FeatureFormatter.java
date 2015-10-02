@@ -20,7 +20,6 @@ import org.eclipse.xtext.xbase.XBasicForLoopExpression;
 import org.eclipse.xtext.xbase.XBinaryOperation;
 import org.eclipse.xtext.xbase.XBlockExpression;
 import org.eclipse.xtext.xbase.XCastedExpression;
-import org.eclipse.xtext.xbase.XCatchClause;
 import org.eclipse.xtext.xbase.XClosure;
 import org.eclipse.xtext.xbase.XCollectionLiteral;
 import org.eclipse.xtext.xbase.XConstructorCall;
@@ -364,9 +363,6 @@ public class FeatureFormatter extends XbaseWithAnnotationsFormatter {
       return;
     } else if (and instanceof JvmTypeConstraint) {
       _format((JvmTypeConstraint)and, document);
-      return;
-    } else if (and instanceof XCatchClause) {
-      _format((XCatchClause)and, document);
       return;
     } else if (and instanceof XExpression) {
       _format((XExpression)and, document);

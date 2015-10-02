@@ -13,8 +13,10 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmWildcardTypeReference;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 import org.eclipse.xtext.formatting2.IHiddenRegionFormatter;
-import org.eclipse.xtext.formatting2.ITextSegment;
+import org.eclipse.xtext.formatting2.regionaccess.IEObjectRegion;
 import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegion;
+import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegionsFinder;
+import org.eclipse.xtext.formatting2.regionaccess.ITextSegment;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextResource;
@@ -23,7 +25,6 @@ import org.eclipse.xtext.xbase.XBasicForLoopExpression;
 import org.eclipse.xtext.xbase.XBinaryOperation;
 import org.eclipse.xtext.xbase.XBlockExpression;
 import org.eclipse.xtext.xbase.XCastedExpression;
-import org.eclipse.xtext.xbase.XCatchClause;
 import org.eclipse.xtext.xbase.XClosure;
 import org.eclipse.xtext.xbase.XCollectionLiteral;
 import org.eclipse.xtext.xbase.XConstructorCall;
@@ -88,7 +89,8 @@ public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
     final Procedure1<ExampleColumn> _function = new Procedure1<ExampleColumn>() {
       @Override
       public void apply(final ExampleColumn it) {
-        final ISemanticRegion nameNode = JnarioFormatter.this.regionAccess.regionForFeature(it, JnarioPackage.Literals.EXAMPLE_COLUMN__NAME);
+        ISemanticRegionsFinder _regionFor = JnarioFormatter.this.textRegionExtensions.regionFor(it);
+        final ISemanticRegion nameNode = _regionFor.feature(JnarioPackage.Literals.EXAMPLE_COLUMN__NAME);
         final JvmTypeReference typeNode = it.getType();
         int _xifexpression = (int) 0;
         boolean _equals = Objects.equal(typeNode, null);
@@ -98,7 +100,7 @@ public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
           int _offset = nameNode.getOffset();
           int _length = nameNode.getLength();
           int _plus = (_offset + _length);
-          ITextSegment _regionForEObject = JnarioFormatter.this.regionAccess.regionForEObject(typeNode);
+          IEObjectRegion _regionForEObject = JnarioFormatter.this.textRegionExtensions.regionForEObject(typeNode);
           int _offset_1 = _regionForEObject.getOffset();
           _xifexpression = (_plus - _offset_1);
         }
@@ -109,7 +111,7 @@ public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
           @Override
           public Integer apply(final ExampleCell it) {
             XExpression _expression = it.getExpression();
-            ITextSegment _regionForEObject = JnarioFormatter.this.regionAccess.regionForEObject(_expression);
+            IEObjectRegion _regionForEObject = JnarioFormatter.this.textRegionExtensions.regionForEObject(_expression);
             return JnarioFormatter.this.getMultilineLength(format, _regionForEObject);
           }
         };
@@ -136,14 +138,15 @@ public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
           }
         };
         format.<ExampleColumn>prepend(it, _function_2);
-        ISemanticRegion _regionForKeyword = JnarioFormatter.this.regionAccess.regionForKeyword(it, "|");
+        ISemanticRegionsFinder _regionFor_1 = JnarioFormatter.this.textRegionExtensions.regionFor(it);
+        ISemanticRegion _keyword = _regionFor_1.keyword("|");
         final Procedure1<IHiddenRegionFormatter> _function_3 = new Procedure1<IHiddenRegionFormatter>() {
           @Override
           public void apply(final IHiddenRegionFormatter it) {
             JnarioFormatter.this.spaces(it, columnLength);
           }
         };
-        format.prepend(_regionForKeyword, _function_3);
+        format.prepend(_keyword, _function_3);
         EList<ExampleCell> _cells_1 = it.getCells();
         final Procedure1<ExampleCell> _function_4 = new Procedure1<ExampleCell>() {
           @Override
@@ -157,7 +160,7 @@ public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
             };
             format.<XExpression>prepend(_expression, _function);
             XExpression _expression_1 = it.getExpression();
-            ITextSegment _regionForEObject = JnarioFormatter.this.regionAccess.regionForEObject(_expression_1);
+            IEObjectRegion _regionForEObject = JnarioFormatter.this.textRegionExtensions.regionForEObject(_expression_1);
             int _multilineLastSegmentLength = JnarioFormatter.this.getMultilineLastSegmentLength(format, _regionForEObject);
             final int length = ((1 + maxLength) - _multilineLastSegmentLength);
             XExpression _expression_2 = it.getExpression();
@@ -240,24 +243,31 @@ public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
   }
   
   protected void _format(final ExampleTable table, @Extension final IFormattableDocument format) {
-    ISemanticRegion _regionForKeyword = this.regionAccess.regionForKeyword(table, "{");
+    ISemanticRegionsFinder _regionFor = this.textRegionExtensions.regionFor(table);
+    ISemanticRegion _keyword = _regionFor.keyword("{");
     final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
-        it.increaseIndentation();
         it.newLine();
       }
     };
-    format.append(_regionForKeyword, _function);
-    ISemanticRegion _regionForKeyword_1 = this.regionAccess.regionForKeyword(table, "}");
+    final ISemanticRegion open = format.append(_keyword, _function);
+    ISemanticRegionsFinder _regionFor_1 = this.textRegionExtensions.regionFor(table);
+    ISemanticRegion _keyword_1 = _regionFor_1.keyword("}");
     final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
-        it.decreaseIndentation();
         it.newLine();
       }
     };
-    format.prepend(_regionForKeyword_1, _function_1);
+    final ISemanticRegion close = format.prepend(_keyword_1, _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = new Procedure1<IHiddenRegionFormatter>() {
+      @Override
+      public void apply(final IHiddenRegionFormatter it) {
+        it.indent();
+      }
+    };
+    format.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_2);
     EList<ExampleRow> _rows = table.getRows();
     this.formatRows(_rows, format);
     EList<ExampleColumn> _columns = table.getColumns();
@@ -375,9 +385,6 @@ public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
       return;
     } else if (table instanceof JvmTypeConstraint) {
       _format((JvmTypeConstraint)table, format);
-      return;
-    } else if (table instanceof XCatchClause) {
-      _format((XCatchClause)table, format);
       return;
     } else if (table instanceof XExpression) {
       _format((XExpression)table, format);
