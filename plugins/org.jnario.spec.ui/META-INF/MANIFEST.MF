@@ -38,5 +38,6 @@ Export-Package: org.jnario.spec.ui.contentassist,
  org.jnario.spec.ui.handler,
  org.jnario.spec.ui.internal,
  org.jnario.spec.ui.quickfix,
- org.jnario.spec.ui.wizards
+ org.jnario.spec.ui.wizards,
+ org.jnario.spec.ui.contentassist.antlr.internal
 Bundle-Activator: org.jnario.spec.ui.internal.SpecActivatorImpl
