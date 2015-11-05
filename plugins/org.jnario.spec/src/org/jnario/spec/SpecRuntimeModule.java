@@ -35,7 +35,6 @@ import org.eclipse.xtext.xbase.compiler.output.TraceAwarePostProcessor;
 import org.eclipse.xtext.xbase.formatting.NodeModelAccess;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
-import org.eclipse.xtext.xbase.resource.BatchLinkableResourceStorageFacade;
 import org.eclipse.xtext.xbase.scoping.batch.ImplicitlyImportedFeatures;
 import org.eclipse.xtext.xbase.scoping.batch.XbaseBatchScopeProvider;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
@@ -59,6 +58,7 @@ import org.jnario.linking.JnarioLinkingDiagnosticMessageProvider;
 import org.jnario.linking.JnarioLinkingService;
 import org.jnario.report.Executable2ResultMapping;
 import org.jnario.report.HashBasedSpec2ResultMapping;
+import org.jnario.resource.NonStoringBatchLinkableResourceStorageFacade;
 import org.jnario.scoping.JnarioImplicitlyImportedFeatures;
 import org.jnario.spec.compiler.SpecBatchCompiler;
 import org.jnario.spec.conversion.SpecValueConverterService;
@@ -245,7 +245,7 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 	}
 	
 	public Class<? extends IResourceStorageFacade> bindResourceStorageFacade() {
-		return BatchLinkableResourceStorageFacade.class;
+		return NonStoringBatchLinkableResourceStorageFacade.class;
 	}
 
 //	@Override

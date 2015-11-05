@@ -38,7 +38,6 @@ import org.eclipse.xtext.xbase.featurecalls.IdentifiableSimpleNameProvider;
 import org.eclipse.xtext.xbase.formatting.NodeModelAccess;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
-import org.eclipse.xtext.xbase.resource.BatchLinkableResourceStorageFacade;
 import org.eclipse.xtext.xbase.scoping.batch.ImplicitlyImportedFeatures;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 import org.eclipse.xtext.xbase.typesystem.internal.ScopeProviderAccess;
@@ -74,6 +73,7 @@ import org.jnario.jvmmodel.JnarioNameProvider;
 import org.jnario.jvmmodel.JnarioSignatureHashBuilder;
 import org.jnario.report.Executable2ResultMapping;
 import org.jnario.report.HashBasedSpec2ResultMapping;
+import org.jnario.resource.NonStoringBatchLinkableResourceStorageFacade;
 import org.jnario.scoping.JnarioImplicitlyImportedFeatures;
 import org.jnario.scoping.JnarioResourceDescriptionStrategy;
 import org.jnario.typing.JnarioTypeComputer;
@@ -261,7 +261,7 @@ public class FeatureRuntimeModule extends
 	}
 	
 	public Class<? extends IResourceStorageFacade> bindResourceStorageFacade() {
-		return BatchLinkableResourceStorageFacade.class;
+		return NonStoringBatchLinkableResourceStorageFacade.class;
 	}
 
 	// TODO NO_XTEND
