@@ -5,6 +5,7 @@ package org.jnario.spec.formatting2;
 
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
@@ -51,7 +52,6 @@ import org.jnario.Assertion;
 import org.jnario.ExampleCell;
 import org.jnario.ExampleColumn;
 import org.jnario.ExampleRow;
-import org.jnario.ExampleTable;
 import org.jnario.JnarioAnnotationTarget;
 import org.jnario.JnarioField;
 import org.jnario.JnarioFunction;
@@ -287,9 +287,6 @@ public class SpecFormatter extends JnarioFormatter {
     } else if (examplegroup instanceof XFunctionTypeRef) {
       _format((XFunctionTypeRef)examplegroup, document);
       return;
-    } else if (examplegroup instanceof ExampleTable) {
-      _format((ExampleTable)examplegroup, document);
-      return;
     } else if (examplegroup instanceof JnarioField) {
       _format((JnarioField)examplegroup, document);
       return;
@@ -388,6 +385,9 @@ public class SpecFormatter extends JnarioFormatter {
       return;
     } else if (examplegroup instanceof ExampleRow) {
       _format((ExampleRow)examplegroup, document);
+      return;
+    } else if (examplegroup instanceof EObject) {
+      _format((EObject)examplegroup, document);
       return;
     } else if (examplegroup == null) {
       _format((Void)null, document);

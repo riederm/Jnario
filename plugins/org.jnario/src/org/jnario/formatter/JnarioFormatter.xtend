@@ -66,21 +66,24 @@ class JnarioFormatter extends XbaseWithAnnotationsFormatter {
 		getSplittedMultilineCell(format, segment).map[trim.length].reduce[p1, p2|Math.max(p1, p2)]
 	}
 
-	def dispatch void format(ExampleTable table, extension IFormattableDocument format) {
-		val open = table.regionFor.keyword("{").append[newLine]
-		val close = table.regionFor.keyword("}").prepend[newLine]
-		
-		interior(open, close) [indent]
-		
-		formatRows(table.rows, format)
-		formatColumns(table.columns, format)
-	}
+    // TODO NO_XTEND get it to work
+    // Current state: NullPointerException in formatColumns()
+    // Run 'fact "calculates cells based on table"' in the second Eclipse instance to reproduce
+//	def dispatch void format(ExampleTable table, extension IFormattableDocument format) {
+//		val open = table.regionFor.keyword("{").append[newLine]
+//		val close = table.regionFor.keyword("}").prepend[newLine]
+//		
+//		interior(open, close) [indent]
+//		
+//		formatRows(table.rows, format)
+//		formatColumns(table.columns, format)
+//	}
 
 	/**
 	 * Hack: No node for type Void - prevent NullPointerException
 	 */
-	override protected dispatch void format(JvmParameterizedTypeReference type, IFormattableDocument format) {
-	    // TODO Do we still need it?
+	override public dispatch void format(JvmParameterizedTypeReference type, IFormattableDocument format) {
+	    // TODO NO_XTEND Do we still need it?
 		if (NodeModelUtils.findActualNodeFor(type) != null) {
 			super._format(type, format)
 		}

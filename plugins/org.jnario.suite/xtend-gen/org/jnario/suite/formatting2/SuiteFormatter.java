@@ -6,6 +6,7 @@ package org.jnario.suite.formatting2;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
@@ -187,6 +188,9 @@ public class SuiteFormatter extends XbaseWithAnnotationsFormatter {
       return;
     } else if (suite instanceof XImportSection) {
       _format((XImportSection)suite, document);
+      return;
+    } else if (suite instanceof EObject) {
+      _format((EObject)suite, document);
       return;
     } else if (suite == null) {
       _format((Void)null, document);

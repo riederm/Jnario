@@ -39,8 +39,6 @@ import org.jnario.feature.FeatureStandaloneSetup
 import org.jnario.spec.SpecStandaloneSetup
 import org.jnario.suite.SuiteStandaloneSetup
 
-import static org.jnario.compiler.JnarioStandaloneCompiler.*
-
 class JnarioStandaloneCompiler extends AbstractBatchCompiler {
 	
 	final static val log = Logger.getLogger(JnarioStandaloneCompiler.getName())

@@ -96,7 +96,7 @@ public class SuiteGrammarAccess extends AbstractGrammarElementFinder {
 		//'import'
 		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
 
-		//(importedType=[types::JvmDeclaredType|QualifiedName] | importedNamespace=QualifiedNameWithWildcard)
+		//importedType=[types::JvmDeclaredType|QualifiedName] | importedNamespace=QualifiedNameWithWildcard
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//importedType=[types::JvmDeclaredType|QualifiedName]
@@ -278,10 +278,10 @@ public class SuiteGrammarAccess extends AbstractGrammarElementFinder {
 		// * Dummy rule, for "better" downwards compatibility, since GrammarAccess generates non-static inner classes, 
 		// * which makes downstream grammars break on classloading, when a rule is removed.
 		// * / StaticQualifier:
-		//	ValidID '::'+;
+		//	(ValidID '::')+;
 		@Override public ParserRule getRule() { return rule; }
 
-		//ValidID '::'+
+		//(ValidID '::')+
 		public Group getGroup() { return cGroup; }
 
 		//ValidID
@@ -457,7 +457,7 @@ public class SuiteGrammarAccess extends AbstractGrammarElementFinder {
 	// * Dummy rule, for "better" downwards compatibility, since GrammarAccess generates non-static inner classes, 
 	// * which makes downstream grammars break on classloading, when a rule is removed.
 	// * / StaticQualifier:
-	//	ValidID '::'+;
+	//	(ValidID '::')+;
 	public StaticQualifierElements getStaticQualifierAccess() {
 		return pStaticQualifier;
 	}
@@ -1326,7 +1326,7 @@ public class SuiteGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedNameInStaticImport:
-	//	ValidID '.'+;
+	//	(ValidID '.')+;
 	public XtypeGrammarAccess.QualifiedNameInStaticImportElements getQualifiedNameInStaticImportAccess() {
 		return gaXbaseWithAnnotations.getQualifiedNameInStaticImportAccess();
 	}

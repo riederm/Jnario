@@ -43,6 +43,7 @@ import org.eclipse.xtext.common.types.access.impl.ClasspathTypeProvider;
 import org.eclipse.xtext.common.types.access.impl.IndexedJvmTypeAccess;
 import org.eclipse.xtext.common.types.descriptions.IStubGenerator;
 import org.eclipse.xtext.diagnostics.Severity;
+import org.eclipse.xtext.generator.GeneratorContext;
 import org.eclipse.xtext.generator.GeneratorDelegate;
 import org.eclipse.xtext.generator.IOutputConfigurationProvider;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
@@ -58,6 +59,7 @@ import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions;
 import org.eclipse.xtext.resource.persistence.StorageAwareResource;
+import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.util.Files;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.util.UriUtil;
@@ -66,11 +68,9 @@ import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.eclipse.xtext.workspace.FileProjectConfig;
-import org.eclipse.xtext.workspace.FileWorkspaceConfig;
-import org.eclipse.xtext.workspace.WorkspaceConfigAdapter;
 import org.eclipse.xtext.xbase.compiler.GeneratorConfig;
 import org.eclipse.xtext.xbase.compiler.GeneratorConfigProvider;
-import org.eclipse.xtext.xbase.compiler.JavaVersion;
+import org.eclipse.xtext.util.JavaVersion;
 import org.eclipse.xtext.xbase.resource.BatchLinkableResource;
 
 import com.google.common.base.CharMatcher;
@@ -167,8 +167,6 @@ public class AbstractBatchCompiler {
 	private ClassLoader jvmTypesClassLoader;
 
 	private ClassLoader annotationProcessingClassLoader;
-
-	private FileWorkspaceConfig workspaceConfig;
 
 	private OutputConfiguration outputConfiguration;
 
@@ -347,13 +345,6 @@ public class AbstractBatchCompiler {
 		return outputConfiguration;
 	}
 	
-	/**
-	 * @noreference Only for testing
-	 */
-	public FileWorkspaceConfig getWorkspaceConfig() {
-		return workspaceConfig;
-	}
-
 	private boolean configureWorkspace(ResourceSet resourceSet) {
 		List<File> sourceFileList = getSourcePathFileList();
 		File outputFile = getOutputPathFile();
@@ -373,8 +364,7 @@ public class AbstractBatchCompiler {
 			log.error("(Output folder: '" + outputFile + "')");
 			return false;
 		}
-		workspaceConfig = new FileWorkspaceConfig(commonRoot.getParentFile());
-		FileProjectConfig projectConfig = workspaceConfig.addProject(commonRoot.getName());
+		FileProjectConfig projectConfig = new FileProjectConfig(commonRoot, commonRoot.getName());
 
 		java.net.URI commonURI = commonRoot.toURI();
 		java.net.URI relativizedTarget = commonURI.relativize(outputFile.toURI());
@@ -393,7 +383,6 @@ public class AbstractBatchCompiler {
 		}
 		Map<String, Set<OutputConfiguration>> outputConfigurations = newHashMap();
 		outputConfigurations.put(languageName, newHashSet(outputConfiguration));
-		resourceSet.eAdapters().add(new WorkspaceConfigAdapter(workspaceConfig));
 		resourceSet.eAdapters().add(new OutputConfigurationAdapter(outputConfigurations));
 		return true;
 	}
@@ -792,13 +781,15 @@ public class AbstractBatchCompiler {
 		javaIoFileSystemAccess.setOutputPath(outputPath);
 		javaIoFileSystemAccess.setWriteTrace(writeTraceFiles);
 
+		GeneratorContext context = new GeneratorContext();
+		context.setCancelIndicator(CancelIndicator.NullImpl);
 		for (Resource resource : newArrayList(resourceSet.getResources())) {
 			if (isSourceFile(resource)) {
 				if (isWriteStorageFiles()) {
 					StorageAwareResource storageAwareResource = (StorageAwareResource)resource;
 					storageAwareResource.getResourceStorageFacade().saveResource(storageAwareResource, javaIoFileSystemAccess);
 				}
-				generator.generate(resource, javaIoFileSystemAccess);
+				generator.generate(resource, javaIoFileSystemAccess, context);
 			}
 		}
 	}

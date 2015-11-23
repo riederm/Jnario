@@ -36,7 +36,7 @@ class SpecFormatter extends JnarioFormatter {
 		}
 	}
 
-// TODO NO_XTEND Remove it not needed
+// TODO NO_XTEND
 //	def dispatch void format(JnarioTypeDeclaration jnariotypedeclaration, extension IFormattableDocument document) {
 //		jnariotypedeclaration.regionForKeyword("{").append[
 //		    increaseIndentation

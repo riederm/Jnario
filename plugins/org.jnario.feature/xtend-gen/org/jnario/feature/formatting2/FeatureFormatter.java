@@ -6,6 +6,7 @@ package org.jnario.feature.formatting2;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
@@ -372,6 +373,9 @@ public class FeatureFormatter extends XbaseWithAnnotationsFormatter {
       return;
     } else if (and instanceof XImportSection) {
       _format((XImportSection)and, document);
+      return;
+    } else if (and instanceof EObject) {
+      _format((EObject)and, document);
       return;
     } else if (and == null) {
       _format((Void)null, document);
