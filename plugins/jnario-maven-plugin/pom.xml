@@ -10,12 +10,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-		<xtext.version>2.9.0-SNAPSHOT</xtext.version>
+		<xtext.version>2.9.0</xtext.version>
 		<version.maven>3.2.1</version.maven>
 	</properties>
 	<repositories>
-		<repository>
-        <id>xtend.snapshots</id>
+      <repository>
+        <id>xtend.release</id>
         <url>https://oss.sonatype.org/content/repositories/central/</url>
         <releases>
            <enabled>true</enabled>

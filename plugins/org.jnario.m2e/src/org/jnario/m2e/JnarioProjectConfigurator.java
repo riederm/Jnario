@@ -43,7 +43,7 @@ public class JnarioProjectConfigurator extends AbstractProjectConfigurator {
 					readDocGenerateSettings(configuration, request, execution);
 				} else if (goal.equals("testCompile")) {
 					readCompileSettings(configuration, request, execution);
-				} else if (goal.equals("xtend-test-install-debug-info")) {
+				} else if (goal.equals("jnario-test-install-debug-info")) {
 					readEnhanceSettings(configuration, request, execution);
 				}
 			}
