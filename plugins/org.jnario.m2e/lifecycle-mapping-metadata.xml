@@ -8,6 +8,7 @@
 				<goals>
 					<goal>compile</goal>
 					<goal>testCompile</goal>
+					<goal>jnario-install-debug-info</goal>
 					<goal>jnario-test-install-debug-info</goal>
 				</goals>
 			</pluginExecutionFilter>

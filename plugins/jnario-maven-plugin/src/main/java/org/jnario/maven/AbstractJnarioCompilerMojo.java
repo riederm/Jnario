@@ -62,7 +62,7 @@ public abstract class AbstractJnarioCompilerMojo extends AbstractJnarioMojo {
 	private MavenSession session;
 
 	/**
-	 * Xtend-File encoding argument for the compiler.
+	 * Jnario-File encoding argument for the compiler.
 	 * 
 	 */
 	@Parameter(property = "encoding", defaultValue = "${project.build.sourceEncoding}")
@@ -152,7 +152,7 @@ public abstract class AbstractJnarioCompilerMojo extends AbstractJnarioMojo {
 		compiler.setWriteTraceFiles(writeTraceFiles);
 		if (!compiler.compile()) {
 			String dir = concat(File.pathSeparator, newArrayList(filtered));
-			throw new MojoExecutionException("Error compiling xtend sources in '" + dir + "'.");
+			throw new MojoExecutionException("Error compiling Jnario sources in '" + dir + "'.");
 		}
 	}
 

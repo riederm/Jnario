@@ -23,10 +23,10 @@ public abstract class AbstractJnarioMojo extends AbstractMojo {
 	protected MavenProject project;
 
 	/**
-	 * Set this to true to skip compiling Xtend sources.
+	 * Set this to true to skip compiling Jnario sources.
 	 */
-	@Parameter(property = "skipXtend", defaultValue = "false")
-	protected boolean skipXtend;
+	@Parameter(property = "skipJnario", defaultValue = "false")
+	protected boolean skipJnario;
 
 	public AbstractJnarioMojo() {
 		injectMembers();
@@ -48,7 +48,7 @@ public abstract class AbstractJnarioMojo extends AbstractMojo {
 	protected abstract void internalExecute() throws MojoExecutionException, MojoFailureException;
 
 	protected boolean isSkipped() {
-		return skipXtend;
+		return skipJnario;
 	}
 
 }
