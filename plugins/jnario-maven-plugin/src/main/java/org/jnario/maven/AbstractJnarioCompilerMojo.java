@@ -31,6 +31,7 @@ import org.jnario.compiler.JnarioStandaloneCompiler;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 /**
@@ -107,10 +108,15 @@ public abstract class AbstractJnarioCompilerMojo extends AbstractJnarioMojo {
 	@Parameter
 	private String generatedAnnotationComment;
 
+	@Inject
+	private Provider<JnarioStandaloneCompiler> jnarioStandaloneCompiler;
+	
 	protected AbstractBatchCompiler getBatchCompiler() {
-		return JnarioStandaloneCompiler.create();
+		JnarioStandaloneCompiler compiler = jnarioStandaloneCompiler.get();
+		compiler.initWithInjectors(getInjectors());
+		return compiler;
 	}
-
+	
 	protected void compile(AbstractBatchCompiler compiler, String classPath, List<String> sourcePaths, String outputPath) throws MojoExecutionException {
 		Log log = getLog();
 		compiler.setResourceSetProvider(getResourceSet());

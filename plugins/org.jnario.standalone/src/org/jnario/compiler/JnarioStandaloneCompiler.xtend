@@ -44,8 +44,6 @@ class JnarioStandaloneCompiler extends AbstractBatchCompiler {
 	final static val log = Logger.getLogger(JnarioStandaloneCompiler.getName())
 	
 	@Inject
-	private IEncodingProvider.Runtime encodingProvider;
-	@Inject
 	private IStubGenerator stubGenerator;
 	
 	List<Injector> injectors
@@ -54,19 +52,30 @@ class JnarioStandaloneCompiler extends AbstractBatchCompiler {
 	
     def static JnarioStandaloneCompiler create(){
 		val setups = #[new FeatureStandaloneSetup(), new SpecStandaloneSetup(), new SuiteStandaloneSetup()]
-		return new JnarioStandaloneCompiler(setups)
+		fromSetups(setups)
 	}
 	
-	new(List<? extends ISetup> setups){
-		injectors = setups.eagerMap[createInjectorAndDoEMFRegistration].toList
-		injectors.head.injectMembers(this)
-		injectorMap = newHashMap(injectors.map[
-			val fileExtension = getInstance(FileExtensionProvider).primaryFileExtension
-			fileExtension -> it
-		])
+	def initWithInjectors(List<Injector> injectors) {
+	    this.injectors = injectors
+        injectorMap = newHashMap(injectors.map[
+            val fileExtension = getInstance(FileExtensionProvider).primaryFileExtension
+            fileExtension -> it
+        ])
+	}
+	
+	def static fromSetups(List<? extends ISetup> setups) {
+	    new JnarioStandaloneCompiler => [
+    		injectors = setups.eagerMap[createInjectorAndDoEMFRegistration].toList
+    		injectors.head.injectMembers(it)
+    		injectorMap = newHashMap(injectors.map[
+    			val fileExtension = getInstance(FileExtensionProvider).primaryFileExtension
+    			fileExtension -> it
+    		])
+		]
 	}
 	
 	override protected loadXtendFiles(ResourceSet resourceSet) {
+	    applyEncoding
 		resourceSet.eAdapters.add(
 			new FlatResourceSetBasedAllContainersState(resourceSet) {
 
@@ -78,7 +87,6 @@ class JnarioStandaloneCompiler extends AbstractBatchCompiler {
 				}
 			
 		})
-		encodingProvider.setDefaultEncoding(getFileEncoding());
 		val nameBasedFilter = getNameBasedFilters()
 		val pathTraverser = new PathTraverser();
 		val sourcePathDirectories = getSourcePathDirectories(); 
@@ -100,6 +108,13 @@ class JnarioStandaloneCompiler extends AbstractBatchCompiler {
 		]
 		return resourceSet;
 	}
+	
+	def applyEncoding() {
+	    injectors.forEach [
+	        getInstance(IEncodingProvider.Runtime).setDefaultEncoding(getFileEncoding());
+	    ]
+	}
+	
 // TODO REMOVE ME    
 //    def Iterable<? extends URI> reverse(Collection<URI> uris) {
 //        val list = newArrayList
