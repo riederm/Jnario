@@ -1,48 +1,49 @@
 package selenium;
 
+import com.google.common.base.Function;
 import org.junit.After;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 @SuppressWarnings("all")
 public class WebDriverExtension {
-  private /* WebDriver */Object driver;
+  private WebDriver driver;
   
-  private /* Wait<WebDriver> */Object wait;
+  private Wait<WebDriver> wait;
   
   public WebDriverExtension() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nFirefoxDriver cannot be resolved.");
+    this(new FirefoxDriver());
   }
   
-  public WebDriverExtension(final /* WebDriver */Object driver) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nWebDriverWait cannot be resolved.");
+  public WebDriverExtension(final WebDriver driver) {
+    this.driver = driver;
+    WebDriverWait _webDriverWait = new WebDriverWait(driver, 30);
+    this.wait = _webDriverWait;
   }
   
-  public Object get(final String url) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nget cannot be resolved");
+  public void get(final String url) {
+    this.driver.get(url);
   }
   
-  public Object findElement(final String name) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field By is undefined"
-      + "\nfindElement cannot be resolved"
-      + "\nname cannot be resolved");
+  public WebElement findElement(final String name) {
+    By _name = By.name(name);
+    return this.driver.findElement(_name);
   }
   
-  public Object findElement(final /* By */Object by) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nfindElement cannot be resolved");
+  public WebElement findElement(final By by) {
+    return this.driver.findElement(by);
   }
   
-  public Object waitUntil(final /* Function<WebDriver, Boolean> */Object predicate) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nuntil cannot be resolved");
+  public Boolean waitUntil(final Function<WebDriver, Boolean> predicate) {
+    return this.wait.<Boolean>until(predicate);
   }
   
   @After
   public void tearDown() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nclose cannot be resolved");
+    this.driver.close();
   }
 }
