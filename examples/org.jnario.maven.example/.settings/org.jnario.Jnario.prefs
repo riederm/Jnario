@@ -2,6 +2,7 @@
 BuilderConfiguration.is_project_specific=true
 eclipse.preferences.version=1
 is_project_specific=true
+null.is_project_specific=true
 outlet.ASSET_OUTPUT.userOutputPerSourceFolder=true
 outlet.DEFAULT_OUTPUT.directory=jnario-gen-configured-in-dot-prefs
 outlet.DEFAULT_OUTPUT.hideLocalSyntheticVariables=true
