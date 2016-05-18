@@ -83,11 +83,13 @@ public class SpecDocGeneratorSpec {
   public void _generatesExampleDocumentation() throws Exception {
     this.generateDoc("describe \'Example\'{\r\n\t/*\r\n\t * Example documentation\r\n\t */\r\n\tfact \"should do stuff\"{\r\n\t\tvar x = 0\r\n\t\tx = x + 1\r\n\t}\r\n}");
     final String scenarioDoc = this.generatedFile("ExampleSpec.html");
-    String _string = "<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>\r\n<p>Example documentation</p>\r\n<pre class=\"prettyprint lang-spec linenums\">\r\nvar x = 0\r\nx = x + 1</pre>".toString();
-    boolean _contains = scenarioDoc.contains(_string);
-    Assert.assertTrue("\nExpected scenarioDoc.contains(\'\'\'\r\n\t\t<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>\r\n\t\t<p>Example documentation</p>\r\n\t\t<pre class=\"prettyprint lang-spec linenums\">\r\n\t\tvar x = 0\r\n\t\tx = x + 1</pre>\'\'\'.toString()) but"
+    String _convertNL = this.convertNL(scenarioDoc);
+    String _convertNL_1 = this.convertNL("<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>\r\n<p>Example documentation</p>\r\n<pre class=\"prettyprint lang-spec linenums\">\r\nvar x = 0\r\nx = x + 1</pre>");
+    boolean _contains = _convertNL.contains(_convertNL_1);
+    Assert.assertTrue("\nExpected scenarioDoc.convertNL.contains(\'\'\'\r\n\t\t<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>\r\n\t\t<p>Example documentation</p>\r\n\t\t<pre class=\"prettyprint lang-spec linenums\">\r\n\t\tvar x = 0\r\n\t\tx = x + 1</pre>\'\'\'.convertNL) but"
+     + "\n     scenarioDoc.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
      + "\n     scenarioDoc is " + new org.hamcrest.StringDescription().appendValue(scenarioDoc).toString()
-     + "\n     \'\'\'\r\n\t\t<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>\r\n\t\t<p>Example documentation</p>\r\n\t\t<pre class=\"prettyprint lang-spec linenums\">\r\n\t\tvar x = 0\r\n\t\tx = x + 1</pre>\'\'\'.toString() is " + new org.hamcrest.StringDescription().appendValue(_string).toString() + "\n", _contains);
+     + "\n     \'\'\'\r\n\t\t<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>\r\n\t\t<p>Example documentation</p>\r\n\t\t<pre class=\"prettyprint lang-spec linenums\">\r\n\t\tvar x = 0\r\n\t\tx = x + 1</pre>\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", _contains);
     
   }
   
@@ -137,8 +139,12 @@ public class SpecDocGeneratorSpec {
   public void _noCodeBlockForExamplesWithoutDescription() throws Exception {
     this.generateDoc("describe \'Example\'{\r\n\tfact 1 + 1 => 2\r\n} \r\n");
     final String scenarioDoc = this.generatedFile("ExampleSpec.html");
-    Assert.assertFalse("\nExpected scenarioDoc should not contain \'\'\'<pre class=\"prettyprint lang-spec linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\' but"
-     + "\n     scenarioDoc is " + new org.hamcrest.StringDescription().appendValue(scenarioDoc).toString() + "\n", Should.<Object>should_contain(scenarioDoc, "<pre class=\"prettyprint lang-spec linenums\">\r\n1 + 1 =&gt; 2</pre>"));
+    String _convertNL = this.convertNL(scenarioDoc);
+    String _convertNL_1 = this.convertNL("<pre class=\"prettyprint lang-spec linenums\">\r\n1 + 1 =&gt; 2</pre>");
+    Assert.assertFalse("\nExpected scenarioDoc.convertNL should not contain \'\'\'<pre class=\"prettyprint lang-spec linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\'.convertNL but"
+     + "\n     scenarioDoc.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     scenarioDoc is " + new org.hamcrest.StringDescription().appendValue(scenarioDoc).toString()
+     + "\n     \'\'\'<pre class=\"prettyprint lang-spec linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", Should.<Object>should_contain(_convertNL, _convertNL_1));
     
   }
   
@@ -167,8 +173,12 @@ public class SpecDocGeneratorSpec {
   public void _supportsLangAnnotation() throws Exception {
     this.generateDoc("describe \'Example\'{\r\n\t/*\r\n\t * @lang(ruby)\r\n\t */\r\n\tfact \"test\" {\r\n\t\t1 + 1 => 2\r\n\t}\r\n} \r\n");
     final String scenarioDoc = this.generatedFile("ExampleSpec.html");
-    Assert.assertTrue("\nExpected scenarioDoc should contain \'\'\'<pre class=\"prettyprint lang-ruby linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\' but"
-     + "\n     scenarioDoc is " + new org.hamcrest.StringDescription().appendValue(scenarioDoc).toString() + "\n", Should.<Object>should_contain(scenarioDoc, "<pre class=\"prettyprint lang-ruby linenums\">\r\n1 + 1 =&gt; 2</pre>"));
+    String _convertNL = this.convertNL(scenarioDoc);
+    String _convertNL_1 = this.convertNL("<pre class=\"prettyprint lang-ruby linenums\">\r\n1 + 1 =&gt; 2</pre>");
+    Assert.assertTrue("\nExpected scenarioDoc.convertNL should contain \'\'\'<pre class=\"prettyprint lang-ruby linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\'.convertNL but"
+     + "\n     scenarioDoc.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     scenarioDoc is " + new org.hamcrest.StringDescription().appendValue(scenarioDoc).toString()
+     + "\n     \'\'\'<pre class=\"prettyprint lang-ruby linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", Should.<Object>should_contain(_convertNL, _convertNL_1));
     
   }
   
@@ -182,12 +192,16 @@ public class SpecDocGeneratorSpec {
   }
   
   public String generatedFile(@Extension final String name) {
-    Map<String, CharSequence> _files = this.fsa.getFiles();
-    CharSequence _get = _files.get(("DOC_OUTPUT/" + name));
+    Map<String, CharSequence> _textFiles = this.fsa.getTextFiles();
+    CharSequence _get = _textFiles.get(("DOC_OUTPUT/" + name));
     String _string = null;
     if (_get!=null) {
       _string=_get.toString();
     }
     return _string;
+  }
+  
+  public String convertNL(@Extension final String s) {
+    return s.replace("\r", "");
   }
 }

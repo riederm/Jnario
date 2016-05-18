@@ -5,6 +5,8 @@ import static org.jnario.jvmmodel.DoubleArrowSupport.isDoubleArrow;
 
 import java.util.List;
 
+import org.eclipse.xtext.common.types.JvmGenericType;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmPrimitiveType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
@@ -13,14 +15,18 @@ import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XBinaryOperation;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.XNullLiteral;
+import org.eclipse.xtext.xbase.XTypeLiteral;
 import org.eclipse.xtext.xbase.annotations.typesystem.XbaseWithAnnotationsTypeComputer;
 import org.eclipse.xtext.xbase.typesystem.computation.IFeatureLinkingCandidate;
+import org.eclipse.xtext.xbase.typesystem.computation.ILinkingCandidate;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputationState;
 import org.eclipse.xtext.xbase.typesystem.conformance.ConformanceHint;
 import org.eclipse.xtext.xbase.typesystem.util.CommonTypeComputationServices;
+import org.eclipse.xtext.xtype.XtypePackage;
 import org.jnario.Assertion;
 import org.jnario.Should;
 import org.jnario.ShouldThrow;
+import org.jnario.lib.Each;
 
 import com.google.inject.Inject;
 
@@ -92,4 +98,21 @@ public class JnarioTypeComputer extends XbaseWithAnnotationsTypeComputer {
 		return featureCall instanceof Should && ((Should) featureCall).getRightOperand() instanceof XNullLiteral;
 	}
 
+	/**
+	 * The method {@link Each#forEach(org.jnario.lib.ExampleTable, org.eclipse.xtext.xbase.lib.Procedures.Procedure1)} get shadowed by
+	 * Java 8 method <code>Iterable.forEach(...)</code>. This will be overritten here. The our <code>forEach</code> always win.
+	 */
+	@Override
+	protected ILinkingCandidate getBestCandidate(List<? extends ILinkingCandidate> candidates) {
+		for (ILinkingCandidate candidate : candidates) {
+			if (candidate.getFeature() instanceof JvmOperation && candidate.getFeature().eContainer() instanceof JvmGenericType) {
+                JvmOperation feature = (JvmOperation) candidate.getFeature();
+                JvmGenericType type = (JvmGenericType) feature.eContainer();
+                if (Each.class.getName().equals(type.getQualifiedName()) && "forEach".equals(feature.getSimpleName())) {
+                    return candidate;
+                }
+			}
+		}
+		return super.getBestCandidate(candidates);
+	}
 }

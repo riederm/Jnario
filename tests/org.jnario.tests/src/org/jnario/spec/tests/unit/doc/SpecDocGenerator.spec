@@ -60,14 +60,13 @@ describe SpecDocGenerator {
 				}
 			}''')
 		val scenarioDoc = generatedFile("ExampleSpec.html")
-		assert scenarioDoc.contains('''
+		assert scenarioDoc.convertNL.contains('''
 		<p id="should_do_stuff" class="example notrun"><strong>should do stuff</strong></p>
 		<p>Example documentation</p>
 		<pre class="prettyprint lang-spec linenums">
 		var x = 0
-		x = x + 1</pre>'''.toString())
+		x = x + 1</pre>'''.convertNL)
 	}
-	
 	fact "supports markdown for documentation"{
 		generateDoc('''
 			/*
@@ -106,8 +105,8 @@ describe SpecDocGenerator {
 			} 
 		''')
 		val scenarioDoc = generatedFile("ExampleSpec.html")
-		scenarioDoc should not contain '''<pre class="prettyprint lang-spec linenums">
-1 + 1 =&gt; 2</pre>'''
+		scenarioDoc.convertNL should not contain '''<pre class="prettyprint lang-spec linenums">
+1 + 1 =&gt; 2</pre>'''.convertNL
 	}
 	
 	fact "filters code based on regex in filter annotation"{
@@ -147,8 +146,8 @@ describe SpecDocGenerator {
 			} 
 		''')
 		val scenarioDoc = generatedFile("ExampleSpec.html")
-		scenarioDoc should contain '''<pre class="prettyprint lang-ruby linenums">
-1 + 1 =&gt; 2</pre>'''
+		scenarioDoc.convertNL should contain '''<pre class="prettyprint lang-ruby linenums">
+1 + 1 =&gt; 2</pre>'''.convertNL
 	}
 	
 	def generateEmptyExampleDoc(){
@@ -165,6 +164,9 @@ describe SpecDocGenerator {
 	}
 
 	def generatedFile(String name){
-		return fsa.files.get("DOC_OUTPUT/" + name)?.toString
+		return fsa.textFiles.get("DOC_OUTPUT/" + name)?.toString
+	}
+	def convertNL(String s) {
+		s.replace("\r", "")
 	}
 }

@@ -8,7 +8,6 @@
 package org.jnario.suite.unit;
 
 import com.google.inject.Inject;
-import junit.framework.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -25,6 +24,7 @@ import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
 import org.jnario.suite.doc.SuiteDocGenerator;
 import org.jnario.suite.suite.SuiteFile;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,7 +56,11 @@ public class SuiteDocGeneratorSpec {
   public void _generatesSuiteDocWithResolvedSpecs() throws Exception {
     final String actual = this.generateDoc("package test\r\n\r\n#Heading\r\nHeading description.\r\n- \"Red\"\r\n- \"Blue\": with a description\r\n##Subheading\r\nSubheading description with **markdown**.\r\n- \\.*G.*\\\r\n");
     final String expected = "<p>Heading description.</p>\r\n<ul>\r\n\t<li><a class=\"specref pending\" href=\"../test/RedSpec.html\">Red</a> <strong class=\"icon pending\">~</strong></li>\r\n\t<li><a class=\"specref pending\" href=\"../test/BlueSpec.html\">Blue</a> <strong class=\"icon pending\">~</strong>: with a description</li>\r\n</ul>\r\n<span id=\"Subheading\" class=\"suite pending\"><h2>Subheading</h2></span>\r\n<p>Subheading description with <strong>markdown</strong>.</p>\r\n<ul>\r\n\t<li><a class=\"specref pending\" href=\"../test/GreenSpec.html\">Green</a> <strong class=\"icon pending\">~</strong></li>\r\n\t<li><a class=\"specref pending\" href=\"../test/GreySpec.html\">Grey</a> <strong class=\"icon pending\">~</strong></li>\r\n</ul>\r\n".toString();
-    Assert.assertEquals(expected, actual);
+    String _replace = expected.replace("\r", "");
+    String _trim = _replace.trim();
+    String _replace_1 = actual.replace("\r", "");
+    String _trim_1 = _replace_1.trim();
+    Assert.assertEquals(_trim, _trim_1);
   }
   
   public String generateDoc(@Extension final CharSequence input) {

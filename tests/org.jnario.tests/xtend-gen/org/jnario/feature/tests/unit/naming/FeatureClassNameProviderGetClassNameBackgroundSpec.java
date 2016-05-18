@@ -8,11 +8,12 @@
 package org.jnario.feature.tests.unit.naming;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.feature.feature.Background;
 import org.jnario.feature.tests.unit.naming.FeatureClassNameProviderGetClassNameBackgroundSpecExamples;
 import org.jnario.feature.tests.unit.naming.FeatureClassNameProviderSpec;
 import org.jnario.lib.Assert;
+import org.jnario.lib.Each;
 import org.jnario.lib.ExampleTable;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -89,9 +90,9 @@ public class FeatureClassNameProviderGetClassNameBackgroundSpec extends FeatureC
   @Named("examples work")
   @Order(1)
   public void _examplesWork() throws Exception {
-    final Consumer<FeatureClassNameProviderGetClassNameBackgroundSpecExamples> _function = new Consumer<FeatureClassNameProviderGetClassNameBackgroundSpecExamples>() {
+    final Procedure1<FeatureClassNameProviderGetClassNameBackgroundSpecExamples> _function = new Procedure1<FeatureClassNameProviderGetClassNameBackgroundSpecExamples>() {
       @Override
-      public void accept(final FeatureClassNameProviderGetClassNameBackgroundSpecExamples it) {
+      public void apply(final FeatureClassNameProviderGetClassNameBackgroundSpecExamples it) {
         String _name = it.getName();
         String _feature = it.getFeature();
         Background _background = FeatureClassNameProviderGetClassNameBackgroundSpec.this.background(_name, _feature);
@@ -106,6 +107,6 @@ public class FeatureClassNameProviderGetClassNameBackgroundSpec extends FeatureC
         
       }
     };
-    this.examples.forEach(_function);
+    Each.<FeatureClassNameProviderGetClassNameBackgroundSpecExamples>forEach(this.examples, _function);
   }
 }

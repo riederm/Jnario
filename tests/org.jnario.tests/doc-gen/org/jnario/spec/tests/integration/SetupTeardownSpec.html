@@ -348,7 +348,7 @@ describe &quot;Setup &amp; Teardown&quot; {
     val recording = ConsoleRecorder::start
     spec.executesSuccessfully
     val actual = recording.stop
-    Assert.assertEquals(expected, actual) 
+    Assert.assertEquals(expected.replace(&quot;\r&quot;, &quot;&quot;), actual.replace(&quot;\r&quot;, &quot;&quot;)) 
   }
 
 }

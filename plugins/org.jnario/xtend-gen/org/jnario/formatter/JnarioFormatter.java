@@ -3,7 +3,6 @@ package org.jnario.formatter;
 import com.google.common.base.Objects;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
@@ -71,9 +70,9 @@ import org.jnario.JnarioPackage;
 @SuppressWarnings("all")
 public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
   private void formatRows(final EList<ExampleRow> rows, @Extension final IFormattableDocument format) {
-    final Consumer<ExampleRow> _function = new Consumer<ExampleRow>() {
+    final Procedure1<ExampleRow> _function = new Procedure1<ExampleRow>() {
       @Override
-      public void accept(final ExampleRow it) {
+      public void apply(final ExampleRow it) {
         final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
           @Override
           public void apply(final IHiddenRegionFormatter it) {
@@ -83,13 +82,13 @@ public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
         format.<ExampleRow>append(it, _function);
       }
     };
-    rows.forEach(_function);
+    IterableExtensions.<ExampleRow>forEach(rows, _function);
   }
   
   private void formatColumns(final EList<ExampleColumn> columns, @Extension final IFormattableDocument format) {
-    final Consumer<ExampleColumn> _function = new Consumer<ExampleColumn>() {
+    final Procedure1<ExampleColumn> _function = new Procedure1<ExampleColumn>() {
       @Override
-      public void accept(final ExampleColumn it) {
+      public void apply(final ExampleColumn it) {
         ISemanticRegionsFinder _regionFor = JnarioFormatter.this.textRegionExtensions.regionFor(it);
         final ISemanticRegion nameNode = _regionFor.feature(JnarioPackage.Literals.EXAMPLE_COLUMN__NAME);
         final JvmTypeReference typeNode = it.getType();
@@ -149,9 +148,9 @@ public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
         };
         format.prepend(_keyword, _function_3);
         EList<ExampleCell> _cells_1 = it.getCells();
-        final Consumer<ExampleCell> _function_4 = new Consumer<ExampleCell>() {
+        final Procedure1<ExampleCell> _function_4 = new Procedure1<ExampleCell>() {
           @Override
-          public void accept(final ExampleCell it) {
+          public void apply(final ExampleCell it) {
             XExpression _expression = it.getExpression();
             final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
               @Override
@@ -174,10 +173,10 @@ public class JnarioFormatter extends XbaseWithAnnotationsFormatter {
             format.<XExpression>append(_expression_2, _function_1);
           }
         };
-        _cells_1.forEach(_function_4);
+        IterableExtensions.<ExampleCell>forEach(_cells_1, _function_4);
       }
     };
-    columns.forEach(_function);
+    IterableExtensions.<ExampleColumn>forEach(columns, _function);
     ExampleColumn _last = IterableExtensions.<ExampleColumn>last(columns);
     final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
       @Override

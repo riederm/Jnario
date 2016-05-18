@@ -44,24 +44,28 @@ public class RichStringValueConverterIntegrationTestSpec {
   }
   
   @Test
-  @Named("\\\'\\\'\\\' Test4 Line2\\\'\\\'\\\' => q[\\\" Test4\\\\nLine2\\\"]")
+  @Named("\\\'\\\'\\\' Test4 Line2\\\'\\\'\\\'.convertNL => \\\" Test4\\\\nLine2\\\".convertNL")
   @Order(4)
-  public void _test4Line2QTest4NLine2() throws Exception {
-    String _q = this.q(" Test4\nLine2");
-    boolean _doubleArrow = Should.<String>operator_doubleArrow(" Test4\r\nLine2", _q);
-    Assert.assertTrue("\nExpected \'\'\'\r\n    Test4\r\n   Line2\'\'\' => q(\" Test4\\nLine2\") but"
-     + "\n     q(\" Test4\\nLine2\") is " + new org.hamcrest.StringDescription().appendValue(_q).toString() + "\n", _doubleArrow);
+  public void _test4Line2ConvertNLTest4NLine2ConvertNL() throws Exception {
+    String _convertNL = this.convertNL(" Test4\r\nLine2");
+    String _convertNL_1 = this.convertNL(" Test4\nLine2");
+    boolean _doubleArrow = Should.<String>operator_doubleArrow(_convertNL, _convertNL_1);
+    Assert.assertTrue("\nExpected \'\'\'\r\n    Test4\r\n   Line2\'\'\'.convertNL => \" Test4\\nLine2\".convertNL but"
+     + "\n     \'\'\'\r\n    Test4\r\n   Line2\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     \" Test4\\nLine2\".convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
-  @Named("\\\'\\\'\\\' Test5 Line2 Line3\\\'\\\'\\\' => q[\\\"    Test5\\\\n   Line2\\\\nLine3\\\"]")
+  @Named("\\\'\\\'\\\' Test5 Line2 Line3\\\'\\\'\\\'.convertNL => \\\"    Test5\\\\n   Line2\\\\nLine3\\\".convertNL")
   @Order(5)
-  public void _test5Line2Line3QTest5NLine2NLine3() throws Exception {
-    String _q = this.q("    Test5\n   Line2\nLine3");
-    boolean _doubleArrow = Should.<String>operator_doubleArrow("    Test5\r\n   Line2\r\nLine3", _q);
-    Assert.assertTrue("\nExpected \'\'\'\r\n    Test5\r\n   Line2\r\nLine3\'\'\' => q(\"    Test5\\n   Line2\\nLine3\") but"
-     + "\n     q(\"    Test5\\n   Line2\\nLine3\") is " + new org.hamcrest.StringDescription().appendValue(_q).toString() + "\n", _doubleArrow);
+  public void _test5Line2Line3ConvertNLTest5NLine2NLine3ConvertNL() throws Exception {
+    String _convertNL = this.convertNL("    Test5\r\n   Line2\r\nLine3");
+    String _convertNL_1 = this.convertNL("    Test5\n   Line2\nLine3");
+    boolean _doubleArrow = Should.<String>operator_doubleArrow(_convertNL, _convertNL_1);
+    Assert.assertTrue("\nExpected \'\'\'\r\n    Test5\r\n   Line2\r\nLine3\'\'\'.convertNL => \"    Test5\\n   Line2\\nLine3\".convertNL but"
+     + "\n     \'\'\'\r\n    Test5\r\n   Line2\r\nLine3\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     \"    Test5\\n   Line2\\nLine3\".convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", _doubleArrow);
     
   }
   
@@ -76,78 +80,97 @@ public class RichStringValueConverterIntegrationTestSpec {
   }
   
   @Test
-  @Named("\\\'\\\'\\\' Test Test2   \\\'\\\'\\\' => q[\\\"Test\\\\nTest2   \\\"]")
+  @Named("\\\'\\\'\\\' Test Test2   \\\'\\\'\\\'.convertNL => \\\"Test\\\\nTest2   \\\".convertNL")
   @Order(7)
-  public void _testTest2QTestNTest2() throws Exception {
-    String _q = this.q("Test\nTest2   ");
-    boolean _doubleArrow = Should.<String>operator_doubleArrow("Test\r\nTest2   ", _q);
-    Assert.assertTrue("\nExpected \'\'\'\r\nTest\r\nTest2   \'\'\' => q(\"Test\\nTest2   \") but"
-     + "\n     q(\"Test\\nTest2   \") is " + new org.hamcrest.StringDescription().appendValue(_q).toString() + "\n", _doubleArrow);
+  public void _testTest2ConvertNLTestNTest2ConvertNL() throws Exception {
+    String _convertNL = this.convertNL("Test\r\nTest2   ");
+    String _convertNL_1 = this.convertNL("Test\nTest2   ");
+    boolean _doubleArrow = Should.<String>operator_doubleArrow(_convertNL, _convertNL_1);
+    Assert.assertTrue("\nExpected \'\'\'\r\nTest\r\nTest2   \'\'\'.convertNL => \"Test\\nTest2   \".convertNL but"
+     + "\n     \'\'\'\r\nTest\r\nTest2   \'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     \"Test\\nTest2   \".convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
-  @Named("\\\'\\\'\\\' Line1 Line2\\\'\\\'\\\' => q[\\\"Line1\\\\n\\\\nLine2\\\"]")
+  @Named("\\\'\\\'\\\' Line1 Line2\\\'\\\'\\\'.convertNL => \\\"Line1\\\\n\\\\nLine2\\\".convertNL")
   @Order(8)
-  public void _line1Line2QLine1NNLine2() throws Exception {
-    String _q = this.q("Line1\n\nLine2");
-    boolean _doubleArrow = Should.<String>operator_doubleArrow("Line1\r\n\r\nLine2", _q);
-    Assert.assertTrue("\nExpected \'\'\'\r\nLine1\r\n\r\nLine2\'\'\' => q(\"Line1\\n\\nLine2\") but"
-     + "\n     q(\"Line1\\n\\nLine2\") is " + new org.hamcrest.StringDescription().appendValue(_q).toString() + "\n", _doubleArrow);
+  public void _line1Line2ConvertNLLine1NNLine2ConvertNL() throws Exception {
+    String _convertNL = this.convertNL("Line1\r\n\r\nLine2");
+    String _convertNL_1 = this.convertNL("Line1\n\nLine2");
+    boolean _doubleArrow = Should.<String>operator_doubleArrow(_convertNL, _convertNL_1);
+    Assert.assertTrue("\nExpected \'\'\'\r\nLine1\r\n\r\nLine2\'\'\'.convertNL => \"Line1\\n\\nLine2\".convertNL but"
+     + "\n     \'\'\'\r\nLine1\r\n\r\nLine2\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     \"Line1\\n\\nLine2\".convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
-  @Named("\\\'\\\'\\\'Line3 Line4\\\'\\\'\\\' => q[\\\"Line3\\\\n\\\\nLine4\\\"]")
+  @Named("\\\'\\\'\\\'Line3 Line4\\\'\\\'\\\'.convertNL => \\\"Line3\\\\n\\\\nLine4\\\".convertNL")
   @Order(9)
-  public void _line3Line4QLine3NNLine4() throws Exception {
-    String _q = this.q("Line3\n\nLine4");
-    boolean _doubleArrow = Should.<String>operator_doubleArrow("Line3\r\n\r\nLine4", _q);
-    Assert.assertTrue("\nExpected \'\'\'Line3\r\n\r\nLine4\'\'\' => q(\"Line3\\n\\nLine4\") but"
-     + "\n     q(\"Line3\\n\\nLine4\") is " + new org.hamcrest.StringDescription().appendValue(_q).toString() + "\n", _doubleArrow);
+  public void _line3Line4ConvertNLLine3NNLine4ConvertNL() throws Exception {
+    String _convertNL = this.convertNL("Line3\r\n\r\nLine4");
+    String _convertNL_1 = this.convertNL("Line3\n\nLine4");
+    boolean _doubleArrow = Should.<String>operator_doubleArrow(_convertNL, _convertNL_1);
+    Assert.assertTrue("\nExpected \'\'\'Line3\r\n\r\nLine4\'\'\'.convertNL => \"Line3\\n\\nLine4\".convertNL but"
+     + "\n     \'\'\'Line3\r\n\r\nLine4\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     \"Line3\\n\\nLine4\".convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
-  @Named("q[\\\"Test\\\\n   \\\\n\\\"].assertEquals[\\\'\\\'\\\' Test \\\'\\\'\\\']")
+  @Named("\\\"Test\\\\n   \\\\n\\\".convertNL => \\\'\\\'\\\' Test \\\'\\\'\\\'.convertNL")
   @Order(10)
-  public void _qTestNNAssertEqualsTest() throws Exception {
-    String _q = this.q("Test\n   \n");
-    org.junit.Assert.assertEquals(_q, "Test\r\n   \r\n");
+  public void _testNNConvertNLTestConvertNL() throws Exception {
+    String _convertNL = this.convertNL("Test\n   \n");
+    String _convertNL_1 = this.convertNL("Test\r\n   \r\n");
+    boolean _doubleArrow = Should.<String>operator_doubleArrow(_convertNL, _convertNL_1);
+    Assert.assertTrue("\nExpected \"Test\\n   \\n\".convertNL => \'\'\'\r\nTest\r\n   \r\n\'\'\'.convertNL but"
+     + "\n     \"Test\\n   \\n\".convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     \'\'\'\r\nTest\r\n   \r\n\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", _doubleArrow);
+    
   }
   
   @Test
-  @Named("\\\'\\\'\\\'Test \\\'\\\'\\\' => q[\\\"Test\\\\n\\\"]")
+  @Named("\\\'\\\'\\\'Test \\\'\\\'\\\'.convertNL => \\\"Test\\\\n\\\".convertNL")
   @Order(11)
-  public void _testQTestN() throws Exception {
-    String _q = this.q("Test\n");
-    boolean _doubleArrow = Should.<String>operator_doubleArrow("Test\r\n", _q);
-    Assert.assertTrue("\nExpected \'\'\'Test\r\n    \'\'\' => q(\"Test\\n\") but"
-     + "\n     q(\"Test\\n\") is " + new org.hamcrest.StringDescription().appendValue(_q).toString() + "\n", _doubleArrow);
+  public void _testConvertNLTestNConvertNL() throws Exception {
+    String _convertNL = this.convertNL("Test\r\n");
+    String _convertNL_1 = this.convertNL("Test\n");
+    boolean _doubleArrow = Should.<String>operator_doubleArrow(_convertNL, _convertNL_1);
+    Assert.assertTrue("\nExpected \'\'\'Test\r\n    \'\'\'.convertNL => \"Test\\n\".convertNL but"
+     + "\n     \'\'\'Test\r\n    \'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     \"Test\\n\".convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
-  @Named("\\\'\\\'\\\' Test6 \\\'\\\'\\\' => q[\\\"Test6\\\\n\\\"]")
+  @Named("\\\'\\\'\\\' Test6 \\\'\\\'\\\'.convertNL => \\\"Test6\\\\n\\\".convertNL")
   @Order(12)
-  public void _test6QTest6N() throws Exception {
-    String _q = this.q("Test6\n");
-    boolean _doubleArrow = Should.<String>operator_doubleArrow("Test6\r\n", _q);
-    Assert.assertTrue("\nExpected \'\'\'\r\nTest6\r\n    \'\'\' => q(\"Test6\\n\") but"
-     + "\n     q(\"Test6\\n\") is " + new org.hamcrest.StringDescription().appendValue(_q).toString() + "\n", _doubleArrow);
+  public void _test6ConvertNLTest6NConvertNL() throws Exception {
+    String _convertNL = this.convertNL("Test6\r\n");
+    String _convertNL_1 = this.convertNL("Test6\n");
+    boolean _doubleArrow = Should.<String>operator_doubleArrow(_convertNL, _convertNL_1);
+    Assert.assertTrue("\nExpected \'\'\'\r\nTest6\r\n    \'\'\'.convertNL => \"Test6\\n\".convertNL but"
+     + "\n     \'\'\'\r\nTest6\r\n    \'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     \"Test6\\n\".convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
-  @Named("q[\\\"Test111\\\\n\\\"].assertEquals[\\\'\\\'\\\'Test111 \\\'\\\'\\\']")
+  @Named("\\\"Test111\\\\n\\\".convertNL => \\\'\\\'\\\'Test111 \\\'\\\'\\\'.convertNL")
   @Order(13)
-  public void _qTest111NAssertEqualsTest111() throws Exception {
-    String _q = this.q("Test111\n");
-    org.junit.Assert.assertEquals(_q, "Test111\r\n");
+  public void _test111NConvertNLTest111ConvertNL() throws Exception {
+    String _convertNL = this.convertNL("Test111\n");
+    String _convertNL_1 = this.convertNL("Test111\r\n");
+    boolean _doubleArrow = Should.<String>operator_doubleArrow(_convertNL, _convertNL_1);
+    Assert.assertTrue("\nExpected \"Test111\\n\".convertNL => \'\'\'Test111\r\n        \'\'\'.convertNL but"
+     + "\n     \"Test111\\n\".convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     \'\'\'Test111\r\n        \'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString() + "\n", _doubleArrow);
+    
   }
   
-  public String q(@Extension final String s) {
-    String _property = System.getProperty("line.separator");
-    return s.replace("\n", _property);
+  public String convertNL(@Extension final String s) {
+    return s.replace("\r", "");
   }
 }

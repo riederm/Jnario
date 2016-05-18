@@ -10,8 +10,9 @@ package demo;
 import demo.Calculator;
 import demo.CalculatorSpecExamples;
 import java.util.Arrays;
-import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.lib.Assert;
+import org.jnario.lib.Each;
 import org.jnario.lib.ExampleTable;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -74,8 +75,8 @@ public class CalculatorSpec {
   @Named("should handle tables")
   @Order(2)
   public void _shouldHandleTables() throws Exception {
-    final Consumer<CalculatorSpecExamples> _function = new Consumer<CalculatorSpecExamples>() {
-      public void accept(final CalculatorSpecExamples it) {
+    final Procedure1<CalculatorSpecExamples> _function = new Procedure1<CalculatorSpecExamples>() {
+      public void apply(final CalculatorSpecExamples it) {
         int _a = it.getA();
         int _b = it.getB();
         int _plus = (_a + _b);
@@ -88,6 +89,6 @@ public class CalculatorSpec {
         
       }
     };
-    this.examples.forEach(_function);
+    Each.<CalculatorSpecExamples>forEach(this.examples, _function);
   }
 }

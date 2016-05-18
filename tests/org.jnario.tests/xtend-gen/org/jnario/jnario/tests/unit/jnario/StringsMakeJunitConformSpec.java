@@ -8,10 +8,11 @@
 package org.jnario.jnario.tests.unit.jnario;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.jnario.tests.unit.jnario.StringsMakeJunitConformSpecExamples;
 import org.jnario.jnario.tests.unit.jnario.StringsSpec;
 import org.jnario.lib.Assert;
+import org.jnario.lib.Each;
 import org.jnario.lib.ExampleTable;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -91,9 +92,9 @@ public class StringsMakeJunitConformSpec extends StringsSpec {
   @Named("examples.forEach[string.makeJunitConform => result]")
   @Order(1)
   public void _examplesForEachStringMakeJunitConformResult() throws Exception {
-    final Consumer<StringsMakeJunitConformSpecExamples> _function = new Consumer<StringsMakeJunitConformSpecExamples>() {
+    final Procedure1<StringsMakeJunitConformSpecExamples> _function = new Procedure1<StringsMakeJunitConformSpecExamples>() {
       @Override
-      public void accept(final StringsMakeJunitConformSpecExamples it) {
+      public void apply(final StringsMakeJunitConformSpecExamples it) {
         String _string = it.getString();
         String _makeJunitConform = Strings.makeJunitConform(_string);
         String _result = it.getResult();
@@ -104,6 +105,6 @@ public class StringsMakeJunitConformSpec extends StringsSpec {
         
       }
     };
-    this.examples.forEach(_function);
+    Each.<StringsMakeJunitConformSpecExamples>forEach(this.examples, _function);
   }
 }

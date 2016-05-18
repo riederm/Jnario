@@ -13,44 +13,44 @@ Test2''' => "Test2"
 
 	fact '''
     Test4
-   Line2''' => q(" Test4\nLine2")
+   Line2'''.convertNL => " Test4\nLine2".convertNL
 
 	fact '''
     Test5
    Line2
-Line3''' => q("    Test5\n   Line2\nLine3")
+Line3'''.convertNL => "    Test5\n   Line2\nLine3".convertNL
 
 	fact '''Test   ''' => "Test   "
 
 	fact '''
 Test
-Test2   ''' => q("Test\nTest2   ")
+Test2   '''.convertNL => "Test\nTest2   ".convertNL
 
 	fact '''
 Line1
 
-Line2''' => q("Line1\n\nLine2")
+Line2'''.convertNL => "Line1\n\nLine2".convertNL
 
 	fact '''Line3
 
-Line4''' => q("Line3\n\nLine4")
+Line4'''.convertNL => "Line3\n\nLine4".convertNL
 
-	fact q("Test\n   \n").assertEquals('''
+	fact "Test\n   \n".convertNL => '''
 Test
    
-''') 
+'''.convertNL 
 
 	fact '''Test
-    ''' => q("Test\n")
+    '''.convertNL => "Test\n".convertNL
 	
 	fact '''
 Test6
-    ''' => q("Test6\n")
+    '''.convertNL => "Test6\n".convertNL
    
-    fact q("Test111\n").assertEquals('''Test111
-        ''')
+    fact "Test111\n".convertNL => '''Test111
+        '''.convertNL
    
-    def q(String s) {
-		s.replace("\n", System.getProperty("line.separator"))
+    def convertNL(String s) {
+		s.replace("\r", "");
     }
 }

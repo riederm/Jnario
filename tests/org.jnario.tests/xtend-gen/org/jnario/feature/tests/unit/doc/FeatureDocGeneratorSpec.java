@@ -63,7 +63,9 @@ public class FeatureDocGeneratorSpec {
   public void _generatesScenarioDocumentation() throws Exception {
     final String actual = this.generateDoc("\r\n\t\t\tpackage test\r\n\r\n\t\t\tFeature: Example Feature\r\n\t\t\t\t\r\n\t\t\t\tThis is a description.\r\n\t\t\t\t\r\n\t\t\t\tScenario: Example Scenario\r\n\t\t\t\t\r\n\t\t\t\t\tString input\r\n\t\t\t\t\r\n\t\t\t\t\tGiven a step with an argument \"something\", another \"argument\" and a multiline string:\r\n\t\t\t\t\t\'\'\'\r\n\t\t\t\t\t\timport java.util.Collections.*;\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\tpublic class Greeter{\r\n\t\t\t\t\t\t\tpublic static void main(String args[]){\r\n\t\t\t\t\t\t\t\tList<String> list = new ArrayList<String>(); // should escape angle brackets\r\n\t\t\t\t\t\t\t\tSysten.out.println(\'Hello World\');\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t}\'\'\' \r\n\t\t\t\t\t\tinput = args.first\r\n\t\t\t\t\t\tprintln(args.last)\r\n\t\t\t\t\tWhen I do something that is pending.\r\n\t\t\t\t\t\tAnd something else that is pending\r\n\t\t\t\t\t\tBut this is implemented\r\n\t\t\t\t\t\t\t1 + 1 => 2\r\n\t\t\t\t\tThen it results in \"something else\"\r\n\t\t\t\t\t\tinput + \' else\' => args.first                                    \r\n\t\t");
     final String expected = "<p>This is a description.</p>\r\n<div><h3 class=\"scenario pending\"  id=\"Scenario_Example_Scenario\">Scenario: Example Scenario\r\n</h3>\r\n<ul>\r\n<li><span class=\"step notrun\"><p>Given a step with an argument <code>\"something\"</code>, another <code>\"argument\"</code> and a multiline string:</p><pre>import java.util.Collections.*;\r\n\r\npublic class Greeter{\r\n  public static void main(String args[]){\r\n    List&lt;String&gt; list = new ArrayList&lt;String&gt;(); // should escape angle brackets\r\n    Systen.out.println(\'Hello World\');\r\n  }\r\n}</pre></span>\r\n</li>\r\n<li><span class=\"step pending\"><p>When I do something that is pending. [PENDING]</p></span>\r\n</li>\r\n<li><span class=\"step pending\"><p>And something else that is pending [PENDING]</p></span>\r\n</li>\r\n<li><span class=\"step notrun\"><p>But this is implemented</p></span>\r\n</li>\r\n<li><span class=\"step notrun\"><p>Then it results in <code>\"something else\"</code></p></span>\r\n</li>\r\n</ul>\r\n</div>\r\n".toString();
-    Assert.assertEquals(expected, actual);
+    String _convertNL = this.convertNL(expected);
+    String _convertNL_1 = this.convertNL(actual);
+    Assert.assertEquals(_convertNL, _convertNL_1);
   }
   
   @Test
@@ -97,8 +99,8 @@ public class FeatureDocGeneratorSpec {
       final Resource resource = this._modelStore.parseScenario(input);
       Executable2ResultMapping _mappingWithFailures = this.mappingWithFailures();
       this.subject.doGenerate(resource, this.fsa, _mappingWithFailures);
-      Map<String, CharSequence> _files = this.fsa.getFiles();
-      Collection<CharSequence> _values = _files.values();
+      Map<String, CharSequence> _textFiles = this.fsa.getTextFiles();
+      Collection<CharSequence> _values = _textFiles.values();
       _xblockexpression = JnarioIterableExtensions.<CharSequence>first(_values);
     }
     return _xblockexpression;
@@ -113,5 +115,9 @@ public class FeatureDocGeneratorSpec {
     JnarioTypeDeclaration _head_1 = IterableExtensions.<JnarioTypeDeclaration>head(_xtendTypes);
     CharSequence _generateContent = this.subject.generateContent(((Feature) _head_1));
     return _generateContent.toString();
+  }
+  
+  public String convertNL(@Extension final String s) {
+    return s.replace("\r", "");
   }
 }

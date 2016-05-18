@@ -84,6 +84,6 @@ describe "Spec Extensions"{
 		val recording = ConsoleRecorder::start
 		spec.executesSuccessfully
 		val actual = recording.stop
-		Assert.assertEquals(expected, actual) 
+		Assert.assertEquals(expected.replace("\r", ""), actual.replace("\r", "")) 
 	}
 }

@@ -8,9 +8,10 @@
 package org.jnario.spec.tests.unit.naming;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.lib.Assert;
+import org.jnario.lib.Each;
 import org.jnario.lib.ExampleTable;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -65,9 +66,9 @@ public class ExampleNameSpec extends ExampleSpec {
   @Named("examples.forEach[println[example.parse.name] should be name]")
   @Order(1)
   public void _examplesForEachPrintlnExampleParseNameShouldBeName() throws Exception {
-    final Consumer<ExampleNameSpecExamples> _function = new Consumer<ExampleNameSpecExamples>() {
+    final Procedure1<ExampleNameSpecExamples> _function = new Procedure1<ExampleNameSpecExamples>() {
       @Override
-      public void accept(final ExampleNameSpecExamples it) {
+      public void apply(final ExampleNameSpecExamples it) {
         String _example = it.getExample();
         Example _parse = ExampleNameSpec.this.parse(_example);
         String _name = _parse.getName();
@@ -82,6 +83,6 @@ public class ExampleNameSpec extends ExampleSpec {
         
       }
     };
-    this.examples.forEach(_function);
+    Each.<ExampleNameSpecExamples>forEach(this.examples, _function);
   }
 }

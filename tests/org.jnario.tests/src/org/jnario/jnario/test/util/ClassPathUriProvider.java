@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.emf.common.util.URI;
 import org.jnario.Activator;
 
@@ -64,13 +65,7 @@ public class ClassPathUriProvider implements IUriProvider {
 		} catch (IOException e) {
 			throwRuntimeException(e);
 		}
-		java.net.URI uri = null;
-		try {
-			uri = parentFolder.toURI();
-		} catch (URISyntaxException e) {
-			throwRuntimeException(e);
-		}
-		File folder = new File(uri);
+		File folder = new File(parentFolder.getPath());
 		for (File child : folder.listFiles()) {
 			if (child.isFile()) {
 				result.add(URI.createFileURI(child.getAbsolutePath()));

@@ -153,7 +153,7 @@ class SuiteResourceDescriptionManager extends DerivedStateAwareResourceDescripti
 		resource.getExportedObjectsByType(JnarioPackage.Literals.SPECIFICATION)
 		.filter[
 			val object = resolve(it.getEObjectOrProxy, resourceSet)
-			object instanceof Specification && (
+			object instanceof Specification && object.eContainer != null && (
 				object.eContainer.eClass == SpecPackage.Literals.SPEC_FILE
 				||
 				object.eContainer.eClass == FeaturePackage.Literals.FEATURE_FILE

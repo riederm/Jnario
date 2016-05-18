@@ -15,7 +15,7 @@ import org.jnario.runner.CreateWith
 import org.jnario.suite.doc.SuiteDocGenerator
 import org.jnario.suite.suite.SuiteFile
 
-import static junit.framework.Assert.*
+import static org.junit.Assert.*
 
 @CreateWith(typeof(SuiteTestCreator))
 describe SuiteDocGenerator {
@@ -64,7 +64,7 @@ describe SuiteDocGenerator {
 		</ul>
 		'''.toString
 		
-		assertEquals(expected, actual)
+		assertEquals(expected.replace("\r", "").trim(), actual.replace("\r", "").trim())
 	}
 
 	def generateDoc(CharSequence input){

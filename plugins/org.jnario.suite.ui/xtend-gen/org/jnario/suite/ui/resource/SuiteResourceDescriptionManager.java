@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
-import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
@@ -42,6 +41,7 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.jnario.JnarioPackage;
 import org.jnario.Specification;
@@ -84,13 +84,13 @@ public class SuiteResourceDescriptionManager extends DerivedStateAwareResourceDe
       boolean _isTraceEnabled = SuiteResourceDescriptionManager.logger.isTraceEnabled();
       if (_isTraceEnabled) {
         SuiteResourceDescriptionManager.logger.debug(" Deltas to check: ");
-        final Consumer<IResourceDescription.Delta> _function = new Consumer<IResourceDescription.Delta>() {
+        final Procedure1<IResourceDescription.Delta> _function = new Procedure1<IResourceDescription.Delta>() {
           @Override
-          public void accept(final IResourceDescription.Delta it) {
+          public void apply(final IResourceDescription.Delta it) {
             SuiteResourceDescriptionManager.logger.debug(("  " + it));
           }
         };
-        deltas.forEach(_function);
+        IterableExtensions.<IResourceDescription.Delta>forEach(deltas, _function);
       }
       ResourceSet _xifexpression = null;
       if ((context instanceof CurrentDescriptions)) {
@@ -132,15 +132,15 @@ public class SuiteResourceDescriptionManager extends DerivedStateAwareResourceDe
       boolean _isDebugEnabled = SuiteResourceDescriptionManager.logger.isDebugEnabled();
       if (_isDebugEnabled) {
         SuiteResourceDescriptionManager.logger.debug(" Changed specs: ");
-        final Consumer<QualifiedName> _function_3 = new Consumer<QualifiedName>() {
+        final Procedure1<QualifiedName> _function_3 = new Procedure1<QualifiedName>() {
           @Override
-          public void accept(final QualifiedName it) {
+          public void apply(final QualifiedName it) {
             String _string = SuiteResourceDescriptionManager.this._iQualifiedNameConverter.toString(it);
             String _plus = ("  " + _string);
             SuiteResourceDescriptionManager.logger.debug(_plus);
           }
         };
-        changedSpecs.forEach(_function_3);
+        IterableExtensions.<QualifiedName>forEach(changedSpecs, _function_3);
       }
       final Iterable<IEObjectDescription> suites = candidate.getExportedObjectsByType(SuitePackage.Literals.SUITE);
       final Function1<IEObjectDescription, Suite> _function_4 = new Function1<IEObjectDescription, Suite>() {
@@ -183,15 +183,15 @@ public class SuiteResourceDescriptionManager extends DerivedStateAwareResourceDe
       SuiteResourceDescriptionManager.logger.debug(_plus_2);
       boolean _isTraceEnabled_1 = SuiteResourceDescriptionManager.logger.isTraceEnabled();
       if (_isTraceEnabled_1) {
-        final Consumer<Pattern> _function_7 = new Consumer<Pattern>() {
+        final Procedure1<Pattern> _function_7 = new Procedure1<Pattern>() {
           @Override
-          public void accept(final Pattern it) {
+          public void apply(final Pattern it) {
             String _pattern = it.pattern();
             String _plus = ("  " + _pattern);
             SuiteResourceDescriptionManager.logger.trace(_plus);
           }
         };
-        matchers.forEach(_function_7);
+        IterableExtensions.<Pattern>forEach(matchers, _function_7);
       }
       final Function1<QualifiedName, Boolean> _function_8 = new Function1<QualifiedName, Boolean>() {
         @Override
@@ -360,18 +360,26 @@ public class SuiteResourceDescriptionManager extends DerivedStateAwareResourceDe
           EObject _eObjectOrProxy = it.getEObjectOrProxy();
           final EObject object = EcoreUtil.resolve(_eObjectOrProxy, resourceSet);
           boolean _and = false;
+          boolean _and_1 = false;
           if (!(object instanceof Specification)) {
+            _and_1 = false;
+          } else {
+            EObject _eContainer = object.eContainer();
+            boolean _notEquals = (!Objects.equal(_eContainer, null));
+            _and_1 = _notEquals;
+          }
+          if (!_and_1) {
             _and = false;
           } else {
             boolean _or = false;
-            EObject _eContainer = object.eContainer();
-            EClass _eClass = _eContainer.eClass();
+            EObject _eContainer_1 = object.eContainer();
+            EClass _eClass = _eContainer_1.eClass();
             boolean _equals = Objects.equal(_eClass, SpecPackage.Literals.SPEC_FILE);
             if (_equals) {
               _or = true;
             } else {
-              EObject _eContainer_1 = object.eContainer();
-              EClass _eClass_1 = _eContainer_1.eClass();
+              EObject _eContainer_2 = object.eContainer();
+              EClass _eClass_1 = _eContainer_2.eClass();
               boolean _equals_1 = Objects.equal(_eClass_1, FeaturePackage.Literals.FEATURE_FILE);
               _or = _equals_1;
             }

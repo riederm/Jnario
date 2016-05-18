@@ -95,7 +95,7 @@ public class Greeter{
 &lt;/div&gt;
   '''.toString
 
-assertEquals(expected, actual)</pre>
+assertEquals(expected.convertNL, actual.convertNL)</pre>
 </li><li><p id="Includes_failure_state_in_Feature" class="example notrun"><strong>Includes failure state in Feature</strong></p>
 <pre class="prettyprint lang-spec linenums">
 '''
@@ -211,7 +211,7 @@ public class Greeter{
 &lt;/div&gt;
       '''.toString
     
-    assertEquals(expected, actual)
+    assertEquals(expected.convertNL, actual.convertNL)
   }
   
   fact &quot;Includes failure state in Feature&quot;{
@@ -258,13 +258,17 @@ public class Greeter{
   def generateDocWithErrors(CharSequence input){
     val resource = parseScenario(input)
     subject.doGenerate(resource, fsa, mappingWithFailures)
-    fsa.files.values.first
+    fsa.textFiles.values.first
   }
   
   def generateDoc(CharSequence input){
     val resource = parseScenario(input)
     val featureFile= resource.contents.head as FeatureFile
     return subject.generateContent(featureFile.xtendTypes.head as Feature).toString
+  }
+
+  def convertNL(String s) {
+    s.replace(&quot;\r&quot;, &quot;&quot;)
   }
 }
 </pre>

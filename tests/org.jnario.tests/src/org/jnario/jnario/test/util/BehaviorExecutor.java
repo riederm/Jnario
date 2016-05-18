@@ -284,6 +284,7 @@ public abstract class BehaviorExecutor {
 	}
 
 	protected void initCompiler() {
+//		javaCompiler.addClassPathOfClass(org.hamcrest.Matchers.class);
 		javaCompiler.addClassPathOfClass(getClass());
 		javaCompiler.addClassPathOfClass(StringExtensions.class);
 		javaCompiler.addClassPathOfClass(Notifier.class);
@@ -307,7 +308,6 @@ public abstract class BehaviorExecutor {
 		javaCompiler.addClassPathOfClass(RegisteredValidatorTester.class);
 		javaCompiler.addClassPathOfClass(QualifiedName.class);
 		javaCompiler.addClassPathOfClass(Assertion.class);
-		javaCompiler.addClassPathOfClass(org.hamcrest.Matchers.class);
 		javaCompiler.addClassPathOfClass(Type.class);
 		javaCompiler.addClassPathOfClass(Token.class);
 		javaCompiler.addClassPathOfClass(Strings.class);

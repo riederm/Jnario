@@ -12,8 +12,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -100,21 +102,24 @@ public class FeatureJavaCompiler extends EclipseRuntimeDependentJavaCompiler{
 		}
 		if (url.getProtocol().startsWith("jar")) {
 			try {
-				pathToFolderOrJar = new URL(url.getPath().substring(0, url.getPath().indexOf('!'))).toURI()
-						.getRawPath();
+				pathToFolderOrJar = URIUtil.fromString(url.getPath().substring(0, url.getPath().indexOf('!'))).getRawPath();
 			} catch (Exception e) {
 				throw new WrappedException(e);
 			}
 		} else {
 			String resolvedRawPath;
 			try {
-				resolvedRawPath = URIUtil.toURI(url).getRawPath();
+				resolvedRawPath = URIUtil.fromString(url.getPath()).getRawPath();
 			} catch (URISyntaxException e) {
 				throw new WrappedException(e);
 			}
 			pathToFolderOrJar = resolvedRawPath.substring(0, resolvedRawPath.indexOf(classNameAsPath));
 		}
-		jnarioClassPath.add(pathToFolderOrJar);
+		try {
+			jnarioClassPath.add(URLDecoder.decode(pathToFolderOrJar, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	@Override
@@ -123,11 +128,13 @@ public class FeatureJavaCompiler extends EclipseRuntimeDependentJavaCompiler{
 			StringBuilder sb = new StringBuilder();
 			sb.append("-classpath ");
 			Iterator<String> iterator = jnarioClassPath.iterator();
+			sb.append('"');
 			while(iterator.hasNext()){
 				sb.append(iterator.next());
 				if (iterator.hasNext())
 					sb.append(File.pathSeparator);
 			}
+			sb.append('"');
 			classPathArgs = sb.toString();
 		}
 		return classPathArgs;

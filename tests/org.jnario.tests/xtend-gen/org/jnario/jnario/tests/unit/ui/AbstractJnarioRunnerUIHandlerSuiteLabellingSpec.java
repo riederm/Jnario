@@ -22,6 +22,7 @@ import org.jnario.jnario.tests.unit.ui.AbstractJnarioRunnerUIHandlerSpec;
 import org.jnario.jnario.tests.unit.ui.AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases;
 import org.jnario.jnario.tests.unit.ui.TestUIHandler;
 import org.jnario.lib.Assert;
+import org.jnario.lib.Each;
 import org.jnario.lib.ExampleTable;
 import org.jnario.lib.JnarioCollectionLiterals;
 import org.jnario.lib.Should;
@@ -300,9 +301,9 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   @Named("All cases")
   @Order(1)
   public void _allCases() throws Exception {
-    final Consumer<AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases> _function = new Consumer<AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases>() {
+    final Procedure1<AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases> _function = new Procedure1<AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases>() {
       @Override
-      public void accept(final AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases it) {
+      public void apply(final AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases it) {
         Function1<TestSuiteElement, ? extends TestElement> _left = it.getLeft();
         Function1<TestSuiteElement, TestCaseElement> _right = it.getRight();
         List<Function1<TestSuiteElement, ? extends TestElement>> _list = JnarioCollectionLiterals.<Function1<TestSuiteElement, ? extends TestElement>>list(_left, _right);
@@ -320,7 +321,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
         
       }
     };
-    this.cases.forEach(_function);
+    Each.<AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases>forEach(this.cases, _function);
   }
   
   public TestSuiteElement root(@Extension final Function1<? super TestSuiteElement, ? extends TestElement>... elementConstructors) {

@@ -39,6 +39,8 @@ public class SetupTeardownSpec {
     final ConsoleRecorder recording = ConsoleRecorder.start();
     this._behaviorExecutor.executesSuccessfully(spec);
     final String actual = recording.stop();
-    Assert.assertEquals(expected, actual);
+    String _replace = expected.replace("\r", "");
+    String _replace_1 = actual.replace("\r", "");
+    Assert.assertEquals(_replace, _replace_1);
   }
 }

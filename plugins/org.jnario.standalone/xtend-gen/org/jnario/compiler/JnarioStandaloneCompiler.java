@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Consumer;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
@@ -185,9 +184,9 @@ public class JnarioStandaloneCompiler extends AbstractBatchCompiler {
     };
     final Multimap<String, URI> pathes = pathTraverser.resolvePathes(sourcePathDirectories, _function);
     Set<String> _keySet = pathes.keySet();
-    final Consumer<String> _function_1 = new Consumer<String>() {
+    final Procedure1<String> _function_1 = new Procedure1<String>() {
       @Override
-      public void accept(final String src) {
+      public void apply(final String src) {
         final URI baseDir = URI.createFileURI((src + "/"));
         Joiner _on = Joiner.on("_");
         String[] _segments = baseDir.segments();
@@ -209,20 +208,20 @@ public class JnarioStandaloneCompiler extends AbstractBatchCompiler {
         }
       }
     };
-    _keySet.forEach(_function_1);
+    IterableExtensions.<String>forEach(_keySet, _function_1);
     return resourceSet;
   }
   
   public void applyEncoding() {
-    final Consumer<Injector> _function = new Consumer<Injector>() {
+    final Procedure1<Injector> _function = new Procedure1<Injector>() {
       @Override
-      public void accept(final Injector it) {
+      public void apply(final Injector it) {
         IEncodingProvider.Runtime _instance = it.<IEncodingProvider.Runtime>getInstance(IEncodingProvider.Runtime.class);
         String _fileEncoding = JnarioStandaloneCompiler.this.getFileEncoding();
         _instance.setDefaultEncoding(_fileEncoding);
       }
     };
-    this.injectors.forEach(_function);
+    IterableExtensions.<Injector>forEach(this.injectors, _function);
   }
   
   public List<NameBasedFilter> getNameBasedFilters() {
@@ -251,9 +250,9 @@ public class JnarioStandaloneCompiler extends AbstractBatchCompiler {
     fileSystemAccess.setOutputPath(_string);
     EList<Resource> _resources = resourceSet.getResources();
     ArrayList<Resource> _newArrayList = Lists.<Resource>newArrayList(_resources);
-    final Consumer<Resource> _function = new Consumer<Resource>() {
+    final Procedure1<Resource> _function = new Procedure1<Resource>() {
       @Override
-      public void accept(final Resource it) {
+      public void apply(final Resource it) {
         IResourceDescription.Manager _findResourceDescriptionManager = JnarioStandaloneCompiler.this.findResourceDescriptionManager(it);
         IResourceDescription _resourceDescription = null;
         if (_findResourceDescriptionManager!=null) {
@@ -266,7 +265,7 @@ public class JnarioStandaloneCompiler extends AbstractBatchCompiler {
         }
       }
     };
-    _newArrayList.forEach(_function);
+    IterableExtensions.<Resource>forEach(_newArrayList, _function);
     return outputDirectory;
   }
   
@@ -320,9 +319,9 @@ public class JnarioStandaloneCompiler extends AbstractBatchCompiler {
       }
     };
     Iterable<IEObjectDescription> _filter = IterableExtensions.<IEObjectDescription>filter(exportedObjectsByType, _function);
-    final Consumer<IEObjectDescription> _function_1 = new Consumer<IEObjectDescription>() {
+    final Procedure1<IEObjectDescription> _function_1 = new Procedure1<IEObjectDescription>() {
       @Override
-      public void accept(final IEObjectDescription eObjectDescription) {
+      public void apply(final IEObjectDescription eObjectDescription) {
         EObject _eObjectOrProxy = eObjectDescription.getEObjectOrProxy();
         final JvmDeclaredType jvmGenericType = ((JvmDeclaredType) _eObjectOrProxy);
         Resource _eResource = jvmGenericType.eResource();
@@ -345,7 +344,7 @@ public class JnarioStandaloneCompiler extends AbstractBatchCompiler {
         javaIoFileSystemAccess.generateFile(_javaFileName_1, generatedType);
       }
     };
-    _filter.forEach(_function_1);
+    IterableExtensions.<IEObjectDescription>forEach(_filter, _function_1);
   }
   
   public String getJavaFileName(final QualifiedName typeName) {

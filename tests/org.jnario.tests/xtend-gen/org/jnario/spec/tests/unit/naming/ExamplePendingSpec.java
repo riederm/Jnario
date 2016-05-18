@@ -8,8 +8,9 @@
 package org.jnario.spec.tests.unit.naming;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.lib.Assert;
+import org.jnario.lib.Each;
 import org.jnario.lib.ExampleTable;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -81,9 +82,9 @@ public class ExamplePendingSpec extends ExampleSpec {
   @Named("examples.forEach[pendingStateOf[example] should be expected]")
   @Order(1)
   public void _examplesForEachPendingStateOfExampleShouldBeExpected() throws Exception {
-    final Consumer<ExamplePendingSpecExamples> _function = new Consumer<ExamplePendingSpecExamples>() {
+    final Procedure1<ExamplePendingSpecExamples> _function = new Procedure1<ExamplePendingSpecExamples>() {
       @Override
-      public void accept(final ExamplePendingSpecExamples it) {
+      public void apply(final ExamplePendingSpecExamples it) {
         String _example = it.getExample();
         boolean _pendingStateOf = ExamplePendingSpec.this.pendingStateOf(_example);
         boolean _expected = it.getExpected();
@@ -94,6 +95,6 @@ public class ExamplePendingSpec extends ExampleSpec {
         
       }
     };
-    this.examples.forEach(_function);
+    Each.<ExamplePendingSpecExamples>forEach(this.examples, _function);
   }
 }

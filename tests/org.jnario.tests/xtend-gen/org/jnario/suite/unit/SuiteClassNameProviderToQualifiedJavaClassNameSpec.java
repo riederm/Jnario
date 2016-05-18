@@ -8,9 +8,10 @@
 package org.jnario.suite.unit;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.jnario.test.util.Suites;
 import org.jnario.lib.Assert;
+import org.jnario.lib.Each;
 import org.jnario.lib.ExampleTable;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -95,9 +96,9 @@ public class SuiteClassNameProviderToQualifiedJavaClassNameSpec extends SuiteCla
   @Named("examples.forEach[ val actualName = subject.toQualifiedJavaClassName[suite[name, packageName]] actualName => qualifiedName ]")
   @Order(1)
   public void _examplesForEachValActualNameSubjectToQualifiedJavaClassNameSuiteNamePackageNameActualNameQualifiedName() throws Exception {
-    final Consumer<SuiteClassNameProviderToQualifiedJavaClassNameSpecExamples> _function = new Consumer<SuiteClassNameProviderToQualifiedJavaClassNameSpecExamples>() {
+    final Procedure1<SuiteClassNameProviderToQualifiedJavaClassNameSpecExamples> _function = new Procedure1<SuiteClassNameProviderToQualifiedJavaClassNameSpecExamples>() {
       @Override
-      public void accept(final SuiteClassNameProviderToQualifiedJavaClassNameSpecExamples it) {
+      public void apply(final SuiteClassNameProviderToQualifiedJavaClassNameSpecExamples it) {
         String _name = it.getName();
         String _packageName = it.getPackageName();
         Suite _suite = Suites.suite(_name, _packageName);
@@ -109,6 +110,6 @@ public class SuiteClassNameProviderToQualifiedJavaClassNameSpec extends SuiteCla
         
       }
     };
-    this.examples.forEach(_function);
+    Each.<SuiteClassNameProviderToQualifiedJavaClassNameSpecExamples>forEach(this.examples, _function);
   }
 }

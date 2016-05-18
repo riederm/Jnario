@@ -8,10 +8,11 @@
 package org.jnario.jnario.tests.unit.jnario;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.jnario.tests.unit.jnario.StringsSpec;
 import org.jnario.jnario.tests.unit.jnario.StringsStartsWithWordSpecExamples;
 import org.jnario.lib.Assert;
+import org.jnario.lib.Each;
 import org.jnario.lib.ExampleTable;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -115,9 +116,9 @@ public class StringsStartsWithWordSpec extends StringsSpec {
   @Named("examples.forEach[string.startsWithWord[word] => index]")
   @Order(1)
   public void _examplesForEachStringStartsWithWordWordIndex() throws Exception {
-    final Consumer<StringsStartsWithWordSpecExamples> _function = new Consumer<StringsStartsWithWordSpecExamples>() {
+    final Procedure1<StringsStartsWithWordSpecExamples> _function = new Procedure1<StringsStartsWithWordSpecExamples>() {
       @Override
-      public void accept(final StringsStartsWithWordSpecExamples it) {
+      public void apply(final StringsStartsWithWordSpecExamples it) {
         String _string = it.getString();
         String _word = it.getWord();
         int _startsWithWord = Strings.startsWithWord(_string, _word);
@@ -130,6 +131,6 @@ public class StringsStartsWithWordSpec extends StringsSpec {
         
       }
     };
-    this.examples.forEach(_function);
+    Each.<StringsStartsWithWordSpecExamples>forEach(this.examples, _function);
   }
 }
