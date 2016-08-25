@@ -8,10 +8,11 @@
 package org.jnario.spec.tests.unit.naming;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IntegerRange;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.jnario.test.util.Query;
 import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
@@ -41,9 +42,9 @@ public class ExampleNameProviderToMethodNameExampleSpec extends ExampleNameProvi
       "\'my\nexample\'", 
       "\'my\texample\'", 
       "\'my_example\'");
-    final Consumer<String> _function = new Consumer<String>() {
+    final Procedure1<String> _function = new Procedure1<String>() {
       @Override
-      public void accept(final String it) {
+      public void apply(final String it) {
         String _firstMethodName = ExampleNameProviderToMethodNameExampleSpec.this.firstMethodName(it);
         Assert.assertTrue("\nExpected firstMethodName(it) => \'_myExample\' but"
          + "\n     firstMethodName(it) is " + new org.hamcrest.StringDescription().appendValue(_firstMethodName).toString()
@@ -51,7 +52,7 @@ public class ExampleNameProviderToMethodNameExampleSpec extends ExampleNameProvi
         
       }
     };
-    _newArrayList.forEach(_function);
+    IterableExtensions.<String>forEach(_newArrayList, _function);
   }
   
   @Test

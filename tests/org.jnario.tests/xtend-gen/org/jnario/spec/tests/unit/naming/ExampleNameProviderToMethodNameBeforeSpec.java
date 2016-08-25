@@ -8,9 +8,10 @@
 package org.jnario.spec.tests.unit.naming;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.jnario.test.util.Query;
 import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
@@ -40,16 +41,16 @@ public class ExampleNameProviderToMethodNameBeforeSpec extends ExampleNameProvid
       "before \'my\nexample\'", 
       "before \'my\texample\'", 
       "before \'my_example\'");
-    final Consumer<String> _function = new Consumer<String>() {
+    final Procedure1<String> _function = new Procedure1<String>() {
       @Override
-      public void accept(final String it) {
+      public void apply(final String it) {
         String _firstMethodName = ExampleNameProviderToMethodNameBeforeSpec.this.firstMethodName(it);
         Assert.assertTrue("\nExpected firstMethodName => \'_myExample\' but"
          + "\n     firstMethodName is " + new org.hamcrest.StringDescription().appendValue(_firstMethodName).toString() + "\n", Should.<String>operator_doubleArrow(_firstMethodName, "_myExample"));
         
       }
     };
-    _newArrayList.forEach(_function);
+    IterableExtensions.<String>forEach(_newArrayList, _function);
   }
   
   @Test

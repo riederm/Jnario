@@ -8,9 +8,10 @@
 package org.jnario.spec.tests.unit.naming;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.jnario.jnario.test.util.Query;
@@ -109,9 +110,9 @@ public class ExampleNameProviderToJavaClassNameExampleGroupSpec extends ExampleN
       "describe \'my\nexample\'", 
       "describe \'my\texample\'", 
       "describe \'my_example\'");
-    final Consumer<String> _function = new Consumer<String>() {
+    final Procedure1<String> _function = new Procedure1<String>() {
       @Override
-      public void accept(final String it) {
+      public void apply(final String it) {
         String _firstJavaClassName = ExampleNameProviderToJavaClassNameExampleGroupSpec.this.firstJavaClassName(it);
         Assert.assertTrue("\nExpected firstJavaClassName(it) => \'MyExampleSpec\' but"
          + "\n     firstJavaClassName(it) is " + new org.hamcrest.StringDescription().appendValue(_firstJavaClassName).toString()
@@ -119,7 +120,7 @@ public class ExampleNameProviderToJavaClassNameExampleGroupSpec extends ExampleN
         
       }
     };
-    _newArrayList.forEach(_function);
+    IterableExtensions.<String>forEach(_newArrayList, _function);
   }
   
   @Test

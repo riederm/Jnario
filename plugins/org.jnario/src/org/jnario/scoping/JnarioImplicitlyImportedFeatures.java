@@ -17,6 +17,20 @@ public class JnarioImplicitlyImportedFeatures extends ImplicitlyImportedFeatures
 	@Override
 	protected List<Class<?>> getExtensionClasses() {
 		List<Class<?>> result = super.getExtensionClasses();
+
+		/*
+		 * In Java 8 the Iterator interface defines default method forEach(), that gets bound prior to the extension method Each.forEach().
+		 * The new default method signature is 
+		 * 
+         *      public interface Iterable<T> {
+         *        default void forEach(Consumer<? super T> action);
+         *      }
+         *
+         * Since Jnario gets compiled with Java 6, we can't override this method in ExampleTable (No Consumer class defined yet).
+         * The solution is to override getBestCandidate() method of JnarioTypeComputer letting the Each.forEach method always win.
+		 */
+		result.add(Each.class);
+
 //		result.remove(ObjectExtensions.class);
 		result.add(Should.class);
 //		result.add(ObjectExtensions.class);
@@ -31,18 +45,6 @@ public class JnarioImplicitlyImportedFeatures extends ImplicitlyImportedFeatures
 	protected List<Class<?>> getStaticImportClasses() {
 		List<Class<?>> result = super.getStaticImportClasses();
 
-		/*
-		 * In Java 8 the Iterator interface defines default method forEach(), that gets bound prior to the extension method Each.forEach().
-		 * The new default method signature is 
-		 * 
-         *      public interface Iterable<T> {
-         *        default void forEach(Consumer<? super T> action);
-         *      }
-         *
-         * Since Jnario gets compiled with Java 6, we can't override this method in ExampleTable (No Consumer class defined yet).
-         * The solution is to override getBestCandidate() method of JnarioTypeComputer letting the Each.forEach method always win.
-		 */
-		result.add(Each.class);
 
 		result.add(Should.class);
 		result.add(Wait.class);
