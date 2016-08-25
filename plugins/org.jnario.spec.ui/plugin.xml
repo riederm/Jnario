@@ -502,8 +502,6 @@
             extensions="spec">
     </provider>
   </extension>
-  
-  
    <extension point="org.eclipse.core.runtime.adapters">
      <factory 
         class="org.jnario.spec.ui.SpecExecutableExtensionFactory:org.jnario.spec.ui.launching.SpecJavaElementDelegateAdapterFactory"
@@ -1101,4 +1099,34 @@
        </handler>
    </extension>
 -->
+<!-- organize multiple imports -->
+	<!--extension point="org.eclipse.ui.menus">
+		<menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.jdt.ui.PackageExplorer?before=org.eclipse.jdt.ui.refactoring.menu">
+         <menu
+               id="org.eclipse.jdt.ui.source.menu"
+               label="Source">
+            <command
+                  commandId="org.jnario.spec.ui.multiOrganizeImports"
+                  label="Organize Imports including Jnario"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+	</extension-->
+    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Trigger Organize Jnario Spec Imports"
+            id="org.jnario.spec.ui.multiOrganizeImports"
+            name="Organize Jnario Spec Imports">
+      </command>
+	</extension>
+    <extension point="org.eclipse.ui.handlers">
+        <handler
+            class="org.jnario.spec.ui.SpecExecutableExtensionFactory:org.eclipse.xtext.xbase.ui.imports.MultiOrganizeImportsHandler"
+            commandId="org.jnario.spec.ui.multiOrganizeImports">
+        </handler>
+	</extension>
 </plugin>

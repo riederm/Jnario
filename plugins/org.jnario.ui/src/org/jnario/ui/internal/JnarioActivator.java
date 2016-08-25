@@ -8,6 +8,7 @@
 package org.jnario.ui.internal;
 
 import org.apache.log4j.Logger;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipse.xtext.util.Modules2;
@@ -62,5 +63,9 @@ public class JnarioActivator extends AbstractUIPlugin {
 
 	protected Module getSharedStateModule() {
 		return new SharedStateModule();
+	}
+	
+	public static void logError(String msg, Throwable e) {
+		INSTANCE.getLog().log(new Status(Status.ERROR, INSTANCE.getBundle().getSymbolicName(), Status.OK, msg, e));
 	}
 }
