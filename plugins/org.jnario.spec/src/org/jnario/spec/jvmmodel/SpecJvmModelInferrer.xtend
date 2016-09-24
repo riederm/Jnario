@@ -40,6 +40,7 @@ import org.jnario.spec.spec.ExampleGroup
 import org.jnario.spec.spec.TestFunction
 
 import static extension org.eclipse.xtext.util.Strings.*
+import org.jnario.RichString
 
 /**
  * @author Sebastian Benz - Initial contribution and API

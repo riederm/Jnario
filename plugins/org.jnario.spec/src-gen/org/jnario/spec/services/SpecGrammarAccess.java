@@ -34,9 +34,7 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cXtendTypesTypeParserRuleCall_3_0 = (RuleCall)cXtendTypesAssignment_3.eContents().get(0);
 		
 		//SpecFile:
-		//	{SpecFile} ('package' package=QualifiedName)?
-		//	importSection=XImportSection?
-		//	xtendTypes+=Type*;
+		//	{SpecFile} ('package' package=QualifiedName)? importSection=XImportSection? xtendTypes+=Type*;
 		@Override public ParserRule getRule() { return rule; }
 
 		//{SpecFile} ('package' package=QualifiedName)? importSection=XImportSection? xtendTypes+=Type*
@@ -91,8 +89,7 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Type JnarioTypeDeclaration:
 		//	{JnarioTypeDeclaration} annotations+=XAnnotation* ({ExampleGroup.annotationInfo=current} preamble='describe'
-		//	targetType=JvmTypeReference? name=STRING? '{'
-		//	members+=Member* '}')
+		//	targetType=JvmTypeReference? name=STRING? '{' members+=Member* '}')
 		@Override public ParserRule getRule() { return rule; }
 
 		//{JnarioTypeDeclaration} annotations+=XAnnotation* ({ExampleGroup.annotationInfo=current} preamble='describe'
@@ -466,34 +463,28 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_2_7_9 = (Alternatives)cGroup_2_7.eContents().get(9);
 		private final Assignment cExpressionAssignment_2_7_9_0 = (Assignment)cAlternatives_2_7_9.eContents().get(0);
 		private final RuleCall cExpressionXBlockExpressionParserRuleCall_2_7_9_0_0 = (RuleCall)cExpressionAssignment_2_7_9_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_2_7_9_1 = (Keyword)cAlternatives_2_7_9.eContents().get(1);
+		private final Assignment cExpressionAssignment_2_7_9_1 = (Assignment)cAlternatives_2_7_9.eContents().get(1);
+		private final RuleCall cExpressionRichStringParserRuleCall_2_7_9_1_0 = (RuleCall)cExpressionAssignment_2_7_9_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_2_7_9_2 = (Keyword)cAlternatives_2_7_9.eContents().get(2);
 		
 		//Member JnarioMember:
 		//	{JnarioMember} annotations+=XAnnotation* ({Example.annotationInfo=current} (pending?='pending'? ('fact' | 'facts')
 		//	expr=XExpression expression=XBlockExpression?) | {ExampleGroup.annotationInfo=current} (preamble='describe'
-		//	targetType=JvmTypeReference? name=STRING? '{'
-		//	members+=Member*
-		//	'}') | {Before.annotationInfo=current} ('before' (modifiers+='all' | 'each')? => name=STRING? expression=XExpression)
-		//	| {After.annotationInfo=current} ('after' (modifiers+='all' | 'each')? => name=STRING? expression=XExpression) |
-		//	{ExampleGroup.annotationInfo=current} (preamble='context' targetOperation=[types::JvmOperation|Method]? name=STRING?
-		//	'{'
-		//	members+=Member*
-		//	'}') | {ExampleTable.annotationInfo=current} ('def' name=ID? '{' ('|' columns+=ExampleColumn*
-		//	rows+=ExampleRow*)?
-		//	'}') | {JnarioField.annotationInfo=current} modifiers+=CommonModifier* (modifiers+=FieldModifier
-		//	modifiers+=CommonModifier*
-		//	type=JvmTypeReference? name=ValidID
-		//	| modifiers+='extension' (modifiers+=FieldModifier | modifiers+=CommonModifier)*
-		//	type=JvmTypeReference name=ValidID?
-		//	| modifiers+=FieldModifier modifiers+=CommonModifier* modifiers+='extension' modifiers+=CommonModifier*
-		//	type=JvmTypeReference name=ValidID?
-		//	| type=JvmTypeReference name=ValidID) ('=' initialValue=XExpression)? ';'?
-		//	| {JnarioFunction.annotationInfo=current} modifiers+=CommonModifier*
+		//	targetType=JvmTypeReference? name=STRING? '{' members+=Member* '}') | {Before.annotationInfo=current} ('before'
+		//	(modifiers+='all' | 'each')? => name=STRING? expression=XExpression) | {After.annotationInfo=current} ('after'
+		//	(modifiers+='all' | 'each')? => name=STRING? expression=XExpression) | {ExampleGroup.annotationInfo=current}
+		//	(preamble='context' targetOperation=[types::JvmOperation|Method]? name=STRING? '{' members+=Member* '}') |
+		//	{ExampleTable.annotationInfo=current} ('def' name=ID? '{' ('|' columns+=ExampleColumn* rows+=ExampleRow*)? '}') |
+		//	{JnarioField.annotationInfo=current} modifiers+=CommonModifier* (modifiers+=FieldModifier modifiers+=CommonModifier*
+		//	type=JvmTypeReference? name=ValidID | modifiers+='extension' (modifiers+=FieldModifier | modifiers+=CommonModifier)*
+		//	type=JvmTypeReference name=ValidID? | modifiers+=FieldModifier modifiers+=CommonModifier* modifiers+='extension'
+		//	modifiers+=CommonModifier* type=JvmTypeReference name=ValidID? | type=JvmTypeReference name=ValidID) ('='
+		//	initialValue=XExpression)? ';'? | {JnarioFunction.annotationInfo=current} modifiers+=CommonModifier*
 		//	modifiers+=MethodModifier (modifiers+=CommonModifier | modifiers+=MethodModifier)* ('<'
 		//	typeParameters+=JvmTypeParameter (',' typeParameters+=JvmTypeParameter)* '>')? (=> (returnType=JvmTypeReference
 		//	name=ValidID '(') | name=ValidID '(') (parameters+=Parameter (',' parameters+=Parameter)*)? ')' ('throws'
-		//	exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)? (expression=XBlockExpression | ';')? // TODO Add RichString here
-		//)
+		//	exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)? (expression=XBlockExpression |
+		//	expression=RichString | ';')?)
 		@Override public ParserRule getRule() { return rule; }
 
 		//{JnarioMember} annotations+=XAnnotation* ({Example.annotationInfo=current} (pending?='pending'? ('fact' | 'facts')
@@ -511,8 +502,8 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		//modifiers+=MethodModifier (modifiers+=CommonModifier | modifiers+=MethodModifier)* ('<'
 		//typeParameters+=JvmTypeParameter (',' typeParameters+=JvmTypeParameter)* '>')? (=> (returnType=JvmTypeReference
 		//name=ValidID '(') | name=ValidID '(') (parameters+=Parameter (',' parameters+=Parameter)*)? ')' ('throws'
-		//exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)? (expression=XBlockExpression | ';')? // TODO Add RichString here
-		//)
+		//exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)? (expression=XBlockExpression |
+		//expression=RichString | ';')?)
 		public Group getGroup() { return cGroup; }
 
 		//{JnarioMember}
@@ -539,8 +530,8 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		//modifiers+=MethodModifier (modifiers+=CommonModifier | modifiers+=MethodModifier)* ('<'
 		//typeParameters+=JvmTypeParameter (',' typeParameters+=JvmTypeParameter)* '>')? (=> (returnType=JvmTypeReference
 		//name=ValidID '(') | name=ValidID '(') (parameters+=Parameter (',' parameters+=Parameter)*)? ')' ('throws'
-		//exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)? (expression=XBlockExpression | ';')? // TODO Add RichString here
-		//)
+		//exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)? (expression=XBlockExpression |
+		//expression=RichString | ';')?)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//{Example.annotationInfo=current} (pending?='pending'? ('fact' | 'facts') expr=XExpression expression=XBlockExpression?)
@@ -935,7 +926,7 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		//| modifiers+=MethodModifier)* ('<' typeParameters+=JvmTypeParameter (',' typeParameters+=JvmTypeParameter)* '>')? (=>
 		//(returnType=JvmTypeReference name=ValidID '(') | name=ValidID '(') (parameters+=Parameter (','
 		//parameters+=Parameter)*)? ')' ('throws' exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)?
-		//(expression=XBlockExpression | ';')?
+		//(expression=XBlockExpression | expression=RichString | ';')?
 		public Group getGroup_2_7() { return cGroup_2_7; }
 
 		//{JnarioFunction.annotationInfo=current}
@@ -1079,7 +1070,7 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		//JvmTypeReference
 		public RuleCall getExceptionsJvmTypeReferenceParserRuleCall_2_7_8_2_1_0() { return cExceptionsJvmTypeReferenceParserRuleCall_2_7_8_2_1_0; }
 
-		//(expression=XBlockExpression | ';')?
+		//(expression=XBlockExpression | expression=RichString | ';')?
 		public Alternatives getAlternatives_2_7_9() { return cAlternatives_2_7_9; }
 
 		//expression=XBlockExpression
@@ -1088,8 +1079,14 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		//XBlockExpression
 		public RuleCall getExpressionXBlockExpressionParserRuleCall_2_7_9_0_0() { return cExpressionXBlockExpressionParserRuleCall_2_7_9_0_0; }
 
+		//expression=RichString
+		public Assignment getExpressionAssignment_2_7_9_1() { return cExpressionAssignment_2_7_9_1; }
+
+		//RichString
+		public RuleCall getExpressionRichStringParserRuleCall_2_7_9_1_0() { return cExpressionRichStringParserRuleCall_2_7_9_1_0; }
+
 		//';'
-		public Keyword getSemicolonKeyword_2_7_9_1() { return cSemicolonKeyword_2_7_9_1; }
+		public Keyword getSemicolonKeyword_2_7_9_2() { return cSemicolonKeyword_2_7_9_2; }
 	}
 
 	public class XPrimaryExpressionElements extends AbstractParserRuleElementFinder {
@@ -1216,9 +1213,8 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//XRelationalExpression xbase::XExpression:
 		//	XOtherOperatorExpression (=> ({Should.leftOperand=current} feature=[types::JvmIdentifiableElement|Should]) =>
-		//	rightOperand=XOtherOperatorExpression? |
-		//	=> ({ShouldThrow.expression=current} ('should' 'throw' | 'throws')) type=JvmTypeReference |
-		//	=> ({xbase::XInstanceOfExpression.expression=current} 'instanceof') type=JvmTypeReference |
+		//	rightOperand=XOtherOperatorExpression? | => ({ShouldThrow.expression=current} ('should' 'throw' | 'throws'))
+		//	type=JvmTypeReference | => ({xbase::XInstanceOfExpression.expression=current} 'instanceof') type=JvmTypeReference |
 		//	=> ({xbase::XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpCompare])
 		//	rightOperand=XOtherOperatorExpression)*
 		@Override public ParserRule getRule() { return rule; }
@@ -1384,8 +1380,7 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpressionXExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
 		
 		//Assertion xbase::XExpression:
-		//	{Assertion}
-		//	'assert' expression=XExpression
+		//	{Assertion} 'assert' expression=XExpression
 		@Override public ParserRule getRule() { return rule; }
 
 		//{Assertion} 'assert' expression=XExpression
@@ -1488,6 +1483,289 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getExpressionXExpressionParserRuleCall_0() { return cExpressionXExpressionParserRuleCall_0; }
 	}
 
+	public class XStringLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.XStringLiteral");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cSimpleStringLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cRichStringParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		////From Xtend.xtext
+		// XStringLiteral xbase::XExpression:
+		//	SimpleStringLiteral | RichString
+		@Override public ParserRule getRule() { return rule; }
+
+		//SimpleStringLiteral | RichString
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//SimpleStringLiteral
+		public RuleCall getSimpleStringLiteralParserRuleCall_0() { return cSimpleStringLiteralParserRuleCall_0; }
+
+		//RichString
+		public RuleCall getRichStringParserRuleCall_1() { return cRichStringParserRuleCall_1; }
+	}
+
+	public class SimpleStringLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.SimpleStringLiteral");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cXStringLiteralAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueSTRINGTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//SimpleStringLiteral xbase::XExpression:
+		//	{xbase::XStringLiteral} value=STRING
+		@Override public ParserRule getRule() { return rule; }
+
+		//{xbase::XStringLiteral} value=STRING
+		public Group getGroup() { return cGroup; }
+
+		//{xbase::XStringLiteral}
+		public Action getXStringLiteralAction_0() { return cXStringLiteralAction_0; }
+
+		//value=STRING
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+
+		//STRING
+		public RuleCall getValueSTRINGTerminalRuleCall_1_0() { return cValueSTRINGTerminalRuleCall_1_0; }
+	}
+
+	public class RichStringElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.RichString");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRichStringAction_0 = (Action)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cExpressionsAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cExpressionsRichStringLiteralParserRuleCall_1_0_0 = (RuleCall)cExpressionsAssignment_1_0.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Assignment cExpressionsAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cExpressionsRichStringLiteralStartParserRuleCall_1_1_0_0 = (RuleCall)cExpressionsAssignment_1_1_0.eContents().get(0);
+		private final Assignment cExpressionsAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cExpressionsRichStringPartParserRuleCall_1_1_1_0 = (RuleCall)cExpressionsAssignment_1_1_1.eContents().get(0);
+		private final Group cGroup_1_1_2 = (Group)cGroup_1_1.eContents().get(2);
+		private final Assignment cExpressionsAssignment_1_1_2_0 = (Assignment)cGroup_1_1_2.eContents().get(0);
+		private final RuleCall cExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_2_0_0 = (RuleCall)cExpressionsAssignment_1_1_2_0.eContents().get(0);
+		private final Assignment cExpressionsAssignment_1_1_2_1 = (Assignment)cGroup_1_1_2.eContents().get(1);
+		private final RuleCall cExpressionsRichStringPartParserRuleCall_1_1_2_1_0 = (RuleCall)cExpressionsAssignment_1_1_2_1.eContents().get(0);
+		private final Assignment cExpressionsAssignment_1_1_3 = (Assignment)cGroup_1_1.eContents().get(3);
+		private final RuleCall cExpressionsRichStringLiteralEndParserRuleCall_1_1_3_0 = (RuleCall)cExpressionsAssignment_1_1_3.eContents().get(0);
+		
+		//RichString xbase::XExpression:
+		//	{RichString} (expressions+=RichStringLiteral | expressions+=RichStringLiteralStart expressions+=RichStringPart?
+		//	(expressions+=RichStringLiteralInbetween expressions+=RichStringPart?)* expressions+=RichStringLiteralEnd)
+		@Override public ParserRule getRule() { return rule; }
+
+		//{RichString} (expressions+=RichStringLiteral | expressions+=RichStringLiteralStart expressions+=RichStringPart?
+		//(expressions+=RichStringLiteralInbetween expressions+=RichStringPart?)* expressions+=RichStringLiteralEnd)
+		public Group getGroup() { return cGroup; }
+
+		//{RichString}
+		public Action getRichStringAction_0() { return cRichStringAction_0; }
+
+		//(expressions+=RichStringLiteral | expressions+=RichStringLiteralStart expressions+=RichStringPart?
+		//(expressions+=RichStringLiteralInbetween expressions+=RichStringPart?)* expressions+=RichStringLiteralEnd)
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
+		//expressions+=RichStringLiteral
+		public Assignment getExpressionsAssignment_1_0() { return cExpressionsAssignment_1_0; }
+
+		//RichStringLiteral
+		public RuleCall getExpressionsRichStringLiteralParserRuleCall_1_0_0() { return cExpressionsRichStringLiteralParserRuleCall_1_0_0; }
+
+		//expressions+=RichStringLiteralStart expressions+=RichStringPart? (expressions+=RichStringLiteralInbetween
+		//expressions+=RichStringPart?)* expressions+=RichStringLiteralEnd
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//expressions+=RichStringLiteralStart
+		public Assignment getExpressionsAssignment_1_1_0() { return cExpressionsAssignment_1_1_0; }
+
+		//RichStringLiteralStart
+		public RuleCall getExpressionsRichStringLiteralStartParserRuleCall_1_1_0_0() { return cExpressionsRichStringLiteralStartParserRuleCall_1_1_0_0; }
+
+		//expressions+=RichStringPart?
+		public Assignment getExpressionsAssignment_1_1_1() { return cExpressionsAssignment_1_1_1; }
+
+		//RichStringPart
+		public RuleCall getExpressionsRichStringPartParserRuleCall_1_1_1_0() { return cExpressionsRichStringPartParserRuleCall_1_1_1_0; }
+
+		//(expressions+=RichStringLiteralInbetween expressions+=RichStringPart?)*
+		public Group getGroup_1_1_2() { return cGroup_1_1_2; }
+
+		//expressions+=RichStringLiteralInbetween
+		public Assignment getExpressionsAssignment_1_1_2_0() { return cExpressionsAssignment_1_1_2_0; }
+
+		//RichStringLiteralInbetween
+		public RuleCall getExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_2_0_0() { return cExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_2_0_0; }
+
+		//expressions+=RichStringPart?
+		public Assignment getExpressionsAssignment_1_1_2_1() { return cExpressionsAssignment_1_1_2_1; }
+
+		//RichStringPart
+		public RuleCall getExpressionsRichStringPartParserRuleCall_1_1_2_1_0() { return cExpressionsRichStringPartParserRuleCall_1_1_2_1_0; }
+
+		//expressions+=RichStringLiteralEnd
+		public Assignment getExpressionsAssignment_1_1_3() { return cExpressionsAssignment_1_1_3; }
+
+		//RichStringLiteralEnd
+		public RuleCall getExpressionsRichStringLiteralEndParserRuleCall_1_1_3_0() { return cExpressionsRichStringLiteralEndParserRuleCall_1_1_3_0; }
+	}
+
+	public class RichStringLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.RichStringLiteral");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRichStringLiteralAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueRICH_TEXTTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//RichStringLiteral xbase::XExpression:
+		//	{RichStringLiteral} value=RICH_TEXT
+		@Override public ParserRule getRule() { return rule; }
+
+		//{RichStringLiteral} value=RICH_TEXT
+		public Group getGroup() { return cGroup; }
+
+		//{RichStringLiteral}
+		public Action getRichStringLiteralAction_0() { return cRichStringLiteralAction_0; }
+
+		//value=RICH_TEXT
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+
+		//RICH_TEXT
+		public RuleCall getValueRICH_TEXTTerminalRuleCall_1_0() { return cValueRICH_TEXTTerminalRuleCall_1_0; }
+	}
+
+	public class RichStringLiteralStartElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.RichStringLiteralStart");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRichStringLiteralAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueRICH_TEXT_STARTTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//RichStringLiteralStart xbase::XExpression:
+		//	{RichStringLiteral} value=RICH_TEXT_START
+		@Override public ParserRule getRule() { return rule; }
+
+		//{RichStringLiteral} value=RICH_TEXT_START
+		public Group getGroup() { return cGroup; }
+
+		//{RichStringLiteral}
+		public Action getRichStringLiteralAction_0() { return cRichStringLiteralAction_0; }
+
+		//value=RICH_TEXT_START
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+
+		//RICH_TEXT_START
+		public RuleCall getValueRICH_TEXT_STARTTerminalRuleCall_1_0() { return cValueRICH_TEXT_STARTTerminalRuleCall_1_0; }
+	}
+
+	public class RichStringLiteralInbetweenElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.RichStringLiteralInbetween");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRichStringLiteralAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueRICH_TEXT_INBETWEENTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//RichStringLiteralInbetween xbase::XExpression:
+		//	{RichStringLiteral} value=RICH_TEXT_INBETWEEN
+		@Override public ParserRule getRule() { return rule; }
+
+		//{RichStringLiteral} value=RICH_TEXT_INBETWEEN
+		public Group getGroup() { return cGroup; }
+
+		//{RichStringLiteral}
+		public Action getRichStringLiteralAction_0() { return cRichStringLiteralAction_0; }
+
+		//value=RICH_TEXT_INBETWEEN
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+
+		//RICH_TEXT_INBETWEEN
+		public RuleCall getValueRICH_TEXT_INBETWEENTerminalRuleCall_1_0() { return cValueRICH_TEXT_INBETWEENTerminalRuleCall_1_0; }
+	}
+
+	public class RichStringLiteralEndElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.RichStringLiteralEnd");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRichStringLiteralAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueRICH_TEXT_ENDTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//RichStringLiteralEnd xbase::XExpression:
+		//	{RichStringLiteral} value=RICH_TEXT_END
+		@Override public ParserRule getRule() { return rule; }
+
+		//{RichStringLiteral} value=RICH_TEXT_END
+		public Group getGroup() { return cGroup; }
+
+		//{RichStringLiteral}
+		public Action getRichStringLiteralAction_0() { return cRichStringLiteralAction_0; }
+
+		//value=RICH_TEXT_END
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+
+		//RICH_TEXT_END
+		public RuleCall getValueRICH_TEXT_ENDTerminalRuleCall_1_0() { return cValueRICH_TEXT_ENDTerminalRuleCall_1_0; }
+	}
+
+	public class InternalRichStringElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.InternalRichString");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRichStringAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Assignment cExpressionsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cExpressionsRichStringLiteralInbetweenParserRuleCall_1_0_0 = (RuleCall)cExpressionsAssignment_1_0.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Assignment cExpressionsAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cExpressionsRichStringPartParserRuleCall_1_1_0_0 = (RuleCall)cExpressionsAssignment_1_1_0.eContents().get(0);
+		private final Assignment cExpressionsAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_1_0 = (RuleCall)cExpressionsAssignment_1_1_1.eContents().get(0);
+		
+		//InternalRichString xbase::XExpression:
+		//	{RichString} (expressions+=RichStringLiteralInbetween (expressions+=RichStringPart?
+		//	expressions+=RichStringLiteralInbetween)*)
+		@Override public ParserRule getRule() { return rule; }
+
+		//{RichString} (expressions+=RichStringLiteralInbetween (expressions+=RichStringPart?
+		//expressions+=RichStringLiteralInbetween)*)
+		public Group getGroup() { return cGroup; }
+
+		//{RichString}
+		public Action getRichStringAction_0() { return cRichStringAction_0; }
+
+		//(expressions+=RichStringLiteralInbetween (expressions+=RichStringPart? expressions+=RichStringLiteralInbetween)*)
+		public Group getGroup_1() { return cGroup_1; }
+
+		//expressions+=RichStringLiteralInbetween
+		public Assignment getExpressionsAssignment_1_0() { return cExpressionsAssignment_1_0; }
+
+		//RichStringLiteralInbetween
+		public RuleCall getExpressionsRichStringLiteralInbetweenParserRuleCall_1_0_0() { return cExpressionsRichStringLiteralInbetweenParserRuleCall_1_0_0; }
+
+		//(expressions+=RichStringPart? expressions+=RichStringLiteralInbetween)*
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//expressions+=RichStringPart?
+		public Assignment getExpressionsAssignment_1_1_0() { return cExpressionsAssignment_1_1_0; }
+
+		//RichStringPart
+		public RuleCall getExpressionsRichStringPartParserRuleCall_1_1_0_0() { return cExpressionsRichStringPartParserRuleCall_1_1_0_0; }
+
+		//expressions+=RichStringLiteralInbetween
+		public Assignment getExpressionsAssignment_1_1_1() { return cExpressionsAssignment_1_1_1; }
+
+		//RichStringLiteralInbetween
+		public RuleCall getExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_1_0() { return cExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_1_0; }
+	}
+
+	public class RichStringPartElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.RichStringPart");
+		private final RuleCall cXExpressionOrVarDeclarationParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//RichStringPart xbase::XExpression:
+		//	XExpressionOrVarDeclaration
+		@Override public ParserRule getRule() { return rule; }
+
+		//XExpressionOrVarDeclaration
+		public RuleCall getXExpressionOrVarDeclarationParserRuleCall() { return cXExpressionOrVarDeclarationParserRuleCall; }
+	}
+
 	public class CommonModifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.CommonModifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1505,83 +1783,39 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSynchronizedKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
 		private final Keyword cTransientKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
 		
-		/// *
-		//TODO NO_XTEND
+		////RichStringForLoop returns xbase::XExpression:
+		// //	{RichStringForLoop}
 		//
+		////	"FOR" declaredParam=JvmFormalParameter ':' forExpression=XExpression
+		// //		("BEFORE" before=XExpression)?
 		//
-		//XStringLiteral returns xbase::XExpression:
-		//    SimpleStringLiteral | RichString
-		//;
+		////		("SEPARATOR" separator=XExpression)?
+		// //		("AFTER" after=XExpression)?
+		// //		eachExpression=InternalRichString
 		//
-		//SimpleStringLiteral returns xbase::XExpression:
-		//    {xbase::XStringLiteral} value=STRING
-		//;
+		////	"ENDFOR"
+		// //;
+		// //
+		// //RichStringIf returns xbase::XExpression :
+		// //	{RichStringIf}
+		// //	"IF" if=XExpression
 		//
-		//RichString returns xbase::XExpression:
-		//    {RichString} ( 
-		//      expressions+=RichStringLiteral |
-		//      expressions+=RichStringLiteralStart expressions+=RichStringPart? 
-		//        (expressions+=RichStringLiteralInbetween expressions+=RichStringPart?)* 
-		//      expressions+=RichStringLiteralEnd
-		//    )
-		//;
+		////		then=InternalRichString
+		// //		elseIfs+=RichStringElseIf*
+		// //	("ELSE" 
+		// //		else=InternalRichString)?
+		// //	"ENDIF"
 		//
-		//RichStringLiteral returns xbase::XExpression :
-		//    {RichStringLiteral} value=RICH_TEXT
-		//;
+		////;
+		// //
+		// //RichStringElseIf returns RichStringElseIf:
+		// //	"ELSEIF" if=XExpression then=InternalRichString
+		// //;
 		//
-		//RichStringLiteralStart returns xbase::XExpression :
-		//    {RichStringLiteral} value=RICH_TEXT_START
-		//; 
-		//
-		//RichStringLiteralInbetween returns xbase::XExpression :
-		//    {RichStringLiteral} 
-		//    ( value=RICH_TEXT_INBETWEEN | value=COMMENT_RICH_TEXT_INBETWEEN )
-		//; 
-		//
-		//RichStringLiteralEnd returns xbase::XExpression :
-		//    {RichStringLiteral} 
-		//    ( value=RICH_TEXT_END | value=COMMENT_RICH_TEXT_END )
-		//; 
-		//
-		//InternalRichString returns xbase::XExpression:
-		//    {RichString} (
-		//        expressions+=RichStringLiteralInbetween (expressions+=RichStringPart? expressions+=RichStringLiteralInbetween)*
-		//    )
-		//;
-		//
-		//RichStringPart returns xbase::XExpression:
-		//    XExpressionOrVarDeclaration
-		//    | RichStringForLoop
-		//    | RichStringIf
-		//;
-		//RichStringForLoop returns xbase::XExpression:
-		//    {RichStringForLoop}
-		//    "FOR" declaredParam=JvmFormalParameter ':' forExpression=XExpression
-		//        ("BEFORE" before=XExpression)?
-		//        ("SEPARATOR" separator=XExpression)?
-		//        ("AFTER" after=XExpression)?
-		//        eachExpression=InternalRichString
-		//    "ENDFOR"
-		//;
-		//
-		//RichStringIf returns xbase::XExpression :
-		//    {RichStringIf}
-		//    "IF" if=XExpression
-		//        then=InternalRichString
-		//        elseIfs+=RichStringElseIf*
-		//    ("ELSE" 
-		//        else=InternalRichString)?
-		//    "ENDIF"
-		//;
-		//
-		//RichStringElseIf returns RichStringElseIf:
-		//    "ELSEIF" if=XExpression then=InternalRichString
-		//;
-		// * / // --------------------- FROM Xtend.xtext
-		//CommonModifier:
-		//	'public' | 'private' | 'protected' | 'package' | 'abstract' | 'static' | 'dispatch' | 'final'
-		//	| 'strictfp' | 'native' | 'volatile' | 'synchronized' | 'transient';
+		//// --------------------- FROM Xtend.xtext
+		// CommonModifier:
+		//	'public' | 'private' | 'protected' | 'package' | 'abstract' | 'static' | 'dispatch' | 'final' | 'strictfp' | 'native'
+		//	| 'volatile' | 'synchronized' | 'transient';
 		@Override public ParserRule getRule() { return rule; }
 
 		//'public' | 'private' | 'protected' | 'package' | 'abstract' | 'static' | 'dispatch' | 'final' | 'strictfp' | 'native' |
@@ -1686,8 +1920,8 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameValidIDParserRuleCall_4_0 = (RuleCall)cNameAssignment_4.eContents().get(0);
 		
 		//Parameter JnarioParameter:
-		//	annotations+=XAnnotation* (extension?='extension' annotations+=XAnnotation*)?
-		//	parameterType=JvmTypeReference varArg?='...'? name=ValidID
+		//	annotations+=XAnnotation* (extension?='extension' annotations+=XAnnotation*)? parameterType=JvmTypeReference
+		//	varArg?='...'? name=ValidID
 		@Override public ParserRule getRule() { return rule; }
 
 		//annotations+=XAnnotation* (extension?='extension' annotations+=XAnnotation*)? parameterType=JvmTypeReference
@@ -1748,6 +1982,15 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 	private final ExampleColumnElements pExampleColumn;
 	private final ExampleRowElements pExampleRow;
 	private final ExampleCellElements pExampleCell;
+	private final XStringLiteralElements pXStringLiteral;
+	private final SimpleStringLiteralElements pSimpleStringLiteral;
+	private final RichStringElements pRichString;
+	private final RichStringLiteralElements pRichStringLiteral;
+	private final RichStringLiteralStartElements pRichStringLiteralStart;
+	private final RichStringLiteralInbetweenElements pRichStringLiteralInbetween;
+	private final RichStringLiteralEndElements pRichStringLiteralEnd;
+	private final InternalRichStringElements pInternalRichString;
+	private final RichStringPartElements pRichStringPart;
 	private final CommonModifierElements pCommonModifier;
 	private final FieldModifierElements pFieldModifier;
 	private final MethodModifierElements pMethodModifier;
@@ -1756,8 +1999,10 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tID;
 	private final TerminalRule tHEX_DIGIT;
 	private final TerminalRule tUNICODE_ESCAPE;
-	private final TerminalRule tSTRING;
 	private final TerminalRule tRICH_TEXT;
+	private final TerminalRule tRICH_TEXT_START;
+	private final TerminalRule tRICH_TEXT_END;
+	private final TerminalRule tRICH_TEXT_INBETWEEN;
 	private final TerminalRule tIN_RICH_STRING;
 	private final TerminalRule tIDENTIFIER_START;
 	private final TerminalRule tIDENTIFIER_PART;
@@ -1793,6 +2038,15 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		this.pExampleColumn = new ExampleColumnElements();
 		this.pExampleRow = new ExampleRowElements();
 		this.pExampleCell = new ExampleCellElements();
+		this.pXStringLiteral = new XStringLiteralElements();
+		this.pSimpleStringLiteral = new SimpleStringLiteralElements();
+		this.pRichString = new RichStringElements();
+		this.pRichStringLiteral = new RichStringLiteralElements();
+		this.pRichStringLiteralStart = new RichStringLiteralStartElements();
+		this.pRichStringLiteralInbetween = new RichStringLiteralInbetweenElements();
+		this.pRichStringLiteralEnd = new RichStringLiteralEndElements();
+		this.pInternalRichString = new InternalRichStringElements();
+		this.pRichStringPart = new RichStringPartElements();
 		this.pCommonModifier = new CommonModifierElements();
 		this.pFieldModifier = new FieldModifierElements();
 		this.pMethodModifier = new MethodModifierElements();
@@ -1801,8 +2055,10 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.ID");
 		this.tHEX_DIGIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.HEX_DIGIT");
 		this.tUNICODE_ESCAPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.UNICODE_ESCAPE");
-		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.STRING");
 		this.tRICH_TEXT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.RICH_TEXT");
+		this.tRICH_TEXT_START = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.RICH_TEXT_START");
+		this.tRICH_TEXT_END = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.RICH_TEXT_END");
+		this.tRICH_TEXT_INBETWEEN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.RICH_TEXT_INBETWEEN");
 		this.tIN_RICH_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.IN_RICH_STRING");
 		this.tIDENTIFIER_START = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.IDENTIFIER_START");
 		this.tIDENTIFIER_PART = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.jnario.spec.Spec.IDENTIFIER_PART");
@@ -1845,9 +2101,7 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//SpecFile:
-	//	{SpecFile} ('package' package=QualifiedName)?
-	//	importSection=XImportSection?
-	//	xtendTypes+=Type*;
+	//	{SpecFile} ('package' package=QualifiedName)? importSection=XImportSection? xtendTypes+=Type*;
 	public SpecFileElements getSpecFileAccess() {
 		return pSpecFile;
 	}
@@ -1858,8 +2112,7 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Type JnarioTypeDeclaration:
 	//	{JnarioTypeDeclaration} annotations+=XAnnotation* ({ExampleGroup.annotationInfo=current} preamble='describe'
-	//	targetType=JvmTypeReference? name=STRING? '{'
-	//	members+=Member* '}')
+	//	targetType=JvmTypeReference? name=STRING? '{' members+=Member* '}')
 	public TypeElements getTypeAccess() {
 		return pType;
 	}
@@ -1901,29 +2154,21 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 	//Member JnarioMember:
 	//	{JnarioMember} annotations+=XAnnotation* ({Example.annotationInfo=current} (pending?='pending'? ('fact' | 'facts')
 	//	expr=XExpression expression=XBlockExpression?) | {ExampleGroup.annotationInfo=current} (preamble='describe'
-	//	targetType=JvmTypeReference? name=STRING? '{'
-	//	members+=Member*
-	//	'}') | {Before.annotationInfo=current} ('before' (modifiers+='all' | 'each')? => name=STRING? expression=XExpression)
-	//	| {After.annotationInfo=current} ('after' (modifiers+='all' | 'each')? => name=STRING? expression=XExpression) |
-	//	{ExampleGroup.annotationInfo=current} (preamble='context' targetOperation=[types::JvmOperation|Method]? name=STRING?
-	//	'{'
-	//	members+=Member*
-	//	'}') | {ExampleTable.annotationInfo=current} ('def' name=ID? '{' ('|' columns+=ExampleColumn*
-	//	rows+=ExampleRow*)?
-	//	'}') | {JnarioField.annotationInfo=current} modifiers+=CommonModifier* (modifiers+=FieldModifier
-	//	modifiers+=CommonModifier*
-	//	type=JvmTypeReference? name=ValidID
-	//	| modifiers+='extension' (modifiers+=FieldModifier | modifiers+=CommonModifier)*
-	//	type=JvmTypeReference name=ValidID?
-	//	| modifiers+=FieldModifier modifiers+=CommonModifier* modifiers+='extension' modifiers+=CommonModifier*
-	//	type=JvmTypeReference name=ValidID?
-	//	| type=JvmTypeReference name=ValidID) ('=' initialValue=XExpression)? ';'?
-	//	| {JnarioFunction.annotationInfo=current} modifiers+=CommonModifier*
+	//	targetType=JvmTypeReference? name=STRING? '{' members+=Member* '}') | {Before.annotationInfo=current} ('before'
+	//	(modifiers+='all' | 'each')? => name=STRING? expression=XExpression) | {After.annotationInfo=current} ('after'
+	//	(modifiers+='all' | 'each')? => name=STRING? expression=XExpression) | {ExampleGroup.annotationInfo=current}
+	//	(preamble='context' targetOperation=[types::JvmOperation|Method]? name=STRING? '{' members+=Member* '}') |
+	//	{ExampleTable.annotationInfo=current} ('def' name=ID? '{' ('|' columns+=ExampleColumn* rows+=ExampleRow*)? '}') |
+	//	{JnarioField.annotationInfo=current} modifiers+=CommonModifier* (modifiers+=FieldModifier modifiers+=CommonModifier*
+	//	type=JvmTypeReference? name=ValidID | modifiers+='extension' (modifiers+=FieldModifier | modifiers+=CommonModifier)*
+	//	type=JvmTypeReference name=ValidID? | modifiers+=FieldModifier modifiers+=CommonModifier* modifiers+='extension'
+	//	modifiers+=CommonModifier* type=JvmTypeReference name=ValidID? | type=JvmTypeReference name=ValidID) ('='
+	//	initialValue=XExpression)? ';'? | {JnarioFunction.annotationInfo=current} modifiers+=CommonModifier*
 	//	modifiers+=MethodModifier (modifiers+=CommonModifier | modifiers+=MethodModifier)* ('<'
 	//	typeParameters+=JvmTypeParameter (',' typeParameters+=JvmTypeParameter)* '>')? (=> (returnType=JvmTypeReference
 	//	name=ValidID '(') | name=ValidID '(') (parameters+=Parameter (',' parameters+=Parameter)*)? ')' ('throws'
-	//	exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)? (expression=XBlockExpression | ';')? // TODO Add RichString here
-	//)
+	//	exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)? (expression=XBlockExpression |
+	//	expression=RichString | ';')?)
 	public MemberElements getMemberAccess() {
 		return pMember;
 	}
@@ -1946,9 +2191,8 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XRelationalExpression xbase::XExpression:
 	//	XOtherOperatorExpression (=> ({Should.leftOperand=current} feature=[types::JvmIdentifiableElement|Should]) =>
-	//	rightOperand=XOtherOperatorExpression? |
-	//	=> ({ShouldThrow.expression=current} ('should' 'throw' | 'throws')) type=JvmTypeReference |
-	//	=> ({xbase::XInstanceOfExpression.expression=current} 'instanceof') type=JvmTypeReference |
+	//	rightOperand=XOtherOperatorExpression? | => ({ShouldThrow.expression=current} ('should' 'throw' | 'throws'))
+	//	type=JvmTypeReference | => ({xbase::XInstanceOfExpression.expression=current} 'instanceof') type=JvmTypeReference |
 	//	=> ({xbase::XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpCompare])
 	//	rightOperand=XOtherOperatorExpression)*
 	public XRelationalExpressionElements getXRelationalExpressionAccess() {
@@ -1970,8 +2214,7 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Assertion xbase::XExpression:
-	//	{Assertion}
-	//	'assert' expression=XExpression
+	//	{Assertion} 'assert' expression=XExpression
 	public AssertionElements getAssertionAccess() {
 		return pAssertion;
 	}
@@ -2010,83 +2253,132 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		return getExampleCellAccess().getRule();
 	}
 
-	/// *
-	//TODO NO_XTEND
+	////From Xtend.xtext
+	// XStringLiteral xbase::XExpression:
+	//	SimpleStringLiteral | RichString
+	public XStringLiteralElements getXStringLiteralAccess() {
+		return pXStringLiteral;
+	}
+	
+	public ParserRule getXStringLiteralRule() {
+		return getXStringLiteralAccess().getRule();
+	}
+
+	//SimpleStringLiteral xbase::XExpression:
+	//	{xbase::XStringLiteral} value=STRING
+	public SimpleStringLiteralElements getSimpleStringLiteralAccess() {
+		return pSimpleStringLiteral;
+	}
+	
+	public ParserRule getSimpleStringLiteralRule() {
+		return getSimpleStringLiteralAccess().getRule();
+	}
+
+	//RichString xbase::XExpression:
+	//	{RichString} (expressions+=RichStringLiteral | expressions+=RichStringLiteralStart expressions+=RichStringPart?
+	//	(expressions+=RichStringLiteralInbetween expressions+=RichStringPart?)* expressions+=RichStringLiteralEnd)
+	public RichStringElements getRichStringAccess() {
+		return pRichString;
+	}
+	
+	public ParserRule getRichStringRule() {
+		return getRichStringAccess().getRule();
+	}
+
+	//RichStringLiteral xbase::XExpression:
+	//	{RichStringLiteral} value=RICH_TEXT
+	public RichStringLiteralElements getRichStringLiteralAccess() {
+		return pRichStringLiteral;
+	}
+	
+	public ParserRule getRichStringLiteralRule() {
+		return getRichStringLiteralAccess().getRule();
+	}
+
+	//RichStringLiteralStart xbase::XExpression:
+	//	{RichStringLiteral} value=RICH_TEXT_START
+	public RichStringLiteralStartElements getRichStringLiteralStartAccess() {
+		return pRichStringLiteralStart;
+	}
+	
+	public ParserRule getRichStringLiteralStartRule() {
+		return getRichStringLiteralStartAccess().getRule();
+	}
+
+	//RichStringLiteralInbetween xbase::XExpression:
+	//	{RichStringLiteral} value=RICH_TEXT_INBETWEEN
+	public RichStringLiteralInbetweenElements getRichStringLiteralInbetweenAccess() {
+		return pRichStringLiteralInbetween;
+	}
+	
+	public ParserRule getRichStringLiteralInbetweenRule() {
+		return getRichStringLiteralInbetweenAccess().getRule();
+	}
+
+	//RichStringLiteralEnd xbase::XExpression:
+	//	{RichStringLiteral} value=RICH_TEXT_END
+	public RichStringLiteralEndElements getRichStringLiteralEndAccess() {
+		return pRichStringLiteralEnd;
+	}
+	
+	public ParserRule getRichStringLiteralEndRule() {
+		return getRichStringLiteralEndAccess().getRule();
+	}
+
+	//InternalRichString xbase::XExpression:
+	//	{RichString} (expressions+=RichStringLiteralInbetween (expressions+=RichStringPart?
+	//	expressions+=RichStringLiteralInbetween)*)
+	public InternalRichStringElements getInternalRichStringAccess() {
+		return pInternalRichString;
+	}
+	
+	public ParserRule getInternalRichStringRule() {
+		return getInternalRichStringAccess().getRule();
+	}
+
+	//RichStringPart xbase::XExpression:
+	//	XExpressionOrVarDeclaration
+	public RichStringPartElements getRichStringPartAccess() {
+		return pRichStringPart;
+	}
+	
+	public ParserRule getRichStringPartRule() {
+		return getRichStringPartAccess().getRule();
+	}
+
+	////RichStringForLoop returns xbase::XExpression:
+	// //	{RichStringForLoop}
 	//
+	////	"FOR" declaredParam=JvmFormalParameter ':' forExpression=XExpression
+	// //		("BEFORE" before=XExpression)?
 	//
-	//XStringLiteral returns xbase::XExpression:
-	//    SimpleStringLiteral | RichString
-	//;
+	////		("SEPARATOR" separator=XExpression)?
+	// //		("AFTER" after=XExpression)?
+	// //		eachExpression=InternalRichString
 	//
-	//SimpleStringLiteral returns xbase::XExpression:
-	//    {xbase::XStringLiteral} value=STRING
-	//;
+	////	"ENDFOR"
+	// //;
+	// //
+	// //RichStringIf returns xbase::XExpression :
+	// //	{RichStringIf}
+	// //	"IF" if=XExpression
 	//
-	//RichString returns xbase::XExpression:
-	//    {RichString} ( 
-	//      expressions+=RichStringLiteral |
-	//      expressions+=RichStringLiteralStart expressions+=RichStringPart? 
-	//        (expressions+=RichStringLiteralInbetween expressions+=RichStringPart?)* 
-	//      expressions+=RichStringLiteralEnd
-	//    )
-	//;
+	////		then=InternalRichString
+	// //		elseIfs+=RichStringElseIf*
+	// //	("ELSE" 
+	// //		else=InternalRichString)?
+	// //	"ENDIF"
 	//
-	//RichStringLiteral returns xbase::XExpression :
-	//    {RichStringLiteral} value=RICH_TEXT
-	//;
+	////;
+	// //
+	// //RichStringElseIf returns RichStringElseIf:
+	// //	"ELSEIF" if=XExpression then=InternalRichString
+	// //;
 	//
-	//RichStringLiteralStart returns xbase::XExpression :
-	//    {RichStringLiteral} value=RICH_TEXT_START
-	//; 
-	//
-	//RichStringLiteralInbetween returns xbase::XExpression :
-	//    {RichStringLiteral} 
-	//    ( value=RICH_TEXT_INBETWEEN | value=COMMENT_RICH_TEXT_INBETWEEN )
-	//; 
-	//
-	//RichStringLiteralEnd returns xbase::XExpression :
-	//    {RichStringLiteral} 
-	//    ( value=RICH_TEXT_END | value=COMMENT_RICH_TEXT_END )
-	//; 
-	//
-	//InternalRichString returns xbase::XExpression:
-	//    {RichString} (
-	//        expressions+=RichStringLiteralInbetween (expressions+=RichStringPart? expressions+=RichStringLiteralInbetween)*
-	//    )
-	//;
-	//
-	//RichStringPart returns xbase::XExpression:
-	//    XExpressionOrVarDeclaration
-	//    | RichStringForLoop
-	//    | RichStringIf
-	//;
-	//RichStringForLoop returns xbase::XExpression:
-	//    {RichStringForLoop}
-	//    "FOR" declaredParam=JvmFormalParameter ':' forExpression=XExpression
-	//        ("BEFORE" before=XExpression)?
-	//        ("SEPARATOR" separator=XExpression)?
-	//        ("AFTER" after=XExpression)?
-	//        eachExpression=InternalRichString
-	//    "ENDFOR"
-	//;
-	//
-	//RichStringIf returns xbase::XExpression :
-	//    {RichStringIf}
-	//    "IF" if=XExpression
-	//        then=InternalRichString
-	//        elseIfs+=RichStringElseIf*
-	//    ("ELSE" 
-	//        else=InternalRichString)?
-	//    "ENDIF"
-	//;
-	//
-	//RichStringElseIf returns RichStringElseIf:
-	//    "ELSEIF" if=XExpression then=InternalRichString
-	//;
-	// * / // --------------------- FROM Xtend.xtext
-	//CommonModifier:
-	//	'public' | 'private' | 'protected' | 'package' | 'abstract' | 'static' | 'dispatch' | 'final'
-	//	| 'strictfp' | 'native' | 'volatile' | 'synchronized' | 'transient';
+	//// --------------------- FROM Xtend.xtext
+	// CommonModifier:
+	//	'public' | 'private' | 'protected' | 'package' | 'abstract' | 'static' | 'dispatch' | 'final' | 'strictfp' | 'native'
+	//	| 'volatile' | 'synchronized' | 'transient';
 	public CommonModifierElements getCommonModifierAccess() {
 		return pCommonModifier;
 	}
@@ -2116,8 +2408,8 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Parameter JnarioParameter:
-	//	annotations+=XAnnotation* (extension?='extension' annotations+=XAnnotation*)?
-	//	parameterType=JvmTypeReference varArg?='...'? name=ValidID
+	//	annotations+=XAnnotation* (extension?='extension' annotations+=XAnnotation*)? parameterType=JvmTypeReference
+	//	varArg?='...'? name=ValidID
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}
@@ -2150,320 +2442,87 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		return tUNICODE_ESCAPE;
 	} 
 
-	//terminal STRING:
-	//	RICH_TEXT
-	//	| '"' ('\\' . | !('\\' | '"'))* '"'?
-	//	| "'" ('\\' . | !('\\' | "'"))* "'"?;
-	public TerminalRule getSTRINGRule() {
-		return tSTRING;
-	} 
-
-	//terminal fragment RICH_TEXT:
+	//terminal RICH_TEXT:
 	//	"'''" IN_RICH_STRING* ("'''" | ("'" "'"?)? EOF);
 	public TerminalRule getRICH_TEXTRule() {
 		return tRICH_TEXT;
 	} 
 
+	//terminal RICH_TEXT_START:
+	//	"'''" IN_RICH_STRING* ("'" "'"?)? '«';
+	public TerminalRule getRICH_TEXT_STARTRule() {
+		return tRICH_TEXT_START;
+	} 
+
+	//terminal RICH_TEXT_END:
+	//	'»' IN_RICH_STRING* ("'''" | ("'" "'"?)? EOF);
+	public TerminalRule getRICH_TEXT_ENDRule() {
+		return tRICH_TEXT_END;
+	} 
+
+	//terminal RICH_TEXT_INBETWEEN:
+	//	'»' IN_RICH_STRING* ("'" "'"?)? '«';
+	public TerminalRule getRICH_TEXT_INBETWEENRule() {
+		return tRICH_TEXT_INBETWEEN;
+	} 
+
 	//terminal fragment IN_RICH_STRING:
-	//	"''" !"'" | "'" !"'" | !"'";
+	//	"''" !('«' | "'") | "'" !('«' | "'") | !('«' | "'");
 	public TerminalRule getIN_RICH_STRINGRule() {
 		return tIN_RICH_STRING;
 	} 
 
 	//terminal fragment IDENTIFIER_START:
-	//	'\\u0024'
-	//	| '\\u0041'..'\\u005A'
-	//	| '\\u005F'
-	//	| '\\u0061'..'\\u007A'
-	//	| '\\u00A2'..'\\u00A5'
-	//	| '\\u00AA'
-	//	| '\\u00B5'
-	//	| '\\u00BA'
-	//	| '\\u00C0'..'\\u00D6'
-	//	| '\\u00D8'..'\\u00F6'
-	//	| '\\u00F8'..'\\u0236'
-	//	| '\\u0250'..'\\u02C1'
-	//	| '\\u02C6'..'\\u02D1'
-	//	| '\\u02E0'..'\\u02E4'
-	//	| '\\u02EE'
-	//	| '\\u037A'
-	//	| '\\u0386'
-	//	| '\\u0388'..'\\u038A'
-	//	| '\\u038C'
-	//	| '\\u038E'..'\\u03A1'
-	//	| '\\u03A3'..'\\u03CE'
-	//	| '\\u03D0'..'\\u03F5'
-	//	| '\\u03F7'..'\\u03FB'
-	//	| '\\u0400'..'\\u0481'
-	//	| '\\u048A'..'\\u04CE'
-	//	| '\\u04D0'..'\\u04F5'
-	//	| '\\u04F8'..'\\u04F9'
-	//	| '\\u0500'..'\\u050F'
-	//	| '\\u0531'..'\\u0556'
-	//	| '\\u0559'
-	//	| '\\u0561'..'\\u0587'
-	//	| '\\u05D0'..'\\u05EA'
-	//	| '\\u05F0'..'\\u05F2'
-	//	| '\\u0621'..'\\u063A'
-	//	| '\\u0640'..'\\u064A'
-	//	| '\\u066E'..'\\u066F'
-	//	| '\\u0671'..'\\u06D3'
-	//	| '\\u06D5'
-	//	| '\\u06E5'..'\\u06E6'
-	//	| '\\u06EE'..'\\u06EF'
-	//	| '\\u06FA'..'\\u06FC'
-	//	| '\\u06FF'
-	//	| '\\u0710'
-	//	| '\\u0712'..'\\u072F'
-	//	| '\\u074D'..'\\u074F'
-	//	| '\\u0780'..'\\u07A5'
-	//	| '\\u07B1'
-	//	| '\\u0904'..'\\u0939'
-	//	| '\\u093D'
-	//	| '\\u0950'
-	//	| '\\u0958'..'\\u0961'
-	//	| '\\u0985'..'\\u098C'
-	//	| '\\u098F'..'\\u0990'
-	//	| '\\u0993'..'\\u09A8'
-	//	| '\\u09AA'..'\\u09B0'
-	//	| '\\u09B2'
-	//	| '\\u09B6'..'\\u09B9'
-	//	| '\\u09BD'
-	//	| '\\u09DC'..'\\u09DD'
-	//	| '\\u09DF'..'\\u09E1'
-	//	| '\\u09F0'..'\\u09F3'
-	//	| '\\u0A05'..'\\u0A0A'
-	//	| '\\u0A0F'..'\\u0A10'
-	//	| '\\u0A13'..'\\u0A28'
-	//	| '\\u0A2A'..'\\u0A30'
-	//	| '\\u0A32'..'\\u0A33'
-	//	| '\\u0A35'..'\\u0A36'
-	//	| '\\u0A38'..'\\u0A39'
-	//	| '\\u0A59'..'\\u0A5C'
-	//	| '\\u0A5E'
-	//	| '\\u0A72'..'\\u0A74'
-	//	| '\\u0A85'..'\\u0A8D'
-	//	| '\\u0A8F'..'\\u0A91'
-	//	| '\\u0A93'..'\\u0AA8'
-	//	| '\\u0AAA'..'\\u0AB0'
-	//	| '\\u0AB2'..'\\u0AB3'
-	//	| '\\u0AB5'..'\\u0AB9'
-	//	| '\\u0ABD'
-	//	| '\\u0AD0'
-	//	| '\\u0AE0'..'\\u0AE1'
-	//	| '\\u0AF1'
-	//	| '\\u0B05'..'\\u0B0C'
-	//	| '\\u0B0F'..'\\u0B10'
-	//	| '\\u0B13'..'\\u0B28'
-	//	| '\\u0B2A'..'\\u0B30'
-	//	| '\\u0B32'..'\\u0B33'
-	//	| '\\u0B35'..'\\u0B39'
-	//	| '\\u0B3D'
-	//	| '\\u0B5C'..'\\u0B5D'
-	//	| '\\u0B5F'..'\\u0B61'
-	//	| '\\u0B71'
-	//	| '\\u0B83'
-	//	| '\\u0B85'..'\\u0B8A'
-	//	| '\\u0B8E'..'\\u0B90'
-	//	| '\\u0B92'..'\\u0B95'
-	//	| '\\u0B99'..'\\u0B9A'
-	//	| '\\u0B9C'
-	//	| '\\u0B9E'..'\\u0B9F'
-	//	| '\\u0BA3'..'\\u0BA4'
-	//	| '\\u0BA8'..'\\u0BAA'
-	//	| '\\u0BAE'..'\\u0BB5'
-	//	| '\\u0BB7'..'\\u0BB9'
-	//	| '\\u0BF9'
-	//	| '\\u0C05'..'\\u0C0C'
-	//	| '\\u0C0E'..'\\u0C10'
-	//	| '\\u0C12'..'\\u0C28'
-	//	| '\\u0C2A'..'\\u0C33'
-	//	| '\\u0C35'..'\\u0C39'
-	//	| '\\u0C60'..'\\u0C61'
-	//	| '\\u0C85'..'\\u0C8C'
-	//	| '\\u0C8E'..'\\u0C90'
-	//	| '\\u0C92'..'\\u0CA8'
-	//	| '\\u0CAA'..'\\u0CB3'
-	//	| '\\u0CB5'..'\\u0CB9'
-	//	| '\\u0CBD'
-	//	| '\\u0CDE'
-	//	| '\\u0CE0'..'\\u0CE1'
-	//	| '\\u0D05'..'\\u0D0C'
-	//	| '\\u0D0E'..'\\u0D10'
-	//	| '\\u0D12'..'\\u0D28'
-	//	| '\\u0D2A'..'\\u0D39'
-	//	| '\\u0D60'..'\\u0D61'
-	//	| '\\u0D85'..'\\u0D96'
-	//	| '\\u0D9A'..'\\u0DB1'
-	//	| '\\u0DB3'..'\\u0DBB'
-	//	| '\\u0DBD'
-	//	| '\\u0DC0'..'\\u0DC6'
-	//	| '\\u0E01'..'\\u0E30'
-	//	| '\\u0E32'..'\\u0E33'
-	//	| '\\u0E3F'..'\\u0E46'
-	//	| '\\u0E81'..'\\u0E82'
-	//	| '\\u0E84'
-	//	| '\\u0E87'..'\\u0E88'
-	//	| '\\u0E8A'
-	//	| '\\u0E8D'
-	//	| '\\u0E94'..'\\u0E97'
-	//	| '\\u0E99'..'\\u0E9F'
-	//	| '\\u0EA1'..'\\u0EA3'
-	//	| '\\u0EA5'
-	//	| '\\u0EA7'
-	//	| '\\u0EAA'..'\\u0EAB'
-	//	| '\\u0EAD'..'\\u0EB0'
-	//	| '\\u0EB2'..'\\u0EB3'
-	//	| '\\u0EBD'
-	//	| '\\u0EC0'..'\\u0EC4'
-	//	| '\\u0EC6'
-	//	| '\\u0EDC'..'\\u0EDD'
-	//	| '\\u0F00'
-	//	| '\\u0F40'..'\\u0F47'
-	//	| '\\u0F49'..'\\u0F6A'
-	//	| '\\u0F88'..'\\u0F8B'
-	//	| '\\u1000'..'\\u1021'
-	//	| '\\u1023'..'\\u1027'
-	//	| '\\u1029'..'\\u102A'
-	//	| '\\u1050'..'\\u1055'
-	//	| '\\u10A0'..'\\u10C5'
-	//	| '\\u10D0'..'\\u10F8'
-	//	| '\\u1100'..'\\u1159'
-	//	| '\\u115F'..'\\u11A2'
-	//	| '\\u11A8'..'\\u11F9'
-	//	| '\\u1200'..'\\u1206'
-	//	| '\\u1208'..'\\u1246'
-	//	| '\\u1248'
-	//	| '\\u124A'..'\\u124D'
-	//	| '\\u1250'..'\\u1256'
-	//	| '\\u1258'
-	//	| '\\u125A'..'\\u125D'
-	//	| '\\u1260'..'\\u1286'
-	//	| '\\u1288'
-	//	| '\\u128A'..'\\u128D'
-	//	| '\\u1290'..'\\u12AE'
-	//	| '\\u12B0'
-	//	| '\\u12B2'..'\\u12B5'
-	//	| '\\u12B8'..'\\u12BE'
-	//	| '\\u12C0'
-	//	| '\\u12C2'..'\\u12C5'
-	//	| '\\u12C8'..'\\u12CE'
-	//	| '\\u12D0'..'\\u12D6'
-	//	| '\\u12D8'..'\\u12EE'
-	//	| '\\u12F0'..'\\u130E'
-	//	| '\\u1310'
-	//	| '\\u1312'..'\\u1315'
-	//	| '\\u1318'..'\\u131E'
-	//	| '\\u1320'..'\\u1346'
-	//	| '\\u1348'..'\\u135A'
-	//	| '\\u13A0'..'\\u13F4'
-	//	| '\\u1401'..'\\u166C'
-	//	| '\\u166F'..'\\u1676'
-	//	| '\\u1681'..'\\u169A'
-	//	| '\\u16A0'..'\\u16EA'
-	//	| '\\u16EE'..'\\u16F0'
-	//	| '\\u1700'..'\\u170C'
-	//	| '\\u170E'..'\\u1711'
-	//	| '\\u1720'..'\\u1731'
-	//	| '\\u1740'..'\\u1751'
-	//	| '\\u1760'..'\\u176C'
-	//	| '\\u176E'..'\\u1770'
-	//	| '\\u1780'..'\\u17B3'
-	//	| '\\u17D7'
-	//	| '\\u17DB'..'\\u17DC'
-	//	| '\\u1820'..'\\u1877'
-	//	| '\\u1880'..'\\u18A8'
-	//	| '\\u1900'..'\\u191C'
-	//	| '\\u1950'..'\\u196D'
-	//	| '\\u1970'..'\\u1974'
-	//	| '\\u1D00'..'\\u1D6B'
-	//	| '\\u1E00'..'\\u1E9B'
-	//	| '\\u1EA0'..'\\u1EF9'
-	//	| '\\u1F00'..'\\u1F15'
-	//	| '\\u1F18'..'\\u1F1D'
-	//	| '\\u1F20'..'\\u1F45'
-	//	| '\\u1F48'..'\\u1F4D'
-	//	| '\\u1F50'..'\\u1F57'
-	//	| '\\u1F59'
-	//	| '\\u1F5B'
-	//	| '\\u1F5D'
-	//	| '\\u1F5F'..'\\u1F7D'
-	//	| '\\u1F80'..'\\u1FB4'
-	//	| '\\u1FB6'..'\\u1FBC'
-	//	| '\\u1FBE'
-	//	| '\\u1FC2'..'\\u1FC4'
-	//	| '\\u1FC6'..'\\u1FCC'
-	//	| '\\u1FD0'..'\\u1FD3'
-	//	| '\\u1FD6'..'\\u1FDB'
-	//	| '\\u1FE0'..'\\u1FEC'
-	//	| '\\u1FF2'..'\\u1FF4'
-	//	| '\\u1FF6'..'\\u1FFC'
-	//	| '\\u203F'..'\\u2040'
-	//	| '\\u2054'
-	//	| '\\u2071'
-	//	| '\\u207F'
-	//	| '\\u20A0'..'\\u20B1'
-	//	| '\\u2102'
-	//	| '\\u2107'
-	//	| '\\u210A'..'\\u2113'
-	//	| '\\u2115'
-	//	| '\\u2119'..'\\u211D'
-	//	| '\\u2124'
-	//	| '\\u2126'
-	//	| '\\u2128'
-	//	| '\\u212A'..'\\u212D'
-	//	| '\\u212F'..'\\u2131'
-	//	| '\\u2133'..'\\u2139'
-	//	| '\\u213D'..'\\u213F'
-	//	| '\\u2145'..'\\u2149'
-	//	| '\\u2160'..'\\u2183'
-	//	| '\\u3005'..'\\u3007'
-	//	| '\\u3021'..'\\u3029'
-	//	| '\\u3031'..'\\u3035'
-	//	| '\\u3038'..'\\u303C'
-	//	| '\\u3041'..'\\u3096'
-	//	| '\\u309D'..'\\u309F'
-	//	| '\\u30A1'..'\\u30FF'
-	//	| '\\u3105'..'\\u312C'
-	//	| '\\u3131'..'\\u318E'
-	//	| '\\u31A0'..'\\u31B7'
-	//	| '\\u31F0'..'\\u31FF'
-	//	| '\\u3400'..'\\u4DB5'
-	//	| '\\u4E00'..'\\u9FA5'
-	//	| '\\uA000'..'\\uA48C'
-	//	| '\\uAC00'..'\\uD7A3'
-	//	| '\\uF900'..'\\uFA2D'
-	//	| '\\uFA30'..'\\uFA6A'
-	//	| '\\uFB00'..'\\uFB06'
-	//	| '\\uFB13'..'\\uFB17'
-	//	| '\\uFB1D'
-	//	| '\\uFB1F'..'\\uFB28'
-	//	| '\\uFB2A'..'\\uFB36'
-	//	| '\\uFB38'..'\\uFB3C'
-	//	| '\\uFB3E'
-	//	| '\\uFB40'..'\\uFB41'
-	//	| '\\uFB43'..'\\uFB44'
-	//	| '\\uFB46'..'\\uFBB1'
-	//	| '\\uFBD3'..'\\uFD3D'
-	//	| '\\uFD50'..'\\uFD8F'
-	//	| '\\uFD92'..'\\uFDC7'
-	//	| '\\uFDF0'..'\\uFDFC'
-	//	| '\\uFE33'..'\\uFE34'
-	//	| '\\uFE4D'..'\\uFE4F'
-	//	| '\\uFE69'
-	//	| '\\uFE70'..'\\uFE74'
-	//	| '\\uFE76'..'\\uFEFC'
-	//	| '\\uFF04'
-	//	| '\\uFF21'..'\\uFF3A'
-	//	| '\\uFF3F'
-	//	| '\\uFF41'..'\\uFF5A'
-	//	| '\\uFF65'..'\\uFFBE'
-	//	| '\\uFFC2'..'\\uFFC7'
-	//	| '\\uFFCA'..'\\uFFCF'
-	//	| '\\uFFD2'..'\\uFFD7'
-	//	| '\\uFFDA'..'\\uFFDC'
-	//	| '\\uFFE0'..'\\uFFE1'
-	//	| '\\uFFE5'..'\\uFFE6';
+	//	'\\u0024' | '\\u0041'..'\\u005A' | '\\u005F' | '\\u0061'..'\\u007A' | '\\u00A2'..'\\u00A5' | '\\u00AA' | '\\u00B5' | '\\u00BA' |
+	//	'\\u00C0'..'\\u00D6' | '\\u00D8'..'\\u00F6' | '\\u00F8'..'\\u0236' | '\\u0250'..'\\u02C1' | '\\u02C6'..'\\u02D1' |
+	//	'\\u02E0'..'\\u02E4' | '\\u02EE' | '\\u037A' | '\\u0386' | '\\u0388'..'\\u038A' | '\\u038C' | '\\u038E'..'\\u03A1' |
+	//	'\\u03A3'..'\\u03CE' | '\\u03D0'..'\\u03F5' | '\\u03F7'..'\\u03FB' | '\\u0400'..'\\u0481' | '\\u048A'..'\\u04CE' |
+	//	'\\u04D0'..'\\u04F5' | '\\u04F8'..'\\u04F9' | '\\u0500'..'\\u050F' | '\\u0531'..'\\u0556' | '\\u0559' | '\\u0561'..'\\u0587' |
+	//	'\\u05D0'..'\\u05EA' | '\\u05F0'..'\\u05F2' | '\\u0621'..'\\u063A' | '\\u0640'..'\\u064A' | '\\u066E'..'\\u066F' |
+	//	'\\u0671'..'\\u06D3' | '\\u06D5' | '\\u06E5'..'\\u06E6' | '\\u06EE'..'\\u06EF' | '\\u06FA'..'\\u06FC' | '\\u06FF' | '\\u0710' |
+	//	'\\u0712'..'\\u072F' | '\\u074D'..'\\u074F' | '\\u0780'..'\\u07A5' | '\\u07B1' | '\\u0904'..'\\u0939' | '\\u093D' | '\\u0950' |
+	//	'\\u0958'..'\\u0961' | '\\u0985'..'\\u098C' | '\\u098F'..'\\u0990' | '\\u0993'..'\\u09A8' | '\\u09AA'..'\\u09B0' | '\\u09B2' |
+	//	'\\u09B6'..'\\u09B9' | '\\u09BD' | '\\u09DC'..'\\u09DD' | '\\u09DF'..'\\u09E1' | '\\u09F0'..'\\u09F3' | '\\u0A05'..'\\u0A0A' |
+	//	'\\u0A0F'..'\\u0A10' | '\\u0A13'..'\\u0A28' | '\\u0A2A'..'\\u0A30' | '\\u0A32'..'\\u0A33' | '\\u0A35'..'\\u0A36' |
+	//	'\\u0A38'..'\\u0A39' | '\\u0A59'..'\\u0A5C' | '\\u0A5E' | '\\u0A72'..'\\u0A74' | '\\u0A85'..'\\u0A8D' | '\\u0A8F'..'\\u0A91' |
+	//	'\\u0A93'..'\\u0AA8' | '\\u0AAA'..'\\u0AB0' | '\\u0AB2'..'\\u0AB3' | '\\u0AB5'..'\\u0AB9' | '\\u0ABD' | '\\u0AD0' |
+	//	'\\u0AE0'..'\\u0AE1' | '\\u0AF1' | '\\u0B05'..'\\u0B0C' | '\\u0B0F'..'\\u0B10' | '\\u0B13'..'\\u0B28' | '\\u0B2A'..'\\u0B30' |
+	//	'\\u0B32'..'\\u0B33' | '\\u0B35'..'\\u0B39' | '\\u0B3D' | '\\u0B5C'..'\\u0B5D' | '\\u0B5F'..'\\u0B61' | '\\u0B71' | '\\u0B83' |
+	//	'\\u0B85'..'\\u0B8A' | '\\u0B8E'..'\\u0B90' | '\\u0B92'..'\\u0B95' | '\\u0B99'..'\\u0B9A' | '\\u0B9C' | '\\u0B9E'..'\\u0B9F' |
+	//	'\\u0BA3'..'\\u0BA4' | '\\u0BA8'..'\\u0BAA' | '\\u0BAE'..'\\u0BB5' | '\\u0BB7'..'\\u0BB9' | '\\u0BF9' | '\\u0C05'..'\\u0C0C' |
+	//	'\\u0C0E'..'\\u0C10' | '\\u0C12'..'\\u0C28' | '\\u0C2A'..'\\u0C33' | '\\u0C35'..'\\u0C39' | '\\u0C60'..'\\u0C61' |
+	//	'\\u0C85'..'\\u0C8C' | '\\u0C8E'..'\\u0C90' | '\\u0C92'..'\\u0CA8' | '\\u0CAA'..'\\u0CB3' | '\\u0CB5'..'\\u0CB9' | '\\u0CBD' |
+	//	'\\u0CDE' | '\\u0CE0'..'\\u0CE1' | '\\u0D05'..'\\u0D0C' | '\\u0D0E'..'\\u0D10' | '\\u0D12'..'\\u0D28' | '\\u0D2A'..'\\u0D39' |
+	//	'\\u0D60'..'\\u0D61' | '\\u0D85'..'\\u0D96' | '\\u0D9A'..'\\u0DB1' | '\\u0DB3'..'\\u0DBB' | '\\u0DBD' | '\\u0DC0'..'\\u0DC6' |
+	//	'\\u0E01'..'\\u0E30' | '\\u0E32'..'\\u0E33' | '\\u0E3F'..'\\u0E46' | '\\u0E81'..'\\u0E82' | '\\u0E84' | '\\u0E87'..'\\u0E88' |
+	//	'\\u0E8A' | '\\u0E8D' | '\\u0E94'..'\\u0E97' | '\\u0E99'..'\\u0E9F' | '\\u0EA1'..'\\u0EA3' | '\\u0EA5' | '\\u0EA7' |
+	//	'\\u0EAA'..'\\u0EAB' | '\\u0EAD'..'\\u0EB0' | '\\u0EB2'..'\\u0EB3' | '\\u0EBD' | '\\u0EC0'..'\\u0EC4' | '\\u0EC6' |
+	//	'\\u0EDC'..'\\u0EDD' | '\\u0F00' | '\\u0F40'..'\\u0F47' | '\\u0F49'..'\\u0F6A' | '\\u0F88'..'\\u0F8B' | '\\u1000'..'\\u1021' |
+	//	'\\u1023'..'\\u1027' | '\\u1029'..'\\u102A' | '\\u1050'..'\\u1055' | '\\u10A0'..'\\u10C5' | '\\u10D0'..'\\u10F8' |
+	//	'\\u1100'..'\\u1159' | '\\u115F'..'\\u11A2' | '\\u11A8'..'\\u11F9' | '\\u1200'..'\\u1206' | '\\u1208'..'\\u1246' | '\\u1248' |
+	//	'\\u124A'..'\\u124D' | '\\u1250'..'\\u1256' | '\\u1258' | '\\u125A'..'\\u125D' | '\\u1260'..'\\u1286' | '\\u1288' |
+	//	'\\u128A'..'\\u128D' | '\\u1290'..'\\u12AE' | '\\u12B0' | '\\u12B2'..'\\u12B5' | '\\u12B8'..'\\u12BE' | '\\u12C0' |
+	//	'\\u12C2'..'\\u12C5' | '\\u12C8'..'\\u12CE' | '\\u12D0'..'\\u12D6' | '\\u12D8'..'\\u12EE' | '\\u12F0'..'\\u130E' | '\\u1310' |
+	//	'\\u1312'..'\\u1315' | '\\u1318'..'\\u131E' | '\\u1320'..'\\u1346' | '\\u1348'..'\\u135A' | '\\u13A0'..'\\u13F4' |
+	//	'\\u1401'..'\\u166C' | '\\u166F'..'\\u1676' | '\\u1681'..'\\u169A' | '\\u16A0'..'\\u16EA' | '\\u16EE'..'\\u16F0' |
+	//	'\\u1700'..'\\u170C' | '\\u170E'..'\\u1711' | '\\u1720'..'\\u1731' | '\\u1740'..'\\u1751' | '\\u1760'..'\\u176C' |
+	//	'\\u176E'..'\\u1770' | '\\u1780'..'\\u17B3' | '\\u17D7' | '\\u17DB'..'\\u17DC' | '\\u1820'..'\\u1877' | '\\u1880'..'\\u18A8' |
+	//	'\\u1900'..'\\u191C' | '\\u1950'..'\\u196D' | '\\u1970'..'\\u1974' | '\\u1D00'..'\\u1D6B' | '\\u1E00'..'\\u1E9B' |
+	//	'\\u1EA0'..'\\u1EF9' | '\\u1F00'..'\\u1F15' | '\\u1F18'..'\\u1F1D' | '\\u1F20'..'\\u1F45' | '\\u1F48'..'\\u1F4D' |
+	//	'\\u1F50'..'\\u1F57' | '\\u1F59' | '\\u1F5B' | '\\u1F5D' | '\\u1F5F'..'\\u1F7D' | '\\u1F80'..'\\u1FB4' | '\\u1FB6'..'\\u1FBC' |
+	//	'\\u1FBE' | '\\u1FC2'..'\\u1FC4' | '\\u1FC6'..'\\u1FCC' | '\\u1FD0'..'\\u1FD3' | '\\u1FD6'..'\\u1FDB' | '\\u1FE0'..'\\u1FEC' |
+	//	'\\u1FF2'..'\\u1FF4' | '\\u1FF6'..'\\u1FFC' | '\\u203F'..'\\u2040' | '\\u2054' | '\\u2071' | '\\u207F' | '\\u20A0'..'\\u20B1' |
+	//	'\\u2102' | '\\u2107' | '\\u210A'..'\\u2113' | '\\u2115' | '\\u2119'..'\\u211D' | '\\u2124' | '\\u2126' | '\\u2128' |
+	//	'\\u212A'..'\\u212D' | '\\u212F'..'\\u2131' | '\\u2133'..'\\u2139' | '\\u213D'..'\\u213F' | '\\u2145'..'\\u2149' |
+	//	'\\u2160'..'\\u2183' | '\\u3005'..'\\u3007' | '\\u3021'..'\\u3029' | '\\u3031'..'\\u3035' | '\\u3038'..'\\u303C' |
+	//	'\\u3041'..'\\u3096' | '\\u309D'..'\\u309F' | '\\u30A1'..'\\u30FF' | '\\u3105'..'\\u312C' | '\\u3131'..'\\u318E' |
+	//	'\\u31A0'..'\\u31B7' | '\\u31F0'..'\\u31FF' | '\\u3400'..'\\u4DB5' | '\\u4E00'..'\\u9FA5' | '\\uA000'..'\\uA48C' |
+	//	'\\uAC00'..'\\uD7A3' | '\\uF900'..'\\uFA2D' | '\\uFA30'..'\\uFA6A' | '\\uFB00'..'\\uFB06' | '\\uFB13'..'\\uFB17' | '\\uFB1D' |
+	//	'\\uFB1F'..'\\uFB28' | '\\uFB2A'..'\\uFB36' | '\\uFB38'..'\\uFB3C' | '\\uFB3E' | '\\uFB40'..'\\uFB41' | '\\uFB43'..'\\uFB44' |
+	//	'\\uFB46'..'\\uFBB1' | '\\uFBD3'..'\\uFD3D' | '\\uFD50'..'\\uFD8F' | '\\uFD92'..'\\uFDC7' | '\\uFDF0'..'\\uFDFC' |
+	//	'\\uFE33'..'\\uFE34' | '\\uFE4D'..'\\uFE4F' | '\\uFE69' | '\\uFE70'..'\\uFE74' | '\\uFE76'..'\\uFEFC' | '\\uFF04' |
+	//	'\\uFF21'..'\\uFF3A' | '\\uFF3F' | '\\uFF41'..'\\uFF5A' | '\\uFF65'..'\\uFFBE' | '\\uFFC2'..'\\uFFC7' | '\\uFFCA'..'\\uFFCF' |
+	//	'\\uFFD2'..'\\uFFD7' | '\\uFFDA'..'\\uFFDC' | '\\uFFE0'..'\\uFFE1' | '\\uFFE5'..'\\uFFE6';
 	public TerminalRule getIDENTIFIER_STARTRule() {
 		return tIDENTIFIER_START;
 	} 
@@ -2475,152 +2534,31 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal fragment IDENTIFIER_PART_IMPL:
-	//	'\\u0000'..'\\u0008'
-	//	| '\\u000E'..'\\u001B'
-	//	| '\\u0030'..'\\u0039'
-	//	| '\\u007F'..'\\u009F'
-	//	| '\\u00AD'
-	//	| '\\u0300'..'\\u0357'
-	//	| '\\u035D'..'\\u036F'
-	//	| '\\u0483'..'\\u0486'
-	//	| '\\u0591'..'\\u05A1'
-	//	| '\\u05A3'..'\\u05B9'
-	//	| '\\u05BB'..'\\u05BD'
-	//	| '\\u05BF'
-	//	| '\\u05C1'..'\\u05C2'
-	//	| '\\u05C4'
-	//	| '\\u0600'..'\\u0603'
-	//	| '\\u0610'..'\\u0615'
-	//	| '\\u064B'..'\\u0658'
-	//	| '\\u0660'..'\\u0669'
-	//	| '\\u0670'
-	//	| '\\u06D6'..'\\u06DD'
-	//	| '\\u06DF'..'\\u06E4'
-	//	| '\\u06E7'..'\\u06E8'
-	//	| '\\u06EA'..'\\u06ED'
-	//	| '\\u06F0'..'\\u06F9'
-	//	| '\\u070F'
-	//	| '\\u0711'
-	//	| '\\u0730'..'\\u074A'
-	//	| '\\u07A6'..'\\u07B0'
-	//	| '\\u0901'..'\\u0903'
-	//	| '\\u093C'
-	//	| '\\u093E'..'\\u094D'
-	//	| '\\u0951'..'\\u0954'
-	//	| '\\u0962'..'\\u0963'
-	//	| '\\u0966'..'\\u096F'
-	//	| '\\u0981'..'\\u0983'
-	//	| '\\u09BC'
-	//	| '\\u09BE'..'\\u09C4'
-	//	| '\\u09C7'..'\\u09C8'
-	//	| '\\u09CB'..'\\u09CD'
-	//	| '\\u09D7'
-	//	| '\\u09E2'..'\\u09E3'
-	//	| '\\u09E6'..'\\u09EF'
-	//	| '\\u0A01'..'\\u0A03'
-	//	| '\\u0A3C'
-	//	| '\\u0A3E'..'\\u0A42'
-	//	| '\\u0A47'..'\\u0A48'
-	//	| '\\u0A4B'..'\\u0A4D'
-	//	| '\\u0A66'..'\\u0A71'
-	//	| '\\u0A81'..'\\u0A83'
-	//	| '\\u0ABC'
-	//	| '\\u0ABE'..'\\u0AC5'
-	//	| '\\u0AC7'..'\\u0AC9'
-	//	| '\\u0ACB'..'\\u0ACD'
-	//	| '\\u0AE2'..'\\u0AE3'
-	//	| '\\u0AE6'..'\\u0AEF'
-	//	| '\\u0B01'..'\\u0B03'
-	//	| '\\u0B3C'
-	//	| '\\u0B3E'..'\\u0B43'
-	//	| '\\u0B47'..'\\u0B48'
-	//	| '\\u0B4B'..'\\u0B4D'
-	//	| '\\u0B56'..'\\u0B57'
-	//	| '\\u0B66'..'\\u0B6F'
-	//	| '\\u0B82'
-	//	| '\\u0BBE'..'\\u0BC2'
-	//	| '\\u0BC6'..'\\u0BC8'
-	//	| '\\u0BCA'..'\\u0BCD'
-	//	| '\\u0BD7'
-	//	| '\\u0BE7'..'\\u0BEF'
-	//	| '\\u0C01'..'\\u0C03'
-	//	| '\\u0C3E'..'\\u0C44'
-	//	| '\\u0C46'..'\\u0C48'
-	//	| '\\u0C4A'..'\\u0C4D'
-	//	| '\\u0C55'..'\\u0C56'
-	//	| '\\u0C66'..'\\u0C6F'
-	//	| '\\u0C82'..'\\u0C83'
-	//	| '\\u0CBC'
-	//	| '\\u0CBE'..'\\u0CC4'
-	//	| '\\u0CC6'..'\\u0CC8'
-	//	| '\\u0CCA'..'\\u0CCD'
-	//	| '\\u0CD5'..'\\u0CD6'
-	//	| '\\u0CE6'..'\\u0CEF'
-	//	| '\\u0D02'..'\\u0D03'
-	//	| '\\u0D3E'..'\\u0D43'
-	//	| '\\u0D46'..'\\u0D48'
-	//	| '\\u0D4A'..'\\u0D4D'
-	//	| '\\u0D57'
-	//	| '\\u0D66'..'\\u0D6F'
-	//	| '\\u0D82'..'\\u0D83'
-	//	| '\\u0DCA'
-	//	| '\\u0DCF'..'\\u0DD4'
-	//	| '\\u0DD6'
-	//	| '\\u0DD8'..'\\u0DDF'
-	//	| '\\u0DF2'..'\\u0DF3'
-	//	| '\\u0E31'
-	//	| '\\u0E34'..'\\u0E3A'
-	//	| '\\u0E47'..'\\u0E4E'
-	//	| '\\u0E50'..'\\u0E59'
-	//	| '\\u0EB1'
-	//	| '\\u0EB4'..'\\u0EB9'
-	//	| '\\u0EBB'..'\\u0EBC'
-	//	| '\\u0EC8'..'\\u0ECD'
-	//	| '\\u0ED0'..'\\u0ED9'
-	//	| '\\u0F18'..'\\u0F19'
-	//	| '\\u0F20'..'\\u0F29'
-	//	| '\\u0F35'
-	//	| '\\u0F37'
-	//	| '\\u0F39'
-	//	| '\\u0F3E'..'\\u0F3F'
-	//	| '\\u0F71'..'\\u0F84'
-	//	| '\\u0F86'..'\\u0F87'
-	//	| '\\u0F90'..'\\u0F97'
-	//	| '\\u0F99'..'\\u0FBC'
-	//	| '\\u0FC6'
-	//	| '\\u102C'..'\\u1032'
-	//	| '\\u1036'..'\\u1039'
-	//	| '\\u1040'..'\\u1049'
-	//	| '\\u1056'..'\\u1059'
-	//	| '\\u1369'..'\\u1371'
-	//	| '\\u1712'..'\\u1714'
-	//	| '\\u1732'..'\\u1734'
-	//	| '\\u1752'..'\\u1753'
-	//	| '\\u1772'..'\\u1773'
-	//	| '\\u17B4'..'\\u17D3'
-	//	| '\\u17DD'
-	//	| '\\u17E0'..'\\u17E9'
-	//	| '\\u180B'..'\\u180D'
-	//	| '\\u1810'..'\\u1819'
-	//	| '\\u18A9'
-	//	| '\\u1920'..'\\u192B'
-	//	| '\\u1930'..'\\u193B'
-	//	| '\\u1946'..'\\u194F'
-	//	| '\\u200C'..'\\u200F'
-	//	| '\\u202A'..'\\u202E'
-	//	| '\\u2060'..'\\u2063'
-	//	| '\\u206A'..'\\u206F'
-	//	| '\\u20D0'..'\\u20DC'
-	//	| '\\u20E1'
-	//	| '\\u20E5'..'\\u20EA'
-	//	| '\\u302A'..'\\u302F'
-	//	| '\\u3099'..'\\u309A'
-	//	| '\\uFB1E'
-	//	| '\\uFE00'..'\\uFE0F'
-	//	| '\\uFE20'..'\\uFE23'
-	//	| '\\uFEFF'
-	//	| '\\uFF10'..'\\uFF19'
-	//	| '\\uFFF9'..'\\uFFFB';
+	//	'\\u0000'..'\\u0008' | '\\u000E'..'\\u001B' | '\\u0030'..'\\u0039' | '\\u007F'..'\\u009F' | '\\u00AD' | '\\u0300'..'\\u0357' |
+	//	'\\u035D'..'\\u036F' | '\\u0483'..'\\u0486' | '\\u0591'..'\\u05A1' | '\\u05A3'..'\\u05B9' | '\\u05BB'..'\\u05BD' | '\\u05BF' |
+	//	'\\u05C1'..'\\u05C2' | '\\u05C4' | '\\u0600'..'\\u0603' | '\\u0610'..'\\u0615' | '\\u064B'..'\\u0658' | '\\u0660'..'\\u0669' |
+	//	'\\u0670' | '\\u06D6'..'\\u06DD' | '\\u06DF'..'\\u06E4' | '\\u06E7'..'\\u06E8' | '\\u06EA'..'\\u06ED' | '\\u06F0'..'\\u06F9' |
+	//	'\\u070F' | '\\u0711' | '\\u0730'..'\\u074A' | '\\u07A6'..'\\u07B0' | '\\u0901'..'\\u0903' | '\\u093C' | '\\u093E'..'\\u094D' |
+	//	'\\u0951'..'\\u0954' | '\\u0962'..'\\u0963' | '\\u0966'..'\\u096F' | '\\u0981'..'\\u0983' | '\\u09BC' | '\\u09BE'..'\\u09C4' |
+	//	'\\u09C7'..'\\u09C8' | '\\u09CB'..'\\u09CD' | '\\u09D7' | '\\u09E2'..'\\u09E3' | '\\u09E6'..'\\u09EF' | '\\u0A01'..'\\u0A03' |
+	//	'\\u0A3C' | '\\u0A3E'..'\\u0A42' | '\\u0A47'..'\\u0A48' | '\\u0A4B'..'\\u0A4D' | '\\u0A66'..'\\u0A71' | '\\u0A81'..'\\u0A83' |
+	//	'\\u0ABC' | '\\u0ABE'..'\\u0AC5' | '\\u0AC7'..'\\u0AC9' | '\\u0ACB'..'\\u0ACD' | '\\u0AE2'..'\\u0AE3' | '\\u0AE6'..'\\u0AEF' |
+	//	'\\u0B01'..'\\u0B03' | '\\u0B3C' | '\\u0B3E'..'\\u0B43' | '\\u0B47'..'\\u0B48' | '\\u0B4B'..'\\u0B4D' | '\\u0B56'..'\\u0B57' |
+	//	'\\u0B66'..'\\u0B6F' | '\\u0B82' | '\\u0BBE'..'\\u0BC2' | '\\u0BC6'..'\\u0BC8' | '\\u0BCA'..'\\u0BCD' | '\\u0BD7' |
+	//	'\\u0BE7'..'\\u0BEF' | '\\u0C01'..'\\u0C03' | '\\u0C3E'..'\\u0C44' | '\\u0C46'..'\\u0C48' | '\\u0C4A'..'\\u0C4D' |
+	//	'\\u0C55'..'\\u0C56' | '\\u0C66'..'\\u0C6F' | '\\u0C82'..'\\u0C83' | '\\u0CBC' | '\\u0CBE'..'\\u0CC4' | '\\u0CC6'..'\\u0CC8' |
+	//	'\\u0CCA'..'\\u0CCD' | '\\u0CD5'..'\\u0CD6' | '\\u0CE6'..'\\u0CEF' | '\\u0D02'..'\\u0D03' | '\\u0D3E'..'\\u0D43' |
+	//	'\\u0D46'..'\\u0D48' | '\\u0D4A'..'\\u0D4D' | '\\u0D57' | '\\u0D66'..'\\u0D6F' | '\\u0D82'..'\\u0D83' | '\\u0DCA' |
+	//	'\\u0DCF'..'\\u0DD4' | '\\u0DD6' | '\\u0DD8'..'\\u0DDF' | '\\u0DF2'..'\\u0DF3' | '\\u0E31' | '\\u0E34'..'\\u0E3A' |
+	//	'\\u0E47'..'\\u0E4E' | '\\u0E50'..'\\u0E59' | '\\u0EB1' | '\\u0EB4'..'\\u0EB9' | '\\u0EBB'..'\\u0EBC' | '\\u0EC8'..'\\u0ECD' |
+	//	'\\u0ED0'..'\\u0ED9' | '\\u0F18'..'\\u0F19' | '\\u0F20'..'\\u0F29' | '\\u0F35' | '\\u0F37' | '\\u0F39' | '\\u0F3E'..'\\u0F3F' |
+	//	'\\u0F71'..'\\u0F84' | '\\u0F86'..'\\u0F87' | '\\u0F90'..'\\u0F97' | '\\u0F99'..'\\u0FBC' | '\\u0FC6' | '\\u102C'..'\\u1032' |
+	//	'\\u1036'..'\\u1039' | '\\u1040'..'\\u1049' | '\\u1056'..'\\u1059' | '\\u1369'..'\\u1371' | '\\u1712'..'\\u1714' |
+	//	'\\u1732'..'\\u1734' | '\\u1752'..'\\u1753' | '\\u1772'..'\\u1773' | '\\u17B4'..'\\u17D3' | '\\u17DD' | '\\u17E0'..'\\u17E9' |
+	//	'\\u180B'..'\\u180D' | '\\u1810'..'\\u1819' | '\\u18A9' | '\\u1920'..'\\u192B' | '\\u1930'..'\\u193B' | '\\u1946'..'\\u194F' |
+	//	'\\u200C'..'\\u200F' | '\\u202A'..'\\u202E' | '\\u2060'..'\\u2063' | '\\u206A'..'\\u206F' | '\\u20D0'..'\\u20DC' | '\\u20E1' |
+	//	'\\u20E5'..'\\u20EA' | '\\u302A'..'\\u302F' | '\\u3099'..'\\u309A' | '\\uFB1E' | '\\uFE00'..'\\uFE0F' | '\\uFE20'..'\\uFE23' |
+	//	'\\uFEFF' | '\\uFF10'..'\\uFF19' | '\\uFFF9'..'\\uFFFB';
 	public TerminalRule getIDENTIFIER_PART_IMPLRule() {
 		return tIDENTIFIER_PART_IMPL;
 	} 
@@ -2923,7 +2861,8 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XLiteral XExpression:
-	//	XCollectionLiteral | XClosure | XBooleanLiteral | XNumberLiteral | XNullLiteral | XStringLiteral | XTypeLiteral
+	//	XCollectionLiteral | XClosure | XBooleanLiteral | XNumberLiteral | XNullLiteral | super::XStringLiteral |
+	//	XTypeLiteral
 	public XbaseGrammarAccess.XLiteralElements getXLiteralAccess() {
 		return gaXbase.getXLiteralAccess();
 	}
@@ -3205,16 +3144,6 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 		return getXNumberLiteralAccess().getRule();
 	}
 
-	//XStringLiteral XExpression:
-	//	{XStringLiteral} value=super::STRING
-	public XbaseGrammarAccess.XStringLiteralElements getXStringLiteralAccess() {
-		return gaXbase.getXStringLiteralAccess();
-	}
-	
-	public ParserRule getXStringLiteralRule() {
-		return getXStringLiteralAccess().getRule();
-	}
-
 	//XTypeLiteral XExpression:
 	//	{XTypeLiteral} 'typeof' '(' type=[types::JvmType|QualifiedName] arrayDimensions+=ArrayBrackets* ')'
 	public XbaseGrammarAccess.XTypeLiteralElements getXTypeLiteralAccess() {
@@ -3493,6 +3422,12 @@ public class SpecGrammarAccess extends AbstractGrammarElementFinder {
 	public ParserRule getQualifiedNameInStaticImportRule() {
 		return getQualifiedNameInStaticImportAccess().getRule();
 	}
+
+	//terminal STRING:
+	//	'"' ('\\' . | !('\\' | '"'))* '"'? | "'" ('\\' . | !('\\' | "'"))* "'"?;
+	public TerminalRule getSTRINGRule() {
+		return gaXtype.getSTRINGRule();
+	} 
 
 	//terminal SL_COMMENT:
 	//	'//' !('\n' | '\r')* ('\r'? '\n')?;

@@ -59,6 +59,7 @@ Workflow {
 	
 
 	component = Generator {
+		
 		pathRtProject = runtimeProject
 		pathUiProject = "${runtimeProject}.ui"
 		pathTestProject = "../../tests/org.jnario.tests"
@@ -68,7 +69,7 @@ Workflow {
 			forcedResourceSet = resourceSet
 			uri = grammarURI
 			fileExtensions = file.extensions
-
+			encoding = "ISO-8859-1"
 			// Java API to access grammar elements (required by several other fragments)
 			fragment = grammarAccess.GrammarAccessFragment {}
 
@@ -83,13 +84,15 @@ Workflow {
 			}
 
 			// The antlr parser generator fragment.
-			fragment = parser.antlr.XtextAntlrGeneratorFragment {
-				options = auto-inject {}
+			fragment = parser.antlr.ex.rt.AntlrGeneratorFragment {
+				options = auto-inject {
+
+					classSplitting = true
+					backtrack = true
+					
+				}
 				antlrParam = "-Xconversiontimeout"
 				antlrParam = "10000"
-				options = {
-					classSplitting = true
-				}
 			}
 
 			// java-based API for validation
@@ -125,12 +128,14 @@ Workflow {
 			fragment = contentAssist.JavaBasedContentAssistFragment {}
 
 			// generates a more lightweight Antlr parser and lexer tailored for content assist
-			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {
+			fragment = parser.antlr.ex.ca.ContentAssistParserGeneratorFragment {
 				options = auto-inject {}
 				antlrParam = "-Xconversiontimeout"
 				antlrParam = "10000"
 				options = {
 					classSplitting = true
+					backtrack = true
+					
 				}
 			}
 

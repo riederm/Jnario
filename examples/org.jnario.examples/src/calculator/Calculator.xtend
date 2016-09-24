@@ -27,7 +27,10 @@ class Calculator {
 	 }
 	 
 	override toString() {
-		"Calculator"		
+		val x = 3	
+		val y = '''before«3»after'''	
+
+		"Calculator"
 	}
 	
 }    

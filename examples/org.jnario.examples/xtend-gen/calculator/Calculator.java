@@ -7,6 +7,8 @@
  */
 package calculator;
 
+import org.eclipse.xtend2.lib.StringConcatenation;
+
 @SuppressWarnings("all")
 public class Calculator {
   public int add(final String a, final String b) {
@@ -29,6 +31,16 @@ public class Calculator {
   
   @Override
   public String toString() {
-    return "Calculator";
+    String _xblockexpression = null;
+    {
+      final int x = 3;
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("before");
+      _builder.append(3, "");
+      _builder.append("after");
+      final String y = _builder.toString();
+      _xblockexpression = "Calculator";
+    }
+    return _xblockexpression;
   }
 }
