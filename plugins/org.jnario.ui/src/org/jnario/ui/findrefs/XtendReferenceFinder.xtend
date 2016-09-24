@@ -25,6 +25,7 @@ class XtendReferenceFinder extends DefaultReferenceFinder implements IReferenceF
 	}
 	
 	override findReferences(Set<URI> targetURIs, IResourceDescription resourceDescription, IAcceptor<IReferenceDescription> acceptor, IProgressMonitor monitor, ILocalResourceAccess localResourceAccess) {
+		
 		// don't check local resources
 		if (targetURIs.map[trimFragment].exists[it == resourceDescription.getURI])
 			return;
@@ -43,7 +44,8 @@ class XtendReferenceFinder extends DefaultReferenceFinder implements IReferenceF
 			importedNames.contains(it)
 		]) {
 			localResourceAccess.readOnly(resourceDescription.getURI) [
-				findLocalReferencesInResource(targetURIs, it.getResource(resourceDescription.getURI, true), [
+				val isTargetURI = [targetURIs.contains(it)]
+				findLocalReferencesInResource(isTargetURI, it.getResource(resourceDescription.getURI, true), [
 					acceptor.accept(it)
 				])
 				return null
