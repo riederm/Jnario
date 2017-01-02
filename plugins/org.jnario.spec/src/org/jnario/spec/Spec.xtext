@@ -133,8 +133,7 @@ ExampleCell:
 	expression=XExpression
 ;
 
-/*
-TODO NO_XTEND
+
 
 
 XStringLiteral returns xbase::XExpression:
@@ -164,12 +163,12 @@ RichStringLiteralStart returns xbase::XExpression :
 
 RichStringLiteralInbetween returns xbase::XExpression :
     {RichStringLiteral} 
-    ( value=RICH_TEXT_INBETWEEN | value=COMMENT_RICH_TEXT_INBETWEEN )
+    ( value=RICH_TEXT_INBETWEEN /* | value=COMMENT_RICH_TEXT_INBETWEEN */)
 ; 
 
 RichStringLiteralEnd returns xbase::XExpression :
     {RichStringLiteral} 
-    ( value=RICH_TEXT_END | value=COMMENT_RICH_TEXT_END )
+    ( value=RICH_TEXT_END /*| value=COMMENT_RICH_TEXT_END */)
 ; 
 
 InternalRichString returns xbase::XExpression:
@@ -180,10 +179,10 @@ InternalRichString returns xbase::XExpression:
 
 RichStringPart returns xbase::XExpression:
     XExpressionOrVarDeclaration
-    | RichStringForLoop
-    | RichStringIf
+    //| RichStringForLoop
+    //| RichStringIf
 ;
-RichStringForLoop returns xbase::XExpression:
+/*RichStringForLoop returns xbase::XExpression:
     {RichStringForLoop}
     "FOR" declaredParam=JvmFormalParameter ':' forExpression=XExpression
         ("BEFORE" before=XExpression)?
@@ -205,8 +204,8 @@ RichStringIf returns xbase::XExpression :
 
 RichStringElseIf returns RichStringElseIf:
     "ELSEIF" if=XExpression then=InternalRichString
-;
-*/
+;*/
+
 // --------------------- FROM Xtend.xtext
 
 CommonModifier:
@@ -239,27 +238,23 @@ terminal fragment UNICODE_ESCAPE:
     '\\' 'u' ( HEX_DIGIT ( HEX_DIGIT ( HEX_DIGIT HEX_DIGIT? )? )? )?
 ;
 
-terminal fragment RICH_TEXT : "'''" IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF);
 
-/*
-TODO NO_XTEND
+terminal RICH_TEXT_START : "'''" IN_RICH_STRING* ("'" "'"?)? '\u00AB';
+terminal RICH_TEXT_END : '\u00BB' IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF) ;
+terminal RICH_TEXT_INBETWEEN : '\u00BB' IN_RICH_STRING* ("'" "'"?)? '\u00AB';
+//terminal COMMENT_RICH_TEXT_INBETWEEN: "««" !('\n'|'\r')* ('\r'? '\n' IN_RICH_STRING* ("'" "'"?)? '«')?; 
+//terminal COMMENT_RICH_TEXT_END: "««" !('\n'|'\r')* (('\r'? '\n' IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF)) | EOF); 
+terminal RICH_TEXT : "'''" IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF);
 
-terminal RICH_TEXT_START : "'''" IN_RICH_STRING* ("'" "'"?)? '«';
-terminal RICH_TEXT_END : '»' IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF) ;
-terminal RICH_TEXT_INBETWEEN : '»' IN_RICH_STRING* ("'" "'"?)? '«';
-terminal COMMENT_RICH_TEXT_INBETWEEN: "««" !('\n'|'\r')* ('\r'? '\n' IN_RICH_STRING* ("'" "'"?)? '«')?; 
-terminal COMMENT_RICH_TEXT_END: "««" !('\n'|'\r')* (('\r'? '\n' IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF)) | EOF); 
-*/
 
 terminal fragment IN_RICH_STRING : 
-      "''" !('«'|"'") 
-    | "'" !('«'|"'")
-    | !('«'|"'");
+      "''" !('\u00AB'|"'") 
+    | "'" !('\u00AB'|"'")
+    | !('\u00AB'|"'");
 
-terminal STRING:
-        RICH_TEXT 
-    |   '"' ( '\\' . /* ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') */ | !('\\'|'"') )* '"'?
-    |   "'" ( '\\' . /* ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') */ | !('\\'|"'") )* "'"?;
+//terminal STRING:
+//	   '"' ( '\\' . /* ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') */ | !('\\'|'"') )* '"'?
+//    |   "'" ( '\\' . /* ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') */ | !('\\'|"'") )* "'"?;
 
 terminal fragment IDENTIFIER_START:
       '\u0024'
