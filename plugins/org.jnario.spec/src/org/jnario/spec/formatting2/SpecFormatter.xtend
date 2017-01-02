@@ -29,155 +29,155 @@ import org.jnario.spec.spec.SpecFile
 
 class SpecFormatter extends JnarioFormatter {
 
-	def dispatch void format(SpecFile specfile, extension IFormattableDocument document) {
-		format(specfile.getImportSection(), document);
-		for (JnarioTypeDeclaration xtendTypes : specfile.getXtendTypes()) {
-			format(xtendTypes, document);
-		}
-	}
-
-// TODO NO_XTEND Remove it not needed
-//	def dispatch void format(JnarioTypeDeclaration jnariotypedeclaration, extension IFormattableDocument document) {
-//		jnariotypedeclaration.regionForKeyword("{").append[
-//		    increaseIndentation
-//		    setNewLines(1, 1, 2)
-//		]
-//		jnariotypedeclaration.regionForKeyword("}").append[
-//		    decreaseIndentation
-//		    newLine
-//		]
-//		for (XAnnotation annotations : jnariotypedeclaration.getAnnotations()) {
+//	def dispatch void format(SpecFile specfile, extension IFormattableDocument document) {
+//		format(specfile.getImportSection(), document);
+//		for (JnarioTypeDeclaration xtendTypes : specfile.getXtendTypes()) {
+//			format(xtendTypes, document);
+//		}
+//	}
+//
+//// TODO NO_XTEND Remove it not needed
+////	def dispatch void format(JnarioTypeDeclaration jnariotypedeclaration, extension IFormattableDocument document) {
+////		jnariotypedeclaration.regionForKeyword("{").append[
+////		    increaseIndentation
+////		    setNewLines(1, 1, 2)
+////		]
+////		jnariotypedeclaration.regionForKeyword("}").append[
+////		    decreaseIndentation
+////		    newLine
+////		]
+////		for (XAnnotation annotations : jnariotypedeclaration.getAnnotations()) {
+////			format(annotations, document);
+////		}
+////	}
+//
+//	def dispatch void format(ExampleGroup examplegroup, extension IFormattableDocument document) {
+//        examplegroup.regionForKeyword("{").append[
+//            increaseIndentation
+//            setNewLines(1, 1, 2)
+//        ]
+//        examplegroup.regionForKeyword("}").prepend[
+//            decreaseIndentation
+//            newLine
+//        ]
+//		format(examplegroup.getTargetType(), document);
+//		for (JnarioMember members : examplegroup.getMembers()) {
+//			format(members, document);
+//		}
+//		format(examplegroup.getAnnotationInfo(), document);
+//	}
+//
+//	def dispatch void format(JnarioMember jnariomember, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		for (XAnnotation annotations : jnariomember.getAnnotations()) {
 //			format(annotations, document);
 //		}
 //	}
-
-	def dispatch void format(ExampleGroup examplegroup, extension IFormattableDocument document) {
-        examplegroup.regionForKeyword("{").append[
-            increaseIndentation
-            setNewLines(1, 1, 2)
-        ]
-        examplegroup.regionForKeyword("}").prepend[
-            decreaseIndentation
-            newLine
-        ]
-		format(examplegroup.getTargetType(), document);
-		for (JnarioMember members : examplegroup.getMembers()) {
-			format(members, document);
-		}
-		format(examplegroup.getAnnotationInfo(), document);
-	}
-
-	def dispatch void format(JnarioMember jnariomember, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (XAnnotation annotations : jnariomember.getAnnotations()) {
-			format(annotations, document);
-		}
-	}
-
-	def dispatch void format(Example example, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(example.getExpr(), document);
-		format(example.getExpression(), document);
-		format(example.getAnnotationInfo(), document);
-	}
-
-	def dispatch void format(Before before, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(before.getExpression(), document);
-		format(before.getAnnotationInfo(), document);
-	}
-
-	def dispatch void format(After after, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(after.getExpression(), document);
-		format(after.getAnnotationInfo(), document);
-	}
-
-//	override dispatch void format(ExampleTable exampletable, extension IFormattableDocument document) {
+//
+//	def dispatch void format(Example example, extension IFormattableDocument document) {
 //		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-//		for (ExampleColumn columns : exampletable.getColumns()) {
-//			format(columns, document);
-//		}
-//		for (ExampleRow rows : exampletable.getRows()) {
-//			format(rows, document);
-//		}
-//		format(exampletable.getAnnotationInfo(), document);
+//		format(example.getExpr(), document);
+//		format(example.getExpression(), document);
+//		format(example.getAnnotationInfo(), document);
 //	}
-
-	def dispatch void format(JnarioField jnariofield, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(jnariofield.getType(), document);
-		format(jnariofield.getInitialValue(), document);
-		format(jnariofield.getAnnotationInfo(), document);
-	}
-
-	def dispatch void format(JnarioFunction jnariofunction, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (JvmTypeParameter typeParameters : jnariofunction.getTypeParameters()) {
-			format(typeParameters, document);
-		}
-		format(jnariofunction.getReturnType(), document);
-		for (JnarioParameter parameters : jnariofunction.getParameters()) {
-			format(parameters, document);
-		}
-		for (JvmTypeReference exceptions : jnariofunction.getExceptions()) {
-			format(exceptions, document);
-		}
-		format(jnariofunction.getExpression(), document);
-		format(jnariofunction.getAnnotationInfo(), document);
-	}
-
-	def dispatch void format(Should should, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(should.getRightOperand(), document);
-		format(should.getLeftOperand(), document);
-	}
-
-	def dispatch void format(ShouldThrow shouldthrow, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(shouldthrow.getType(), document);
-		format(shouldthrow.getExpression(), document);
-	}
-
-	def dispatch void format(XInstanceOfExpression xinstanceofexpression, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(xinstanceofexpression.getType(), document);
-		format(xinstanceofexpression.getExpression(), document);
-	}
-
-	override dispatch void format(XBinaryOperation xbinaryoperation, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(xbinaryoperation.getRightOperand(), document);
-		format(xbinaryoperation.getLeftOperand(), document);
-	}
-
-	def dispatch void format(Assertion assertion, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(assertion.getExpression(), document);
-	}
-
-	def dispatch void format(ExampleColumn examplecolumn, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(examplecolumn.getType(), document);
-	}
-
-	def dispatch void format(ExampleRow examplerow, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (ExampleCell cells : examplerow.getCells()) {
-			format(cells, document);
-		}
-	}
-
-	def dispatch void format(ExampleCell examplecell, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(examplecell.getExpression(), document);
-	}
-
-	def dispatch void format(JnarioParameter jnarioparameter, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (XAnnotation annotations : jnarioparameter.getAnnotations()) {
-			format(annotations, document);
-		}
-		format(jnarioparameter.getParameterType(), document);
-	}
+//
+//	def dispatch void format(Before before, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		format(before.getExpression(), document);
+//		format(before.getAnnotationInfo(), document);
+//	}
+//
+//	def dispatch void format(After after, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		format(after.getExpression(), document);
+//		format(after.getAnnotationInfo(), document);
+//	}
+//
+////	override dispatch void format(ExampleTable exampletable, extension IFormattableDocument document) {
+////		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+////		for (ExampleColumn columns : exampletable.getColumns()) {
+////			format(columns, document);
+////		}
+////		for (ExampleRow rows : exampletable.getRows()) {
+////			format(rows, document);
+////		}
+////		format(exampletable.getAnnotationInfo(), document);
+////	}
+//
+//	def dispatch void format(JnarioField jnariofield, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		format(jnariofield.getType(), document);
+//		format(jnariofield.getInitialValue(), document);
+//		format(jnariofield.getAnnotationInfo(), document);
+//	}
+//
+//	def dispatch void format(JnarioFunction jnariofunction, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		for (JvmTypeParameter typeParameters : jnariofunction.getTypeParameters()) {
+//			format(typeParameters, document);
+//		}
+//		format(jnariofunction.getReturnType(), document);
+//		for (JnarioParameter parameters : jnariofunction.getParameters()) {
+//			format(parameters, document);
+//		}
+//		for (JvmTypeReference exceptions : jnariofunction.getExceptions()) {
+//			format(exceptions, document);
+//		}
+//		format(jnariofunction.getExpression(), document);
+//		format(jnariofunction.getAnnotationInfo(), document);
+//	}
+//
+//	def dispatch void format(Should should, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		format(should.getRightOperand(), document);
+//		format(should.getLeftOperand(), document);
+//	}
+//
+//	def dispatch void format(ShouldThrow shouldthrow, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		format(shouldthrow.getType(), document);
+//		format(shouldthrow.getExpression(), document);
+//	}
+//
+//	def dispatch void format(XInstanceOfExpression xinstanceofexpression, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		format(xinstanceofexpression.getType(), document);
+//		format(xinstanceofexpression.getExpression(), document);
+//	}
+//
+//	override dispatch void format(XBinaryOperation xbinaryoperation, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		format(xbinaryoperation.getRightOperand(), document);
+//		format(xbinaryoperation.getLeftOperand(), document);
+//	}
+//
+//	def dispatch void format(Assertion assertion, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		format(assertion.getExpression(), document);
+//	}
+//
+//	def dispatch void format(ExampleColumn examplecolumn, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		format(examplecolumn.getType(), document);
+//	}
+//
+//	def dispatch void format(ExampleRow examplerow, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		for (ExampleCell cells : examplerow.getCells()) {
+//			format(cells, document);
+//		}
+//	}
+//
+//	def dispatch void format(ExampleCell examplecell, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		format(examplecell.getExpression(), document);
+//	}
+//
+//	def dispatch void format(JnarioParameter jnarioparameter, extension IFormattableDocument document) {
+//		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+//		for (XAnnotation annotations : jnarioparameter.getAnnotations()) {
+//			format(annotations, document);
+//		}
+//		format(jnarioparameter.getParameterType(), document);
+//	}
 }

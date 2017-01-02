@@ -6,6 +6,7 @@ package org.jnario.suite.formatting2;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
@@ -18,7 +19,7 @@ import org.eclipse.xtext.xbase.XAssignment;
 import org.eclipse.xtext.xbase.XBasicForLoopExpression;
 import org.eclipse.xtext.xbase.XBinaryOperation;
 import org.eclipse.xtext.xbase.XBlockExpression;
-import org.eclipse.xtext.xbase.XCatchClause;
+import org.eclipse.xtext.xbase.XCastedExpression;
 import org.eclipse.xtext.xbase.XClosure;
 import org.eclipse.xtext.xbase.XCollectionLiteral;
 import org.eclipse.xtext.xbase.XConstructorCall;
@@ -27,7 +28,9 @@ import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.XFeatureCall;
 import org.eclipse.xtext.xbase.XForLoopExpression;
 import org.eclipse.xtext.xbase.XIfExpression;
+import org.eclipse.xtext.xbase.XInstanceOfExpression;
 import org.eclipse.xtext.xbase.XMemberFeatureCall;
+import org.eclipse.xtext.xbase.XPostfixOperation;
 import org.eclipse.xtext.xbase.XReturnExpression;
 import org.eclipse.xtext.xbase.XSwitchExpression;
 import org.eclipse.xtext.xbase.XSynchronizedExpression;
@@ -102,6 +105,9 @@ public class SuiteFormatter extends XbaseWithAnnotationsFormatter {
     } else if (suite instanceof XMemberFeatureCall) {
       _format((XMemberFeatureCall)suite, document);
       return;
+    } else if (suite instanceof XPostfixOperation) {
+      _format((XPostfixOperation)suite, document);
+      return;
     } else if (suite instanceof XWhileExpression) {
       _format((XWhileExpression)suite, document);
       return;
@@ -123,6 +129,9 @@ public class SuiteFormatter extends XbaseWithAnnotationsFormatter {
     } else if (suite instanceof XBlockExpression) {
       _format((XBlockExpression)suite, document);
       return;
+    } else if (suite instanceof XCastedExpression) {
+      _format((XCastedExpression)suite, document);
+      return;
     } else if (suite instanceof XClosure) {
       _format((XClosure)suite, document);
       return;
@@ -137,6 +146,9 @@ public class SuiteFormatter extends XbaseWithAnnotationsFormatter {
       return;
     } else if (suite instanceof XIfExpression) {
       _format((XIfExpression)suite, document);
+      return;
+    } else if (suite instanceof XInstanceOfExpression) {
+      _format((XInstanceOfExpression)suite, document);
       return;
     } else if (suite instanceof XReturnExpression) {
       _format((XReturnExpression)suite, document);
@@ -168,9 +180,6 @@ public class SuiteFormatter extends XbaseWithAnnotationsFormatter {
     } else if (suite instanceof JvmTypeConstraint) {
       _format((JvmTypeConstraint)suite, document);
       return;
-    } else if (suite instanceof XCatchClause) {
-      _format((XCatchClause)suite, document);
-      return;
     } else if (suite instanceof XExpression) {
       _format((XExpression)suite, document);
       return;
@@ -179,6 +188,9 @@ public class SuiteFormatter extends XbaseWithAnnotationsFormatter {
       return;
     } else if (suite instanceof XImportSection) {
       _format((XImportSection)suite, document);
+      return;
+    } else if (suite instanceof EObject) {
+      _format((EObject)suite, document);
       return;
     } else if (suite == null) {
       _format((Void)null, document);

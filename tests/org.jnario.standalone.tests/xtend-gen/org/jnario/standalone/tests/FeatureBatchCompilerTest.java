@@ -17,14 +17,15 @@ import org.eclipse.xtext.util.Files;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.jnario.feature.compiler.FeatureBatchCompiler;
+import org.jnario.jnario.test.util.ExtendedFeatureInjectorProvider;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(XtextRunner.class)/* 
-@InjectWith(ExtendedFeatureInjectorProvider.class) */
+@RunWith(XtextRunner.class)
+@InjectWith(ExtendedFeatureInjectorProvider.class)
 @SuppressWarnings("all")
 public class FeatureBatchCompilerTest {
   @Inject

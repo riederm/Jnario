@@ -8,14 +8,14 @@
 package org.jnario.spec.ui.highlighting;
 
 import static org.eclipse.xtext.nodemodel.util.NodeModelUtils.findNodesForFeature;
-import static org.eclipse.xtext.xbase.ui.highlighting.XbaseHighlightingConfiguration.EXTENSION_METHOD_INVOCATION;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
+import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 import org.jnario.ExampleTable;
@@ -39,7 +39,9 @@ import com.google.common.collect.Iterables;
 public class SpecHighlightingCalculator extends JnarioHighlightingCalculator {
 
 	@Override
-	protected void doProvideHighlightingFor(XtextResource resource, IHighlightedPositionAcceptor acceptor) {
+	protected void doProvideHighlightingFor(XtextResource resource,
+			org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor acceptor,
+			CancelIndicator cancelIndicator) {
 		EObject root = resource.getContents().get(0);
 		if (!(root instanceof SpecFile)) {
 			return;
@@ -52,7 +54,7 @@ public class SpecHighlightingCalculator extends JnarioHighlightingCalculator {
 			}
 			provideHighlightingFor(exampleGroup, acceptor);
 		}
-		super.doProvideHighlightingFor(resource, acceptor);
+		super.doProvideHighlightingFor(resource, acceptor, cancelIndicator);
 	}
 
 	protected void provideHighlightingFor(ExampleGroup exampleGroup,
@@ -108,7 +110,7 @@ public class SpecHighlightingCalculator extends JnarioHighlightingCalculator {
 
 	private void highlighColumnNode(IHighlightedPositionAcceptor acceptor,
 			INode node) {
-		highlightNode(node, EXTENSION_METHOD_INVOCATION, acceptor);
+		highlightNode(acceptor, node, EXTENSION_METHOD_INVOCATION);
 	}
 	
 

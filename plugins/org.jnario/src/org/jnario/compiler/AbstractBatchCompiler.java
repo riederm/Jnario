@@ -52,16 +52,13 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions;
 import org.eclipse.xtext.resource.persistence.StorageAwareResource;
+import org.eclipse.xtext.util.JavaVersion;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.eclipse.xtext.xbase.compiler.GeneratorConfig;
-import org.eclipse.xtext.xbase.compiler.GeneratorConfigProvider;
-import org.eclipse.xtext.xbase.compiler.JavaVersion;
-import org.eclipse.xtext.xbase.file.ProjectConfig;
-import org.eclipse.xtext.xbase.file.RuntimeWorkspaceConfigProvider;
-import org.eclipse.xtext.xbase.file.SimpleWorkspaceConfig;
+import org.eclipse.xtext.xbase.compiler.IGeneratorConfigProvider;
 import org.eclipse.xtext.xbase.resource.BatchLinkableResource;
 import org.jnario.JnarioFile;
 
@@ -119,12 +116,14 @@ public class AbstractBatchCompiler {
 	private IEncodingProvider.Runtime encodingProvider;
 	@Inject
 	private IResourceDescription.Manager resourceDescriptionManager;
-	@Inject
-	private RuntimeWorkspaceConfigProvider workspaceConfigProvider;
+//	@Inject
+//	private RuntimeWorkspaceConfigProvider workspaceConfigProvider;
 	@Inject
 	private CompilerPhases compilerPhases;
 	@Inject
 	private IStubGenerator stubGenerator;
+	@Inject
+	private IGeneratorConfigProvider generatorConfigProvider;
 
 	protected String sourcePath;
 	protected String classPath;
@@ -321,48 +320,48 @@ public class AbstractBatchCompiler {
 		this.fileEncoding = encoding;
 	}
 
-	public boolean configureWorkspace() {
-		List<File> sourceFileList = getSourcePathFileList();
-		File outputFile = getOutputPathFile();
-		if (sourceFileList == null || outputFile == null) {
-			return false;
-		}
-
-		File commonRoot = determineCommonRoot(outputFile, sourceFileList);
-
-		// We don't want to use root ("/") as a workspace folder, didn't we?
-		if (commonRoot == null || commonRoot.getParent() == null || commonRoot.getParentFile().getParent() == null) {
-			log.error("All source folders and the output folder should have "
-					+ "a common parent non-top level folder (like project folder)");
-			for (File sourceFile : sourceFileList) {
-				log.error("(Source folder: '" + sourceFile + "')");
-			}
-			log.error("(Output folder: '" + outputFile + "')");
-			return false;
-		}
-
-		SimpleWorkspaceConfig workspaceConfig = new SimpleWorkspaceConfig(commonRoot.getParent().toString());
-		ProjectConfig projectConfig = new ProjectConfig(commonRoot.getName());
-
-		java.net.URI commonURI = commonRoot.toURI();
-		java.net.URI relativizedTarget = commonURI.relativize(outputFile.toURI());
-		if (relativizedTarget.isAbsolute()) {
-			log.error("Target folder '" + outputFile + "' must be a child of the project folder '" + commonRoot + "'");
-			return false;
-		}
-
-		for (File source : sourceFileList) {
-			java.net.URI relativizedSrc = commonURI.relativize(source.toURI());
-			if (relativizedSrc.isAbsolute()) {
-				log.error("Source folder '" + source + "' must be a child of the project folder '" + commonRoot + "'");
-				return false;
-			}
-			projectConfig.addSourceFolderMapping(relativizedSrc.getPath(), relativizedTarget.getPath());
-		}
-		workspaceConfig.addProjectConfig(projectConfig);
-		workspaceConfigProvider.setWorkspaceConfig(workspaceConfig);
-		return true;
-	}
+//	public boolean configureWorkspace() {
+//		List<File> sourceFileList = getSourcePathFileList();
+//		File outputFile = getOutputPathFile();
+//		if (sourceFileList == null || outputFile == null) {
+//			return false;
+//		}
+//
+//		File commonRoot = determineCommonRoot(outputFile, sourceFileList);
+//
+//		// We don't want to use root ("/") as a workspace folder, didn't we?
+//		if (commonRoot == null || commonRoot.getParent() == null || commonRoot.getParentFile().getParent() == null) {
+//			log.error("All source folders and the output folder should have "
+//					+ "a common parent non-top level folder (like project folder)");
+//			for (File sourceFile : sourceFileList) {
+//				log.error("(Source folder: '" + sourceFile + "')");
+//			}
+//			log.error("(Output folder: '" + outputFile + "')");
+//			return false;
+//		}
+//
+//		IProjectConfig projectConfig = new FileProjectConfig(commonRoot);
+//		IWorkspaceConfig workspaceConfig = new SingleProjectWorkspaceConfig(projectConfig); 
+//
+//		java.net.URI commonURI = commonRoot.toURI();
+//		java.net.URI relativizedTarget = commonURI.relativize(outputFile.toURI());
+//		if (relativizedTarget.isAbsolute()) {
+//			log.error("Target folder '" + outputFile + "' must be a child of the project folder '" + commonRoot + "'");
+//			return false;
+//		}
+//
+//		for (File source : sourceFileList) {
+//			java.net.URI relativizedSrc = commonURI.relativize(source.toURI());
+//			if (relativizedSrc.isAbsolute()) {
+//				log.error("Source folder '" + source + "' must be a child of the project folder '" + commonRoot + "'");
+//				return false;
+//			}
+//			projectConfig.addSourceFolderMapping(relativizedSrc.getPath(), relativizedTarget.getPath());
+//		}
+//		workspaceConfig.addProjectConfig(projectConfig);
+//		workspaceConfigProvider.setWorkspaceConfig(workspaceConfig);
+//		return true;
+//	}
 
 	private File getOutputPathFile() {
 		try {
@@ -428,13 +427,14 @@ public class AbstractBatchCompiler {
 			if (!checkConfiguration()) {
 				return false;
 			}
-			if (workspaceConfigProvider.getWorkspaceConfig() == null) {
-				if (!configureWorkspace()) {
-					return false;
-				}
-			}
+//			if (workspaceConfigProvider.getWorkspaceConfig() == null) {
+//				if (!configureWorkspace()) {
+//					return false;
+//				}
+//			}
 			ResourceSet resourceSet = resourceSetProvider.get();
-			GeneratorConfigProvider.install(resourceSet, generatorConfig);
+			installGeneratorConfig(resourceSet, generatorConfig);
+			
 			File classDirectory = createTempDir("classes");
 			try {
 				compilerPhases.setIndexing(resourceSet, true);
@@ -473,6 +473,17 @@ public class AbstractBatchCompiler {
 	}
 	
 	
+	//TODO install generator ... something changed here :-/
+	private void installGeneratorConfig(final ResourceSet resourceSet, GeneratorConfig generatorConfig) {
+//		GeneratorConfigAdapter adapter = Optional.fromNullable(GeneratorConfigAdapter.findInEmfObject(resourceSet)).or(() -> {
+//			GeneratorConfigAdapter newAdapter = new GeneratorConfigAdapter();
+//			newAdapter.attachToEmfObject(resourceSet);
+//			return newAdapter;
+//		});
+//		generatorConfigProvider.get
+//		return adapter.getLanguage2GeneratorConfig().put(languageId, config)
+				  
+	}
 
 	/**
 	 * @since 2.8

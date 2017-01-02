@@ -5,10 +5,11 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.jnario.jvmmodel;
-
-import org.eclipse.xtext.xbase.compiler.JvmModelGenerator;
+package demo;
 
 @SuppressWarnings("all")
-public class ExtendedJvmModelGenerator extends JvmModelGenerator {
+public class Calculator {
+  public int add(final int a, final int b) {
+    return (a + b);
+  }
 }

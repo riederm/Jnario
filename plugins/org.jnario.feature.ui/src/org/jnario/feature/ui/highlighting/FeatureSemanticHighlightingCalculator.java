@@ -24,6 +24,7 @@ import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
+import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XNumberLiteral;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
@@ -202,6 +203,8 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 		return resource.getParseResult().getRootASTElement();
 	}
 
+
+
 	protected boolean noNodeModel(XtextResource resource) {
 		return resource == null || resource.getParseResult() == null
 				|| root(resource) == null;
@@ -228,7 +231,7 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 				} if (object instanceof XAnnotation) {
 					highlightAnnotation((XAnnotation) object, acceptor);
 				} else {
-					computeReferencedJvmTypeHighlighting(acceptor, object);
+					computeReferencedJvmTypeHighlighting(acceptor, object, CancelIndicator.NullImpl);
 				}
 			}
 		}
@@ -257,5 +260,10 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 //			node = node.getNextSibling();
 //		}
 //	}
+	
+	//signature changed in version 2.10
+	public void highlightNode(INode node, String id, IHighlightedPositionAcceptor acceptor) {
+		super.highlightNode(acceptor, node, id);
+	}
 
 }

@@ -43,7 +43,7 @@ class XtendReferenceFinder extends DefaultReferenceFinder implements IReferenceF
 			importedNames.contains(it)
 		]) {
 			localResourceAccess.readOnly(resourceDescription.getURI) [
-				findLocalReferencesInResource(targetURIs, it.getResource(resourceDescription.getURI, true), [
+				findLocalReferencesInResource([targetURIs.contains(it)], it.getResource(resourceDescription.getURI, true), [
 					acceptor.accept(it)
 				])
 				return null

@@ -7,15 +7,9 @@
  *******************************************************************************/
 package org.jnario.jnario.test.util;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.osgi.framework.adaptor.BundleData;
-import org.eclipse.osgi.framework.internal.core.AbstractBundle;
-import org.jnario.Activator;
-import org.osgi.framework.BundleException;
+import org.osgi.framework.Bundle;
 
 /**
  * @author Birgit Engelmann
@@ -30,39 +24,41 @@ public class BundleClassPathProvider {
 
 	
 	public static List<String> getClassPath() {
-		String installLocation = Platform.getInstallLocation().getURL()
-				.getPath();
-
-		AbstractBundle[] bundles = (AbstractBundle[]) Activator.getDefault()
-				.getBundle().getBundleContext().getBundles();
-		List<String> classpath = new ArrayList<String>();
-
-		for (AbstractBundle bundle : bundles) {
-			BundleData bundleData = bundle.getBundleData();
-			String pathToBundle = getPathOfBundle(bundleData);
-			try {
-				for (String subFolders : bundleData.getClassPath()) {
-					String fullLocation = pathToBundle + File.separator + subFolders;
-					String finalClassPath = getAbsoluteClassPath(fullLocation, installLocation);
-					if(finalClassPath.length() > 0){
-						if(finalClassPath.endsWith("//.")){
-							finalClassPath = finalClassPath.substring(0, finalClassPath.length()-3);
-						}else if(finalClassPath.endsWith("/.")){
-							finalClassPath = finalClassPath.substring(0, finalClassPath.length()-2);
-						}
-						classpath.add(finalClassPath.replace("/", File.separator));
-					}
-				}
-			} catch (BundleException e) {
-				e.printStackTrace();
-			}
-		}
-		System.out.println(classpath.toString().replace(",", "\n"));
-		return classpath;
+		//TODO MARI not used !?
+//		String installLocation = Platform.getInstallLocation().getURL()
+//				.getPath();
+//
+//		Bundle[] bundles = (Bundle[]) Activator.getDefault()
+//				.getBundle().getBundleContext().getBundles();
+//		List<String> classpath = new ArrayList<String>();
+//
+//		for (Bundle bundle : bundles) {
+//			String pathToBundle = getPathOfBundle(bundle);
+//			try {
+//				bundle.
+//				for (String subFolders : bundle.getClassPath()) {
+//					String fullLocation = pathToBundle + File.separator + subFolders;
+//					String finalClassPath = getAbsoluteClassPath(fullLocation, installLocation);
+//					if(finalClassPath.length() > 0){
+//						if(finalClassPath.endsWith("//.")){
+//							finalClassPath = finalClassPath.substring(0, finalClassPath.length()-3);
+//						}else if(finalClassPath.endsWith("/.")){
+//							finalClassPath = finalClassPath.substring(0, finalClassPath.length()-2);
+//						}
+//						classpath.add(finalClassPath.replace("/", File.separator));
+//					}
+//				}
+//			} catch (BundleException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		System.out.println(classpath.toString().replace(",", "\n"));
+//		return classpath;
+		return null;
 	}
 
-	private static String getPathOfBundle(BundleData bundleData) {
-		String pathOfBundle = bundleData.getLocation();
+	private static String getPathOfBundle(Bundle bundle) {
+		String pathOfBundle = bundle.getLocation();
 		int indexOf = pathOfBundle.indexOf(BUNDLE_REFERENCE);
 		if (indexOf >= 0) {
 			return pathOfBundle.substring(indexOf + BUNDLE_REFERENCE.length());

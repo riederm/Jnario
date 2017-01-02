@@ -10,7 +10,6 @@
  */
 package org.jnario.suite;
 
-import org.eclipse.xtend.lib.macro.file.FileLocations;
 import org.eclipse.xtext.common.types.descriptions.JvmDeclaredTypeSignatureHashProvider.SignatureHashBuilder;
 import org.eclipse.xtext.common.types.xtext.TypesAwareDefaultGlobalScopeProvider;
 import org.eclipse.xtext.conversion.IValueConverterService;
@@ -20,8 +19,6 @@ import org.eclipse.xtext.generator.IFilePostProcessor;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
-import org.eclipse.xtext.linking.ILinker;
-import org.eclipse.xtext.linking.impl.Linker;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parser.IParser;
 import org.eclipse.xtext.parser.impl.TokenRegionProvider;
@@ -35,11 +32,6 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.validation.CompositeEValidator;
 import org.eclipse.xtext.xbase.compiler.JvmModelGenerator;
 import org.eclipse.xtext.xbase.compiler.output.TraceAwarePostProcessor;
-import org.eclipse.xtext.xbase.file.AbstractFileSystemSupport;
-import org.eclipse.xtext.xbase.file.FileLocationsImpl;
-import org.eclipse.xtext.xbase.file.JavaIOFileSystemSupport;
-import org.eclipse.xtext.xbase.file.RuntimeWorkspaceConfigProvider;
-import org.eclipse.xtext.xbase.file.WorkspaceConfig;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
 import org.eclipse.xtext.xbase.resource.BatchLinkableResourceStorageFacade;
@@ -240,22 +232,25 @@ public class SuiteRuntimeModule extends org.jnario.suite.AbstractSuiteRuntimeMod
 		return BatchLinkableResourceStorageFacade.class;
 	}
 
-	public Class<? extends AbstractFileSystemSupport> bindAbstractFileSystemSupport() {
-		return JavaIOFileSystemSupport.class;
-	}
-	
-	@Override
 	public Class<? extends IGenerator> bindIGenerator() {
 		return SuiteGenerator.class;
 	}
-	
-	public void configureWorkspaceConfigContribution(Binder binder) {
-		binder.bind(WorkspaceConfig.class).toProvider(RuntimeWorkspaceConfigProvider.class);
-	}
-	
-	public Class<? extends FileLocations> bindFileLocations() {
-		return FileLocationsImpl.class;
-	}
+
+	//TODO MARI
+//	public Class<? extends AbstractFileSystemSupport> bindAbstractFileSystemSupport() {
+//		return JavaIOFileSystemSupport.class;
+//	}
+//	
+//	@Override
+//	
+//	public void configureWorkspaceConfigContribution(Binder binder) {
+//		binder.bind(WorkspaceConfig.class).toProvider(RuntimeWorkspaceConfigProvider.class);
+//	}
+//	
+//	public Class<? extends FileLocations> bindFileLocations() {
+//		return FileLocationsImpl.class;
+//	}
+	//TODO MARI END
 	
 	public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProvider() {
 		return XtendDocumentationProvider.class;
