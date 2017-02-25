@@ -10,18 +10,13 @@ package org.jnario.spec.jvmmodel;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
-import com.google.common.collect.UnmodifiableIterator;
 import com.google.inject.Inject;
 import java.util.Iterator;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.common.types.JvmGenericType;
-import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
@@ -64,7 +59,6 @@ public class ImplicitSubject {
     if (_neverUsesSubject) {
       return;
     }
-    EList<JvmMember> _members = type.getMembers();
     final Procedure1<JvmField> _function = new Procedure1<JvmField>() {
       @Override
       public void apply(final JvmField it) {
@@ -77,16 +71,14 @@ public class ImplicitSubject {
         it.setVisibility(JvmVisibility.PUBLIC);
       }
     };
-    JvmField _field = this._extendedJvmTypesBuilder.toField(exampleGroup, Constants.SUBJECT_FIELD_NAME, targetType, _function);
-    _members.add(0, _field);
+    type.getMembers().add(0, this._extendedJvmTypesBuilder.toField(exampleGroup, Constants.SUBJECT_FIELD_NAME, targetType, _function));
   }
   
   public JvmTypeReference resolveTargetType(final ExampleGroup exampleGroup) {
     JvmTypeReference _targetType = exampleGroup.getTargetType();
     boolean _notEquals = (!Objects.equal(_targetType, null));
     if (_notEquals) {
-      JvmTypeReference _targetType_1 = exampleGroup.getTargetType();
-      return this._extendedJvmTypesBuilder.cloneWithProxies(_targetType_1);
+      return this._extendedJvmTypesBuilder.cloneWithProxies(exampleGroup.getTargetType());
     }
     final ExampleGroup parentGroup = this.parent(exampleGroup);
     boolean _equals = Objects.equal(parentGroup, null);
@@ -97,13 +89,11 @@ public class ImplicitSubject {
   }
   
   public ExampleGroup parent(final ExampleGroup exampleGroup) {
-    EObject _eContainer = exampleGroup.eContainer();
-    return EcoreUtil2.<ExampleGroup>getContainerOfType(_eContainer, ExampleGroup.class);
+    return EcoreUtil2.<ExampleGroup>getContainerOfType(exampleGroup.eContainer(), ExampleGroup.class);
   }
   
   public boolean hasSubject(final JvmGenericType type) {
-    EList<JvmMember> _members = type.getMembers();
-    final Iterable<JvmField> fields = Iterables.<JvmField>filter(_members, JvmField.class);
+    final Iterable<JvmField> fields = Iterables.<JvmField>filter(type.getMembers(), JvmField.class);
     final Function1<JvmField, Boolean> _function = new Function1<JvmField, Boolean>() {
       @Override
       public Boolean apply(final JvmField it) {
@@ -136,10 +126,7 @@ public class ImplicitSubject {
     Iterable<TestFunction> _filter_1 = Iterables.<TestFunction>filter(members, TestFunction.class);
     Iterable<JnarioFunction> _plus = Iterables.<JnarioFunction>concat(_filter, _filter_1);
     for (final JnarioFunction example : _plus) {
-      TreeIterator<EObject> _eAllContents = example.eAllContents();
-      UnmodifiableIterator<XAbstractFeatureCall> _filter_2 = Iterators.<XAbstractFeatureCall>filter(_eAllContents, XAbstractFeatureCall.class);
-      Iterator<XAbstractFeatureCall> _concat = Iterators.<XAbstractFeatureCall>concat(allFeatureCalls, _filter_2);
-      allFeatureCalls = _concat;
+      allFeatureCalls = Iterators.<XAbstractFeatureCall>concat(allFeatureCalls, Iterators.<XAbstractFeatureCall>filter(example.eAllContents(), XAbstractFeatureCall.class));
     }
     final Function1<XAbstractFeatureCall, Boolean> _function = new Function1<XAbstractFeatureCall, Boolean>() {
       @Override
@@ -159,16 +146,12 @@ public class ImplicitSubject {
     Iterable<TestFunction> _filter_1 = Iterables.<TestFunction>filter(members, TestFunction.class);
     Iterable<JnarioFunction> _plus = Iterables.<JnarioFunction>concat(_filter, _filter_1);
     for (final JnarioFunction example : _plus) {
-      TreeIterator<EObject> _eAllContents = example.eAllContents();
-      UnmodifiableIterator<XAssignment> _filter_2 = Iterators.<XAssignment>filter(_eAllContents, XAssignment.class);
-      Iterator<XAssignment> _concat = Iterators.<XAssignment>concat(allAssignments, _filter_2);
-      allAssignments = _concat;
+      allAssignments = Iterators.<XAssignment>concat(allAssignments, Iterators.<XAssignment>filter(example.eAllContents(), XAssignment.class));
     }
     final Function1<XAssignment, Boolean> _function = new Function1<XAssignment, Boolean>() {
       @Override
       public Boolean apply(final XAssignment it) {
-        EReference _xAbstractFeatureCall_Feature = XbasePackage.eINSTANCE.getXAbstractFeatureCall_Feature();
-        final String assignable = Nodes.textForFeature(it, _xAbstractFeatureCall_Feature);
+        final String assignable = Nodes.textForFeature(it, XbasePackage.eINSTANCE.getXAbstractFeatureCall_Feature());
         return Boolean.valueOf(Objects.equal(assignable, Constants.SUBJECT_FIELD_NAME));
       }
     };

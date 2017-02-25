@@ -140,10 +140,10 @@ public class SpecUiModule extends org.jnario.spec.ui.AbstractSpecUiModule {
 //	}
 //	
 	@Override
-	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+	public Class<? extends org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator> bindIdeSemanticHighlightingCalculator() {
 		return SpecHighlightingCalculator.class;
 	}
-
+	
 //	public Class<? extends ITokenTypeToPartitionTypeMapper> bindITokenTypeToPartitionTypeMapper() {
 //		return TokenTypeToPartitionMapper.class;
 //	}

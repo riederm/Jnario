@@ -16,7 +16,6 @@ import org.eclipse.xtext.common.types.JvmWildcardTypeReference;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 import org.eclipse.xtext.formatting2.IHiddenRegionFormatter;
 import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegion;
-import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegionsFinder;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.xbase.XAssignment;
 import org.eclipse.xtext.xbase.XBasicForLoopExpression;
@@ -52,7 +51,6 @@ import org.jnario.Assertion;
 import org.jnario.ExampleCell;
 import org.jnario.ExampleColumn;
 import org.jnario.ExampleRow;
-import org.jnario.JnarioAnnotationTarget;
 import org.jnario.JnarioField;
 import org.jnario.JnarioFunction;
 import org.jnario.JnarioMember;
@@ -70,8 +68,7 @@ import org.jnario.spec.spec.SpecFile;
 @SuppressWarnings("all")
 public class SpecFormatter extends JnarioFormatter {
   protected void _format(final SpecFile specfile, @Extension final IFormattableDocument document) {
-    XImportSection _importSection = specfile.getImportSection();
-    this.format(_importSection, document);
+    this.format(specfile.getImportSection(), document);
     EList<JnarioTypeDeclaration> _xtendTypes = specfile.getXtendTypes();
     for (final JnarioTypeDeclaration xtendTypes : _xtendTypes) {
       this.format(xtendTypes, document);
@@ -79,24 +76,20 @@ public class SpecFormatter extends JnarioFormatter {
   }
   
   protected void _format(final ExampleGroup examplegroup, @Extension final IFormattableDocument document) {
-    ISemanticRegionsFinder _regionFor = this.textRegionExtensions.regionFor(examplegroup);
-    ISemanticRegion _keyword = _regionFor.keyword("{");
     final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
         it.setNewLines(1, 1, 2);
       }
     };
-    final ISemanticRegion open = document.append(_keyword, _function);
-    ISemanticRegionsFinder _regionFor_1 = this.textRegionExtensions.regionFor(examplegroup);
-    ISemanticRegion _keyword_1 = _regionFor_1.keyword("}");
+    final ISemanticRegion open = document.append(this.textRegionExtensions.regionFor(examplegroup).keyword("{"), _function);
     final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
         it.newLine();
       }
     };
-    final ISemanticRegion close = document.prepend(_keyword_1, _function_1);
+    final ISemanticRegion close = document.prepend(this.textRegionExtensions.regionFor(examplegroup).keyword("}"), _function_1);
     final Procedure1<IHiddenRegionFormatter> _function_2 = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
@@ -104,14 +97,12 @@ public class SpecFormatter extends JnarioFormatter {
       }
     };
     document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_2);
-    JvmTypeReference _targetType = examplegroup.getTargetType();
-    this.format(_targetType, document);
+    this.format(examplegroup.getTargetType(), document);
     EList<JnarioMember> _members = examplegroup.getMembers();
     for (final JnarioMember members : _members) {
       this.format(members, document);
     }
-    JnarioAnnotationTarget _annotationInfo = examplegroup.getAnnotationInfo();
-    this.format(_annotationInfo, document);
+    this.format(examplegroup.getAnnotationInfo(), document);
   }
   
   protected void _format(final JnarioMember jnariomember, @Extension final IFormattableDocument document) {
@@ -122,35 +113,25 @@ public class SpecFormatter extends JnarioFormatter {
   }
   
   protected void _format(final Example example, @Extension final IFormattableDocument document) {
-    XExpression _expr = example.getExpr();
-    this.format(_expr, document);
-    XExpression _expression = example.getExpression();
-    this.format(_expression, document);
-    JnarioAnnotationTarget _annotationInfo = example.getAnnotationInfo();
-    this.format(_annotationInfo, document);
+    this.format(example.getExpr(), document);
+    this.format(example.getExpression(), document);
+    this.format(example.getAnnotationInfo(), document);
   }
   
   protected void _format(final Before before, @Extension final IFormattableDocument document) {
-    XExpression _expression = before.getExpression();
-    this.format(_expression, document);
-    JnarioAnnotationTarget _annotationInfo = before.getAnnotationInfo();
-    this.format(_annotationInfo, document);
+    this.format(before.getExpression(), document);
+    this.format(before.getAnnotationInfo(), document);
   }
   
   protected void _format(final After after, @Extension final IFormattableDocument document) {
-    XExpression _expression = after.getExpression();
-    this.format(_expression, document);
-    JnarioAnnotationTarget _annotationInfo = after.getAnnotationInfo();
-    this.format(_annotationInfo, document);
+    this.format(after.getExpression(), document);
+    this.format(after.getAnnotationInfo(), document);
   }
   
   protected void _format(final JnarioField jnariofield, @Extension final IFormattableDocument document) {
-    JvmTypeReference _type = jnariofield.getType();
-    this.format(_type, document);
-    XExpression _initialValue = jnariofield.getInitialValue();
-    this.format(_initialValue, document);
-    JnarioAnnotationTarget _annotationInfo = jnariofield.getAnnotationInfo();
-    this.format(_annotationInfo, document);
+    this.format(jnariofield.getType(), document);
+    this.format(jnariofield.getInitialValue(), document);
+    this.format(jnariofield.getAnnotationInfo(), document);
   }
   
   protected void _format(final JnarioFunction jnariofunction, @Extension final IFormattableDocument document) {
@@ -158,8 +139,7 @@ public class SpecFormatter extends JnarioFormatter {
     for (final JvmTypeParameter typeParameters : _typeParameters) {
       this.format(typeParameters, document);
     }
-    JvmTypeReference _returnType = jnariofunction.getReturnType();
-    this.format(_returnType, document);
+    this.format(jnariofunction.getReturnType(), document);
     EList<JnarioParameter> _parameters = jnariofunction.getParameters();
     for (final JnarioParameter parameters : _parameters) {
       this.format(parameters, document);
@@ -168,50 +148,38 @@ public class SpecFormatter extends JnarioFormatter {
     for (final JvmTypeReference exceptions : _exceptions) {
       this.format(exceptions, document);
     }
-    XExpression _expression = jnariofunction.getExpression();
-    this.format(_expression, document);
-    JnarioAnnotationTarget _annotationInfo = jnariofunction.getAnnotationInfo();
-    this.format(_annotationInfo, document);
+    this.format(jnariofunction.getExpression(), document);
+    this.format(jnariofunction.getAnnotationInfo(), document);
   }
   
   protected void _format(final Should should, @Extension final IFormattableDocument document) {
-    XExpression _rightOperand = should.getRightOperand();
-    this.format(_rightOperand, document);
-    XExpression _leftOperand = should.getLeftOperand();
-    this.format(_leftOperand, document);
+    this.format(should.getRightOperand(), document);
+    this.format(should.getLeftOperand(), document);
   }
   
   protected void _format(final ShouldThrow shouldthrow, @Extension final IFormattableDocument document) {
-    JvmTypeReference _type = shouldthrow.getType();
-    this.format(_type, document);
-    XExpression _expression = shouldthrow.getExpression();
-    this.format(_expression, document);
+    this.format(shouldthrow.getType(), document);
+    this.format(shouldthrow.getExpression(), document);
   }
   
   @Override
   protected void _format(final XInstanceOfExpression xinstanceofexpression, @Extension final IFormattableDocument document) {
-    JvmTypeReference _type = xinstanceofexpression.getType();
-    this.format(_type, document);
-    XExpression _expression = xinstanceofexpression.getExpression();
-    this.format(_expression, document);
+    this.format(xinstanceofexpression.getType(), document);
+    this.format(xinstanceofexpression.getExpression(), document);
   }
   
   @Override
   protected void _format(final XBinaryOperation xbinaryoperation, @Extension final IFormattableDocument document) {
-    XExpression _rightOperand = xbinaryoperation.getRightOperand();
-    this.format(_rightOperand, document);
-    XExpression _leftOperand = xbinaryoperation.getLeftOperand();
-    this.format(_leftOperand, document);
+    this.format(xbinaryoperation.getRightOperand(), document);
+    this.format(xbinaryoperation.getLeftOperand(), document);
   }
   
   protected void _format(final Assertion assertion, @Extension final IFormattableDocument document) {
-    XExpression _expression = assertion.getExpression();
-    this.format(_expression, document);
+    this.format(assertion.getExpression(), document);
   }
   
   protected void _format(final ExampleColumn examplecolumn, @Extension final IFormattableDocument document) {
-    JvmTypeReference _type = examplecolumn.getType();
-    this.format(_type, document);
+    this.format(examplecolumn.getType(), document);
   }
   
   protected void _format(final ExampleRow examplerow, @Extension final IFormattableDocument document) {
@@ -222,8 +190,7 @@ public class SpecFormatter extends JnarioFormatter {
   }
   
   protected void _format(final ExampleCell examplecell, @Extension final IFormattableDocument document) {
-    XExpression _expression = examplecell.getExpression();
-    this.format(_expression, document);
+    this.format(examplecell.getExpression(), document);
   }
   
   protected void _format(final JnarioParameter jnarioparameter, @Extension final IFormattableDocument document) {
@@ -231,8 +198,7 @@ public class SpecFormatter extends JnarioFormatter {
     for (final XAnnotation annotations : _annotations) {
       this.format(annotations, document);
     }
-    JvmTypeReference _parameterType = jnarioparameter.getParameterType();
-    this.format(_parameterType, document);
+    this.format(jnarioparameter.getParameterType(), document);
   }
   
   public void format(final Object examplegroup, final IFormattableDocument document) {

@@ -39,17 +39,14 @@ public class SuiteClassNameProvider extends JnarioNameProvider {
   protected String removePrefix(final Suite suite) {
     String _xblockexpression = null;
     {
-      String _name = suite.getName();
-      String name = Strings.firstLine(_name);
+      String name = Strings.firstLine(suite.getName());
       boolean _isNullOrEmpty = com.google.common.base.Strings.isNullOrEmpty(name);
       if (_isNullOrEmpty) {
         return null;
       }
       int _lastIndexOf = name.lastIndexOf("#");
       int _plus = (_lastIndexOf + 1);
-      String _substring = name.substring(_plus);
-      String _trim = _substring.trim();
-      name = _trim;
+      name = name.substring(_plus).trim();
       String _xifexpression = null;
       boolean _isNullOrEmpty_1 = com.google.common.base.Strings.isNullOrEmpty(name);
       if (_isNullOrEmpty_1) {

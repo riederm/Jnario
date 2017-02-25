@@ -12,9 +12,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 @SuppressWarnings("all")
 public class Calculator {
   public int add(final String a, final String b) {
-    Integer _valueOf = Integer.valueOf(a);
-    Integer _valueOf_1 = Integer.valueOf(b);
-    return this.add((_valueOf).intValue(), (_valueOf_1).intValue());
+    return this.add((Integer.valueOf(a)).intValue(), (Integer.valueOf(b)).intValue());
   }
   
   public int add(final int a, final int b) {
@@ -36,7 +34,7 @@ public class Calculator {
       final int x = 3;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("before");
-      _builder.append(3, "");
+      _builder.append(3);
       _builder.append("after");
       final String y = _builder.toString();
       _xblockexpression = "Calculator";
