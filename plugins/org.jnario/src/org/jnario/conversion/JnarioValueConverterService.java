@@ -24,41 +24,37 @@ public class JnarioValueConverterService extends XbaseValueConverterService {
 		return shouldValueConverter;
 	}
 	
-//	@Inject
-//	private JnarioRichTextEndValueConverter richTextEndValueConverter;
+	@Inject
+	private JnarioRichTextEndValueConverter richTextEndValueConverter;
 
-	// TODO NO_XTEND
-//	@ValueConverter(rule = "RICH_TEXT_END")
-//	public IValueConverter<String> getRichTextEndValueConverter() {
-//		return richTextEndValueConverter;
-//	}
+	@ValueConverter(rule = "RICH_TEXT_END")
+	public IValueConverter<String> getRichTextEndValueConverter() {
+		return richTextEndValueConverter;
+	}
 
-//	@Inject
-//	private JnarioRichTextStartValueConverter richTextStartValueConverter;
+	@Inject
+	private JnarioRichTextStartValueConverter richTextStartValueConverter;
 	
-	// TODO NO_XTEND
-//	@ValueConverter(rule = "RICH_TEXT_START")
-//	public IValueConverter<String> getRichTextStartValueConverter() {
-//		return richTextStartValueConverter;
-//	}
+	@ValueConverter(rule = "RICH_TEXT_START")
+	public IValueConverter<String> getRichTextStartValueConverter() {
+		return richTextStartValueConverter;
+	}
 
-//	@Inject
-//	private JnarioRichTextInBetweenValueConverter richTextInbetweenValueConverter;
+	@Inject
+	private JnarioRichTextInBetweenValueConverter richTextInbetweenValueConverter;
 	
-	// TODO NO_XTEND
-//	@ValueConverter(rule = "RICH_TEXT_INBETWEEN")
-//	public IValueConverter<String> getRichTextInbetweenValueConverter() {
-//		return richTextInbetweenValueConverter;
-//	}
+	@ValueConverter(rule = "RICH_TEXT_INBETWEEN")
+	public IValueConverter<String> getRichTextInbetweenValueConverter() {
+		return richTextInbetweenValueConverter;
+	}
 	
-//	@Inject
-//	private JnarioRichTextValueConverter richTextValueConverter;
+	@Inject
+	private JnarioRichTextValueConverter richTextValueConverter;
 	
-	// TODO NO_XTEND
-//	@ValueConverter(rule = "RICH_TEXT")
-//	public IValueConverter<String> getRichTextValueConverter() {
-//		return richTextValueConverter;
-//	}
+	@ValueConverter(rule = "RICH_TEXT")
+	public IValueConverter<String> getRichTextValueConverter() {
+		return richTextValueConverter;
+	}
 	
 //	@Inject
 //	private JnarioCommentRichTextInBetweenValueConverter commentRichTextInBetweenValueConverter;
@@ -69,10 +65,10 @@ public class JnarioValueConverterService extends XbaseValueConverterService {
 //		return commentRichTextInBetweenValueConverter;
 //	}
 
-// TODO NO_XTEND	
+	//TODO NO_XTEND
 //	@Inject
 //	private JnarioCommentRichTextEndValueConverter commentRichTextEndValueConverter;
-//
+////
 //	@ValueConverter(rule = "COMMENT_RICH_TEXT_END")
 //	public IValueConverter<String> getCommentRichTextEndValueConverter() {
 //		return commentRichTextEndValueConverter;

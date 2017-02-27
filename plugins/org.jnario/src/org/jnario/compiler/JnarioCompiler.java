@@ -7,21 +7,33 @@
  *******************************************************************************/
 package org.jnario.compiler;
 
+import static com.google.common.collect.Iterables.filter;
+import static com.google.common.collect.Sets.newHashSet;
+import static org.eclipse.xtext.nodemodel.util.NodeModelUtils.getNode;
 import static org.eclipse.xtext.util.Strings.convertToJavaString;
+import static org.jnario.jvmmodel.DoubleArrowSupport.isDoubleArrow;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
+
+import javax.inject.Provider;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
+import org.eclipse.xtext.generator.trace.LocationData;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.ISerializer;
+import org.eclipse.xtext.util.ITextRegionWithLineInformation;
+import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XBinaryOperation;
 import org.eclipse.xtext.xbase.XClosure;
@@ -30,25 +42,28 @@ import org.eclipse.xtext.xbase.XFeatureCall;
 import org.eclipse.xtext.xbase.XNullLiteral;
 import org.eclipse.xtext.xbase.XSwitchExpression;
 import org.eclipse.xtext.xbase.XbaseFactory;
+import org.eclipse.xtext.xbase.XbasePackage;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
+import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference;
 import org.jnario.Assertion;
 import org.jnario.MockLiteral;
 import org.jnario.RichString;
+import org.jnario.RichStringLiteral;
 import org.jnario.Should;
 import org.jnario.ShouldThrow;
 import org.jnario.lib.Assert;
+import org.jnario.richstring.AbstractRichStringPartAcceptor;
+import org.jnario.richstring.IRichStringIndentationHandler;
+import org.jnario.richstring.IRichStringPartAcceptor;
 import org.jnario.richstring.RichStringProcessor;
 import org.jnario.util.MockingSupport;
 import org.jnario.util.SourceAdapter;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
-import static org.jnario.jvmmodel.DoubleArrowSupport.*;
-import static com.google.common.collect.Sets.*;
-import static org.eclipse.xtext.nodemodel.util.NodeModelUtils.*;
-import static com.google.common.collect.Iterables.*;
 
 
 /**
@@ -58,6 +73,9 @@ public class JnarioCompiler extends XbaseCompiler {
 
 	@Inject
 	private JnarioExpressionHelper expressionHelper;
+
+	@Inject
+	Provider<IRichStringIndentationHandler>  indentationHandler;
 	
 	@Inject 
 	private RichStringProcessor richStringProcessor;
@@ -119,7 +137,9 @@ public class JnarioCompiler extends XbaseCompiler {
 		b.append("();");
 		//Print each expression
 		b.newLine();
-		richStringProcessor.buildRichString(richString, variableName, b, this);
+		
+		RichStringPrepareCompiler compiler = new RichStringPrepareCompiler(b, variableName, richString);
+		richStringProcessor.process(richString, compiler, indentationHandler.get());
 	}
 
 	public void _toJavaStatement(ShouldThrow should, ITreeAppendable b,	boolean isReferenced) {
@@ -485,6 +505,250 @@ public class JnarioCompiler extends XbaseCompiler {
 		}else{
 			_toShouldExpression((XBinaryOperation) expr, b, false);
 		}
+	}
+	
+	public class RichStringPrepareCompiler extends AbstractRichStringPartAcceptor.ForLoopOnce {
+
+		private final LinkedList<ITreeAppendable> appendableStack;
+//		private final LinkedList<RichStringIf> ifStack;
+//		private final LinkedList<RichStringForLoop> forStack;
+		private final String variableName;
+		private ITreeAppendable appendable;
+		private ITreeAppendable currentAppendable;
+
+		public RichStringPrepareCompiler(ITreeAppendable appendable, String variableName, RichString richString) {
+//			this.ifStack = Lists.newLinkedList();
+//			this.forStack = Lists.newLinkedList();
+			this.appendableStack = Lists.newLinkedList();
+			this.appendable = appendable;
+			this.variableName = variableName;
+			List<XExpression> expressions = richString.getExpressions();
+			if (!expressions.isEmpty() && expressions.get(0) instanceof RichStringLiteral)
+				setCurrentAppendable((RichStringLiteral) expressions.get(0));
+		}
+
+		@Override
+		public void acceptSemanticLineBreak(int charCount, RichStringLiteral origin, boolean controlStructureSeen) {
+			setCurrentAppendable(origin);
+			currentAppendable.newLine();
+			currentAppendable.append(variableName);
+			if (!controlStructureSeen) {
+				currentAppendable.append(".newLine();");
+			} else {
+				currentAppendable.append(".newLineIfNotEmpty();");
+			}
+		}
+
+		protected void setCurrentAppendable(/* @Nullable */ RichStringLiteral origin) {
+			if (currentAppendable == null && origin != null) {
+				ITextRegionWithLineInformation region = (ITextRegionWithLineInformation) getLocationInFileProvider().getSignificantTextRegion(origin, XbasePackage.Literals.XSTRING_LITERAL__VALUE, 0);
+				currentAppendable = appendable.trace(new LocationData(region, null), true);
+			}
+		}
+
+		@Override
+		public void acceptTemplateLineBreak(int charCount, RichStringLiteral origin) {
+			setCurrentAppendable(origin);
+		}
+
+		@Override
+		public void acceptSemanticText(CharSequence text, /* @Nullable */ RichStringLiteral origin) {
+			setCurrentAppendable(origin);
+			if (text.length() == 0)
+				return;
+			currentAppendable.newLine();
+			currentAppendable.append(variableName);
+			currentAppendable.append(".append(\"");
+			currentAppendable.append(Strings.convertToJavaString(text.toString(), false));
+			currentAppendable.append("\");");
+		}
+
+//		@Override
+//		public void acceptIfCondition(XExpression condition) {
+//			currentAppendable = null;
+//			ifStack.add((RichStringIf) condition.eContainer());
+//			appendable.newLine();
+//			pushAppendable(condition.eContainer());
+//			appendable.append("{").increaseIndentation();
+//			writeIf(condition);
+//		}
+
+		protected void pushAppendable(EObject traceInfo) {
+			appendableStack.add(appendable);
+			appendable = appendable.trace(traceInfo);
+		}
+		
+		protected void popAppendable() {
+			appendable = appendableStack.removeLast();
+		}
+
+		@Override
+		public void acceptElseIfCondition(XExpression condition) {
+			currentAppendable = null;
+			writeElse();
+			writeIf(condition);
+		}
+
+		protected void writeIf(XExpression condition) {
+			ITreeAppendable debugAppendable = appendable.trace(condition.eContainer(), true);
+			internalToJavaStatement(condition, debugAppendable, true);
+			debugAppendable.newLine();
+			debugAppendable.append("if (");
+			internalToJavaExpression(condition, debugAppendable);
+			debugAppendable.append(") {").increaseIndentation();
+		}
+
+		protected void writeElse() {
+			currentAppendable = null;
+			appendable.decreaseIndentation();
+			appendable.newLine();
+			appendable.append("} else {");
+			appendable.increaseIndentation();
+		}
+
+		@Override
+		public void acceptElse() {
+			currentAppendable = null;
+			writeElse();
+		}
+
+//		@Override
+//		public void acceptEndIf() {
+//			currentAppendable = null;
+//			RichStringIf richStringIf = ifStack.removeLast();
+//			for (int i = 0; i < richStringIf.getElseIfs().size() + 2; i++) {
+//				appendable.decreaseIndentation();
+//				appendable.newLine();
+//				appendable.append("}");
+//			}
+//			popAppendable();
+//		}
+//
+//		@Override
+//		public void acceptForLoop(JvmFormalParameter parameter, /* @Nullable */ XExpression expression) {
+//			currentAppendable = null;
+//			super.acceptForLoop(parameter, expression);
+//			if (expression == null)
+//				throw new IllegalArgumentException("expression may not be null");
+//			RichStringForLoop forLoop = (RichStringForLoop) expression.eContainer();
+//			forStack.add(forLoop);
+//			appendable.newLine();
+//			pushAppendable(forLoop);
+//			appendable.append("{").increaseIndentation();
+//			
+//			ITreeAppendable debugAppendable = appendable.trace(forLoop, true);
+//			internalToJavaStatement(expression, debugAppendable, true);
+//			String variableName = null;
+//			if (forLoop.getBefore() != null || forLoop.getSeparator() != null || forLoop.getAfter() != null) {
+//				variableName = debugAppendable.declareSyntheticVariable(forLoop, "_hasElements");
+//				debugAppendable.newLine();
+//				debugAppendable.append("boolean ");
+//				debugAppendable.append(variableName);
+//				debugAppendable.append(" = false;");
+//			}
+//			debugAppendable.newLine();
+//			debugAppendable.append("for(final ");
+//			// TODO tracing if parameter was explicitly declared
+//			LightweightTypeReference paramType = getLightweightType(parameter);
+//			if (paramType != null) {
+//				debugAppendable.append(paramType);
+//			} else {
+//				debugAppendable.append("Object");
+//			}
+//			debugAppendable.append(" ");
+//			String loopParam = debugAppendable.declareVariable(parameter, parameter.getName());
+//			debugAppendable.append(loopParam);
+//			debugAppendable.append(" : ");
+//			internalToJavaExpression(expression, debugAppendable);
+//			debugAppendable.append(") {").increaseIndentation();
+//		}
+//		
+//		@Override
+//		public boolean forLoopHasNext(/* @Nullable */ XExpression before, /* @Nullable */ XExpression separator, CharSequence indentation) {
+//			currentAppendable = null;
+//			if (!super.forLoopHasNext(before, separator, indentation))
+//				return false;
+//			RichStringForLoop forLoop = forStack.getLast();
+//			if (appendable.hasName(forLoop)) {
+//				String varName = getVarName(forLoop, appendable);
+//				appendable.newLine();
+//				appendable.append("if (!");
+//				appendable.append(varName);
+//				appendable.append(") {");
+//				appendable.increaseIndentation();
+//				appendable.newLine();
+//				appendable.append(varName);
+//				appendable.append(" = true;");
+//				if (before != null) {
+//					writeExpression(before, indentation, false);
+//				}
+//				appendable.decreaseIndentation();
+//				appendable.newLine();
+//				appendable.append("}");
+//				if (separator != null) {
+//					appendable.append(" else {");
+//					appendable.increaseIndentation();
+//					writeExpression(separator, indentation, true);
+//					appendable.decreaseIndentation();
+//					appendable.newLine();
+//					appendable.append("}");
+//				}
+//			}
+//			return true;
+//		}
+//		
+//		@Override
+//		public void acceptEndFor(/* @Nullable */ XExpression after, CharSequence indentation) {
+//			currentAppendable = null;
+//			super.acceptEndFor(after, indentation);
+//			appendable.decreaseIndentation();
+//			appendable.newLine();
+//			appendable.append("}");
+//			
+//			RichStringForLoop forLoop = forStack.removeLast();
+//			if (after != null) {
+//				String varName = getVarName(forLoop, appendable);
+//				appendable.newLine();
+//				appendable.append("if (");
+//				appendable.append(varName);
+//				appendable.append(") {");
+//				appendable.increaseIndentation();
+//				writeExpression(after, indentation, false);
+//				appendable.decreaseIndentation();
+//				appendable.newLine();
+//				appendable.append("}");
+//			}
+//			
+//			appendable.decreaseIndentation();
+//			appendable.newLine();
+//			appendable.append("}");
+//			popAppendable();
+//		}
+
+		@Override
+		public void acceptExpression(XExpression expression, CharSequence indentation) {
+			currentAppendable = null;
+			writeExpression(expression, indentation, false);
+		}
+
+		protected void writeExpression(XExpression expression, CharSequence indentation, boolean immediate) {
+			boolean referenced = !isPrimitiveVoid(expression);
+			internalToJavaStatement(expression, appendable, referenced);
+			if (referenced) {
+				ITreeAppendable tracingAppendable = appendable.trace(expression, true);
+				tracingAppendable.newLine();
+				tracingAppendable.append(variableName);
+				if (immediate)
+					tracingAppendable.append(".appendImmediate(");
+				else
+					tracingAppendable.append(".append(");
+				internalToJavaExpression(expression, tracingAppendable);
+				tracingAppendable.append(", \"");
+				tracingAppendable.append(Strings.convertToJavaString(indentation.toString(), false));
+				tracingAppendable.append("\");");
+			}
+		}
+
 	}
 
 }

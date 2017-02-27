@@ -10,6 +10,7 @@
  */
 package org.jnario.spec.ui;
 
+import org.eclipse.jface.text.rules.ITokenScanner;
 import org.eclipse.jface.text.source.DefaultCharacterPairMatcher;
 import org.eclipse.jface.text.source.ICharacterPairMatcher;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -58,6 +59,7 @@ import org.jnario.ui.builder.JnarioBuilderParticipant;
 import org.jnario.ui.doc.JnarioHoverProvider;
 import org.jnario.ui.editor.XtendCopyQualifiedNameService;
 import org.jnario.ui.highlighting.JnarioHighlightingConfiguration;
+import org.jnario.ui.highlighting.RichStringAwareTokenScanner;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -129,18 +131,19 @@ public class SpecUiModule extends org.jnario.spec.ui.AbstractSpecUiModule {
 //		return TokenToAttributeIdMapper.class;
 //	}
 //
-//	@Override
-//	public Class<? extends ITokenScanner> bindITokenScanner() {
-//		return RichStringAwareTokenScanner.class;
-//	}
+	@Override
+	public Class<? extends ITokenScanner> bindITokenScanner() {
+		return RichStringAwareTokenScanner.class;
+	}
 //
 //	public void configureIShowWhitespaceCharactersActionContributor(Binder binder) {
 //		binder.bind(IActionContributor.class).annotatedWith(Names.named("Show Whitespace"))
 //				.to(ShowWhitespaceCharactersActionContributor.class);
 //	}
 //	
+	
 	@Override
-	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+	public Class<? extends org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator> bindIdeSemanticHighlightingCalculator() {
 		return SpecHighlightingCalculator.class;
 	}
 

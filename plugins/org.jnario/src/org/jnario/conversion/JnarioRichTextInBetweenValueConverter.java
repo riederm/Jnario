@@ -14,24 +14,17 @@ import org.eclipse.xtext.nodemodel.INode;
 /**
  * @author Sebastian Zarnekow - Initial contribution and API
  */
-public class JnarioRichTextInBetweenValueConverter extends AbstractLexerBasedConverter<String> {
+public class JnarioRichTextInBetweenValueConverter extends AbstractRichTextValueConverter {
 
-	public String toValue(String string, INode node)
-			throws ValueConverterException {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	protected String getLeadingTerminal() {
+		return "\u00BB";
 	}
 
-	// TODO NO_XTEND
-//	@Override
-//	protected String getLeadingTerminal() {
-//		return "\u00BB";
-//	}
-//
-//	@Override
-//	protected String getTrailingTerminal() {
-//		return "\u00AB";
-//	}
+	@Override
+	protected String getTrailingTerminal() {
+		return "\u00AB";
+	}
 
 }
 

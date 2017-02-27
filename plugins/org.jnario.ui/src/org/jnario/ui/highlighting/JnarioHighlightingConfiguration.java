@@ -12,21 +12,23 @@ import org.eclipse.xtext.xbase.ui.highlighting.XbaseHighlightingConfiguration;
 public class JnarioHighlightingConfiguration extends XbaseHighlightingConfiguration {
 
 	public static final String RICH_TEXT_ID = "xtend.richText";
-//	public static final String RICH_TEXT_DELIMITER_ID = "xtend.richText.delimiter";
-//	public static final String INSIGNIFICANT_TEMPLATE_TEXT = "xtend.insignificant.template.text";
-//	public static final String POTENTIAL_LINE_BREAK = "xtend.potential.line.break";
-//	public static final String TEMPLATE_LINE_BREAK = "xtend.template.line.break";
-//	public static final String ACTIVE_ANNOTATION = "xtend.active.annotation";
+	public static final String RICH_TEXT_DELIMITER_ID = "xtend.richText.delimiter";
+	public static final String INSIGNIFICANT_TEMPLATE_TEXT = "xtend.insignificant.template.text";
+	public static final String POTENTIAL_LINE_BREAK = "xtend.potential.line.break";
+	public static final String TEMPLATE_LINE_BREAK = "xtend.template.line.break";
+	public static final String ACTIVE_ANNOTATION = "xtend.active.annotation";
+	
+	public static final String SEMANTIC_LINE_BREAK = "xtend.template.line.break";	//TODO MARI define a style 
 	
 	@Override
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
 		super.configure(acceptor);
 		acceptor.acceptDefaultHighlighting(RICH_TEXT_ID, "Template Text", richTextStyle());
-//		acceptor.acceptDefaultHighlighting(RICH_TEXT_DELIMITER_ID, "Template Delimiter", richTextDelimiterStyle());
-//		acceptor.acceptDefaultHighlighting(INSIGNIFICANT_TEMPLATE_TEXT, "Insignificant Template Text", insignificantTemplateTextStyle());
-//		acceptor.acceptDefaultHighlighting(POTENTIAL_LINE_BREAK, "Potential Line Break (if line is not empty)", insignificantTemplateTextStyle());
-//		acceptor.acceptDefaultHighlighting(TEMPLATE_LINE_BREAK, "Template Line Break", richTextStyle());
-//		acceptor.acceptDefaultHighlighting(ACTIVE_ANNOTATION, "Active Annotation", activeAnnotationStyle());
+		acceptor.acceptDefaultHighlighting(RICH_TEXT_DELIMITER_ID, "Template Delimiter", richTextDelimiterStyle());
+		acceptor.acceptDefaultHighlighting(INSIGNIFICANT_TEMPLATE_TEXT, "Insignificant Template Text", insignificantTemplateTextStyle());
+		acceptor.acceptDefaultHighlighting(POTENTIAL_LINE_BREAK, "Potential Line Break (if line is not empty)", insignificantTemplateTextStyle());
+		acceptor.acceptDefaultHighlighting(TEMPLATE_LINE_BREAK, "Template Line Break", richTextStyle());
+		acceptor.acceptDefaultHighlighting(ACTIVE_ANNOTATION, "Active Annotation", activeAnnotationStyle());
 	}
 	
 	private TextStyle richTextStyle() {
@@ -35,19 +37,19 @@ public class JnarioHighlightingConfiguration extends XbaseHighlightingConfigurat
 		return textStyle;
 	}
 	
-//	private TextStyle richTextDelimiterStyle() {
-//		TextStyle textStyle = defaultTextStyle().copy();
-//		return textStyle;
-//	}
-//	
-//	private TextStyle insignificantTemplateTextStyle() {
-//		TextStyle textStyle = stringTextStyle().copy();
-//		return textStyle;
-//	}
-//
-//	private TextStyle activeAnnotationStyle() {
-//		TextStyle textStyle = extensionMethodInvocation().copy();
-//		return textStyle;
-//	}
+	private TextStyle richTextDelimiterStyle() {
+		TextStyle textStyle = defaultTextStyle().copy();
+		return textStyle;
+	}
+	
+	private TextStyle insignificantTemplateTextStyle() {
+		TextStyle textStyle = stringTextStyle().copy();
+		return textStyle;
+	}
+
+	private TextStyle activeAnnotationStyle() {
+		TextStyle textStyle = extensionMethodInvocation().copy();
+		return textStyle;
+	}
 
 }
