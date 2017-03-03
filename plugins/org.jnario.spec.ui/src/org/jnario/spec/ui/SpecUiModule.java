@@ -35,6 +35,7 @@ import org.eclipse.xtext.ui.editor.findrefs.IReferenceFinder;
 import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
 import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.ui.generator.trace.ITraceForStorageProvider;
@@ -60,6 +61,7 @@ import org.jnario.ui.doc.JnarioHoverProvider;
 import org.jnario.ui.editor.XtendCopyQualifiedNameService;
 import org.jnario.ui.highlighting.JnarioHighlightingConfiguration;
 import org.jnario.ui.highlighting.RichStringAwareTokenScanner;
+import org.jnario.ui.highlighting.TokenToAttributeIdMapper;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -126,10 +128,10 @@ public class SpecUiModule extends org.jnario.spec.ui.AbstractSpecUiModule {
 		return JnarioHighlightingConfiguration.class;
 	}
 //	
-//	@Override
-//	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
-//		return TokenToAttributeIdMapper.class;
-//	}
+	@Override
+	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
+		return TokenToAttributeIdMapper.class;
+	}
 //
 	@Override
 	public Class<? extends ITokenScanner> bindITokenScanner() {

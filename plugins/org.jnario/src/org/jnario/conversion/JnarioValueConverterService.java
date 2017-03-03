@@ -17,7 +17,7 @@ import com.google.inject.Singleton;
 public class JnarioValueConverterService extends XbaseValueConverterService {
 	
 	@Inject ShouldValueConverter shouldValueConverter;
-	@Inject RichStringValueConverter richStringValueConverter;
+//	@Inject RichStringValueConverter richStringValueConverter;
 	
 	@ValueConverter(rule = "Should")
 	public IValueConverter<String> getShouldValueConverter() {
@@ -74,9 +74,9 @@ public class JnarioValueConverterService extends XbaseValueConverterService {
 //		return commentRichTextEndValueConverter;
 //	}
 
-	@ValueConverter(rule = "STRING")
-	public IValueConverter<String> getRichStringValueConverter() {
-		return richStringValueConverter;
-	}
+//	@ValueConverter(rule = "STRING")
+//	public IValueConverter<String> getRichStringValueConverter() {
+//		return richStringValueConverter;
+//	}
 
 }

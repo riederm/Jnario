@@ -20,8 +20,8 @@ public class JnarioRichTextStartValueConverter extends AbstractRichTextValueConv
 	protected String getLeadingTerminal() {
 		return "'''";
 	}
-//
-//	@Override
+
+	@Override
 	protected String getTrailingTerminal() {
 		return "\u00AB";
 	}

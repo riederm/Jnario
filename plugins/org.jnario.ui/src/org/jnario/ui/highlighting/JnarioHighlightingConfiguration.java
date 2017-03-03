@@ -29,6 +29,8 @@ public class JnarioHighlightingConfiguration extends XbaseHighlightingConfigurat
 		acceptor.acceptDefaultHighlighting(POTENTIAL_LINE_BREAK, "Potential Line Break (if line is not empty)", insignificantTemplateTextStyle());
 		acceptor.acceptDefaultHighlighting(TEMPLATE_LINE_BREAK, "Template Line Break", richTextStyle());
 		acceptor.acceptDefaultHighlighting(ACTIVE_ANNOTATION, "Active Annotation", activeAnnotationStyle());
+		
+//		acceptor.acceptDefaultHighlighting(SEMANTIC_LINE_BREAK, "", insignificantTemplateTextStyle());
 	}
 	
 	private TextStyle richTextStyle() {
