@@ -11,6 +11,7 @@
 package org.jnario.feature.ui;
 
 import org.eclipse.jface.text.DefaultIndentLineAutoEditStrategy;
+import org.eclipse.jface.text.rules.ITokenScanner;
 import org.eclipse.jface.text.source.DefaultCharacterPairMatcher;
 import org.eclipse.jface.text.source.ICharacterPairMatcher;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -42,7 +43,6 @@ import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
 import org.eclipse.xtext.ui.editor.model.ITokenTypeToPartitionTypeMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.ui.generator.trace.ITraceForStorageProvider;
 import org.eclipse.xtext.ui.generator.trace.TraceForStorageProvider;
 import org.eclipse.xtext.ui.resource.IResourceUIServiceProvider;
@@ -81,6 +81,7 @@ import org.jnario.ui.JnarioResourceUiServiceProvider;
 import org.jnario.ui.builder.JnarioBuilderParticipant;
 import org.jnario.ui.builder.JnarioSourceRelativeFileSystemAccess;
 import org.jnario.ui.editor.XtendCopyQualifiedNameService;
+import org.jnario.ui.highlighting.RichStringAwareTokenScanner;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -197,11 +198,12 @@ public class FeatureUiModule extends org.jnario.feature.ui.AbstractFeatureUiModu
 		return FeatureTokenHighlighting.class;
 	}
 
+	@Override
+	public Class<? extends ITokenScanner> bindITokenScanner() {
+		return RichStringAwareTokenScanner.class;
+	}
+	
 // TODO NO_XTEND
-//	@Override
-//	public Class<? extends ITokenScanner> bindITokenScanner() {
-//		return RichStringAwareTokenScanner.class;
-//	}
 
 //	public void configureIShowWhitespaceCharactersActionContributor(Binder binder) {
 //		binder.bind(IActionContributor.class).annotatedWith(Names.named("Show Whitespace"))

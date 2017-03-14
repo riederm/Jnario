@@ -51,10 +51,10 @@ public class SpecParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXRelationalExpressionAccess().getAlternatives_1(), "rule__XRelationalExpression__Alternatives_1");
 					put(grammarAccess.getXRelationalExpressionAccess().getAlternatives_1_1_0_0_1(), "rule__XRelationalExpression__Alternatives_1_1_0_0_1");
 					put(grammarAccess.getXStringLiteralAccess().getAlternatives(), "rule__XStringLiteral__Alternatives");
-					put(grammarAccess.getRichStringAccess().getAlternatives_1(), "rule__RichString__Alternatives_1");
 					put(grammarAccess.getCommonModifierAccess().getAlternatives(), "rule__CommonModifier__Alternatives");
 					put(grammarAccess.getFieldModifierAccess().getAlternatives(), "rule__FieldModifier__Alternatives");
 					put(grammarAccess.getMethodModifierAccess().getAlternatives(), "rule__MethodModifier__Alternatives");
+					put(grammarAccess.getRichStringAccess().getAlternatives_1(), "rule__RichString__Alternatives_1");
 					put(grammarAccess.getXAnnotationAccess().getAlternatives_3_1(), "rule__XAnnotation__Alternatives_3_1");
 					put(grammarAccess.getXAnnotationElementValueOrCommaListAccess().getAlternatives(), "rule__XAnnotationElementValueOrCommaList__Alternatives");
 					put(grammarAccess.getXAnnotationElementValueAccess().getAlternatives(), "rule__XAnnotationElementValue__Alternatives");
@@ -159,6 +159,8 @@ public class SpecParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExampleRowAccess().getGroup(), "rule__ExampleRow__Group__0");
 					put(grammarAccess.getExampleRowAccess().getGroup_2(), "rule__ExampleRow__Group_2__0");
 					put(grammarAccess.getSimpleStringLiteralAccess().getGroup(), "rule__SimpleStringLiteral__Group__0");
+					put(grammarAccess.getParameterAccess().getGroup(), "rule__Parameter__Group__0");
+					put(grammarAccess.getParameterAccess().getGroup_1(), "rule__Parameter__Group_1__0");
 					put(grammarAccess.getRichStringAccess().getGroup(), "rule__RichString__Group__0");
 					put(grammarAccess.getRichStringAccess().getGroup_1_1(), "rule__RichString__Group_1_1__0");
 					put(grammarAccess.getRichStringAccess().getGroup_1_1_2(), "rule__RichString__Group_1_1_2__0");
@@ -169,8 +171,6 @@ public class SpecParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInternalRichStringAccess().getGroup(), "rule__InternalRichString__Group__0");
 					put(grammarAccess.getInternalRichStringAccess().getGroup_1(), "rule__InternalRichString__Group_1__0");
 					put(grammarAccess.getInternalRichStringAccess().getGroup_1_1(), "rule__InternalRichString__Group_1_1__0");
-					put(grammarAccess.getParameterAccess().getGroup(), "rule__Parameter__Group__0");
-					put(grammarAccess.getParameterAccess().getGroup_1(), "rule__Parameter__Group_1__0");
 					put(grammarAccess.getXAnnotationAccess().getGroup(), "rule__XAnnotation__Group__0");
 					put(grammarAccess.getXAnnotationAccess().getGroup_3(), "rule__XAnnotation__Group_3__0");
 					put(grammarAccess.getXAnnotationAccess().getGroup_3_1_0(), "rule__XAnnotation__Group_3_1_0__0");
@@ -437,6 +437,12 @@ public class SpecParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExampleRowAccess().getCellsAssignment_2_0(), "rule__ExampleRow__CellsAssignment_2_0");
 					put(grammarAccess.getExampleCellAccess().getExpressionAssignment(), "rule__ExampleCell__ExpressionAssignment");
 					put(grammarAccess.getSimpleStringLiteralAccess().getValueAssignment_1(), "rule__SimpleStringLiteral__ValueAssignment_1");
+					put(grammarAccess.getParameterAccess().getAnnotationsAssignment_0(), "rule__Parameter__AnnotationsAssignment_0");
+					put(grammarAccess.getParameterAccess().getExtensionAssignment_1_0(), "rule__Parameter__ExtensionAssignment_1_0");
+					put(grammarAccess.getParameterAccess().getAnnotationsAssignment_1_1(), "rule__Parameter__AnnotationsAssignment_1_1");
+					put(grammarAccess.getParameterAccess().getParameterTypeAssignment_2(), "rule__Parameter__ParameterTypeAssignment_2");
+					put(grammarAccess.getParameterAccess().getVarArgAssignment_3(), "rule__Parameter__VarArgAssignment_3");
+					put(grammarAccess.getParameterAccess().getNameAssignment_4(), "rule__Parameter__NameAssignment_4");
 					put(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_0(), "rule__RichString__ExpressionsAssignment_1_0");
 					put(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_0(), "rule__RichString__ExpressionsAssignment_1_1_0");
 					put(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_1(), "rule__RichString__ExpressionsAssignment_1_1_1");
@@ -450,12 +456,6 @@ public class SpecParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInternalRichStringAccess().getExpressionsAssignment_1_0(), "rule__InternalRichString__ExpressionsAssignment_1_0");
 					put(grammarAccess.getInternalRichStringAccess().getExpressionsAssignment_1_1_0(), "rule__InternalRichString__ExpressionsAssignment_1_1_0");
 					put(grammarAccess.getInternalRichStringAccess().getExpressionsAssignment_1_1_1(), "rule__InternalRichString__ExpressionsAssignment_1_1_1");
-					put(grammarAccess.getParameterAccess().getAnnotationsAssignment_0(), "rule__Parameter__AnnotationsAssignment_0");
-					put(grammarAccess.getParameterAccess().getExtensionAssignment_1_0(), "rule__Parameter__ExtensionAssignment_1_0");
-					put(grammarAccess.getParameterAccess().getAnnotationsAssignment_1_1(), "rule__Parameter__AnnotationsAssignment_1_1");
-					put(grammarAccess.getParameterAccess().getParameterTypeAssignment_2(), "rule__Parameter__ParameterTypeAssignment_2");
-					put(grammarAccess.getParameterAccess().getVarArgAssignment_3(), "rule__Parameter__VarArgAssignment_3");
-					put(grammarAccess.getParameterAccess().getNameAssignment_4(), "rule__Parameter__NameAssignment_4");
 					put(grammarAccess.getXAnnotationAccess().getAnnotationTypeAssignment_2(), "rule__XAnnotation__AnnotationTypeAssignment_2");
 					put(grammarAccess.getXAnnotationAccess().getElementValuePairsAssignment_3_1_0_0(), "rule__XAnnotation__ElementValuePairsAssignment_3_1_0_0");
 					put(grammarAccess.getXAnnotationAccess().getElementValuePairsAssignment_3_1_0_1_1(), "rule__XAnnotation__ElementValuePairsAssignment_3_1_0_1_1");

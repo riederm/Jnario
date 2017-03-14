@@ -54,7 +54,6 @@ import org.eclipse.xtext.xbase.XUnaryOperation;
 import org.eclipse.xtext.xbase.XVariableDeclaration;
 import org.eclipse.xtext.xbase.XWhileExpression;
 import org.eclipse.xtext.xbase.XbasePackage;
-import org.eclipse.xtext.xbase.annotations.serializer.XbaseWithAnnotationsSemanticSequencer;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotationElementValuePair;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotationsPackage;
@@ -73,8 +72,6 @@ import org.jnario.JnarioMember;
 import org.jnario.JnarioPackage;
 import org.jnario.JnarioParameter;
 import org.jnario.JnarioTypeDeclaration;
-import org.jnario.RichString;
-import org.jnario.RichStringLiteral;
 import org.jnario.Should;
 import org.jnario.ShouldThrow;
 import org.jnario.spec.services.SpecGrammarAccess;
@@ -84,9 +81,13 @@ import org.jnario.spec.spec.Example;
 import org.jnario.spec.spec.ExampleGroup;
 import org.jnario.spec.spec.SpecFile;
 import org.jnario.spec.spec.SpecPackage;
+import org.jnario.xbase.richstring.serializer.XbaseWithRichstringSemanticSequencer;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichString;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringLiteral;
+import org.jnario.xbase.richstring.xbasewithrichstring.XbaseWithRichstringPackage;
 
 @SuppressWarnings("all")
-public class SpecSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer {
+public class SpecSemanticSequencer extends XbaseWithRichstringSemanticSequencer {
 
 	@Inject
 	private SpecGrammarAccess grammarAccess;
@@ -129,72 +130,6 @@ public class SpecSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer
 			case JnarioPackage.JNARIO_TYPE_DECLARATION:
 				sequence_Type_ExampleGroup_2_0(context, (JnarioTypeDeclaration) semanticObject); 
 				return; 
-			case JnarioPackage.RICH_STRING:
-				if (rule == grammarAccess.getInternalRichStringRule()) {
-					sequence_InternalRichString(context, (RichString) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getXPrimaryExpressionRule()
-						|| rule == grammarAccess.getXRelationalExpressionRule()
-						|| action == grammarAccess.getXRelationalExpressionAccess().getShouldLeftOperandAction_1_0_0_0_0()
-						|| action == grammarAccess.getXRelationalExpressionAccess().getShouldThrowExpressionAction_1_1_0_0_0()
-						|| action == grammarAccess.getXRelationalExpressionAccess().getXInstanceOfExpressionExpressionAction_1_2_0_0_0()
-						|| action == grammarAccess.getXRelationalExpressionAccess().getXBinaryOperationLeftOperandAction_1_3_0_0_0()
-						|| rule == grammarAccess.getXStringLiteralRule()
-						|| rule == grammarAccess.getRichStringRule()
-						|| rule == grammarAccess.getRichStringPartRule()
-						|| rule == grammarAccess.getXAnnotationElementValueOrCommaListRule()
-						|| action == grammarAccess.getXAnnotationElementValueOrCommaListAccess().getXListLiteralElementsAction_1_1_0()
-						|| rule == grammarAccess.getXAnnotationElementValueRule()
-						|| rule == grammarAccess.getXAnnotationOrExpressionRule()
-						|| rule == grammarAccess.getXExpressionRule()
-						|| rule == grammarAccess.getXAssignmentRule()
-						|| action == grammarAccess.getXAssignmentAccess().getXBinaryOperationLeftOperandAction_1_1_0_0_0()
-						|| rule == grammarAccess.getXOrExpressionRule()
-						|| action == grammarAccess.getXOrExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
-						|| rule == grammarAccess.getXAndExpressionRule()
-						|| action == grammarAccess.getXAndExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
-						|| rule == grammarAccess.getXEqualityExpressionRule()
-						|| action == grammarAccess.getXEqualityExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
-						|| rule == grammarAccess.getXOtherOperatorExpressionRule()
-						|| action == grammarAccess.getXOtherOperatorExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
-						|| rule == grammarAccess.getXAdditiveExpressionRule()
-						|| action == grammarAccess.getXAdditiveExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
-						|| rule == grammarAccess.getXMultiplicativeExpressionRule()
-						|| action == grammarAccess.getXMultiplicativeExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
-						|| rule == grammarAccess.getXUnaryOperationRule()
-						|| rule == grammarAccess.getXCastedExpressionRule()
-						|| action == grammarAccess.getXCastedExpressionAccess().getXCastedExpressionTargetAction_1_0_0_0()
-						|| rule == grammarAccess.getXPostfixOperationRule()
-						|| action == grammarAccess.getXPostfixOperationAccess().getXPostfixOperationOperandAction_1_0_0()
-						|| rule == grammarAccess.getXMemberFeatureCallRule()
-						|| action == grammarAccess.getXMemberFeatureCallAccess().getXAssignmentAssignableAction_1_0_0_0_0()
-						|| action == grammarAccess.getXMemberFeatureCallAccess().getXMemberFeatureCallMemberCallTargetAction_1_1_0_0_0()
-						|| rule == grammarAccess.getXLiteralRule()
-						|| rule == grammarAccess.getXParenthesizedExpressionRule()
-						|| rule == grammarAccess.getXExpressionOrVarDeclarationRule()) {
-					sequence_RichString(context, (RichString) semanticObject); 
-					return; 
-				}
-				else break;
-			case JnarioPackage.RICH_STRING_LITERAL:
-				if (rule == grammarAccess.getRichStringLiteralEndRule()) {
-					sequence_RichStringLiteralEnd(context, (RichStringLiteral) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getRichStringLiteralInbetweenRule()) {
-					sequence_RichStringLiteralInbetween(context, (RichStringLiteral) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getRichStringLiteralStartRule()) {
-					sequence_RichStringLiteralStart(context, (RichStringLiteral) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getRichStringLiteralRule()) {
-					sequence_RichStringLiteral(context, (RichStringLiteral) semanticObject); 
-					return; 
-				}
-				else break;
 			case JnarioPackage.SHOULD:
 				sequence_XRelationalExpression(context, (Should) semanticObject); 
 				return; 
@@ -524,6 +459,75 @@ public class SpecSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer
 				sequence_XWhileExpression(context, (XWhileExpression) semanticObject); 
 				return; 
 			}
+		else if (epackage == XbaseWithRichstringPackage.eINSTANCE)
+			switch (semanticObject.eClass().getClassifierID()) {
+			case XbaseWithRichstringPackage.RICH_STRING:
+				if (rule == grammarAccess.getInternalRichStringRule()) {
+					sequence_InternalRichString(context, (RichString) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getXPrimaryExpressionRule()
+						|| rule == grammarAccess.getXRelationalExpressionRule()
+						|| action == grammarAccess.getXRelationalExpressionAccess().getShouldLeftOperandAction_1_0_0_0_0()
+						|| action == grammarAccess.getXRelationalExpressionAccess().getShouldThrowExpressionAction_1_1_0_0_0()
+						|| action == grammarAccess.getXRelationalExpressionAccess().getXInstanceOfExpressionExpressionAction_1_2_0_0_0()
+						|| action == grammarAccess.getXRelationalExpressionAccess().getXBinaryOperationLeftOperandAction_1_3_0_0_0()
+						|| rule == grammarAccess.getXStringLiteralRule()
+						|| rule == grammarAccess.getRichStringRule()
+						|| rule == grammarAccess.getRichStringPartRule()
+						|| rule == grammarAccess.getXAnnotationElementValueOrCommaListRule()
+						|| action == grammarAccess.getXAnnotationElementValueOrCommaListAccess().getXListLiteralElementsAction_1_1_0()
+						|| rule == grammarAccess.getXAnnotationElementValueRule()
+						|| rule == grammarAccess.getXAnnotationOrExpressionRule()
+						|| rule == grammarAccess.getXExpressionRule()
+						|| rule == grammarAccess.getXAssignmentRule()
+						|| action == grammarAccess.getXAssignmentAccess().getXBinaryOperationLeftOperandAction_1_1_0_0_0()
+						|| rule == grammarAccess.getXOrExpressionRule()
+						|| action == grammarAccess.getXOrExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXAndExpressionRule()
+						|| action == grammarAccess.getXAndExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXEqualityExpressionRule()
+						|| action == grammarAccess.getXEqualityExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXOtherOperatorExpressionRule()
+						|| action == grammarAccess.getXOtherOperatorExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXAdditiveExpressionRule()
+						|| action == grammarAccess.getXAdditiveExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXMultiplicativeExpressionRule()
+						|| action == grammarAccess.getXMultiplicativeExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXUnaryOperationRule()
+						|| rule == grammarAccess.getXCastedExpressionRule()
+						|| action == grammarAccess.getXCastedExpressionAccess().getXCastedExpressionTargetAction_1_0_0_0()
+						|| rule == grammarAccess.getXPostfixOperationRule()
+						|| action == grammarAccess.getXPostfixOperationAccess().getXPostfixOperationOperandAction_1_0_0()
+						|| rule == grammarAccess.getXMemberFeatureCallRule()
+						|| action == grammarAccess.getXMemberFeatureCallAccess().getXAssignmentAssignableAction_1_0_0_0_0()
+						|| action == grammarAccess.getXMemberFeatureCallAccess().getXMemberFeatureCallMemberCallTargetAction_1_1_0_0_0()
+						|| rule == grammarAccess.getXLiteralRule()
+						|| rule == grammarAccess.getXParenthesizedExpressionRule()
+						|| rule == grammarAccess.getXExpressionOrVarDeclarationRule()) {
+					sequence_RichString(context, (RichString) semanticObject); 
+					return; 
+				}
+				else break;
+			case XbaseWithRichstringPackage.RICH_STRING_LITERAL:
+				if (rule == grammarAccess.getRichStringLiteralEndRule()) {
+					sequence_RichStringLiteralEnd(context, (RichStringLiteral) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getRichStringLiteralInbetweenRule()) {
+					sequence_RichStringLiteralInbetween(context, (RichStringLiteral) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getRichStringLiteralStartRule()) {
+					sequence_RichStringLiteralStart(context, (RichStringLiteral) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getRichStringLiteralRule()) {
+					sequence_RichStringLiteral(context, (RichStringLiteral) semanticObject); 
+					return; 
+				}
+				else break;
+			}
 		else if (epackage == XtypePackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case XtypePackage.XFUNCTION_TYPE_REF:
@@ -632,18 +636,6 @@ public class SpecSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer
 	 *     cells+=ExampleCell*
 	 */
 	protected void sequence_ExampleRow(ISerializationContext context, ExampleRow semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     InternalRichString returns RichString
-	 *
-	 * Constraint:
-	 *     (expressions+=RichStringLiteralInbetween (expressions+=RichStringPart? expressions+=RichStringLiteralInbetween)*)
-	 */
-	protected void sequence_InternalRichString(ISerializationContext context, RichString semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -789,136 +781,6 @@ public class SpecSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer
 	 *     (annotations+=XAnnotation* (extension?='extension' annotations+=XAnnotation*)? parameterType=JvmTypeReference varArg?='...'? name=ValidID)
 	 */
 	protected void sequence_Parameter(ISerializationContext context, JnarioParameter semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     RichStringLiteralEnd returns RichStringLiteral
-	 *
-	 * Constraint:
-	 *     value=RICH_TEXT_END
-	 */
-	protected void sequence_RichStringLiteralEnd(ISerializationContext context, RichStringLiteral semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, XbasePackage.Literals.XSTRING_LITERAL__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, XbasePackage.Literals.XSTRING_LITERAL__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRichStringLiteralEndAccess().getValueRICH_TEXT_ENDTerminalRuleCall_1_0(), semanticObject.getValue());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     RichStringLiteralInbetween returns RichStringLiteral
-	 *
-	 * Constraint:
-	 *     value=RICH_TEXT_INBETWEEN
-	 */
-	protected void sequence_RichStringLiteralInbetween(ISerializationContext context, RichStringLiteral semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, XbasePackage.Literals.XSTRING_LITERAL__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, XbasePackage.Literals.XSTRING_LITERAL__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRichStringLiteralInbetweenAccess().getValueRICH_TEXT_INBETWEENTerminalRuleCall_1_0(), semanticObject.getValue());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     RichStringLiteralStart returns RichStringLiteral
-	 *
-	 * Constraint:
-	 *     value=RICH_TEXT_START
-	 */
-	protected void sequence_RichStringLiteralStart(ISerializationContext context, RichStringLiteral semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, XbasePackage.Literals.XSTRING_LITERAL__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, XbasePackage.Literals.XSTRING_LITERAL__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRichStringLiteralStartAccess().getValueRICH_TEXT_STARTTerminalRuleCall_1_0(), semanticObject.getValue());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     RichStringLiteral returns RichStringLiteral
-	 *
-	 * Constraint:
-	 *     value=RICH_TEXT
-	 */
-	protected void sequence_RichStringLiteral(ISerializationContext context, RichStringLiteral semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, XbasePackage.Literals.XSTRING_LITERAL__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, XbasePackage.Literals.XSTRING_LITERAL__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRichStringLiteralAccess().getValueRICH_TEXTTerminalRuleCall_1_0(), semanticObject.getValue());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     XPrimaryExpression returns RichString
-	 *     XRelationalExpression returns RichString
-	 *     XRelationalExpression.Should_1_0_0_0_0 returns RichString
-	 *     XRelationalExpression.ShouldThrow_1_1_0_0_0 returns RichString
-	 *     XRelationalExpression.XInstanceOfExpression_1_2_0_0_0 returns RichString
-	 *     XRelationalExpression.XBinaryOperation_1_3_0_0_0 returns RichString
-	 *     XStringLiteral returns RichString
-	 *     RichString returns RichString
-	 *     RichStringPart returns RichString
-	 *     XAnnotationElementValueOrCommaList returns RichString
-	 *     XAnnotationElementValueOrCommaList.XListLiteral_1_1_0 returns RichString
-	 *     XAnnotationElementValue returns RichString
-	 *     XAnnotationOrExpression returns RichString
-	 *     XExpression returns RichString
-	 *     XAssignment returns RichString
-	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns RichString
-	 *     XOrExpression returns RichString
-	 *     XOrExpression.XBinaryOperation_1_0_0_0 returns RichString
-	 *     XAndExpression returns RichString
-	 *     XAndExpression.XBinaryOperation_1_0_0_0 returns RichString
-	 *     XEqualityExpression returns RichString
-	 *     XEqualityExpression.XBinaryOperation_1_0_0_0 returns RichString
-	 *     XOtherOperatorExpression returns RichString
-	 *     XOtherOperatorExpression.XBinaryOperation_1_0_0_0 returns RichString
-	 *     XAdditiveExpression returns RichString
-	 *     XAdditiveExpression.XBinaryOperation_1_0_0_0 returns RichString
-	 *     XMultiplicativeExpression returns RichString
-	 *     XMultiplicativeExpression.XBinaryOperation_1_0_0_0 returns RichString
-	 *     XUnaryOperation returns RichString
-	 *     XCastedExpression returns RichString
-	 *     XCastedExpression.XCastedExpression_1_0_0_0 returns RichString
-	 *     XPostfixOperation returns RichString
-	 *     XPostfixOperation.XPostfixOperation_1_0_0 returns RichString
-	 *     XMemberFeatureCall returns RichString
-	 *     XMemberFeatureCall.XAssignment_1_0_0_0_0 returns RichString
-	 *     XMemberFeatureCall.XMemberFeatureCall_1_1_0_0_0 returns RichString
-	 *     XLiteral returns RichString
-	 *     XParenthesizedExpression returns RichString
-	 *     XExpressionOrVarDeclaration returns RichString
-	 *
-	 * Constraint:
-	 *     (
-	 *         expressions+=RichStringLiteral | 
-	 *         (
-	 *             expressions+=RichStringLiteralStart 
-	 *             expressions+=RichStringPart? 
-	 *             (expressions+=RichStringLiteralInbetween expressions+=RichStringPart?)* 
-	 *             expressions+=RichStringLiteralEnd
-	 *         )
-	 *     )
-	 */
-	protected void sequence_RichString(ISerializationContext context, RichString semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -248,22 +248,6 @@ public class JnarioSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case JnarioPackage.RICH_STRING: {
-				RichString richString = (RichString)theEObject;
-				T result = caseRichString(richString);
-				if (result == null) result = caseXBlockExpression(richString);
-				if (result == null) result = caseXExpression(richString);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case JnarioPackage.RICH_STRING_LITERAL: {
-				RichStringLiteral richStringLiteral = (RichStringLiteral)theEObject;
-				T result = caseRichStringLiteral(richStringLiteral);
-				if (result == null) result = caseXStringLiteral(richStringLiteral);
-				if (result == null) result = caseXExpression(richStringLiteral);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -539,36 +523,6 @@ public class JnarioSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Rich String</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Rich String</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRichString(RichString object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Rich String Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Rich String Literal</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRichStringLiteral(RichStringLiteral object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>XExpression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -625,36 +579,6 @@ public class JnarioSwitch<T> {
 	 * @generated
 	 */
 	public T caseXTypeLiteral(XTypeLiteral object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>XBlock Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>XBlock Expression</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseXBlockExpression(XBlockExpression object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>XString Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>XString Literal</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseXStringLiteral(XStringLiteral object) {
 		return null;
 	}
 

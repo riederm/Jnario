@@ -8,12 +8,10 @@
 package org.jnario.spec.ui.highlighting;
 
 import static org.eclipse.xtext.nodemodel.util.NodeModelUtils.findNodesForFeature;
-import static org.eclipse.xtext.xbase.ui.highlighting.XbaseHighlightingConfiguration.EXTENSION_METHOD_INVOCATION;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.XtextResource;
@@ -25,7 +23,6 @@ import org.jnario.JnarioField;
 import org.jnario.JnarioFunction;
 import org.jnario.JnarioMember;
 import org.jnario.JnarioPackage;
-import org.jnario.spec.services.SpecGrammarAccess;
 import org.jnario.spec.spec.Example;
 import org.jnario.spec.spec.ExampleGroup;
 import org.jnario.spec.spec.SpecFile;
@@ -34,7 +31,6 @@ import org.jnario.spec.spec.TestFunction;
 import org.jnario.ui.highlighting.JnarioHighlightingCalculator;
 
 import com.google.common.collect.Iterables;
-import com.google.inject.Inject;
 
 /**
  * @author Sebastian Benz - Initial contribution and API
@@ -42,9 +38,6 @@ import com.google.inject.Inject;
 @SuppressWarnings("restriction")
 public class SpecHighlightingCalculator extends JnarioHighlightingCalculator {
 
-	@Inject
-	private SpecGrammarAccess specGrammarAccess;
-	
 	@Override
 	protected void doProvideHighlightingFor(XtextResource resource,
 			org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor acceptor,
@@ -117,10 +110,5 @@ public class SpecHighlightingCalculator extends JnarioHighlightingCalculator {
 		highlightNode(acceptor, node, EXTENSION_METHOD_INVOCATION);
 	}
 
-	@Override
-	protected TerminalRule getRichStringTerminalRule() {
-		return specGrammarAccess.getSTRINGRule();
-	}
-	
 
 }

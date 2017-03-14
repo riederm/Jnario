@@ -1724,7 +1724,7 @@ LeftParenthesis
        			$current, 
        			"expression",
         		lv_expression_88_0, 
-        		"org.jnario.spec.Spec.RichString");
+        		"org.jnario.xbase.richstring.XbaseWithRichstring.RichString");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2563,372 +2563,6 @@ ruleSimpleStringLiteral returns [EObject current=null]
 
 
 
-// Entry rule entryRuleRichString
-entryRuleRichString returns [EObject current=null]
-	:
-	{ newCompositeNode(grammarAccess.getRichStringRule()); }
-	 iv_ruleRichString=ruleRichString 
-	 { $current=$iv_ruleRichString.current; } 
-	 EOF 
-;
-
-// Rule RichString
-ruleRichString returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-	{ 
-	  /* */ 
-	}
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getRichStringAccess().getRichStringAction_0(),
-            $current);
-    }
-)((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralParserRuleCall_1_0_0()); 
-	    }
-		lv_expressions_1_0=ruleRichStringLiteral		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
-	        }
-       		add(
-       			$current, 
-       			"expressions",
-        		lv_expressions_1_0, 
-        		"org.jnario.spec.Spec.RichStringLiteral");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-    |((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralStartParserRuleCall_1_1_0_0()); 
-	    }
-		lv_expressions_2_0=ruleRichStringLiteralStart		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
-	        }
-       		add(
-       			$current, 
-       			"expressions",
-        		lv_expressions_2_0, 
-        		"org.jnario.spec.Spec.RichStringLiteralStart");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_1_0()); 
-	    }
-		lv_expressions_3_0=ruleRichStringPart		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
-	        }
-       		add(
-       			$current, 
-       			"expressions",
-        		lv_expressions_3_0, 
-        		"org.jnario.spec.Spec.RichStringPart");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)?((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_2_0_0()); 
-	    }
-		lv_expressions_4_0=ruleRichStringLiteralInbetween		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
-	        }
-       		add(
-       			$current, 
-       			"expressions",
-        		lv_expressions_4_0, 
-        		"org.jnario.spec.Spec.RichStringLiteralInbetween");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_2_1_0()); 
-	    }
-		lv_expressions_5_0=ruleRichStringPart		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
-	        }
-       		add(
-       			$current, 
-       			"expressions",
-        		lv_expressions_5_0, 
-        		"org.jnario.spec.Spec.RichStringPart");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)?)*(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralEndParserRuleCall_1_1_3_0()); 
-	    }
-		lv_expressions_6_0=ruleRichStringLiteralEnd		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
-	        }
-       		add(
-       			$current, 
-       			"expressions",
-        		lv_expressions_6_0, 
-        		"org.jnario.spec.Spec.RichStringLiteralEnd");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))))
-;
-
-
-
-
-
-// Entry rule entryRuleRichStringLiteral
-entryRuleRichStringLiteral returns [EObject current=null]
-	:
-	{ newCompositeNode(grammarAccess.getRichStringLiteralRule()); }
-	 iv_ruleRichStringLiteral=ruleRichStringLiteral 
-	 { $current=$iv_ruleRichStringLiteral.current; } 
-	 EOF 
-;
-
-// Rule RichStringLiteral
-ruleRichStringLiteral returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-	{ 
-	  /* */ 
-	}
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getRichStringLiteralAccess().getRichStringLiteralAction_0(),
-            $current);
-    }
-)(
-(
-		lv_value_1_0=RULE_RICH_TEXT
-		{
-			newLeafNode(lv_value_1_0, grammarAccess.getRichStringLiteralAccess().getValueRICH_TEXTTerminalRuleCall_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getRichStringLiteralRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"value",
-        		lv_value_1_0, 
-        		"org.jnario.spec.Spec.RICH_TEXT");
-	    }
-
-)
-))
-;
-
-
-
-
-
-// Entry rule entryRuleRichStringLiteralStart
-entryRuleRichStringLiteralStart returns [EObject current=null]
-	:
-	{ newCompositeNode(grammarAccess.getRichStringLiteralStartRule()); }
-	 iv_ruleRichStringLiteralStart=ruleRichStringLiteralStart 
-	 { $current=$iv_ruleRichStringLiteralStart.current; } 
-	 EOF 
-;
-
-// Rule RichStringLiteralStart
-ruleRichStringLiteralStart returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-	{ 
-	  /* */ 
-	}
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getRichStringLiteralStartAccess().getRichStringLiteralAction_0(),
-            $current);
-    }
-)(
-(
-		lv_value_1_0=RULE_RICH_TEXT_START
-		{
-			newLeafNode(lv_value_1_0, grammarAccess.getRichStringLiteralStartAccess().getValueRICH_TEXT_STARTTerminalRuleCall_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getRichStringLiteralStartRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"value",
-        		lv_value_1_0, 
-        		"org.jnario.spec.Spec.RICH_TEXT_START");
-	    }
-
-)
-))
-;
-
-
-
-
-
-// Entry rule entryRuleRichStringLiteralInbetween
-entryRuleRichStringLiteralInbetween returns [EObject current=null]
-	:
-	{ newCompositeNode(grammarAccess.getRichStringLiteralInbetweenRule()); }
-	 iv_ruleRichStringLiteralInbetween=ruleRichStringLiteralInbetween 
-	 { $current=$iv_ruleRichStringLiteralInbetween.current; } 
-	 EOF 
-;
-
-// Rule RichStringLiteralInbetween
-ruleRichStringLiteralInbetween returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-	{ 
-	  /* */ 
-	}
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getRichStringLiteralInbetweenAccess().getRichStringLiteralAction_0(),
-            $current);
-    }
-)(
-(
-		lv_value_1_0=RULE_RICH_TEXT_INBETWEEN
-		{
-			newLeafNode(lv_value_1_0, grammarAccess.getRichStringLiteralInbetweenAccess().getValueRICH_TEXT_INBETWEENTerminalRuleCall_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getRichStringLiteralInbetweenRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"value",
-        		lv_value_1_0, 
-        		"org.jnario.spec.Spec.RICH_TEXT_INBETWEEN");
-	    }
-
-)
-))
-;
-
-
-
-
-
-// Entry rule entryRuleRichStringLiteralEnd
-entryRuleRichStringLiteralEnd returns [EObject current=null]
-	:
-	{ newCompositeNode(grammarAccess.getRichStringLiteralEndRule()); }
-	 iv_ruleRichStringLiteralEnd=ruleRichStringLiteralEnd 
-	 { $current=$iv_ruleRichStringLiteralEnd.current; } 
-	 EOF 
-;
-
-// Rule RichStringLiteralEnd
-ruleRichStringLiteralEnd returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-	{ 
-	  /* */ 
-	}
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getRichStringLiteralEndAccess().getRichStringLiteralAction_0(),
-            $current);
-    }
-)(
-(
-		lv_value_1_0=RULE_RICH_TEXT_END
-		{
-			newLeafNode(lv_value_1_0, grammarAccess.getRichStringLiteralEndAccess().getValueRICH_TEXT_ENDTerminalRuleCall_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getRichStringLiteralEndRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"value",
-        		lv_value_1_0, 
-        		"org.jnario.spec.Spec.RICH_TEXT_END");
-	    }
-
-)
-))
-;
-
-
-
-
-
-
-
-// Entry rule entryRuleRichStringPart
-entryRuleRichStringPart returns [EObject current=null]
-	:
-	{ newCompositeNode(grammarAccess.getRichStringPartRule()); }
-	 iv_ruleRichStringPart=ruleRichStringPart 
-	 { $current=$iv_ruleRichStringPart.current; } 
-	 EOF 
-;
-
-// Rule RichStringPart
-ruleRichStringPart returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-
-	{ 
-	  /* */ 
-	}
-    { 
-        newCompositeNode(grammarAccess.getRichStringPartAccess().getXExpressionOrVarDeclarationParserRuleCall()); 
-    }
-    this_XExpressionOrVarDeclaration_0=ruleXExpressionOrVarDeclaration
-    {
-        $current = $this_XExpressionOrVarDeclaration_0.current;
-        afterParserOrEnumRuleCall();
-    }
-
-;
-
-
-
-
-
 // Entry rule entryRuleCommonModifier
 entryRuleCommonModifier returns [String current=null] 
 :
@@ -3230,6 +2864,372 @@ ruleParameter returns [EObject current=null]
 
 )
 ))
+;
+
+
+
+
+
+// Entry rule entryRuleRichString
+entryRuleRichString returns [EObject current=null]
+	:
+	{ newCompositeNode(grammarAccess.getRichStringRule()); }
+	 iv_ruleRichString=ruleRichString 
+	 { $current=$iv_ruleRichString.current; } 
+	 EOF 
+;
+
+// Rule RichString
+ruleRichString returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+	{ 
+	  /* */ 
+	}
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getRichStringAccess().getRichStringAction_0(),
+            $current);
+    }
+)((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralParserRuleCall_1_0_0()); 
+	    }
+		lv_expressions_1_0=ruleRichStringLiteral		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
+	        }
+       		add(
+       			$current, 
+       			"expressions",
+        		lv_expressions_1_0, 
+        		"org.jnario.xbase.richstring.XbaseWithRichstring.RichStringLiteral");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+    |((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralStartParserRuleCall_1_1_0_0()); 
+	    }
+		lv_expressions_2_0=ruleRichStringLiteralStart		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
+	        }
+       		add(
+       			$current, 
+       			"expressions",
+        		lv_expressions_2_0, 
+        		"org.jnario.xbase.richstring.XbaseWithRichstring.RichStringLiteralStart");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_1_0()); 
+	    }
+		lv_expressions_3_0=ruleRichStringPart		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
+	        }
+       		add(
+       			$current, 
+       			"expressions",
+        		lv_expressions_3_0, 
+        		"org.jnario.xbase.richstring.XbaseWithRichstring.RichStringPart");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_2_0_0()); 
+	    }
+		lv_expressions_4_0=ruleRichStringLiteralInbetween		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
+	        }
+       		add(
+       			$current, 
+       			"expressions",
+        		lv_expressions_4_0, 
+        		"org.jnario.xbase.richstring.XbaseWithRichstring.RichStringLiteralInbetween");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_2_1_0()); 
+	    }
+		lv_expressions_5_0=ruleRichStringPart		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
+	        }
+       		add(
+       			$current, 
+       			"expressions",
+        		lv_expressions_5_0, 
+        		"org.jnario.xbase.richstring.XbaseWithRichstring.RichStringPart");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralEndParserRuleCall_1_1_3_0()); 
+	    }
+		lv_expressions_6_0=ruleRichStringLiteralEnd		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRichStringRule());
+	        }
+       		add(
+       			$current, 
+       			"expressions",
+        		lv_expressions_6_0, 
+        		"org.jnario.xbase.richstring.XbaseWithRichstring.RichStringLiteralEnd");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))))
+;
+
+
+
+
+
+// Entry rule entryRuleRichStringLiteral
+entryRuleRichStringLiteral returns [EObject current=null]
+	:
+	{ newCompositeNode(grammarAccess.getRichStringLiteralRule()); }
+	 iv_ruleRichStringLiteral=ruleRichStringLiteral 
+	 { $current=$iv_ruleRichStringLiteral.current; } 
+	 EOF 
+;
+
+// Rule RichStringLiteral
+ruleRichStringLiteral returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+	{ 
+	  /* */ 
+	}
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getRichStringLiteralAccess().getRichStringLiteralAction_0(),
+            $current);
+    }
+)(
+(
+		lv_value_1_0=RULE_RICH_TEXT
+		{
+			newLeafNode(lv_value_1_0, grammarAccess.getRichStringLiteralAccess().getValueRICH_TEXTTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRichStringLiteralRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_1_0, 
+        		"org.jnario.xbase.richstring.XbaseWithRichstring.RICH_TEXT");
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleRichStringLiteralStart
+entryRuleRichStringLiteralStart returns [EObject current=null]
+	:
+	{ newCompositeNode(grammarAccess.getRichStringLiteralStartRule()); }
+	 iv_ruleRichStringLiteralStart=ruleRichStringLiteralStart 
+	 { $current=$iv_ruleRichStringLiteralStart.current; } 
+	 EOF 
+;
+
+// Rule RichStringLiteralStart
+ruleRichStringLiteralStart returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+	{ 
+	  /* */ 
+	}
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getRichStringLiteralStartAccess().getRichStringLiteralAction_0(),
+            $current);
+    }
+)(
+(
+		lv_value_1_0=RULE_RICH_TEXT_START
+		{
+			newLeafNode(lv_value_1_0, grammarAccess.getRichStringLiteralStartAccess().getValueRICH_TEXT_STARTTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRichStringLiteralStartRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_1_0, 
+        		"org.jnario.xbase.richstring.XbaseWithRichstring.RICH_TEXT_START");
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleRichStringLiteralInbetween
+entryRuleRichStringLiteralInbetween returns [EObject current=null]
+	:
+	{ newCompositeNode(grammarAccess.getRichStringLiteralInbetweenRule()); }
+	 iv_ruleRichStringLiteralInbetween=ruleRichStringLiteralInbetween 
+	 { $current=$iv_ruleRichStringLiteralInbetween.current; } 
+	 EOF 
+;
+
+// Rule RichStringLiteralInbetween
+ruleRichStringLiteralInbetween returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+	{ 
+	  /* */ 
+	}
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getRichStringLiteralInbetweenAccess().getRichStringLiteralAction_0(),
+            $current);
+    }
+)(
+(
+		lv_value_1_0=RULE_RICH_TEXT_INBETWEEN
+		{
+			newLeafNode(lv_value_1_0, grammarAccess.getRichStringLiteralInbetweenAccess().getValueRICH_TEXT_INBETWEENTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRichStringLiteralInbetweenRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_1_0, 
+        		"org.jnario.xbase.richstring.XbaseWithRichstring.RICH_TEXT_INBETWEEN");
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleRichStringLiteralEnd
+entryRuleRichStringLiteralEnd returns [EObject current=null]
+	:
+	{ newCompositeNode(grammarAccess.getRichStringLiteralEndRule()); }
+	 iv_ruleRichStringLiteralEnd=ruleRichStringLiteralEnd 
+	 { $current=$iv_ruleRichStringLiteralEnd.current; } 
+	 EOF 
+;
+
+// Rule RichStringLiteralEnd
+ruleRichStringLiteralEnd returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+	{ 
+	  /* */ 
+	}
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getRichStringLiteralEndAccess().getRichStringLiteralAction_0(),
+            $current);
+    }
+)(
+(
+		lv_value_1_0=RULE_RICH_TEXT_END
+		{
+			newLeafNode(lv_value_1_0, grammarAccess.getRichStringLiteralEndAccess().getValueRICH_TEXT_ENDTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRichStringLiteralEndRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_1_0, 
+        		"org.jnario.xbase.richstring.XbaseWithRichstring.RICH_TEXT_END");
+	    }
+
+)
+))
+;
+
+
+
+
+
+
+
+// Entry rule entryRuleRichStringPart
+entryRuleRichStringPart returns [EObject current=null]
+	:
+	{ newCompositeNode(grammarAccess.getRichStringPartRule()); }
+	 iv_ruleRichStringPart=ruleRichStringPart 
+	 { $current=$iv_ruleRichStringPart.current; } 
+	 EOF 
+;
+
+// Rule RichStringPart
+ruleRichStringPart returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+
+	{ 
+	  /* */ 
+	}
+    { 
+        newCompositeNode(grammarAccess.getRichStringPartAccess().getXExpressionOrVarDeclarationParserRuleCall()); 
+    }
+    this_XExpressionOrVarDeclaration_0=ruleXExpressionOrVarDeclaration
+    {
+        $current = $this_XExpressionOrVarDeclaration_0.current;
+        afterParserOrEnumRuleCall();
+    }
+
 ;
 
 

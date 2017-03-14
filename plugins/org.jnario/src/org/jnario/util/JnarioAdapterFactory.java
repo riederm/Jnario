@@ -157,14 +157,6 @@ public class JnarioAdapterFactory extends AdapterFactoryImpl {
 				return createJnarioParameterAdapter();
 			}
 			@Override
-			public Adapter caseRichString(RichString object) {
-				return createRichStringAdapter();
-			}
-			@Override
-			public Adapter caseRichStringLiteral(RichStringLiteral object) {
-				return createRichStringLiteralAdapter();
-			}
-			@Override
 			public Adapter caseXExpression(XExpression object) {
 				return createXExpressionAdapter();
 			}
@@ -179,14 +171,6 @@ public class JnarioAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseXTypeLiteral(XTypeLiteral object) {
 				return createXTypeLiteralAdapter();
-			}
-			@Override
-			public Adapter caseXBlockExpression(XBlockExpression object) {
-				return createXBlockExpressionAdapter();
-			}
-			@Override
-			public Adapter caseXStringLiteral(XStringLiteral object) {
-				return createXStringLiteralAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -461,34 +445,6 @@ public class JnarioAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.jnario.RichString <em>Rich String</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.jnario.RichString
-	 * @generated
-	 */
-	public Adapter createRichStringAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.jnario.RichStringLiteral <em>Rich String Literal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.jnario.RichStringLiteral
-	 * @generated
-	 */
-	public Adapter createRichStringLiteralAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xbase.XExpression <em>XExpression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -541,34 +497,6 @@ public class JnarioAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createXTypeLiteralAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xbase.XBlockExpression <em>XBlock Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.xtext.xbase.XBlockExpression
-	 * @generated
-	 */
-	public Adapter createXBlockExpressionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xbase.XStringLiteral <em>XString Literal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.xtext.xbase.XStringLiteral
-	 * @generated
-	 */
-	public Adapter createXStringLiteralAdapter() {
 		return null;
 	}
 

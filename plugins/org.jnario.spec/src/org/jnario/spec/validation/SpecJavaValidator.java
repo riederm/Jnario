@@ -8,19 +8,16 @@
 package org.jnario.spec.validation;
 
 import static com.google.common.collect.Iterables.filter;
-import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 import org.eclipse.xtext.xbase.XExpression;
 import org.jnario.Assertion;
 import org.jnario.JnarioPackage;
-import org.jnario.RichString;
 import org.jnario.spec.naming.ExampleNameProvider;
 import org.jnario.spec.spec.Example;
 import org.jnario.spec.spec.ExampleGroup;
@@ -246,8 +243,7 @@ public class SpecJavaValidator extends AbstractSpecJavaValidator {
 
 	protected boolean isValueExpectedRecursive(XExpression expr) {
 		EObject container = expr.eContainer();
-		if (container instanceof Assertion
-				|| container instanceof RichString) {
+		if (container instanceof Assertion) {
 			return true;
 		}
 		return super.isValueExpectedRecursive(expr);

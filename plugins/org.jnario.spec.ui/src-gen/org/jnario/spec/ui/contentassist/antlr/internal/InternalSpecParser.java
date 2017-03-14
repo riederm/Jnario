@@ -26,7 +26,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalSpecParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "Synchronized", "Instanceof", "Extension", "Protected", "Transient", "Abstract", "Describe", "Dispatch", "Override", "Strictfp", "Volatile", "Context", "Default", "Extends", "Finally", "Package", "Pending", "Private", "Assert", "Before", "Import", "Native", "Public", "Return", "Should", "Static", "Switch", "Throws", "Typeof", "After", "Catch", "Facts", "False", "Final", "Super", "Throw", "While", "Case", "Each", "Else", "Fact", "Null", "True", "ExclamationMarkEqualsSignEqualsSign", "FullStopFullStopFullStop", "FullStopFullStopLessThanSign", "EqualsSignEqualsSignEqualsSign", "All", "Def", "For", "New", "Not", "Try", "Val", "Var", "ExclamationMarkEqualsSign", "PercentSignEqualsSign", "AmpersandAmpersand", "AsteriskAsterisk", "AsteriskEqualsSign", "PlusSignPlusSign", "PlusSignEqualsSign", "HyphenMinusHyphenMinus", "HyphenMinusEqualsSign", "HyphenMinusGreaterThanSign", "FullStopFullStop", "SolidusEqualsSign", "ColonColon", "LessThanSignGreaterThanSign", "EqualsSignEqualsSign", "EqualsSignGreaterThanSign", "GreaterThanSignEqualsSign", "QuestionMarkFullStop", "QuestionMarkColon", "As", "Do", "If", "VerticalLineVerticalLine", "ExclamationMark", "NumberSign", "PercentSign", "Ampersand", "LeftParenthesis", "RightParenthesis", "Asterisk", "PlusSign", "Comma", "HyphenMinus", "FullStop", "Solidus", "Colon", "Semicolon", "LessThanSign", "EqualsSign", "GreaterThanSign", "QuestionMark", "CommercialAt", "LeftSquareBracket", "RightSquareBracket", "LeftCurlyBracket", "VerticalLine", "RightCurlyBracket", "RULE_ML_COMMENT", "RULE_IDENTIFIER_START", "RULE_UNICODE_ESCAPE", "RULE_IDENTIFIER_PART", "RULE_ID", "RULE_HEX_DIGIT", "RULE_IN_RICH_STRING", "RULE_RICH_TEXT", "RULE_RICH_TEXT_START", "RULE_RICH_TEXT_END", "RULE_RICH_TEXT_INBETWEEN", "RULE_IDENTIFIER_PART_IMPL", "RULE_HEX", "RULE_INT", "RULE_DECIMAL", "RULE_STRING", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "Synchronized", "Instanceof", "Extension", "Protected", "Transient", "Abstract", "Describe", "Dispatch", "Override", "Strictfp", "Volatile", "Context", "Default", "Extends", "Finally", "Package", "Pending", "Private", "Assert", "Before", "Import", "Native", "Public", "Return", "Should", "Static", "Switch", "Throws", "Typeof", "After", "Catch", "Facts", "False", "Final", "Super", "Throw", "While", "Case", "Each", "Else", "Fact", "Null", "True", "ExclamationMarkEqualsSignEqualsSign", "FullStopFullStopFullStop", "FullStopFullStopLessThanSign", "EqualsSignEqualsSignEqualsSign", "All", "Def", "For", "New", "Not", "Try", "Val", "Var", "ExclamationMarkEqualsSign", "PercentSignEqualsSign", "AmpersandAmpersand", "AsteriskAsterisk", "AsteriskEqualsSign", "PlusSignPlusSign", "PlusSignEqualsSign", "HyphenMinusHyphenMinus", "HyphenMinusEqualsSign", "HyphenMinusGreaterThanSign", "FullStopFullStop", "SolidusEqualsSign", "ColonColon", "LessThanSignGreaterThanSign", "EqualsSignEqualsSign", "EqualsSignGreaterThanSign", "GreaterThanSignEqualsSign", "QuestionMarkFullStop", "QuestionMarkColon", "As", "Do", "If", "VerticalLineVerticalLine", "ExclamationMark", "NumberSign", "PercentSign", "Ampersand", "LeftParenthesis", "RightParenthesis", "Asterisk", "PlusSign", "Comma", "HyphenMinus", "FullStop", "Solidus", "Colon", "Semicolon", "LessThanSign", "EqualsSign", "GreaterThanSign", "QuestionMark", "CommercialAt", "LeftSquareBracket", "RightSquareBracket", "LeftCurlyBracket", "VerticalLine", "RightCurlyBracket", "RULE_ML_COMMENT", "RULE_IDENTIFIER_START", "RULE_UNICODE_ESCAPE", "RULE_IDENTIFIER_PART", "RULE_ID", "RULE_HEX_DIGIT", "RULE_IDENTIFIER_PART_IMPL", "RULE_IN_RICH_STRING", "RULE_RICH_TEXT", "RULE_RICH_TEXT_START", "RULE_RICH_TEXT_END", "RULE_RICH_TEXT_INBETWEEN", "RULE_HEX", "RULE_INT", "RULE_DECIMAL", "RULE_STRING", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER"
     };
     public static final int Val=57;
     public static final int Each=42;
@@ -47,7 +47,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     public static final int GreaterThanSign=98;
     public static final int RULE_ID=110;
     public static final int Throws=31;
-    public static final int RULE_RICH_TEXT_START=114;
+    public static final int RULE_RICH_TEXT_START=115;
     public static final int GreaterThanSignEqualsSign=75;
     public static final int ColonColon=71;
     public static final int EqualsSignEqualsSign=73;
@@ -127,7 +127,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     public static final int Before=23;
     public static final int RULE_STRING=121;
     public static final int RULE_SL_COMMENT=122;
-    public static final int RULE_IN_RICH_STRING=112;
+    public static final int RULE_IN_RICH_STRING=113;
     public static final int EqualsSign=97;
     public static final int AmpersandAmpersand=61;
     public static final int Instanceof=5;
@@ -136,17 +136,17 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     public static final int EOF=-1;
     public static final int Asterisk=88;
     public static final int PlusSignEqualsSign=65;
-    public static final int RULE_RICH_TEXT=113;
+    public static final int RULE_RICH_TEXT=114;
     public static final int Return=27;
     public static final int Def=52;
     public static final int RULE_WS=123;
-    public static final int RULE_RICH_TEXT_END=115;
+    public static final int RULE_RICH_TEXT_END=116;
     public static final int LeftCurlyBracket=103;
     public static final int While=40;
     public static final int RULE_ANY_OTHER=124;
-    public static final int RULE_RICH_TEXT_INBETWEEN=116;
+    public static final int RULE_RICH_TEXT_INBETWEEN=117;
     public static final int Volatile=14;
-    public static final int RULE_IDENTIFIER_PART_IMPL=117;
+    public static final int RULE_IDENTIFIER_PART_IMPL=112;
     public static final int Extension=6;
     public static final int FullStopFullStopLessThanSign=49;
     public static final int Pending=20;
@@ -1572,516 +1572,12 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleSimpleStringLiteral"
 
 
-    // $ANTLR start "entryRuleRichString"
-    // InternalSpecParser.g:586:1: entryRuleRichString : ruleRichString EOF ;
-    public final void entryRuleRichString() throws RecognitionException {
-        try {
-            // InternalSpecParser.g:587:1: ( ruleRichString EOF )
-            // InternalSpecParser.g:588:1: ruleRichString EOF
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringRule()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_1);
-            ruleRichString();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringRule()); 
-            }
-            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end "entryRuleRichString"
-
-
-    // $ANTLR start "ruleRichString"
-    // InternalSpecParser.g:595:1: ruleRichString : ( ( rule__RichString__Group__0 ) ) ;
-    public final void ruleRichString() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:599:5: ( ( ( rule__RichString__Group__0 ) ) )
-            // InternalSpecParser.g:600:1: ( ( rule__RichString__Group__0 ) )
-            {
-            // InternalSpecParser.g:600:1: ( ( rule__RichString__Group__0 ) )
-            // InternalSpecParser.g:601:1: ( rule__RichString__Group__0 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getGroup()); 
-            }
-            // InternalSpecParser.g:602:1: ( rule__RichString__Group__0 )
-            // InternalSpecParser.g:602:2: rule__RichString__Group__0
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__Group__0();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getGroup()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "ruleRichString"
-
-
-    // $ANTLR start "entryRuleRichStringLiteral"
-    // InternalSpecParser.g:614:1: entryRuleRichStringLiteral : ruleRichStringLiteral EOF ;
-    public final void entryRuleRichStringLiteral() throws RecognitionException {
-        try {
-            // InternalSpecParser.g:615:1: ( ruleRichStringLiteral EOF )
-            // InternalSpecParser.g:616:1: ruleRichStringLiteral EOF
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralRule()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_1);
-            ruleRichStringLiteral();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralRule()); 
-            }
-            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end "entryRuleRichStringLiteral"
-
-
-    // $ANTLR start "ruleRichStringLiteral"
-    // InternalSpecParser.g:623:1: ruleRichStringLiteral : ( ( rule__RichStringLiteral__Group__0 ) ) ;
-    public final void ruleRichStringLiteral() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:627:5: ( ( ( rule__RichStringLiteral__Group__0 ) ) )
-            // InternalSpecParser.g:628:1: ( ( rule__RichStringLiteral__Group__0 ) )
-            {
-            // InternalSpecParser.g:628:1: ( ( rule__RichStringLiteral__Group__0 ) )
-            // InternalSpecParser.g:629:1: ( rule__RichStringLiteral__Group__0 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralAccess().getGroup()); 
-            }
-            // InternalSpecParser.g:630:1: ( rule__RichStringLiteral__Group__0 )
-            // InternalSpecParser.g:630:2: rule__RichStringLiteral__Group__0
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteral__Group__0();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralAccess().getGroup()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "ruleRichStringLiteral"
-
-
-    // $ANTLR start "entryRuleRichStringLiteralStart"
-    // InternalSpecParser.g:642:1: entryRuleRichStringLiteralStart : ruleRichStringLiteralStart EOF ;
-    public final void entryRuleRichStringLiteralStart() throws RecognitionException {
-        try {
-            // InternalSpecParser.g:643:1: ( ruleRichStringLiteralStart EOF )
-            // InternalSpecParser.g:644:1: ruleRichStringLiteralStart EOF
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralStartRule()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_1);
-            ruleRichStringLiteralStart();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralStartRule()); 
-            }
-            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end "entryRuleRichStringLiteralStart"
-
-
-    // $ANTLR start "ruleRichStringLiteralStart"
-    // InternalSpecParser.g:651:1: ruleRichStringLiteralStart : ( ( rule__RichStringLiteralStart__Group__0 ) ) ;
-    public final void ruleRichStringLiteralStart() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:655:5: ( ( ( rule__RichStringLiteralStart__Group__0 ) ) )
-            // InternalSpecParser.g:656:1: ( ( rule__RichStringLiteralStart__Group__0 ) )
-            {
-            // InternalSpecParser.g:656:1: ( ( rule__RichStringLiteralStart__Group__0 ) )
-            // InternalSpecParser.g:657:1: ( rule__RichStringLiteralStart__Group__0 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralStartAccess().getGroup()); 
-            }
-            // InternalSpecParser.g:658:1: ( rule__RichStringLiteralStart__Group__0 )
-            // InternalSpecParser.g:658:2: rule__RichStringLiteralStart__Group__0
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralStart__Group__0();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralStartAccess().getGroup()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "ruleRichStringLiteralStart"
-
-
-    // $ANTLR start "entryRuleRichStringLiteralInbetween"
-    // InternalSpecParser.g:670:1: entryRuleRichStringLiteralInbetween : ruleRichStringLiteralInbetween EOF ;
-    public final void entryRuleRichStringLiteralInbetween() throws RecognitionException {
-        try {
-            // InternalSpecParser.g:671:1: ( ruleRichStringLiteralInbetween EOF )
-            // InternalSpecParser.g:672:1: ruleRichStringLiteralInbetween EOF
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralInbetweenRule()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_1);
-            ruleRichStringLiteralInbetween();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralInbetweenRule()); 
-            }
-            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end "entryRuleRichStringLiteralInbetween"
-
-
-    // $ANTLR start "ruleRichStringLiteralInbetween"
-    // InternalSpecParser.g:679:1: ruleRichStringLiteralInbetween : ( ( rule__RichStringLiteralInbetween__Group__0 ) ) ;
-    public final void ruleRichStringLiteralInbetween() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:683:5: ( ( ( rule__RichStringLiteralInbetween__Group__0 ) ) )
-            // InternalSpecParser.g:684:1: ( ( rule__RichStringLiteralInbetween__Group__0 ) )
-            {
-            // InternalSpecParser.g:684:1: ( ( rule__RichStringLiteralInbetween__Group__0 ) )
-            // InternalSpecParser.g:685:1: ( rule__RichStringLiteralInbetween__Group__0 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralInbetweenAccess().getGroup()); 
-            }
-            // InternalSpecParser.g:686:1: ( rule__RichStringLiteralInbetween__Group__0 )
-            // InternalSpecParser.g:686:2: rule__RichStringLiteralInbetween__Group__0
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralInbetween__Group__0();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralInbetweenAccess().getGroup()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "ruleRichStringLiteralInbetween"
-
-
-    // $ANTLR start "entryRuleRichStringLiteralEnd"
-    // InternalSpecParser.g:698:1: entryRuleRichStringLiteralEnd : ruleRichStringLiteralEnd EOF ;
-    public final void entryRuleRichStringLiteralEnd() throws RecognitionException {
-        try {
-            // InternalSpecParser.g:699:1: ( ruleRichStringLiteralEnd EOF )
-            // InternalSpecParser.g:700:1: ruleRichStringLiteralEnd EOF
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralEndRule()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_1);
-            ruleRichStringLiteralEnd();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralEndRule()); 
-            }
-            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end "entryRuleRichStringLiteralEnd"
-
-
-    // $ANTLR start "ruleRichStringLiteralEnd"
-    // InternalSpecParser.g:707:1: ruleRichStringLiteralEnd : ( ( rule__RichStringLiteralEnd__Group__0 ) ) ;
-    public final void ruleRichStringLiteralEnd() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:711:5: ( ( ( rule__RichStringLiteralEnd__Group__0 ) ) )
-            // InternalSpecParser.g:712:1: ( ( rule__RichStringLiteralEnd__Group__0 ) )
-            {
-            // InternalSpecParser.g:712:1: ( ( rule__RichStringLiteralEnd__Group__0 ) )
-            // InternalSpecParser.g:713:1: ( rule__RichStringLiteralEnd__Group__0 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralEndAccess().getGroup()); 
-            }
-            // InternalSpecParser.g:714:1: ( rule__RichStringLiteralEnd__Group__0 )
-            // InternalSpecParser.g:714:2: rule__RichStringLiteralEnd__Group__0
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralEnd__Group__0();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralEndAccess().getGroup()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "ruleRichStringLiteralEnd"
-
-
-    // $ANTLR start "entryRuleRichStringPart"
-    // InternalSpecParser.g:728:1: entryRuleRichStringPart : ruleRichStringPart EOF ;
-    public final void entryRuleRichStringPart() throws RecognitionException {
-        try {
-            // InternalSpecParser.g:729:1: ( ruleRichStringPart EOF )
-            // InternalSpecParser.g:730:1: ruleRichStringPart EOF
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringPartRule()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_1);
-            ruleRichStringPart();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringPartRule()); 
-            }
-            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end "entryRuleRichStringPart"
-
-
-    // $ANTLR start "ruleRichStringPart"
-    // InternalSpecParser.g:737:1: ruleRichStringPart : ( ruleXExpressionOrVarDeclaration ) ;
-    public final void ruleRichStringPart() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:741:5: ( ( ruleXExpressionOrVarDeclaration ) )
-            // InternalSpecParser.g:742:1: ( ruleXExpressionOrVarDeclaration )
-            {
-            // InternalSpecParser.g:742:1: ( ruleXExpressionOrVarDeclaration )
-            // InternalSpecParser.g:743:1: ruleXExpressionOrVarDeclaration
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringPartAccess().getXExpressionOrVarDeclarationParserRuleCall()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_2);
-            ruleXExpressionOrVarDeclaration();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringPartAccess().getXExpressionOrVarDeclarationParserRuleCall()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "ruleRichStringPart"
-
-
     // $ANTLR start "entryRuleCommonModifier"
-    // InternalSpecParser.g:756:1: entryRuleCommonModifier : ruleCommonModifier EOF ;
+    // InternalSpecParser.g:586:1: entryRuleCommonModifier : ruleCommonModifier EOF ;
     public final void entryRuleCommonModifier() throws RecognitionException {
         try {
-            // InternalSpecParser.g:757:1: ( ruleCommonModifier EOF )
-            // InternalSpecParser.g:758:1: ruleCommonModifier EOF
+            // InternalSpecParser.g:587:1: ( ruleCommonModifier EOF )
+            // InternalSpecParser.g:588:1: ruleCommonModifier EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommonModifierRule()); 
@@ -2111,23 +1607,23 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleCommonModifier"
-    // InternalSpecParser.g:765:1: ruleCommonModifier : ( ( rule__CommonModifier__Alternatives ) ) ;
+    // InternalSpecParser.g:595:1: ruleCommonModifier : ( ( rule__CommonModifier__Alternatives ) ) ;
     public final void ruleCommonModifier() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:769:5: ( ( ( rule__CommonModifier__Alternatives ) ) )
-            // InternalSpecParser.g:770:1: ( ( rule__CommonModifier__Alternatives ) )
+            // InternalSpecParser.g:599:5: ( ( ( rule__CommonModifier__Alternatives ) ) )
+            // InternalSpecParser.g:600:1: ( ( rule__CommonModifier__Alternatives ) )
             {
-            // InternalSpecParser.g:770:1: ( ( rule__CommonModifier__Alternatives ) )
-            // InternalSpecParser.g:771:1: ( rule__CommonModifier__Alternatives )
+            // InternalSpecParser.g:600:1: ( ( rule__CommonModifier__Alternatives ) )
+            // InternalSpecParser.g:601:1: ( rule__CommonModifier__Alternatives )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommonModifierAccess().getAlternatives()); 
             }
-            // InternalSpecParser.g:772:1: ( rule__CommonModifier__Alternatives )
-            // InternalSpecParser.g:772:2: rule__CommonModifier__Alternatives
+            // InternalSpecParser.g:602:1: ( rule__CommonModifier__Alternatives )
+            // InternalSpecParser.g:602:2: rule__CommonModifier__Alternatives
             {
             pushFollow(FollowSets000.FOLLOW_2);
             rule__CommonModifier__Alternatives();
@@ -2162,11 +1658,11 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleFieldModifier"
-    // InternalSpecParser.g:784:1: entryRuleFieldModifier : ruleFieldModifier EOF ;
+    // InternalSpecParser.g:614:1: entryRuleFieldModifier : ruleFieldModifier EOF ;
     public final void entryRuleFieldModifier() throws RecognitionException {
         try {
-            // InternalSpecParser.g:785:1: ( ruleFieldModifier EOF )
-            // InternalSpecParser.g:786:1: ruleFieldModifier EOF
+            // InternalSpecParser.g:615:1: ( ruleFieldModifier EOF )
+            // InternalSpecParser.g:616:1: ruleFieldModifier EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldModifierRule()); 
@@ -2196,23 +1692,23 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleFieldModifier"
-    // InternalSpecParser.g:793:1: ruleFieldModifier : ( ( rule__FieldModifier__Alternatives ) ) ;
+    // InternalSpecParser.g:623:1: ruleFieldModifier : ( ( rule__FieldModifier__Alternatives ) ) ;
     public final void ruleFieldModifier() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:797:5: ( ( ( rule__FieldModifier__Alternatives ) ) )
-            // InternalSpecParser.g:798:1: ( ( rule__FieldModifier__Alternatives ) )
+            // InternalSpecParser.g:627:5: ( ( ( rule__FieldModifier__Alternatives ) ) )
+            // InternalSpecParser.g:628:1: ( ( rule__FieldModifier__Alternatives ) )
             {
-            // InternalSpecParser.g:798:1: ( ( rule__FieldModifier__Alternatives ) )
-            // InternalSpecParser.g:799:1: ( rule__FieldModifier__Alternatives )
+            // InternalSpecParser.g:628:1: ( ( rule__FieldModifier__Alternatives ) )
+            // InternalSpecParser.g:629:1: ( rule__FieldModifier__Alternatives )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldModifierAccess().getAlternatives()); 
             }
-            // InternalSpecParser.g:800:1: ( rule__FieldModifier__Alternatives )
-            // InternalSpecParser.g:800:2: rule__FieldModifier__Alternatives
+            // InternalSpecParser.g:630:1: ( rule__FieldModifier__Alternatives )
+            // InternalSpecParser.g:630:2: rule__FieldModifier__Alternatives
             {
             pushFollow(FollowSets000.FOLLOW_2);
             rule__FieldModifier__Alternatives();
@@ -2247,11 +1743,11 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleMethodModifier"
-    // InternalSpecParser.g:812:1: entryRuleMethodModifier : ruleMethodModifier EOF ;
+    // InternalSpecParser.g:642:1: entryRuleMethodModifier : ruleMethodModifier EOF ;
     public final void entryRuleMethodModifier() throws RecognitionException {
         try {
-            // InternalSpecParser.g:813:1: ( ruleMethodModifier EOF )
-            // InternalSpecParser.g:814:1: ruleMethodModifier EOF
+            // InternalSpecParser.g:643:1: ( ruleMethodModifier EOF )
+            // InternalSpecParser.g:644:1: ruleMethodModifier EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMethodModifierRule()); 
@@ -2281,23 +1777,23 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleMethodModifier"
-    // InternalSpecParser.g:821:1: ruleMethodModifier : ( ( rule__MethodModifier__Alternatives ) ) ;
+    // InternalSpecParser.g:651:1: ruleMethodModifier : ( ( rule__MethodModifier__Alternatives ) ) ;
     public final void ruleMethodModifier() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:825:5: ( ( ( rule__MethodModifier__Alternatives ) ) )
-            // InternalSpecParser.g:826:1: ( ( rule__MethodModifier__Alternatives ) )
+            // InternalSpecParser.g:655:5: ( ( ( rule__MethodModifier__Alternatives ) ) )
+            // InternalSpecParser.g:656:1: ( ( rule__MethodModifier__Alternatives ) )
             {
-            // InternalSpecParser.g:826:1: ( ( rule__MethodModifier__Alternatives ) )
-            // InternalSpecParser.g:827:1: ( rule__MethodModifier__Alternatives )
+            // InternalSpecParser.g:656:1: ( ( rule__MethodModifier__Alternatives ) )
+            // InternalSpecParser.g:657:1: ( rule__MethodModifier__Alternatives )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMethodModifierAccess().getAlternatives()); 
             }
-            // InternalSpecParser.g:828:1: ( rule__MethodModifier__Alternatives )
-            // InternalSpecParser.g:828:2: rule__MethodModifier__Alternatives
+            // InternalSpecParser.g:658:1: ( rule__MethodModifier__Alternatives )
+            // InternalSpecParser.g:658:2: rule__MethodModifier__Alternatives
             {
             pushFollow(FollowSets000.FOLLOW_2);
             rule__MethodModifier__Alternatives();
@@ -2332,11 +1828,11 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleParameter"
-    // InternalSpecParser.g:840:1: entryRuleParameter : ruleParameter EOF ;
+    // InternalSpecParser.g:670:1: entryRuleParameter : ruleParameter EOF ;
     public final void entryRuleParameter() throws RecognitionException {
         try {
-            // InternalSpecParser.g:841:1: ( ruleParameter EOF )
-            // InternalSpecParser.g:842:1: ruleParameter EOF
+            // InternalSpecParser.g:671:1: ( ruleParameter EOF )
+            // InternalSpecParser.g:672:1: ruleParameter EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterRule()); 
@@ -2366,23 +1862,23 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleParameter"
-    // InternalSpecParser.g:849:1: ruleParameter : ( ( rule__Parameter__Group__0 ) ) ;
+    // InternalSpecParser.g:679:1: ruleParameter : ( ( rule__Parameter__Group__0 ) ) ;
     public final void ruleParameter() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:853:5: ( ( ( rule__Parameter__Group__0 ) ) )
-            // InternalSpecParser.g:854:1: ( ( rule__Parameter__Group__0 ) )
+            // InternalSpecParser.g:683:5: ( ( ( rule__Parameter__Group__0 ) ) )
+            // InternalSpecParser.g:684:1: ( ( rule__Parameter__Group__0 ) )
             {
-            // InternalSpecParser.g:854:1: ( ( rule__Parameter__Group__0 ) )
-            // InternalSpecParser.g:855:1: ( rule__Parameter__Group__0 )
+            // InternalSpecParser.g:684:1: ( ( rule__Parameter__Group__0 ) )
+            // InternalSpecParser.g:685:1: ( rule__Parameter__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getGroup()); 
             }
-            // InternalSpecParser.g:856:1: ( rule__Parameter__Group__0 )
-            // InternalSpecParser.g:856:2: rule__Parameter__Group__0
+            // InternalSpecParser.g:686:1: ( rule__Parameter__Group__0 )
+            // InternalSpecParser.g:686:2: rule__Parameter__Group__0
             {
             pushFollow(FollowSets000.FOLLOW_2);
             rule__Parameter__Group__0();
@@ -2414,6 +1910,510 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         return ;
     }
     // $ANTLR end "ruleParameter"
+
+
+    // $ANTLR start "entryRuleRichString"
+    // InternalSpecParser.g:698:1: entryRuleRichString : ruleRichString EOF ;
+    public final void entryRuleRichString() throws RecognitionException {
+        try {
+            // InternalSpecParser.g:699:1: ( ruleRichString EOF )
+            // InternalSpecParser.g:700:1: ruleRichString EOF
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringRule()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_1);
+            ruleRichString();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringRule()); 
+            }
+            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleRichString"
+
+
+    // $ANTLR start "ruleRichString"
+    // InternalSpecParser.g:707:1: ruleRichString : ( ( rule__RichString__Group__0 ) ) ;
+    public final void ruleRichString() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:711:5: ( ( ( rule__RichString__Group__0 ) ) )
+            // InternalSpecParser.g:712:1: ( ( rule__RichString__Group__0 ) )
+            {
+            // InternalSpecParser.g:712:1: ( ( rule__RichString__Group__0 ) )
+            // InternalSpecParser.g:713:1: ( rule__RichString__Group__0 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getGroup()); 
+            }
+            // InternalSpecParser.g:714:1: ( rule__RichString__Group__0 )
+            // InternalSpecParser.g:714:2: rule__RichString__Group__0
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__Group__0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getGroup()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleRichString"
+
+
+    // $ANTLR start "entryRuleRichStringLiteral"
+    // InternalSpecParser.g:726:1: entryRuleRichStringLiteral : ruleRichStringLiteral EOF ;
+    public final void entryRuleRichStringLiteral() throws RecognitionException {
+        try {
+            // InternalSpecParser.g:727:1: ( ruleRichStringLiteral EOF )
+            // InternalSpecParser.g:728:1: ruleRichStringLiteral EOF
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralRule()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_1);
+            ruleRichStringLiteral();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralRule()); 
+            }
+            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleRichStringLiteral"
+
+
+    // $ANTLR start "ruleRichStringLiteral"
+    // InternalSpecParser.g:735:1: ruleRichStringLiteral : ( ( rule__RichStringLiteral__Group__0 ) ) ;
+    public final void ruleRichStringLiteral() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:739:5: ( ( ( rule__RichStringLiteral__Group__0 ) ) )
+            // InternalSpecParser.g:740:1: ( ( rule__RichStringLiteral__Group__0 ) )
+            {
+            // InternalSpecParser.g:740:1: ( ( rule__RichStringLiteral__Group__0 ) )
+            // InternalSpecParser.g:741:1: ( rule__RichStringLiteral__Group__0 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralAccess().getGroup()); 
+            }
+            // InternalSpecParser.g:742:1: ( rule__RichStringLiteral__Group__0 )
+            // InternalSpecParser.g:742:2: rule__RichStringLiteral__Group__0
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteral__Group__0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralAccess().getGroup()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleRichStringLiteral"
+
+
+    // $ANTLR start "entryRuleRichStringLiteralStart"
+    // InternalSpecParser.g:754:1: entryRuleRichStringLiteralStart : ruleRichStringLiteralStart EOF ;
+    public final void entryRuleRichStringLiteralStart() throws RecognitionException {
+        try {
+            // InternalSpecParser.g:755:1: ( ruleRichStringLiteralStart EOF )
+            // InternalSpecParser.g:756:1: ruleRichStringLiteralStart EOF
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralStartRule()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_1);
+            ruleRichStringLiteralStart();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralStartRule()); 
+            }
+            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleRichStringLiteralStart"
+
+
+    // $ANTLR start "ruleRichStringLiteralStart"
+    // InternalSpecParser.g:763:1: ruleRichStringLiteralStart : ( ( rule__RichStringLiteralStart__Group__0 ) ) ;
+    public final void ruleRichStringLiteralStart() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:767:5: ( ( ( rule__RichStringLiteralStart__Group__0 ) ) )
+            // InternalSpecParser.g:768:1: ( ( rule__RichStringLiteralStart__Group__0 ) )
+            {
+            // InternalSpecParser.g:768:1: ( ( rule__RichStringLiteralStart__Group__0 ) )
+            // InternalSpecParser.g:769:1: ( rule__RichStringLiteralStart__Group__0 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralStartAccess().getGroup()); 
+            }
+            // InternalSpecParser.g:770:1: ( rule__RichStringLiteralStart__Group__0 )
+            // InternalSpecParser.g:770:2: rule__RichStringLiteralStart__Group__0
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralStart__Group__0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralStartAccess().getGroup()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleRichStringLiteralStart"
+
+
+    // $ANTLR start "entryRuleRichStringLiteralInbetween"
+    // InternalSpecParser.g:782:1: entryRuleRichStringLiteralInbetween : ruleRichStringLiteralInbetween EOF ;
+    public final void entryRuleRichStringLiteralInbetween() throws RecognitionException {
+        try {
+            // InternalSpecParser.g:783:1: ( ruleRichStringLiteralInbetween EOF )
+            // InternalSpecParser.g:784:1: ruleRichStringLiteralInbetween EOF
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralInbetweenRule()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_1);
+            ruleRichStringLiteralInbetween();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralInbetweenRule()); 
+            }
+            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleRichStringLiteralInbetween"
+
+
+    // $ANTLR start "ruleRichStringLiteralInbetween"
+    // InternalSpecParser.g:791:1: ruleRichStringLiteralInbetween : ( ( rule__RichStringLiteralInbetween__Group__0 ) ) ;
+    public final void ruleRichStringLiteralInbetween() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:795:5: ( ( ( rule__RichStringLiteralInbetween__Group__0 ) ) )
+            // InternalSpecParser.g:796:1: ( ( rule__RichStringLiteralInbetween__Group__0 ) )
+            {
+            // InternalSpecParser.g:796:1: ( ( rule__RichStringLiteralInbetween__Group__0 ) )
+            // InternalSpecParser.g:797:1: ( rule__RichStringLiteralInbetween__Group__0 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralInbetweenAccess().getGroup()); 
+            }
+            // InternalSpecParser.g:798:1: ( rule__RichStringLiteralInbetween__Group__0 )
+            // InternalSpecParser.g:798:2: rule__RichStringLiteralInbetween__Group__0
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralInbetween__Group__0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralInbetweenAccess().getGroup()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleRichStringLiteralInbetween"
+
+
+    // $ANTLR start "entryRuleRichStringLiteralEnd"
+    // InternalSpecParser.g:810:1: entryRuleRichStringLiteralEnd : ruleRichStringLiteralEnd EOF ;
+    public final void entryRuleRichStringLiteralEnd() throws RecognitionException {
+        try {
+            // InternalSpecParser.g:811:1: ( ruleRichStringLiteralEnd EOF )
+            // InternalSpecParser.g:812:1: ruleRichStringLiteralEnd EOF
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralEndRule()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_1);
+            ruleRichStringLiteralEnd();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralEndRule()); 
+            }
+            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleRichStringLiteralEnd"
+
+
+    // $ANTLR start "ruleRichStringLiteralEnd"
+    // InternalSpecParser.g:819:1: ruleRichStringLiteralEnd : ( ( rule__RichStringLiteralEnd__Group__0 ) ) ;
+    public final void ruleRichStringLiteralEnd() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:823:5: ( ( ( rule__RichStringLiteralEnd__Group__0 ) ) )
+            // InternalSpecParser.g:824:1: ( ( rule__RichStringLiteralEnd__Group__0 ) )
+            {
+            // InternalSpecParser.g:824:1: ( ( rule__RichStringLiteralEnd__Group__0 ) )
+            // InternalSpecParser.g:825:1: ( rule__RichStringLiteralEnd__Group__0 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralEndAccess().getGroup()); 
+            }
+            // InternalSpecParser.g:826:1: ( rule__RichStringLiteralEnd__Group__0 )
+            // InternalSpecParser.g:826:2: rule__RichStringLiteralEnd__Group__0
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralEnd__Group__0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralEndAccess().getGroup()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleRichStringLiteralEnd"
+
+
+    // $ANTLR start "entryRuleRichStringPart"
+    // InternalSpecParser.g:840:1: entryRuleRichStringPart : ruleRichStringPart EOF ;
+    public final void entryRuleRichStringPart() throws RecognitionException {
+        try {
+            // InternalSpecParser.g:841:1: ( ruleRichStringPart EOF )
+            // InternalSpecParser.g:842:1: ruleRichStringPart EOF
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringPartRule()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_1);
+            ruleRichStringPart();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringPartRule()); 
+            }
+            match(input,EOF,FollowSets000.FOLLOW_2); if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleRichStringPart"
+
+
+    // $ANTLR start "ruleRichStringPart"
+    // InternalSpecParser.g:849:1: ruleRichStringPart : ( ruleXExpressionOrVarDeclaration ) ;
+    public final void ruleRichStringPart() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:853:5: ( ( ruleXExpressionOrVarDeclaration ) )
+            // InternalSpecParser.g:854:1: ( ruleXExpressionOrVarDeclaration )
+            {
+            // InternalSpecParser.g:854:1: ( ruleXExpressionOrVarDeclaration )
+            // InternalSpecParser.g:855:1: ruleXExpressionOrVarDeclaration
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringPartAccess().getXExpressionOrVarDeclarationParserRuleCall()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_2);
+            ruleXExpressionOrVarDeclaration();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringPartAccess().getXExpressionOrVarDeclarationParserRuleCall()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleRichStringPart"
 
 
     // $ANTLR start "entryRuleXAnnotation"
@@ -11154,42 +11154,550 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__XStringLiteral__Alternatives"
 
 
-    // $ANTLR start "rule__RichString__Alternatives_1"
-    // InternalSpecParser.g:3584:1: rule__RichString__Alternatives_1 : ( ( ( rule__RichString__ExpressionsAssignment_1_0 ) ) | ( ( rule__RichString__Group_1_1__0 ) ) );
-    public final void rule__RichString__Alternatives_1() throws RecognitionException {
+    // $ANTLR start "rule__CommonModifier__Alternatives"
+    // InternalSpecParser.g:3584:1: rule__CommonModifier__Alternatives : ( ( Public ) | ( Private ) | ( Protected ) | ( Package ) | ( Abstract ) | ( Static ) | ( Dispatch ) | ( Final ) | ( Strictfp ) | ( Native ) | ( Volatile ) | ( Synchronized ) | ( Transient ) );
+    public final void rule__CommonModifier__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:3588:1: ( ( ( rule__RichString__ExpressionsAssignment_1_0 ) ) | ( ( rule__RichString__Group_1_1__0 ) ) )
-            int alt17=2;
-            int LA17_0 = input.LA(1);
-
-            if ( (LA17_0==RULE_RICH_TEXT) ) {
+            // InternalSpecParser.g:3588:1: ( ( Public ) | ( Private ) | ( Protected ) | ( Package ) | ( Abstract ) | ( Static ) | ( Dispatch ) | ( Final ) | ( Strictfp ) | ( Native ) | ( Volatile ) | ( Synchronized ) | ( Transient ) )
+            int alt17=13;
+            switch ( input.LA(1) ) {
+            case Public:
+                {
                 alt17=1;
-            }
-            else if ( (LA17_0==RULE_RICH_TEXT_START) ) {
+                }
+                break;
+            case Private:
+                {
                 alt17=2;
-            }
-            else {
+                }
+                break;
+            case Protected:
+                {
+                alt17=3;
+                }
+                break;
+            case Package:
+                {
+                alt17=4;
+                }
+                break;
+            case Abstract:
+                {
+                alt17=5;
+                }
+                break;
+            case Static:
+                {
+                alt17=6;
+                }
+                break;
+            case Dispatch:
+                {
+                alt17=7;
+                }
+                break;
+            case Final:
+                {
+                alt17=8;
+                }
+                break;
+            case Strictfp:
+                {
+                alt17=9;
+                }
+                break;
+            case Native:
+                {
+                alt17=10;
+                }
+                break;
+            case Volatile:
+                {
+                alt17=11;
+                }
+                break;
+            case Synchronized:
+                {
+                alt17=12;
+                }
+                break;
+            case Transient:
+                {
+                alt17=13;
+                }
+                break;
+            default:
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
                     new NoViableAltException("", 17, 0, input);
 
                 throw nvae;
             }
+
             switch (alt17) {
                 case 1 :
-                    // InternalSpecParser.g:3589:1: ( ( rule__RichString__ExpressionsAssignment_1_0 ) )
+                    // InternalSpecParser.g:3589:1: ( Public )
                     {
-                    // InternalSpecParser.g:3589:1: ( ( rule__RichString__ExpressionsAssignment_1_0 ) )
-                    // InternalSpecParser.g:3590:1: ( rule__RichString__ExpressionsAssignment_1_0 )
+                    // InternalSpecParser.g:3589:1: ( Public )
+                    // InternalSpecParser.g:3590:1: Public
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getPublicKeyword_0()); 
+                    }
+                    match(input,Public,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getPublicKeyword_0()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalSpecParser.g:3597:6: ( Private )
+                    {
+                    // InternalSpecParser.g:3597:6: ( Private )
+                    // InternalSpecParser.g:3598:1: Private
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getPrivateKeyword_1()); 
+                    }
+                    match(input,Private,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getPrivateKeyword_1()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // InternalSpecParser.g:3605:6: ( Protected )
+                    {
+                    // InternalSpecParser.g:3605:6: ( Protected )
+                    // InternalSpecParser.g:3606:1: Protected
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getProtectedKeyword_2()); 
+                    }
+                    match(input,Protected,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getProtectedKeyword_2()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 4 :
+                    // InternalSpecParser.g:3613:6: ( Package )
+                    {
+                    // InternalSpecParser.g:3613:6: ( Package )
+                    // InternalSpecParser.g:3614:1: Package
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getPackageKeyword_3()); 
+                    }
+                    match(input,Package,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getPackageKeyword_3()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 5 :
+                    // InternalSpecParser.g:3621:6: ( Abstract )
+                    {
+                    // InternalSpecParser.g:3621:6: ( Abstract )
+                    // InternalSpecParser.g:3622:1: Abstract
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getAbstractKeyword_4()); 
+                    }
+                    match(input,Abstract,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getAbstractKeyword_4()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 6 :
+                    // InternalSpecParser.g:3629:6: ( Static )
+                    {
+                    // InternalSpecParser.g:3629:6: ( Static )
+                    // InternalSpecParser.g:3630:1: Static
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getStaticKeyword_5()); 
+                    }
+                    match(input,Static,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getStaticKeyword_5()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 7 :
+                    // InternalSpecParser.g:3637:6: ( Dispatch )
+                    {
+                    // InternalSpecParser.g:3637:6: ( Dispatch )
+                    // InternalSpecParser.g:3638:1: Dispatch
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getDispatchKeyword_6()); 
+                    }
+                    match(input,Dispatch,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getDispatchKeyword_6()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 8 :
+                    // InternalSpecParser.g:3645:6: ( Final )
+                    {
+                    // InternalSpecParser.g:3645:6: ( Final )
+                    // InternalSpecParser.g:3646:1: Final
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getFinalKeyword_7()); 
+                    }
+                    match(input,Final,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getFinalKeyword_7()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 9 :
+                    // InternalSpecParser.g:3653:6: ( Strictfp )
+                    {
+                    // InternalSpecParser.g:3653:6: ( Strictfp )
+                    // InternalSpecParser.g:3654:1: Strictfp
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getStrictfpKeyword_8()); 
+                    }
+                    match(input,Strictfp,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getStrictfpKeyword_8()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 10 :
+                    // InternalSpecParser.g:3661:6: ( Native )
+                    {
+                    // InternalSpecParser.g:3661:6: ( Native )
+                    // InternalSpecParser.g:3662:1: Native
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getNativeKeyword_9()); 
+                    }
+                    match(input,Native,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getNativeKeyword_9()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 11 :
+                    // InternalSpecParser.g:3669:6: ( Volatile )
+                    {
+                    // InternalSpecParser.g:3669:6: ( Volatile )
+                    // InternalSpecParser.g:3670:1: Volatile
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getVolatileKeyword_10()); 
+                    }
+                    match(input,Volatile,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getVolatileKeyword_10()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 12 :
+                    // InternalSpecParser.g:3677:6: ( Synchronized )
+                    {
+                    // InternalSpecParser.g:3677:6: ( Synchronized )
+                    // InternalSpecParser.g:3678:1: Synchronized
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getSynchronizedKeyword_11()); 
+                    }
+                    match(input,Synchronized,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getSynchronizedKeyword_11()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 13 :
+                    // InternalSpecParser.g:3685:6: ( Transient )
+                    {
+                    // InternalSpecParser.g:3685:6: ( Transient )
+                    // InternalSpecParser.g:3686:1: Transient
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getCommonModifierAccess().getTransientKeyword_12()); 
+                    }
+                    match(input,Transient,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getCommonModifierAccess().getTransientKeyword_12()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__CommonModifier__Alternatives"
+
+
+    // $ANTLR start "rule__FieldModifier__Alternatives"
+    // InternalSpecParser.g:3698:1: rule__FieldModifier__Alternatives : ( ( Val ) | ( Var ) );
+    public final void rule__FieldModifier__Alternatives() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:3702:1: ( ( Val ) | ( Var ) )
+            int alt18=2;
+            int LA18_0 = input.LA(1);
+
+            if ( (LA18_0==Val) ) {
+                alt18=1;
+            }
+            else if ( (LA18_0==Var) ) {
+                alt18=2;
+            }
+            else {
+                if (state.backtracking>0) {state.failed=true; return ;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 18, 0, input);
+
+                throw nvae;
+            }
+            switch (alt18) {
+                case 1 :
+                    // InternalSpecParser.g:3703:1: ( Val )
+                    {
+                    // InternalSpecParser.g:3703:1: ( Val )
+                    // InternalSpecParser.g:3704:1: Val
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getFieldModifierAccess().getValKeyword_0()); 
+                    }
+                    match(input,Val,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getFieldModifierAccess().getValKeyword_0()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalSpecParser.g:3711:6: ( Var )
+                    {
+                    // InternalSpecParser.g:3711:6: ( Var )
+                    // InternalSpecParser.g:3712:1: Var
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getFieldModifierAccess().getVarKeyword_1()); 
+                    }
+                    match(input,Var,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getFieldModifierAccess().getVarKeyword_1()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FieldModifier__Alternatives"
+
+
+    // $ANTLR start "rule__MethodModifier__Alternatives"
+    // InternalSpecParser.g:3724:1: rule__MethodModifier__Alternatives : ( ( Def ) | ( Override ) );
+    public final void rule__MethodModifier__Alternatives() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:3728:1: ( ( Def ) | ( Override ) )
+            int alt19=2;
+            int LA19_0 = input.LA(1);
+
+            if ( (LA19_0==Def) ) {
+                alt19=1;
+            }
+            else if ( (LA19_0==Override) ) {
+                alt19=2;
+            }
+            else {
+                if (state.backtracking>0) {state.failed=true; return ;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 19, 0, input);
+
+                throw nvae;
+            }
+            switch (alt19) {
+                case 1 :
+                    // InternalSpecParser.g:3729:1: ( Def )
+                    {
+                    // InternalSpecParser.g:3729:1: ( Def )
+                    // InternalSpecParser.g:3730:1: Def
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getMethodModifierAccess().getDefKeyword_0()); 
+                    }
+                    match(input,Def,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getMethodModifierAccess().getDefKeyword_0()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalSpecParser.g:3737:6: ( Override )
+                    {
+                    // InternalSpecParser.g:3737:6: ( Override )
+                    // InternalSpecParser.g:3738:1: Override
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getMethodModifierAccess().getOverrideKeyword_1()); 
+                    }
+                    match(input,Override,FollowSets000.FOLLOW_2); if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getMethodModifierAccess().getOverrideKeyword_1()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__MethodModifier__Alternatives"
+
+
+    // $ANTLR start "rule__RichString__Alternatives_1"
+    // InternalSpecParser.g:3750:1: rule__RichString__Alternatives_1 : ( ( ( rule__RichString__ExpressionsAssignment_1_0 ) ) | ( ( rule__RichString__Group_1_1__0 ) ) );
+    public final void rule__RichString__Alternatives_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:3754:1: ( ( ( rule__RichString__ExpressionsAssignment_1_0 ) ) | ( ( rule__RichString__Group_1_1__0 ) ) )
+            int alt20=2;
+            int LA20_0 = input.LA(1);
+
+            if ( (LA20_0==RULE_RICH_TEXT) ) {
+                alt20=1;
+            }
+            else if ( (LA20_0==RULE_RICH_TEXT_START) ) {
+                alt20=2;
+            }
+            else {
+                if (state.backtracking>0) {state.failed=true; return ;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 20, 0, input);
+
+                throw nvae;
+            }
+            switch (alt20) {
+                case 1 :
+                    // InternalSpecParser.g:3755:1: ( ( rule__RichString__ExpressionsAssignment_1_0 ) )
+                    {
+                    // InternalSpecParser.g:3755:1: ( ( rule__RichString__ExpressionsAssignment_1_0 ) )
+                    // InternalSpecParser.g:3756:1: ( rule__RichString__ExpressionsAssignment_1_0 )
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_0()); 
                     }
-                    // InternalSpecParser.g:3591:1: ( rule__RichString__ExpressionsAssignment_1_0 )
-                    // InternalSpecParser.g:3591:2: rule__RichString__ExpressionsAssignment_1_0
+                    // InternalSpecParser.g:3757:1: ( rule__RichString__ExpressionsAssignment_1_0 )
+                    // InternalSpecParser.g:3757:2: rule__RichString__ExpressionsAssignment_1_0
                     {
                     pushFollow(FollowSets000.FOLLOW_2);
                     rule__RichString__ExpressionsAssignment_1_0();
@@ -11209,16 +11717,16 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalSpecParser.g:3595:6: ( ( rule__RichString__Group_1_1__0 ) )
+                    // InternalSpecParser.g:3761:6: ( ( rule__RichString__Group_1_1__0 ) )
                     {
-                    // InternalSpecParser.g:3595:6: ( ( rule__RichString__Group_1_1__0 ) )
-                    // InternalSpecParser.g:3596:1: ( rule__RichString__Group_1_1__0 )
+                    // InternalSpecParser.g:3761:6: ( ( rule__RichString__Group_1_1__0 ) )
+                    // InternalSpecParser.g:3762:1: ( rule__RichString__Group_1_1__0 )
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getRichStringAccess().getGroup_1_1()); 
                     }
-                    // InternalSpecParser.g:3597:1: ( rule__RichString__Group_1_1__0 )
-                    // InternalSpecParser.g:3597:2: rule__RichString__Group_1_1__0
+                    // InternalSpecParser.g:3763:1: ( rule__RichString__Group_1_1__0 )
+                    // InternalSpecParser.g:3763:2: rule__RichString__Group_1_1__0
                     {
                     pushFollow(FollowSets000.FOLLOW_2);
                     rule__RichString__Group_1_1__0();
@@ -11252,514 +11760,6 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         return ;
     }
     // $ANTLR end "rule__RichString__Alternatives_1"
-
-
-    // $ANTLR start "rule__CommonModifier__Alternatives"
-    // InternalSpecParser.g:3606:1: rule__CommonModifier__Alternatives : ( ( Public ) | ( Private ) | ( Protected ) | ( Package ) | ( Abstract ) | ( Static ) | ( Dispatch ) | ( Final ) | ( Strictfp ) | ( Native ) | ( Volatile ) | ( Synchronized ) | ( Transient ) );
-    public final void rule__CommonModifier__Alternatives() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:3610:1: ( ( Public ) | ( Private ) | ( Protected ) | ( Package ) | ( Abstract ) | ( Static ) | ( Dispatch ) | ( Final ) | ( Strictfp ) | ( Native ) | ( Volatile ) | ( Synchronized ) | ( Transient ) )
-            int alt18=13;
-            switch ( input.LA(1) ) {
-            case Public:
-                {
-                alt18=1;
-                }
-                break;
-            case Private:
-                {
-                alt18=2;
-                }
-                break;
-            case Protected:
-                {
-                alt18=3;
-                }
-                break;
-            case Package:
-                {
-                alt18=4;
-                }
-                break;
-            case Abstract:
-                {
-                alt18=5;
-                }
-                break;
-            case Static:
-                {
-                alt18=6;
-                }
-                break;
-            case Dispatch:
-                {
-                alt18=7;
-                }
-                break;
-            case Final:
-                {
-                alt18=8;
-                }
-                break;
-            case Strictfp:
-                {
-                alt18=9;
-                }
-                break;
-            case Native:
-                {
-                alt18=10;
-                }
-                break;
-            case Volatile:
-                {
-                alt18=11;
-                }
-                break;
-            case Synchronized:
-                {
-                alt18=12;
-                }
-                break;
-            case Transient:
-                {
-                alt18=13;
-                }
-                break;
-            default:
-                if (state.backtracking>0) {state.failed=true; return ;}
-                NoViableAltException nvae =
-                    new NoViableAltException("", 18, 0, input);
-
-                throw nvae;
-            }
-
-            switch (alt18) {
-                case 1 :
-                    // InternalSpecParser.g:3611:1: ( Public )
-                    {
-                    // InternalSpecParser.g:3611:1: ( Public )
-                    // InternalSpecParser.g:3612:1: Public
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getPublicKeyword_0()); 
-                    }
-                    match(input,Public,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getPublicKeyword_0()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // InternalSpecParser.g:3619:6: ( Private )
-                    {
-                    // InternalSpecParser.g:3619:6: ( Private )
-                    // InternalSpecParser.g:3620:1: Private
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getPrivateKeyword_1()); 
-                    }
-                    match(input,Private,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getPrivateKeyword_1()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 3 :
-                    // InternalSpecParser.g:3627:6: ( Protected )
-                    {
-                    // InternalSpecParser.g:3627:6: ( Protected )
-                    // InternalSpecParser.g:3628:1: Protected
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getProtectedKeyword_2()); 
-                    }
-                    match(input,Protected,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getProtectedKeyword_2()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 4 :
-                    // InternalSpecParser.g:3635:6: ( Package )
-                    {
-                    // InternalSpecParser.g:3635:6: ( Package )
-                    // InternalSpecParser.g:3636:1: Package
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getPackageKeyword_3()); 
-                    }
-                    match(input,Package,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getPackageKeyword_3()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 5 :
-                    // InternalSpecParser.g:3643:6: ( Abstract )
-                    {
-                    // InternalSpecParser.g:3643:6: ( Abstract )
-                    // InternalSpecParser.g:3644:1: Abstract
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getAbstractKeyword_4()); 
-                    }
-                    match(input,Abstract,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getAbstractKeyword_4()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 6 :
-                    // InternalSpecParser.g:3651:6: ( Static )
-                    {
-                    // InternalSpecParser.g:3651:6: ( Static )
-                    // InternalSpecParser.g:3652:1: Static
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getStaticKeyword_5()); 
-                    }
-                    match(input,Static,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getStaticKeyword_5()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 7 :
-                    // InternalSpecParser.g:3659:6: ( Dispatch )
-                    {
-                    // InternalSpecParser.g:3659:6: ( Dispatch )
-                    // InternalSpecParser.g:3660:1: Dispatch
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getDispatchKeyword_6()); 
-                    }
-                    match(input,Dispatch,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getDispatchKeyword_6()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 8 :
-                    // InternalSpecParser.g:3667:6: ( Final )
-                    {
-                    // InternalSpecParser.g:3667:6: ( Final )
-                    // InternalSpecParser.g:3668:1: Final
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getFinalKeyword_7()); 
-                    }
-                    match(input,Final,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getFinalKeyword_7()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 9 :
-                    // InternalSpecParser.g:3675:6: ( Strictfp )
-                    {
-                    // InternalSpecParser.g:3675:6: ( Strictfp )
-                    // InternalSpecParser.g:3676:1: Strictfp
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getStrictfpKeyword_8()); 
-                    }
-                    match(input,Strictfp,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getStrictfpKeyword_8()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 10 :
-                    // InternalSpecParser.g:3683:6: ( Native )
-                    {
-                    // InternalSpecParser.g:3683:6: ( Native )
-                    // InternalSpecParser.g:3684:1: Native
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getNativeKeyword_9()); 
-                    }
-                    match(input,Native,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getNativeKeyword_9()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 11 :
-                    // InternalSpecParser.g:3691:6: ( Volatile )
-                    {
-                    // InternalSpecParser.g:3691:6: ( Volatile )
-                    // InternalSpecParser.g:3692:1: Volatile
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getVolatileKeyword_10()); 
-                    }
-                    match(input,Volatile,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getVolatileKeyword_10()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 12 :
-                    // InternalSpecParser.g:3699:6: ( Synchronized )
-                    {
-                    // InternalSpecParser.g:3699:6: ( Synchronized )
-                    // InternalSpecParser.g:3700:1: Synchronized
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getSynchronizedKeyword_11()); 
-                    }
-                    match(input,Synchronized,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getSynchronizedKeyword_11()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 13 :
-                    // InternalSpecParser.g:3707:6: ( Transient )
-                    {
-                    // InternalSpecParser.g:3707:6: ( Transient )
-                    // InternalSpecParser.g:3708:1: Transient
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCommonModifierAccess().getTransientKeyword_12()); 
-                    }
-                    match(input,Transient,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCommonModifierAccess().getTransientKeyword_12()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__CommonModifier__Alternatives"
-
-
-    // $ANTLR start "rule__FieldModifier__Alternatives"
-    // InternalSpecParser.g:3720:1: rule__FieldModifier__Alternatives : ( ( Val ) | ( Var ) );
-    public final void rule__FieldModifier__Alternatives() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:3724:1: ( ( Val ) | ( Var ) )
-            int alt19=2;
-            int LA19_0 = input.LA(1);
-
-            if ( (LA19_0==Val) ) {
-                alt19=1;
-            }
-            else if ( (LA19_0==Var) ) {
-                alt19=2;
-            }
-            else {
-                if (state.backtracking>0) {state.failed=true; return ;}
-                NoViableAltException nvae =
-                    new NoViableAltException("", 19, 0, input);
-
-                throw nvae;
-            }
-            switch (alt19) {
-                case 1 :
-                    // InternalSpecParser.g:3725:1: ( Val )
-                    {
-                    // InternalSpecParser.g:3725:1: ( Val )
-                    // InternalSpecParser.g:3726:1: Val
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFieldModifierAccess().getValKeyword_0()); 
-                    }
-                    match(input,Val,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFieldModifierAccess().getValKeyword_0()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // InternalSpecParser.g:3733:6: ( Var )
-                    {
-                    // InternalSpecParser.g:3733:6: ( Var )
-                    // InternalSpecParser.g:3734:1: Var
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFieldModifierAccess().getVarKeyword_1()); 
-                    }
-                    match(input,Var,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFieldModifierAccess().getVarKeyword_1()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FieldModifier__Alternatives"
-
-
-    // $ANTLR start "rule__MethodModifier__Alternatives"
-    // InternalSpecParser.g:3746:1: rule__MethodModifier__Alternatives : ( ( Def ) | ( Override ) );
-    public final void rule__MethodModifier__Alternatives() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:3750:1: ( ( Def ) | ( Override ) )
-            int alt20=2;
-            int LA20_0 = input.LA(1);
-
-            if ( (LA20_0==Def) ) {
-                alt20=1;
-            }
-            else if ( (LA20_0==Override) ) {
-                alt20=2;
-            }
-            else {
-                if (state.backtracking>0) {state.failed=true; return ;}
-                NoViableAltException nvae =
-                    new NoViableAltException("", 20, 0, input);
-
-                throw nvae;
-            }
-            switch (alt20) {
-                case 1 :
-                    // InternalSpecParser.g:3751:1: ( Def )
-                    {
-                    // InternalSpecParser.g:3751:1: ( Def )
-                    // InternalSpecParser.g:3752:1: Def
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getMethodModifierAccess().getDefKeyword_0()); 
-                    }
-                    match(input,Def,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getMethodModifierAccess().getDefKeyword_0()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // InternalSpecParser.g:3759:6: ( Override )
-                    {
-                    // InternalSpecParser.g:3759:6: ( Override )
-                    // InternalSpecParser.g:3760:1: Override
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getMethodModifierAccess().getOverrideKeyword_1()); 
-                    }
-                    match(input,Override,FollowSets000.FOLLOW_2); if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getMethodModifierAccess().getOverrideKeyword_1()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__MethodModifier__Alternatives"
 
 
     // $ANTLR start "rule__XAnnotation__Alternatives_3_1"
@@ -12116,7 +12116,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                 {
                 int LA25_1 = input.LA(2);
 
-                if ( (LA25_1==EOF||(LA25_1>=Synchronized && LA25_1<=Case)||(LA25_1>=Else && LA25_1<=ExclamationMarkEqualsSignEqualsSign)||(LA25_1>=FullStopFullStopLessThanSign && LA25_1<=EqualsSignEqualsSignEqualsSign)||(LA25_1>=Def && LA25_1<=New)||(LA25_1>=Try && LA25_1<=PercentSign)||(LA25_1>=LeftParenthesis && LA25_1<=LessThanSign)||LA25_1==GreaterThanSign||(LA25_1>=CommercialAt && LA25_1<=RightCurlyBracket)||LA25_1==RULE_ID||(LA25_1>=RULE_RICH_TEXT && LA25_1<=RULE_RICH_TEXT_INBETWEEN)||(LA25_1>=RULE_HEX && LA25_1<=RULE_STRING)) ) {
+                if ( (LA25_1==EOF||(LA25_1>=Synchronized && LA25_1<=Case)||(LA25_1>=Else && LA25_1<=ExclamationMarkEqualsSignEqualsSign)||(LA25_1>=FullStopFullStopLessThanSign && LA25_1<=EqualsSignEqualsSignEqualsSign)||(LA25_1>=Def && LA25_1<=New)||(LA25_1>=Try && LA25_1<=PercentSign)||(LA25_1>=LeftParenthesis && LA25_1<=LessThanSign)||LA25_1==GreaterThanSign||(LA25_1>=CommercialAt && LA25_1<=RightCurlyBracket)||LA25_1==RULE_ID||(LA25_1>=RULE_RICH_TEXT && LA25_1<=RULE_STRING)) ) {
                     alt25=2;
                 }
                 else if ( (LA25_1==EqualsSign) ) {
@@ -12138,7 +12138,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                 if ( (LA25_2==EqualsSign) ) {
                     alt25=1;
                 }
-                else if ( (LA25_2==EOF||(LA25_2>=Synchronized && LA25_2<=Case)||(LA25_2>=Else && LA25_2<=ExclamationMarkEqualsSignEqualsSign)||(LA25_2>=FullStopFullStopLessThanSign && LA25_2<=EqualsSignEqualsSignEqualsSign)||(LA25_2>=Def && LA25_2<=New)||(LA25_2>=Try && LA25_2<=PercentSign)||(LA25_2>=LeftParenthesis && LA25_2<=LessThanSign)||LA25_2==GreaterThanSign||(LA25_2>=CommercialAt && LA25_2<=RightCurlyBracket)||LA25_2==RULE_ID||(LA25_2>=RULE_RICH_TEXT && LA25_2<=RULE_RICH_TEXT_INBETWEEN)||(LA25_2>=RULE_HEX && LA25_2<=RULE_STRING)) ) {
+                else if ( (LA25_2==EOF||(LA25_2>=Synchronized && LA25_2<=Case)||(LA25_2>=Else && LA25_2<=ExclamationMarkEqualsSignEqualsSign)||(LA25_2>=FullStopFullStopLessThanSign && LA25_2<=EqualsSignEqualsSignEqualsSign)||(LA25_2>=Def && LA25_2<=New)||(LA25_2>=Try && LA25_2<=PercentSign)||(LA25_2>=LeftParenthesis && LA25_2<=LessThanSign)||LA25_2==GreaterThanSign||(LA25_2>=CommercialAt && LA25_2<=RightCurlyBracket)||LA25_2==RULE_ID||(LA25_2>=RULE_RICH_TEXT && LA25_2<=RULE_STRING)) ) {
                     alt25=2;
                 }
                 else {
@@ -12157,7 +12157,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                 if ( (LA25_3==EqualsSign) ) {
                     alt25=1;
                 }
-                else if ( (LA25_3==EOF||(LA25_3>=Synchronized && LA25_3<=Case)||(LA25_3>=Else && LA25_3<=ExclamationMarkEqualsSignEqualsSign)||(LA25_3>=FullStopFullStopLessThanSign && LA25_3<=EqualsSignEqualsSignEqualsSign)||(LA25_3>=Def && LA25_3<=New)||(LA25_3>=Try && LA25_3<=PercentSign)||(LA25_3>=LeftParenthesis && LA25_3<=LessThanSign)||LA25_3==GreaterThanSign||(LA25_3>=CommercialAt && LA25_3<=RightCurlyBracket)||LA25_3==RULE_ID||(LA25_3>=RULE_RICH_TEXT && LA25_3<=RULE_RICH_TEXT_INBETWEEN)||(LA25_3>=RULE_HEX && LA25_3<=RULE_STRING)) ) {
+                else if ( (LA25_3==EOF||(LA25_3>=Synchronized && LA25_3<=Case)||(LA25_3>=Else && LA25_3<=ExclamationMarkEqualsSignEqualsSign)||(LA25_3>=FullStopFullStopLessThanSign && LA25_3<=EqualsSignEqualsSignEqualsSign)||(LA25_3>=Def && LA25_3<=New)||(LA25_3>=Try && LA25_3<=PercentSign)||(LA25_3>=LeftParenthesis && LA25_3<=LessThanSign)||LA25_3==GreaterThanSign||(LA25_3>=CommercialAt && LA25_3<=RightCurlyBracket)||LA25_3==RULE_ID||(LA25_3>=RULE_RICH_TEXT && LA25_3<=RULE_STRING)) ) {
                     alt25=2;
                 }
                 else {
@@ -12173,7 +12173,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                 {
                 int LA25_4 = input.LA(2);
 
-                if ( (LA25_4==EOF||(LA25_4>=Synchronized && LA25_4<=Case)||(LA25_4>=Else && LA25_4<=ExclamationMarkEqualsSignEqualsSign)||(LA25_4>=FullStopFullStopLessThanSign && LA25_4<=EqualsSignEqualsSignEqualsSign)||(LA25_4>=Def && LA25_4<=New)||(LA25_4>=Try && LA25_4<=PercentSign)||(LA25_4>=LeftParenthesis && LA25_4<=LessThanSign)||LA25_4==GreaterThanSign||(LA25_4>=CommercialAt && LA25_4<=RightCurlyBracket)||LA25_4==RULE_ID||(LA25_4>=RULE_RICH_TEXT && LA25_4<=RULE_RICH_TEXT_INBETWEEN)||(LA25_4>=RULE_HEX && LA25_4<=RULE_STRING)) ) {
+                if ( (LA25_4==EOF||(LA25_4>=Synchronized && LA25_4<=Case)||(LA25_4>=Else && LA25_4<=ExclamationMarkEqualsSignEqualsSign)||(LA25_4>=FullStopFullStopLessThanSign && LA25_4<=EqualsSignEqualsSignEqualsSign)||(LA25_4>=Def && LA25_4<=New)||(LA25_4>=Try && LA25_4<=PercentSign)||(LA25_4>=LeftParenthesis && LA25_4<=LessThanSign)||LA25_4==GreaterThanSign||(LA25_4>=CommercialAt && LA25_4<=RightCurlyBracket)||LA25_4==RULE_ID||(LA25_4>=RULE_RICH_TEXT && LA25_4<=RULE_STRING)) ) {
                     alt25=2;
                 }
                 else if ( (LA25_4==EqualsSign) ) {
@@ -12195,7 +12195,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                 if ( (LA25_5==EqualsSign) ) {
                     alt25=1;
                 }
-                else if ( (LA25_5==EOF||(LA25_5>=Synchronized && LA25_5<=Case)||(LA25_5>=Else && LA25_5<=ExclamationMarkEqualsSignEqualsSign)||(LA25_5>=FullStopFullStopLessThanSign && LA25_5<=EqualsSignEqualsSignEqualsSign)||(LA25_5>=Def && LA25_5<=New)||(LA25_5>=Try && LA25_5<=PercentSign)||(LA25_5>=LeftParenthesis && LA25_5<=LessThanSign)||LA25_5==GreaterThanSign||(LA25_5>=CommercialAt && LA25_5<=RightCurlyBracket)||LA25_5==RULE_ID||(LA25_5>=RULE_RICH_TEXT && LA25_5<=RULE_RICH_TEXT_INBETWEEN)||(LA25_5>=RULE_HEX && LA25_5<=RULE_STRING)) ) {
+                else if ( (LA25_5==EOF||(LA25_5>=Synchronized && LA25_5<=Case)||(LA25_5>=Else && LA25_5<=ExclamationMarkEqualsSignEqualsSign)||(LA25_5>=FullStopFullStopLessThanSign && LA25_5<=EqualsSignEqualsSignEqualsSign)||(LA25_5>=Def && LA25_5<=New)||(LA25_5>=Try && LA25_5<=PercentSign)||(LA25_5>=LeftParenthesis && LA25_5<=LessThanSign)||LA25_5==GreaterThanSign||(LA25_5>=CommercialAt && LA25_5<=RightCurlyBracket)||LA25_5==RULE_ID||(LA25_5>=RULE_RICH_TEXT && LA25_5<=RULE_STRING)) ) {
                     alt25=2;
                 }
                 else {
@@ -32209,1394 +32209,15 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__SimpleStringLiteral__Group__1__Impl"
 
 
-    // $ANTLR start "rule__RichString__Group__0"
-    // InternalSpecParser.g:10577:1: rule__RichString__Group__0 : rule__RichString__Group__0__Impl rule__RichString__Group__1 ;
-    public final void rule__RichString__Group__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10581:1: ( rule__RichString__Group__0__Impl rule__RichString__Group__1 )
-            // InternalSpecParser.g:10582:2: rule__RichString__Group__0__Impl rule__RichString__Group__1
-            {
-            pushFollow(FollowSets000.FOLLOW_59);
-            rule__RichString__Group__0__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__Group__1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group__0"
-
-
-    // $ANTLR start "rule__RichString__Group__0__Impl"
-    // InternalSpecParser.g:10589:1: rule__RichString__Group__0__Impl : ( () ) ;
-    public final void rule__RichString__Group__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10593:1: ( ( () ) )
-            // InternalSpecParser.g:10594:1: ( () )
-            {
-            // InternalSpecParser.g:10594:1: ( () )
-            // InternalSpecParser.g:10595:1: ()
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getRichStringAction_0()); 
-            }
-            // InternalSpecParser.g:10596:1: ()
-            // InternalSpecParser.g:10598:1: 
-            {
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getRichStringAction_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group__0__Impl"
-
-
-    // $ANTLR start "rule__RichString__Group__1"
-    // InternalSpecParser.g:10608:1: rule__RichString__Group__1 : rule__RichString__Group__1__Impl ;
-    public final void rule__RichString__Group__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10612:1: ( rule__RichString__Group__1__Impl )
-            // InternalSpecParser.g:10613:2: rule__RichString__Group__1__Impl
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__Group__1__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group__1"
-
-
-    // $ANTLR start "rule__RichString__Group__1__Impl"
-    // InternalSpecParser.g:10619:1: rule__RichString__Group__1__Impl : ( ( rule__RichString__Alternatives_1 ) ) ;
-    public final void rule__RichString__Group__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10623:1: ( ( ( rule__RichString__Alternatives_1 ) ) )
-            // InternalSpecParser.g:10624:1: ( ( rule__RichString__Alternatives_1 ) )
-            {
-            // InternalSpecParser.g:10624:1: ( ( rule__RichString__Alternatives_1 ) )
-            // InternalSpecParser.g:10625:1: ( rule__RichString__Alternatives_1 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getAlternatives_1()); 
-            }
-            // InternalSpecParser.g:10626:1: ( rule__RichString__Alternatives_1 )
-            // InternalSpecParser.g:10626:2: rule__RichString__Alternatives_1
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__Alternatives_1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getAlternatives_1()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group__1__Impl"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1__0"
-    // InternalSpecParser.g:10640:1: rule__RichString__Group_1_1__0 : rule__RichString__Group_1_1__0__Impl rule__RichString__Group_1_1__1 ;
-    public final void rule__RichString__Group_1_1__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10644:1: ( rule__RichString__Group_1_1__0__Impl rule__RichString__Group_1_1__1 )
-            // InternalSpecParser.g:10645:2: rule__RichString__Group_1_1__0__Impl rule__RichString__Group_1_1__1
-            {
-            pushFollow(FollowSets000.FOLLOW_60);
-            rule__RichString__Group_1_1__0__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__Group_1_1__1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1__0"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1__0__Impl"
-    // InternalSpecParser.g:10652:1: rule__RichString__Group_1_1__0__Impl : ( ( rule__RichString__ExpressionsAssignment_1_1_0 ) ) ;
-    public final void rule__RichString__Group_1_1__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10656:1: ( ( ( rule__RichString__ExpressionsAssignment_1_1_0 ) ) )
-            // InternalSpecParser.g:10657:1: ( ( rule__RichString__ExpressionsAssignment_1_1_0 ) )
-            {
-            // InternalSpecParser.g:10657:1: ( ( rule__RichString__ExpressionsAssignment_1_1_0 ) )
-            // InternalSpecParser.g:10658:1: ( rule__RichString__ExpressionsAssignment_1_1_0 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_0()); 
-            }
-            // InternalSpecParser.g:10659:1: ( rule__RichString__ExpressionsAssignment_1_1_0 )
-            // InternalSpecParser.g:10659:2: rule__RichString__ExpressionsAssignment_1_1_0
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__ExpressionsAssignment_1_1_0();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1__0__Impl"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1__1"
-    // InternalSpecParser.g:10669:1: rule__RichString__Group_1_1__1 : rule__RichString__Group_1_1__1__Impl rule__RichString__Group_1_1__2 ;
-    public final void rule__RichString__Group_1_1__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10673:1: ( rule__RichString__Group_1_1__1__Impl rule__RichString__Group_1_1__2 )
-            // InternalSpecParser.g:10674:2: rule__RichString__Group_1_1__1__Impl rule__RichString__Group_1_1__2
-            {
-            pushFollow(FollowSets000.FOLLOW_60);
-            rule__RichString__Group_1_1__1__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__Group_1_1__2();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1__1"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1__1__Impl"
-    // InternalSpecParser.g:10681:1: rule__RichString__Group_1_1__1__Impl : ( ( rule__RichString__ExpressionsAssignment_1_1_1 )? ) ;
-    public final void rule__RichString__Group_1_1__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10685:1: ( ( ( rule__RichString__ExpressionsAssignment_1_1_1 )? ) )
-            // InternalSpecParser.g:10686:1: ( ( rule__RichString__ExpressionsAssignment_1_1_1 )? )
-            {
-            // InternalSpecParser.g:10686:1: ( ( rule__RichString__ExpressionsAssignment_1_1_1 )? )
-            // InternalSpecParser.g:10687:1: ( rule__RichString__ExpressionsAssignment_1_1_1 )?
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_1()); 
-            }
-            // InternalSpecParser.g:10688:1: ( rule__RichString__ExpressionsAssignment_1_1_1 )?
-            int alt118=2;
-            int LA118_0 = input.LA(1);
-
-            if ( (LA118_0==Synchronized||LA118_0==Extension||LA118_0==Extends||LA118_0==Assert||LA118_0==Import||LA118_0==Return||(LA118_0>=Static && LA118_0<=Switch)||LA118_0==Typeof||LA118_0==False||(LA118_0>=Super && LA118_0<=While)||(LA118_0>=Null && LA118_0<=True)||(LA118_0>=For && LA118_0<=New)||(LA118_0>=Try && LA118_0<=Var)||(LA118_0>=Do && LA118_0<=If)||(LA118_0>=ExclamationMark && LA118_0<=NumberSign)||LA118_0==LeftParenthesis||LA118_0==PlusSign||LA118_0==HyphenMinus||LA118_0==LessThanSign||LA118_0==LeftSquareBracket||LA118_0==LeftCurlyBracket||LA118_0==RULE_ID||(LA118_0>=RULE_RICH_TEXT && LA118_0<=RULE_RICH_TEXT_START)||(LA118_0>=RULE_HEX && LA118_0<=RULE_STRING)) ) {
-                alt118=1;
-            }
-            switch (alt118) {
-                case 1 :
-                    // InternalSpecParser.g:10688:2: rule__RichString__ExpressionsAssignment_1_1_1
-                    {
-                    pushFollow(FollowSets000.FOLLOW_2);
-                    rule__RichString__ExpressionsAssignment_1_1_1();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-
-                    }
-                    break;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_1()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1__1__Impl"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1__2"
-    // InternalSpecParser.g:10698:1: rule__RichString__Group_1_1__2 : rule__RichString__Group_1_1__2__Impl rule__RichString__Group_1_1__3 ;
-    public final void rule__RichString__Group_1_1__2() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10702:1: ( rule__RichString__Group_1_1__2__Impl rule__RichString__Group_1_1__3 )
-            // InternalSpecParser.g:10703:2: rule__RichString__Group_1_1__2__Impl rule__RichString__Group_1_1__3
-            {
-            pushFollow(FollowSets000.FOLLOW_60);
-            rule__RichString__Group_1_1__2__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__Group_1_1__3();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1__2"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1__2__Impl"
-    // InternalSpecParser.g:10710:1: rule__RichString__Group_1_1__2__Impl : ( ( rule__RichString__Group_1_1_2__0 )* ) ;
-    public final void rule__RichString__Group_1_1__2__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10714:1: ( ( ( rule__RichString__Group_1_1_2__0 )* ) )
-            // InternalSpecParser.g:10715:1: ( ( rule__RichString__Group_1_1_2__0 )* )
-            {
-            // InternalSpecParser.g:10715:1: ( ( rule__RichString__Group_1_1_2__0 )* )
-            // InternalSpecParser.g:10716:1: ( rule__RichString__Group_1_1_2__0 )*
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getGroup_1_1_2()); 
-            }
-            // InternalSpecParser.g:10717:1: ( rule__RichString__Group_1_1_2__0 )*
-            loop119:
-            do {
-                int alt119=2;
-                int LA119_0 = input.LA(1);
-
-                if ( (LA119_0==RULE_RICH_TEXT_INBETWEEN) ) {
-                    alt119=1;
-                }
-
-
-                switch (alt119) {
-            	case 1 :
-            	    // InternalSpecParser.g:10717:2: rule__RichString__Group_1_1_2__0
-            	    {
-            	    pushFollow(FollowSets000.FOLLOW_61);
-            	    rule__RichString__Group_1_1_2__0();
-
-            	    state._fsp--;
-            	    if (state.failed) return ;
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop119;
-                }
-            } while (true);
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getGroup_1_1_2()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1__2__Impl"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1__3"
-    // InternalSpecParser.g:10727:1: rule__RichString__Group_1_1__3 : rule__RichString__Group_1_1__3__Impl ;
-    public final void rule__RichString__Group_1_1__3() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10731:1: ( rule__RichString__Group_1_1__3__Impl )
-            // InternalSpecParser.g:10732:2: rule__RichString__Group_1_1__3__Impl
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__Group_1_1__3__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1__3"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1__3__Impl"
-    // InternalSpecParser.g:10738:1: rule__RichString__Group_1_1__3__Impl : ( ( rule__RichString__ExpressionsAssignment_1_1_3 ) ) ;
-    public final void rule__RichString__Group_1_1__3__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10742:1: ( ( ( rule__RichString__ExpressionsAssignment_1_1_3 ) ) )
-            // InternalSpecParser.g:10743:1: ( ( rule__RichString__ExpressionsAssignment_1_1_3 ) )
-            {
-            // InternalSpecParser.g:10743:1: ( ( rule__RichString__ExpressionsAssignment_1_1_3 ) )
-            // InternalSpecParser.g:10744:1: ( rule__RichString__ExpressionsAssignment_1_1_3 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_3()); 
-            }
-            // InternalSpecParser.g:10745:1: ( rule__RichString__ExpressionsAssignment_1_1_3 )
-            // InternalSpecParser.g:10745:2: rule__RichString__ExpressionsAssignment_1_1_3
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__ExpressionsAssignment_1_1_3();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_3()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1__3__Impl"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1_2__0"
-    // InternalSpecParser.g:10763:1: rule__RichString__Group_1_1_2__0 : rule__RichString__Group_1_1_2__0__Impl rule__RichString__Group_1_1_2__1 ;
-    public final void rule__RichString__Group_1_1_2__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10767:1: ( rule__RichString__Group_1_1_2__0__Impl rule__RichString__Group_1_1_2__1 )
-            // InternalSpecParser.g:10768:2: rule__RichString__Group_1_1_2__0__Impl rule__RichString__Group_1_1_2__1
-            {
-            pushFollow(FollowSets000.FOLLOW_62);
-            rule__RichString__Group_1_1_2__0__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__Group_1_1_2__1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1_2__0"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1_2__0__Impl"
-    // InternalSpecParser.g:10775:1: rule__RichString__Group_1_1_2__0__Impl : ( ( rule__RichString__ExpressionsAssignment_1_1_2_0 ) ) ;
-    public final void rule__RichString__Group_1_1_2__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10779:1: ( ( ( rule__RichString__ExpressionsAssignment_1_1_2_0 ) ) )
-            // InternalSpecParser.g:10780:1: ( ( rule__RichString__ExpressionsAssignment_1_1_2_0 ) )
-            {
-            // InternalSpecParser.g:10780:1: ( ( rule__RichString__ExpressionsAssignment_1_1_2_0 ) )
-            // InternalSpecParser.g:10781:1: ( rule__RichString__ExpressionsAssignment_1_1_2_0 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_2_0()); 
-            }
-            // InternalSpecParser.g:10782:1: ( rule__RichString__ExpressionsAssignment_1_1_2_0 )
-            // InternalSpecParser.g:10782:2: rule__RichString__ExpressionsAssignment_1_1_2_0
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__ExpressionsAssignment_1_1_2_0();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_2_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1_2__0__Impl"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1_2__1"
-    // InternalSpecParser.g:10792:1: rule__RichString__Group_1_1_2__1 : rule__RichString__Group_1_1_2__1__Impl ;
-    public final void rule__RichString__Group_1_1_2__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10796:1: ( rule__RichString__Group_1_1_2__1__Impl )
-            // InternalSpecParser.g:10797:2: rule__RichString__Group_1_1_2__1__Impl
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichString__Group_1_1_2__1__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1_2__1"
-
-
-    // $ANTLR start "rule__RichString__Group_1_1_2__1__Impl"
-    // InternalSpecParser.g:10803:1: rule__RichString__Group_1_1_2__1__Impl : ( ( rule__RichString__ExpressionsAssignment_1_1_2_1 )? ) ;
-    public final void rule__RichString__Group_1_1_2__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10807:1: ( ( ( rule__RichString__ExpressionsAssignment_1_1_2_1 )? ) )
-            // InternalSpecParser.g:10808:1: ( ( rule__RichString__ExpressionsAssignment_1_1_2_1 )? )
-            {
-            // InternalSpecParser.g:10808:1: ( ( rule__RichString__ExpressionsAssignment_1_1_2_1 )? )
-            // InternalSpecParser.g:10809:1: ( rule__RichString__ExpressionsAssignment_1_1_2_1 )?
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_2_1()); 
-            }
-            // InternalSpecParser.g:10810:1: ( rule__RichString__ExpressionsAssignment_1_1_2_1 )?
-            int alt120=2;
-            int LA120_0 = input.LA(1);
-
-            if ( (LA120_0==Synchronized||LA120_0==Extension||LA120_0==Extends||LA120_0==Assert||LA120_0==Import||LA120_0==Return||(LA120_0>=Static && LA120_0<=Switch)||LA120_0==Typeof||LA120_0==False||(LA120_0>=Super && LA120_0<=While)||(LA120_0>=Null && LA120_0<=True)||(LA120_0>=For && LA120_0<=New)||(LA120_0>=Try && LA120_0<=Var)||(LA120_0>=Do && LA120_0<=If)||(LA120_0>=ExclamationMark && LA120_0<=NumberSign)||LA120_0==LeftParenthesis||LA120_0==PlusSign||LA120_0==HyphenMinus||LA120_0==LessThanSign||LA120_0==LeftSquareBracket||LA120_0==LeftCurlyBracket||LA120_0==RULE_ID||(LA120_0>=RULE_RICH_TEXT && LA120_0<=RULE_RICH_TEXT_START)||(LA120_0>=RULE_HEX && LA120_0<=RULE_STRING)) ) {
-                alt120=1;
-            }
-            switch (alt120) {
-                case 1 :
-                    // InternalSpecParser.g:10810:2: rule__RichString__ExpressionsAssignment_1_1_2_1
-                    {
-                    pushFollow(FollowSets000.FOLLOW_2);
-                    rule__RichString__ExpressionsAssignment_1_1_2_1();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-
-                    }
-                    break;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_2_1()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__Group_1_1_2__1__Impl"
-
-
-    // $ANTLR start "rule__RichStringLiteral__Group__0"
-    // InternalSpecParser.g:10824:1: rule__RichStringLiteral__Group__0 : rule__RichStringLiteral__Group__0__Impl rule__RichStringLiteral__Group__1 ;
-    public final void rule__RichStringLiteral__Group__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10828:1: ( rule__RichStringLiteral__Group__0__Impl rule__RichStringLiteral__Group__1 )
-            // InternalSpecParser.g:10829:2: rule__RichStringLiteral__Group__0__Impl rule__RichStringLiteral__Group__1
-            {
-            pushFollow(FollowSets000.FOLLOW_63);
-            rule__RichStringLiteral__Group__0__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteral__Group__1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteral__Group__0"
-
-
-    // $ANTLR start "rule__RichStringLiteral__Group__0__Impl"
-    // InternalSpecParser.g:10836:1: rule__RichStringLiteral__Group__0__Impl : ( () ) ;
-    public final void rule__RichStringLiteral__Group__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10840:1: ( ( () ) )
-            // InternalSpecParser.g:10841:1: ( () )
-            {
-            // InternalSpecParser.g:10841:1: ( () )
-            // InternalSpecParser.g:10842:1: ()
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralAccess().getRichStringLiteralAction_0()); 
-            }
-            // InternalSpecParser.g:10843:1: ()
-            // InternalSpecParser.g:10845:1: 
-            {
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralAccess().getRichStringLiteralAction_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteral__Group__0__Impl"
-
-
-    // $ANTLR start "rule__RichStringLiteral__Group__1"
-    // InternalSpecParser.g:10855:1: rule__RichStringLiteral__Group__1 : rule__RichStringLiteral__Group__1__Impl ;
-    public final void rule__RichStringLiteral__Group__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10859:1: ( rule__RichStringLiteral__Group__1__Impl )
-            // InternalSpecParser.g:10860:2: rule__RichStringLiteral__Group__1__Impl
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteral__Group__1__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteral__Group__1"
-
-
-    // $ANTLR start "rule__RichStringLiteral__Group__1__Impl"
-    // InternalSpecParser.g:10866:1: rule__RichStringLiteral__Group__1__Impl : ( ( rule__RichStringLiteral__ValueAssignment_1 ) ) ;
-    public final void rule__RichStringLiteral__Group__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10870:1: ( ( ( rule__RichStringLiteral__ValueAssignment_1 ) ) )
-            // InternalSpecParser.g:10871:1: ( ( rule__RichStringLiteral__ValueAssignment_1 ) )
-            {
-            // InternalSpecParser.g:10871:1: ( ( rule__RichStringLiteral__ValueAssignment_1 ) )
-            // InternalSpecParser.g:10872:1: ( rule__RichStringLiteral__ValueAssignment_1 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralAccess().getValueAssignment_1()); 
-            }
-            // InternalSpecParser.g:10873:1: ( rule__RichStringLiteral__ValueAssignment_1 )
-            // InternalSpecParser.g:10873:2: rule__RichStringLiteral__ValueAssignment_1
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteral__ValueAssignment_1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralAccess().getValueAssignment_1()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteral__Group__1__Impl"
-
-
-    // $ANTLR start "rule__RichStringLiteralStart__Group__0"
-    // InternalSpecParser.g:10887:1: rule__RichStringLiteralStart__Group__0 : rule__RichStringLiteralStart__Group__0__Impl rule__RichStringLiteralStart__Group__1 ;
-    public final void rule__RichStringLiteralStart__Group__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10891:1: ( rule__RichStringLiteralStart__Group__0__Impl rule__RichStringLiteralStart__Group__1 )
-            // InternalSpecParser.g:10892:2: rule__RichStringLiteralStart__Group__0__Impl rule__RichStringLiteralStart__Group__1
-            {
-            pushFollow(FollowSets000.FOLLOW_59);
-            rule__RichStringLiteralStart__Group__0__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralStart__Group__1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralStart__Group__0"
-
-
-    // $ANTLR start "rule__RichStringLiteralStart__Group__0__Impl"
-    // InternalSpecParser.g:10899:1: rule__RichStringLiteralStart__Group__0__Impl : ( () ) ;
-    public final void rule__RichStringLiteralStart__Group__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10903:1: ( ( () ) )
-            // InternalSpecParser.g:10904:1: ( () )
-            {
-            // InternalSpecParser.g:10904:1: ( () )
-            // InternalSpecParser.g:10905:1: ()
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralStartAccess().getRichStringLiteralAction_0()); 
-            }
-            // InternalSpecParser.g:10906:1: ()
-            // InternalSpecParser.g:10908:1: 
-            {
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralStartAccess().getRichStringLiteralAction_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralStart__Group__0__Impl"
-
-
-    // $ANTLR start "rule__RichStringLiteralStart__Group__1"
-    // InternalSpecParser.g:10918:1: rule__RichStringLiteralStart__Group__1 : rule__RichStringLiteralStart__Group__1__Impl ;
-    public final void rule__RichStringLiteralStart__Group__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10922:1: ( rule__RichStringLiteralStart__Group__1__Impl )
-            // InternalSpecParser.g:10923:2: rule__RichStringLiteralStart__Group__1__Impl
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralStart__Group__1__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralStart__Group__1"
-
-
-    // $ANTLR start "rule__RichStringLiteralStart__Group__1__Impl"
-    // InternalSpecParser.g:10929:1: rule__RichStringLiteralStart__Group__1__Impl : ( ( rule__RichStringLiteralStart__ValueAssignment_1 ) ) ;
-    public final void rule__RichStringLiteralStart__Group__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10933:1: ( ( ( rule__RichStringLiteralStart__ValueAssignment_1 ) ) )
-            // InternalSpecParser.g:10934:1: ( ( rule__RichStringLiteralStart__ValueAssignment_1 ) )
-            {
-            // InternalSpecParser.g:10934:1: ( ( rule__RichStringLiteralStart__ValueAssignment_1 ) )
-            // InternalSpecParser.g:10935:1: ( rule__RichStringLiteralStart__ValueAssignment_1 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralStartAccess().getValueAssignment_1()); 
-            }
-            // InternalSpecParser.g:10936:1: ( rule__RichStringLiteralStart__ValueAssignment_1 )
-            // InternalSpecParser.g:10936:2: rule__RichStringLiteralStart__ValueAssignment_1
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralStart__ValueAssignment_1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralStartAccess().getValueAssignment_1()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralStart__Group__1__Impl"
-
-
-    // $ANTLR start "rule__RichStringLiteralInbetween__Group__0"
-    // InternalSpecParser.g:10950:1: rule__RichStringLiteralInbetween__Group__0 : rule__RichStringLiteralInbetween__Group__0__Impl rule__RichStringLiteralInbetween__Group__1 ;
-    public final void rule__RichStringLiteralInbetween__Group__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10954:1: ( rule__RichStringLiteralInbetween__Group__0__Impl rule__RichStringLiteralInbetween__Group__1 )
-            // InternalSpecParser.g:10955:2: rule__RichStringLiteralInbetween__Group__0__Impl rule__RichStringLiteralInbetween__Group__1
-            {
-            pushFollow(FollowSets000.FOLLOW_64);
-            rule__RichStringLiteralInbetween__Group__0__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralInbetween__Group__1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralInbetween__Group__0"
-
-
-    // $ANTLR start "rule__RichStringLiteralInbetween__Group__0__Impl"
-    // InternalSpecParser.g:10962:1: rule__RichStringLiteralInbetween__Group__0__Impl : ( () ) ;
-    public final void rule__RichStringLiteralInbetween__Group__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10966:1: ( ( () ) )
-            // InternalSpecParser.g:10967:1: ( () )
-            {
-            // InternalSpecParser.g:10967:1: ( () )
-            // InternalSpecParser.g:10968:1: ()
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralInbetweenAccess().getRichStringLiteralAction_0()); 
-            }
-            // InternalSpecParser.g:10969:1: ()
-            // InternalSpecParser.g:10971:1: 
-            {
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralInbetweenAccess().getRichStringLiteralAction_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralInbetween__Group__0__Impl"
-
-
-    // $ANTLR start "rule__RichStringLiteralInbetween__Group__1"
-    // InternalSpecParser.g:10981:1: rule__RichStringLiteralInbetween__Group__1 : rule__RichStringLiteralInbetween__Group__1__Impl ;
-    public final void rule__RichStringLiteralInbetween__Group__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10985:1: ( rule__RichStringLiteralInbetween__Group__1__Impl )
-            // InternalSpecParser.g:10986:2: rule__RichStringLiteralInbetween__Group__1__Impl
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralInbetween__Group__1__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralInbetween__Group__1"
-
-
-    // $ANTLR start "rule__RichStringLiteralInbetween__Group__1__Impl"
-    // InternalSpecParser.g:10992:1: rule__RichStringLiteralInbetween__Group__1__Impl : ( ( rule__RichStringLiteralInbetween__ValueAssignment_1 ) ) ;
-    public final void rule__RichStringLiteralInbetween__Group__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:10996:1: ( ( ( rule__RichStringLiteralInbetween__ValueAssignment_1 ) ) )
-            // InternalSpecParser.g:10997:1: ( ( rule__RichStringLiteralInbetween__ValueAssignment_1 ) )
-            {
-            // InternalSpecParser.g:10997:1: ( ( rule__RichStringLiteralInbetween__ValueAssignment_1 ) )
-            // InternalSpecParser.g:10998:1: ( rule__RichStringLiteralInbetween__ValueAssignment_1 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralInbetweenAccess().getValueAssignment_1()); 
-            }
-            // InternalSpecParser.g:10999:1: ( rule__RichStringLiteralInbetween__ValueAssignment_1 )
-            // InternalSpecParser.g:10999:2: rule__RichStringLiteralInbetween__ValueAssignment_1
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralInbetween__ValueAssignment_1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralInbetweenAccess().getValueAssignment_1()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralInbetween__Group__1__Impl"
-
-
-    // $ANTLR start "rule__RichStringLiteralEnd__Group__0"
-    // InternalSpecParser.g:11013:1: rule__RichStringLiteralEnd__Group__0 : rule__RichStringLiteralEnd__Group__0__Impl rule__RichStringLiteralEnd__Group__1 ;
-    public final void rule__RichStringLiteralEnd__Group__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:11017:1: ( rule__RichStringLiteralEnd__Group__0__Impl rule__RichStringLiteralEnd__Group__1 )
-            // InternalSpecParser.g:11018:2: rule__RichStringLiteralEnd__Group__0__Impl rule__RichStringLiteralEnd__Group__1
-            {
-            pushFollow(FollowSets000.FOLLOW_60);
-            rule__RichStringLiteralEnd__Group__0__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralEnd__Group__1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralEnd__Group__0"
-
-
-    // $ANTLR start "rule__RichStringLiteralEnd__Group__0__Impl"
-    // InternalSpecParser.g:11025:1: rule__RichStringLiteralEnd__Group__0__Impl : ( () ) ;
-    public final void rule__RichStringLiteralEnd__Group__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:11029:1: ( ( () ) )
-            // InternalSpecParser.g:11030:1: ( () )
-            {
-            // InternalSpecParser.g:11030:1: ( () )
-            // InternalSpecParser.g:11031:1: ()
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralEndAccess().getRichStringLiteralAction_0()); 
-            }
-            // InternalSpecParser.g:11032:1: ()
-            // InternalSpecParser.g:11034:1: 
-            {
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralEndAccess().getRichStringLiteralAction_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralEnd__Group__0__Impl"
-
-
-    // $ANTLR start "rule__RichStringLiteralEnd__Group__1"
-    // InternalSpecParser.g:11044:1: rule__RichStringLiteralEnd__Group__1 : rule__RichStringLiteralEnd__Group__1__Impl ;
-    public final void rule__RichStringLiteralEnd__Group__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:11048:1: ( rule__RichStringLiteralEnd__Group__1__Impl )
-            // InternalSpecParser.g:11049:2: rule__RichStringLiteralEnd__Group__1__Impl
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralEnd__Group__1__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralEnd__Group__1"
-
-
-    // $ANTLR start "rule__RichStringLiteralEnd__Group__1__Impl"
-    // InternalSpecParser.g:11055:1: rule__RichStringLiteralEnd__Group__1__Impl : ( ( rule__RichStringLiteralEnd__ValueAssignment_1 ) ) ;
-    public final void rule__RichStringLiteralEnd__Group__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:11059:1: ( ( ( rule__RichStringLiteralEnd__ValueAssignment_1 ) ) )
-            // InternalSpecParser.g:11060:1: ( ( rule__RichStringLiteralEnd__ValueAssignment_1 ) )
-            {
-            // InternalSpecParser.g:11060:1: ( ( rule__RichStringLiteralEnd__ValueAssignment_1 ) )
-            // InternalSpecParser.g:11061:1: ( rule__RichStringLiteralEnd__ValueAssignment_1 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralEndAccess().getValueAssignment_1()); 
-            }
-            // InternalSpecParser.g:11062:1: ( rule__RichStringLiteralEnd__ValueAssignment_1 )
-            // InternalSpecParser.g:11062:2: rule__RichStringLiteralEnd__ValueAssignment_1
-            {
-            pushFollow(FollowSets000.FOLLOW_2);
-            rule__RichStringLiteralEnd__ValueAssignment_1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralEndAccess().getValueAssignment_1()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralEnd__Group__1__Impl"
-
-
     // $ANTLR start "rule__Parameter__Group__0"
-    // InternalSpecParser.g:11079:1: rule__Parameter__Group__0 : rule__Parameter__Group__0__Impl rule__Parameter__Group__1 ;
+    // InternalSpecParser.g:10577:1: rule__Parameter__Group__0 : rule__Parameter__Group__0__Impl rule__Parameter__Group__1 ;
     public final void rule__Parameter__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11083:1: ( rule__Parameter__Group__0__Impl rule__Parameter__Group__1 )
-            // InternalSpecParser.g:11084:2: rule__Parameter__Group__0__Impl rule__Parameter__Group__1
+            // InternalSpecParser.g:10581:1: ( rule__Parameter__Group__0__Impl rule__Parameter__Group__1 )
+            // InternalSpecParser.g:10582:2: rule__Parameter__Group__0__Impl rule__Parameter__Group__1
             {
             pushFollow(FollowSets000.FOLLOW_47);
             rule__Parameter__Group__0__Impl();
@@ -33627,35 +32248,35 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group__0__Impl"
-    // InternalSpecParser.g:11091:1: rule__Parameter__Group__0__Impl : ( ( rule__Parameter__AnnotationsAssignment_0 )* ) ;
+    // InternalSpecParser.g:10589:1: rule__Parameter__Group__0__Impl : ( ( rule__Parameter__AnnotationsAssignment_0 )* ) ;
     public final void rule__Parameter__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11095:1: ( ( ( rule__Parameter__AnnotationsAssignment_0 )* ) )
-            // InternalSpecParser.g:11096:1: ( ( rule__Parameter__AnnotationsAssignment_0 )* )
+            // InternalSpecParser.g:10593:1: ( ( ( rule__Parameter__AnnotationsAssignment_0 )* ) )
+            // InternalSpecParser.g:10594:1: ( ( rule__Parameter__AnnotationsAssignment_0 )* )
             {
-            // InternalSpecParser.g:11096:1: ( ( rule__Parameter__AnnotationsAssignment_0 )* )
-            // InternalSpecParser.g:11097:1: ( rule__Parameter__AnnotationsAssignment_0 )*
+            // InternalSpecParser.g:10594:1: ( ( rule__Parameter__AnnotationsAssignment_0 )* )
+            // InternalSpecParser.g:10595:1: ( rule__Parameter__AnnotationsAssignment_0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getAnnotationsAssignment_0()); 
             }
-            // InternalSpecParser.g:11098:1: ( rule__Parameter__AnnotationsAssignment_0 )*
-            loop121:
+            // InternalSpecParser.g:10596:1: ( rule__Parameter__AnnotationsAssignment_0 )*
+            loop118:
             do {
-                int alt121=2;
-                int LA121_0 = input.LA(1);
+                int alt118=2;
+                int LA118_0 = input.LA(1);
 
-                if ( (LA121_0==CommercialAt) ) {
-                    alt121=1;
+                if ( (LA118_0==CommercialAt) ) {
+                    alt118=1;
                 }
 
 
-                switch (alt121) {
+                switch (alt118) {
             	case 1 :
-            	    // InternalSpecParser.g:11098:2: rule__Parameter__AnnotationsAssignment_0
+            	    // InternalSpecParser.g:10596:2: rule__Parameter__AnnotationsAssignment_0
             	    {
             	    pushFollow(FollowSets000.FOLLOW_9);
             	    rule__Parameter__AnnotationsAssignment_0();
@@ -33667,7 +32288,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop121;
+            	    break loop118;
                 }
             } while (true);
 
@@ -33696,14 +32317,14 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group__1"
-    // InternalSpecParser.g:11108:1: rule__Parameter__Group__1 : rule__Parameter__Group__1__Impl rule__Parameter__Group__2 ;
+    // InternalSpecParser.g:10606:1: rule__Parameter__Group__1 : rule__Parameter__Group__1__Impl rule__Parameter__Group__2 ;
     public final void rule__Parameter__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11112:1: ( rule__Parameter__Group__1__Impl rule__Parameter__Group__2 )
-            // InternalSpecParser.g:11113:2: rule__Parameter__Group__1__Impl rule__Parameter__Group__2
+            // InternalSpecParser.g:10610:1: ( rule__Parameter__Group__1__Impl rule__Parameter__Group__2 )
+            // InternalSpecParser.g:10611:2: rule__Parameter__Group__1__Impl rule__Parameter__Group__2
             {
             pushFollow(FollowSets000.FOLLOW_47);
             rule__Parameter__Group__1__Impl();
@@ -33734,31 +32355,31 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group__1__Impl"
-    // InternalSpecParser.g:11120:1: rule__Parameter__Group__1__Impl : ( ( rule__Parameter__Group_1__0 )? ) ;
+    // InternalSpecParser.g:10618:1: rule__Parameter__Group__1__Impl : ( ( rule__Parameter__Group_1__0 )? ) ;
     public final void rule__Parameter__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11124:1: ( ( ( rule__Parameter__Group_1__0 )? ) )
-            // InternalSpecParser.g:11125:1: ( ( rule__Parameter__Group_1__0 )? )
+            // InternalSpecParser.g:10622:1: ( ( ( rule__Parameter__Group_1__0 )? ) )
+            // InternalSpecParser.g:10623:1: ( ( rule__Parameter__Group_1__0 )? )
             {
-            // InternalSpecParser.g:11125:1: ( ( rule__Parameter__Group_1__0 )? )
-            // InternalSpecParser.g:11126:1: ( rule__Parameter__Group_1__0 )?
+            // InternalSpecParser.g:10623:1: ( ( rule__Parameter__Group_1__0 )? )
+            // InternalSpecParser.g:10624:1: ( rule__Parameter__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getGroup_1()); 
             }
-            // InternalSpecParser.g:11127:1: ( rule__Parameter__Group_1__0 )?
-            int alt122=2;
-            int LA122_0 = input.LA(1);
+            // InternalSpecParser.g:10625:1: ( rule__Parameter__Group_1__0 )?
+            int alt119=2;
+            int LA119_0 = input.LA(1);
 
-            if ( (LA122_0==Extension) ) {
-                alt122=1;
+            if ( (LA119_0==Extension) ) {
+                alt119=1;
             }
-            switch (alt122) {
+            switch (alt119) {
                 case 1 :
-                    // InternalSpecParser.g:11127:2: rule__Parameter__Group_1__0
+                    // InternalSpecParser.g:10625:2: rule__Parameter__Group_1__0
                     {
                     pushFollow(FollowSets000.FOLLOW_2);
                     rule__Parameter__Group_1__0();
@@ -33796,16 +32417,16 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group__2"
-    // InternalSpecParser.g:11137:1: rule__Parameter__Group__2 : rule__Parameter__Group__2__Impl rule__Parameter__Group__3 ;
+    // InternalSpecParser.g:10635:1: rule__Parameter__Group__2 : rule__Parameter__Group__2__Impl rule__Parameter__Group__3 ;
     public final void rule__Parameter__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11141:1: ( rule__Parameter__Group__2__Impl rule__Parameter__Group__3 )
-            // InternalSpecParser.g:11142:2: rule__Parameter__Group__2__Impl rule__Parameter__Group__3
+            // InternalSpecParser.g:10639:1: ( rule__Parameter__Group__2__Impl rule__Parameter__Group__3 )
+            // InternalSpecParser.g:10640:2: rule__Parameter__Group__2__Impl rule__Parameter__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_65);
+            pushFollow(FollowSets000.FOLLOW_59);
             rule__Parameter__Group__2__Impl();
 
             state._fsp--;
@@ -33834,23 +32455,23 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group__2__Impl"
-    // InternalSpecParser.g:11149:1: rule__Parameter__Group__2__Impl : ( ( rule__Parameter__ParameterTypeAssignment_2 ) ) ;
+    // InternalSpecParser.g:10647:1: rule__Parameter__Group__2__Impl : ( ( rule__Parameter__ParameterTypeAssignment_2 ) ) ;
     public final void rule__Parameter__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11153:1: ( ( ( rule__Parameter__ParameterTypeAssignment_2 ) ) )
-            // InternalSpecParser.g:11154:1: ( ( rule__Parameter__ParameterTypeAssignment_2 ) )
+            // InternalSpecParser.g:10651:1: ( ( ( rule__Parameter__ParameterTypeAssignment_2 ) ) )
+            // InternalSpecParser.g:10652:1: ( ( rule__Parameter__ParameterTypeAssignment_2 ) )
             {
-            // InternalSpecParser.g:11154:1: ( ( rule__Parameter__ParameterTypeAssignment_2 ) )
-            // InternalSpecParser.g:11155:1: ( rule__Parameter__ParameterTypeAssignment_2 )
+            // InternalSpecParser.g:10652:1: ( ( rule__Parameter__ParameterTypeAssignment_2 ) )
+            // InternalSpecParser.g:10653:1: ( rule__Parameter__ParameterTypeAssignment_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getParameterTypeAssignment_2()); 
             }
-            // InternalSpecParser.g:11156:1: ( rule__Parameter__ParameterTypeAssignment_2 )
-            // InternalSpecParser.g:11156:2: rule__Parameter__ParameterTypeAssignment_2
+            // InternalSpecParser.g:10654:1: ( rule__Parameter__ParameterTypeAssignment_2 )
+            // InternalSpecParser.g:10654:2: rule__Parameter__ParameterTypeAssignment_2
             {
             pushFollow(FollowSets000.FOLLOW_2);
             rule__Parameter__ParameterTypeAssignment_2();
@@ -33885,16 +32506,16 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group__3"
-    // InternalSpecParser.g:11166:1: rule__Parameter__Group__3 : rule__Parameter__Group__3__Impl rule__Parameter__Group__4 ;
+    // InternalSpecParser.g:10664:1: rule__Parameter__Group__3 : rule__Parameter__Group__3__Impl rule__Parameter__Group__4 ;
     public final void rule__Parameter__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11170:1: ( rule__Parameter__Group__3__Impl rule__Parameter__Group__4 )
-            // InternalSpecParser.g:11171:2: rule__Parameter__Group__3__Impl rule__Parameter__Group__4
+            // InternalSpecParser.g:10668:1: ( rule__Parameter__Group__3__Impl rule__Parameter__Group__4 )
+            // InternalSpecParser.g:10669:2: rule__Parameter__Group__3__Impl rule__Parameter__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_65);
+            pushFollow(FollowSets000.FOLLOW_59);
             rule__Parameter__Group__3__Impl();
 
             state._fsp--;
@@ -33923,31 +32544,31 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group__3__Impl"
-    // InternalSpecParser.g:11178:1: rule__Parameter__Group__3__Impl : ( ( rule__Parameter__VarArgAssignment_3 )? ) ;
+    // InternalSpecParser.g:10676:1: rule__Parameter__Group__3__Impl : ( ( rule__Parameter__VarArgAssignment_3 )? ) ;
     public final void rule__Parameter__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11182:1: ( ( ( rule__Parameter__VarArgAssignment_3 )? ) )
-            // InternalSpecParser.g:11183:1: ( ( rule__Parameter__VarArgAssignment_3 )? )
+            // InternalSpecParser.g:10680:1: ( ( ( rule__Parameter__VarArgAssignment_3 )? ) )
+            // InternalSpecParser.g:10681:1: ( ( rule__Parameter__VarArgAssignment_3 )? )
             {
-            // InternalSpecParser.g:11183:1: ( ( rule__Parameter__VarArgAssignment_3 )? )
-            // InternalSpecParser.g:11184:1: ( rule__Parameter__VarArgAssignment_3 )?
+            // InternalSpecParser.g:10681:1: ( ( rule__Parameter__VarArgAssignment_3 )? )
+            // InternalSpecParser.g:10682:1: ( rule__Parameter__VarArgAssignment_3 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getVarArgAssignment_3()); 
             }
-            // InternalSpecParser.g:11185:1: ( rule__Parameter__VarArgAssignment_3 )?
-            int alt123=2;
-            int LA123_0 = input.LA(1);
+            // InternalSpecParser.g:10683:1: ( rule__Parameter__VarArgAssignment_3 )?
+            int alt120=2;
+            int LA120_0 = input.LA(1);
 
-            if ( (LA123_0==FullStopFullStopFullStop) ) {
-                alt123=1;
+            if ( (LA120_0==FullStopFullStopFullStop) ) {
+                alt120=1;
             }
-            switch (alt123) {
+            switch (alt120) {
                 case 1 :
-                    // InternalSpecParser.g:11185:2: rule__Parameter__VarArgAssignment_3
+                    // InternalSpecParser.g:10683:2: rule__Parameter__VarArgAssignment_3
                     {
                     pushFollow(FollowSets000.FOLLOW_2);
                     rule__Parameter__VarArgAssignment_3();
@@ -33985,14 +32606,14 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group__4"
-    // InternalSpecParser.g:11195:1: rule__Parameter__Group__4 : rule__Parameter__Group__4__Impl ;
+    // InternalSpecParser.g:10693:1: rule__Parameter__Group__4 : rule__Parameter__Group__4__Impl ;
     public final void rule__Parameter__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11199:1: ( rule__Parameter__Group__4__Impl )
-            // InternalSpecParser.g:11200:2: rule__Parameter__Group__4__Impl
+            // InternalSpecParser.g:10697:1: ( rule__Parameter__Group__4__Impl )
+            // InternalSpecParser.g:10698:2: rule__Parameter__Group__4__Impl
             {
             pushFollow(FollowSets000.FOLLOW_2);
             rule__Parameter__Group__4__Impl();
@@ -34018,23 +32639,23 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group__4__Impl"
-    // InternalSpecParser.g:11206:1: rule__Parameter__Group__4__Impl : ( ( rule__Parameter__NameAssignment_4 ) ) ;
+    // InternalSpecParser.g:10704:1: rule__Parameter__Group__4__Impl : ( ( rule__Parameter__NameAssignment_4 ) ) ;
     public final void rule__Parameter__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11210:1: ( ( ( rule__Parameter__NameAssignment_4 ) ) )
-            // InternalSpecParser.g:11211:1: ( ( rule__Parameter__NameAssignment_4 ) )
+            // InternalSpecParser.g:10708:1: ( ( ( rule__Parameter__NameAssignment_4 ) ) )
+            // InternalSpecParser.g:10709:1: ( ( rule__Parameter__NameAssignment_4 ) )
             {
-            // InternalSpecParser.g:11211:1: ( ( rule__Parameter__NameAssignment_4 ) )
-            // InternalSpecParser.g:11212:1: ( rule__Parameter__NameAssignment_4 )
+            // InternalSpecParser.g:10709:1: ( ( rule__Parameter__NameAssignment_4 ) )
+            // InternalSpecParser.g:10710:1: ( rule__Parameter__NameAssignment_4 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getNameAssignment_4()); 
             }
-            // InternalSpecParser.g:11213:1: ( rule__Parameter__NameAssignment_4 )
-            // InternalSpecParser.g:11213:2: rule__Parameter__NameAssignment_4
+            // InternalSpecParser.g:10711:1: ( rule__Parameter__NameAssignment_4 )
+            // InternalSpecParser.g:10711:2: rule__Parameter__NameAssignment_4
             {
             pushFollow(FollowSets000.FOLLOW_2);
             rule__Parameter__NameAssignment_4();
@@ -34069,16 +32690,16 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group_1__0"
-    // InternalSpecParser.g:11233:1: rule__Parameter__Group_1__0 : rule__Parameter__Group_1__0__Impl rule__Parameter__Group_1__1 ;
+    // InternalSpecParser.g:10731:1: rule__Parameter__Group_1__0 : rule__Parameter__Group_1__0__Impl rule__Parameter__Group_1__1 ;
     public final void rule__Parameter__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11237:1: ( rule__Parameter__Group_1__0__Impl rule__Parameter__Group_1__1 )
-            // InternalSpecParser.g:11238:2: rule__Parameter__Group_1__0__Impl rule__Parameter__Group_1__1
+            // InternalSpecParser.g:10735:1: ( rule__Parameter__Group_1__0__Impl rule__Parameter__Group_1__1 )
+            // InternalSpecParser.g:10736:2: rule__Parameter__Group_1__0__Impl rule__Parameter__Group_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_66);
+            pushFollow(FollowSets000.FOLLOW_60);
             rule__Parameter__Group_1__0__Impl();
 
             state._fsp--;
@@ -34107,23 +32728,23 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group_1__0__Impl"
-    // InternalSpecParser.g:11245:1: rule__Parameter__Group_1__0__Impl : ( ( rule__Parameter__ExtensionAssignment_1_0 ) ) ;
+    // InternalSpecParser.g:10743:1: rule__Parameter__Group_1__0__Impl : ( ( rule__Parameter__ExtensionAssignment_1_0 ) ) ;
     public final void rule__Parameter__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11249:1: ( ( ( rule__Parameter__ExtensionAssignment_1_0 ) ) )
-            // InternalSpecParser.g:11250:1: ( ( rule__Parameter__ExtensionAssignment_1_0 ) )
+            // InternalSpecParser.g:10747:1: ( ( ( rule__Parameter__ExtensionAssignment_1_0 ) ) )
+            // InternalSpecParser.g:10748:1: ( ( rule__Parameter__ExtensionAssignment_1_0 ) )
             {
-            // InternalSpecParser.g:11250:1: ( ( rule__Parameter__ExtensionAssignment_1_0 ) )
-            // InternalSpecParser.g:11251:1: ( rule__Parameter__ExtensionAssignment_1_0 )
+            // InternalSpecParser.g:10748:1: ( ( rule__Parameter__ExtensionAssignment_1_0 ) )
+            // InternalSpecParser.g:10749:1: ( rule__Parameter__ExtensionAssignment_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getExtensionAssignment_1_0()); 
             }
-            // InternalSpecParser.g:11252:1: ( rule__Parameter__ExtensionAssignment_1_0 )
-            // InternalSpecParser.g:11252:2: rule__Parameter__ExtensionAssignment_1_0
+            // InternalSpecParser.g:10750:1: ( rule__Parameter__ExtensionAssignment_1_0 )
+            // InternalSpecParser.g:10750:2: rule__Parameter__ExtensionAssignment_1_0
             {
             pushFollow(FollowSets000.FOLLOW_2);
             rule__Parameter__ExtensionAssignment_1_0();
@@ -34158,14 +32779,14 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group_1__1"
-    // InternalSpecParser.g:11262:1: rule__Parameter__Group_1__1 : rule__Parameter__Group_1__1__Impl ;
+    // InternalSpecParser.g:10760:1: rule__Parameter__Group_1__1 : rule__Parameter__Group_1__1__Impl ;
     public final void rule__Parameter__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11266:1: ( rule__Parameter__Group_1__1__Impl )
-            // InternalSpecParser.g:11267:2: rule__Parameter__Group_1__1__Impl
+            // InternalSpecParser.g:10764:1: ( rule__Parameter__Group_1__1__Impl )
+            // InternalSpecParser.g:10765:2: rule__Parameter__Group_1__1__Impl
             {
             pushFollow(FollowSets000.FOLLOW_2);
             rule__Parameter__Group_1__1__Impl();
@@ -34191,35 +32812,35 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group_1__1__Impl"
-    // InternalSpecParser.g:11273:1: rule__Parameter__Group_1__1__Impl : ( ( rule__Parameter__AnnotationsAssignment_1_1 )* ) ;
+    // InternalSpecParser.g:10771:1: rule__Parameter__Group_1__1__Impl : ( ( rule__Parameter__AnnotationsAssignment_1_1 )* ) ;
     public final void rule__Parameter__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:11277:1: ( ( ( rule__Parameter__AnnotationsAssignment_1_1 )* ) )
-            // InternalSpecParser.g:11278:1: ( ( rule__Parameter__AnnotationsAssignment_1_1 )* )
+            // InternalSpecParser.g:10775:1: ( ( ( rule__Parameter__AnnotationsAssignment_1_1 )* ) )
+            // InternalSpecParser.g:10776:1: ( ( rule__Parameter__AnnotationsAssignment_1_1 )* )
             {
-            // InternalSpecParser.g:11278:1: ( ( rule__Parameter__AnnotationsAssignment_1_1 )* )
-            // InternalSpecParser.g:11279:1: ( rule__Parameter__AnnotationsAssignment_1_1 )*
+            // InternalSpecParser.g:10776:1: ( ( rule__Parameter__AnnotationsAssignment_1_1 )* )
+            // InternalSpecParser.g:10777:1: ( rule__Parameter__AnnotationsAssignment_1_1 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getAnnotationsAssignment_1_1()); 
             }
-            // InternalSpecParser.g:11280:1: ( rule__Parameter__AnnotationsAssignment_1_1 )*
-            loop124:
+            // InternalSpecParser.g:10778:1: ( rule__Parameter__AnnotationsAssignment_1_1 )*
+            loop121:
             do {
-                int alt124=2;
-                int LA124_0 = input.LA(1);
+                int alt121=2;
+                int LA121_0 = input.LA(1);
 
-                if ( (LA124_0==CommercialAt) ) {
-                    alt124=1;
+                if ( (LA121_0==CommercialAt) ) {
+                    alt121=1;
                 }
 
 
-                switch (alt124) {
+                switch (alt121) {
             	case 1 :
-            	    // InternalSpecParser.g:11280:2: rule__Parameter__AnnotationsAssignment_1_1
+            	    // InternalSpecParser.g:10778:2: rule__Parameter__AnnotationsAssignment_1_1
             	    {
             	    pushFollow(FollowSets000.FOLLOW_9);
             	    rule__Parameter__AnnotationsAssignment_1_1();
@@ -34231,7 +32852,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop124;
+            	    break loop121;
                 }
             } while (true);
 
@@ -34259,6 +32880,1385 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Parameter__Group_1__1__Impl"
 
 
+    // $ANTLR start "rule__RichString__Group__0"
+    // InternalSpecParser.g:10792:1: rule__RichString__Group__0 : rule__RichString__Group__0__Impl rule__RichString__Group__1 ;
+    public final void rule__RichString__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10796:1: ( rule__RichString__Group__0__Impl rule__RichString__Group__1 )
+            // InternalSpecParser.g:10797:2: rule__RichString__Group__0__Impl rule__RichString__Group__1
+            {
+            pushFollow(FollowSets000.FOLLOW_61);
+            rule__RichString__Group__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__Group__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group__0"
+
+
+    // $ANTLR start "rule__RichString__Group__0__Impl"
+    // InternalSpecParser.g:10804:1: rule__RichString__Group__0__Impl : ( () ) ;
+    public final void rule__RichString__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10808:1: ( ( () ) )
+            // InternalSpecParser.g:10809:1: ( () )
+            {
+            // InternalSpecParser.g:10809:1: ( () )
+            // InternalSpecParser.g:10810:1: ()
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getRichStringAction_0()); 
+            }
+            // InternalSpecParser.g:10811:1: ()
+            // InternalSpecParser.g:10813:1: 
+            {
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getRichStringAction_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group__0__Impl"
+
+
+    // $ANTLR start "rule__RichString__Group__1"
+    // InternalSpecParser.g:10823:1: rule__RichString__Group__1 : rule__RichString__Group__1__Impl ;
+    public final void rule__RichString__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10827:1: ( rule__RichString__Group__1__Impl )
+            // InternalSpecParser.g:10828:2: rule__RichString__Group__1__Impl
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__Group__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group__1"
+
+
+    // $ANTLR start "rule__RichString__Group__1__Impl"
+    // InternalSpecParser.g:10834:1: rule__RichString__Group__1__Impl : ( ( rule__RichString__Alternatives_1 ) ) ;
+    public final void rule__RichString__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10838:1: ( ( ( rule__RichString__Alternatives_1 ) ) )
+            // InternalSpecParser.g:10839:1: ( ( rule__RichString__Alternatives_1 ) )
+            {
+            // InternalSpecParser.g:10839:1: ( ( rule__RichString__Alternatives_1 ) )
+            // InternalSpecParser.g:10840:1: ( rule__RichString__Alternatives_1 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getAlternatives_1()); 
+            }
+            // InternalSpecParser.g:10841:1: ( rule__RichString__Alternatives_1 )
+            // InternalSpecParser.g:10841:2: rule__RichString__Alternatives_1
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__Alternatives_1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getAlternatives_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group__1__Impl"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1__0"
+    // InternalSpecParser.g:10855:1: rule__RichString__Group_1_1__0 : rule__RichString__Group_1_1__0__Impl rule__RichString__Group_1_1__1 ;
+    public final void rule__RichString__Group_1_1__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10859:1: ( rule__RichString__Group_1_1__0__Impl rule__RichString__Group_1_1__1 )
+            // InternalSpecParser.g:10860:2: rule__RichString__Group_1_1__0__Impl rule__RichString__Group_1_1__1
+            {
+            pushFollow(FollowSets000.FOLLOW_62);
+            rule__RichString__Group_1_1__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__Group_1_1__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1__0"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1__0__Impl"
+    // InternalSpecParser.g:10867:1: rule__RichString__Group_1_1__0__Impl : ( ( rule__RichString__ExpressionsAssignment_1_1_0 ) ) ;
+    public final void rule__RichString__Group_1_1__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10871:1: ( ( ( rule__RichString__ExpressionsAssignment_1_1_0 ) ) )
+            // InternalSpecParser.g:10872:1: ( ( rule__RichString__ExpressionsAssignment_1_1_0 ) )
+            {
+            // InternalSpecParser.g:10872:1: ( ( rule__RichString__ExpressionsAssignment_1_1_0 ) )
+            // InternalSpecParser.g:10873:1: ( rule__RichString__ExpressionsAssignment_1_1_0 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_0()); 
+            }
+            // InternalSpecParser.g:10874:1: ( rule__RichString__ExpressionsAssignment_1_1_0 )
+            // InternalSpecParser.g:10874:2: rule__RichString__ExpressionsAssignment_1_1_0
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__ExpressionsAssignment_1_1_0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1__0__Impl"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1__1"
+    // InternalSpecParser.g:10884:1: rule__RichString__Group_1_1__1 : rule__RichString__Group_1_1__1__Impl rule__RichString__Group_1_1__2 ;
+    public final void rule__RichString__Group_1_1__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10888:1: ( rule__RichString__Group_1_1__1__Impl rule__RichString__Group_1_1__2 )
+            // InternalSpecParser.g:10889:2: rule__RichString__Group_1_1__1__Impl rule__RichString__Group_1_1__2
+            {
+            pushFollow(FollowSets000.FOLLOW_62);
+            rule__RichString__Group_1_1__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__Group_1_1__2();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1__1"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1__1__Impl"
+    // InternalSpecParser.g:10896:1: rule__RichString__Group_1_1__1__Impl : ( ( rule__RichString__ExpressionsAssignment_1_1_1 )? ) ;
+    public final void rule__RichString__Group_1_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10900:1: ( ( ( rule__RichString__ExpressionsAssignment_1_1_1 )? ) )
+            // InternalSpecParser.g:10901:1: ( ( rule__RichString__ExpressionsAssignment_1_1_1 )? )
+            {
+            // InternalSpecParser.g:10901:1: ( ( rule__RichString__ExpressionsAssignment_1_1_1 )? )
+            // InternalSpecParser.g:10902:1: ( rule__RichString__ExpressionsAssignment_1_1_1 )?
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_1()); 
+            }
+            // InternalSpecParser.g:10903:1: ( rule__RichString__ExpressionsAssignment_1_1_1 )?
+            int alt122=2;
+            int LA122_0 = input.LA(1);
+
+            if ( (LA122_0==Synchronized||LA122_0==Extension||LA122_0==Extends||LA122_0==Assert||LA122_0==Import||LA122_0==Return||(LA122_0>=Static && LA122_0<=Switch)||LA122_0==Typeof||LA122_0==False||(LA122_0>=Super && LA122_0<=While)||(LA122_0>=Null && LA122_0<=True)||(LA122_0>=For && LA122_0<=New)||(LA122_0>=Try && LA122_0<=Var)||(LA122_0>=Do && LA122_0<=If)||(LA122_0>=ExclamationMark && LA122_0<=NumberSign)||LA122_0==LeftParenthesis||LA122_0==PlusSign||LA122_0==HyphenMinus||LA122_0==LessThanSign||LA122_0==LeftSquareBracket||LA122_0==LeftCurlyBracket||LA122_0==RULE_ID||(LA122_0>=RULE_RICH_TEXT && LA122_0<=RULE_RICH_TEXT_START)||(LA122_0>=RULE_HEX && LA122_0<=RULE_STRING)) ) {
+                alt122=1;
+            }
+            switch (alt122) {
+                case 1 :
+                    // InternalSpecParser.g:10903:2: rule__RichString__ExpressionsAssignment_1_1_1
+                    {
+                    pushFollow(FollowSets000.FOLLOW_2);
+                    rule__RichString__ExpressionsAssignment_1_1_1();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1__1__Impl"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1__2"
+    // InternalSpecParser.g:10913:1: rule__RichString__Group_1_1__2 : rule__RichString__Group_1_1__2__Impl rule__RichString__Group_1_1__3 ;
+    public final void rule__RichString__Group_1_1__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10917:1: ( rule__RichString__Group_1_1__2__Impl rule__RichString__Group_1_1__3 )
+            // InternalSpecParser.g:10918:2: rule__RichString__Group_1_1__2__Impl rule__RichString__Group_1_1__3
+            {
+            pushFollow(FollowSets000.FOLLOW_62);
+            rule__RichString__Group_1_1__2__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__Group_1_1__3();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1__2"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1__2__Impl"
+    // InternalSpecParser.g:10925:1: rule__RichString__Group_1_1__2__Impl : ( ( rule__RichString__Group_1_1_2__0 )* ) ;
+    public final void rule__RichString__Group_1_1__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10929:1: ( ( ( rule__RichString__Group_1_1_2__0 )* ) )
+            // InternalSpecParser.g:10930:1: ( ( rule__RichString__Group_1_1_2__0 )* )
+            {
+            // InternalSpecParser.g:10930:1: ( ( rule__RichString__Group_1_1_2__0 )* )
+            // InternalSpecParser.g:10931:1: ( rule__RichString__Group_1_1_2__0 )*
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getGroup_1_1_2()); 
+            }
+            // InternalSpecParser.g:10932:1: ( rule__RichString__Group_1_1_2__0 )*
+            loop123:
+            do {
+                int alt123=2;
+                int LA123_0 = input.LA(1);
+
+                if ( (LA123_0==RULE_RICH_TEXT_INBETWEEN) ) {
+                    alt123=1;
+                }
+
+
+                switch (alt123) {
+            	case 1 :
+            	    // InternalSpecParser.g:10932:2: rule__RichString__Group_1_1_2__0
+            	    {
+            	    pushFollow(FollowSets000.FOLLOW_63);
+            	    rule__RichString__Group_1_1_2__0();
+
+            	    state._fsp--;
+            	    if (state.failed) return ;
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop123;
+                }
+            } while (true);
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getGroup_1_1_2()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1__2__Impl"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1__3"
+    // InternalSpecParser.g:10942:1: rule__RichString__Group_1_1__3 : rule__RichString__Group_1_1__3__Impl ;
+    public final void rule__RichString__Group_1_1__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10946:1: ( rule__RichString__Group_1_1__3__Impl )
+            // InternalSpecParser.g:10947:2: rule__RichString__Group_1_1__3__Impl
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__Group_1_1__3__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1__3"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1__3__Impl"
+    // InternalSpecParser.g:10953:1: rule__RichString__Group_1_1__3__Impl : ( ( rule__RichString__ExpressionsAssignment_1_1_3 ) ) ;
+    public final void rule__RichString__Group_1_1__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10957:1: ( ( ( rule__RichString__ExpressionsAssignment_1_1_3 ) ) )
+            // InternalSpecParser.g:10958:1: ( ( rule__RichString__ExpressionsAssignment_1_1_3 ) )
+            {
+            // InternalSpecParser.g:10958:1: ( ( rule__RichString__ExpressionsAssignment_1_1_3 ) )
+            // InternalSpecParser.g:10959:1: ( rule__RichString__ExpressionsAssignment_1_1_3 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_3()); 
+            }
+            // InternalSpecParser.g:10960:1: ( rule__RichString__ExpressionsAssignment_1_1_3 )
+            // InternalSpecParser.g:10960:2: rule__RichString__ExpressionsAssignment_1_1_3
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__ExpressionsAssignment_1_1_3();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_3()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1__3__Impl"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1_2__0"
+    // InternalSpecParser.g:10978:1: rule__RichString__Group_1_1_2__0 : rule__RichString__Group_1_1_2__0__Impl rule__RichString__Group_1_1_2__1 ;
+    public final void rule__RichString__Group_1_1_2__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10982:1: ( rule__RichString__Group_1_1_2__0__Impl rule__RichString__Group_1_1_2__1 )
+            // InternalSpecParser.g:10983:2: rule__RichString__Group_1_1_2__0__Impl rule__RichString__Group_1_1_2__1
+            {
+            pushFollow(FollowSets000.FOLLOW_64);
+            rule__RichString__Group_1_1_2__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__Group_1_1_2__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1_2__0"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1_2__0__Impl"
+    // InternalSpecParser.g:10990:1: rule__RichString__Group_1_1_2__0__Impl : ( ( rule__RichString__ExpressionsAssignment_1_1_2_0 ) ) ;
+    public final void rule__RichString__Group_1_1_2__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:10994:1: ( ( ( rule__RichString__ExpressionsAssignment_1_1_2_0 ) ) )
+            // InternalSpecParser.g:10995:1: ( ( rule__RichString__ExpressionsAssignment_1_1_2_0 ) )
+            {
+            // InternalSpecParser.g:10995:1: ( ( rule__RichString__ExpressionsAssignment_1_1_2_0 ) )
+            // InternalSpecParser.g:10996:1: ( rule__RichString__ExpressionsAssignment_1_1_2_0 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_2_0()); 
+            }
+            // InternalSpecParser.g:10997:1: ( rule__RichString__ExpressionsAssignment_1_1_2_0 )
+            // InternalSpecParser.g:10997:2: rule__RichString__ExpressionsAssignment_1_1_2_0
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__ExpressionsAssignment_1_1_2_0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_2_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1_2__0__Impl"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1_2__1"
+    // InternalSpecParser.g:11007:1: rule__RichString__Group_1_1_2__1 : rule__RichString__Group_1_1_2__1__Impl ;
+    public final void rule__RichString__Group_1_1_2__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11011:1: ( rule__RichString__Group_1_1_2__1__Impl )
+            // InternalSpecParser.g:11012:2: rule__RichString__Group_1_1_2__1__Impl
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichString__Group_1_1_2__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1_2__1"
+
+
+    // $ANTLR start "rule__RichString__Group_1_1_2__1__Impl"
+    // InternalSpecParser.g:11018:1: rule__RichString__Group_1_1_2__1__Impl : ( ( rule__RichString__ExpressionsAssignment_1_1_2_1 )? ) ;
+    public final void rule__RichString__Group_1_1_2__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11022:1: ( ( ( rule__RichString__ExpressionsAssignment_1_1_2_1 )? ) )
+            // InternalSpecParser.g:11023:1: ( ( rule__RichString__ExpressionsAssignment_1_1_2_1 )? )
+            {
+            // InternalSpecParser.g:11023:1: ( ( rule__RichString__ExpressionsAssignment_1_1_2_1 )? )
+            // InternalSpecParser.g:11024:1: ( rule__RichString__ExpressionsAssignment_1_1_2_1 )?
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_2_1()); 
+            }
+            // InternalSpecParser.g:11025:1: ( rule__RichString__ExpressionsAssignment_1_1_2_1 )?
+            int alt124=2;
+            int LA124_0 = input.LA(1);
+
+            if ( (LA124_0==Synchronized||LA124_0==Extension||LA124_0==Extends||LA124_0==Assert||LA124_0==Import||LA124_0==Return||(LA124_0>=Static && LA124_0<=Switch)||LA124_0==Typeof||LA124_0==False||(LA124_0>=Super && LA124_0<=While)||(LA124_0>=Null && LA124_0<=True)||(LA124_0>=For && LA124_0<=New)||(LA124_0>=Try && LA124_0<=Var)||(LA124_0>=Do && LA124_0<=If)||(LA124_0>=ExclamationMark && LA124_0<=NumberSign)||LA124_0==LeftParenthesis||LA124_0==PlusSign||LA124_0==HyphenMinus||LA124_0==LessThanSign||LA124_0==LeftSquareBracket||LA124_0==LeftCurlyBracket||LA124_0==RULE_ID||(LA124_0>=RULE_RICH_TEXT && LA124_0<=RULE_RICH_TEXT_START)||(LA124_0>=RULE_HEX && LA124_0<=RULE_STRING)) ) {
+                alt124=1;
+            }
+            switch (alt124) {
+                case 1 :
+                    // InternalSpecParser.g:11025:2: rule__RichString__ExpressionsAssignment_1_1_2_1
+                    {
+                    pushFollow(FollowSets000.FOLLOW_2);
+                    rule__RichString__ExpressionsAssignment_1_1_2_1();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getExpressionsAssignment_1_1_2_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__Group_1_1_2__1__Impl"
+
+
+    // $ANTLR start "rule__RichStringLiteral__Group__0"
+    // InternalSpecParser.g:11039:1: rule__RichStringLiteral__Group__0 : rule__RichStringLiteral__Group__0__Impl rule__RichStringLiteral__Group__1 ;
+    public final void rule__RichStringLiteral__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11043:1: ( rule__RichStringLiteral__Group__0__Impl rule__RichStringLiteral__Group__1 )
+            // InternalSpecParser.g:11044:2: rule__RichStringLiteral__Group__0__Impl rule__RichStringLiteral__Group__1
+            {
+            pushFollow(FollowSets000.FOLLOW_65);
+            rule__RichStringLiteral__Group__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteral__Group__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteral__Group__0"
+
+
+    // $ANTLR start "rule__RichStringLiteral__Group__0__Impl"
+    // InternalSpecParser.g:11051:1: rule__RichStringLiteral__Group__0__Impl : ( () ) ;
+    public final void rule__RichStringLiteral__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11055:1: ( ( () ) )
+            // InternalSpecParser.g:11056:1: ( () )
+            {
+            // InternalSpecParser.g:11056:1: ( () )
+            // InternalSpecParser.g:11057:1: ()
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralAccess().getRichStringLiteralAction_0()); 
+            }
+            // InternalSpecParser.g:11058:1: ()
+            // InternalSpecParser.g:11060:1: 
+            {
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralAccess().getRichStringLiteralAction_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteral__Group__0__Impl"
+
+
+    // $ANTLR start "rule__RichStringLiteral__Group__1"
+    // InternalSpecParser.g:11070:1: rule__RichStringLiteral__Group__1 : rule__RichStringLiteral__Group__1__Impl ;
+    public final void rule__RichStringLiteral__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11074:1: ( rule__RichStringLiteral__Group__1__Impl )
+            // InternalSpecParser.g:11075:2: rule__RichStringLiteral__Group__1__Impl
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteral__Group__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteral__Group__1"
+
+
+    // $ANTLR start "rule__RichStringLiteral__Group__1__Impl"
+    // InternalSpecParser.g:11081:1: rule__RichStringLiteral__Group__1__Impl : ( ( rule__RichStringLiteral__ValueAssignment_1 ) ) ;
+    public final void rule__RichStringLiteral__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11085:1: ( ( ( rule__RichStringLiteral__ValueAssignment_1 ) ) )
+            // InternalSpecParser.g:11086:1: ( ( rule__RichStringLiteral__ValueAssignment_1 ) )
+            {
+            // InternalSpecParser.g:11086:1: ( ( rule__RichStringLiteral__ValueAssignment_1 ) )
+            // InternalSpecParser.g:11087:1: ( rule__RichStringLiteral__ValueAssignment_1 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralAccess().getValueAssignment_1()); 
+            }
+            // InternalSpecParser.g:11088:1: ( rule__RichStringLiteral__ValueAssignment_1 )
+            // InternalSpecParser.g:11088:2: rule__RichStringLiteral__ValueAssignment_1
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteral__ValueAssignment_1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralAccess().getValueAssignment_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteral__Group__1__Impl"
+
+
+    // $ANTLR start "rule__RichStringLiteralStart__Group__0"
+    // InternalSpecParser.g:11102:1: rule__RichStringLiteralStart__Group__0 : rule__RichStringLiteralStart__Group__0__Impl rule__RichStringLiteralStart__Group__1 ;
+    public final void rule__RichStringLiteralStart__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11106:1: ( rule__RichStringLiteralStart__Group__0__Impl rule__RichStringLiteralStart__Group__1 )
+            // InternalSpecParser.g:11107:2: rule__RichStringLiteralStart__Group__0__Impl rule__RichStringLiteralStart__Group__1
+            {
+            pushFollow(FollowSets000.FOLLOW_61);
+            rule__RichStringLiteralStart__Group__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralStart__Group__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralStart__Group__0"
+
+
+    // $ANTLR start "rule__RichStringLiteralStart__Group__0__Impl"
+    // InternalSpecParser.g:11114:1: rule__RichStringLiteralStart__Group__0__Impl : ( () ) ;
+    public final void rule__RichStringLiteralStart__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11118:1: ( ( () ) )
+            // InternalSpecParser.g:11119:1: ( () )
+            {
+            // InternalSpecParser.g:11119:1: ( () )
+            // InternalSpecParser.g:11120:1: ()
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralStartAccess().getRichStringLiteralAction_0()); 
+            }
+            // InternalSpecParser.g:11121:1: ()
+            // InternalSpecParser.g:11123:1: 
+            {
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralStartAccess().getRichStringLiteralAction_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralStart__Group__0__Impl"
+
+
+    // $ANTLR start "rule__RichStringLiteralStart__Group__1"
+    // InternalSpecParser.g:11133:1: rule__RichStringLiteralStart__Group__1 : rule__RichStringLiteralStart__Group__1__Impl ;
+    public final void rule__RichStringLiteralStart__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11137:1: ( rule__RichStringLiteralStart__Group__1__Impl )
+            // InternalSpecParser.g:11138:2: rule__RichStringLiteralStart__Group__1__Impl
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralStart__Group__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralStart__Group__1"
+
+
+    // $ANTLR start "rule__RichStringLiteralStart__Group__1__Impl"
+    // InternalSpecParser.g:11144:1: rule__RichStringLiteralStart__Group__1__Impl : ( ( rule__RichStringLiteralStart__ValueAssignment_1 ) ) ;
+    public final void rule__RichStringLiteralStart__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11148:1: ( ( ( rule__RichStringLiteralStart__ValueAssignment_1 ) ) )
+            // InternalSpecParser.g:11149:1: ( ( rule__RichStringLiteralStart__ValueAssignment_1 ) )
+            {
+            // InternalSpecParser.g:11149:1: ( ( rule__RichStringLiteralStart__ValueAssignment_1 ) )
+            // InternalSpecParser.g:11150:1: ( rule__RichStringLiteralStart__ValueAssignment_1 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralStartAccess().getValueAssignment_1()); 
+            }
+            // InternalSpecParser.g:11151:1: ( rule__RichStringLiteralStart__ValueAssignment_1 )
+            // InternalSpecParser.g:11151:2: rule__RichStringLiteralStart__ValueAssignment_1
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralStart__ValueAssignment_1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralStartAccess().getValueAssignment_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralStart__Group__1__Impl"
+
+
+    // $ANTLR start "rule__RichStringLiteralInbetween__Group__0"
+    // InternalSpecParser.g:11165:1: rule__RichStringLiteralInbetween__Group__0 : rule__RichStringLiteralInbetween__Group__0__Impl rule__RichStringLiteralInbetween__Group__1 ;
+    public final void rule__RichStringLiteralInbetween__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11169:1: ( rule__RichStringLiteralInbetween__Group__0__Impl rule__RichStringLiteralInbetween__Group__1 )
+            // InternalSpecParser.g:11170:2: rule__RichStringLiteralInbetween__Group__0__Impl rule__RichStringLiteralInbetween__Group__1
+            {
+            pushFollow(FollowSets000.FOLLOW_66);
+            rule__RichStringLiteralInbetween__Group__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralInbetween__Group__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralInbetween__Group__0"
+
+
+    // $ANTLR start "rule__RichStringLiteralInbetween__Group__0__Impl"
+    // InternalSpecParser.g:11177:1: rule__RichStringLiteralInbetween__Group__0__Impl : ( () ) ;
+    public final void rule__RichStringLiteralInbetween__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11181:1: ( ( () ) )
+            // InternalSpecParser.g:11182:1: ( () )
+            {
+            // InternalSpecParser.g:11182:1: ( () )
+            // InternalSpecParser.g:11183:1: ()
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralInbetweenAccess().getRichStringLiteralAction_0()); 
+            }
+            // InternalSpecParser.g:11184:1: ()
+            // InternalSpecParser.g:11186:1: 
+            {
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralInbetweenAccess().getRichStringLiteralAction_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralInbetween__Group__0__Impl"
+
+
+    // $ANTLR start "rule__RichStringLiteralInbetween__Group__1"
+    // InternalSpecParser.g:11196:1: rule__RichStringLiteralInbetween__Group__1 : rule__RichStringLiteralInbetween__Group__1__Impl ;
+    public final void rule__RichStringLiteralInbetween__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11200:1: ( rule__RichStringLiteralInbetween__Group__1__Impl )
+            // InternalSpecParser.g:11201:2: rule__RichStringLiteralInbetween__Group__1__Impl
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralInbetween__Group__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralInbetween__Group__1"
+
+
+    // $ANTLR start "rule__RichStringLiteralInbetween__Group__1__Impl"
+    // InternalSpecParser.g:11207:1: rule__RichStringLiteralInbetween__Group__1__Impl : ( ( rule__RichStringLiteralInbetween__ValueAssignment_1 ) ) ;
+    public final void rule__RichStringLiteralInbetween__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11211:1: ( ( ( rule__RichStringLiteralInbetween__ValueAssignment_1 ) ) )
+            // InternalSpecParser.g:11212:1: ( ( rule__RichStringLiteralInbetween__ValueAssignment_1 ) )
+            {
+            // InternalSpecParser.g:11212:1: ( ( rule__RichStringLiteralInbetween__ValueAssignment_1 ) )
+            // InternalSpecParser.g:11213:1: ( rule__RichStringLiteralInbetween__ValueAssignment_1 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralInbetweenAccess().getValueAssignment_1()); 
+            }
+            // InternalSpecParser.g:11214:1: ( rule__RichStringLiteralInbetween__ValueAssignment_1 )
+            // InternalSpecParser.g:11214:2: rule__RichStringLiteralInbetween__ValueAssignment_1
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralInbetween__ValueAssignment_1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralInbetweenAccess().getValueAssignment_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralInbetween__Group__1__Impl"
+
+
+    // $ANTLR start "rule__RichStringLiteralEnd__Group__0"
+    // InternalSpecParser.g:11228:1: rule__RichStringLiteralEnd__Group__0 : rule__RichStringLiteralEnd__Group__0__Impl rule__RichStringLiteralEnd__Group__1 ;
+    public final void rule__RichStringLiteralEnd__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11232:1: ( rule__RichStringLiteralEnd__Group__0__Impl rule__RichStringLiteralEnd__Group__1 )
+            // InternalSpecParser.g:11233:2: rule__RichStringLiteralEnd__Group__0__Impl rule__RichStringLiteralEnd__Group__1
+            {
+            pushFollow(FollowSets000.FOLLOW_62);
+            rule__RichStringLiteralEnd__Group__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralEnd__Group__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralEnd__Group__0"
+
+
+    // $ANTLR start "rule__RichStringLiteralEnd__Group__0__Impl"
+    // InternalSpecParser.g:11240:1: rule__RichStringLiteralEnd__Group__0__Impl : ( () ) ;
+    public final void rule__RichStringLiteralEnd__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11244:1: ( ( () ) )
+            // InternalSpecParser.g:11245:1: ( () )
+            {
+            // InternalSpecParser.g:11245:1: ( () )
+            // InternalSpecParser.g:11246:1: ()
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralEndAccess().getRichStringLiteralAction_0()); 
+            }
+            // InternalSpecParser.g:11247:1: ()
+            // InternalSpecParser.g:11249:1: 
+            {
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralEndAccess().getRichStringLiteralAction_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralEnd__Group__0__Impl"
+
+
+    // $ANTLR start "rule__RichStringLiteralEnd__Group__1"
+    // InternalSpecParser.g:11259:1: rule__RichStringLiteralEnd__Group__1 : rule__RichStringLiteralEnd__Group__1__Impl ;
+    public final void rule__RichStringLiteralEnd__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11263:1: ( rule__RichStringLiteralEnd__Group__1__Impl )
+            // InternalSpecParser.g:11264:2: rule__RichStringLiteralEnd__Group__1__Impl
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralEnd__Group__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralEnd__Group__1"
+
+
+    // $ANTLR start "rule__RichStringLiteralEnd__Group__1__Impl"
+    // InternalSpecParser.g:11270:1: rule__RichStringLiteralEnd__Group__1__Impl : ( ( rule__RichStringLiteralEnd__ValueAssignment_1 ) ) ;
+    public final void rule__RichStringLiteralEnd__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:11274:1: ( ( ( rule__RichStringLiteralEnd__ValueAssignment_1 ) ) )
+            // InternalSpecParser.g:11275:1: ( ( rule__RichStringLiteralEnd__ValueAssignment_1 ) )
+            {
+            // InternalSpecParser.g:11275:1: ( ( rule__RichStringLiteralEnd__ValueAssignment_1 ) )
+            // InternalSpecParser.g:11276:1: ( rule__RichStringLiteralEnd__ValueAssignment_1 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralEndAccess().getValueAssignment_1()); 
+            }
+            // InternalSpecParser.g:11277:1: ( rule__RichStringLiteralEnd__ValueAssignment_1 )
+            // InternalSpecParser.g:11277:2: rule__RichStringLiteralEnd__ValueAssignment_1
+            {
+            pushFollow(FollowSets000.FOLLOW_2);
+            rule__RichStringLiteralEnd__ValueAssignment_1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralEndAccess().getValueAssignment_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralEnd__Group__1__Impl"
+
+
     // $ANTLR start "rule__XAnnotation__Group__0"
     // InternalSpecParser.g:11294:1: rule__XAnnotation__Group__0 : rule__XAnnotation__Group__0__Impl rule__XAnnotation__Group__1 ;
     public final void rule__XAnnotation__Group__0() throws RecognitionException {
@@ -34269,7 +34269,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
             // InternalSpecParser.g:11298:1: ( rule__XAnnotation__Group__0__Impl rule__XAnnotation__Group__1 )
             // InternalSpecParser.g:11299:2: rule__XAnnotation__Group__0__Impl rule__XAnnotation__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_66);
+            pushFollow(FollowSets000.FOLLOW_60);
             rule__XAnnotation__Group__0__Impl();
 
             state._fsp--;
@@ -57630,7 +57630,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
             // InternalSpecParser.g:19823:1: ( rule__XBasicForLoopExpression__Group_3_1__0__Impl rule__XBasicForLoopExpression__Group_3_1__1 )
             // InternalSpecParser.g:19824:2: rule__XBasicForLoopExpression__Group_3_1__0__Impl rule__XBasicForLoopExpression__Group_3_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_62);
+            pushFollow(FollowSets000.FOLLOW_64);
             rule__XBasicForLoopExpression__Group_3_1__0__Impl();
 
             state._fsp--;
@@ -77688,452 +77688,18 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__SimpleStringLiteral__ValueAssignment_1"
 
 
-    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_0"
-    // InternalSpecParser.g:27102:1: rule__RichString__ExpressionsAssignment_1_0 : ( ruleRichStringLiteral ) ;
-    public final void rule__RichString__ExpressionsAssignment_1_0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:27106:1: ( ( ruleRichStringLiteral ) )
-            // InternalSpecParser.g:27107:1: ( ruleRichStringLiteral )
-            {
-            // InternalSpecParser.g:27107:1: ( ruleRichStringLiteral )
-            // InternalSpecParser.g:27108:1: ruleRichStringLiteral
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralParserRuleCall_1_0_0()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_2);
-            ruleRichStringLiteral();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralParserRuleCall_1_0_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_0"
-
-
-    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_1_0"
-    // InternalSpecParser.g:27117:1: rule__RichString__ExpressionsAssignment_1_1_0 : ( ruleRichStringLiteralStart ) ;
-    public final void rule__RichString__ExpressionsAssignment_1_1_0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:27121:1: ( ( ruleRichStringLiteralStart ) )
-            // InternalSpecParser.g:27122:1: ( ruleRichStringLiteralStart )
-            {
-            // InternalSpecParser.g:27122:1: ( ruleRichStringLiteralStart )
-            // InternalSpecParser.g:27123:1: ruleRichStringLiteralStart
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralStartParserRuleCall_1_1_0_0()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_2);
-            ruleRichStringLiteralStart();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralStartParserRuleCall_1_1_0_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_1_0"
-
-
-    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_1_1"
-    // InternalSpecParser.g:27132:1: rule__RichString__ExpressionsAssignment_1_1_1 : ( ruleRichStringPart ) ;
-    public final void rule__RichString__ExpressionsAssignment_1_1_1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:27136:1: ( ( ruleRichStringPart ) )
-            // InternalSpecParser.g:27137:1: ( ruleRichStringPart )
-            {
-            // InternalSpecParser.g:27137:1: ( ruleRichStringPart )
-            // InternalSpecParser.g:27138:1: ruleRichStringPart
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_1_0()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_2);
-            ruleRichStringPart();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_1_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_1_1"
-
-
-    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_1_2_0"
-    // InternalSpecParser.g:27147:1: rule__RichString__ExpressionsAssignment_1_1_2_0 : ( ruleRichStringLiteralInbetween ) ;
-    public final void rule__RichString__ExpressionsAssignment_1_1_2_0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:27151:1: ( ( ruleRichStringLiteralInbetween ) )
-            // InternalSpecParser.g:27152:1: ( ruleRichStringLiteralInbetween )
-            {
-            // InternalSpecParser.g:27152:1: ( ruleRichStringLiteralInbetween )
-            // InternalSpecParser.g:27153:1: ruleRichStringLiteralInbetween
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_2_0_0()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_2);
-            ruleRichStringLiteralInbetween();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_2_0_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_1_2_0"
-
-
-    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_1_2_1"
-    // InternalSpecParser.g:27162:1: rule__RichString__ExpressionsAssignment_1_1_2_1 : ( ruleRichStringPart ) ;
-    public final void rule__RichString__ExpressionsAssignment_1_1_2_1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:27166:1: ( ( ruleRichStringPart ) )
-            // InternalSpecParser.g:27167:1: ( ruleRichStringPart )
-            {
-            // InternalSpecParser.g:27167:1: ( ruleRichStringPart )
-            // InternalSpecParser.g:27168:1: ruleRichStringPart
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_2_1_0()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_2);
-            ruleRichStringPart();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_2_1_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_1_2_1"
-
-
-    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_1_3"
-    // InternalSpecParser.g:27177:1: rule__RichString__ExpressionsAssignment_1_1_3 : ( ruleRichStringLiteralEnd ) ;
-    public final void rule__RichString__ExpressionsAssignment_1_1_3() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:27181:1: ( ( ruleRichStringLiteralEnd ) )
-            // InternalSpecParser.g:27182:1: ( ruleRichStringLiteralEnd )
-            {
-            // InternalSpecParser.g:27182:1: ( ruleRichStringLiteralEnd )
-            // InternalSpecParser.g:27183:1: ruleRichStringLiteralEnd
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralEndParserRuleCall_1_1_3_0()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_2);
-            ruleRichStringLiteralEnd();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralEndParserRuleCall_1_1_3_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_1_3"
-
-
-    // $ANTLR start "rule__RichStringLiteral__ValueAssignment_1"
-    // InternalSpecParser.g:27192:1: rule__RichStringLiteral__ValueAssignment_1 : ( RULE_RICH_TEXT ) ;
-    public final void rule__RichStringLiteral__ValueAssignment_1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:27196:1: ( ( RULE_RICH_TEXT ) )
-            // InternalSpecParser.g:27197:1: ( RULE_RICH_TEXT )
-            {
-            // InternalSpecParser.g:27197:1: ( RULE_RICH_TEXT )
-            // InternalSpecParser.g:27198:1: RULE_RICH_TEXT
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralAccess().getValueRICH_TEXTTerminalRuleCall_1_0()); 
-            }
-            match(input,RULE_RICH_TEXT,FollowSets000.FOLLOW_2); if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralAccess().getValueRICH_TEXTTerminalRuleCall_1_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteral__ValueAssignment_1"
-
-
-    // $ANTLR start "rule__RichStringLiteralStart__ValueAssignment_1"
-    // InternalSpecParser.g:27207:1: rule__RichStringLiteralStart__ValueAssignment_1 : ( RULE_RICH_TEXT_START ) ;
-    public final void rule__RichStringLiteralStart__ValueAssignment_1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:27211:1: ( ( RULE_RICH_TEXT_START ) )
-            // InternalSpecParser.g:27212:1: ( RULE_RICH_TEXT_START )
-            {
-            // InternalSpecParser.g:27212:1: ( RULE_RICH_TEXT_START )
-            // InternalSpecParser.g:27213:1: RULE_RICH_TEXT_START
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralStartAccess().getValueRICH_TEXT_STARTTerminalRuleCall_1_0()); 
-            }
-            match(input,RULE_RICH_TEXT_START,FollowSets000.FOLLOW_2); if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralStartAccess().getValueRICH_TEXT_STARTTerminalRuleCall_1_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralStart__ValueAssignment_1"
-
-
-    // $ANTLR start "rule__RichStringLiteralInbetween__ValueAssignment_1"
-    // InternalSpecParser.g:27222:1: rule__RichStringLiteralInbetween__ValueAssignment_1 : ( RULE_RICH_TEXT_INBETWEEN ) ;
-    public final void rule__RichStringLiteralInbetween__ValueAssignment_1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:27226:1: ( ( RULE_RICH_TEXT_INBETWEEN ) )
-            // InternalSpecParser.g:27227:1: ( RULE_RICH_TEXT_INBETWEEN )
-            {
-            // InternalSpecParser.g:27227:1: ( RULE_RICH_TEXT_INBETWEEN )
-            // InternalSpecParser.g:27228:1: RULE_RICH_TEXT_INBETWEEN
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralInbetweenAccess().getValueRICH_TEXT_INBETWEENTerminalRuleCall_1_0()); 
-            }
-            match(input,RULE_RICH_TEXT_INBETWEEN,FollowSets000.FOLLOW_2); if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralInbetweenAccess().getValueRICH_TEXT_INBETWEENTerminalRuleCall_1_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralInbetween__ValueAssignment_1"
-
-
-    // $ANTLR start "rule__RichStringLiteralEnd__ValueAssignment_1"
-    // InternalSpecParser.g:27237:1: rule__RichStringLiteralEnd__ValueAssignment_1 : ( RULE_RICH_TEXT_END ) ;
-    public final void rule__RichStringLiteralEnd__ValueAssignment_1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalSpecParser.g:27241:1: ( ( RULE_RICH_TEXT_END ) )
-            // InternalSpecParser.g:27242:1: ( RULE_RICH_TEXT_END )
-            {
-            // InternalSpecParser.g:27242:1: ( RULE_RICH_TEXT_END )
-            // InternalSpecParser.g:27243:1: RULE_RICH_TEXT_END
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getRichStringLiteralEndAccess().getValueRICH_TEXT_ENDTerminalRuleCall_1_0()); 
-            }
-            match(input,RULE_RICH_TEXT_END,FollowSets000.FOLLOW_2); if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getRichStringLiteralEndAccess().getValueRICH_TEXT_ENDTerminalRuleCall_1_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RichStringLiteralEnd__ValueAssignment_1"
-
-
     // $ANTLR start "rule__Parameter__AnnotationsAssignment_0"
-    // InternalSpecParser.g:27255:1: rule__Parameter__AnnotationsAssignment_0 : ( ruleXAnnotation ) ;
+    // InternalSpecParser.g:27102:1: rule__Parameter__AnnotationsAssignment_0 : ( ruleXAnnotation ) ;
     public final void rule__Parameter__AnnotationsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:27259:1: ( ( ruleXAnnotation ) )
-            // InternalSpecParser.g:27260:1: ( ruleXAnnotation )
+            // InternalSpecParser.g:27106:1: ( ( ruleXAnnotation ) )
+            // InternalSpecParser.g:27107:1: ( ruleXAnnotation )
             {
-            // InternalSpecParser.g:27260:1: ( ruleXAnnotation )
-            // InternalSpecParser.g:27261:1: ruleXAnnotation
+            // InternalSpecParser.g:27107:1: ( ruleXAnnotation )
+            // InternalSpecParser.g:27108:1: ruleXAnnotation
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getAnnotationsXAnnotationParserRuleCall_0_0()); 
@@ -78168,23 +77734,23 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__ExtensionAssignment_1_0"
-    // InternalSpecParser.g:27270:1: rule__Parameter__ExtensionAssignment_1_0 : ( ( Extension ) ) ;
+    // InternalSpecParser.g:27117:1: rule__Parameter__ExtensionAssignment_1_0 : ( ( Extension ) ) ;
     public final void rule__Parameter__ExtensionAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:27274:1: ( ( ( Extension ) ) )
-            // InternalSpecParser.g:27275:1: ( ( Extension ) )
+            // InternalSpecParser.g:27121:1: ( ( ( Extension ) ) )
+            // InternalSpecParser.g:27122:1: ( ( Extension ) )
             {
-            // InternalSpecParser.g:27275:1: ( ( Extension ) )
-            // InternalSpecParser.g:27276:1: ( Extension )
+            // InternalSpecParser.g:27122:1: ( ( Extension ) )
+            // InternalSpecParser.g:27123:1: ( Extension )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getExtensionExtensionKeyword_1_0_0()); 
             }
-            // InternalSpecParser.g:27277:1: ( Extension )
-            // InternalSpecParser.g:27278:1: Extension
+            // InternalSpecParser.g:27124:1: ( Extension )
+            // InternalSpecParser.g:27125:1: Extension
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getExtensionExtensionKeyword_1_0_0()); 
@@ -78221,17 +77787,17 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__AnnotationsAssignment_1_1"
-    // InternalSpecParser.g:27293:1: rule__Parameter__AnnotationsAssignment_1_1 : ( ruleXAnnotation ) ;
+    // InternalSpecParser.g:27140:1: rule__Parameter__AnnotationsAssignment_1_1 : ( ruleXAnnotation ) ;
     public final void rule__Parameter__AnnotationsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:27297:1: ( ( ruleXAnnotation ) )
-            // InternalSpecParser.g:27298:1: ( ruleXAnnotation )
+            // InternalSpecParser.g:27144:1: ( ( ruleXAnnotation ) )
+            // InternalSpecParser.g:27145:1: ( ruleXAnnotation )
             {
-            // InternalSpecParser.g:27298:1: ( ruleXAnnotation )
-            // InternalSpecParser.g:27299:1: ruleXAnnotation
+            // InternalSpecParser.g:27145:1: ( ruleXAnnotation )
+            // InternalSpecParser.g:27146:1: ruleXAnnotation
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getAnnotationsXAnnotationParserRuleCall_1_1_0()); 
@@ -78266,17 +77832,17 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__ParameterTypeAssignment_2"
-    // InternalSpecParser.g:27308:1: rule__Parameter__ParameterTypeAssignment_2 : ( ruleJvmTypeReference ) ;
+    // InternalSpecParser.g:27155:1: rule__Parameter__ParameterTypeAssignment_2 : ( ruleJvmTypeReference ) ;
     public final void rule__Parameter__ParameterTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:27312:1: ( ( ruleJvmTypeReference ) )
-            // InternalSpecParser.g:27313:1: ( ruleJvmTypeReference )
+            // InternalSpecParser.g:27159:1: ( ( ruleJvmTypeReference ) )
+            // InternalSpecParser.g:27160:1: ( ruleJvmTypeReference )
             {
-            // InternalSpecParser.g:27313:1: ( ruleJvmTypeReference )
-            // InternalSpecParser.g:27314:1: ruleJvmTypeReference
+            // InternalSpecParser.g:27160:1: ( ruleJvmTypeReference )
+            // InternalSpecParser.g:27161:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getParameterTypeJvmTypeReferenceParserRuleCall_2_0()); 
@@ -78311,23 +77877,23 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__VarArgAssignment_3"
-    // InternalSpecParser.g:27323:1: rule__Parameter__VarArgAssignment_3 : ( ( FullStopFullStopFullStop ) ) ;
+    // InternalSpecParser.g:27170:1: rule__Parameter__VarArgAssignment_3 : ( ( FullStopFullStopFullStop ) ) ;
     public final void rule__Parameter__VarArgAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:27327:1: ( ( ( FullStopFullStopFullStop ) ) )
-            // InternalSpecParser.g:27328:1: ( ( FullStopFullStopFullStop ) )
+            // InternalSpecParser.g:27174:1: ( ( ( FullStopFullStopFullStop ) ) )
+            // InternalSpecParser.g:27175:1: ( ( FullStopFullStopFullStop ) )
             {
-            // InternalSpecParser.g:27328:1: ( ( FullStopFullStopFullStop ) )
-            // InternalSpecParser.g:27329:1: ( FullStopFullStopFullStop )
+            // InternalSpecParser.g:27175:1: ( ( FullStopFullStopFullStop ) )
+            // InternalSpecParser.g:27176:1: ( FullStopFullStopFullStop )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getVarArgFullStopFullStopFullStopKeyword_3_0()); 
             }
-            // InternalSpecParser.g:27330:1: ( FullStopFullStopFullStop )
-            // InternalSpecParser.g:27331:1: FullStopFullStopFullStop
+            // InternalSpecParser.g:27177:1: ( FullStopFullStopFullStop )
+            // InternalSpecParser.g:27178:1: FullStopFullStopFullStop
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getVarArgFullStopFullStopFullStopKeyword_3_0()); 
@@ -78364,17 +77930,17 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__NameAssignment_4"
-    // InternalSpecParser.g:27346:1: rule__Parameter__NameAssignment_4 : ( ruleValidID ) ;
+    // InternalSpecParser.g:27193:1: rule__Parameter__NameAssignment_4 : ( ruleValidID ) ;
     public final void rule__Parameter__NameAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpecParser.g:27350:1: ( ( ruleValidID ) )
-            // InternalSpecParser.g:27351:1: ( ruleValidID )
+            // InternalSpecParser.g:27197:1: ( ( ruleValidID ) )
+            // InternalSpecParser.g:27198:1: ( ruleValidID )
             {
-            // InternalSpecParser.g:27351:1: ( ruleValidID )
-            // InternalSpecParser.g:27352:1: ruleValidID
+            // InternalSpecParser.g:27198:1: ( ruleValidID )
+            // InternalSpecParser.g:27199:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParameterAccess().getNameValidIDParserRuleCall_4_0()); 
@@ -78406,6 +77972,440 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         return ;
     }
     // $ANTLR end "rule__Parameter__NameAssignment_4"
+
+
+    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_0"
+    // InternalSpecParser.g:27208:1: rule__RichString__ExpressionsAssignment_1_0 : ( ruleRichStringLiteral ) ;
+    public final void rule__RichString__ExpressionsAssignment_1_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:27212:1: ( ( ruleRichStringLiteral ) )
+            // InternalSpecParser.g:27213:1: ( ruleRichStringLiteral )
+            {
+            // InternalSpecParser.g:27213:1: ( ruleRichStringLiteral )
+            // InternalSpecParser.g:27214:1: ruleRichStringLiteral
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralParserRuleCall_1_0_0()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_2);
+            ruleRichStringLiteral();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralParserRuleCall_1_0_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_0"
+
+
+    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_1_0"
+    // InternalSpecParser.g:27223:1: rule__RichString__ExpressionsAssignment_1_1_0 : ( ruleRichStringLiteralStart ) ;
+    public final void rule__RichString__ExpressionsAssignment_1_1_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:27227:1: ( ( ruleRichStringLiteralStart ) )
+            // InternalSpecParser.g:27228:1: ( ruleRichStringLiteralStart )
+            {
+            // InternalSpecParser.g:27228:1: ( ruleRichStringLiteralStart )
+            // InternalSpecParser.g:27229:1: ruleRichStringLiteralStart
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralStartParserRuleCall_1_1_0_0()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_2);
+            ruleRichStringLiteralStart();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralStartParserRuleCall_1_1_0_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_1_0"
+
+
+    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_1_1"
+    // InternalSpecParser.g:27238:1: rule__RichString__ExpressionsAssignment_1_1_1 : ( ruleRichStringPart ) ;
+    public final void rule__RichString__ExpressionsAssignment_1_1_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:27242:1: ( ( ruleRichStringPart ) )
+            // InternalSpecParser.g:27243:1: ( ruleRichStringPart )
+            {
+            // InternalSpecParser.g:27243:1: ( ruleRichStringPart )
+            // InternalSpecParser.g:27244:1: ruleRichStringPart
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_1_0()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_2);
+            ruleRichStringPart();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_1_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_1_1"
+
+
+    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_1_2_0"
+    // InternalSpecParser.g:27253:1: rule__RichString__ExpressionsAssignment_1_1_2_0 : ( ruleRichStringLiteralInbetween ) ;
+    public final void rule__RichString__ExpressionsAssignment_1_1_2_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:27257:1: ( ( ruleRichStringLiteralInbetween ) )
+            // InternalSpecParser.g:27258:1: ( ruleRichStringLiteralInbetween )
+            {
+            // InternalSpecParser.g:27258:1: ( ruleRichStringLiteralInbetween )
+            // InternalSpecParser.g:27259:1: ruleRichStringLiteralInbetween
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_2_0_0()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_2);
+            ruleRichStringLiteralInbetween();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralInbetweenParserRuleCall_1_1_2_0_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_1_2_0"
+
+
+    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_1_2_1"
+    // InternalSpecParser.g:27268:1: rule__RichString__ExpressionsAssignment_1_1_2_1 : ( ruleRichStringPart ) ;
+    public final void rule__RichString__ExpressionsAssignment_1_1_2_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:27272:1: ( ( ruleRichStringPart ) )
+            // InternalSpecParser.g:27273:1: ( ruleRichStringPart )
+            {
+            // InternalSpecParser.g:27273:1: ( ruleRichStringPart )
+            // InternalSpecParser.g:27274:1: ruleRichStringPart
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_2_1_0()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_2);
+            ruleRichStringPart();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getExpressionsRichStringPartParserRuleCall_1_1_2_1_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_1_2_1"
+
+
+    // $ANTLR start "rule__RichString__ExpressionsAssignment_1_1_3"
+    // InternalSpecParser.g:27283:1: rule__RichString__ExpressionsAssignment_1_1_3 : ( ruleRichStringLiteralEnd ) ;
+    public final void rule__RichString__ExpressionsAssignment_1_1_3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:27287:1: ( ( ruleRichStringLiteralEnd ) )
+            // InternalSpecParser.g:27288:1: ( ruleRichStringLiteralEnd )
+            {
+            // InternalSpecParser.g:27288:1: ( ruleRichStringLiteralEnd )
+            // InternalSpecParser.g:27289:1: ruleRichStringLiteralEnd
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralEndParserRuleCall_1_1_3_0()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_2);
+            ruleRichStringLiteralEnd();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringAccess().getExpressionsRichStringLiteralEndParserRuleCall_1_1_3_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichString__ExpressionsAssignment_1_1_3"
+
+
+    // $ANTLR start "rule__RichStringLiteral__ValueAssignment_1"
+    // InternalSpecParser.g:27298:1: rule__RichStringLiteral__ValueAssignment_1 : ( RULE_RICH_TEXT ) ;
+    public final void rule__RichStringLiteral__ValueAssignment_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:27302:1: ( ( RULE_RICH_TEXT ) )
+            // InternalSpecParser.g:27303:1: ( RULE_RICH_TEXT )
+            {
+            // InternalSpecParser.g:27303:1: ( RULE_RICH_TEXT )
+            // InternalSpecParser.g:27304:1: RULE_RICH_TEXT
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralAccess().getValueRICH_TEXTTerminalRuleCall_1_0()); 
+            }
+            match(input,RULE_RICH_TEXT,FollowSets000.FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralAccess().getValueRICH_TEXTTerminalRuleCall_1_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteral__ValueAssignment_1"
+
+
+    // $ANTLR start "rule__RichStringLiteralStart__ValueAssignment_1"
+    // InternalSpecParser.g:27313:1: rule__RichStringLiteralStart__ValueAssignment_1 : ( RULE_RICH_TEXT_START ) ;
+    public final void rule__RichStringLiteralStart__ValueAssignment_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:27317:1: ( ( RULE_RICH_TEXT_START ) )
+            // InternalSpecParser.g:27318:1: ( RULE_RICH_TEXT_START )
+            {
+            // InternalSpecParser.g:27318:1: ( RULE_RICH_TEXT_START )
+            // InternalSpecParser.g:27319:1: RULE_RICH_TEXT_START
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralStartAccess().getValueRICH_TEXT_STARTTerminalRuleCall_1_0()); 
+            }
+            match(input,RULE_RICH_TEXT_START,FollowSets000.FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralStartAccess().getValueRICH_TEXT_STARTTerminalRuleCall_1_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralStart__ValueAssignment_1"
+
+
+    // $ANTLR start "rule__RichStringLiteralInbetween__ValueAssignment_1"
+    // InternalSpecParser.g:27328:1: rule__RichStringLiteralInbetween__ValueAssignment_1 : ( RULE_RICH_TEXT_INBETWEEN ) ;
+    public final void rule__RichStringLiteralInbetween__ValueAssignment_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:27332:1: ( ( RULE_RICH_TEXT_INBETWEEN ) )
+            // InternalSpecParser.g:27333:1: ( RULE_RICH_TEXT_INBETWEEN )
+            {
+            // InternalSpecParser.g:27333:1: ( RULE_RICH_TEXT_INBETWEEN )
+            // InternalSpecParser.g:27334:1: RULE_RICH_TEXT_INBETWEEN
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralInbetweenAccess().getValueRICH_TEXT_INBETWEENTerminalRuleCall_1_0()); 
+            }
+            match(input,RULE_RICH_TEXT_INBETWEEN,FollowSets000.FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralInbetweenAccess().getValueRICH_TEXT_INBETWEENTerminalRuleCall_1_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralInbetween__ValueAssignment_1"
+
+
+    // $ANTLR start "rule__RichStringLiteralEnd__ValueAssignment_1"
+    // InternalSpecParser.g:27343:1: rule__RichStringLiteralEnd__ValueAssignment_1 : ( RULE_RICH_TEXT_END ) ;
+    public final void rule__RichStringLiteralEnd__ValueAssignment_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpecParser.g:27347:1: ( ( RULE_RICH_TEXT_END ) )
+            // InternalSpecParser.g:27348:1: ( RULE_RICH_TEXT_END )
+            {
+            // InternalSpecParser.g:27348:1: ( RULE_RICH_TEXT_END )
+            // InternalSpecParser.g:27349:1: RULE_RICH_TEXT_END
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getRichStringLiteralEndAccess().getValueRICH_TEXT_ENDTerminalRuleCall_1_0()); 
+            }
+            match(input,RULE_RICH_TEXT_END,FollowSets000.FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getRichStringLiteralEndAccess().getValueRICH_TEXT_ENDTerminalRuleCall_1_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RichStringLiteralEnd__ValueAssignment_1"
 
 
     // $ANTLR start "rule__XAnnotation__AnnotationTypeAssignment_2"
@@ -87187,7 +87187,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     static final String dfa_16s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\6\uffff\1\6\13\uffff\1\7\1\uffff\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\10\1\11";
     static final String dfa_17s = "\31\uffff\1\0\11\uffff}>";
     static final String[] dfa_18s = {
-            "\1\4\1\uffff\1\5\12\uffff\1\5\4\uffff\1\40\1\uffff\1\5\2\uffff\1\35\1\uffff\1\5\1\3\1\uffff\1\14\3\uffff\1\14\1\uffff\1\5\1\34\1\32\4\uffff\2\14\6\uffff\1\31\1\1\1\uffff\1\36\26\uffff\1\33\1\30\2\uffff\1\14\2\uffff\1\37\11\uffff\1\5\4\uffff\1\14\1\uffff\1\2\6\uffff\1\5\2\uffff\2\14\3\uffff\4\14",
+            "\1\4\1\uffff\1\5\12\uffff\1\5\4\uffff\1\40\1\uffff\1\5\2\uffff\1\35\1\uffff\1\5\1\3\1\uffff\1\14\3\uffff\1\14\1\uffff\1\5\1\34\1\32\4\uffff\2\14\6\uffff\1\31\1\1\1\uffff\1\36\26\uffff\1\33\1\30\2\uffff\1\14\2\uffff\1\37\11\uffff\1\5\4\uffff\1\14\1\uffff\1\2\6\uffff\1\5\3\uffff\2\14\2\uffff\4\14",
             "",
             "",
             "",
@@ -87280,7 +87280,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     static final String dfa_22s = "\2\uffff\1\2\42\uffff\1\1";
     static final String dfa_23s = "\1\uffff\1\0\44\uffff}>";
     static final String[] dfa_24s = {
-            "\1\2\1\uffff\1\2\12\uffff\1\2\4\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\2\2\1\uffff\1\2\3\uffff\1\2\1\uffff\3\2\4\uffff\2\2\6\uffff\2\2\1\uffff\1\2\26\uffff\2\2\1\uffff\2\2\2\uffff\1\2\2\uffff\1\2\1\uffff\1\2\4\uffff\1\2\3\uffff\2\2\1\uffff\1\2\6\uffff\1\1\2\uffff\2\2\3\uffff\4\2",
+            "\1\2\1\uffff\1\2\12\uffff\1\2\4\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\2\2\1\uffff\1\2\3\uffff\1\2\1\uffff\3\2\4\uffff\2\2\6\uffff\2\2\1\uffff\1\2\26\uffff\2\2\1\uffff\2\2\2\uffff\1\2\2\uffff\1\2\1\uffff\1\2\4\uffff\1\2\3\uffff\2\2\1\uffff\1\2\6\uffff\1\1\3\uffff\2\2\2\uffff\4\2",
             "\1\uffff",
             "",
             "",
@@ -87371,7 +87371,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String[] dfa_25s = {
-            "\1\2\1\uffff\1\2\12\uffff\1\2\4\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\2\2\1\uffff\1\2\3\uffff\1\2\1\uffff\3\2\4\uffff\2\2\6\uffff\2\2\1\uffff\1\2\26\uffff\2\2\1\uffff\1\2\1\1\2\uffff\1\2\2\uffff\1\2\1\uffff\1\2\4\uffff\1\2\3\uffff\2\2\1\uffff\1\2\6\uffff\1\2\2\uffff\2\2\3\uffff\4\2",
+            "\1\2\1\uffff\1\2\12\uffff\1\2\4\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\2\2\1\uffff\1\2\3\uffff\1\2\1\uffff\3\2\4\uffff\2\2\6\uffff\2\2\1\uffff\1\2\26\uffff\2\2\1\uffff\1\2\1\1\2\uffff\1\2\2\uffff\1\2\1\uffff\1\2\4\uffff\1\2\3\uffff\2\2\1\uffff\1\2\6\uffff\1\2\3\uffff\2\2\2\uffff\4\2",
             "\1\uffff",
             "",
             "",
@@ -87553,11 +87553,11 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
             "\1\10\12\uffff\1\5\6\uffff\1\7\4\uffff\1\6\10\uffff\1\3\71\uffff\1\3\15\uffff\1\4",
             "\1\10\12\uffff\1\5\6\uffff\1\7\4\uffff\1\6\10\uffff\1\3\71\uffff\1\3\15\uffff\1\4",
             "",
-            "\46\3\1\uffff\5\3\1\uffff\2\3\1\uffff\3\3\1\uffff\35\3\1\uffff\13\3\1\11\1\3\1\uffff\6\3\4\uffff\1\3\2\uffff\4\3\1\uffff\4\3",
-            "\46\3\1\uffff\5\3\1\uffff\2\3\1\uffff\3\3\1\uffff\35\3\1\uffff\13\3\1\11\1\3\1\uffff\6\3\4\uffff\1\3\2\uffff\4\3\1\uffff\4\3",
-            "\46\3\1\uffff\5\3\1\uffff\2\3\1\uffff\3\3\1\uffff\35\3\1\uffff\13\3\1\11\1\3\1\uffff\6\3\4\uffff\1\3\2\uffff\4\3\1\uffff\4\3",
-            "\46\3\1\uffff\5\3\1\uffff\2\3\1\uffff\3\3\1\uffff\35\3\1\uffff\13\3\1\11\1\3\1\uffff\6\3\4\uffff\1\3\2\uffff\4\3\1\uffff\4\3",
-            "\46\3\1\uffff\5\3\1\uffff\2\3\1\uffff\3\3\1\uffff\35\3\1\uffff\13\3\1\11\1\3\1\uffff\6\3\4\uffff\1\3\2\uffff\4\3\1\uffff\4\3",
+            "\46\3\1\uffff\5\3\1\uffff\2\3\1\uffff\3\3\1\uffff\35\3\1\uffff\13\3\1\11\1\3\1\uffff\6\3\4\uffff\1\3\3\uffff\10\3",
+            "\46\3\1\uffff\5\3\1\uffff\2\3\1\uffff\3\3\1\uffff\35\3\1\uffff\13\3\1\11\1\3\1\uffff\6\3\4\uffff\1\3\3\uffff\10\3",
+            "\46\3\1\uffff\5\3\1\uffff\2\3\1\uffff\3\3\1\uffff\35\3\1\uffff\13\3\1\11\1\3\1\uffff\6\3\4\uffff\1\3\3\uffff\10\3",
+            "\46\3\1\uffff\5\3\1\uffff\2\3\1\uffff\3\3\1\uffff\35\3\1\uffff\13\3\1\11\1\3\1\uffff\6\3\4\uffff\1\3\3\uffff\10\3",
+            "\46\3\1\uffff\5\3\1\uffff\2\3\1\uffff\3\3\1\uffff\35\3\1\uffff\13\3\1\11\1\3\1\uffff\6\3\4\uffff\1\3\3\uffff\10\3",
             ""
     };
 
@@ -87591,7 +87591,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     static final String dfa_41s = "\3\uffff\1\1\1\uffff\1\2\40\uffff";
     static final String dfa_42s = "\1\uffff\1\0\1\1\43\uffff}>";
     static final String[] dfa_43s = {
-            "\1\5\1\uffff\1\5\12\uffff\1\5\4\uffff\1\5\1\uffff\1\5\2\uffff\1\5\1\uffff\2\5\1\uffff\1\5\3\uffff\1\5\1\uffff\3\5\4\uffff\2\5\6\uffff\2\5\1\uffff\1\5\21\uffff\1\3\4\uffff\2\5\1\uffff\2\5\2\uffff\1\2\2\uffff\1\5\1\uffff\1\5\4\uffff\1\5\4\uffff\1\5\1\uffff\1\5\1\3\5\uffff\1\1\2\uffff\2\5\3\uffff\4\5",
+            "\1\5\1\uffff\1\5\12\uffff\1\5\4\uffff\1\5\1\uffff\1\5\2\uffff\1\5\1\uffff\2\5\1\uffff\1\5\3\uffff\1\5\1\uffff\3\5\4\uffff\2\5\6\uffff\2\5\1\uffff\1\5\21\uffff\1\3\4\uffff\2\5\1\uffff\2\5\2\uffff\1\2\2\uffff\1\5\1\uffff\1\5\4\uffff\1\5\4\uffff\1\5\1\uffff\1\5\1\3\5\uffff\1\1\3\uffff\2\5\2\uffff\4\5",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -87695,7 +87695,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String[] dfa_44s = {
-            "\1\2\1\uffff\1\2\12\uffff\1\2\4\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\2\2\1\uffff\1\2\3\uffff\1\2\1\uffff\3\2\4\uffff\2\2\6\uffff\2\2\1\uffff\1\2\21\uffff\1\2\4\uffff\2\2\1\uffff\2\2\2\uffff\1\1\2\uffff\1\2\1\uffff\1\2\4\uffff\1\2\4\uffff\1\2\1\uffff\1\2\6\uffff\1\2\2\uffff\2\2\3\uffff\4\2",
+            "\1\2\1\uffff\1\2\12\uffff\1\2\4\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\2\2\1\uffff\1\2\3\uffff\1\2\1\uffff\3\2\4\uffff\2\2\6\uffff\2\2\1\uffff\1\2\21\uffff\1\2\4\uffff\2\2\1\uffff\2\2\2\uffff\1\1\2\uffff\1\2\1\uffff\1\2\4\uffff\1\2\4\uffff\1\2\1\uffff\1\2\6\uffff\1\2\3\uffff\2\2\2\uffff\4\2",
             "\1\uffff",
             "",
             "",
@@ -87944,7 +87944,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     static final String dfa_55s = "\2\uffff\1\2\41\uffff\1\1";
     static final String dfa_56s = "\1\uffff\1\0\43\uffff}>";
     static final String[] dfa_57s = {
-            "\1\2\1\uffff\1\2\12\uffff\1\2\4\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\2\2\1\uffff\1\2\3\uffff\1\2\1\uffff\3\2\4\uffff\2\2\6\uffff\2\2\1\uffff\1\2\26\uffff\2\2\1\uffff\2\2\2\uffff\1\2\2\uffff\1\2\1\uffff\1\2\4\uffff\1\2\4\uffff\1\2\1\uffff\1\2\6\uffff\1\2\2\uffff\2\2\3\uffff\3\2\1\1",
+            "\1\2\1\uffff\1\2\12\uffff\1\2\4\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\2\2\1\uffff\1\2\3\uffff\1\2\1\uffff\3\2\4\uffff\2\2\6\uffff\2\2\1\uffff\1\2\26\uffff\2\2\1\uffff\2\2\2\uffff\1\2\2\uffff\1\2\1\uffff\1\2\4\uffff\1\2\4\uffff\1\2\1\uffff\1\2\6\uffff\1\2\3\uffff\2\2\2\uffff\3\2\1\1",
             "\1\uffff",
             "",
             "",
@@ -88178,7 +88178,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     static final String dfa_74s = "\44\uffff\1\2\105\uffff\1\1";
     static final String dfa_75s = "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42\107\uffff}>";
     static final String[] dfa_76s = {
-            "\1\7\1\44\1\15\12\44\1\12\4\44\1\43\1\44\1\14\2\44\1\40\1\44\1\13\1\6\1\44\1\32\3\44\1\21\1\44\1\16\1\37\1\35\1\44\1\uffff\2\44\1\26\1\22\1\44\1\uffff\2\44\1\uffff\1\44\1\34\1\4\1\uffff\1\41\26\44\1\36\1\33\1\44\1\1\1\17\1\44\1\uffff\1\42\2\44\1\3\1\44\1\2\4\44\1\10\1\uffff\1\44\1\uffff\1\44\1\20\1\44\1\5\2\44\4\uffff\1\11\2\uffff\1\30\1\31\2\44\1\uffff\1\23\1\24\1\25\1\27",
+            "\1\7\1\44\1\15\12\44\1\12\4\44\1\43\1\44\1\14\2\44\1\40\1\44\1\13\1\6\1\44\1\32\3\44\1\21\1\44\1\16\1\37\1\35\1\44\1\uffff\2\44\1\26\1\22\1\44\1\uffff\2\44\1\uffff\1\44\1\34\1\4\1\uffff\1\41\26\44\1\36\1\33\1\44\1\1\1\17\1\44\1\uffff\1\42\2\44\1\3\1\44\1\2\4\44\1\10\1\uffff\1\44\1\uffff\1\44\1\20\1\44\1\5\2\44\4\uffff\1\11\3\uffff\1\30\1\31\2\44\1\23\1\24\1\25\1\27",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -88944,9 +88944,9 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     static final String dfa_84s = "\1\4\7\0\2\uffff";
     static final String dfa_85s = "\1\171\7\0\2\uffff";
     static final String dfa_86s = "\10\uffff\1\2\1\1";
-    static final String dfa_87s = "\1\uffff\1\5\1\3\1\2\1\0\1\6\1\4\1\1\2\uffff}>";
+    static final String dfa_87s = "\1\uffff\1\4\1\2\1\1\1\6\1\5\1\3\1\0\2\uffff}>";
     static final String[] dfa_88s = {
-            "\46\10\1\uffff\5\10\1\uffff\2\10\1\uffff\3\10\1\uffff\4\10\1\5\2\10\1\3\1\10\1\1\1\10\1\2\2\10\1\4\16\10\1\uffff\12\10\1\6\1\uffff\1\7\1\uffff\6\10\4\uffff\1\10\2\uffff\4\10\1\uffff\4\10",
+            "\46\10\1\uffff\5\10\1\uffff\2\10\1\uffff\3\10\1\uffff\4\10\1\5\2\10\1\3\1\10\1\1\1\10\1\2\2\10\1\4\16\10\1\uffff\12\10\1\6\1\uffff\1\7\1\uffff\6\10\4\uffff\1\10\3\uffff\10\10",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -88985,21 +88985,6 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA134_4 = input.LA(1);
-
-                         
-                        int index134_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred200_InternalSpecParser()) ) {s = 9;}
-
-                        else if ( (true) ) {s = 8;}
-
-                         
-                        input.seek(index134_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA134_7 = input.LA(1);
 
                          
@@ -89014,7 +88999,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                         input.seek(index134_7);
                         if ( s>=0 ) return s;
                         break;
-                    case 2 : 
+                    case 1 : 
                         int LA134_3 = input.LA(1);
 
                          
@@ -89029,7 +89014,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                         input.seek(index134_3);
                         if ( s>=0 ) return s;
                         break;
-                    case 3 : 
+                    case 2 : 
                         int LA134_2 = input.LA(1);
 
                          
@@ -89044,7 +89029,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                         input.seek(index134_2);
                         if ( s>=0 ) return s;
                         break;
-                    case 4 : 
+                    case 3 : 
                         int LA134_6 = input.LA(1);
 
                          
@@ -89059,7 +89044,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                         input.seek(index134_6);
                         if ( s>=0 ) return s;
                         break;
-                    case 5 : 
+                    case 4 : 
                         int LA134_1 = input.LA(1);
 
                          
@@ -89074,7 +89059,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                         input.seek(index134_1);
                         if ( s>=0 ) return s;
                         break;
-                    case 6 : 
+                    case 5 : 
                         int LA134_5 = input.LA(1);
 
                          
@@ -89089,6 +89074,21 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                         input.seek(index134_5);
                         if ( s>=0 ) return s;
                         break;
+                    case 6 : 
+                        int LA134_4 = input.LA(1);
+
+                         
+                        int index134_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred200_InternalSpecParser()) ) {s = 9;}
+
+                        else if ( (true) ) {s = 8;}
+
+                         
+                        input.seek(index134_4);
+                        if ( s>=0 ) return s;
+                        break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
@@ -89101,9 +89101,9 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     static final String dfa_90s = "\1\4\1\uffff\10\0\1\uffff";
     static final String dfa_91s = "\1\171\1\uffff\10\0\1\uffff";
     static final String dfa_92s = "\1\uffff\1\2\10\uffff\1\1";
-    static final String dfa_93s = "\2\uffff\1\4\1\0\1\2\1\5\1\6\1\1\1\3\1\7\1\uffff}>";
+    static final String dfa_93s = "\2\uffff\1\3\1\4\1\1\1\2\1\5\1\7\1\0\1\6\1\uffff}>";
     static final String[] dfa_94s = {
-            "\46\1\1\uffff\5\1\1\uffff\1\6\1\1\1\uffff\3\1\1\uffff\14\1\1\5\1\7\2\1\1\10\1\1\1\4\2\1\1\11\7\1\1\uffff\12\1\1\2\1\uffff\1\3\1\uffff\6\1\4\uffff\1\1\2\uffff\4\1\1\uffff\4\1",
+            "\46\1\1\uffff\5\1\1\uffff\1\6\1\1\1\uffff\3\1\1\uffff\14\1\1\5\1\7\2\1\1\10\1\1\1\4\2\1\1\11\7\1\1\uffff\12\1\1\2\1\uffff\1\3\1\uffff\6\1\4\uffff\1\1\3\uffff\10\1",
             "",
             "\1\uffff",
             "\1\uffff",
@@ -89143,51 +89143,6 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA139_3 = input.LA(1);
-
-                         
-                        int index139_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred205_InternalSpecParser()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index139_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA139_7 = input.LA(1);
-
-                         
-                        int index139_7 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred205_InternalSpecParser()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index139_7);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA139_4 = input.LA(1);
-
-                         
-                        int index139_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred205_InternalSpecParser()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index139_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
                         int LA139_8 = input.LA(1);
 
                          
@@ -89202,11 +89157,11 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                         input.seek(index139_8);
                         if ( s>=0 ) return s;
                         break;
-                    case 4 : 
-                        int LA139_2 = input.LA(1);
+                    case 1 : 
+                        int LA139_4 = input.LA(1);
 
                          
-                        int index139_2 = input.index();
+                        int index139_4 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred205_InternalSpecParser()) ) {s = 10;}
@@ -89214,10 +89169,10 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index139_2);
+                        input.seek(index139_4);
                         if ( s>=0 ) return s;
                         break;
-                    case 5 : 
+                    case 2 : 
                         int LA139_5 = input.LA(1);
 
                          
@@ -89232,7 +89187,37 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                         input.seek(index139_5);
                         if ( s>=0 ) return s;
                         break;
-                    case 6 : 
+                    case 3 : 
+                        int LA139_2 = input.LA(1);
+
+                         
+                        int index139_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred205_InternalSpecParser()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index139_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA139_3 = input.LA(1);
+
+                         
+                        int index139_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred205_InternalSpecParser()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index139_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
                         int LA139_6 = input.LA(1);
 
                          
@@ -89247,7 +89232,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
                         input.seek(index139_6);
                         if ( s>=0 ) return s;
                         break;
-                    case 7 : 
+                    case 6 : 
                         int LA139_9 = input.LA(1);
 
                          
@@ -89260,6 +89245,21 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
 
                          
                         input.seek(index139_9);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA139_7 = input.LA(1);
+
+                         
+                        int index139_7 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred205_InternalSpecParser()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index139_7);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -89276,7 +89276,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     static final String dfa_98s = "\2\uffff\1\2\147\uffff\1\1";
     static final String dfa_99s = "\1\uffff\1\0\151\uffff}>";
     static final String[] dfa_100s = {
-            "\46\2\1\uffff\5\2\1\uffff\2\2\1\uffff\3\2\1\uffff\35\2\1\uffff\1\1\12\2\1\uffff\1\2\1\uffff\6\2\4\uffff\1\2\2\uffff\4\2\1\uffff\4\2",
+            "\46\2\1\uffff\5\2\1\uffff\2\2\1\uffff\3\2\1\uffff\35\2\1\uffff\1\1\12\2\1\uffff\1\2\1\uffff\6\2\4\uffff\1\2\3\uffff\10\2",
             "\1\uffff",
             "",
             "",
@@ -89435,7 +89435,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String[] dfa_101s = {
-            "\46\2\1\uffff\5\2\1\uffff\2\2\1\uffff\3\2\1\uffff\35\2\1\uffff\13\2\1\uffff\1\2\1\uffff\1\2\1\1\4\2\4\uffff\1\2\2\uffff\4\2\1\uffff\4\2",
+            "\46\2\1\uffff\5\2\1\uffff\2\2\1\uffff\3\2\1\uffff\35\2\1\uffff\13\2\1\uffff\1\2\1\uffff\1\2\1\1\4\2\4\uffff\1\2\3\uffff\10\2",
             "\1\uffff",
             "",
             "",
@@ -89594,7 +89594,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     static final String dfa_105s = "\3\uffff\1\1\1\uffff\1\2\43\uffff";
     static final String dfa_106s = "\1\uffff\1\0\1\1\46\uffff}>";
     static final String[] dfa_107s = {
-            "\1\5\1\uffff\1\5\12\uffff\1\5\4\uffff\1\5\1\uffff\1\5\2\uffff\1\5\1\uffff\2\5\1\uffff\1\5\3\uffff\1\5\1\uffff\3\5\4\uffff\2\5\6\uffff\2\5\1\uffff\3\5\17\uffff\1\3\4\uffff\2\5\1\uffff\2\5\2\uffff\1\2\2\uffff\1\5\1\uffff\1\5\4\uffff\1\5\4\uffff\3\5\1\3\5\uffff\1\1\2\uffff\2\5\3\uffff\4\5",
+            "\1\5\1\uffff\1\5\12\uffff\1\5\4\uffff\1\5\1\uffff\1\5\2\uffff\1\5\1\uffff\2\5\1\uffff\1\5\3\uffff\1\5\1\uffff\3\5\4\uffff\2\5\6\uffff\2\5\1\uffff\3\5\17\uffff\1\3\4\uffff\2\5\1\uffff\2\5\2\uffff\1\2\2\uffff\1\5\1\uffff\1\5\4\uffff\1\5\4\uffff\3\5\1\3\5\uffff\1\1\3\uffff\2\5\2\uffff\4\5",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -89707,7 +89707,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     static final String dfa_110s = "\3\uffff\1\1\1\2\40\uffff";
     static final String dfa_111s = "\1\uffff\1\0\1\1\42\uffff}>";
     static final String[] dfa_112s = {
-            "\1\4\1\uffff\1\4\12\uffff\1\4\4\uffff\1\4\1\uffff\1\4\2\uffff\1\4\1\uffff\2\4\1\uffff\1\4\3\uffff\1\4\1\uffff\3\4\4\uffff\2\4\6\uffff\2\4\1\uffff\1\4\21\uffff\1\3\4\uffff\2\4\1\uffff\2\4\2\uffff\1\2\2\uffff\1\4\1\uffff\1\4\4\uffff\1\4\4\uffff\1\4\1\uffff\1\4\6\uffff\1\1\2\uffff\2\4\3\uffff\4\4",
+            "\1\4\1\uffff\1\4\12\uffff\1\4\4\uffff\1\4\1\uffff\1\4\2\uffff\1\4\1\uffff\2\4\1\uffff\1\4\3\uffff\1\4\1\uffff\3\4\4\uffff\2\4\6\uffff\2\4\1\uffff\1\4\21\uffff\1\3\4\uffff\2\4\1\uffff\2\4\2\uffff\1\2\2\uffff\1\4\1\uffff\1\4\4\uffff\1\4\4\uffff\1\4\1\uffff\1\4\6\uffff\1\1\3\uffff\2\4\2\uffff\4\4",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -89898,7 +89898,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String[] dfa_113s = {
-            "\46\2\1\uffff\5\2\1\uffff\2\2\1\uffff\3\2\1\uffff\35\2\1\uffff\12\2\1\1\1\uffff\1\2\1\uffff\6\2\4\uffff\1\2\2\uffff\4\2\1\uffff\4\2",
+            "\46\2\1\uffff\5\2\1\uffff\2\2\1\uffff\3\2\1\uffff\35\2\1\uffff\12\2\1\1\1\uffff\1\2\1\uffff\6\2\4\uffff\1\2\3\uffff\10\2",
             "\1\uffff",
             "",
             "",
@@ -90140,7 +90140,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String[] dfa_114s = {
-            "\1\14\1\44\1\5\12\44\1\2\4\44\1\43\1\44\1\4\2\44\1\40\1\44\1\3\1\13\1\44\1\32\3\44\1\21\1\44\1\16\1\37\1\35\1\44\1\uffff\2\44\1\26\1\22\1\44\1\uffff\2\44\1\uffff\1\44\1\34\1\11\1\uffff\1\41\26\44\1\36\1\33\1\44\1\6\1\17\1\44\1\uffff\1\42\2\44\1\10\1\44\1\7\4\44\1\15\1\uffff\1\44\1\uffff\1\44\1\20\1\44\1\12\2\44\4\uffff\1\1\2\uffff\1\30\1\31\2\44\1\uffff\1\23\1\24\1\25\1\27",
+            "\1\14\1\44\1\5\12\44\1\2\4\44\1\43\1\44\1\4\2\44\1\40\1\44\1\3\1\13\1\44\1\32\3\44\1\21\1\44\1\16\1\37\1\35\1\44\1\uffff\2\44\1\26\1\22\1\44\1\uffff\2\44\1\uffff\1\44\1\34\1\11\1\uffff\1\41\26\44\1\36\1\33\1\44\1\6\1\17\1\44\1\uffff\1\42\2\44\1\10\1\44\1\7\4\44\1\15\1\uffff\1\44\1\uffff\1\44\1\20\1\44\1\12\2\44\4\uffff\1\1\3\uffff\1\30\1\31\2\44\1\23\1\24\1\25\1\27",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -90810,7 +90810,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
     static final String dfa_119s = "\2\uffff\1\2\152\uffff\1\1";
     static final String dfa_120s = "\1\uffff\1\0\154\uffff}>";
     static final String[] dfa_121s = {
-            "\46\2\1\uffff\10\2\1\uffff\3\2\1\uffff\50\2\1\1\2\2\1\uffff\6\2\4\uffff\1\2\2\uffff\4\2\1\uffff\4\2",
+            "\46\2\1\uffff\10\2\1\uffff\3\2\1\uffff\50\2\1\1\2\2\1\uffff\6\2\4\uffff\1\2\3\uffff\10\2",
             "\1\uffff",
             "",
             "",
@@ -91043,11 +91043,11 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000000000L,0x0000004000000000L});
         public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0610102A26B8FFD0L,0x0000401000400400L});
         public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000100800100000L});
-        public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x016061D169420050L,0x03C640A10A4D8000L});
+        public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x016061D169420050L,0x03CC40A10A4D8000L});
         public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
         public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000000000400L});
         public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000000800000L});
-        public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x016865D169420050L,0x03C640A10A4D8000L});
+        public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x016865D169420050L,0x03CC40A10A4D8000L});
         public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000200000000L});
         public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000008000L});
         public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000000L,0x0200408000000000L});
@@ -91066,7 +91066,7 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000002026286BD0L});
         public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0610102A26B8FFD0L,0x0000401100400400L});
         public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000000000000040L,0x0000401000C00400L});
-        public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000000080000000L,0x0206008080000000L});
+        public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000000080000000L,0x020C008080000000L});
         public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000000000000040L,0x0000401000400400L});
         public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000000000000000L,0x0000400000400400L});
         public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000000090000020L,0x0000000500000800L});
@@ -91077,20 +91077,20 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0000000000000020L});
         public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x0080000000000000L,0x0000400000000000L});
         public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x0000000000000000L,0x0000010000000000L});
-        public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x016061D169420052L,0x03C640A10A4D8000L});
+        public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x016061D169420052L,0x03CC40A10A4D8000L});
         public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x0000000000000000L,0x0200000000000000L});
-        public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x0000000000000000L,0x0206000000000000L});
-        public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x076061D169420050L,0x03DE40A10A4D8000L});
-        public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x0000000000000002L,0x0010000000000000L});
-        public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x076061D169420050L,0x03C640A10A4D8000L});
-        public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x0000000000000000L,0x0002000000000000L});
-        public static final BitSet FOLLOW_64 = new BitSet(new long[]{0x0000000000000000L,0x0010000000000000L});
-        public static final BitSet FOLLOW_65 = new BitSet(new long[]{0x0001000000000000L,0x0000400000000000L});
-        public static final BitSet FOLLOW_66 = new BitSet(new long[]{0x0000000000000000L,0x0000001000000000L});
-        public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x016061D169420050L,0x03C640B10ACD8000L});
-        public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x016061D169420050L,0x03C640B10A4D8000L});
+        public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x0001000000000000L,0x0000400000000000L});
+        public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x0000000000000000L,0x0000001000000000L});
+        public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x0000000000000000L,0x020C000000000000L});
+        public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x076061D169420050L,0x03FC40A10A4D8000L});
+        public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x0000000000000002L,0x0020000000000000L});
+        public static final BitSet FOLLOW_64 = new BitSet(new long[]{0x076061D169420050L,0x03CC40A10A4D8000L});
+        public static final BitSet FOLLOW_65 = new BitSet(new long[]{0x0000000000000000L,0x0004000000000000L});
+        public static final BitSet FOLLOW_66 = new BitSet(new long[]{0x0000000000000000L,0x0020000000000000L});
+        public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x016061D169420050L,0x03CC40B10ACD8000L});
+        public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x016061D169420050L,0x03CC40B10A4D8000L});
         public static final BitSet FOLLOW_69 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
-        public static final BitSet FOLLOW_70 = new BitSet(new long[]{0x016061D169420050L,0x03C640F10A4D8000L});
+        public static final BitSet FOLLOW_70 = new BitSet(new long[]{0x016061D169420050L,0x03CC40F10A4D8000L});
         public static final BitSet FOLLOW_71 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
         public static final BitSet FOLLOW_72 = new BitSet(new long[]{0x0000000000000000L,0x0000002000000000L});
         public static final BitSet FOLLOW_73 = new BitSet(new long[]{0x0000000021020040L,0x0000400000000000L});
@@ -91122,35 +91122,35 @@ public class InternalSpecParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_99 = new BitSet(new long[]{0x0000004021020040L,0x0000400100000000L});
         public static final BitSet FOLLOW_100 = new BitSet(new long[]{0x0000000000000000L,0x0000002000400000L});
         public static final BitSet FOLLOW_101 = new BitSet(new long[]{0x0000000000000000L,0x0000400800400400L});
-        public static final BitSet FOLLOW_102 = new BitSet(new long[]{0x016061D169420050L,0x03C641A10ACD8400L});
-        public static final BitSet FOLLOW_103 = new BitSet(new long[]{0x016061D169420050L,0x03C642A10A4D8000L});
-        public static final BitSet FOLLOW_104 = new BitSet(new long[]{0x016061D169420050L,0x03C640E10A4D8000L});
-        public static final BitSet FOLLOW_105 = new BitSet(new long[]{0x076061D169420050L,0x03C641A10A4D8400L});
-        public static final BitSet FOLLOW_106 = new BitSet(new long[]{0x076061D169420052L,0x03C640A10A4D8000L});
+        public static final BitSet FOLLOW_102 = new BitSet(new long[]{0x016061D169420050L,0x03CC41A10ACD8400L});
+        public static final BitSet FOLLOW_103 = new BitSet(new long[]{0x016061D169420050L,0x03CC42A10A4D8000L});
+        public static final BitSet FOLLOW_104 = new BitSet(new long[]{0x016061D169420050L,0x03CC40E10A4D8000L});
+        public static final BitSet FOLLOW_105 = new BitSet(new long[]{0x076061D169420050L,0x03CC41A10A4D8400L});
+        public static final BitSet FOLLOW_106 = new BitSet(new long[]{0x076061D169420052L,0x03CC40A10A4D8000L});
         public static final BitSet FOLLOW_107 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
         public static final BitSet FOLLOW_108 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
         public static final BitSet FOLLOW_109 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
         public static final BitSet FOLLOW_110 = new BitSet(new long[]{0x0000080000000000L});
         public static final BitSet FOLLOW_111 = new BitSet(new long[]{0x0000000040000000L});
-        public static final BitSet FOLLOW_112 = new BitSet(new long[]{0x016061D169420050L,0x03C640A10A4D8400L});
+        public static final BitSet FOLLOW_112 = new BitSet(new long[]{0x016061D169420050L,0x03CC40A10A4D8400L});
         public static final BitSet FOLLOW_113 = new BitSet(new long[]{0x0000020000010000L,0x0000420044400400L});
         public static final BitSet FOLLOW_114 = new BitSet(new long[]{0x0000020000000002L,0x0000400044400400L});
         public static final BitSet FOLLOW_115 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
         public static final BitSet FOLLOW_116 = new BitSet(new long[]{0x0000020000000000L,0x0000400044400400L});
         public static final BitSet FOLLOW_117 = new BitSet(new long[]{0x0020000000000000L});
-        public static final BitSet FOLLOW_118 = new BitSet(new long[]{0x076061D169420050L,0x03C640A18A4D8000L});
-        public static final BitSet FOLLOW_119 = new BitSet(new long[]{0x016061D169420050L,0x03C640A18A4D8000L});
-        public static final BitSet FOLLOW_120 = new BitSet(new long[]{0x016061D169420050L,0x03C640A10ACD8000L});
+        public static final BitSet FOLLOW_118 = new BitSet(new long[]{0x076061D169420050L,0x03CC40A18A4D8000L});
+        public static final BitSet FOLLOW_119 = new BitSet(new long[]{0x016061D169420050L,0x03CC40A18A4D8000L});
+        public static final BitSet FOLLOW_120 = new BitSet(new long[]{0x016061D169420050L,0x03CC40A10ACD8000L});
         public static final BitSet FOLLOW_121 = new BitSet(new long[]{0x0000010000000000L});
         public static final BitSet FOLLOW_122 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-        public static final BitSet FOLLOW_123 = new BitSet(new long[]{0x076061D169420050L,0x03C642A10A4D8000L});
+        public static final BitSet FOLLOW_123 = new BitSet(new long[]{0x076061D169420050L,0x03CC42A10A4D8000L});
         public static final BitSet FOLLOW_124 = new BitSet(new long[]{0x0600000000000000L});
         public static final BitSet FOLLOW_125 = new BitSet(new long[]{0x0040000000000000L});
         public static final BitSet FOLLOW_126 = new BitSet(new long[]{0x0000000000000000L,0x0000002100400000L});
         public static final BitSet FOLLOW_127 = new BitSet(new long[]{0x0000401000000000L});
         public static final BitSet FOLLOW_128 = new BitSet(new long[]{0x0000200000000000L});
         public static final BitSet FOLLOW_129 = new BitSet(new long[]{0x0000000000000000L,0x01C0000000000000L});
-        public static final BitSet FOLLOW_130 = new BitSet(new long[]{0x0000601100000000L,0x03C6002000080000L});
+        public static final BitSet FOLLOW_130 = new BitSet(new long[]{0x0000601100000000L,0x03CC002000080000L});
         public static final BitSet FOLLOW_131 = new BitSet(new long[]{0x0000000000000000L,0x0000002000800000L});
         public static final BitSet FOLLOW_132 = new BitSet(new long[]{0x0000000000000002L,0x0000002000000000L});
         public static final BitSet FOLLOW_133 = new BitSet(new long[]{0x0000000008000000L});

@@ -113,6 +113,7 @@ public class FeatureRuntimeModule extends
 		binder.bind(JnarioBatchCompiler.class).to(FeatureBatchCompiler.class);
 //		binder.bind(AnnotationProcessor.class).to(JnarioAnnotationProcessor.class);
 	}
+	
 
 	public Class<? extends JvmTypesBuilder> bindJvmTypesBuilder() {
 		return ExtendedJvmTypesBuilder.class;

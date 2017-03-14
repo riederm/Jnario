@@ -23,7 +23,7 @@ public class FeatureSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected FeatureGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_AnonymousMember_SemicolonKeyword_2_0_4_q;
-	protected AbstractElementAlias match_AnonymousMember_SemicolonKeyword_2_1_9_1_q;
+	protected AbstractElementAlias match_AnonymousMember_SemicolonKeyword_2_1_9_2_q;
 	protected AbstractElementAlias match_BlockExpression_SemicolonKeyword_1_q;
 	protected AbstractElementAlias match_Member_SemicolonKeyword_2_4_q;
 	protected AbstractElementAlias match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q;
@@ -39,7 +39,7 @@ public class FeatureSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (FeatureGrammarAccess) access;
 		match_AnonymousMember_SemicolonKeyword_2_0_4_q = new TokenAlias(false, true, grammarAccess.getAnonymousMemberAccess().getSemicolonKeyword_2_0_4());
-		match_AnonymousMember_SemicolonKeyword_2_1_9_1_q = new TokenAlias(false, true, grammarAccess.getAnonymousMemberAccess().getSemicolonKeyword_2_1_9_1());
+		match_AnonymousMember_SemicolonKeyword_2_1_9_2_q = new TokenAlias(false, true, grammarAccess.getAnonymousMemberAccess().getSemicolonKeyword_2_1_9_2());
 		match_BlockExpression_SemicolonKeyword_1_q = new TokenAlias(false, true, grammarAccess.getBlockExpressionAccess().getSemicolonKeyword_1());
 		match_Member_SemicolonKeyword_2_4_q = new TokenAlias(false, true, grammarAccess.getMemberAccess().getSemicolonKeyword_2_4());
 		match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getXAnnotationAccess().getLeftParenthesisKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getXAnnotationAccess().getRightParenthesisKeyword_3_2()));
@@ -91,8 +91,8 @@ public class FeatureSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_AnonymousMember_SemicolonKeyword_2_0_4_q.equals(syntax))
 				emit_AnonymousMember_SemicolonKeyword_2_0_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AnonymousMember_SemicolonKeyword_2_1_9_1_q.equals(syntax))
-				emit_AnonymousMember_SemicolonKeyword_2_1_9_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AnonymousMember_SemicolonKeyword_2_1_9_2_q.equals(syntax))
+				emit_AnonymousMember_SemicolonKeyword_2_1_9_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BlockExpression_SemicolonKeyword_1_q.equals(syntax))
 				emit_BlockExpression_SemicolonKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Member_SemicolonKeyword_2_4_q.equals(syntax))
@@ -139,7 +139,7 @@ public class FeatureSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=FunctionID '(' ')' (ambiguity) (rule end)
 	 *     parameters+=Parameter ')' (ambiguity) (rule end)
 	 */
-	protected void emit_AnonymousMember_SemicolonKeyword_2_1_9_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AnonymousMember_SemicolonKeyword_2_1_9_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -265,6 +265,8 @@ public class FeatureSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'while' '(' predicate=XExpression
 	 *     (rule start) (ambiguity) '{' '}' (rule start)
 	 *     (rule start) (ambiguity) '{' expressions+=XExpressionOrVarDeclaration
+	 *     (rule start) (ambiguity) expressions+=RichStringLiteral
+	 *     (rule start) (ambiguity) expressions+=RichStringLiteralStart
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|FeatureCallID]
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|IdOrSuper]
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|OpUnary]
@@ -320,6 +322,8 @@ public class FeatureSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'while' '(' predicate=XExpression
 	 *     (rule start) (ambiguity) '{' '}' ')' (rule start)
 	 *     (rule start) (ambiguity) '{' expressions+=XExpressionOrVarDeclaration
+	 *     (rule start) (ambiguity) expressions+=RichStringLiteral
+	 *     (rule start) (ambiguity) expressions+=RichStringLiteralStart
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|FeatureCallID]
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|IdOrSuper]
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|OpUnary]

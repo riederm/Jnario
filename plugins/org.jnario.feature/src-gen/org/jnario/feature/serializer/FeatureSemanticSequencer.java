@@ -54,7 +54,6 @@ import org.eclipse.xtext.xbase.XUnaryOperation;
 import org.eclipse.xtext.xbase.XVariableDeclaration;
 import org.eclipse.xtext.xbase.XWhileExpression;
 import org.eclipse.xtext.xbase.XbasePackage;
-import org.eclipse.xtext.xbase.annotations.serializer.XbaseWithAnnotationsSemanticSequencer;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotationElementValuePair;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotationsPackage;
@@ -86,9 +85,13 @@ import org.jnario.feature.feature.ThenReference;
 import org.jnario.feature.feature.When;
 import org.jnario.feature.feature.WhenReference;
 import org.jnario.feature.services.FeatureGrammarAccess;
+import org.jnario.xbase.richstring.serializer.XbaseWithRichstringSemanticSequencer;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichString;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringLiteral;
+import org.jnario.xbase.richstring.xbasewithrichstring.XbaseWithRichstringPackage;
 
 @SuppressWarnings("all")
-public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequencer {
+public class FeatureSemanticSequencer extends XbaseWithRichstringSemanticSequencer {
 
 	@Inject
 	private FeatureGrammarAccess grammarAccess;
@@ -276,6 +279,7 @@ public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequen
 						|| action == grammarAccess.getXRelationalExpressionAccess().getShouldThrowExpressionAction_1_1_0_0_0()
 						|| action == grammarAccess.getXRelationalExpressionAccess().getXInstanceOfExpressionExpressionAction_1_2_0_0_0()
 						|| action == grammarAccess.getXRelationalExpressionAccess().getXBinaryOperationLeftOperandAction_1_3_0_0_0()
+						|| rule == grammarAccess.getRichStringPartRule()
 						|| rule == grammarAccess.getXAnnotationElementValueOrCommaListRule()
 						|| action == grammarAccess.getXAnnotationElementValueOrCommaListAccess().getXListLiteralElementsAction_1_1_0()
 						|| rule == grammarAccess.getXAnnotationElementValueRule()
@@ -333,6 +337,7 @@ public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequen
 						|| action == grammarAccess.getXRelationalExpressionAccess().getShouldThrowExpressionAction_1_1_0_0_0()
 						|| action == grammarAccess.getXRelationalExpressionAccess().getXInstanceOfExpressionExpressionAction_1_2_0_0_0()
 						|| action == grammarAccess.getXRelationalExpressionAccess().getXBinaryOperationLeftOperandAction_1_3_0_0_0()
+						|| rule == grammarAccess.getRichStringPartRule()
 						|| rule == grammarAccess.getXAnnotationElementValueOrCommaListRule()
 						|| action == grammarAccess.getXAnnotationElementValueOrCommaListAccess().getXListLiteralElementsAction_1_1_0()
 						|| rule == grammarAccess.getXAnnotationElementValueRule()
@@ -405,6 +410,7 @@ public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequen
 						|| action == grammarAccess.getXRelationalExpressionAccess().getShouldThrowExpressionAction_1_1_0_0_0()
 						|| action == grammarAccess.getXRelationalExpressionAccess().getXInstanceOfExpressionExpressionAction_1_2_0_0_0()
 						|| action == grammarAccess.getXRelationalExpressionAccess().getXBinaryOperationLeftOperandAction_1_3_0_0_0()
+						|| rule == grammarAccess.getRichStringPartRule()
 						|| action == grammarAccess.getXAnnotationElementValueOrCommaListAccess().getXListLiteralElementsAction_1_1_0()
 						|| rule == grammarAccess.getXAnnotationOrExpressionRule()
 						|| rule == grammarAccess.getXExpressionRule()
@@ -458,7 +464,7 @@ public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequen
 				sequence_XSetLiteral(context, (XSetLiteral) semanticObject); 
 				return; 
 			case XbasePackage.XSTRING_LITERAL:
-				sequence_XStringLiteral(context, (XStringLiteral) semanticObject); 
+				sequence_SimpleStringLiteral(context, (XStringLiteral) semanticObject); 
 				return; 
 			case XbasePackage.XSWITCH_EXPRESSION:
 				sequence_XSwitchExpression(context, (XSwitchExpression) semanticObject); 
@@ -484,6 +490,75 @@ public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequen
 			case XbasePackage.XWHILE_EXPRESSION:
 				sequence_XWhileExpression(context, (XWhileExpression) semanticObject); 
 				return; 
+			}
+		else if (epackage == XbaseWithRichstringPackage.eINSTANCE)
+			switch (semanticObject.eClass().getClassifierID()) {
+			case XbaseWithRichstringPackage.RICH_STRING:
+				if (rule == grammarAccess.getInternalRichStringRule()) {
+					sequence_InternalRichString(context, (RichString) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getXPrimaryExpressionRule()
+						|| rule == grammarAccess.getXRelationalExpressionRule()
+						|| action == grammarAccess.getXRelationalExpressionAccess().getShouldLeftOperandAction_1_0_0_0_0()
+						|| action == grammarAccess.getXRelationalExpressionAccess().getShouldThrowExpressionAction_1_1_0_0_0()
+						|| action == grammarAccess.getXRelationalExpressionAccess().getXInstanceOfExpressionExpressionAction_1_2_0_0_0()
+						|| action == grammarAccess.getXRelationalExpressionAccess().getXBinaryOperationLeftOperandAction_1_3_0_0_0()
+						|| rule == grammarAccess.getXStringLiteralRule()
+						|| rule == grammarAccess.getRichStringRule()
+						|| rule == grammarAccess.getRichStringPartRule()
+						|| rule == grammarAccess.getXAnnotationElementValueOrCommaListRule()
+						|| action == grammarAccess.getXAnnotationElementValueOrCommaListAccess().getXListLiteralElementsAction_1_1_0()
+						|| rule == grammarAccess.getXAnnotationElementValueRule()
+						|| rule == grammarAccess.getXAnnotationOrExpressionRule()
+						|| rule == grammarAccess.getXExpressionRule()
+						|| rule == grammarAccess.getXAssignmentRule()
+						|| action == grammarAccess.getXAssignmentAccess().getXBinaryOperationLeftOperandAction_1_1_0_0_0()
+						|| rule == grammarAccess.getXOrExpressionRule()
+						|| action == grammarAccess.getXOrExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXAndExpressionRule()
+						|| action == grammarAccess.getXAndExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXEqualityExpressionRule()
+						|| action == grammarAccess.getXEqualityExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXOtherOperatorExpressionRule()
+						|| action == grammarAccess.getXOtherOperatorExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXAdditiveExpressionRule()
+						|| action == grammarAccess.getXAdditiveExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXMultiplicativeExpressionRule()
+						|| action == grammarAccess.getXMultiplicativeExpressionAccess().getXBinaryOperationLeftOperandAction_1_0_0_0()
+						|| rule == grammarAccess.getXUnaryOperationRule()
+						|| rule == grammarAccess.getXCastedExpressionRule()
+						|| action == grammarAccess.getXCastedExpressionAccess().getXCastedExpressionTargetAction_1_0_0_0()
+						|| rule == grammarAccess.getXPostfixOperationRule()
+						|| action == grammarAccess.getXPostfixOperationAccess().getXPostfixOperationOperandAction_1_0_0()
+						|| rule == grammarAccess.getXMemberFeatureCallRule()
+						|| action == grammarAccess.getXMemberFeatureCallAccess().getXAssignmentAssignableAction_1_0_0_0_0()
+						|| action == grammarAccess.getXMemberFeatureCallAccess().getXMemberFeatureCallMemberCallTargetAction_1_1_0_0_0()
+						|| rule == grammarAccess.getXLiteralRule()
+						|| rule == grammarAccess.getXParenthesizedExpressionRule()
+						|| rule == grammarAccess.getXExpressionOrVarDeclarationRule()) {
+					sequence_RichString(context, (RichString) semanticObject); 
+					return; 
+				}
+				else break;
+			case XbaseWithRichstringPackage.RICH_STRING_LITERAL:
+				if (rule == grammarAccess.getRichStringLiteralEndRule()) {
+					sequence_RichStringLiteralEnd(context, (RichStringLiteral) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getRichStringLiteralInbetweenRule()) {
+					sequence_RichStringLiteralInbetween(context, (RichStringLiteral) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getRichStringLiteralStartRule()) {
+					sequence_RichStringLiteralStart(context, (RichStringLiteral) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getRichStringLiteralRule()) {
+					sequence_RichStringLiteral(context, (RichStringLiteral) semanticObject); 
+					return; 
+				}
+				else break;
 			}
 		else if (epackage == XtypePackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
@@ -596,7 +671,7 @@ public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequen
 	 *         ((returnType=JvmTypeReference name=FunctionID) | (returnType=TypeReferenceNoTypeArgs name=FunctionID) | name=FunctionID) 
 	 *         (parameters+=Parameter parameters+=Parameter*)? 
 	 *         (exceptions+=JvmTypeReference exceptions+=JvmTypeReference*)? 
-	 *         expression=XBlockExpression?
+	 *         (expression=XBlockExpression | expression=RichString)?
 	 *     )
 	 */
 	protected void sequence_AnonymousMember(ISerializationContext context, JnarioFunction semanticObject) {
@@ -613,6 +688,7 @@ public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequen
 	 *     XRelationalExpression.XInstanceOfExpression_1_2_0_0_0 returns Assertion
 	 *     XRelationalExpression.XBinaryOperation_1_3_0_0_0 returns Assertion
 	 *     Assertion returns Assertion
+	 *     RichStringPart returns Assertion
 	 *     XAnnotationElementValueOrCommaList returns Assertion
 	 *     XAnnotationElementValueOrCommaList.XListLiteral_1_1_0 returns Assertion
 	 *     XAnnotationElementValue returns Assertion
@@ -962,6 +1038,7 @@ public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequen
 	 *     XRelationalExpression.ShouldThrow_1_1_0_0_0 returns XBinaryOperation
 	 *     XRelationalExpression.XInstanceOfExpression_1_2_0_0_0 returns XBinaryOperation
 	 *     XRelationalExpression.XBinaryOperation_1_3_0_0_0 returns XBinaryOperation
+	 *     RichStringPart returns XBinaryOperation
 	 *     XAnnotationElementValueOrCommaList returns XBinaryOperation
 	 *     XAnnotationElementValueOrCommaList.XListLiteral_1_1_0 returns XBinaryOperation
 	 *     XAnnotationElementValue returns XBinaryOperation
@@ -1017,6 +1094,7 @@ public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequen
 	 *     XRelationalExpression.ShouldThrow_1_1_0_0_0 returns Should
 	 *     XRelationalExpression.XInstanceOfExpression_1_2_0_0_0 returns Should
 	 *     XRelationalExpression.XBinaryOperation_1_3_0_0_0 returns Should
+	 *     RichStringPart returns Should
 	 *     XAnnotationElementValueOrCommaList returns Should
 	 *     XAnnotationElementValueOrCommaList.XListLiteral_1_1_0 returns Should
 	 *     XAnnotationElementValue returns Should
@@ -1075,6 +1153,7 @@ public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequen
 	 *     XRelationalExpression.ShouldThrow_1_1_0_0_0 returns ShouldThrow
 	 *     XRelationalExpression.XInstanceOfExpression_1_2_0_0_0 returns ShouldThrow
 	 *     XRelationalExpression.XBinaryOperation_1_3_0_0_0 returns ShouldThrow
+	 *     RichStringPart returns ShouldThrow
 	 *     XAnnotationElementValueOrCommaList returns ShouldThrow
 	 *     XAnnotationElementValueOrCommaList.XListLiteral_1_1_0 returns ShouldThrow
 	 *     XAnnotationElementValue returns ShouldThrow
@@ -1130,6 +1209,7 @@ public class FeatureSemanticSequencer extends XbaseWithAnnotationsSemanticSequen
 	 *     XRelationalExpression.ShouldThrow_1_1_0_0_0 returns XInstanceOfExpression
 	 *     XRelationalExpression.XInstanceOfExpression_1_2_0_0_0 returns XInstanceOfExpression
 	 *     XRelationalExpression.XBinaryOperation_1_3_0_0_0 returns XInstanceOfExpression
+	 *     RichStringPart returns XInstanceOfExpression
 	 *     XAnnotationElementValueOrCommaList returns XInstanceOfExpression
 	 *     XAnnotationElementValueOrCommaList.XListLiteral_1_1_0 returns XInstanceOfExpression
 	 *     XAnnotationElementValue returns XInstanceOfExpression
