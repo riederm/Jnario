@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RichStrings -->
+      <package
+            uri="http://www.eclipse.org/RichString"
+            class="org.jnario.xbase.richstring.richstring.ProcessedRichStringPackage"
+            genModel="model/RichStrings.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated XbaseRichString -->
+      <package
+            uri="http://www.eclipse.org/xbase/RichString"
+            class="org.jnario.xbase.richstring.xbasewithrichstring.XbaseWithRichstringPackage"
+            genModel="model/XbaseRichString.genmodel"/>
+   </extension>
+
+</plugin>

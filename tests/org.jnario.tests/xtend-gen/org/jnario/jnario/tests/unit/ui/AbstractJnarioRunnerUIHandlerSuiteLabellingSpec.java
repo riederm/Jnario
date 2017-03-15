@@ -2,6 +2,7 @@ package org.jnario.jnario.tests.unit.ui;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import org.eclipse.jdt.internal.junit.model.TestCaseElement;
 import org.eclipse.jdt.internal.junit.model.TestElement;
 import org.eclipse.jdt.internal.junit.model.TestRoot;
@@ -335,13 +336,13 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
         TestSuiteElement _xblockexpression = null;
         {
           final TestSuiteElement suite = new TestSuiteElement(parent, "id", "name", 10);
-          final Procedure1<Function1<? super TestSuiteElement, ? extends TestElement>> _function = new Procedure1<Function1<? super TestSuiteElement, ? extends TestElement>>() {
+          final Consumer<Function1<? super TestSuiteElement, ? extends TestElement>> _function = new Consumer<Function1<? super TestSuiteElement, ? extends TestElement>>() {
             @Override
-            public void apply(final Function1<? super TestSuiteElement, ? extends TestElement> it) {
+            public void accept(final Function1<? super TestSuiteElement, ? extends TestElement> it) {
               it.apply(suite);
             }
           };
-          IterableExtensions.<Function1<? super TestSuiteElement, ? extends TestElement>>forEach(((Iterable<Function1<? super TestSuiteElement, ? extends TestElement>>)Conversions.doWrapArray(elementConstructors)), _function);
+          ((List<Function1<? super TestSuiteElement, ? extends TestElement>>)Conversions.doWrapArray(elementConstructors)).forEach(_function);
           _xblockexpression = suite;
         }
         return _xblockexpression;

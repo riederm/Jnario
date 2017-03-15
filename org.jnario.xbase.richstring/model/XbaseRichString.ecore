@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="xbasewithrichstring" nsURI="http://www.eclipse.org/xbase/RichString"
+    nsPrefix="xbrs">
+  <eClassifiers xsi:type="ecore:EClass" name="RichString" eSuperTypes="../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XBlockExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RichStringLiteral" eSuperTypes="../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XStringLiteral"/>
+</ecore:EPackage>
