@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
 
-public class AbstractSpecJavaValidator extends org.eclipse.xtext.xbase.annotations.validation.XbaseWithAnnotationsJavaValidator {
+public class AbstractSpecJavaValidator extends org.jnario.xbase.richstring.validation.XbaseWithRichstringJavaValidator {
 
 	@Override
 	protected List<EPackage> getEPackages() {
@@ -16,6 +16,7 @@ public class AbstractSpecJavaValidator extends org.eclipse.xtext.xbase.annotatio
 	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.org/jnario/spec/Spec"));
 	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.org/Jnario"));
 	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/xtext/xbase/Xbase"));
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/xbase/RichString"));
 	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/Xtext/Xbase/XAnnotations"));
 	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/xtext/common/JavaVMTypes"));
 	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/xtext/xbase/Xtype"));

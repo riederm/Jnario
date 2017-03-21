@@ -17,17 +17,23 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.core.search.IJavaSearchConstants;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.GrammarUtil;
+import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.common.types.xtext.ui.JdtVariableCompletions;
 import org.eclipse.xtext.common.types.xtext.ui.JdtVariableCompletions.VariableType;
 import org.eclipse.xtext.common.types.xtext.ui.TypeMatchFilters;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.ui.editor.contentassist.ConfigurableCompletionProposal;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
+import org.eclipse.xtext.util.ITextRegion;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotationsPackage;
 import org.jnario.JnarioClass;
 import org.jnario.JnarioField;
@@ -102,30 +108,30 @@ public class SpecProposalProvider extends AbstractSpecProposalProvider {
 	}
 
 	// TODO NO_XTEND
-//	@Override
-//	public void complete_RICH_TEXT(EObject model, RuleCall ruleCall, ContentAssistContext context,
-//			ICompletionProposalAcceptor acceptor) {
-//		completeInRichString(model, ruleCall, context, acceptor);
-//	}
-//
-//	@Override
-//	public void complete_RICH_TEXT_START(EObject model, RuleCall ruleCall, ContentAssistContext context,
-//			ICompletionProposalAcceptor acceptor) {
-//		completeInRichString(model, ruleCall, context, acceptor);
-//	}
-//
-//	@Override
-//	public void complete_RICH_TEXT_END(EObject model, RuleCall ruleCall, ContentAssistContext context,
-//			ICompletionProposalAcceptor acceptor) {
-//		completeInRichString(model, ruleCall, context, acceptor);
-//	}
-//
-//	@Override
-//	public void complete_RICH_TEXT_INBETWEEN(EObject model, RuleCall ruleCall, ContentAssistContext context,
-//			ICompletionProposalAcceptor acceptor) {
-//		completeInRichString(model, ruleCall, context, acceptor);
-//	}
-//
+	@Override
+	public void complete_RICH_TEXT(EObject model, RuleCall ruleCall, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		completeInRichString(model, ruleCall, context, acceptor);
+	}
+
+	@Override
+	public void complete_RICH_TEXT_START(EObject model, RuleCall ruleCall, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		completeInRichString(model, ruleCall, context, acceptor);
+	}
+
+	@Override
+	public void complete_RICH_TEXT_END(EObject model, RuleCall ruleCall, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		completeInRichString(model, ruleCall, context, acceptor);
+	}
+
+	@Override
+	public void complete_RICH_TEXT_INBETWEEN(EObject model, RuleCall ruleCall, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		completeInRichString(model, ruleCall, context, acceptor);
+	}
+
 //	@Override
 //	public void complete_COMMENT_RICH_TEXT_END(EObject model, RuleCall ruleCall, ContentAssistContext context,
 //			ICompletionProposalAcceptor acceptor) {
@@ -201,5 +207,35 @@ public class SpecProposalProvider extends AbstractSpecProposalProvider {
 
 	protected Set<String> getAllKeywords() {
 		return GrammarUtil.getAllKeywords(grammarAccess.getGrammar());
+	}
+	
+	protected void addGuillemotsProposal(ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		acceptor.accept(new ConfigurableCompletionProposal("\u00AB\u00BB", context.getOffset(), context
+				.getSelectedText().length(), 1));
+	}
+	
+	public void completeInRichString(EObject model, RuleCall ruleCall, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		INode node = context.getCurrentNode();
+		ITextRegion textRegion = node.getTextRegion();
+		int offset = textRegion.getOffset();
+		int length = textRegion.getLength();
+		String currentNodeText = node.getText();
+		if (currentNodeText.startsWith("\u00BB") && offset + 1 <= context.getOffset()
+				|| currentNodeText.startsWith("'''") && offset + 3 <= context.getOffset()) {
+			if (context.getOffset() > offset && context.getOffset() < offset + length)
+				addGuillemotsProposal(context, acceptor);
+		} else if (currentNodeText.startsWith("\u00AB\u00AB")) {
+			try {
+				IDocument document = context.getViewer().getDocument();
+				int nodeLine = document.getLineOfOffset(offset);
+				int completionLine = document.getLineOfOffset(context.getOffset());
+				if (completionLine > nodeLine) {
+					addGuillemotsProposal(context, acceptor);
+				}
+			} catch (BadLocationException e) {
+				// ignore
+			}
+		}
 	}
 }

@@ -1,4 +1,4 @@
-grammar org.jnario.spec.Spec with org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations
+grammar org.jnario.spec.Spec with org.jnario.xbase.richstring.XbaseWithRichstring //with org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations
 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "http://www.org/jnario/spec/Spec" 
@@ -81,7 +81,7 @@ Member returns JnarioMember:
 			)
 			(parameters+=Parameter (',' parameters+=Parameter)*)? ')'
 			('throws' exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)?
-			(expression=XBlockExpression | ';')? // TODO Add RichString here
+			(expression=XBlockExpression | expression=RichString | ';')? 
 			)	
 		);
 
@@ -133,82 +133,6 @@ ExampleCell:
 	expression=XExpression
 ;
 
-/*
-TODO NO_XTEND
-
-
-XStringLiteral returns xbase::XExpression:
-    SimpleStringLiteral | RichString
-;
-
-SimpleStringLiteral returns xbase::XExpression:
-    {xbase::XStringLiteral} value=STRING
-;
-
-RichString returns xbase::XExpression:
-    {RichString} ( 
-      expressions+=RichStringLiteral |
-      expressions+=RichStringLiteralStart expressions+=RichStringPart? 
-        (expressions+=RichStringLiteralInbetween expressions+=RichStringPart?)* 
-      expressions+=RichStringLiteralEnd
-    )
-;
-
-RichStringLiteral returns xbase::XExpression :
-    {RichStringLiteral} value=RICH_TEXT
-;
-
-RichStringLiteralStart returns xbase::XExpression :
-    {RichStringLiteral} value=RICH_TEXT_START
-; 
-
-RichStringLiteralInbetween returns xbase::XExpression :
-    {RichStringLiteral} 
-    ( value=RICH_TEXT_INBETWEEN | value=COMMENT_RICH_TEXT_INBETWEEN )
-; 
-
-RichStringLiteralEnd returns xbase::XExpression :
-    {RichStringLiteral} 
-    ( value=RICH_TEXT_END | value=COMMENT_RICH_TEXT_END )
-; 
-
-InternalRichString returns xbase::XExpression:
-    {RichString} (
-        expressions+=RichStringLiteralInbetween (expressions+=RichStringPart? expressions+=RichStringLiteralInbetween)*
-    )
-;
-
-RichStringPart returns xbase::XExpression:
-    XExpressionOrVarDeclaration
-    | RichStringForLoop
-    | RichStringIf
-;
-RichStringForLoop returns xbase::XExpression:
-    {RichStringForLoop}
-    "FOR" declaredParam=JvmFormalParameter ':' forExpression=XExpression
-        ("BEFORE" before=XExpression)?
-        ("SEPARATOR" separator=XExpression)?
-        ("AFTER" after=XExpression)?
-        eachExpression=InternalRichString
-    "ENDFOR"
-;
-
-RichStringIf returns xbase::XExpression :
-    {RichStringIf}
-    "IF" if=XExpression
-        then=InternalRichString
-        elseIfs+=RichStringElseIf*
-    ("ELSE" 
-        else=InternalRichString)?
-    "ENDIF"
-;
-
-RichStringElseIf returns RichStringElseIf:
-    "ELSEIF" if=XExpression then=InternalRichString
-;
-*/
-// --------------------- FROM Xtend.xtext
-
 CommonModifier:
     'public' | 'private' | 'protected' | 'package' | 'abstract' | 'static' | 'dispatch' | 'final'
     | 'strictfp' | 'native' |'volatile' | 'synchronized' | 'transient'
@@ -238,18 +162,6 @@ terminal fragment HEX_DIGIT:
 terminal fragment UNICODE_ESCAPE:
     '\\' 'u' ( HEX_DIGIT ( HEX_DIGIT ( HEX_DIGIT HEX_DIGIT? )? )? )?
 ;
-
-terminal STRING:
-        RICH_TEXT 
-    |   '"' ( '\\' . /* ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') */ | !('\\'|'"') )* '"'?
-    |   "'" ( '\\' . /* ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') */ | !('\\'|"'") )* "'"?;
-
-terminal fragment RICH_TEXT : "'''" IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF);
-
-terminal fragment IN_RICH_STRING : 
-      "''" !("'") 
-    | "'" !("'")
-    | !("'");
 
 terminal fragment IDENTIFIER_START:
       '\u0024'
