@@ -1,6 +1,7 @@
 package org.jnario.ui.findrefs;
 
 import com.google.common.base.Objects;
+import com.google.common.base.Predicate;
 import com.google.inject.Inject;
 import java.util.HashSet;
 import java.util.Set;
@@ -100,15 +101,26 @@ public class XtendReferenceFinder extends DefaultReferenceFinder implements IRef
       final IUnitOfWork<Object, ResourceSet> _function_5 = new IUnitOfWork<Object, ResourceSet>() {
         @Override
         public Object exec(final ResourceSet it) throws Exception {
+          final Function1<URI, Boolean> _function = new Function1<URI, Boolean>() {
+            @Override
+            public Boolean apply(final URI uri) {
+              return Boolean.valueOf(targetURIs.contains(uri));
+            }
+          };
+          final Function1<URI, Boolean> isInTargetURIs = _function;
           URI _uRI = resourceDescription.getURI();
           Resource _resource = it.getResource(_uRI, true);
-          final IAcceptor<IReferenceDescription> _function = new IAcceptor<IReferenceDescription>() {
+          final IAcceptor<IReferenceDescription> _function_1 = new IAcceptor<IReferenceDescription>() {
             @Override
             public void accept(final IReferenceDescription it) {
               acceptor.accept(it);
             }
           };
-          XtendReferenceFinder.this.findLocalReferencesInResource(targetURIs, _resource, _function);
+          XtendReferenceFinder.this.findLocalReferencesInResource(new Predicate<URI>() {
+              public boolean apply(URI input) {
+                return isInTargetURIs.apply(input);
+              }
+          }, _resource, _function_1);
           return null;
         }
       };
