@@ -9,7 +9,6 @@ package org.jnario;
 
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Class</b></em>'.
@@ -27,7 +26,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * @generated
  */
 public interface JnarioClass extends JnarioTypeDeclaration {
-
 	/**
 	 * Returns the value of the '<em><b>Extends</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -53,4 +51,5 @@ public interface JnarioClass extends JnarioTypeDeclaration {
 	 * @generated
 	 */
 	void setExtends(JvmTypeReference value);
+
 } // JnarioClass

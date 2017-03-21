@@ -84,8 +84,6 @@ public class JnarioFactoryImpl extends EFactoryImpl implements JnarioFactory {
 			case JnarioPackage.JNARIO_TYPE_DECLARATION: return createJnarioTypeDeclaration();
 			case JnarioPackage.JNARIO_ANNOTATION_TARGET: return createJnarioAnnotationTarget();
 			case JnarioPackage.JNARIO_PARAMETER: return createJnarioParameter();
-			case JnarioPackage.RICH_STRING: return createRichString();
-			case JnarioPackage.RICH_STRING_LITERAL: return createRichStringLiteral();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -259,26 +257,6 @@ public class JnarioFactoryImpl extends EFactoryImpl implements JnarioFactory {
 	public JnarioParameter createJnarioParameter() {
 		JnarioParameterImpl jnarioParameter = new JnarioParameterImpl();
 		return jnarioParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RichString createRichString() {
-		RichStringImpl richString = new RichStringImpl();
-		return richString;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RichStringLiteral createRichStringLiteral() {
-		RichStringLiteralImpl richStringLiteral = new RichStringLiteralImpl();
-		return richStringLiteral;
 	}
 
 	/**

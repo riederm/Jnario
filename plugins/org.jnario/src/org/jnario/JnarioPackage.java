@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.xtext.xbase.XbasePackage;
 
 /**
@@ -60,96 +61,6 @@ public interface JnarioPackage extends EPackage {
 	 * @generated
 	 */
 	JnarioPackage eINSTANCE = org.jnario.impl.JnarioPackageImpl.init();
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.ExampleTableImpl <em>Example Table</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.ExampleTableImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getExampleTable()
-	 * @generated
-	 */
-	int EXAMPLE_TABLE = 0;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.ExampleRowImpl <em>Example Row</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.ExampleRowImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getExampleRow()
-	 * @generated
-	 */
-	int EXAMPLE_ROW = 1;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.AssertionImpl <em>Assertion</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.AssertionImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getAssertion()
-	 * @generated
-	 */
-	int ASSERTION = 2;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.ExampleColumnImpl <em>Example Column</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.ExampleColumnImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getExampleColumn()
-	 * @generated
-	 */
-	int EXAMPLE_COLUMN = 3;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.ShouldImpl <em>Should</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.ShouldImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getShould()
-	 * @generated
-	 */
-	int SHOULD = 4;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.ShouldThrowImpl <em>Should Throw</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.ShouldThrowImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getShouldThrow()
-	 * @generated
-	 */
-	int SHOULD_THROW = 5;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.SpecificationImpl <em>Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.SpecificationImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getSpecification()
-	 * @generated
-	 */
-	int SPECIFICATION = 6;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.Executable <em>Executable</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.Executable
-	 * @see org.jnario.impl.JnarioPackageImpl#getExecutable()
-	 * @generated
-	 */
-	int EXECUTABLE = 7;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.MockLiteralImpl <em>Mock Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.MockLiteralImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getMockLiteral()
-	 * @generated
-	 */
-	int MOCK_LITERAL = 8;
 
 	/**
 	 * The meta object id for the '{@link org.jnario.impl.JnarioAnnotationTargetImpl <em>Annotation Target</em>}' class.
@@ -226,6 +137,16 @@ public interface JnarioPackage extends EPackage {
 	int JNARIO_MEMBER_FEATURE_COUNT = JNARIO_ANNOTATION_TARGET_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.jnario.impl.ExampleTableImpl <em>Example Table</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.ExampleTableImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getExampleTable()
+	 * @generated
+	 */
+	int EXAMPLE_TABLE = 0;
+
+	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -289,6 +210,16 @@ public interface JnarioPackage extends EPackage {
 	int EXAMPLE_TABLE_FEATURE_COUNT = JNARIO_MEMBER_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link org.jnario.impl.ExampleRowImpl <em>Example Row</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.ExampleRowImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getExampleRow()
+	 * @generated
+	 */
+	int EXAMPLE_ROW = 1;
+
+	/**
 	 * The feature id for the '<em><b>Cells</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -316,6 +247,16 @@ public interface JnarioPackage extends EPackage {
 	int EXAMPLE_ROW_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.jnario.impl.AssertionImpl <em>Assertion</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.AssertionImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getAssertion()
+	 * @generated
+	 */
+	int ASSERTION = 2;
+
+	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -332,6 +273,16 @@ public interface JnarioPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSERTION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.ExampleColumnImpl <em>Example Column</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.ExampleColumnImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getExampleColumn()
+	 * @generated
+	 */
+	int EXAMPLE_COLUMN = 3;
 
 	/**
 	 * The feature id for the '<em><b>Table</b></em>' container reference.
@@ -377,6 +328,16 @@ public interface JnarioPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXAMPLE_COLUMN_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.ShouldImpl <em>Should</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.ShouldImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getShould()
+	 * @generated
+	 */
+	int SHOULD = 4;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -478,6 +439,16 @@ public interface JnarioPackage extends EPackage {
 	int SHOULD_FEATURE_COUNT = XbasePackage.XBINARY_OPERATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.jnario.impl.ShouldThrowImpl <em>Should Throw</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.ShouldThrowImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getShouldThrow()
+	 * @generated
+	 */
+	int SHOULD_THROW = 5;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -505,6 +476,16 @@ public interface JnarioPackage extends EPackage {
 	int SHOULD_THROW_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.jnario.Executable <em>Executable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.Executable
+	 * @see org.jnario.impl.JnarioPackageImpl#getExecutable()
+	 * @generated
+	 */
+	int EXECUTABLE = 7;
+
+	/**
 	 * The number of structural features of the '<em>Executable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -512,6 +493,16 @@ public interface JnarioPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXECUTABLE_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.SpecificationImpl <em>Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.SpecificationImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getSpecification()
+	 * @generated
+	 */
+	int SPECIFICATION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -575,6 +566,16 @@ public interface JnarioPackage extends EPackage {
 	 * @ordered
 	 */
 	int SPECIFICATION_FEATURE_COUNT = EXECUTABLE_FEATURE_COUNT + 6;
+
+	/**
+	 * The meta object id for the '{@link org.jnario.impl.MockLiteralImpl <em>Mock Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.jnario.impl.MockLiteralImpl
+	 * @see org.jnario.impl.JnarioPackageImpl#getMockLiteral()
+	 * @generated
+	 */
+	int MOCK_LITERAL = 8;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -802,7 +803,6 @@ public interface JnarioPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXAMPLE_CELL_FEATURE_COUNT = JNARIO_FUNCTION_FEATURE_COUNT + 0;
-
 
 	/**
 	 * The meta object id for the '{@link org.jnario.impl.JnarioFileImpl <em>File</em>}' class.
@@ -1123,63 +1123,6 @@ public interface JnarioPackage extends EPackage {
 	 * @ordered
 	 */
 	int JNARIO_PARAMETER_FEATURE_COUNT = JNARIO_ANNOTATION_TARGET_FEATURE_COUNT + 4;
-
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.RichStringImpl <em>Rich String</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.RichStringImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getRichString()
-	 * @generated
-	 */
-	int RICH_STRING = 18;
-
-	/**
-	 * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RICH_STRING__EXPRESSIONS = XbasePackage.XBLOCK_EXPRESSION__EXPRESSIONS;
-
-	/**
-	 * The number of structural features of the '<em>Rich String</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RICH_STRING_FEATURE_COUNT = XbasePackage.XBLOCK_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.jnario.impl.RichStringLiteralImpl <em>Rich String Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.impl.RichStringLiteralImpl
-	 * @see org.jnario.impl.JnarioPackageImpl#getRichStringLiteral()
-	 * @generated
-	 */
-	int RICH_STRING_LITERAL = 19;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RICH_STRING_LITERAL__VALUE = XbasePackage.XSTRING_LITERAL__VALUE;
-
-	/**
-	 * The number of structural features of the '<em>Rich String Literal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RICH_STRING_LITERAL_FEATURE_COUNT = XbasePackage.XSTRING_LITERAL_FEATURE_COUNT + 0;
 
 
 	/**
@@ -1748,26 +1691,6 @@ public interface JnarioPackage extends EPackage {
 	EAttribute getJnarioParameter_Extension();
 
 	/**
-	 * Returns the meta object for class '{@link org.jnario.RichString <em>Rich String</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Rich String</em>'.
-	 * @see org.jnario.RichString
-	 * @generated
-	 */
-	EClass getRichString();
-
-	/**
-	 * Returns the meta object for class '{@link org.jnario.RichStringLiteral <em>Rich String Literal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Rich String Literal</em>'.
-	 * @see org.jnario.RichStringLiteral
-	 * @generated
-	 */
-	EClass getRichStringLiteral();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2248,26 +2171,6 @@ public interface JnarioPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JNARIO_PARAMETER__EXTENSION = eINSTANCE.getJnarioParameter_Extension();
-
-		/**
-		 * The meta object literal for the '{@link org.jnario.impl.RichStringImpl <em>Rich String</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.jnario.impl.RichStringImpl
-		 * @see org.jnario.impl.JnarioPackageImpl#getRichString()
-		 * @generated
-		 */
-		EClass RICH_STRING = eINSTANCE.getRichString();
-
-		/**
-		 * The meta object literal for the '{@link org.jnario.impl.RichStringLiteralImpl <em>Rich String Literal</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.jnario.impl.RichStringLiteralImpl
-		 * @see org.jnario.impl.JnarioPackageImpl#getRichStringLiteral()
-		 * @generated
-		 */
-		EClass RICH_STRING_LITERAL = eINSTANCE.getRichStringLiteral();
 
 	}
 

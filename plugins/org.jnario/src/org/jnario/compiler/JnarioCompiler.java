@@ -7,7 +7,11 @@
  *******************************************************************************/
 package org.jnario.compiler;
 
+import static com.google.common.collect.Iterables.filter;
+import static com.google.common.collect.Sets.newHashSet;
+import static org.eclipse.xtext.nodemodel.util.NodeModelUtils.getNode;
 import static org.eclipse.xtext.util.Strings.convertToJavaString;
+import static org.jnario.jvmmodel.DoubleArrowSupport.isDoubleArrow;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -38,25 +42,23 @@ import org.jnario.ShouldThrow;
 import org.jnario.lib.Assert;
 import org.jnario.util.MockingSupport;
 import org.jnario.util.SourceAdapter;
+import org.jnario.xbase.richstring.XbaseWithRichstringCompiler;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
-import static org.jnario.jvmmodel.DoubleArrowSupport.*;
-import static com.google.common.collect.Sets.*;
-import static org.eclipse.xtext.nodemodel.util.NodeModelUtils.*;
-import static com.google.common.collect.Iterables.*;
 
 
 /**
  * @author Sebastian Benz - Initial contribution and API
  */
-public class JnarioCompiler extends XbaseCompiler {
+public class JnarioCompiler extends XbaseWithRichstringCompiler {
 
 	@Inject
 	private JnarioExpressionHelper expressionHelper;
-	
-	@Inject ISerializer serializer;
+
+	@Inject
+	ISerializer serializer;
 
 	@Override
 	public void internalToConvertedExpression(XExpression obj,
@@ -88,7 +90,7 @@ public class JnarioCompiler extends XbaseCompiler {
 		} else
 			super.doInternalToJavaStatement(obj, appendable, isReferenced);
 	}
-
+	
 	public void _toJavaStatement(ShouldThrow should, ITreeAppendable b,	boolean isReferenced) {
 		if (should.getType() == null || should.getType().getType() == null) {
 			return;
@@ -453,5 +455,4 @@ public class JnarioCompiler extends XbaseCompiler {
 			_toShouldExpression((XBinaryOperation) expr, b, false);
 		}
 	}
-
 }

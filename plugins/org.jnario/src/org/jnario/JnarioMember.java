@@ -8,6 +8,7 @@
 package org.jnario;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.xtext.common.types.JvmVisibility;
 
 /**
