@@ -25,7 +25,9 @@ import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
+import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
+import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.XNumberLiteral;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 import org.jnario.JnarioClass;
@@ -69,8 +71,8 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 					// TODO NO_XTEND
 					// highlightXtendField(field, acceptor);
 					
-//					XExpression initializer = field.getInitialValue();
-//					highlightRichStrings(initializer, acceptor);
+					XExpression initializer = field.getInitialValue();
+					highlightRichstring(acceptor, initializer);
 				}
 
 // TODO NO_XTEND
@@ -84,7 +86,7 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 		private Boolean highlightXtendClassName(JnarioClass object, String id) {
 			List<INode> nodes = findNodesForFeature(object, JnarioPackage.Literals.JNARIO_TYPE_DECLARATION__NAME);
 			for (INode node : nodes) {
-				highlightNode(node, id, acceptor);
+				highlightNode(acceptor,  node,  id);
 			}
 			return Boolean.TRUE;
 		}
@@ -93,13 +95,13 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 		public Boolean caseFeature(Feature feature) {
 			List<INode> nodes = findNodesForFeature(feature, JnarioPackage.Literals.JNARIO_TYPE_DECLARATION__NAME);
 			for (INode node : nodes) {
-				highlightNode(node, FeatureHighlightingConfiguration.FEATURE_ID, acceptor);
+				highlightNode(acceptor,  node,  FeatureHighlightingConfiguration.FEATURE_ID);
 			}
 			// there is an xtext problem if the splitted token is the only rule present
 			if(feature.getBackground() == null && feature.getScenarios().isEmpty()){
 				nodes = findNodesForFeature(feature, FeaturePackage.Literals.FEATURE__DESCRIPTION);
 				for (INode node : nodes) {
-					highlightNode(node, FeatureHighlightingConfiguration.STEP_TEXT_ID, acceptor);
+					highlightNode(acceptor,  node,  FeatureHighlightingConfiguration.STEP_TEXT_ID);
 				}
 			}
 			return Boolean.TRUE;
@@ -232,7 +234,7 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 				} if (object instanceof XAnnotation) {
 					highlightAnnotation((XAnnotation) object, acceptor);
 				} else {
-					computeReferencedJvmTypeHighlighting(acceptor, object);
+					computeReferencedJvmTypeHighlighting(acceptor, object, CancelIndicator.NullImpl);	//TODO MARI get a monitor
 				}
 			}
 		}

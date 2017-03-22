@@ -189,7 +189,7 @@ public class FeatureUiModule extends org.jnario.feature.ui.AbstractFeatureUiModu
 //	}
 	
 	@Override
-	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+	public Class<? extends org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator> bindIdeSemanticHighlightingCalculator() {
 		return FeatureSemanticHighlightingCalculator.class;
 	}
 	

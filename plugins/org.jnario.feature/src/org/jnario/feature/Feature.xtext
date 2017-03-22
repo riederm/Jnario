@@ -10,7 +10,7 @@
  * @author Birgit Engelmann - Initial contribution and API
  */
 
-grammar org.jnario.feature.Feature with org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations
+grammar org.jnario.feature.Feature with org.jnario.xbase.richstring.XbaseWithRichstring
 
 import "http://www.eclipse.org/Xtext/Xbase/XAnnotations" as xannotations
 import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
@@ -202,7 +202,7 @@ AnonymousMember returns JnarioMember:
       )
       (parameters+=Parameter (',' parameters+=Parameter)*)? ')'
       ('throws' exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)?
-      (expression=XBlockExpression | ';')? // TODO Add RichString here
+      (expression=XBlockExpression | expression=RichString | ';')? 
 
       )
       
@@ -276,16 +276,9 @@ terminal fragment UNICODE_ESCAPE:
 ;
 
 terminal STRING:
-        RICH_TEXT 
-    |   '"' ( '\\' . /* ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') */ | !('\\'|'"') )* '"'?
+        '"' ( '\\' . /* ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') */ | !('\\'|'"') )* '"'?
     |   "'" ( '\\' . /* ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') */ | !('\\'|"'") )* "'"?;
 
-terminal fragment RICH_TEXT : "'''" IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF);
-
-terminal fragment IN_RICH_STRING : 
-      "''" !("'") 
-    | "'" !("'")
-    | !("'");
 
 terminal fragment IDENTIFIER_START:
       '\u0024'
