@@ -109,7 +109,8 @@
       xsi:type="git:GitCloneTask"
       id="jdt.runners.git.clone"
       remoteURI="https://github.com/meysholdt/eclipse_jdt_junit_runners.git"
-      pushURI="https://github.com/meysholdt/eclipse_jdt_junit_runners.git">
+      pushURI="https://github.com/meysholdt/eclipse_jdt_junit_runners.git"
+      checkoutBranch="master">
     <description>${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -119,8 +120,8 @@
         rootFolder="${jnario.git.clone.location}"
         locateNestedProjects="true"/>
   </setupTask>
-  <stream name="master"
-      label="Master"/>
+  <stream name="xbaseWithRichstrings_2.11"
+      label="xbaseWithRichstrings_2.11"/>
   <logicalProjectContainer
       xsi:type="setup:ProjectCatalog"
       href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
