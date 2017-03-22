@@ -8,6 +8,7 @@
 package org.jnario.jnario.tests.unit.doc;
 
 import java.util.Arrays;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.doc.WhiteSpaceNormalizer;
 import org.jnario.jnario.tests.unit.doc.WhiteSpaceNormalizerSpecExamples;
@@ -161,11 +162,16 @@ public class WhiteSpaceNormalizerSpec {
   @Named("Linebreak at the end")
   @Order(2)
   public void _linebreakAtTheEnd() throws Exception {
-    String _normalize = this.subject.normalize(
-      "hello\r\nworld\r\n");
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("hello");
+    _builder.newLine();
+    _builder.append("world");
+    _builder.newLine();
+    String _normalize = this.subject.normalize(_builder.toString());
     Assert.assertTrue("\nExpected subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\r\n\t\t\'\'\') => \"hello\\nworld\\n\" but"
      + "\n     subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\r\n\t\t\'\'\') is " + new org.hamcrest.StringDescription().appendValue(_normalize).toString()
-     + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString() + "\n", Should.<String>operator_doubleArrow(_normalize, "hello\nworld\n"));
+     + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString()
+     + "\n     \'\'\'\r\n\t\thello\r\n\t\tworld\r\n\t\t\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", Should.<String>operator_doubleArrow(_normalize, "hello\nworld\n"));
     
   }
   
@@ -184,11 +190,15 @@ public class WhiteSpaceNormalizerSpec {
   @Named("No linebreak at the end")
   @Order(4)
   public void _noLinebreakAtTheEnd() throws Exception {
-    String _normalize = this.subject.normalize(
-      "hello\r\nworld");
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("hello");
+    _builder.newLine();
+    _builder.append("world");
+    String _normalize = this.subject.normalize(_builder.toString());
     Assert.assertTrue("\nExpected subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\'\'\') => \"hello\\nworld\" but"
      + "\n     subject.normalize(\r\n\t\t\'\'\'\r\n\t\thello\r\n\t\tworld\'\'\') is " + new org.hamcrest.StringDescription().appendValue(_normalize).toString()
-     + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString() + "\n", Should.<String>operator_doubleArrow(_normalize, "hello\nworld"));
+     + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString()
+     + "\n     \'\'\'\r\n\t\thello\r\n\t\tworld\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", Should.<String>operator_doubleArrow(_normalize, "hello\nworld"));
     
   }
 }
