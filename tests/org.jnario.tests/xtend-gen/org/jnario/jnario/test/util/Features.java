@@ -42,8 +42,7 @@ public class Features {
     Given _xblockexpression = null;
     {
       final Given step = Features.step("Given a step with implementation");
-      XBlockExpression _implementation = Features.implementation();
-      step.setExpression(_implementation);
+      step.setExpression(Features.implementation());
       _xblockexpression = step;
     }
     return _xblockexpression;
@@ -69,8 +68,7 @@ public class Features {
     Scenario _xblockexpression = null;
     {
       final Scenario scenario = Features.scenario(name);
-      EList<Step> _steps = scenario.getSteps();
-      CollectionExtensions.<Step>addAll(_steps, steps);
+      CollectionExtensions.<Step>addAll(scenario.getSteps(), steps);
       _xblockexpression = scenario;
     }
     return _xblockexpression;
@@ -100,8 +98,7 @@ public class Features {
   public static Scenario implementedScenario() {
     Scenario _xblockexpression = null;
     {
-      Given _implementedStep = Features.implementedStep();
-      final Scenario scenario = Features.scenarioWith(_implementedStep);
+      final Scenario scenario = Features.scenarioWith(Features.implementedStep());
       _xblockexpression = scenario;
     }
     return _xblockexpression;
@@ -131,8 +128,7 @@ public class Features {
     Feature _xblockexpression = null;
     {
       final Feature feature = Features.feature("Feature: with scenarios");
-      EList<Scenario> _scenarios = feature.getScenarios();
-      CollectionExtensions.<Scenario>addAll(_scenarios, scenarios);
+      CollectionExtensions.<Scenario>addAll(feature.getScenarios(), scenarios);
       _xblockexpression = feature;
     }
     return _xblockexpression;

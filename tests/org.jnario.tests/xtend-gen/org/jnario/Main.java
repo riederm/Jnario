@@ -3,8 +3,6 @@ package org.jnario;
 import com.google.common.collect.Iterables;
 import com.google.inject.Injector;
 import java.util.function.Consumer;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmGenericType;
@@ -51,16 +49,13 @@ public class Main {
     _builder.newLine();
     final Resource resource = modelStore.parseSpec(_builder);
     final JvmModelGenerator generator = injector.<JvmModelGenerator>getInstance(JvmModelGenerator.class);
-    EList<EObject> _contents = resource.getContents();
-    Iterable<JvmGenericType> _filter = Iterables.<JvmGenericType>filter(_contents, JvmGenericType.class);
     final Consumer<JvmGenericType> _function = new Consumer<JvmGenericType>() {
       @Override
       public void accept(final JvmGenericType it) {
         GeneratorConfig _generatorConfig = new GeneratorConfig();
-        CharSequence _generateType = generator.generateType(it, _generatorConfig);
-        InputOutput.<CharSequence>println(_generateType);
+        InputOutput.<CharSequence>println(generator.generateType(it, _generatorConfig));
       }
     };
-    _filter.forEach(_function);
+    Iterables.<JvmGenericType>filter(resource.getContents(), JvmGenericType.class).forEach(_function);
   }
 }

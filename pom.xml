@@ -13,7 +13,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-    <platform-version-name>mars</platform-version-name>
+    <platform-version-name>neon</platform-version-name>
   </properties>
 
   <prerequisites>
@@ -29,6 +29,8 @@
   <modules>
     <module>releng/org.jnario.target</module>
     <module>plugins/org.jnario.feature</module>
+    <module>plugins/org.jnario.xbase.richstring</module>
+    <module>plugins/org.jnario.xbase.richstring.ui</module>
     <module>plugins/org.jnario</module>
     <module>plugins/org.jnario.ui</module>
     <module>plugins/org.jnario.lib</module>
