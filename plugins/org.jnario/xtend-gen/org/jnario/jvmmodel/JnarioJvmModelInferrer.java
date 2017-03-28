@@ -14,11 +14,13 @@ import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmAnnotationTarget;
@@ -120,7 +122,8 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
   @Override
   public void infer(final EObject obj, final IJvmDeclaredTypeAcceptor acceptor, final boolean preIndexingPhase) {
     try {
-      this.testRuntime = this.runtime.get(obj);
+      TestRuntimeSupport _get = this.runtime.get(obj);
+      this.testRuntime = _get;
     } catch (final Throwable _t) {
       if (_t instanceof NoSuchElementException) {
         final NoSuchElementException ex = (NoSuchElementException)_t;
@@ -167,12 +170,14 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
     while (((!Objects.equal(xtendType, null)) && (xtendType instanceof JnarioClass))) {
       {
         final JnarioClass current = ((JnarioClass) xtendType);
+        EList<XAnnotation> _annotations = current.getAnnotations();
         final Function1<XAnnotation, Boolean> _function = new Function1<XAnnotation, Boolean>() {
           @Override
           public Boolean apply(final XAnnotation it) {
             return Boolean.valueOf(JnarioJvmModelInferrer.this.hasExtendsAnnotation(it));
           }
         };
+        Iterable<XAnnotation> _filter = IterableExtensions.<XAnnotation>filter(_annotations, _function);
         final Function1<XAnnotation, XTypeLiteral> _function_1 = new Function1<XAnnotation, XTypeLiteral>() {
           @Override
           public XTypeLiteral apply(final XAnnotation it) {
@@ -180,16 +185,19 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
             return ((XTypeLiteral) _value);
           }
         };
-        Iterable<XTypeLiteral> _map = IterableExtensions.<XAnnotation, XTypeLiteral>map(IterableExtensions.<XAnnotation>filter(current.getAnnotations(), _function), _function_1);
+        Iterable<XTypeLiteral> _map = IterableExtensions.<XAnnotation, XTypeLiteral>map(_filter, _function_1);
         for (final XTypeLiteral extendedType : _map) {
           JvmType _type = extendedType.getType();
           boolean _notEquals = (!Objects.equal(_type, null));
           if (_notEquals) {
-            jnarioClass.setExtends(this._typeReferences.createTypeRef(extendedType.getType()));
+            JvmType _type_1 = extendedType.getType();
+            JvmParameterizedTypeReference _createTypeRef = this._typeReferences.createTypeRef(_type_1);
+            jnarioClass.setExtends(_createTypeRef);
             return;
           }
         }
-        xtendType = xtendType.eContainer();
+        EObject _eContainer = xtendType.eContainer();
+        xtendType = _eContainer;
       }
     }
   }
@@ -213,15 +221,19 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
   }
   
   protected void setNameAndAssociate(final JnarioFile file, final JnarioTypeDeclaration jnarioType, final JvmDeclaredType javaType) {
-    javaType.setPackageName(file.getPackage());
-    javaType.setSimpleName(this._jnarioNameProvider.toJavaClassName(jnarioType));
+    String _package = file.getPackage();
+    javaType.setPackageName(_package);
+    String _javaClassName = this._jnarioNameProvider.toJavaClassName(jnarioType);
+    javaType.setSimpleName(_javaClassName);
     javaType.setVisibility(JvmVisibility.PUBLIC);
     this.setFileHeader(file, javaType);
     this.modelAssociator.associatePrimary(jnarioType, javaType);
   }
   
   protected void setFileHeader(final JnarioFile jnarioFile, final JvmDeclaredType jvmDeclaredType) {
-    this._jvmTypesBuilder.setFileHeader(jvmDeclaredType, this._iFileHeaderProvider.getFileHeader(jnarioFile.eResource()));
+    Resource _eResource = jnarioFile.eResource();
+    String _fileHeader = this._iFileHeaderProvider.getFileHeader(_eResource);
+    this._jvmTypesBuilder.setFileHeader(jvmDeclaredType, _fileHeader);
   }
   
   protected void initialize(final JnarioClass source, final JvmGenericType inferredJvmType) {
@@ -229,16 +241,22 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
       @Override
       public void apply(final JvmGenericType it) {
         it.setVisibility(JvmVisibility.PUBLIC);
-        it.setStatic(source.isStatic());
+        boolean _isStatic = source.isStatic();
+        it.setStatic(_isStatic);
       }
     };
     ObjectExtensions.<JvmGenericType>operator_doubleArrow(inferredJvmType, _function);
-    this.translateAnnotations(inferredJvmType, source.getAnnotations());
+    EList<XAnnotation> _annotations = source.getAnnotations();
+    this.translateAnnotations(inferredJvmType, _annotations);
     final JvmTypeReference extendsClause = source.getExtends();
     if ((Objects.equal(extendsClause, null) || Objects.equal(extendsClause.getType(), null))) {
-      inferredJvmType.getSuperTypes().add(this._typeReferences.getTypeForName(Object.class, source));
+      EList<JvmTypeReference> _superTypes = inferredJvmType.getSuperTypes();
+      JvmTypeReference _typeForName = this._typeReferences.getTypeForName(Object.class, source);
+      _superTypes.add(_typeForName);
     } else {
-      inferredJvmType.getSuperTypes().add(this._jvmTypesBuilder.cloneWithProxies(extendsClause));
+      EList<JvmTypeReference> _superTypes_1 = inferredJvmType.getSuperTypes();
+      JvmTypeReference _cloneWithProxies = this._jvmTypesBuilder.cloneWithProxies(extendsClause);
+      _superTypes_1.add(_cloneWithProxies);
     }
     EList<JnarioMember> _members = source.getMembers();
     for (final JnarioMember member : _members) {
@@ -255,40 +273,54 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
       final Procedure1<JvmField> _function = new Procedure1<JvmField>() {
         @Override
         public void apply(final JvmField it) {
-          it.setSimpleName(JnarioJvmModelInferrer.this.computeFieldName(source));
-          it.setVisibility(source.getVisibility());
-          it.setStatic(source.isStatic());
-          it.setTransient(source.isTransient());
-          it.setVolatile(source.isVolatile());
-          it.setFinal(source.isFinal());
+          String _computeFieldName = JnarioJvmModelInferrer.this.computeFieldName(source);
+          it.setSimpleName(_computeFieldName);
+          JvmVisibility _visibility = source.getVisibility();
+          it.setVisibility(_visibility);
+          boolean _isStatic = source.isStatic();
+          it.setStatic(_isStatic);
+          boolean _isTransient = source.isTransient();
+          it.setTransient(_isTransient);
+          boolean _isVolatile = source.isVolatile();
+          it.setVolatile(_isVolatile);
+          boolean _isFinal = source.isFinal();
+          it.setFinal(_isFinal);
           EList<JvmMember> _members = container.getMembers();
           JnarioJvmModelInferrer.this._jvmTypesBuilder.<JvmField>operator_add(_members, it);
           JvmTypeReference _type = source.getType();
           boolean _notEquals = (!Objects.equal(_type, null));
           if (_notEquals) {
-            it.setType(JnarioJvmModelInferrer.this._jvmTypesBuilder.cloneWithProxies(source.getType()));
+            JvmTypeReference _type_1 = source.getType();
+            JvmTypeReference _cloneWithProxies = JnarioJvmModelInferrer.this._jvmTypesBuilder.cloneWithProxies(_type_1);
+            it.setType(_cloneWithProxies);
           } else {
             XExpression _initialValue = source.getInitialValue();
             boolean _notEquals_1 = (!Objects.equal(_initialValue, null));
             if (_notEquals_1) {
-              it.setType(JnarioJvmModelInferrer.this._jvmTypesBuilder.inferredType(source.getInitialValue()));
+              XExpression _initialValue_1 = source.getInitialValue();
+              JvmTypeReference _inferredType = JnarioJvmModelInferrer.this._jvmTypesBuilder.inferredType(_initialValue_1);
+              it.setType(_inferredType);
             }
           }
-          JvmVisibility _visibility = it.getVisibility();
-          boolean _equals = Objects.equal(_visibility, JvmVisibility.PRIVATE);
+          JvmVisibility _visibility_1 = it.getVisibility();
+          boolean _equals = Objects.equal(_visibility_1, JvmVisibility.PRIVATE);
           if (_equals) {
             it.setVisibility(JvmVisibility.DEFAULT);
           }
           boolean _isExtension = source.isExtension();
           if (_isExtension) {
             it.setVisibility(JvmVisibility.PUBLIC);
-            JnarioJvmModelInferrer.this.addAnnotationIfFound(it.getAnnotations(), Extension.class, source);
-            JnarioJvmModelInferrer.this.addAnnotationIfFound(it.getAnnotations(), org.jnario.runner.Extension.class, source);
+            EList<JvmAnnotationReference> _annotations = it.getAnnotations();
+            JnarioJvmModelInferrer.this.addAnnotationIfFound(_annotations, Extension.class, source);
+            EList<JvmAnnotationReference> _annotations_1 = it.getAnnotations();
+            JnarioJvmModelInferrer.this.addAnnotationIfFound(_annotations_1, org.jnario.runner.Extension.class, source);
           }
-          JnarioJvmModelInferrer.this.translateAnnotations(it, source.getAnnotations());
+          EList<XAnnotation> _annotations_2 = source.getAnnotations();
+          JnarioJvmModelInferrer.this.translateAnnotations(it, _annotations_2);
           JnarioJvmModelInferrer.this.modelAssociator.associatePrimary(source, it);
           JnarioJvmModelInferrer.this._jvmTypesBuilder.copyDocumentationTo(source, it);
-          JnarioJvmModelInferrer.this._jvmTypesBuilder.setInitializer(it, source.getInitialValue());
+          XExpression _initialValue_2 = source.getInitialValue();
+          JnarioJvmModelInferrer.this._jvmTypesBuilder.setInitializer(it, _initialValue_2);
         }
       };
       ObjectExtensions.<JvmField>operator_doubleArrow(_createJvmField, _function);
@@ -318,15 +350,18 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
     boolean _isAbstract = operation.isAbstract();
     boolean _not = (!_isAbstract);
     if (_not) {
-      operation.setFinal(source.isFinal());
+      boolean _isFinal = source.isFinal();
+      operation.setFinal(_isFinal);
     }
-    container.getMembers().add(operation);
+    EList<JvmMember> _members = container.getMembers();
+    _members.add(operation);
     this.modelAssociator.associatePrimary(source, operation);
     final String sourceName = source.getName();
     final JvmVisibility visibility = source.getVisibility();
     operation.setSimpleName(sourceName);
     operation.setVisibility(visibility);
-    operation.setStatic(source.isStatic());
+    boolean _isStatic = source.isStatic();
+    operation.setStatic(_isStatic);
     if ((((!operation.isAbstract()) && (!operation.isStatic())) && container.isInterface())) {
       operation.setDefault(true);
     }
@@ -339,42 +374,55 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
     JvmTypeReference _returnType = source.getReturnType();
     boolean _notEquals = (!Objects.equal(_returnType, null));
     if (_notEquals) {
-      returnType = this._jvmTypesBuilder.cloneWithProxies(source.getReturnType());
+      JvmTypeReference _returnType_1 = source.getReturnType();
+      JvmTypeReference _cloneWithProxies = this._jvmTypesBuilder.cloneWithProxies(_returnType_1);
+      returnType = _cloneWithProxies;
     } else {
       boolean _notEquals_1 = (!Objects.equal(expression, null));
       if (_notEquals_1) {
-        returnType = this._jvmTypesBuilder.inferredType(expression);
+        JvmTypeReference _inferredType = this._jvmTypesBuilder.inferredType(expression);
+        returnType = _inferredType;
       } else {
-        returnType = this._jvmTypesBuilder.inferredType();
+        JvmTypeReference _inferredType_1 = this._jvmTypesBuilder.inferredType();
+        returnType = _inferredType_1;
       }
     }
     operation.setReturnType(returnType);
-    this.copyAndFixTypeParameters(source.getTypeParameters(), operation);
+    EList<JvmTypeParameter> _typeParameters = source.getTypeParameters();
+    this.copyAndFixTypeParameters(_typeParameters, operation);
     EList<JvmTypeReference> _exceptions = source.getExceptions();
     for (final JvmTypeReference exception : _exceptions) {
       EList<JvmTypeReference> _exceptions_1 = operation.getExceptions();
-      JvmTypeReference _cloneWithProxies = this._jvmTypesBuilder.cloneWithProxies(exception);
-      this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions_1, _cloneWithProxies);
+      JvmTypeReference _cloneWithProxies_1 = this._jvmTypesBuilder.cloneWithProxies(exception);
+      this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions_1, _cloneWithProxies_1);
     }
-    this.translateAnnotations(operation, source.getAnnotations());
+    EList<XAnnotation> _annotations = source.getAnnotations();
+    this.translateAnnotations(operation, _annotations);
     this._jvmTypesBuilder.setBody(operation, expression);
     this._jvmTypesBuilder.copyDocumentationTo(source, operation);
   }
   
   protected void translateParameter(final JvmExecutable executable, final JnarioParameter parameter) {
     final JvmFormalParameter jvmParam = this.typesFactory.createJvmFormalParameter();
-    jvmParam.setName(parameter.getName());
+    String _name = parameter.getName();
+    jvmParam.setName(_name);
     boolean _isVarArg = parameter.isVarArg();
     if (_isVarArg) {
       executable.setVarArgs(true);
-      final JvmGenericArrayTypeReference arrayType = this._typeReferences.createArrayType(this._jvmTypesBuilder.cloneWithProxies(parameter.getParameterType()));
+      JvmTypeReference _parameterType = parameter.getParameterType();
+      JvmTypeReference _cloneWithProxies = this._jvmTypesBuilder.cloneWithProxies(_parameterType);
+      final JvmGenericArrayTypeReference arrayType = this._typeReferences.createArrayType(_cloneWithProxies);
       jvmParam.setParameterType(arrayType);
     } else {
-      jvmParam.setParameterType(this._jvmTypesBuilder.cloneWithProxies(parameter.getParameterType()));
+      JvmTypeReference _parameterType_1 = parameter.getParameterType();
+      JvmTypeReference _cloneWithProxies_1 = this._jvmTypesBuilder.cloneWithProxies(_parameterType_1);
+      jvmParam.setParameterType(_cloneWithProxies_1);
     }
     this.modelAssociator.associate(parameter, jvmParam);
-    this.translateAnnotations(jvmParam, parameter.getAnnotations());
-    this.addAnnotationIfFound(jvmParam.getAnnotations(), Extension.class, parameter);
+    EList<XAnnotation> _annotations = parameter.getAnnotations();
+    this.translateAnnotations(jvmParam, _annotations);
+    EList<JvmAnnotationReference> _annotations_1 = jvmParam.getAnnotations();
+    this.addAnnotationIfFound(_annotations_1, Extension.class, parameter);
     EList<JvmFormalParameter> _parameters = executable.getParameters();
     this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, jvmParam);
   }
@@ -390,7 +438,8 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
         final JvmTypeParameter clonedTypeParameter = this._jvmTypesBuilder.<JvmTypeParameter>cloneWithProxies(typeParameter);
         boolean _notEquals = (!Objects.equal(clonedTypeParameter, null));
         if (_notEquals) {
-          target.getTypeParameters().add(clonedTypeParameter);
+          EList<JvmTypeParameter> _typeParameters = target.getTypeParameters();
+          _typeParameters.add(clonedTypeParameter);
           this.modelAssociator.associate(typeParameter, clonedTypeParameter);
         }
       }
@@ -400,12 +449,15 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
   protected void fixTypeParameters(final JvmTypeParameterDeclarator target) {
     EList<JvmTypeParameter> _typeParameters = target.getTypeParameters();
     for (final JvmTypeParameter typeParameter : _typeParameters) {
-      boolean _isEmpty = IterableExtensions.isEmpty(Iterables.<JvmUpperBound>filter(typeParameter.getConstraints(), JvmUpperBound.class));
+      EList<JvmTypeConstraint> _constraints = typeParameter.getConstraints();
+      Iterable<JvmUpperBound> _filter = Iterables.<JvmUpperBound>filter(_constraints, JvmUpperBound.class);
+      boolean _isEmpty = IterableExtensions.isEmpty(_filter);
       if (_isEmpty) {
         final JvmUpperBound upperBound = this.typesFactory.createJvmUpperBound();
-        upperBound.setTypeReference(this._typeReferences.getTypeForName(Object.class, target));
-        EList<JvmTypeConstraint> _constraints = typeParameter.getConstraints();
-        this._jvmTypesBuilder.<JvmUpperBound>operator_add(_constraints, upperBound);
+        JvmTypeReference _typeForName = this._typeReferences.getTypeForName(Object.class, target);
+        upperBound.setTypeReference(_typeForName);
+        EList<JvmTypeConstraint> _constraints_1 = typeParameter.getConstraints();
+        this._jvmTypesBuilder.<JvmUpperBound>operator_add(_constraints_1, upperBound);
       }
     }
   }
@@ -429,7 +481,8 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
       boolean _notEquals_1 = (!Objects.equal(type, null));
       if (_notEquals_1) {
         while ((type instanceof JvmGenericArrayTypeReference)) {
-          type = ((JvmGenericArrayTypeReference)type).getComponentType();
+          JvmTypeReference _componentType = ((JvmGenericArrayTypeReference)type).getComponentType();
+          type = _componentType;
         }
         if ((type instanceof JvmParameterizedTypeReference)) {
           final List<INode> nodes = NodeModelUtils.findNodesForFeature(type, 
@@ -437,10 +490,13 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
           boolean _isEmpty = nodes.isEmpty();
           boolean _not = (!_isEmpty);
           if (_not) {
-            String typeName = nodes.get(0).getText().trim();
+            INode _get = nodes.get(0);
+            String _text = _get.getText();
+            String typeName = _text.trim();
             final int lastDot = typeName.lastIndexOf(".");
             if ((lastDot != (-1))) {
-              typeName = typeName.substring((lastDot + 1));
+              String _substring = typeName.substring((lastDot + 1));
+              typeName = _substring;
             }
             String _firstLower = Strings.toFirstLower(typeName);
             String _plus = ("_" + _firstLower);
@@ -480,13 +536,15 @@ public abstract class JnarioJvmModelInferrer extends AbstractModelInferrer {
         final JvmAnnotationReference annotationReference = this._jvmTypesBuilder.getJvmAnnotationReference(a);
         boolean _notEquals = (!Objects.equal(annotationReference, null));
         if (_notEquals) {
+          Set<EObject> _jvmElements = this._iJvmModelAssociations.getJvmElements(a);
           final Function1<EObject, Boolean> _function_1 = new Function1<EObject, Boolean>() {
             @Override
             public Boolean apply(final EObject it) {
               return Boolean.valueOf((it != annotationReference));
             }
           };
-          final List<EObject> associatedElements = IterableExtensions.<EObject>toList(IterableExtensions.<EObject>filter(this._iJvmModelAssociations.getJvmElements(a), _function_1));
+          Iterable<EObject> _filter = IterableExtensions.<EObject>filter(_jvmElements, _function_1);
+          final List<EObject> associatedElements = IterableExtensions.<EObject>toList(_filter);
           boolean _isEmpty = associatedElements.isEmpty();
           boolean _not = (!_isEmpty);
           if (_not) {

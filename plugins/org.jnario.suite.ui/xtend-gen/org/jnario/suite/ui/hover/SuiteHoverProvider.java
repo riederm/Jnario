@@ -34,9 +34,13 @@ public class SuiteHoverProvider extends JnarioHoverProvider {
     String comment = null;
     if ((objectToView instanceof PatternReference)) {
       final PatternReference spec = ((PatternReference) objectToView);
-      comment = this.document(this._specResolver.resolveSpecs(spec)).toString();
+      List<Specification> _resolveSpecs = this._specResolver.resolveSpecs(spec);
+      CharSequence _document = this.document(_resolveSpecs);
+      String _string = _document.toString();
+      comment = _string;
     } else {
-      comment = super.getHoverInfoAsHtml(call, objectToView, hoverRegion);
+      String _hoverInfoAsHtml = super.getHoverInfoAsHtml(call, objectToView, hoverRegion);
+      comment = _hoverInfoAsHtml;
     }
     return comment;
   }

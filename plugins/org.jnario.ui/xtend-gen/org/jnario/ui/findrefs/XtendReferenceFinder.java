@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Set;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmType;
@@ -42,6 +44,7 @@ public class XtendReferenceFinder extends DefaultReferenceFinder implements IRef
         return it.trimFragment();
       }
     };
+    Iterable<URI> _map = IterableExtensions.<URI, URI>map(targetURIs, _function);
     final Function1<URI, Boolean> _function_1 = new Function1<URI, Boolean>() {
       @Override
       public Boolean apply(final URI it) {
@@ -49,7 +52,7 @@ public class XtendReferenceFinder extends DefaultReferenceFinder implements IRef
         return Boolean.valueOf(Objects.equal(it, _uRI));
       }
     };
-    boolean _exists = IterableExtensions.<URI>exists(IterableExtensions.<URI, URI>map(targetURIs, _function), _function_1);
+    boolean _exists = IterableExtensions.<URI>exists(_map, _function_1);
     if (_exists) {
       return;
     }
@@ -60,11 +63,14 @@ public class XtendReferenceFinder extends DefaultReferenceFinder implements IRef
         public Boolean exec(final ResourceSet it) throws Exception {
           boolean _xblockexpression = false;
           {
-            final JvmType obj = EcoreUtil2.<JvmType>getContainerOfType(it.getEObject(uri, true), JvmType.class);
+            EObject _eObject = it.getEObject(uri, true);
+            final JvmType obj = EcoreUtil2.<JvmType>getContainerOfType(_eObject, JvmType.class);
             boolean _xifexpression = false;
             boolean _notEquals = (!Objects.equal(obj, null));
             if (_notEquals) {
-              QualifiedName _qualifiedName = XtendReferenceFinder.this.nameConverter.toQualifiedName(obj.getIdentifier().toLowerCase());
+              String _identifier = obj.getIdentifier();
+              String _lowerCase = _identifier.toLowerCase();
+              QualifiedName _qualifiedName = XtendReferenceFinder.this.nameConverter.toQualifiedName(_lowerCase);
               _xifexpression = names.add(_qualifiedName);
             }
             _xblockexpression = _xifexpression;
@@ -74,13 +80,15 @@ public class XtendReferenceFinder extends DefaultReferenceFinder implements IRef
       };
       localResourceAccess.<Boolean>readOnly(uri, _function_2);
     }
+    Iterable<QualifiedName> _importedNames = resourceDescription.getImportedNames();
     final Function1<QualifiedName, QualifiedName> _function_3 = new Function1<QualifiedName, QualifiedName>() {
       @Override
       public QualifiedName apply(final QualifiedName it) {
         return it.toLowerCase();
       }
     };
-    final Set<QualifiedName> importedNames = IterableExtensions.<QualifiedName>toSet(IterableExtensions.<QualifiedName, QualifiedName>map(resourceDescription.getImportedNames(), _function_3));
+    Iterable<QualifiedName> _map_1 = IterableExtensions.<QualifiedName, QualifiedName>map(_importedNames, _function_3);
+    final Set<QualifiedName> importedNames = IterableExtensions.<QualifiedName>toSet(_map_1);
     final Function1<QualifiedName, Boolean> _function_4 = new Function1<QualifiedName, Boolean>() {
       @Override
       public Boolean apply(final QualifiedName it) {
@@ -89,6 +97,7 @@ public class XtendReferenceFinder extends DefaultReferenceFinder implements IRef
     };
     boolean _exists_1 = IterableExtensions.<QualifiedName>exists(names, _function_4);
     if (_exists_1) {
+      URI _uRI = resourceDescription.getURI();
       final IUnitOfWork<Object, ResourceSet> _function_5 = new IUnitOfWork<Object, ResourceSet>() {
         @Override
         public Object exec(final ResourceSet it) throws Exception {
@@ -99,6 +108,8 @@ public class XtendReferenceFinder extends DefaultReferenceFinder implements IRef
             }
           };
           final Function1<URI, Boolean> isInTargetURIs = _function;
+          URI _uRI = resourceDescription.getURI();
+          Resource _resource = it.getResource(_uRI, true);
           final IAcceptor<IReferenceDescription> _function_1 = new IAcceptor<IReferenceDescription>() {
             @Override
             public void accept(final IReferenceDescription it) {
@@ -109,11 +120,11 @@ public class XtendReferenceFinder extends DefaultReferenceFinder implements IRef
               public boolean apply(URI arg0) {
                 return isInTargetURIs.apply(arg0);
               }
-          }, it.getResource(resourceDescription.getURI(), true), _function_1);
+          }, _resource, _function_1);
           return null;
         }
       };
-      localResourceAccess.<Object>readOnly(resourceDescription.getURI(), _function_5);
+      localResourceAccess.<Object>readOnly(_uRI, _function_5);
     }
   }
 }

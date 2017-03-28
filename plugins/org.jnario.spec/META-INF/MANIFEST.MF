@@ -23,10 +23,10 @@ Require-Bundle: org.eclipse.xtext;bundle-version="[2.11.0,2.12.0)";visibility:=r
  org.eclipse.jdt.annotation;bundle-version="1.0.0";resolution:=optional,
  org.apache.commons.lang,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
- org.jnario.xbase.richstring;bundle-version="1.0.0"
+ org.jnario.xbase.richstring;visibility:=reexport
 Import-Package: org.apache.log4j,
  org.apache.commons.logging
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.jnario.spec,
  org.jnario.spec.compiler,
  org.jnario.spec.doc,

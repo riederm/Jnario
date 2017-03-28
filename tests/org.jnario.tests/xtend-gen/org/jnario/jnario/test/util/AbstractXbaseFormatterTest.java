@@ -41,14 +41,19 @@ public abstract class AbstractXbaseFormatterTest {
   }
   
   public void assertFormattedExpression(final Procedure1<? super MapBasedPreferenceValues> cfg, final CharSequence expectation, final CharSequence toBeFormatted, final boolean allowErrors) {
-    this.assertFormatted(cfg, 
-      this.indent(expectation.toString().trim(), "\t"), 
-      this.indent(toBeFormatted.toString().trim(), "\t"), 
+    String _string = expectation.toString();
+    String _trim = _string.trim();
+    String _indent = this.indent(_trim, "\t");
+    String _string_1 = toBeFormatted.toString();
+    String _trim_1 = _string_1.trim();
+    String _indent_1 = this.indent(_trim_1, "\t");
+    this.assertFormatted(cfg, _indent, _indent_1, 
       "{\n\t", 
       "\n}", allowErrors);
   }
   
   protected String indent(final String string, final String indent) {
+    String[] _split = string.split("\\r?\\n");
     final Function1<String, String> _function = new Function1<String, String>() {
       @Override
       public String apply(final String it) {
@@ -62,7 +67,8 @@ public abstract class AbstractXbaseFormatterTest {
         return _xifexpression;
       }
     };
-    return IterableExtensions.join(ListExtensions.<String, String>map(((List<String>)Conversions.doWrapArray(string.split("\\r?\\n"))), _function), "\n");
+    List<String> _map = ListExtensions.<String, String>map(((List<String>)Conversions.doWrapArray(_split)), _function);
+    return IterableExtensions.join(_map, "\n");
   }
   
   public void assertFormatted(final Procedure1<? super MapBasedPreferenceValues> cfg, final CharSequence expectation) {
@@ -84,7 +90,8 @@ public abstract class AbstractXbaseFormatterTest {
         final Procedure1<MapBasedPreferenceValues> _function = new Procedure1<MapBasedPreferenceValues>() {
           @Override
           public void apply(final MapBasedPreferenceValues it) {
-            it.put(FormatterPreferenceKeys.maxLineWidth, Integer.valueOf(80).toString());
+            String _string = Integer.valueOf(80).toString();
+            it.put(FormatterPreferenceKeys.maxLineWidth, _string);
             if (cfg!=null) {
               cfg.apply(it);
             }

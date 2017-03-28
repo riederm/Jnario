@@ -17,7 +17,8 @@ public class ConsoleRecorder {
   private ByteArrayOutputStream pipeOut;
   
   public static ConsoleRecorder start() {
-    return new ConsoleRecorder().startRecording();
+    ConsoleRecorder _consoleRecorder = new ConsoleRecorder();
+    return _consoleRecorder.startRecording();
   }
   
   public ConsoleRecorder startRecording() {

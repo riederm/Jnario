@@ -30,7 +30,8 @@ public class CellLocation {
         return CellLocation.this.plus(it);
       }
     };
-    return IterableExtensions.<CellLocation>toSet(IterableExtensions.<CellLocation, CellLocation>map(CellLocation.NEIGHBOUR_OFFSETS, _function));
+    Iterable<CellLocation> _map = IterableExtensions.<CellLocation, CellLocation>map(CellLocation.NEIGHBOUR_OFFSETS, _function);
+    return IterableExtensions.<CellLocation>toSet(_map);
   }
   
   public CellLocation plus(final CellLocation other) {

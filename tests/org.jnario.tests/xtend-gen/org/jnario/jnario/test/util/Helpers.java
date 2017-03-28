@@ -14,7 +14,10 @@ import org.junit.Assert;
 @SuppressWarnings("all")
 public class Helpers {
   public static void is(final String actual, final CharSequence expected) {
-    Assert.assertEquals(expected.toString().replaceAll("\r", ""), actual.replaceAll("\r", ""));
+    String _string = expected.toString();
+    String _replaceAll = _string.replaceAll("\r", "");
+    String _replaceAll_1 = actual.replaceAll("\r", "");
+    Assert.assertEquals(_replaceAll, _replaceAll_1);
   }
   
   public static String errorMessage(final Procedure1<Boolean> proc) {
@@ -24,7 +27,8 @@ public class Helpers {
     } catch (final Throwable _t) {
       if (_t instanceof AssertionError) {
         final AssertionError e = (AssertionError)_t;
-        return e.getMessage().trim();
+        String _message = e.getMessage();
+        return _message.trim();
       } else {
         throw Exceptions.sneakyThrow(_t);
       }

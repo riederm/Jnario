@@ -55,15 +55,19 @@ public class FilterExtractor {
         final Function1<String, Filter> candidate = this.filterRegistry.get(key);
         boolean _notEquals = (!Objects.equal(candidate, null));
         if (_notEquals) {
-          Filter _apply = candidate.apply(matcher.group(4));
+          String _group = matcher.group(4);
+          Filter _apply = candidate.apply(_group);
           filters.add(_apply);
         }
         final int nextOffset = matcher.start();
-        resultString.append(input.substring(offset, nextOffset));
-        offset = matcher.end();
+        String _substring = input.substring(offset, nextOffset);
+        resultString.append(_substring);
+        int _end = matcher.end();
+        offset = _end;
       }
     }
-    resultString.append(input.substring(offset));
+    String _substring = input.substring(offset);
+    resultString.append(_substring);
     String _string = resultString.toString();
     return new FilteringResult(_string, filters);
   }

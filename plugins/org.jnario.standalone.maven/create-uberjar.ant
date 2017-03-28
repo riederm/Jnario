@@ -56,6 +56,7 @@
 		<!-- Jnario bundles -->
 		<fileset dir="${jnarioPluginFolder}" id="binJnarioJars">
 			<include name="org.jnario_*.jar" />
+			<include name="org.jnario.xbase.richstring_*.jar" />
 			<include name="org.jnario.spec_*.jar" />
 			<include name="org.jnario.suite_*.jar" />
 			<include name="org.jnario.feature_*.jar" />
@@ -88,6 +89,7 @@
 		<!-- Jnario bundles -->
 		<fileset dir="${jnarioPluginFolder}" id="sourceXtextJars">
 			<include name="org.jnario.source*.jar" />
+			<include name="org.jnario.xbase.richstring.source*.jar" />
 			<include name="org.jnario.feature.source*.jar" />
 			<include name="org.jnario.suite.source*.jar" />
 			<include name="org.jnario.spec.source*.jar" />

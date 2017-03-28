@@ -7,6 +7,7 @@
  */
 package org.jnario.doc;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jnario.doc.Filter;
 
@@ -22,12 +23,14 @@ public class RegexFilter implements Filter {
   
   public RegexFilter(final String regex) {
     this.regex = regex;
-    this.pattern = Pattern.compile(regex, Pattern.DOTALL);
+    Pattern _compile = Pattern.compile(regex, Pattern.DOTALL);
+    this.pattern = _compile;
   }
   
   @Override
   public String apply(final String input) {
-    return this.pattern.matcher(input).replaceAll("");
+    Matcher _matcher = this.pattern.matcher(input);
+    return _matcher.replaceAll("");
   }
   
   @Override

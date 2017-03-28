@@ -9,6 +9,8 @@ package org.jnario.feature.naming;
 
 import com.google.common.base.Objects;
 import java.util.Arrays;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EReference;
 import org.jnario.JnarioPackage;
 import org.jnario.feature.feature.Feature;
 import org.jnario.feature.feature.FeaturePackage;
@@ -31,7 +33,8 @@ public class StepNameProvider {
       if ((Objects.equal(step, null) || Objects.equal(step.getName(), null))) {
         return null;
       }
-      _xblockexpression = Nodes.textForFeature(step, JnarioPackage.eINSTANCE.getJnarioTypeDeclaration_Name());
+      EAttribute _jnarioTypeDeclaration_Name = JnarioPackage.eINSTANCE.getJnarioTypeDeclaration_Name();
+      _xblockexpression = Nodes.textForFeature(step, _jnarioTypeDeclaration_Name);
     }
     return _xblockexpression;
   }
@@ -42,22 +45,27 @@ public class StepNameProvider {
     if (_equals) {
       _xifexpression = null;
     } else {
-      _xifexpression = Nodes.textForFeature(ref, FeaturePackage.eINSTANCE.getStepReference_Reference());
+      EReference _stepReference_Reference = FeaturePackage.eINSTANCE.getStepReference_Reference();
+      _xifexpression = Nodes.textForFeature(ref, _stepReference_Reference);
     }
     return _xifexpression;
   }
   
   public String getMethodName(final Step step) {
-    String originalName = Strings.firstLine(this.nameOf(step)).trim();
+    String _nameOf = this.nameOf(step);
+    String _firstLine = Strings.firstLine(_nameOf);
+    String originalName = _firstLine.trim();
     return Strings.toMethodName(originalName);
   }
   
   public String describe(final Feature feature) {
-    return Strings.makeJunitConform(feature.getName());
+    String _name = feature.getName();
+    return Strings.makeJunitConform(_name);
   }
   
   public String describe(final Scenario scenario) {
-    return Strings.makeJunitConform(scenario.getName());
+    String _name = scenario.getName();
+    return Strings.makeJunitConform(_name);
   }
   
   public String describe(final Step step) {
@@ -67,7 +75,9 @@ public class StepNameProvider {
     if (_isPending) {
       Strings.markAsPending(name);
     }
-    return Strings.makeJunitConform(Strings.firstLine(name.toString()));
+    String _string = name.toString();
+    String _firstLine = Strings.firstLine(_string);
+    return Strings.makeJunitConform(_firstLine);
   }
   
   public String removeKeywords(final String name) {
@@ -86,7 +96,8 @@ public class StepNameProvider {
     String _xblockexpression = null;
     {
       String name = Strings.firstLine(text);
-      _xblockexpression = ArgumentsHelper.removeArgumentValues(name).trim();
+      String _removeArgumentValues = ArgumentsHelper.removeArgumentValues(name);
+      _xblockexpression = _removeArgumentValues.trim();
     }
     return _xblockexpression;
   }

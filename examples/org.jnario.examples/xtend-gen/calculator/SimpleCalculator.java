@@ -23,7 +23,8 @@ public class SimpleCalculator {
         return Integer.valueOf(((a).intValue() + (b).intValue()));
       }
     };
-    return this.result = (IterableExtensions.<Integer, Integer>fold(this.values, Integer.valueOf(0), _function)).intValue();
+    Integer _fold = IterableExtensions.<Integer, Integer>fold(this.values, Integer.valueOf(0), _function);
+    return this.result = (_fold).intValue();
   }
   
   public String result() {

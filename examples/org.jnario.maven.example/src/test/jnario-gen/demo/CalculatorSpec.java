@@ -29,11 +29,10 @@ public class CalculatorSpec {
   @Named("should add two values")
   @Order(1)
   public void _shouldAddTwoValues() throws Exception {
-    Calculator _calculator = new Calculator();
-    int _add = _calculator.add(1, 2);
+    int _add = new Calculator().add(1, 2);
     Assert.assertTrue("\nExpected new Calculator().add(1, 2) should be 3 but"
      + "\n     new Calculator().add(1, 2) is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(_add)).toString()
-     + "\n     new Calculator() is " + new org.hamcrest.StringDescription().appendValue(_calculator).toString() + "\n", Should.<Integer>should_be(Integer.valueOf(_add), Integer.valueOf(3)));
+     + "\n     new Calculator() is " + new org.hamcrest.StringDescription().appendValue(new Calculator()).toString() + "\n", Should.<Integer>should_be(Integer.valueOf(_add), Integer.valueOf(3)));
     
   }
   

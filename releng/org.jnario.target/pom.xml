@@ -31,9 +31,9 @@ xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLS
 					<configuration>
 						<artifacts>
 							<artifact>
-								<file>neon.target</file>
+								<file>neon-xtext2.11.target</file>
 								<type>target</type>
-								<classifier>neon</classifier>
+								<classifier>neon-xtext2.11</classifier>
 							</artifact>
 						</artifacts>
 					</configuration>

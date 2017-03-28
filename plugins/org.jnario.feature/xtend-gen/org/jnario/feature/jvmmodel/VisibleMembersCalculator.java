@@ -37,7 +37,8 @@ public class VisibleMembersCalculator {
     if (_equals) {
       return members;
     }
-    EList<JnarioMember> _members = feature.getBackground().getMembers();
+    Background _background_1 = feature.getBackground();
+    EList<JnarioMember> _members = _background_1.getMembers();
     return Iterables.<JnarioMember>concat(members, _members);
   }
 }

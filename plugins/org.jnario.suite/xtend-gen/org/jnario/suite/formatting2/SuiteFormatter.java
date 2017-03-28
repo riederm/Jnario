@@ -58,7 +58,8 @@ public class SuiteFormatter extends XbaseWithAnnotationsFormatter {
   private SuiteGrammarAccess _suiteGrammarAccess;
   
   protected void _format(final SuiteFile suitefile, @Extension final IFormattableDocument document) {
-    this.format(suitefile.getImportSection(), document);
+    XImportSection _importSection = suitefile.getImportSection();
+    this.format(_importSection, document);
     EList<JnarioTypeDeclaration> _xtendTypes = suitefile.getXtendTypes();
     for (final JnarioTypeDeclaration xtendTypes : _xtendTypes) {
       this.format(xtendTypes, document);

@@ -47,6 +47,7 @@ import org.eclipse.xtext.xtype.XFunctionTypeRef;
 import org.eclipse.xtext.xtype.XImportDeclaration;
 import org.eclipse.xtext.xtype.XImportSection;
 import org.jnario.Assertion;
+import org.jnario.JnarioAnnotationTarget;
 import org.jnario.JnarioField;
 import org.jnario.JnarioFunction;
 import org.jnario.JnarioMember;
@@ -72,7 +73,8 @@ public class FeatureFormatter extends XbaseWithAnnotationsFormatter {
   private FeatureGrammarAccess _featureGrammarAccess;
   
   protected void _format(final FeatureFile featurefile, @Extension final IFormattableDocument document) {
-    this.format(featurefile.getImportSection(), document);
+    XImportSection _importSection = featurefile.getImportSection();
+    this.format(_importSection, document);
     EList<JnarioTypeDeclaration> _xtendTypes = featurefile.getXtendTypes();
     for (final JnarioTypeDeclaration xtendTypes : _xtendTypes) {
       this.format(xtendTypes, document);
@@ -112,29 +114,37 @@ public class FeatureFormatter extends XbaseWithAnnotationsFormatter {
   }
   
   protected void _format(final JnarioField jnariofield, @Extension final IFormattableDocument document) {
-    this.format(jnariofield.getType(), document);
-    this.format(jnariofield.getInitialValue(), document);
-    this.format(jnariofield.getAnnotationInfo(), document);
+    JvmTypeReference _type = jnariofield.getType();
+    this.format(_type, document);
+    XExpression _initialValue = jnariofield.getInitialValue();
+    this.format(_initialValue, document);
+    JnarioAnnotationTarget _annotationInfo = jnariofield.getAnnotationInfo();
+    this.format(_annotationInfo, document);
   }
   
   protected void _format(final Given given, @Extension final IFormattableDocument document) {
-    this.format(given.getExpression(), document);
+    XExpression _expression = given.getExpression();
+    this.format(_expression, document);
   }
   
   protected void _format(final When when, @Extension final IFormattableDocument document) {
-    this.format(when.getExpression(), document);
+    XExpression _expression = when.getExpression();
+    this.format(_expression, document);
   }
   
   protected void _format(final Then then, @Extension final IFormattableDocument document) {
-    this.format(then.getExpression(), document);
+    XExpression _expression = then.getExpression();
+    this.format(_expression, document);
   }
   
   protected void _format(final And and, @Extension final IFormattableDocument document) {
-    this.format(and.getExpression(), document);
+    XExpression _expression = and.getExpression();
+    this.format(_expression, document);
   }
   
   protected void _format(final But but, @Extension final IFormattableDocument document) {
-    this.format(but.getExpression(), document);
+    XExpression _expression = but.getExpression();
+    this.format(_expression, document);
   }
   
   @Override
@@ -146,29 +156,38 @@ public class FeatureFormatter extends XbaseWithAnnotationsFormatter {
   }
   
   protected void _format(final Should should, @Extension final IFormattableDocument document) {
-    this.format(should.getRightOperand(), document);
-    this.format(should.getLeftOperand(), document);
+    XExpression _rightOperand = should.getRightOperand();
+    this.format(_rightOperand, document);
+    XExpression _leftOperand = should.getLeftOperand();
+    this.format(_leftOperand, document);
   }
   
   protected void _format(final ShouldThrow shouldthrow, @Extension final IFormattableDocument document) {
-    this.format(shouldthrow.getType(), document);
-    this.format(shouldthrow.getExpression(), document);
+    JvmTypeReference _type = shouldthrow.getType();
+    this.format(_type, document);
+    XExpression _expression = shouldthrow.getExpression();
+    this.format(_expression, document);
   }
   
   @Override
   protected void _format(final XInstanceOfExpression xinstanceofexpression, @Extension final IFormattableDocument document) {
-    this.format(xinstanceofexpression.getType(), document);
-    this.format(xinstanceofexpression.getExpression(), document);
+    JvmTypeReference _type = xinstanceofexpression.getType();
+    this.format(_type, document);
+    XExpression _expression = xinstanceofexpression.getExpression();
+    this.format(_expression, document);
   }
   
   @Override
   protected void _format(final XBinaryOperation xbinaryoperation, @Extension final IFormattableDocument document) {
-    this.format(xbinaryoperation.getRightOperand(), document);
-    this.format(xbinaryoperation.getLeftOperand(), document);
+    XExpression _rightOperand = xbinaryoperation.getRightOperand();
+    this.format(_rightOperand, document);
+    XExpression _leftOperand = xbinaryoperation.getLeftOperand();
+    this.format(_leftOperand, document);
   }
   
   protected void _format(final Assertion assertion, @Extension final IFormattableDocument document) {
-    this.format(assertion.getExpression(), document);
+    XExpression _expression = assertion.getExpression();
+    this.format(_expression, document);
   }
   
   protected void _format(final JnarioFunction jnariofunction, @Extension final IFormattableDocument document) {
@@ -176,7 +195,8 @@ public class FeatureFormatter extends XbaseWithAnnotationsFormatter {
     for (final JvmTypeParameter typeParameters : _typeParameters) {
       this.format(typeParameters, document);
     }
-    this.format(jnariofunction.getReturnType(), document);
+    JvmTypeReference _returnType = jnariofunction.getReturnType();
+    this.format(_returnType, document);
     EList<JnarioParameter> _parameters = jnariofunction.getParameters();
     for (final JnarioParameter parameters : _parameters) {
       this.format(parameters, document);
@@ -185,8 +205,10 @@ public class FeatureFormatter extends XbaseWithAnnotationsFormatter {
     for (final JvmTypeReference exceptions : _exceptions) {
       this.format(exceptions, document);
     }
-    this.format(jnariofunction.getExpression(), document);
-    this.format(jnariofunction.getAnnotationInfo(), document);
+    XExpression _expression = jnariofunction.getExpression();
+    this.format(_expression, document);
+    JnarioAnnotationTarget _annotationInfo = jnariofunction.getAnnotationInfo();
+    this.format(_annotationInfo, document);
   }
   
   protected void _format(final JnarioParameter jnarioparameter, @Extension final IFormattableDocument document) {
@@ -194,7 +216,8 @@ public class FeatureFormatter extends XbaseWithAnnotationsFormatter {
     for (final XAnnotation annotations : _annotations) {
       this.format(annotations, document);
     }
-    this.format(jnarioparameter.getParameterType(), document);
+    JvmTypeReference _parameterType = jnarioparameter.getParameterType();
+    this.format(_parameterType, document);
   }
   
   public void format(final Object and, final IFormattableDocument document) {

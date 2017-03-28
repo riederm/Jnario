@@ -29,7 +29,8 @@ public class DocumentationProvider {
       if (_equals) {
         return null;
       }
-      _xblockexpression = doc.replaceAll("\\\\/\\*", "/*").replaceAll("\\\\\\*/", "*/");
+      String _replaceAll = doc.replaceAll("\\\\/\\*", "/*");
+      _xblockexpression = _replaceAll.replaceAll("\\\\\\*/", "*/");
     }
     return _xblockexpression;
   }

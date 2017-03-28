@@ -10,6 +10,8 @@ package org.jnario.compiler;
 import com.google.common.base.Predicate;
 import com.google.inject.Inject;
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -57,12 +59,18 @@ public class JnarioDocCompiler extends AbstractBatchCompiler {
   public ResourceSet loadResources() {
     ResourceSet _xblockexpression = null;
     {
-      this.resourceSet = this.resourceSetProvider.get();
-      this.encodingProvider.setDefaultEncoding(this.getFileEncoding());
-      this.resourceSet.getLoadOptions().put(XtextResource.OPTION_ENCODING, this.getFileEncoding());
+      ResourceSet _get = this.resourceSetProvider.get();
+      this.resourceSet = _get;
+      String _fileEncoding = this.getFileEncoding();
+      this.encodingProvider.setDefaultEncoding(_fileEncoding);
+      Map<Object, Object> _loadOptions = this.resourceSet.getLoadOptions();
+      String _fileEncoding_1 = this.getFileEncoding();
+      _loadOptions.put(XtextResource.OPTION_ENCODING, _fileEncoding_1);
       final NameBasedFilter nameBasedFilter = new NameBasedFilter();
-      nameBasedFilter.setExtension(this.fileExtensionProvider.getPrimaryFileExtension());
+      String _primaryFileExtension = this.fileExtensionProvider.getPrimaryFileExtension();
+      nameBasedFilter.setExtension(_primaryFileExtension);
       final PathTraverser pathTraverser = new PathTraverser();
+      List<String> _sourcePathDirectories = this.getSourcePathDirectories();
       final Predicate<URI> _function = new Predicate<URI>() {
         @Override
         public boolean apply(final URI input) {
@@ -73,7 +81,7 @@ public class JnarioDocCompiler extends AbstractBatchCompiler {
           return matches;
         }
       };
-      pathTraverser.resolvePathes(this.getSourcePathDirectories(), _function);
+      pathTraverser.resolvePathes(_sourcePathDirectories, _function);
       final File classDirectory = this.createTempDir("classes");
       this.installJvmTypeProvider(this.resourceSet, classDirectory);
       EcoreUtil.resolveAll(this.resourceSet);
@@ -87,7 +95,9 @@ public class JnarioDocCompiler extends AbstractBatchCompiler {
     javaIoFileSystemAccess.setOutputPath(DocOutputConfigurationProvider.DOC_OUTPUT, this.outputPath);
     EList<Resource> _resources = this.resourceSet.getResources();
     for (final Resource r : _resources) {
-      boolean _isValid = this.fileExtensionProvider.isValid(r.getURI().fileExtension());
+      URI _uRI = r.getURI();
+      String _fileExtension = _uRI.fileExtension();
+      boolean _isValid = this.fileExtensionProvider.isValid(_fileExtension);
       if (_isValid) {
         this.docGenerator.doGenerate(r, javaIoFileSystemAccess, executable2ResultMapping);
       }

@@ -25,7 +25,9 @@ public class SpecResourceDescriptionStrategy extends JnarioResourceDescriptionSt
     super.createUserData(eObject, userData);
     if ((eObject instanceof ExampleGroup)) {
       final ExampleGroup exampleGroup = ((ExampleGroup) eObject);
-      userData.put(SpecResourceDescriptionStrategy.ROOT_SPEC, String.valueOf(this.isRoot(exampleGroup)));
+      String _isRoot = this.isRoot(exampleGroup);
+      String _valueOf = String.valueOf(_isRoot);
+      userData.put(SpecResourceDescriptionStrategy.ROOT_SPEC, _valueOf);
     }
   }
   

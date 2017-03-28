@@ -46,7 +46,8 @@ public class StepExpressionProvider {
     if ((Objects.equal(step, null) || step.eIsProxy())) {
       return null;
     }
-    XExpression _cloneWithProxies = this._expressionCopier.<XExpression>cloneWithProxies(step.getExpression());
+    XExpression _expression_1 = step.getExpression();
+    XExpression _cloneWithProxies = this._expressionCopier.<XExpression>cloneWithProxies(_expression_1);
     final XExpression expr = ((XExpression) _cloneWithProxies);
     ref.setExpression(expr);
     return expr;

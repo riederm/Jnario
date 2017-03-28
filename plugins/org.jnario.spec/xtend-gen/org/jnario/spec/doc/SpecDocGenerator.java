@@ -11,8 +11,10 @@ import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -52,13 +54,21 @@ public class SpecDocGenerator extends AbstractDocGenerator {
       final Procedure1<HtmlFile> _function = new Procedure1<HtmlFile>() {
         @Override
         public void apply(final HtmlFile it) {
-          it.setName(SpecDocGenerator.this._exampleNameProvider.toJavaClassName(exampleGroup));
-          it.setTitle(SpecDocGenerator.this.asTitle(exampleGroup));
-          it.setContent(SpecDocGenerator.this.generateContent(exampleGroup));
-          it.setRootFolder(SpecDocGenerator.this.root(exampleGroup));
-          it.setSourceCode(SpecDocGenerator.this.pre(xtendClass.eContainer(), "lang-spec"));
-          it.setFileName(SpecDocGenerator.this.fileName(xtendClass));
-          it.setExecutionStatus(SpecDocGenerator.this.executionStateClass(exampleGroup));
+          String _javaClassName = SpecDocGenerator.this._exampleNameProvider.toJavaClassName(exampleGroup);
+          it.setName(_javaClassName);
+          String _asTitle = SpecDocGenerator.this.asTitle(exampleGroup);
+          it.setTitle(_asTitle);
+          CharSequence _generateContent = SpecDocGenerator.this.generateContent(exampleGroup);
+          it.setContent(_generateContent);
+          String _root = SpecDocGenerator.this.root(exampleGroup);
+          it.setRootFolder(_root);
+          EObject _eContainer = xtendClass.eContainer();
+          CharSequence _pre = SpecDocGenerator.this.pre(_eContainer, "lang-spec");
+          it.setSourceCode(_pre);
+          String _fileName = SpecDocGenerator.this.fileName(xtendClass);
+          it.setFileName(_fileName);
+          String _executionStateClass = SpecDocGenerator.this.executionStateClass(exampleGroup);
+          it.setExecutionStatus(_executionStateClass);
         }
       };
       _xblockexpression = HtmlFile.newHtmlFile(_function);
@@ -69,10 +79,10 @@ public class SpecDocGenerator extends AbstractDocGenerator {
   private CharSequence generateContent(final ExampleGroup exampleGroup) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _generateDoc = this.generateDoc(exampleGroup);
-    _builder.append(_generateDoc);
+    _builder.append(_generateDoc, "");
     _builder.newLineIfNotEmpty();
     StringConcatenation _generateMembers = this.generateMembers(exampleGroup, 1);
-    _builder.append(_generateMembers);
+    _builder.append(_generateMembers, "");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
@@ -80,35 +90,40 @@ public class SpecDocGenerator extends AbstractDocGenerator {
   private StringConcatenation generateMembers(final ExampleGroup exampleGroup, final int level) {
     final StringConcatenation result = new StringConcatenation();
     boolean inList = false;
+    EList<JnarioMember> _members = exampleGroup.getMembers();
     final Function1<JnarioMember, Boolean> _function = new Function1<JnarioMember, Boolean>() {
       @Override
       public Boolean apply(final JnarioMember it) {
         return Boolean.valueOf((((it instanceof Example) || (it instanceof ExampleGroup)) || (it instanceof ExampleTable)));
       }
     };
-    final Iterable<JnarioMember> members = IterableExtensions.<JnarioMember>filter(exampleGroup.getMembers(), _function);
+    final Iterable<JnarioMember> members = IterableExtensions.<JnarioMember>filter(_members, _function);
     for (final JnarioMember member : members) {
       {
         final boolean isExampleGroup = (member instanceof ExampleGroup);
         if ((inList && (!isExampleGroup))) {
           result.append("<li>");
-          result.append(this.generate(member, level));
+          CharSequence _generate = this.generate(member, level);
+          result.append(_generate);
           result.append("</li>");
         } else {
           if (((!inList) && (!isExampleGroup))) {
             result.append("<ul>");
             result.append("<li>");
-            result.append(this.generate(member, level));
+            CharSequence _generate_1 = this.generate(member, level);
+            result.append(_generate_1);
             result.append("</li>");
             inList = true;
           } else {
             if ((inList && isExampleGroup)) {
               result.append("</ul>");
-              result.append(this.generate(member, level));
+              CharSequence _generate_2 = this.generate(member, level);
+              result.append(_generate_2);
               inList = false;
             } else {
               if (((!inList) && isExampleGroup)) {
-                result.append(this.generate(member, level));
+                CharSequence _generate_3 = this.generate(member, level);
+                result.append(_generate_3);
               }
             }
           }
@@ -127,8 +142,9 @@ public class SpecDocGenerator extends AbstractDocGenerator {
       String _documentation = this.documentation(eObject);
       boolean _notEquals = (!Objects.equal(_documentation, null));
       if (_notEquals) {
-        String _markdown2Html = this.markdown2Html(this.documentation(eObject));
-        _builder.append(_markdown2Html);
+        String _documentation_1 = this.documentation(eObject);
+        String _markdown2Html = this.markdown2Html(_documentation_1);
+        _builder.append(_markdown2Html, "");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -148,9 +164,12 @@ public class SpecDocGenerator extends AbstractDocGenerator {
       boolean _notEquals = (!Objects.equal(docString, null));
       if (_notEquals) {
         final FilteringResult filterResult = this._filterExtractor.apply(docString);
-        filters = filterResult.getFilters();
-        docString = filterResult.getString();
-        docString = this.markdown2Html(docString);
+        List<Filter> _filters = filterResult.getFilters();
+        filters = _filters;
+        String _string = filterResult.getString();
+        docString = _string;
+        String _markdown2Html = this.markdown2Html(docString);
+        docString = _markdown2Html;
       }
       StringConcatenation _builder = new StringConcatenation();
       {
@@ -158,29 +177,31 @@ public class SpecDocGenerator extends AbstractDocGenerator {
         boolean _notEquals_1 = (!Objects.equal(_name, null));
         if (_notEquals_1) {
           _builder.append("<p");
-          String _id = this.id(example.getName());
-          _builder.append(_id);
+          String _name_1 = example.getName();
+          String _id = this.id(_name_1);
+          _builder.append(_id, "");
           _builder.append(" class=\"example ");
           String _executionStateClass = this.executionStateClass(example);
-          _builder.append(_executionStateClass);
+          _builder.append(_executionStateClass, "");
           _builder.append("\"><strong>");
-          String _decode = this.decode(this._exampleNameProvider.describe(example));
-          _builder.append(_decode);
+          String _describe = this._exampleNameProvider.describe(example);
+          String _decode = this.decode(_describe);
+          _builder.append(_decode, "");
           _builder.append("</strong></p>");
           _builder.newLineIfNotEmpty();
         }
       }
-      _builder.append(docString);
+      _builder.append(docString, "");
       _builder.newLineIfNotEmpty();
       {
         if (((!example.isPending()) && example.eIsSet(JnarioPackage.Literals.JNARIO_FUNCTION__EXPRESSION))) {
           CharSequence _codeBlock = this.toCodeBlock(example, filters);
-          _builder.append(_codeBlock);
+          _builder.append(_codeBlock, "");
           _builder.newLineIfNotEmpty();
         }
       }
       String _errorMessage = this.errorMessage(example);
-      _builder.append(_errorMessage);
+      _builder.append(_errorMessage, "");
       _builder.newLineIfNotEmpty();
       _xblockexpression = _builder;
     }
@@ -191,17 +212,19 @@ public class SpecDocGenerator extends AbstractDocGenerator {
     CharSequence _xblockexpression = null;
     {
       String prefix = "<pre class=\"prettyprint lang-spec linenums\">";
-      prefix = this.apply(filters, prefix);
-      final String code = this.serialize(example.getExpression(), filters);
+      String _apply = this.apply(filters, prefix);
+      prefix = _apply;
+      XExpression _expression = example.getExpression();
+      final String code = this.serialize(_expression, filters);
       int _length = code.length();
       boolean _equals = (_length == 0);
       if (_equals) {
         return "";
       }
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append(prefix);
+      _builder.append(prefix, "");
       _builder.newLineIfNotEmpty();
-      _builder.append(code);
+      _builder.append(code, "");
       _builder.append("</pre>");
       _xblockexpression = _builder;
     }
@@ -211,18 +234,20 @@ public class SpecDocGenerator extends AbstractDocGenerator {
   protected CharSequence _generate(final ExampleTable table, final int level) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<p");
-    String _id = this.id(this._exampleNameProvider.toFieldName(table));
-    _builder.append(_id);
+    String _fieldName = this._exampleNameProvider.toFieldName(table);
+    String _id = this.id(_fieldName);
+    _builder.append(_id, "");
     _builder.append("><strong>");
-    String _title = this.toTitle(this._exampleNameProvider.toFieldName(table));
-    _builder.append(_title);
+    String _fieldName_1 = this._exampleNameProvider.toFieldName(table);
+    String _title = this.toTitle(_fieldName_1);
+    _builder.append(_title, "");
     _builder.append("</strong></p>");
     _builder.newLineIfNotEmpty();
     CharSequence _generateDoc = this.generateDoc(table);
-    _builder.append(_generateDoc);
+    _builder.append(_generateDoc, "");
     _builder.newLineIfNotEmpty();
     CharSequence _generate = super.generate(table);
-    _builder.append(_generate);
+    _builder.append(_generate, "");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
@@ -237,26 +262,27 @@ public class SpecDocGenerator extends AbstractDocGenerator {
     }
     _builder.append("<h");
     String _header = this.header(exampleGroup, level);
-    _builder.append(_header);
+    _builder.append(_header, "");
     _builder.append(" class=\"exampleGroup ");
     String _executionStateClass = this.executionStateClass(exampleGroup);
-    _builder.append(_executionStateClass);
+    _builder.append(_executionStateClass, "");
     _builder.append("\" ");
-    String _id = this.id(this._exampleNameProvider.describe(exampleGroup));
-    _builder.append(_id);
+    String _describe = this._exampleNameProvider.describe(exampleGroup);
+    String _id = this.id(_describe);
+    _builder.append(_id, "");
     _builder.append(">");
     String _asTitle = this.asTitle(exampleGroup);
-    _builder.append(_asTitle);
+    _builder.append(_asTitle, "");
     _builder.append("</h");
     String _header_1 = this.header(exampleGroup, level);
-    _builder.append(_header_1);
+    _builder.append(_header_1, "");
     _builder.append(">");
     _builder.newLineIfNotEmpty();
     CharSequence _generateDoc = this.generateDoc(exampleGroup);
-    _builder.append(_generateDoc);
+    _builder.append(_generateDoc, "");
     _builder.newLineIfNotEmpty();
     StringConcatenation _generateMembers = this.generateMembers(exampleGroup, (level + 1));
-    _builder.append(_generateMembers);
+    _builder.append(_generateMembers, "");
     _builder.newLineIfNotEmpty();
     {
       if ((level > 1)) {
@@ -284,11 +310,13 @@ public class SpecDocGenerator extends AbstractDocGenerator {
   }
   
   protected String _asTitle(final ExampleGroup exampleGroup) {
-    return this.toTitle(this._exampleNameProvider.describe(exampleGroup));
+    String _describe = this._exampleNameProvider.describe(exampleGroup);
+    return this.toTitle(_describe);
   }
   
   protected String _asTitle(final Example example) {
-    return this.toTitle(this._exampleNameProvider.describe(example));
+    String _describe = this._exampleNameProvider.describe(example);
+    return this.toTitle(_describe);
   }
   
   public CharSequence generate(final JnarioMember exampleGroup, final int level) {

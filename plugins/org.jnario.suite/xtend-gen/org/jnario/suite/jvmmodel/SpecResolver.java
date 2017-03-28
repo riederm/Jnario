@@ -12,16 +12,21 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
@@ -53,50 +58,65 @@ public class SpecResolver {
   private SuiteClassNameProvider _suiteClassNameProvider;
   
   protected List<Specification> _resolveSpecs(final Suite suite) {
+    EList<Reference> _elements = suite.getElements();
     final Function1<Reference, List<Specification>> _function = new Function1<Reference, List<Specification>>() {
       @Override
       public List<Specification> apply(final Reference it) {
         return SpecResolver.this.resolveSpecs(it);
       }
     };
-    return this.sort(Iterables.<Specification>concat(ListExtensions.<Reference, List<Specification>>map(suite.getElements(), _function)));
+    List<List<Specification>> _map = ListExtensions.<Reference, List<Specification>>map(_elements, _function);
+    Iterable<Specification> _flatten = Iterables.<Specification>concat(_map);
+    return this.sort(_flatten);
   }
   
   protected List<Specification> _resolveSpecs(final SpecReference specRef) {
-    return Collections.<Specification>singletonList(specRef.getSpec());
+    Specification _spec = specRef.getSpec();
+    return Collections.<Specification>singletonList(_spec);
   }
   
   protected List<Specification> _resolveSpecs(final PatternReference specRef) {
     List<Specification> _xblockexpression = null;
     {
-      boolean _isNullOrEmpty = Strings.isNullOrEmpty(specRef.getPattern());
+      String _pattern = specRef.getPattern();
+      boolean _isNullOrEmpty = Strings.isNullOrEmpty(_pattern);
       if (_isNullOrEmpty) {
         return Collections.<Specification>emptyList();
       }
       final IScope scope = this.scopeProvider.getScope(specRef, SuitePackage.Literals.SPEC_REFERENCE__SPEC);
+      Iterable<IEObjectDescription> _allElements = scope.getAllElements();
       final Function1<IEObjectDescription, Boolean> _function = new Function1<IEObjectDescription, Boolean>() {
         @Override
         public Boolean apply(final IEObjectDescription it) {
-          return Boolean.valueOf(JnarioPackage.Literals.SPECIFICATION.isSuperTypeOf(it.getEClass()));
+          EClass _eClass = it.getEClass();
+          return Boolean.valueOf(JnarioPackage.Literals.SPECIFICATION.isSuperTypeOf(_eClass));
         }
       };
-      Iterable<IEObjectDescription> specs = IterableExtensions.<IEObjectDescription>filter(scope.getAllElements(), _function);
-      final Pattern pattern = Pattern.compile(specRef.getPattern());
+      Iterable<IEObjectDescription> specs = IterableExtensions.<IEObjectDescription>filter(_allElements, _function);
+      String _pattern_1 = specRef.getPattern();
+      final Pattern pattern = Pattern.compile(_pattern_1);
       final Function1<IEObjectDescription, Boolean> _function_1 = new Function1<IEObjectDescription, Boolean>() {
         @Override
         public Boolean apply(final IEObjectDescription it) {
-          return Boolean.valueOf(pattern.matcher(SpecResolver.this._iQualifiedNameConverter.toString(it.getQualifiedName())).matches());
+          QualifiedName _qualifiedName = it.getQualifiedName();
+          String _string = SpecResolver.this._iQualifiedNameConverter.toString(_qualifiedName);
+          Matcher _matcher = pattern.matcher(_string);
+          return Boolean.valueOf(_matcher.matches());
         }
       };
-      specs = IterableExtensions.<IEObjectDescription>filter(specs, _function_1);
+      Iterable<IEObjectDescription> _filter = IterableExtensions.<IEObjectDescription>filter(specs, _function_1);
+      specs = _filter;
       final Resource suiteResource = specRef.eResource();
       final Function1<IEObjectDescription, EObject> _function_2 = new Function1<IEObjectDescription, EObject>() {
         @Override
         public EObject apply(final IEObjectDescription it) {
-          return EcoreUtil.resolve(it.getEObjectOrProxy(), specRef);
+          EObject _eObjectOrProxy = it.getEObjectOrProxy();
+          return EcoreUtil.resolve(_eObjectOrProxy, specRef);
         }
       };
-      final Iterable<Specification> resolvedSpecs = IterableExtensions.<Specification>filterNull(Iterables.<Specification>filter(IterableExtensions.<IEObjectDescription, EObject>map(specs, _function_2), Specification.class));
+      Iterable<EObject> _map = IterableExtensions.<IEObjectDescription, EObject>map(specs, _function_2);
+      Iterable<Specification> _filter_1 = Iterables.<Specification>filter(_map, Specification.class);
+      final Iterable<Specification> resolvedSpecs = IterableExtensions.<Specification>filterNull(_filter_1);
       final Function1<Specification, Boolean> _function_3 = new Function1<Specification, Boolean>() {
         @Override
         public Boolean apply(final Specification it) {
@@ -112,7 +132,8 @@ public class SpecResolver {
         }
       };
       final Map<String, Specification> classNames = IterableExtensions.<String, Specification>toMap(withoutSuites, _function_4);
-      _xblockexpression = this.sort(classNames.values());
+      Collection<Specification> _values = classNames.values();
+      _xblockexpression = this.sort(_values);
     }
     return _xblockexpression;
   }
@@ -124,6 +145,7 @@ public class SpecResolver {
         return Boolean.valueOf((!Objects.equal(it, null)));
       }
     };
+    Iterable<Specification> _filter = IterableExtensions.<Specification>filter(specs, _function);
     final Comparator<Specification> _function_1 = new Comparator<Specification>() {
       @Override
       public int compare(final Specification left, final Specification right) {
@@ -139,7 +161,7 @@ public class SpecResolver {
         return _xblockexpression;
       }
     };
-    return IterableExtensions.<Specification>sortWith(IterableExtensions.<Specification>filter(specs, _function), _function_1);
+    return IterableExtensions.<Specification>sortWith(_filter, _function_1);
   }
   
   public List<Specification> resolveSpecs(final Notifier suite) {

@@ -29,7 +29,7 @@
   <modules>
     <module>releng/org.jnario.target</module>
     <module>plugins/org.jnario.feature</module>
-    <module>plugins/org.jnario.xbase.richstring</module>
+	<module>plugins/org.jnario.xbase.richstring</module>
     <module>plugins/org.jnario.xbase.richstring.ui</module>
     <module>plugins/org.jnario</module>
     <module>plugins/org.jnario.ui</module>
@@ -130,7 +130,7 @@
               <groupId>org.jnario</groupId>
               <artifactId>org.jnario.target</artifactId>
               <version>${project.version}</version>
-              <classifier>mars-xtext2.9</classifier>
+              <classifier>neon-xtext2.11</classifier>
             </artifact>
           </target>
           <ignoreTychoRepositories>true</ignoreTychoRepositories>

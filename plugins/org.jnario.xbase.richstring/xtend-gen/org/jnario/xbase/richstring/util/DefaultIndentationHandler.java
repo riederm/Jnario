@@ -25,10 +25,11 @@ public class DefaultIndentationHandler implements IRichStringIndentationHandler 
     @Override
     public String toString() {
       StringConcatenation _builder = new StringConcatenation();
-      String _simpleName = this.getClass().getSimpleName();
-      _builder.append(_simpleName);
+      Class<? extends DefaultIndentationHandler.IndentationData> _class = this.getClass();
+      String _simpleName = _class.getSimpleName();
+      _builder.append(_simpleName, "");
       _builder.append(" [");
-      _builder.append(this.value);
+      _builder.append(this.value, "");
       _builder.append("]");
       return _builder.toString();
     }
@@ -61,8 +62,10 @@ public class DefaultIndentationHandler implements IRichStringIndentationHandler 
   private LinkedList<LinkedList<DefaultIndentationHandler.IndentationData>> indentationDataStack;
   
   public DefaultIndentationHandler() {
-    this.indentationData = Lists.<DefaultIndentationHandler.IndentationData>newLinkedList();
-    this.indentationDataStack = Lists.<LinkedList<DefaultIndentationHandler.IndentationData>>newLinkedList();
+    LinkedList<DefaultIndentationHandler.IndentationData> _newLinkedList = Lists.<DefaultIndentationHandler.IndentationData>newLinkedList();
+    this.indentationData = _newLinkedList;
+    LinkedList<LinkedList<DefaultIndentationHandler.IndentationData>> _newLinkedList_1 = Lists.<LinkedList<DefaultIndentationHandler.IndentationData>>newLinkedList();
+    this.indentationDataStack = _newLinkedList_1;
     this.indentationDataStack.add(this.indentationData);
   }
   
@@ -71,7 +74,8 @@ public class DefaultIndentationHandler implements IRichStringIndentationHandler 
     this.indentationData.removeLast();
     if ((this.indentationData.isEmpty() && (this.indentationDataStack.size() > 1))) {
       this.indentationDataStack.removeLast();
-      this.indentationData = this.indentationDataStack.getLast();
+      LinkedList<DefaultIndentationHandler.IndentationData> _last = this.indentationDataStack.getLast();
+      this.indentationData = _last;
     }
   }
   
@@ -83,9 +87,12 @@ public class DefaultIndentationHandler implements IRichStringIndentationHandler 
       this.indentationData.add(_templateIndentationData);
     } else {
       String currentIndentation = this.getTotalIndentation();
-      boolean _startsWith = indentation.toString().startsWith(currentIndentation);
+      String _string = indentation.toString();
+      boolean _startsWith = _string.startsWith(currentIndentation);
       if (_startsWith) {
-        String trimmedIndentation = indentation.toString().substring(currentIndentation.length());
+        String _string_1 = indentation.toString();
+        int _length = currentIndentation.length();
+        String trimmedIndentation = _string_1.substring(_length);
         DefaultIndentationHandler.TemplateIndentationData _templateIndentationData_1 = new DefaultIndentationHandler.TemplateIndentationData(trimmedIndentation);
         this.indentationData.add(_templateIndentationData_1);
       } else {
@@ -106,9 +113,12 @@ public class DefaultIndentationHandler implements IRichStringIndentationHandler 
       this.indentationData.add(_semanticIndentationData);
     } else {
       String currentIndentation = this.getTotalIndentation();
-      boolean _startsWith = indentation.toString().startsWith(currentIndentation);
+      String _string = indentation.toString();
+      boolean _startsWith = _string.startsWith(currentIndentation);
       if (_startsWith) {
-        String trimmedIndentation = indentation.toString().substring(currentIndentation.length());
+        String _string_1 = indentation.toString();
+        int _length = currentIndentation.length();
+        String trimmedIndentation = _string_1.substring(_length);
         DefaultIndentationHandler.SemanticIndentationData _semanticIndentationData_1 = new DefaultIndentationHandler.SemanticIndentationData(trimmedIndentation);
         this.indentationData.add(_semanticIndentationData_1);
       } else {
