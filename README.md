@@ -1,4 +1,4 @@
-[![Build Status](https://jnario.ci.cloudbees.com/job/jnario-snapshot/badge/icon)](https://jnario.ci.cloudbees.com/job/jnario-snapshot/)
+[![Build Status](https://travis-ci.org/borisbrodski/Jnario.svg?branch=no_xtend_xtext2.9)](https://travis-ci.org/borisbrodski/Jnario)
 
 ##Overview
 
