@@ -8,4 +8,4 @@ before_script:
 script:
   - mvn clean install
 after_failure:
-  - cat /home/travis/build/borisbrodski/Jnario/tests/org.jnario.tests/target/work/data/.metadata/.log
+  - cat tests/org.jnario.tests/target/work/data/.metadata/.log
