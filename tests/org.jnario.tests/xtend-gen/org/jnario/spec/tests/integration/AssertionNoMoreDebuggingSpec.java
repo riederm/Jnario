@@ -52,7 +52,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
     _builder.newLine();
     _builder.append("     ");
     _builder.append("y is <false>");
-    Helpers.is(_errorMessage, _builder.toString());
+    Helpers.is(_errorMessage, _builder);
   }
   
   /**
@@ -77,7 +77,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
     _builder.newLine();
     _builder.append("     ");
     _builder.append("x is <0>");
-    Helpers.is(_errorMessage, _builder.toString());
+    Helpers.is(_errorMessage, _builder);
   }
   
   /**
@@ -106,7 +106,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
     _builder.newLine();
     _builder.append("     ");
     _builder.append("x is <42>");
-    Helpers.is(_errorMessage, _builder.toString());
+    Helpers.is(_errorMessage, _builder);
   }
   
   /**
@@ -132,7 +132,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
     _builder.newLine();
     _builder.append("     ");
     _builder.append("greet(\"World\") is \"Hello World\"");
-    Helpers.is(_errorMessage, _builder.toString());
+    Helpers.is(_errorMessage, _builder);
   }
   
   /**
@@ -145,12 +145,11 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
       @Override
       public void apply(final Boolean it) {
-        String _upperCase = "Hello".toUpperCase();
-        String _lowerCase = _upperCase.toLowerCase();
+        String _lowerCase = "Hello".toUpperCase().toLowerCase();
         boolean _equals = Objects.equal(_lowerCase, "HELLO");
         Assert.assertTrue("\nExpected \"Hello\".toUpperCase.toLowerCase == \"HELLO\" but"
          + "\n     \"Hello\".toUpperCase.toLowerCase is " + new org.hamcrest.StringDescription().appendValue(_lowerCase).toString()
-         + "\n     \"Hello\".toUpperCase is " + new org.hamcrest.StringDescription().appendValue(_upperCase).toString() + "\n", _equals);
+         + "\n     \"Hello\".toUpperCase is " + new org.hamcrest.StringDescription().appendValue("Hello".toUpperCase()).toString() + "\n", _equals);
         
       }
     };
@@ -163,7 +162,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
     _builder.newLine();
     _builder.append("     ");
     _builder.append("\"Hello\".toUpperCase is \"HELLO\"");
-    Helpers.is(_errorMessage, _builder.toString());
+    Helpers.is(_errorMessage, _builder);
   }
   
   /**
@@ -201,7 +200,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
     _builder.newLine();
     _builder.append("     ");
     _builder.append("y is <1>");
-    Helpers.is(_errorMessage, _builder.toString());
+    Helpers.is(_errorMessage, _builder);
   }
   
   /**
@@ -234,7 +233,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
     _builder.newLine();
     _builder.append("     ");
     _builder.append("x < 10 is <true>");
-    Helpers.is(_errorMessage, _builder.toString());
+    Helpers.is(_errorMessage, _builder);
   }
   
   /**

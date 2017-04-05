@@ -29,8 +29,7 @@ public class PendingStepsFeatureWhenAStepOfABackgroundAllFollowingStepsAndAllSce
   @Named("Given a scenario")
   public void _givenAScenario() {
     final StepArguments args = new StepArguments("Feature: With pending steps\n\tBackground:\n\t\tint x\n\t\tGiven a variable x\n\t\t\tx = 3\n\t\tAnd has no implementation\n\tScenario: Scenario with pending steps\n\t\tGiven a variable y\n\t\t\tvar y = 3\n\t\tWhen something is added to x\n\t\t\tx = x + 5\n\t\tThen there should be the corresponding result\n\t\t\tx => 8\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test
@@ -45,8 +44,6 @@ public class PendingStepsFeatureWhenAStepOfABackgroundAllFollowingStepsAndAllSce
   @Named("And the expected number of ignored steps is \\\"4\\\"")
   public void _andTheExpectedNumberOfIgnoredStepsIs4() {
     final StepArguments args = new StepArguments("4");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    int _int = StringConversions.toInt(_first);
-    FeatureExecutor.ignoreCountIs(this.jnarioFile, _int);
+    FeatureExecutor.ignoreCountIs(this.jnarioFile, StringConversions.toInt(JnarioIterableExtensions.<String>first(args)));
   }
 }

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.jnario.xbase.richstring.richstring.ForLoopEnd;
 import org.jnario.xbase.richstring.richstring.ForLoopStart;
 import org.jnario.xbase.richstring.richstring.ProcessedRichStringPackage;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringForLoop;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +44,7 @@ public class ForLoopStartImpl extends LinePartImpl implements ForLoopStart {
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject loop;
+	protected RichStringForLoop loop;
 
 	/**
 	 * The cached value of the '{@link #getEnd() <em>End</em>}' reference.
@@ -79,10 +80,10 @@ public class ForLoopStartImpl extends LinePartImpl implements ForLoopStart {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject getLoop() {
+	public RichStringForLoop getLoop() {
 		if (loop != null && loop.eIsProxy()) {
 			InternalEObject oldLoop = (InternalEObject)loop;
-			loop = eResolveProxy(oldLoop);
+			loop = (RichStringForLoop)eResolveProxy(oldLoop);
 			if (loop != oldLoop) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessedRichStringPackage.FOR_LOOP_START__LOOP, oldLoop, loop));
@@ -96,7 +97,7 @@ public class ForLoopStartImpl extends LinePartImpl implements ForLoopStart {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject basicGetLoop() {
+	public RichStringForLoop basicGetLoop() {
 		return loop;
 	}
 
@@ -105,8 +106,8 @@ public class ForLoopStartImpl extends LinePartImpl implements ForLoopStart {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLoop(EObject newLoop) {
-		EObject oldLoop = loop;
+	public void setLoop(RichStringForLoop newLoop) {
+		RichStringForLoop oldLoop = loop;
 		loop = newLoop;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessedRichStringPackage.FOR_LOOP_START__LOOP, oldLoop, loop));
@@ -229,7 +230,7 @@ public class ForLoopStartImpl extends LinePartImpl implements ForLoopStart {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ProcessedRichStringPackage.FOR_LOOP_START__LOOP:
-				setLoop((EObject)newValue);
+				setLoop((RichStringForLoop)newValue);
 				return;
 			case ProcessedRichStringPackage.FOR_LOOP_START__END:
 				setEnd((ForLoopEnd)newValue);
@@ -247,7 +248,7 @@ public class ForLoopStartImpl extends LinePartImpl implements ForLoopStart {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ProcessedRichStringPackage.FOR_LOOP_START__LOOP:
-				setLoop((EObject)null);
+				setLoop((RichStringForLoop)null);
 				return;
 			case ProcessedRichStringPackage.FOR_LOOP_START__END:
 				setEnd((ForLoopEnd)null);

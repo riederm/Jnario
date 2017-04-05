@@ -8,6 +8,7 @@
 package org.jnario.xbase.richstring.richstring;
 
 import org.eclipse.emf.ecore.EObject;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringElseIf;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,12 +37,12 @@ public interface ElseIfCondition extends LinePart {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Rich String Else If</em>' reference.
-	 * @see #setRichStringElseIf(EObject)
+	 * @see #setRichStringElseIf(RichStringElseIf)
 	 * @see org.jnario.xbase.richstring.richstring.ProcessedRichStringPackage#getElseIfCondition_RichStringElseIf()
 	 * @model
 	 * @generated
 	 */
-	EObject getRichStringElseIf();
+	RichStringElseIf getRichStringElseIf();
 
 	/**
 	 * Sets the value of the '{@link org.jnario.xbase.richstring.richstring.ElseIfCondition#getRichStringElseIf <em>Rich String Else If</em>}' reference.
@@ -51,7 +52,7 @@ public interface ElseIfCondition extends LinePart {
 	 * @see #getRichStringElseIf()
 	 * @generated
 	 */
-	void setRichStringElseIf(EObject value);
+	void setRichStringElseIf(RichStringElseIf value);
 
 	/**
 	 * Returns the value of the '<em><b>If Condition Start</b></em>' reference.

@@ -7,7 +7,6 @@
  */
 package org.jnario.jnario.tests.unit.jnario;
 
-import org.jnario.feature.feature.Given;
 import org.jnario.jnario.test.util.Features;
 import org.jnario.jnario.tests.unit.jnario.ExecutableIsPendingSpec;
 import org.jnario.lib.Assert;
@@ -26,12 +25,11 @@ public class ExecutableIsPendingStepSpec extends ExecutableIsPendingSpec {
   @Named("stepWithoutImplementation.isPending[] should be true")
   @Order(1)
   public void _stepWithoutImplementationIsPendingShouldBeTrue() throws Exception {
-    Given _stepWithoutImplementation = Features.stepWithoutImplementation();
-    boolean _isPending = _stepWithoutImplementation.isPending();
+    boolean _isPending = Features.stepWithoutImplementation().isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), true);
     Assert.assertTrue("\nExpected stepWithoutImplementation.isPending() should be true but"
      + "\n     stepWithoutImplementation.isPending() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     stepWithoutImplementation is " + new org.hamcrest.StringDescription().appendValue(_stepWithoutImplementation).toString() + "\n", _should_be);
+     + "\n     stepWithoutImplementation is " + new org.hamcrest.StringDescription().appendValue(Features.stepWithoutImplementation()).toString() + "\n", _should_be);
     
   }
   
@@ -39,12 +37,11 @@ public class ExecutableIsPendingStepSpec extends ExecutableIsPendingSpec {
   @Named("implementedStep.isPending[] should be false")
   @Order(2)
   public void _implementedStepIsPendingShouldBeFalse() throws Exception {
-    Given _implementedStep = Features.implementedStep();
-    boolean _isPending = _implementedStep.isPending();
+    boolean _isPending = Features.implementedStep().isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), false);
     Assert.assertTrue("\nExpected implementedStep.isPending() should be false but"
      + "\n     implementedStep.isPending() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     implementedStep is " + new org.hamcrest.StringDescription().appendValue(_implementedStep).toString() + "\n", _should_be);
+     + "\n     implementedStep is " + new org.hamcrest.StringDescription().appendValue(Features.implementedStep()).toString() + "\n", _should_be);
     
   }
 }

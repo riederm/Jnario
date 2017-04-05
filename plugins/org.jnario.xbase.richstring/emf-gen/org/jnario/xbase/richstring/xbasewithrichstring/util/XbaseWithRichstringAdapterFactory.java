@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.xtext.xbase.XBlockExpression;
 import org.eclipse.xtext.xbase.XExpression;
+import org.eclipse.xtext.xbase.XForLoopExpression;
 import org.eclipse.xtext.xbase.XStringLiteral;
 
 import org.jnario.xbase.richstring.xbasewithrichstring.*;
@@ -80,6 +81,18 @@ public class XbaseWithRichstringAdapterFactory extends AdapterFactoryImpl {
 				return createRichStringLiteralAdapter();
 			}
 			@Override
+			public Adapter caseRichStringForLoop(RichStringForLoop object) {
+				return createRichStringForLoopAdapter();
+			}
+			@Override
+			public Adapter caseRichStringIf(RichStringIf object) {
+				return createRichStringIfAdapter();
+			}
+			@Override
+			public Adapter caseRichStringElseIf(RichStringElseIf object) {
+				return createRichStringElseIfAdapter();
+			}
+			@Override
 			public Adapter caseXExpression(XExpression object) {
 				return createXExpressionAdapter();
 			}
@@ -90,6 +103,10 @@ public class XbaseWithRichstringAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseXStringLiteral(XStringLiteral object) {
 				return createXStringLiteralAdapter();
+			}
+			@Override
+			public Adapter caseXForLoopExpression(XForLoopExpression object) {
+				return createXForLoopExpressionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -140,6 +157,48 @@ public class XbaseWithRichstringAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.jnario.xbase.richstring.xbasewithrichstring.RichStringForLoop <em>Rich String For Loop</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.jnario.xbase.richstring.xbasewithrichstring.RichStringForLoop
+	 * @generated
+	 */
+	public Adapter createRichStringForLoopAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.jnario.xbase.richstring.xbasewithrichstring.RichStringIf <em>Rich String If</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.jnario.xbase.richstring.xbasewithrichstring.RichStringIf
+	 * @generated
+	 */
+	public Adapter createRichStringIfAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.jnario.xbase.richstring.xbasewithrichstring.RichStringElseIf <em>Rich String Else If</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.jnario.xbase.richstring.xbasewithrichstring.RichStringElseIf
+	 * @generated
+	 */
+	public Adapter createRichStringElseIfAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xbase.XExpression <em>XExpression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -178,6 +237,20 @@ public class XbaseWithRichstringAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createXStringLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xbase.XForLoopExpression <em>XFor Loop Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xtext.xbase.XForLoopExpression
+	 * @generated
+	 */
+	public Adapter createXForLoopExpressionAdapter() {
 		return null;
 	}
 

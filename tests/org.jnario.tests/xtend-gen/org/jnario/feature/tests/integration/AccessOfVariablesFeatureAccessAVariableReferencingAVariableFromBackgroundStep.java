@@ -28,8 +28,7 @@ public class AccessOfVariablesFeatureAccessAVariableReferencingAVariableFromBack
   @Named("When I reference a variable from the background")
   public void _whenIReferenceAVariableFromTheBackground() {
     final StepArguments args = new StepArguments("package bootstrap5\nFeature: Variable test\n\tBackground:\n\t\tint x\n\t\tGiven some variable\n\t\t\tx = 3\n\tScenario: Some scenario\n\t\t\tint y\n\t\t\tWhen assigning the variable\n\t\t\t\ty = x\n\t\t\tThen it should be accessible\n\t\t\t\ty => 3\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

@@ -41,8 +41,7 @@ public class FieldInferenceFeatureInferringFieldsFromBackgroundInDifferentFeatur
   @Named("When I have a feature")
   public void _whenIHaveAFeature() {
     final StepArguments args = new StepArguments("Feature: Feature 1\n\tBackground:\n\t\tString myString\n\t\n\tScenario: My Scenario\n\t\tGiven a string \"value\"\n\t\t\tmyString = args.first\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.feature1 = _first;
+    this.feature1 = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test
@@ -50,8 +49,7 @@ public class FieldInferenceFeatureInferringFieldsFromBackgroundInDifferentFeatur
   @Named("And another feature")
   public void _andAnotherFeature() {
     final StepArguments args = new StepArguments("Feature: Feature 2\n\tScenario: My Scenario 2\n\t\tGiven a string \"test\"\n\t\tThen my string is \"test\"\n\t\t\tmyString => args.first   \n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.feature2 = _first;
+    this.feature2 = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

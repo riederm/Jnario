@@ -78,12 +78,11 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
     _builder.newLine();
     _builder.append("- \"My Spec\"");
     _builder.newLine();
-    Resource _parseSuite = this._modelStore.parseSuite(_builder.toString());
-    int _nrOfParseAndLinkingErrors = Resources.nrOfParseAndLinkingErrors(_parseSuite);
+    int _nrOfParseAndLinkingErrors = Resources.nrOfParseAndLinkingErrors(this._modelStore.parseSuite(_builder));
     Assert.assertTrue("\nExpected \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\'.parseSuite.nrOfParseAndLinkingErrors => 2 but"
      + "\n     \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\'.parseSuite.nrOfParseAndLinkingErrors is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(_nrOfParseAndLinkingErrors)).toString()
-     + "\n     \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\'.parseSuite is " + new org.hamcrest.StringDescription().appendValue(_parseSuite).toString()
-     + "\n     \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", Should.<Integer>operator_doubleArrow(Integer.valueOf(_nrOfParseAndLinkingErrors), Integer.valueOf(2)));
+     + "\n     \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\'.parseSuite is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.parseSuite(_builder)).toString()
+     + "\n     \'\'\'\r\n\t\t\tpackage demo\r\n\t\t\t\r\n\t\t\t#My Suite\r\n\t\t\t\r\n\t\t\t- \"My Feature\"\r\n\t\t\t- \"My Spec\"\r\n\t\t\t\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder).toString() + "\n", Should.<Integer>operator_doubleArrow(Integer.valueOf(_nrOfParseAndLinkingErrors), Integer.valueOf(2)));
     
   }
   
@@ -135,8 +134,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
     _builder.newLine();
     _builder.append("- \"My Spec\"");
     _builder.newLine();
-    Resource _parseSuite = this._modelStore.parseSuite(_builder.toString());
-    Resources.hasNoParseAndLinkingErrors(_parseSuite);
+    Resources.hasNoParseAndLinkingErrors(this._modelStore.parseSuite(_builder));
   }
   
   public Resource parseExampleScenarioAndSpec() {
@@ -155,7 +153,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
       _builder.append("\t");
       _builder.append("Then it happens");
       _builder.newLine();
-      this._modelStore.parseScenario(_builder.toString());
+      this._modelStore.parseScenario(_builder);
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("package demo");
       _builder_1.newLine();
@@ -167,7 +165,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
       _builder_1.newLine();
       _builder_1.append("}");
       _builder_1.newLine();
-      _xblockexpression = this._modelStore.parseSpec(_builder_1.toString());
+      _xblockexpression = this._modelStore.parseSpec(_builder_1);
     }
     return _xblockexpression;
   }
@@ -241,8 +239,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
     _builder.append("   ");
     _builder.append("with a multiline description.");
     _builder.newLine();
-    Resource _parseSuite = this._modelStore.parseSuite(_builder.toString());
-    Resources.hasNoParseAndLinkingErrors(_parseSuite);
+    Resources.hasNoParseAndLinkingErrors(this._modelStore.parseSuite(_builder));
   }
   
   /**
@@ -281,7 +278,6 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
     _builder.newLine();
     _builder.append("- \\.*Feature\\");
     _builder.newLine();
-    Resource _parseSuite = this._modelStore.parseSuite(_builder.toString());
-    Resources.hasNoParseAndLinkingErrors(_parseSuite);
+    Resources.hasNoParseAndLinkingErrors(this._modelStore.parseSuite(_builder));
   }
 }

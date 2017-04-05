@@ -9,8 +9,6 @@ package org.jnario.suite.unit;
 
 import com.google.inject.Inject;
 import java.util.Set;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.ScopeTestExtension;
@@ -54,7 +52,7 @@ public class SuiteScopeProviderSpec {
     _builder.newLine();
     _builder.append("\t\t");
     _builder.newLine();
-    this._scopeTestExtension.parseSuite(_builder.toString());
+    this._scopeTestExtension.parseSuite(_builder);
   }
   
   @Before
@@ -85,7 +83,7 @@ public class SuiteScopeProviderSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._scopeTestExtension.parseSpec(_builder.toString());
+    this._scopeTestExtension.parseSpec(_builder);
   }
   
   @Test
@@ -104,8 +102,6 @@ public class SuiteScopeProviderSpec {
   }
   
   public Set<String> specScope() {
-    EObject _first = this._scopeTestExtension.first(SpecReference.class);
-    EReference _specReference_Spec = this._suitePackage.getSpecReference_Spec();
-    return this._scopeTestExtension.scope(_first, _specReference_Spec);
+    return this._scopeTestExtension.scope(this._scopeTestExtension.first(SpecReference.class), this._suitePackage.getSpecReference_Spec());
   }
 }

@@ -60,6 +60,6 @@ public class UsingJUnitRulesInSpecsSpec {
     _builder.newLine();
     _builder.append("}\t\t");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
 }

@@ -9,7 +9,6 @@ package org.jnario.feature.tests.unit.naming;
 
 import java.util.Arrays;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.jnario.feature.feature.Feature;
 import org.jnario.feature.tests.unit.naming.FeatureClassNameProviderGetClassNameFeatureSpecExamples;
 import org.jnario.feature.tests.unit.naming.FeatureClassNameProviderSpec;
 import org.jnario.jnario.test.util.Features;
@@ -96,14 +95,12 @@ public class FeatureClassNameProviderGetClassNameFeatureSpec extends FeatureClas
     final Procedure1<FeatureClassNameProviderGetClassNameFeatureSpecExamples> _function = new Procedure1<FeatureClassNameProviderGetClassNameFeatureSpecExamples>() {
       @Override
       public void apply(final FeatureClassNameProviderGetClassNameFeatureSpecExamples it) {
-        String _name = it.getName();
-        Feature _feature = Features.feature(_name);
-        String _className = FeatureClassNameProviderGetClassNameFeatureSpec.this.className(_feature);
+        String _className = FeatureClassNameProviderGetClassNameFeatureSpec.this.className(Features.feature(it.getName()));
         String _expectedClassName = it.getExpectedClassName();
         Assert.assertTrue("\nExpected className(feature(name)) => expectedClassName but"
          + "\n     className(feature(name)) is " + new org.hamcrest.StringDescription().appendValue(_className).toString()
-         + "\n     feature(name) is " + new org.hamcrest.StringDescription().appendValue(_feature).toString()
-         + "\n     name is " + new org.hamcrest.StringDescription().appendValue(_name).toString()
+         + "\n     feature(name) is " + new org.hamcrest.StringDescription().appendValue(Features.feature(it.getName())).toString()
+         + "\n     name is " + new org.hamcrest.StringDescription().appendValue(it.getName()).toString()
          + "\n     expectedClassName is " + new org.hamcrest.StringDescription().appendValue(_expectedClassName).toString() + "\n", Should.<String>operator_doubleArrow(_className, _expectedClassName));
         
       }

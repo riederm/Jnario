@@ -48,8 +48,7 @@ public class SuiteBatchCompilerTest {
       if (_exists) {
         Files.cleanFolder(dir, null, true, false);
       }
-      File _file = new File(SuiteBatchCompilerTest.OUTPUT_DIRECTORY);
-      _file.mkdir();
+      new File(SuiteBatchCompilerTest.OUTPUT_DIRECTORY).mkdir();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -60,14 +59,11 @@ public class SuiteBatchCompilerTest {
     batchCompiler.setOutputPath(SuiteBatchCompilerTest.OUTPUT_DIRECTORY);
     batchCompiler.setDeleteTempDirectory(true);
     batchCompiler.setUseCurrentClassLoaderAsParent(true);
-    Class<? extends SuiteBatchCompilerTest> _class = this.getClass();
-    ClassLoader _classLoader = _class.getClassLoader();
-    batchCompiler.setCurrentClassLoader(_classLoader);
+    batchCompiler.setCurrentClassLoader(this.getClass().getClassLoader());
     final Provider<ResourceSet> _function = new Provider<ResourceSet>() {
       @Override
       public ResourceSet get() {
-        ModelStore _get = SuiteBatchCompilerTest.this.modelStoreProvider.get();
-        return _get.getResourceSet();
+        return SuiteBatchCompilerTest.this.modelStoreProvider.get().getResourceSet();
       }
     };
     batchCompiler.setResourceSetProvider(_function);
@@ -87,8 +83,7 @@ public class SuiteBatchCompilerTest {
   @Test
   public void testCompileTestData() {
     try {
-      JnarioStandaloneCompiler _create = JnarioStandaloneCompiler.create();
-      this.compile(_create);
+      this.compile(JnarioStandaloneCompiler.create());
       final File outputDir = new File((SuiteBatchCompilerTest.OUTPUT_DIRECTORY + "/test"));
       final FilenameFilter _function = new FilenameFilter() {
         @Override
@@ -96,13 +91,10 @@ public class SuiteBatchCompilerTest {
           return name.endsWith(".java");
         }
       };
-      String[] _list = outputDir.list(_function);
-      int _size = ((List<String>)Conversions.doWrapArray(_list)).size();
-      Assert.assertEquals(7, _size);
+      Assert.assertEquals(7, ((List<String>)Conversions.doWrapArray(outputDir.list(_function))).size());
       File _file = new File(outputDir, "ExampleSuite.java");
       final String fileContent = com.google.common.io.Files.toString(_file, Charsets.UTF_8);
-      boolean _contains = fileContent.contains("@Contains");
-      Assert.assertTrue(("Expected to be to contain others specs, but was: \n\n" + fileContent), _contains);
+      Assert.assertTrue(("Expected to be to contain others specs, but was: \n\n" + fileContent), fileContent.contains("@Contains"));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

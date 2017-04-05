@@ -22,8 +22,6 @@ import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.jnario.spec.spec.Example;
-import org.jnario.spec.spec.ExampleGroup;
 import org.jnario.suite.suite.SpecReference;
 import org.jnario.suite.suite.Suite;
 import org.junit.Test;
@@ -41,16 +39,13 @@ public class ExecutableIsPendingSuiteSpec extends ExecutableIsPendingSpec {
   @Named("suiteWith[\\\"A suite\\\", specReference[pendingExampleGroup]].isPending should be true")
   @Order(1)
   public void _suiteWithASuiteSpecReferencePendingExampleGroupIsPendingShouldBeTrue() throws Exception {
-    ExampleGroup _pendingExampleGroup = Specs.pendingExampleGroup();
-    SpecReference _specReference = Suites.specReference(_pendingExampleGroup);
-    Suite _suiteWith = this.suiteWith("A suite", _specReference);
-    boolean _isPending = _suiteWith.isPending();
+    boolean _isPending = this.suiteWith("A suite", Suites.specReference(Specs.pendingExampleGroup())).isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), true);
     Assert.assertTrue("\nExpected suiteWith(\"A suite\", specReference(pendingExampleGroup)).isPending should be true but"
      + "\n     suiteWith(\"A suite\", specReference(pendingExampleGroup)).isPending is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     suiteWith(\"A suite\", specReference(pendingExampleGroup)) is " + new org.hamcrest.StringDescription().appendValue(_suiteWith).toString()
-     + "\n     specReference(pendingExampleGroup) is " + new org.hamcrest.StringDescription().appendValue(_specReference).toString()
-     + "\n     pendingExampleGroup is " + new org.hamcrest.StringDescription().appendValue(_pendingExampleGroup).toString() + "\n", _should_be);
+     + "\n     suiteWith(\"A suite\", specReference(pendingExampleGroup)) is " + new org.hamcrest.StringDescription().appendValue(this.suiteWith("A suite", Suites.specReference(Specs.pendingExampleGroup()))).toString()
+     + "\n     specReference(pendingExampleGroup) is " + new org.hamcrest.StringDescription().appendValue(Suites.specReference(Specs.pendingExampleGroup())).toString()
+     + "\n     pendingExampleGroup is " + new org.hamcrest.StringDescription().appendValue(Specs.pendingExampleGroup()).toString() + "\n", _should_be);
     
   }
   
@@ -58,18 +53,14 @@ public class ExecutableIsPendingSuiteSpec extends ExecutableIsPendingSpec {
   @Named("suiteWith[\\\"A suite\\\", specReference[exampleGroupWith[example[\\\"passing\\\"]]]].isPending should be false")
   @Order(2)
   public void _suiteWithASuiteSpecReferenceExampleGroupWithExamplePassingIsPendingShouldBeFalse() throws Exception {
-    Example _example = Specs.example("passing");
-    ExampleGroup _exampleGroupWith = Specs.exampleGroupWith(_example);
-    SpecReference _specReference = Suites.specReference(_exampleGroupWith);
-    Suite _suiteWith = this.suiteWith("A suite", _specReference);
-    boolean _isPending = _suiteWith.isPending();
+    boolean _isPending = this.suiteWith("A suite", Suites.specReference(Specs.exampleGroupWith(Specs.example("passing")))).isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), false);
     Assert.assertTrue("\nExpected suiteWith(\"A suite\", specReference(exampleGroupWith(example(\"passing\")))).isPending should be false but"
      + "\n     suiteWith(\"A suite\", specReference(exampleGroupWith(example(\"passing\")))).isPending is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     suiteWith(\"A suite\", specReference(exampleGroupWith(example(\"passing\")))) is " + new org.hamcrest.StringDescription().appendValue(_suiteWith).toString()
-     + "\n     specReference(exampleGroupWith(example(\"passing\"))) is " + new org.hamcrest.StringDescription().appendValue(_specReference).toString()
-     + "\n     exampleGroupWith(example(\"passing\")) is " + new org.hamcrest.StringDescription().appendValue(_exampleGroupWith).toString()
-     + "\n     example(\"passing\") is " + new org.hamcrest.StringDescription().appendValue(_example).toString() + "\n", _should_be);
+     + "\n     suiteWith(\"A suite\", specReference(exampleGroupWith(example(\"passing\")))) is " + new org.hamcrest.StringDescription().appendValue(this.suiteWith("A suite", Suites.specReference(Specs.exampleGroupWith(Specs.example("passing"))))).toString()
+     + "\n     specReference(exampleGroupWith(example(\"passing\"))) is " + new org.hamcrest.StringDescription().appendValue(Suites.specReference(Specs.exampleGroupWith(Specs.example("passing")))).toString()
+     + "\n     exampleGroupWith(example(\"passing\")) is " + new org.hamcrest.StringDescription().appendValue(Specs.exampleGroupWith(Specs.example("passing"))).toString()
+     + "\n     example(\"passing\") is " + new org.hamcrest.StringDescription().appendValue(Specs.example("passing")).toString() + "\n", _should_be);
     
   }
   

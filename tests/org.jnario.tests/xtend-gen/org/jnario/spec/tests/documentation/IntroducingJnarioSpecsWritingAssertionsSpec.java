@@ -37,10 +37,9 @@ public class IntroducingJnarioSpecsWritingAssertionsSpec extends IntroducingJnar
   public void _assert() throws Exception {
     Assert.assertTrue("\nExpected true but" + " did not." + "\n", true);
     
-    Stack<Object> _stack = new Stack<Object>();
-    boolean _empty = _stack.empty();
+    boolean _empty = new Stack<Object>().empty();
     Assert.assertTrue("\nExpected new Stack().empty() but"
-     + "\n     new Stack() is " + new org.hamcrest.StringDescription().appendValue(_stack).toString() + "\n", _empty);
+     + "\n     new Stack() is " + new org.hamcrest.StringDescription().appendValue(new Stack<Object>()).toString() + "\n", _empty);
     
     boolean _startsWith = "Hello".startsWith("H");
     Assert.assertTrue("\nExpected \"Hello\".startsWith(\"H\") but"
@@ -119,7 +118,7 @@ public class IntroducingJnarioSpecsWritingAssertionsSpec extends IntroducingJnar
     _builder.newLine();
     _builder.append("     ");
     _builder.append("y is <1>");
-    Helpers.is(_errorMessage, _builder.toString());
+    Helpers.is(_errorMessage, _builder);
     final String greeting = "hello";
     final Procedure1<Boolean> _function_1 = new Procedure1<Boolean>() {
       @Override
@@ -140,6 +139,6 @@ public class IntroducingJnarioSpecsWritingAssertionsSpec extends IntroducingJnar
     _builder_1.newLine();
     _builder_1.append("     ");
     _builder_1.append("greeting is \"hello\"");
-    Helpers.is(_errorMessage_1, _builder_1.toString());
+    Helpers.is(_errorMessage_1, _builder_1);
   }
 }

@@ -17,7 +17,6 @@ import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
-import org.hamcrest.core.AnyOf;
 import org.jnario.jnario.tests.unit.ui.AbstractJnarioRunnerUIHandlerSpec;
 import org.jnario.jnario.tests.unit.ui.AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases;
 import org.jnario.jnario.tests.unit.ui.TestUIHandler;
@@ -186,8 +185,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   }
   
   public Function1<TestSuiteElement, TestSuiteElement> _initAbstractJnarioRunnerUIHandlerSuiteLabellingSpecCasesCell24() {
-    Function1<TestSuiteElement, TestCaseElement> _tc = this.tc();
-    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(_tc);
+    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(this.tc());
     return _suite;
   }
   
@@ -202,8 +200,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   }
   
   public Function1<TestSuiteElement, TestSuiteElement> _initAbstractJnarioRunnerUIHandlerSuiteLabellingSpecCasesCell27() {
-    Function1<TestSuiteElement, TestCaseElement> _pend = this.pend();
-    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(_pend);
+    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(this.pend());
     return _suite;
   }
   
@@ -218,8 +215,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   }
   
   public Function1<TestSuiteElement, TestSuiteElement> _initAbstractJnarioRunnerUIHandlerSuiteLabellingSpecCasesCell30() {
-    Function1<TestSuiteElement, TestCaseElement> _tc = this.tc();
-    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(_tc);
+    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(this.tc());
     return _suite;
   }
   
@@ -234,8 +230,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   }
   
   public Function1<TestSuiteElement, TestSuiteElement> _initAbstractJnarioRunnerUIHandlerSuiteLabellingSpecCasesCell33() {
-    Function1<TestSuiteElement, TestCaseElement> _ign = this.ign();
-    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(_ign);
+    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(this.ign());
     return _suite;
   }
   
@@ -250,8 +245,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   }
   
   public Function1<TestSuiteElement, TestSuiteElement> _initAbstractJnarioRunnerUIHandlerSuiteLabellingSpecCasesCell36() {
-    Function1<TestSuiteElement, TestCaseElement> _pend = this.pend();
-    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(_pend);
+    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(this.pend());
     return _suite;
   }
   
@@ -266,8 +260,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   }
   
   public Function1<TestSuiteElement, TestSuiteElement> _initAbstractJnarioRunnerUIHandlerSuiteLabellingSpecCasesCell39() {
-    Function1<TestSuiteElement, TestCaseElement> _ign = this.ign();
-    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(_ign);
+    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(this.ign());
     return _suite;
   }
   
@@ -282,8 +275,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   }
   
   public Function1<TestSuiteElement, TestSuiteElement> _initAbstractJnarioRunnerUIHandlerSuiteLabellingSpecCasesCell42() {
-    Function1<TestSuiteElement, TestCaseElement> _ign = this.ign();
-    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(_ign);
+    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(this.ign());
     return _suite;
   }
   
@@ -304,19 +296,13 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
     final Procedure1<AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases> _function = new Procedure1<AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases>() {
       @Override
       public void apply(final AbstractJnarioRunnerUIHandlerSuiteLabellingSpecCases it) {
-        Function1<TestSuiteElement, ? extends TestElement> _left = it.getLeft();
-        Function1<TestSuiteElement, TestCaseElement> _right = it.getRight();
-        List<Function1<TestSuiteElement, ? extends TestElement>> _list = JnarioCollectionLiterals.<Function1<TestSuiteElement, ? extends TestElement>>list(_left, _right);
-        final Iterable<Function1<TestSuiteElement, ? extends TestElement>> elements = IterableExtensions.<Function1<TestSuiteElement, ? extends TestElement>>filterNull(_list);
-        Matcher<String> _result = it.getResult();
-        TestSuiteElement _root = AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.root(((Function1<? super TestSuiteElement, ? extends TestElement>[])Conversions.unwrapArray(elements, Function1.class)));
-        String _label = AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.label(_root);
-        boolean _matches = _result.matches(_label);
+        final Iterable<Function1<TestSuiteElement, ? extends TestElement>> elements = IterableExtensions.<Function1<TestSuiteElement, ? extends TestElement>>filterNull(JnarioCollectionLiterals.<Function1<TestSuiteElement, ? extends TestElement>>list(it.getLeft(), it.getRight()));
+        boolean _matches = it.getResult().matches(AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.label(AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.root(((Function1<? super TestSuiteElement, ? extends TestElement>[])Conversions.unwrapArray(elements, Function1.class)))));
         Assert.assertTrue("\nExpected result.matches(label(root(elements))) should be true but"
          + "\n     result.matches(label(root(elements))) is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_matches)).toString()
-         + "\n     result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-         + "\n     label(root(elements)) is " + new org.hamcrest.StringDescription().appendValue(_label).toString()
-         + "\n     root(elements) is " + new org.hamcrest.StringDescription().appendValue(_root).toString()
+         + "\n     result is " + new org.hamcrest.StringDescription().appendValue(it.getResult()).toString()
+         + "\n     label(root(elements)) is " + new org.hamcrest.StringDescription().appendValue(AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.label(AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.root(((Function1<? super TestSuiteElement, ? extends TestElement>[])Conversions.unwrapArray(elements, Function1.class))))).toString()
+         + "\n     root(elements) is " + new org.hamcrest.StringDescription().appendValue(AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.root(((Function1<? super TestSuiteElement, ? extends TestElement>[])Conversions.unwrapArray(elements, Function1.class)))).toString()
          + "\n     elements is " + new org.hamcrest.StringDescription().appendValue(((Function1<? super TestSuiteElement, ? extends TestElement>[])Conversions.unwrapArray(elements, Function1.class))).toString() + "\n", Should.<Boolean>should_be(Boolean.valueOf(_matches), true));
         
       }
@@ -325,8 +311,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   }
   
   public TestSuiteElement root(@Extension final Function1<? super TestSuiteElement, ? extends TestElement>... elementConstructors) {
-    Function1<TestSuiteElement, TestSuiteElement> _suite = this.suite(elementConstructors);
-    return _suite.apply(this.root);
+    return this.suite(elementConstructors).apply(this.root);
   }
   
   public Function1<TestSuiteElement, TestSuiteElement> suite(@Extension final Function1<? super TestSuiteElement, ? extends TestElement>... elementConstructors) {
@@ -365,8 +350,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
     final Function1<TestSuiteElement, TestCaseElement> _function = new Function1<TestSuiteElement, TestCaseElement>() {
       @Override
       public TestCaseElement apply(final TestSuiteElement suite) {
-        Function1<TestSuiteElement, TestCaseElement> _tc = AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.tc();
-        TestCaseElement _apply = _tc.apply(suite);
+        TestCaseElement _apply = AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.tc().apply(suite);
         final Procedure1<TestCaseElement> _function = new Procedure1<TestCaseElement>() {
           @Override
           public void apply(final TestCaseElement it) {
@@ -384,8 +368,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
     final Function1<TestSuiteElement, TestCaseElement> _function = new Function1<TestSuiteElement, TestCaseElement>() {
       @Override
       public TestCaseElement apply(final TestSuiteElement suite) {
-        Function1<TestSuiteElement, TestCaseElement> _ign = AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.ign();
-        TestCaseElement _apply = _ign.apply(suite);
+        TestCaseElement _apply = AbstractJnarioRunnerUIHandlerSuiteLabellingSpec.this.ign().apply(suite);
         final Procedure1<TestCaseElement> _function = new Procedure1<TestCaseElement>() {
           @Override
           public void apply(final TestCaseElement it) {
@@ -403,23 +386,14 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
   }
   
   public Matcher<String> markedPending() {
-    Matcher<String> _containsString = Matchers.containsString(Strings.PENDING_FLAG);
-    Matcher<String> _containsString_1 = Matchers.containsString(Strings.IGNORED_FLAG);
-    Matcher<String> _not = Matchers.<String>not(_containsString_1);
-    return Matchers.<String>allOf(_containsString, _not);
+    return Matchers.<String>allOf(Matchers.containsString(Strings.PENDING_FLAG), Matchers.<String>not(Matchers.containsString(Strings.IGNORED_FLAG)));
   }
   
   public Matcher<String> markedIgnored() {
-    Matcher<String> _containsString = Matchers.containsString(Strings.IGNORED_FLAG);
-    Matcher<String> _containsString_1 = Matchers.containsString(Strings.PENDING_FLAG);
-    Matcher<String> _not = Matchers.<String>not(_containsString_1);
-    return Matchers.<String>allOf(_containsString, _not);
+    return Matchers.<String>allOf(Matchers.containsString(Strings.IGNORED_FLAG), Matchers.<String>not(Matchers.containsString(Strings.PENDING_FLAG)));
   }
   
   public Matcher<String> notMarked() {
-    Matcher<String> _containsString = Matchers.containsString(Strings.IGNORED_FLAG);
-    Matcher<String> _containsString_1 = Matchers.containsString(Strings.PENDING_FLAG);
-    AnyOf<String> _anyOf = Matchers.<String>anyOf(_containsString, _containsString_1);
-    return Matchers.<String>not(_anyOf);
+    return Matchers.<String>not(Matchers.<String>anyOf(Matchers.containsString(Strings.IGNORED_FLAG), Matchers.containsString(Strings.PENDING_FLAG)));
   }
 }

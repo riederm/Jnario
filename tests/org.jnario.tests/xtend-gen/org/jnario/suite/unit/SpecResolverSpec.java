@@ -32,7 +32,6 @@ import org.jnario.runner.Subject;
 import org.jnario.spec.spec.ExampleGroup;
 import org.jnario.suite.jvmmodel.SpecResolver;
 import org.jnario.suite.jvmmodel.SuiteClassNameProvider;
-import org.jnario.suite.suite.SpecReference;
 import org.jnario.suite.suite.Suite;
 import org.jnario.suite.unit.SpecResolverEvaluatesRegularExpressionsSpec;
 import org.junit.Before;
@@ -84,7 +83,7 @@ public class SpecResolverSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this.m.parseSpec(_builder.toString());
+    this.m.parseSpec(_builder);
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("package demo");
     _builder_1.newLine();
@@ -98,7 +97,7 @@ public class SpecResolverSpec {
     _builder_1.append("\t");
     _builder_1.append("Then nothing");
     _builder_1.newLine();
-    this.m.parseScenario(_builder_1.toString());
+    this.m.parseScenario(_builder_1);
   }
   
   @Test
@@ -117,15 +116,13 @@ public class SpecResolverSpec {
     _builder.newLine();
     _builder.append("- \"My Feature\"");
     _builder.newLine();
-    this.m.parseSuite(_builder.toString());
-    Suite _firstSuite = this.m.firstSuite();
-    List<String> _resolvedSpecs = this.resolvedSpecs(_firstSuite);
-    Set<String> _set = IterableExtensions.<String>toSet(_resolvedSpecs);
+    this.m.parseSuite(_builder);
+    Set<String> _set = IterableExtensions.<String>toSet(this.resolvedSpecs(this.m.firstSuite()));
     Set<String> _set_1 = JnarioCollectionLiterals.<String>set("MySpecSpec", "MyFeatureFeature");
     Assert.assertTrue("\nExpected resolvedSpecs(firstSuite).toSet => set(\"MySpecSpec\", \"MyFeatureFeature\") but"
      + "\n     resolvedSpecs(firstSuite).toSet is " + new org.hamcrest.StringDescription().appendValue(_set).toString()
-     + "\n     resolvedSpecs(firstSuite) is " + new org.hamcrest.StringDescription().appendValue(_resolvedSpecs).toString()
-     + "\n     firstSuite is " + new org.hamcrest.StringDescription().appendValue(_firstSuite).toString()
+     + "\n     resolvedSpecs(firstSuite) is " + new org.hamcrest.StringDescription().appendValue(this.resolvedSpecs(this.m.firstSuite())).toString()
+     + "\n     firstSuite is " + new org.hamcrest.StringDescription().appendValue(this.m.firstSuite()).toString()
      + "\n     set(\"MySpecSpec\", \"MyFeatureFeature\") is " + new org.hamcrest.StringDescription().appendValue(_set_1).toString() + "\n", Should.<Set<String>>operator_doubleArrow(_set, _set_1));
     
   }
@@ -135,8 +132,7 @@ public class SpecResolverSpec {
   @Order(2)
   public void _ignoresSpecsWithoutName() throws Exception {
     final ExampleGroup specWithoutName = Specs.exampleGroup(null);
-    SpecReference _specReference = Suites.specReference(specWithoutName);
-    final Suite suite = Suites.suiteWith("A Suite", _specReference);
+    final Suite suite = Suites.suiteWith("A Suite", Suites.specReference(specWithoutName));
     List<Specification> _resolveSpecs = this.subject.resolveSpecs(suite);
     List<ExampleGroup> _list = JnarioCollectionLiterals.<ExampleGroup>list(specWithoutName);
     Assert.assertTrue("\nExpected subject.resolveSpecs(suite) => list(specWithoutName) but"
@@ -149,14 +145,12 @@ public class SpecResolverSpec {
   }
   
   public List<String> resolvedSpecs(@Extension final Suite suite) {
-    List<Specification> _resolveSpecs = this.subject.resolveSpecs(suite);
     final Function1<Specification, String> _function = new Function1<Specification, String>() {
       @Override
       public String apply(final Specification it) {
         return SpecResolverSpec.this._suiteClassNameProvider.toJavaClassName(it);
       }
     };
-    List<String> _map = ListExtensions.<Specification, String>map(_resolveSpecs, _function);
-    return IterableExtensions.<String>toList(_map);
+    return IterableExtensions.<String>toList(ListExtensions.<Specification, String>map(this.subject.resolveSpecs(suite), _function));
   }
 }

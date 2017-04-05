@@ -7,11 +7,9 @@
  */
 package org.jnario.spec.tests.unit.naming;
 
-import java.util.ArrayList;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.jnario.jnario.test.util.Query;
 import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -35,11 +33,6 @@ public class ExampleNameProviderToMethodNameBeforeSpec extends ExampleNameProvid
   @Named("should convert before description to camel case starting in lowercase")
   @Order(1)
   public void _shouldConvertBeforeDescriptionToCamelCaseStartingInLowercase() throws Exception {
-    ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList(
-      "before \'my example\'", 
-      "before \'my\nexample\'", 
-      "before \'my\texample\'", 
-      "before \'my_example\'");
     final Consumer<String> _function = new Consumer<String>() {
       @Override
       public void accept(final String it) {
@@ -49,7 +42,11 @@ public class ExampleNameProviderToMethodNameBeforeSpec extends ExampleNameProvid
         
       }
     };
-    _newArrayList.forEach(_function);
+    CollectionLiterals.<String>newArrayList(
+      "before \'my example\'", 
+      "before \'my\nexample\'", 
+      "before \'my\texample\'", 
+      "before \'my_example\'").forEach(_function);
   }
   
   @Test
@@ -129,9 +126,7 @@ public class ExampleNameProviderToMethodNameBeforeSpec extends ExampleNameProvid
     String _xblockexpression = null;
     {
       final String contentWithContext = (("describe \'Context\'{" + content) + "}");
-      Query _parse = this.parse(contentWithContext);
-      Before _first = _parse.<Before>first(Before.class);
-      _xblockexpression = this.subject.toMethodName(_first);
+      _xblockexpression = this.subject.toMethodName(this.parse(contentWithContext).<Before>first(Before.class));
     }
     return _xblockexpression;
   }
@@ -140,9 +135,7 @@ public class ExampleNameProviderToMethodNameBeforeSpec extends ExampleNameProvid
     String _xblockexpression = null;
     {
       final String contentWithContext = (("describe \'Context\'{" + content) + "}");
-      Query _parse = this.parse(contentWithContext);
-      Before _second = _parse.<Before>second(Before.class);
-      _xblockexpression = this.subject.toMethodName(_second);
+      _xblockexpression = this.subject.toMethodName(this.parse(contentWithContext).<Before>second(Before.class));
     }
     return _xblockexpression;
   }

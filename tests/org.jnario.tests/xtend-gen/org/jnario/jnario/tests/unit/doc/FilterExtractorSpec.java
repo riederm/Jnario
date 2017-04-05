@@ -17,7 +17,6 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.doc.Filter;
 import org.jnario.doc.FilterExtractor;
-import org.jnario.doc.FilteringResult;
 import org.jnario.jnario.tests.unit.doc.FilterExtractorSpecFilterCreation;
 import org.jnario.jnario.tests.unit.doc.FilterExtractorSpecFilterExtractions;
 import org.jnario.lib.Assert;
@@ -155,12 +154,11 @@ public class FilterExtractorSpec {
     final Procedure1<FilterExtractorSpecFilterExtractions> _function = new Procedure1<FilterExtractorSpecFilterExtractions>() {
       @Override
       public void apply(final FilterExtractorSpecFilterExtractions it) {
-        String _input = it.getInput();
-        String _stringAfterExtract = FilterExtractorSpec.this.stringAfterExtract(_input);
+        String _stringAfterExtract = FilterExtractorSpec.this.stringAfterExtract(it.getInput());
         String _resultString = it.getResultString();
         Assert.assertTrue("\nExpected stringAfterExtract(input) => resultString but"
          + "\n     stringAfterExtract(input) is " + new org.hamcrest.StringDescription().appendValue(_stringAfterExtract).toString()
-         + "\n     input is " + new org.hamcrest.StringDescription().appendValue(_input).toString()
+         + "\n     input is " + new org.hamcrest.StringDescription().appendValue(it.getInput()).toString()
          + "\n     resultString is " + new org.hamcrest.StringDescription().appendValue(_resultString).toString() + "\n", Should.<String>operator_doubleArrow(_stringAfterExtract, _resultString));
         
       }
@@ -175,12 +173,11 @@ public class FilterExtractorSpec {
     final Procedure1<FilterExtractorSpecFilterCreation> _function = new Procedure1<FilterExtractorSpecFilterCreation>() {
       @Override
       public void apply(final FilterExtractorSpecFilterCreation it) {
-        String _input = it.getInput();
-        List<String> _extractedFilters = FilterExtractorSpec.this.extractedFilters(_input);
+        List<String> _extractedFilters = FilterExtractorSpec.this.extractedFilters(it.getInput());
         List<String> _resultingFilters = it.getResultingFilters();
         Assert.assertTrue("\nExpected extractedFilters(input) => resultingFilters but"
          + "\n     extractedFilters(input) is " + new org.hamcrest.StringDescription().appendValue(_extractedFilters).toString()
-         + "\n     input is " + new org.hamcrest.StringDescription().appendValue(_input).toString()
+         + "\n     input is " + new org.hamcrest.StringDescription().appendValue(it.getInput()).toString()
          + "\n     resultingFilters is " + new org.hamcrest.StringDescription().appendValue(_resultingFilters).toString() + "\n", Should.<List<String>>operator_doubleArrow(_extractedFilters, _resultingFilters));
         
       }
@@ -189,19 +186,16 @@ public class FilterExtractorSpec {
   }
   
   public String stringAfterExtract(@Extension final String input) {
-    FilteringResult _apply = this.subject.apply(input);
-    return _apply.getString();
+    return this.subject.apply(input).getString();
   }
   
   public List<String> extractedFilters(@Extension final String input) {
-    FilteringResult _apply = this.subject.apply(input);
-    List<Filter> _filters = _apply.getFilters();
     final Function1<Filter, String> _function = new Function1<Filter, String>() {
       @Override
       public String apply(final Filter it) {
         return it.toString();
       }
     };
-    return ListExtensions.<Filter, String>map(_filters, _function);
+    return ListExtensions.<Filter, String>map(this.subject.apply(input).getFilters(), _function);
   }
 }

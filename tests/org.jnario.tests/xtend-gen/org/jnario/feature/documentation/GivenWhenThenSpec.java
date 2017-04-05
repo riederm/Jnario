@@ -52,6 +52,6 @@ public class GivenWhenThenSpec {
     _builder.append("    ");
     _builder.append("But not more");
     _builder.newLine();
-    FeatureExecutor.isSuccessful(_builder.toString());
+    FeatureExecutor.isSuccessful(_builder);
   }
 }

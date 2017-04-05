@@ -28,8 +28,7 @@ public class StepParametersFeatureFieldInitializersInBackgrounds extends StepPar
   @Named("When I have a scenario with a background and a field initializer")
   public void _whenIHaveAScenarioWithABackgroundAndAFieldInitializer() {
     final StepArguments args = new StepArguments("Feature: Field initializers in Backgrounds\nBackground:\n  String greeting = \"Hello \"\n  Given a name \"Sebastian\"\n    greeting = greeting + args.first\nScenario: Greeting someone\n  Then the greeting should be \"Hello Sebastian\" \n\tgreeting => args.first\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

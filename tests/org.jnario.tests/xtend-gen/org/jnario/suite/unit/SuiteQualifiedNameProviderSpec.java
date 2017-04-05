@@ -21,7 +21,6 @@ import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
 import org.jnario.suite.naming.SuiteQualifiedNameProvider;
-import org.jnario.suite.suite.Suite;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -44,7 +43,7 @@ public class SuiteQualifiedNameProviderSpec {
   public void _removesSuitePrefix() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#My Suite");
-    this._modelStore.parseSuite(_builder.toString());
+    this._modelStore.parseSuite(_builder);
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"My Suite\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "My Suite"));
@@ -59,7 +58,7 @@ public class SuiteQualifiedNameProviderSpec {
     _builder.append("#My Suite");
     _builder.newLine();
     _builder.append("with description");
-    this._modelStore.parseSuite(_builder.toString());
+    this._modelStore.parseSuite(_builder);
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"My Suite\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "My Suite"));
@@ -74,7 +73,7 @@ public class SuiteQualifiedNameProviderSpec {
     _builder.append("package test");
     _builder.newLine();
     _builder.append("#My Suite");
-    this._modelStore.parseSuite(_builder.toString());
+    this._modelStore.parseSuite(_builder);
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"test.My Suite\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "test.My Suite"));
@@ -87,7 +86,7 @@ public class SuiteQualifiedNameProviderSpec {
   public void _handlesEmptyPackages() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#My Suite");
-    this._modelStore.parseSuite(_builder.toString());
+    this._modelStore.parseSuite(_builder);
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"My Suite\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "My Suite"));
@@ -101,15 +100,14 @@ public class SuiteQualifiedNameProviderSpec {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#");
     _builder.newLine();
-    this._modelStore.parseSuite(_builder.toString());
+    this._modelStore.parseSuite(_builder);
     String _qualifiedName = this.qualifiedName();
     Assert.assertNull("\nExpected qualifiedName should be null\n     but is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", _qualifiedName);
     
   }
   
   public String qualifiedName() {
-    Suite _firstSuite = this._modelStore.firstSuite();
-    QualifiedName _fullyQualifiedName = this.subject.getFullyQualifiedName(_firstSuite);
+    QualifiedName _fullyQualifiedName = this.subject.getFullyQualifiedName(this._modelStore.firstSuite());
     String _string = null;
     if (_fullyQualifiedName!=null) {
       _string=_fullyQualifiedName.toString();

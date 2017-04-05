@@ -85,12 +85,11 @@ public class ExamplePendingSpec extends ExampleSpec {
     final Procedure1<ExamplePendingSpecExamples> _function = new Procedure1<ExamplePendingSpecExamples>() {
       @Override
       public void apply(final ExamplePendingSpecExamples it) {
-        String _example = it.getExample();
-        boolean _pendingStateOf = ExamplePendingSpec.this.pendingStateOf(_example);
+        boolean _pendingStateOf = ExamplePendingSpec.this.pendingStateOf(it.getExample());
         boolean _expected = it.getExpected();
         Assert.assertTrue("\nExpected pendingStateOf(example) should be expected but"
          + "\n     pendingStateOf(example) is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_pendingStateOf)).toString()
-         + "\n     example is " + new org.hamcrest.StringDescription().appendValue(_example).toString()
+         + "\n     example is " + new org.hamcrest.StringDescription().appendValue(it.getExample()).toString()
          + "\n     expected is " + new org.hamcrest.StringDescription().appendValue(_expected).toString() + "\n", Should.<Boolean>should_be(Boolean.valueOf(_pendingStateOf), _expected));
         
       }

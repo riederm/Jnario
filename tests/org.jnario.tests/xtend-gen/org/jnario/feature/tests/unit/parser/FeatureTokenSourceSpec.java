@@ -49,9 +49,9 @@ public class FeatureTokenSourceSpec {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Feature: example");
     _builder.newLine();
-    this.setInput(_builder.toString());
-    CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
-    this.assertSplitsIn(_ken);
+    this.setInput(_builder);
+    this.assertSplitsIn(
+      this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1));
   }
   
   @Test
@@ -60,9 +60,9 @@ public class FeatureTokenSourceSpec {
   public void _splitsIncompleteFeature() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Feature: example");
-    this.setInput(_builder.toString());
-    CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example", 1);
-    this.assertSplitsIn(_ken);
+    this.setInput(_builder);
+    this.assertSplitsIn(
+      this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example", 1));
   }
   
   @Test
@@ -74,10 +74,10 @@ public class FeatureTokenSourceSpec {
     _builder.newLine();
     _builder.append(" ");
     _builder.append("some text");
-    this.setInput(_builder.toString());
-    CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
-    CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, " some text", 2);
-    this.assertSplitsIn(_ken, _ken_1);
+    this.setInput(_builder);
+    this.assertSplitsIn(
+      this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1), 
+      this.token(InternalFeatureLexer.RULE_TEXT, " some text", 2));
   }
   
   @Test
@@ -89,10 +89,10 @@ public class FeatureTokenSourceSpec {
     _builder.newLine();
     _builder.append("some text");
     _builder.newLine();
-    this.setInput(_builder.toString());
-    CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
-    CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, "some text\n", 2);
-    this.assertSplitsIn(_ken, _ken_1);
+    this.setInput(_builder);
+    this.assertSplitsIn(
+      this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1), 
+      this.token(InternalFeatureLexer.RULE_TEXT, "some text\n", 2));
   }
   
   @Test
@@ -110,11 +110,11 @@ public class FeatureTokenSourceSpec {
     _builder.newLine();
     _builder.append("Scenario: scenario1");
     _builder.newLine();
-    this.setInput(_builder.toString());
-    CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
-    CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, "  Text1\n  Text2\n", 2);
-    CommonToken _ken_2 = this.token(InternalFeatureLexer.RULE_SCENARIO_TEXT, "Scenario: scenario1\n", 4);
-    this.assertSplitsIn(_ken, _ken_1, _ken_2);
+    this.setInput(_builder);
+    this.assertSplitsIn(
+      this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1), 
+      this.token(InternalFeatureLexer.RULE_TEXT, "  Text1\n  Text2\n", 2), 
+      this.token(InternalFeatureLexer.RULE_SCENARIO_TEXT, "Scenario: scenario1\n", 4));
   }
   
   @Test
@@ -133,11 +133,11 @@ public class FeatureTokenSourceSpec {
     _builder.append("  ");
     _builder.append("Background: scenario1");
     _builder.newLine();
-    this.setInput(_builder.toString());
-    CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
-    CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, "  Text1\n  Text2\n  ", 2);
-    CommonToken _ken_2 = this.token(InternalFeatureLexer.RULE_BACKGROUND_TEXT, "Background: scenario1\n", 4);
-    this.assertSplitsIn(_ken, _ken_1, _ken_2);
+    this.setInput(_builder);
+    this.assertSplitsIn(
+      this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1), 
+      this.token(InternalFeatureLexer.RULE_TEXT, "  Text1\n  Text2\n  ", 2), 
+      this.token(InternalFeatureLexer.RULE_BACKGROUND_TEXT, "Background: scenario1\n", 4));
   }
   
   @Test
@@ -153,10 +153,10 @@ public class FeatureTokenSourceSpec {
     _builder.append("  ");
     _builder.append("Text2");
     _builder.newLine();
-    this.setInput(_builder.toString());
-    CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
-    CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, "  Text1\n  Text2\n", 2);
-    this.assertSplitsIn(_ken, _ken_1);
+    this.setInput(_builder);
+    this.assertSplitsIn(
+      this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1), 
+      this.token(InternalFeatureLexer.RULE_TEXT, "  Text1\n  Text2\n", 2));
   }
   
   @Test
@@ -167,10 +167,10 @@ public class FeatureTokenSourceSpec {
     _builder.append("Feature: example");
     _builder.newLine();
     _builder.append("Scenario: scenario1");
-    this.setInput(_builder.toString());
-    CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
-    CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_SCENARIO_TEXT, "Scenario: scenario1", 2);
-    this.assertSplitsIn(_ken, _ken_1);
+    this.setInput(_builder);
+    this.assertSplitsIn(
+      this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1), 
+      this.token(InternalFeatureLexer.RULE_SCENARIO_TEXT, "Scenario: scenario1", 2));
   }
   
   @Test
@@ -182,10 +182,10 @@ public class FeatureTokenSourceSpec {
     _builder.newLine();
     _builder.append("Scenario: scenario1");
     _builder.newLine();
-    this.setInput(_builder.toString());
-    CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
-    CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_SCENARIO_TEXT, "Scenario: scenario1\n", 2);
-    this.assertSplitsIn(_ken, _ken_1);
+    this.setInput(_builder);
+    this.assertSplitsIn(
+      this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1), 
+      this.token(InternalFeatureLexer.RULE_SCENARIO_TEXT, "Scenario: scenario1\n", 2));
   }
   
   @Test
@@ -198,16 +198,15 @@ public class FeatureTokenSourceSpec {
     _builder.append(" ");
     _builder.append("Background:");
     _builder.newLine();
-    this.setInput(_builder.toString());
-    CommonToken _ken = this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1);
-    CommonToken _ken_1 = this.token(InternalFeatureLexer.RULE_TEXT, " ", 2);
-    CommonToken _ken_2 = this.token(InternalFeatureLexer.RULE_BACKGROUND_TEXT, "Background:\n", 2);
-    this.assertSplitsIn(_ken, _ken_1, _ken_2);
+    this.setInput(_builder);
+    this.assertSplitsIn(
+      this.token(InternalFeatureLexer.RULE_FEATURE_TEXT, "Feature: example\n", 1), 
+      this.token(InternalFeatureLexer.RULE_TEXT, " ", 2), 
+      this.token(InternalFeatureLexer.RULE_BACKGROUND_TEXT, "Background:\n", 2));
   }
   
   public void assertSplitsIn(@Extension final CommonToken... expectedTokens) {
-    CommonToken _ken = this.token(this.input);
-    this.split(_ken);
+    this.split(this.token(this.input));
     final List<Token> actualTokens = IteratorExtensions.<Token>toList(this.tokenAcceptor);
     int _size = actualTokens.size();
     int _size_1 = ((List<CommonToken>)Conversions.doWrapArray(expectedTokens)).size();
@@ -266,8 +265,7 @@ public class FeatureTokenSourceSpec {
       String _string = text.toString();
       final ANTLRStringStream input = new ANTLRStringStream(_string);
       final int start = FeatureTokenSourceSpec.prefix.length();
-      String _string_1 = text.toString();
-      int _length = _string_1.length();
+      int _length = text.toString().length();
       final int stop = (_length - 1);
       _xblockexpression = new CommonToken(input, (-1), (-1), start, stop);
     }
@@ -275,8 +273,7 @@ public class FeatureTokenSourceSpec {
   }
   
   public CharSequence setInput(@Extension final CharSequence input) {
-    String _string = input.toString();
-    String _replace = _string.replace("\r", "");
+    String _replace = input.toString().replace("\r", "");
     String _plus = (FeatureTokenSourceSpec.prefix + _replace);
     return this.input = _plus;
   }

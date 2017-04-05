@@ -19,7 +19,6 @@ import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
 import org.jnario.suite.jvmmodel.SuiteClassNameProvider;
-import org.jnario.suite.suite.Suite;
 import org.jnario.suite.unit.SuiteClassNameProviderDescribeSpecExamples;
 import org.jnario.suite.unit.SuiteClassNameProviderSpec;
 import org.junit.Test;
@@ -83,15 +82,13 @@ public class SuiteClassNameProviderDescribeSpec extends SuiteClassNameProviderSp
     final Procedure1<SuiteClassNameProviderDescribeSpecExamples> _function = new Procedure1<SuiteClassNameProviderDescribeSpecExamples>() {
       @Override
       public void apply(final SuiteClassNameProviderDescribeSpecExamples it) {
-        String _name = it.getName();
-        Suite _suite = Suites.suite(_name);
-        String _describe = SuiteClassNameProviderDescribeSpec.this.subject.describe(_suite);
+        String _describe = SuiteClassNameProviderDescribeSpec.this.subject.describe(Suites.suite(it.getName()));
         String _expectedClassName = it.getExpectedClassName();
         Assert.assertTrue("\nExpected subject.^describe(suite(name)) => expectedClassName but"
          + "\n     subject.^describe(suite(name)) is " + new org.hamcrest.StringDescription().appendValue(_describe).toString()
          + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(SuiteClassNameProviderDescribeSpec.this.subject).toString()
-         + "\n     suite(name) is " + new org.hamcrest.StringDescription().appendValue(_suite).toString()
-         + "\n     name is " + new org.hamcrest.StringDescription().appendValue(_name).toString()
+         + "\n     suite(name) is " + new org.hamcrest.StringDescription().appendValue(Suites.suite(it.getName())).toString()
+         + "\n     name is " + new org.hamcrest.StringDescription().appendValue(it.getName()).toString()
          + "\n     expectedClassName is " + new org.hamcrest.StringDescription().appendValue(_expectedClassName).toString() + "\n", Should.<String>operator_doubleArrow(_describe, _expectedClassName));
         
       }

@@ -40,8 +40,7 @@ public class ReferencesForStepsFeatureBackgroundStepsReferencingOtherSteps exten
   @Named("Given a feature")
   public void _givenAFeature() {
     final StepArguments args = new StepArguments("Feature: Feature 1\nBackground:\nString testString\nGiven something\ntestString = \"test\"\nAnd it is upper case\ntestString.toUpperCase\nScenario: Scenario 1\n\t \t");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test
@@ -49,8 +48,7 @@ public class ReferencesForStepsFeatureBackgroundStepsReferencingOtherSteps exten
   @Named("When referencing the backround steps from another background")
   public void _whenReferencingTheBackroundStepsFromAnotherBackground() {
     final StepArguments args = new StepArguments("Feature: Feature 2\nBackground:\nGiven something\nScenario: Scenario 2\nGiven it is upper case\n\t \t");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile2 = _first;
+    this.jnarioFile2 = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

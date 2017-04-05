@@ -31,8 +31,7 @@ public class ReferencesForStepsFeatureUsingClosuresInSteps extends ReferencesFor
   @Named("When I have a scenario which uses closures")
   public void _whenIHaveAScenarioWhichUsesClosures() {
     final StepArguments args = new StepArguments("Feature: Using Closures\n\n\t\t\tScenario: Steps which define closures\n\t\t\t\tvar colors = list(\"green\", \"blue\")\n\t\t\t\tWhen we convert all strings to uppercase\n\t\t\t\t\tcolors = colors.map[toUpperCase]\n\t\t\t\tThen they are uppercase\n\t\t\t\t\tcolors => list(\"GREEN\", \"BLUE\")\n\t\t\n\t\t\tScenario: Steps which reference steps with closures\n\t\t\t\tvar colors = list(\"red\", \"blue\")\n\t\t\t\tWhen we convert all strings to uppercase\n\t\t\t\tThen they are uppercase\n\t\t\t\t\tcolors => list(\"RED\", \"BLUE\")\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

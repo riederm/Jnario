@@ -28,6 +28,7 @@ import org.jnario.xbase.richstring.richstring.ElseStart;
 import org.jnario.xbase.richstring.richstring.EndIf;
 import org.jnario.xbase.richstring.richstring.IfConditionStart;
 import org.jnario.xbase.richstring.richstring.ProcessedRichStringPackage;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringIf;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,7 +55,7 @@ public class IfConditionStartImpl extends LinePartImpl implements IfConditionSta
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject richStringIf;
+	protected RichStringIf richStringIf;
 
 	/**
 	 * The cached value of the '{@link #getElseStart() <em>Else Start</em>}' reference.
@@ -110,10 +111,10 @@ public class IfConditionStartImpl extends LinePartImpl implements IfConditionSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject getRichStringIf() {
+	public RichStringIf getRichStringIf() {
 		if (richStringIf != null && richStringIf.eIsProxy()) {
 			InternalEObject oldRichStringIf = (InternalEObject)richStringIf;
-			richStringIf = eResolveProxy(oldRichStringIf);
+			richStringIf = (RichStringIf)eResolveProxy(oldRichStringIf);
 			if (richStringIf != oldRichStringIf) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessedRichStringPackage.IF_CONDITION_START__RICH_STRING_IF, oldRichStringIf, richStringIf));
@@ -127,7 +128,7 @@ public class IfConditionStartImpl extends LinePartImpl implements IfConditionSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject basicGetRichStringIf() {
+	public RichStringIf basicGetRichStringIf() {
 		return richStringIf;
 	}
 
@@ -136,8 +137,8 @@ public class IfConditionStartImpl extends LinePartImpl implements IfConditionSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRichStringIf(EObject newRichStringIf) {
-		EObject oldRichStringIf = richStringIf;
+	public void setRichStringIf(RichStringIf newRichStringIf) {
+		RichStringIf oldRichStringIf = richStringIf;
 		richStringIf = newRichStringIf;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessedRichStringPackage.IF_CONDITION_START__RICH_STRING_IF, oldRichStringIf, richStringIf));
@@ -321,7 +322,7 @@ public class IfConditionStartImpl extends LinePartImpl implements IfConditionSta
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ProcessedRichStringPackage.IF_CONDITION_START__RICH_STRING_IF:
-				setRichStringIf((EObject)newValue);
+				setRichStringIf((RichStringIf)newValue);
 				return;
 			case ProcessedRichStringPackage.IF_CONDITION_START__ELSE_START:
 				setElseStart((ElseStart)newValue);
@@ -346,7 +347,7 @@ public class IfConditionStartImpl extends LinePartImpl implements IfConditionSta
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ProcessedRichStringPackage.IF_CONDITION_START__RICH_STRING_IF:
-				setRichStringIf((EObject)null);
+				setRichStringIf((RichStringIf)null);
 				return;
 			case ProcessedRichStringPackage.IF_CONDITION_START__ELSE_START:
 				setElseStart((ElseStart)null);

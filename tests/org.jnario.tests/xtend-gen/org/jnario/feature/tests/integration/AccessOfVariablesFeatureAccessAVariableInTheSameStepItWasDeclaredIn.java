@@ -28,8 +28,7 @@ public class AccessOfVariablesFeatureAccessAVariableInTheSameStepItWasDeclaredIn
   @Named("When I have scenario with a reference to a variable")
   public void _whenIHaveScenarioWithAReferenceToAVariable() {
     final StepArguments args = new StepArguments("package bootstrap1\nFeature: Variable test\n\tScenario: Some scenario\n\t\tGiven a step with a variable\n\t\t\tvar x = 3\n\t\t\tx = 5\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

@@ -9,7 +9,6 @@ package org.jnario.jnario.tests.unit.doc;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
-import java.util.Map;
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.doc.DocOutputConfigurationProvider;
@@ -79,8 +78,7 @@ public class HtmlAssetsSpec {
   }
   
   public String generatedFile(@Extension final String name) {
-    Map<String, CharSequence> _files = this.fsa.getFiles();
-    CharSequence _get = _files.get((DocOutputConfigurationProvider.ASSET_OUTPUT + name));
+    CharSequence _get = this.fsa.getFiles().get((DocOutputConfigurationProvider.ASSET_OUTPUT + name));
     String _string = null;
     if (_get!=null) {
       _string=_get.toString();

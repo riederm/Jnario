@@ -39,7 +39,7 @@ public class StepContextProviderUsedFieldsSpec extends StepContextProviderSpec {
     _builder.append("\t\t");
     _builder.append("println(field1)");
     _builder.newLine();
-    final Set<JnarioField> usedFields = this.usedFields(_builder.toString());
+    final Set<JnarioField> usedFields = this.usedFields(_builder);
     Set<JnarioField> _fields = this.fields("field1");
     Assert.assertTrue("\nExpected usedFields => fields(\"field1\") but"
      + "\n     usedFields is " + new org.hamcrest.StringDescription().appendValue(usedFields).toString()
@@ -82,7 +82,7 @@ public class StepContextProviderUsedFieldsSpec extends StepContextProviderSpec {
     _builder.append("\t\t");
     _builder.append("println(field3)");
     _builder.newLine();
-    final Set<JnarioField> usedFields = this.usedFields(_builder.toString());
+    final Set<JnarioField> usedFields = this.usedFields(_builder);
     Set<JnarioField> _fields = this.fields("field1", "field3");
     Assert.assertTrue("\nExpected usedFields => fields(\"field1\", \"field3\") but"
      + "\n     usedFields is " + new org.hamcrest.StringDescription().appendValue(usedFields).toString()

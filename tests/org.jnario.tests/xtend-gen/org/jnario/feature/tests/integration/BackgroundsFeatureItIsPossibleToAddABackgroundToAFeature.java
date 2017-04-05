@@ -28,8 +28,7 @@ public class BackgroundsFeatureItIsPossibleToAddABackgroundToAFeature extends Ba
   @Named("When I have a feature with a background")
   public void _whenIHaveAFeatureWithABackground() {
     final StepArguments args = new StepArguments("package bootstrap\nFeature: Some feature\n\tBackground:\n\t\tGiven a user name\n\t\t\tval x = \"an implementation\"\n\tScenario: Scenario 1\n\tScenario: Scenario 2\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

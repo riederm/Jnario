@@ -1,7 +1,6 @@
 package org.jnario.jnario.tests.unit.report;
 
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.jnario.feature.feature.Scenario;
 import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.jnario.tests.unit.report.HashBasedSpec2ResultMappingSpec;
 import org.jnario.lib.Assert;
@@ -41,7 +40,7 @@ public class HashBasedSpec2ResultMappingScenarioSpec extends HashBasedSpec2Resul
     _builder.append("\t");
     _builder.append("\"with implementation\"");
     _builder.newLine();
-    this.m.parseScenario(_builder.toString());
+    this.m.parseScenario(_builder);
   }
   
   @Test
@@ -50,11 +49,10 @@ public class HashBasedSpec2ResultMappingScenarioSpec extends HashBasedSpec2Resul
   public void _returnsPassedIfAllChildrenPassed() throws Exception {
     this.passedStep("Given my Step");
     this.passedStep("And other Step");
-    Scenario _scenario = this.scenario();
-    SpecExecution _result = this.result(_scenario);
+    SpecExecution _result = this.result(this.scenario());
     Assert.assertTrue("\nExpected scenario.result => typeof(Passed) but"
      + "\n     scenario.result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     scenario is " + new org.hamcrest.StringDescription().appendValue(_scenario).toString() + "\n", Should.operator_doubleArrow(_result, Passed.class));
+     + "\n     scenario is " + new org.hamcrest.StringDescription().appendValue(this.scenario()).toString() + "\n", Should.operator_doubleArrow(_result, Passed.class));
     
   }
   
@@ -64,11 +62,10 @@ public class HashBasedSpec2ResultMappingScenarioSpec extends HashBasedSpec2Resul
   public void _returnsFailedIfOneChildFailed() throws Exception {
     this.passedStep("Given my Step");
     this.failedStep("And other Step");
-    Scenario _scenario = this.scenario();
-    SpecExecution _result = this.result(_scenario);
+    SpecExecution _result = this.result(this.scenario());
     Assert.assertTrue("\nExpected scenario.result => typeof(Failed) but"
      + "\n     scenario.result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     scenario is " + new org.hamcrest.StringDescription().appendValue(_scenario).toString() + "\n", Should.operator_doubleArrow(_result, Failed.class));
+     + "\n     scenario is " + new org.hamcrest.StringDescription().appendValue(this.scenario()).toString() + "\n", Should.operator_doubleArrow(_result, Failed.class));
     
   }
 }

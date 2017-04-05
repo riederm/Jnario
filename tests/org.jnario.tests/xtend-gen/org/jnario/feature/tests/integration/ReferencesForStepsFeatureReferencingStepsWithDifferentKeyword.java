@@ -19,7 +19,6 @@ import org.jnario.runner.FeatureRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.junit.Test;
-import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 
 @RunWith(FeatureRunner.class)
@@ -34,8 +33,7 @@ public class ReferencesForStepsFeatureReferencingStepsWithDifferentKeyword exten
   @Named("When I have a scenario with reused steps with different keywords that throw an exception")
   public void _whenIHaveAScenarioWithReusedStepsWithDifferentKeywordsThatThrowAnException() {
     final StepArguments args = new StepArguments("package bootstrap\nFeature: Test\n\tScenario: TestScenario 1\n\t\tGiven step\n\t\t\tthrow new RuntimeException()\n\t\t\n\tScenario: TestScenario 2\n\t\tWhen step\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test
@@ -43,10 +41,8 @@ public class ReferencesForStepsFeatureReferencingStepsWithDifferentKeyword exten
   @Named("Then the number of failures should be \\\"2\\\"")
   public void _thenTheNumberOfFailuresShouldBe2() {
     final StepArguments args = new StepArguments("2");
-    Result _run = FeatureExecutor.run(this.jnarioFile);
-    int _failureCount = _run.getFailureCount();
-    String _first = JnarioIterableExtensions.<String>first(args);
-    int _int = StringConversions.toInt(_first);
+    int _failureCount = FeatureExecutor.run(this.jnarioFile).getFailureCount();
+    int _int = StringConversions.toInt(JnarioIterableExtensions.<String>first(args));
     Should.<Integer>operator_doubleArrow(Integer.valueOf(_failureCount), Integer.valueOf(_int));
   }
 }

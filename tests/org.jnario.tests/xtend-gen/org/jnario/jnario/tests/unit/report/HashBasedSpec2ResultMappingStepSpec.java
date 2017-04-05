@@ -63,7 +63,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
     _builder.append("\t\t\t");
     _builder.append("1 + 1 => 2");
     _builder.newLine();
-    this.m.parseScenario(_builder.toString());
+    this.m.parseScenario(_builder);
     this.subject.accept(this.aResult);
     Step _step = this.step();
     boolean _should_match = this.should_match(_step, this.aResult);
@@ -99,7 +99,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
     _builder.append("\t\t");
     _builder.append("Given a pending step");
     _builder.newLine();
-    this.m.parseScenario(_builder.toString());
+    this.m.parseScenario(_builder);
     this.subject.accept(this.pendingResult);
     Step _step = this.step();
     Assert.assertTrue("\nExpected step should match pendingResult but"
@@ -126,7 +126,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
     _builder.append("\t\t");
     _builder.append("1 =>1");
     _builder.newLine();
-    this.m.parseScenario(_builder.toString());
+    this.m.parseScenario(_builder);
     this.subject.accept(this.resultWithUnicodeChars);
     Step _step = this.step();
     Assert.assertTrue("\nExpected step should match resultWithUnicodeChars but"
@@ -153,7 +153,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
     _builder.append("\t\t");
     _builder.append("1 =>1");
     _builder.newLine();
-    this.m.parseScenario(_builder.toString());
+    this.m.parseScenario(_builder);
     this.subject.accept(this.resultWithArgs);
     Step _step = this.step();
     Assert.assertTrue("\nExpected step should match resultWithArgs but"

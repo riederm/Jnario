@@ -49,7 +49,7 @@ public class ThrowsSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -70,7 +70,7 @@ public class ThrowsSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -88,6 +88,6 @@ public class ThrowsSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executionFails(_builder.toString());
+    this._behaviorExecutor.executionFails(_builder);
   }
 }

@@ -8,8 +8,6 @@
 package org.jnario.spec.tests.unit.naming;
 
 import com.google.inject.Inject;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.ModelStore;
@@ -43,7 +41,6 @@ public class ExampleNameProviderSpec {
   public Query parse(@Extension final CharSequence content) {
     final String contentWithPackage = ("package test\n" + content);
     final Resource spec = this.modelStore.parseSpec(contentWithPackage);
-    TreeIterator<EObject> _allContents = spec.getAllContents();
-    return Query.query(_allContents);
+    return Query.query(spec.getAllContents());
   }
 }

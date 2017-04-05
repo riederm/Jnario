@@ -22,7 +22,6 @@ import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
 import org.jnario.spec.naming.SpecQualifiedNameProvider;
-import org.jnario.spec.spec.ExampleGroup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -47,7 +46,7 @@ public class SpecQualifiedNameProviderSpec {
     _builder.append("package test");
     _builder.newLine();
     _builder.append("describe \"\"{}");
-    this._modelStore.parseSpec(_builder.toString());
+    this._modelStore.parseSpec(_builder);
     String _qualifiedName = this.qualifiedName();
     Matcher<String> _nullValue = Should.<String>nullValue();
     boolean _should_be = Should.<String>should_be(_qualifiedName, _nullValue);
@@ -57,7 +56,7 @@ public class SpecQualifiedNameProviderSpec {
     
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("describe \"\"{}");
-    this._modelStore.parseSpec(_builder_1.toString());
+    this._modelStore.parseSpec(_builder_1);
     String _qualifiedName_1 = this.qualifiedName();
     Matcher<String> _nullValue_1 = Should.<String>nullValue();
     Assert.assertTrue("\nExpected qualifiedName should be nullValue but"
@@ -72,7 +71,7 @@ public class SpecQualifiedNameProviderSpec {
   public void _usesSpecDescription() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe \"My Spec\"{}");
-    this._modelStore.parseSpec(_builder.toString());
+    this._modelStore.parseSpec(_builder);
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"My Spec\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "My Spec"));
@@ -85,7 +84,7 @@ public class SpecQualifiedNameProviderSpec {
   public void _trimsSpecDescriptionWhitespace() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe \"My Spec  \"{}");
-    this._modelStore.parseSpec(_builder.toString());
+    this._modelStore.parseSpec(_builder);
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"My Spec\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "My Spec"));
@@ -98,7 +97,7 @@ public class SpecQualifiedNameProviderSpec {
   public void _usesReferencedType() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe org.junit.Assert{}");
-    this._modelStore.parseSpec(_builder.toString());
+    this._modelStore.parseSpec(_builder);
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"Assert\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "Assert"));
@@ -111,7 +110,7 @@ public class SpecQualifiedNameProviderSpec {
   public void _usesReferencedTypeAndDescription() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe org.junit.Assert \"My Spec\"{}");
-    this._modelStore.parseSpec(_builder.toString());
+    this._modelStore.parseSpec(_builder);
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"Assert My Spec\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "Assert My Spec"));
@@ -126,7 +125,7 @@ public class SpecQualifiedNameProviderSpec {
     _builder.append("package test");
     _builder.newLine();
     _builder.append("describe \"My Spec\"{}");
-    this._modelStore.parseSpec(_builder.toString());
+    this._modelStore.parseSpec(_builder);
     String _qualifiedName = this.qualifiedName();
     Assert.assertTrue("\nExpected qualifiedName => \"test.My Spec\" but"
      + "\n     qualifiedName is " + new org.hamcrest.StringDescription().appendValue(_qualifiedName).toString() + "\n", Should.<String>operator_doubleArrow(_qualifiedName, "test.My Spec"));
@@ -134,8 +133,7 @@ public class SpecQualifiedNameProviderSpec {
   }
   
   public String qualifiedName() {
-    ExampleGroup _firstSpec = this._modelStore.firstSpec();
-    QualifiedName _fullyQualifiedName = this.subject.getFullyQualifiedName(_firstSpec);
+    QualifiedName _fullyQualifiedName = this.subject.getFullyQualifiedName(this._modelStore.firstSpec());
     String _string = null;
     if (_fullyQualifiedName!=null) {
       _string=_fullyQualifiedName.toString();

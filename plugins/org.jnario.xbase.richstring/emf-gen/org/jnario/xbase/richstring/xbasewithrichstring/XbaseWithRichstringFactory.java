@@ -40,6 +40,33 @@ public interface XbaseWithRichstringFactory extends EFactory {
 	RichStringLiteral createRichStringLiteral();
 
 	/**
+	 * Returns a new object of class '<em>Rich String For Loop</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rich String For Loop</em>'.
+	 * @generated
+	 */
+	RichStringForLoop createRichStringForLoop();
+
+	/**
+	 * Returns a new object of class '<em>Rich String If</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rich String If</em>'.
+	 * @generated
+	 */
+	RichStringIf createRichStringIf();
+
+	/**
+	 * Returns a new object of class '<em>Rich String Else If</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rich String Else If</em>'.
+	 * @generated
+	 */
+	RichStringElseIf createRichStringElseIf();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

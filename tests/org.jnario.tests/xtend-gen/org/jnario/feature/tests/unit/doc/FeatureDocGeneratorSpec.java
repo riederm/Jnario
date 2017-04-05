@@ -8,9 +8,6 @@
 package org.jnario.feature.tests.unit.doc;
 
 import com.google.inject.Inject;
-import java.util.Collection;
-import java.util.Map;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -114,10 +111,8 @@ public class FeatureDocGeneratorSpec {
     _builder.newLine();
     _builder.append("</div>");
     _builder.newLine();
-    final String expected = _builder.toString().toString();
-    String _convertNL = this.convertNL(expected);
-    String _convertNL_1 = this.convertNL(actual);
-    Assert.assertEquals(_convertNL, _convertNL_1);
+    final String expected = _builder.toString();
+    Assert.assertEquals(this.convertNL(expected), this.convertNL(actual));
   }
   
   @Test
@@ -150,10 +145,10 @@ public class FeatureDocGeneratorSpec {
     _builder.append("\t");
     _builder.append("\"\"       ");
     _builder.newLine();
-    CharSequence _generateDocWithErrors = this.generateDocWithErrors(_builder.toString());
+    CharSequence _generateDocWithErrors = this.generateDocWithErrors(_builder);
     org.jnario.lib.Assert.assertTrue("\nExpected \'\'\'\n\t\t\tFeature: Example\n\t\t\t\n\t\t\tScenario: A failing Scenario\n\t\t\t\n\t\t\tGiven something\n\t\t\tWhen something happens \n\t\t\tThen there is an error\n\t\t\t\n\t\t\tScenario: Another scnario\n\t\t\tGiven something\n\t\t\t\t1 + 1 => 2\n\t\t\tThen something else\n\t\t\t\t\"\"       \n\t\t\'\'\'.generateDocWithErrors should contain \"failed\" but"
      + "\n     \'\'\'\n\t\t\tFeature: Example\n\t\t\t\n\t\t\tScenario: A failing Scenario\n\t\t\t\n\t\t\tGiven something\n\t\t\tWhen something happens \n\t\t\tThen there is an error\n\t\t\t\n\t\t\tScenario: Another scnario\n\t\t\tGiven something\n\t\t\t\t1 + 1 => 2\n\t\t\tThen something else\n\t\t\t\t\"\"       \n\t\t\'\'\'.generateDocWithErrors is " + new org.hamcrest.StringDescription().appendValue(_generateDocWithErrors).toString()
-     + "\n     \'\'\'\n\t\t\tFeature: Example\n\t\t\t\n\t\t\tScenario: A failing Scenario\n\t\t\t\n\t\t\tGiven something\n\t\t\tWhen something happens \n\t\t\tThen there is an error\n\t\t\t\n\t\t\tScenario: Another scnario\n\t\t\tGiven something\n\t\t\t\t1 + 1 => 2\n\t\t\tThen something else\n\t\t\t\t\"\"       \n\t\t\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", Should.<Object>should_contain(_generateDocWithErrors, "failed"));
+     + "\n     \'\'\'\n\t\t\tFeature: Example\n\t\t\t\n\t\t\tScenario: A failing Scenario\n\t\t\t\n\t\t\tGiven something\n\t\t\tWhen something happens \n\t\t\tThen there is an error\n\t\t\t\n\t\t\tScenario: Another scnario\n\t\t\tGiven something\n\t\t\t\t1 + 1 => 2\n\t\t\tThen something else\n\t\t\t\t\"\"       \n\t\t\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder).toString() + "\n", Should.<Object>should_contain(_generateDocWithErrors, "failed"));
     
   }
   
@@ -207,7 +202,7 @@ public class FeatureDocGeneratorSpec {
         _builder.append("\t");
         _builder.append("at org.jnario.doc.AbstractDocGenerator$2$1.apply(AbstractDocGenerator.java:88)");
         _builder.newLine();
-        String _string_1 = _builder.toString().toString();
+        String _string_1 = _builder.toString();
         SpecFailure _specFailure = new SpecFailure(_string, "Exception", _string_1);
         return Failed.failingSpec("org.jnario.Class", "This Feature", 0.3, _specFailure);
       }
@@ -219,24 +214,18 @@ public class FeatureDocGeneratorSpec {
     CharSequence _xblockexpression = null;
     {
       final Resource resource = this._modelStore.parseScenario(input);
-      Executable2ResultMapping _mappingWithFailures = this.mappingWithFailures();
-      this.subject.doGenerate(resource, this.fsa, _mappingWithFailures);
-      Map<String, CharSequence> _textFiles = this.fsa.getTextFiles();
-      Collection<CharSequence> _values = _textFiles.values();
-      _xblockexpression = JnarioIterableExtensions.<CharSequence>first(_values);
+      this.subject.doGenerate(resource, this.fsa, this.mappingWithFailures());
+      _xblockexpression = JnarioIterableExtensions.<CharSequence>first(this.fsa.getTextFiles().values());
     }
     return _xblockexpression;
   }
   
   public String generateDoc(@Extension final CharSequence input) {
     final Resource resource = this._modelStore.parseScenario(input);
-    EList<EObject> _contents = resource.getContents();
-    EObject _head = IterableExtensions.<EObject>head(_contents);
+    EObject _head = IterableExtensions.<EObject>head(resource.getContents());
     final FeatureFile featureFile = ((FeatureFile) _head);
-    EList<JnarioTypeDeclaration> _xtendTypes = featureFile.getXtendTypes();
-    JnarioTypeDeclaration _head_1 = IterableExtensions.<JnarioTypeDeclaration>head(_xtendTypes);
-    CharSequence _generateContent = this.subject.generateContent(((Feature) _head_1));
-    return _generateContent.toString();
+    JnarioTypeDeclaration _head_1 = IterableExtensions.<JnarioTypeDeclaration>head(featureFile.getXtendTypes());
+    return this.subject.generateContent(((Feature) _head_1)).toString();
   }
   
   public String convertNL(@Extension final String s) {

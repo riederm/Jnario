@@ -142,7 +142,6 @@ public class _20FactsAboutXtendFunctionalProgrammingFTWSpec extends _20FactsAbou
   @Named("Better loops")
   @Order(4)
   public void _betterLoops() throws Exception {
-    List<Integer> _list = JnarioCollectionLiterals.<Integer>list(Integer.valueOf(11), Integer.valueOf(17), Integer.valueOf(19));
     final Consumer<Integer> _function = new Consumer<Integer>() {
       @Override
       public void accept(final Integer it) {
@@ -151,7 +150,7 @@ public class _20FactsAboutXtendFunctionalProgrammingFTWSpec extends _20FactsAbou
         
       }
     };
-    _list.forEach(_function);
+    JnarioCollectionLiterals.<Integer>list(Integer.valueOf(11), Integer.valueOf(17), Integer.valueOf(19)).forEach(_function);
   }
   
   /**
@@ -162,11 +161,10 @@ public class _20FactsAboutXtendFunctionalProgrammingFTWSpec extends _20FactsAbou
   @Named("Filter iterables by type")
   @Order(5)
   public void _filterIterablesByType() throws Exception {
-    List<Object> _list = JnarioCollectionLiterals.<Object>list("a string", Integer.valueOf(42), Boolean.valueOf(true));
-    Iterable<String> _filter = Iterables.<String>filter(_list, String.class);
+    Iterable<String> _filter = Iterables.<String>filter(JnarioCollectionLiterals.<Object>list("a string", Integer.valueOf(42), Boolean.valueOf(true)), String.class);
     Assert.assertTrue("\nExpected list(\"a string\", 42, true).filter(typeof(String)) => #[\"a string\"] but"
      + "\n     list(\"a string\", 42, true).filter(typeof(String)) is " + new org.hamcrest.StringDescription().appendValue(_filter).toString()
-     + "\n     list(\"a string\", 42, true) is " + new org.hamcrest.StringDescription().appendValue(_list).toString()
+     + "\n     list(\"a string\", 42, true) is " + new org.hamcrest.StringDescription().appendValue(JnarioCollectionLiterals.<Object>list("a string", Integer.valueOf(42), Boolean.valueOf(true))).toString()
      + "\n     #[\"a string\"] is " + new org.hamcrest.StringDescription().appendValue(Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("a string"))).toString() + "\n", this.<String>operator_doubleArrow(_filter, Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("a string"))));
     
   }
@@ -179,19 +177,18 @@ public class _20FactsAboutXtendFunctionalProgrammingFTWSpec extends _20FactsAbou
   @Named("... or via a custom predicate")
   @Order(6)
   public void _orViaACustomPredicate() throws Exception {
-    List<String> _list = JnarioCollectionLiterals.<String>list("red", "blue", "green");
     final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
       @Override
       public Boolean apply(final String it) {
         return Boolean.valueOf(it.startsWith("b"));
       }
     };
-    Iterable<String> _filter = IterableExtensions.<String>filter(_list, _function);
-    List<String> _list_1 = JnarioCollectionLiterals.<String>list("blue");
+    Iterable<String> _filter = IterableExtensions.<String>filter(JnarioCollectionLiterals.<String>list("red", "blue", "green"), _function);
+    List<String> _list = JnarioCollectionLiterals.<String>list("blue");
     Assert.assertTrue("\nExpected list(\"red\", \"blue\", \"green\").filter[startsWith(\"b\")] => list(\"blue\") but"
      + "\n     list(\"red\", \"blue\", \"green\").filter[startsWith(\"b\")] is " + new org.hamcrest.StringDescription().appendValue(_filter).toString()
-     + "\n     list(\"red\", \"blue\", \"green\") is " + new org.hamcrest.StringDescription().appendValue(_list).toString()
-     + "\n     list(\"blue\") is " + new org.hamcrest.StringDescription().appendValue(_list_1).toString() + "\n", this.<String>operator_doubleArrow(_filter, _list_1));
+     + "\n     list(\"red\", \"blue\", \"green\") is " + new org.hamcrest.StringDescription().appendValue(JnarioCollectionLiterals.<String>list("red", "blue", "green")).toString()
+     + "\n     list(\"blue\") is " + new org.hamcrest.StringDescription().appendValue(_list).toString() + "\n", this.<String>operator_doubleArrow(_filter, _list));
     
   }
   
@@ -211,14 +208,13 @@ public class _20FactsAboutXtendFunctionalProgrammingFTWSpec extends _20FactsAbou
         return Integer.valueOf(s.length());
       }
     };
-    List<Integer> _map = ListExtensions.<String, Integer>map(strings, _function);
     final Function2<Integer, Integer, Integer> _function_1 = new Function2<Integer, Integer, Integer>() {
       @Override
       public Integer apply(final Integer sum, final Integer size) {
         return Integer.valueOf(((sum).intValue() + (size).intValue()));
       }
     };
-    final Integer charCount = IterableExtensions.<Integer>reduce(_map, _function_1);
+    final Integer charCount = IterableExtensions.<Integer>reduce(ListExtensions.<String, Integer>map(strings, _function), _function_1);
     Assert.assertTrue("\nExpected charCount => 12 but"
      + "\n     charCount is " + new org.hamcrest.StringDescription().appendValue(charCount).toString() + "\n", Should.<Integer>operator_doubleArrow(charCount, Integer.valueOf(12)));
     

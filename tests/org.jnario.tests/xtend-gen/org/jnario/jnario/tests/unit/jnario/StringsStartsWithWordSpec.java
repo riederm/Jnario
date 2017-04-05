@@ -119,14 +119,12 @@ public class StringsStartsWithWordSpec extends StringsSpec {
     final Procedure1<StringsStartsWithWordSpecExamples> _function = new Procedure1<StringsStartsWithWordSpecExamples>() {
       @Override
       public void apply(final StringsStartsWithWordSpecExamples it) {
-        String _string = it.getString();
-        String _word = it.getWord();
-        int _startsWithWord = Strings.startsWithWord(_string, _word);
+        int _startsWithWord = Strings.startsWithWord(it.getString(), it.getWord());
         int _index = it.getIndex();
         Assert.assertTrue("\nExpected string.startsWithWord(word) => index but"
          + "\n     string.startsWithWord(word) is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(_startsWithWord)).toString()
-         + "\n     string is " + new org.hamcrest.StringDescription().appendValue(_string).toString()
-         + "\n     word is " + new org.hamcrest.StringDescription().appendValue(_word).toString()
+         + "\n     string is " + new org.hamcrest.StringDescription().appendValue(it.getString()).toString()
+         + "\n     word is " + new org.hamcrest.StringDescription().appendValue(it.getWord()).toString()
          + "\n     index is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(_index)).toString() + "\n", Should.<Integer>operator_doubleArrow(Integer.valueOf(_startsWithWord), Integer.valueOf(_index)));
         
       }

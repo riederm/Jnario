@@ -9,7 +9,6 @@ package org.jnario.spec.tests.unit.naming;
 
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.jnario.ExampleTable;
-import org.jnario.jnario.test.util.Query;
 import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -43,8 +42,7 @@ public class ExampleNameProviderToFieldNameExampleTableSpec extends ExampleNameP
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    Query _parse = this.parse(_builder.toString());
-    final ExampleTable exampleTable = _parse.<ExampleTable>first(ExampleTable.class);
+    final ExampleTable exampleTable = this.parse(_builder).<ExampleTable>first(ExampleTable.class);
     String _fieldName = this.subject.toFieldName(exampleTable);
     Assert.assertTrue("\nExpected subject.toFieldName(exampleTable) => \"myExample\" but"
      + "\n     subject.toFieldName(exampleTable) is " + new org.hamcrest.StringDescription().appendValue(_fieldName).toString()
@@ -68,8 +66,7 @@ public class ExampleNameProviderToFieldNameExampleTableSpec extends ExampleNameP
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    Query _parse = this.parse(_builder.toString());
-    final ExampleTable exampleTable = _parse.<ExampleTable>first(ExampleTable.class);
+    final ExampleTable exampleTable = this.parse(_builder).<ExampleTable>first(ExampleTable.class);
     String _fieldName = this.subject.toFieldName(exampleTable);
     Assert.assertTrue("\nExpected subject.toFieldName(exampleTable) => \"examples\" but"
      + "\n     subject.toFieldName(exampleTable) is " + new org.hamcrest.StringDescription().appendValue(_fieldName).toString()

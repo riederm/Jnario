@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.jnario.xbase.richstring.richstring.ElseIfCondition;
 import org.jnario.xbase.richstring.richstring.IfConditionStart;
 import org.jnario.xbase.richstring.richstring.ProcessedRichStringPackage;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringElseIf;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +44,7 @@ public class ElseIfConditionImpl extends LinePartImpl implements ElseIfCondition
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject richStringElseIf;
+	protected RichStringElseIf richStringElseIf;
 
 	/**
 	 * The cached value of the '{@link #getIfConditionStart() <em>If Condition Start</em>}' reference.
@@ -79,10 +80,10 @@ public class ElseIfConditionImpl extends LinePartImpl implements ElseIfCondition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject getRichStringElseIf() {
+	public RichStringElseIf getRichStringElseIf() {
 		if (richStringElseIf != null && richStringElseIf.eIsProxy()) {
 			InternalEObject oldRichStringElseIf = (InternalEObject)richStringElseIf;
-			richStringElseIf = eResolveProxy(oldRichStringElseIf);
+			richStringElseIf = (RichStringElseIf)eResolveProxy(oldRichStringElseIf);
 			if (richStringElseIf != oldRichStringElseIf) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessedRichStringPackage.ELSE_IF_CONDITION__RICH_STRING_ELSE_IF, oldRichStringElseIf, richStringElseIf));
@@ -96,7 +97,7 @@ public class ElseIfConditionImpl extends LinePartImpl implements ElseIfCondition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject basicGetRichStringElseIf() {
+	public RichStringElseIf basicGetRichStringElseIf() {
 		return richStringElseIf;
 	}
 
@@ -105,8 +106,8 @@ public class ElseIfConditionImpl extends LinePartImpl implements ElseIfCondition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRichStringElseIf(EObject newRichStringElseIf) {
-		EObject oldRichStringElseIf = richStringElseIf;
+	public void setRichStringElseIf(RichStringElseIf newRichStringElseIf) {
+		RichStringElseIf oldRichStringElseIf = richStringElseIf;
 		richStringElseIf = newRichStringElseIf;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProcessedRichStringPackage.ELSE_IF_CONDITION__RICH_STRING_ELSE_IF, oldRichStringElseIf, richStringElseIf));
@@ -229,7 +230,7 @@ public class ElseIfConditionImpl extends LinePartImpl implements ElseIfCondition
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ProcessedRichStringPackage.ELSE_IF_CONDITION__RICH_STRING_ELSE_IF:
-				setRichStringElseIf((EObject)newValue);
+				setRichStringElseIf((RichStringElseIf)newValue);
 				return;
 			case ProcessedRichStringPackage.ELSE_IF_CONDITION__IF_CONDITION_START:
 				setIfConditionStart((IfConditionStart)newValue);
@@ -247,7 +248,7 @@ public class ElseIfConditionImpl extends LinePartImpl implements ElseIfCondition
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ProcessedRichStringPackage.ELSE_IF_CONDITION__RICH_STRING_ELSE_IF:
-				setRichStringElseIf((EObject)null);
+				setRichStringElseIf((RichStringElseIf)null);
 				return;
 			case ProcessedRichStringPackage.ELSE_IF_CONDITION__IF_CONDITION_START:
 				setIfConditionStart((IfConditionStart)null);

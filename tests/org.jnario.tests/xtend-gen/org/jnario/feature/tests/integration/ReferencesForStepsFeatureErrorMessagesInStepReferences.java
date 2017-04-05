@@ -41,8 +41,7 @@ public class ReferencesForStepsFeatureErrorMessagesInStepReferences extends Refe
   @Named("Given a feature")
   public void _givenAFeature() {
     final StepArguments args = new StepArguments("Feature: Error Messages in Step References\n \nScenario: Defines a failing step\n\tval aList = list(\"red\")\nGiven an extension\n\ttry{\n\t\taList should contain \"green\"\n\t}catch(AssertionError e){\n\t\tval expected = \n\'Expected aList should contain \"green\" but\n     aList is <[red]>\'\n\t\te.message should contain expected\n\t}\nScenario: Redefines failing step\nGiven an extension                      \n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

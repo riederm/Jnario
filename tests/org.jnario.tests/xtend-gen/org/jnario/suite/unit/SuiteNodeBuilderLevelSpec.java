@@ -15,7 +15,6 @@ import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
 import org.jnario.suite.jvmmodel.SuiteNodeBuilder;
-import org.jnario.suite.suite.Suite;
 import org.jnario.suite.unit.SuiteNodeBuilderSpec;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -72,7 +71,6 @@ public class SuiteNodeBuilderLevelSpec extends SuiteNodeBuilderSpec {
   }
   
   public int level(@Extension final String name) {
-    Suite _suite = this.suite(name);
-    return this.subject.level(_suite);
+    return this.subject.level(this.suite(name));
   }
 }

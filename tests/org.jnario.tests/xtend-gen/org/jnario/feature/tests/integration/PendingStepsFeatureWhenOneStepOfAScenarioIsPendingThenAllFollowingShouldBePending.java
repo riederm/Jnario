@@ -29,8 +29,7 @@ public class PendingStepsFeatureWhenOneStepOfAScenarioIsPendingThenAllFollowingS
   @Named("Given a scenario")
   public void _givenAScenario() {
     final StepArguments args = new StepArguments("Feature: With pending steps\n\tScenario: Scenario with pending steps\n\t\tGiven is implemented\n\t\t\tvar x = 3\n\t\tWhen is not implemented\n\t\tThen is also implemented\n\t\t\t3 => 3\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test
@@ -45,8 +44,6 @@ public class PendingStepsFeatureWhenOneStepOfAScenarioIsPendingThenAllFollowingS
   @Named("And the expected number of ignored steps is \\\"2\\\"")
   public void _andTheExpectedNumberOfIgnoredStepsIs2() {
     final StepArguments args = new StepArguments("2");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    int _int = StringConversions.toInt(_first);
-    FeatureExecutor.ignoreCountIs(this.jnarioFile, _int);
+    FeatureExecutor.ignoreCountIs(this.jnarioFile, StringConversions.toInt(JnarioIterableExtensions.<String>first(args)));
   }
 }

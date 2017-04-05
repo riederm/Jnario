@@ -83,6 +83,9 @@ import org.jnario.spec.spec.SpecFile;
 import org.jnario.spec.spec.SpecPackage;
 import org.jnario.xbase.richstring.serializer.XbaseWithRichstringSemanticSequencer;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichString;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringElseIf;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringForLoop;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringIf;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichStringLiteral;
 import org.jnario.xbase.richstring.xbasewithrichstring.XbaseWithRichstringPackage;
 
@@ -509,6 +512,15 @@ public class SpecSemanticSequencer extends XbaseWithRichstringSemanticSequencer 
 					return; 
 				}
 				else break;
+			case XbaseWithRichstringPackage.RICH_STRING_ELSE_IF:
+				sequence_RichStringElseIf(context, (RichStringElseIf) semanticObject); 
+				return; 
+			case XbaseWithRichstringPackage.RICH_STRING_FOR_LOOP:
+				sequence_RichStringForLoop(context, (RichStringForLoop) semanticObject); 
+				return; 
+			case XbaseWithRichstringPackage.RICH_STRING_IF:
+				sequence_RichStringIf(context, (RichStringIf) semanticObject); 
+				return; 
 			case XbaseWithRichstringPackage.RICH_STRING_LITERAL:
 				if (rule == grammarAccess.getRichStringLiteralEndRule()) {
 					sequence_RichStringLiteralEnd(context, (RichStringLiteral) semanticObject); 

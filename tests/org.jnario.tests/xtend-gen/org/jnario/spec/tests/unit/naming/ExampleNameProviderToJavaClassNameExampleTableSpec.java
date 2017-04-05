@@ -10,7 +10,6 @@ package org.jnario.spec.tests.unit.naming;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.ExampleTable;
-import org.jnario.jnario.test.util.Query;
 import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -44,10 +43,10 @@ public class ExampleNameProviderToJavaClassNameExampleTableSpec extends ExampleN
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    String _exampleTableClassName = this.exampleTableClassName(_builder.toString());
+    String _exampleTableClassName = this.exampleTableClassName(_builder);
     Assert.assertTrue("\nExpected exampleTableClassName(\'\'\'\r\n        describe \'My Context\'{\r\n          def MyExample{\r\n          }\r\n        }\r\n        \'\'\') => \"MyContextSpecMyExample\" but"
      + "\n     exampleTableClassName(\'\'\'\r\n        describe \'My Context\'{\r\n          def MyExample{\r\n          }\r\n        }\r\n        \'\'\') is " + new org.hamcrest.StringDescription().appendValue(_exampleTableClassName).toString()
-     + "\n     \'\'\'\r\n        describe \'My Context\'{\r\n          def MyExample{\r\n          }\r\n        }\r\n        \'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", Should.<String>operator_doubleArrow(_exampleTableClassName, "MyContextSpecMyExample"));
+     + "\n     \'\'\'\r\n        describe \'My Context\'{\r\n          def MyExample{\r\n          }\r\n        }\r\n        \'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder).toString() + "\n", Should.<String>operator_doubleArrow(_exampleTableClassName, "MyContextSpecMyExample"));
     
   }
   
@@ -66,18 +65,17 @@ public class ExampleNameProviderToJavaClassNameExampleTableSpec extends ExampleN
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    String _exampleTableClassName = this.exampleTableClassName(_builder.toString());
+    String _exampleTableClassName = this.exampleTableClassName(_builder);
     Assert.assertTrue("\nExpected exampleTableClassName(\'\'\'\r\n        describe \'My Context\'{\r\n          def myExample{\r\n          } \r\n        }\r\n        \'\'\') => \"MyContextSpecMyExample\" but"
      + "\n     exampleTableClassName(\'\'\'\r\n        describe \'My Context\'{\r\n          def myExample{\r\n          } \r\n        }\r\n        \'\'\') is " + new org.hamcrest.StringDescription().appendValue(_exampleTableClassName).toString()
-     + "\n     \'\'\'\r\n        describe \'My Context\'{\r\n          def myExample{\r\n          } \r\n        }\r\n        \'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", Should.<String>operator_doubleArrow(_exampleTableClassName, "MyContextSpecMyExample"));
+     + "\n     \'\'\'\r\n        describe \'My Context\'{\r\n          def myExample{\r\n          } \r\n        }\r\n        \'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder).toString() + "\n", Should.<String>operator_doubleArrow(_exampleTableClassName, "MyContextSpecMyExample"));
     
   }
   
   public String exampleTableClassName(@Extension final CharSequence s) {
     String _xblockexpression = null;
     {
-      Query _parse = this.parse(s);
-      final ExampleTable exampleTable = _parse.<ExampleTable>first(ExampleTable.class);
+      final ExampleTable exampleTable = this.parse(s).<ExampleTable>first(ExampleTable.class);
       _xblockexpression = this.subject.toJavaClassName(exampleTable);
     }
     return _xblockexpression;

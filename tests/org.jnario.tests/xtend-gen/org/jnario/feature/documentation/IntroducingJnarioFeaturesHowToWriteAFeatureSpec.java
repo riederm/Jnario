@@ -148,7 +148,7 @@ public class IntroducingJnarioFeaturesHowToWriteAFeatureSpec extends Introducing
     _builder.append("    ");
     _builder.append("result => args.first.toInt");
     _builder.newLine();
-    FeatureExecutor.isSuccessful(_builder.toString());
+    FeatureExecutor.isSuccessful(_builder);
   }
   
   /**
@@ -216,7 +216,7 @@ public class IntroducingJnarioFeaturesHowToWriteAFeatureSpec extends Introducing
     _builder.append(" ");
     _builder.append("Then it prints \"7\"");
     _builder.newLine();
-    FeatureExecutor.isSuccessful(_builder.toString());
+    FeatureExecutor.isSuccessful(_builder);
   }
   
   /**
@@ -287,6 +287,6 @@ public class IntroducingJnarioFeaturesHowToWriteAFeatureSpec extends Introducing
     _builder.append(" ");
     _builder.append("Then it prints \"2\"");
     _builder.newLine();
-    FeatureExecutor.isSuccessful(_builder.toString());
+    FeatureExecutor.isSuccessful(_builder);
   }
 }

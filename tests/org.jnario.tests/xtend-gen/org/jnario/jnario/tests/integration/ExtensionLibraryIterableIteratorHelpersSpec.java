@@ -7,7 +7,6 @@
  */
 package org.jnario.jnario.tests.integration;
 
-import java.util.Iterator;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
@@ -107,76 +106,67 @@ public class ExtensionLibraryIterableIteratorHelpersSpec extends ExtensionLibrar
   @Order(2)
   public void _iterators() throws Exception {
     final List<Integer> values = JnarioCollectionLiterals.<Integer>list(Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3), Integer.valueOf(4), Integer.valueOf(5));
-    Iterator<Integer> _iterator = values.iterator();
-    Integer _first = JnarioIteratorExtensions.<Integer>first(_iterator);
+    Integer _first = JnarioIteratorExtensions.<Integer>first(values.iterator());
     boolean _doubleArrow = Should.<Integer>operator_doubleArrow(_first, Integer.valueOf(1));
     Assert.assertTrue("\nExpected values.iterator.first  => 1 but"
      + "\n     values.iterator.first is " + new org.hamcrest.StringDescription().appendValue(_first).toString()
-     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(_iterator).toString()
+     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(values.iterator()).toString()
      + "\n     values is " + new org.hamcrest.StringDescription().appendValue(values).toString() + "\n", _doubleArrow);
     
-    Iterator<Integer> _iterator_1 = values.iterator();
-    Integer _last = IteratorExtensions.<Integer>last(_iterator_1);
+    Integer _last = IteratorExtensions.<Integer>last(values.iterator());
     boolean _doubleArrow_1 = Should.<Integer>operator_doubleArrow(_last, Integer.valueOf(5));
     Assert.assertTrue("\nExpected values.iterator.last   => 5 but"
      + "\n     values.iterator.last is " + new org.hamcrest.StringDescription().appendValue(_last).toString()
-     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(_iterator_1).toString()
+     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(values.iterator()).toString()
      + "\n     values is " + new org.hamcrest.StringDescription().appendValue(values).toString() + "\n", _doubleArrow_1);
     
-    Iterator<Integer> _iterator_2 = values.iterator();
-    Integer _get = JnarioIteratorExtensions.<Integer>get(_iterator_2, 3);
+    Integer _get = JnarioIteratorExtensions.<Integer>get(values.iterator(), 3);
     boolean _doubleArrow_2 = Should.<Integer>operator_doubleArrow(_get, Integer.valueOf(4));
     Assert.assertTrue("\nExpected values.iterator.get(3) => 4 but"
      + "\n     values.iterator.get(3) is " + new org.hamcrest.StringDescription().appendValue(_get).toString()
-     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(_iterator_2).toString()
+     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(values.iterator()).toString()
      + "\n     values is " + new org.hamcrest.StringDescription().appendValue(values).toString() + "\n", _doubleArrow_2);
     
-    Iterator<Integer> _iterator_3 = values.iterator();
-    Integer _second = JnarioIteratorExtensions.<Integer>second(_iterator_3);
+    Integer _second = JnarioIteratorExtensions.<Integer>second(values.iterator());
     boolean _doubleArrow_3 = Should.<Integer>operator_doubleArrow(_second, Integer.valueOf(2));
     Assert.assertTrue("\nExpected values.iterator.second => 2 but"
      + "\n     values.iterator.second is " + new org.hamcrest.StringDescription().appendValue(_second).toString()
-     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(_iterator_3).toString()
+     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(values.iterator()).toString()
      + "\n     values is " + new org.hamcrest.StringDescription().appendValue(values).toString() + "\n", _doubleArrow_3);
     
-    Iterator<Integer> _iterator_4 = values.iterator();
-    Integer _third = JnarioIteratorExtensions.<Integer>third(_iterator_4);
+    Integer _third = JnarioIteratorExtensions.<Integer>third(values.iterator());
     boolean _doubleArrow_4 = Should.<Integer>operator_doubleArrow(_third, Integer.valueOf(3));
     Assert.assertTrue("\nExpected values.iterator.third  => 3 but"
      + "\n     values.iterator.third is " + new org.hamcrest.StringDescription().appendValue(_third).toString()
-     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(_iterator_4).toString()
+     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(values.iterator()).toString()
      + "\n     values is " + new org.hamcrest.StringDescription().appendValue(values).toString() + "\n", _doubleArrow_4);
     
-    Iterator<Integer> _iterator_5 = values.iterator();
-    Integer _forth = JnarioIteratorExtensions.<Integer>forth(_iterator_5);
+    Integer _forth = JnarioIteratorExtensions.<Integer>forth(values.iterator());
     boolean _doubleArrow_5 = Should.<Integer>operator_doubleArrow(_forth, Integer.valueOf(4));
     Assert.assertTrue("\nExpected values.iterator.forth  => 4 but"
      + "\n     values.iterator.forth is " + new org.hamcrest.StringDescription().appendValue(_forth).toString()
-     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(_iterator_5).toString()
+     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(values.iterator()).toString()
      + "\n     values is " + new org.hamcrest.StringDescription().appendValue(values).toString() + "\n", _doubleArrow_5);
     
-    Iterator<Integer> _iterator_6 = values.iterator();
-    Integer _fifth = JnarioIteratorExtensions.<Integer>fifth(_iterator_6);
+    Integer _fifth = JnarioIteratorExtensions.<Integer>fifth(values.iterator());
     boolean _doubleArrow_6 = Should.<Integer>operator_doubleArrow(_fifth, Integer.valueOf(5));
     Assert.assertTrue("\nExpected values.iterator.fifth  => 5 but"
      + "\n     values.iterator.fifth is " + new org.hamcrest.StringDescription().appendValue(_fifth).toString()
-     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(_iterator_6).toString()
+     + "\n     values.iterator is " + new org.hamcrest.StringDescription().appendValue(values.iterator()).toString()
      + "\n     values is " + new org.hamcrest.StringDescription().appendValue(values).toString() + "\n", _doubleArrow_6);
     
     final List<Object> objects = JnarioCollectionLiterals.<Object>list(Integer.valueOf(1), "string", Boolean.valueOf(true), "other string");
-    Iterator<Object> _iterator_7 = objects.iterator();
-    String _first_1 = JnarioIteratorExtensions.<String>first(_iterator_7, String.class);
+    String _first_1 = JnarioIteratorExtensions.<String>first(objects.iterator(), String.class);
     boolean _doubleArrow_7 = Should.<String>operator_doubleArrow(_first_1, "string");
     Assert.assertTrue("\nExpected objects.iterator.first(typeof(String))  => \"string\" but"
      + "\n     objects.iterator.first(typeof(String)) is " + new org.hamcrest.StringDescription().appendValue(_first_1).toString()
-     + "\n     objects.iterator is " + new org.hamcrest.StringDescription().appendValue(_iterator_7).toString()
+     + "\n     objects.iterator is " + new org.hamcrest.StringDescription().appendValue(objects.iterator()).toString()
      + "\n     objects is " + new org.hamcrest.StringDescription().appendValue(objects).toString() + "\n", _doubleArrow_7);
     
-    Iterator<Object> _iterator_8 = objects.iterator();
-    String _second_1 = JnarioIteratorExtensions.<String>second(_iterator_8, String.class);
+    String _second_1 = JnarioIteratorExtensions.<String>second(objects.iterator(), String.class);
     Assert.assertTrue("\nExpected objects.iterator.second(typeof(String)) => \"other string\" but"
      + "\n     objects.iterator.second(typeof(String)) is " + new org.hamcrest.StringDescription().appendValue(_second_1).toString()
-     + "\n     objects.iterator is " + new org.hamcrest.StringDescription().appendValue(_iterator_8).toString()
+     + "\n     objects.iterator is " + new org.hamcrest.StringDescription().appendValue(objects.iterator()).toString()
      + "\n     objects is " + new org.hamcrest.StringDescription().appendValue(objects).toString() + "\n", Should.<String>operator_doubleArrow(_second_1, "other string"));
     
   }

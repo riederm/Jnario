@@ -1,8 +1,5 @@
 package org.jnario.xbase.richstring;
 
-import static org.eclipse.xtext.util.Strings.convertToJavaString;
-
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,6 +8,7 @@ import javax.inject.Provider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtend2.lib.StringConcatenationClient;
+import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.generator.trace.LocationData;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.util.ITextRegionWithLineInformation;
@@ -24,6 +22,8 @@ import org.jnario.xbase.richstring.util.AbstractRichStringPartAcceptor;
 import org.jnario.xbase.richstring.util.IRichStringIndentationHandler;
 import org.jnario.xbase.richstring.util.RichStringProcessor;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichString;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringForLoop;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringIf;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichStringLiteral;
 
 import com.google.common.collect.Lists;
@@ -53,7 +53,6 @@ public class XbaseWithRichstringCompiler extends XbaseCompiler {
 		}
 	}
 
-	
 	@Override
 	public void doInternalToJavaStatement(XExpression obj, ITreeAppendable appendable, boolean isReferenced) {
 		if (obj instanceof RichString) {
@@ -70,22 +69,6 @@ public class XbaseWithRichstringCompiler extends XbaseCompiler {
 	}
 
 	protected void _toJavaStatement(RichString richString, ITreeAppendable b, boolean isReferenced) {
-//		b = b.trace(richString);
-//		// declare variable
-//		String variableName = b.declareSyntheticVariable(richString, "_builder");
-//		b.newLine();
-//		b.append(StringConcatenation.class);
-//		b.append(" ");
-//		b.append(variableName);
-//		b.append(" = new ");
-//		b.append(StringConcatenation.class);
-//		b.append("();");
-//		// Print each expression
-//		b.newLine();
-//
-//		RichStringPrepareCompiler compiler = new RichStringPrepareCompiler(b, variableName, richString);
-//		richStringProcessor.process(richString, compiler, indentationHandler.get());
-//		
 		LightweightTypeReference actualType = getLightweightType(richString);
 		b = b.trace(richString);
 		if (actualType.isType(StringConcatenationClient.class)) {
@@ -129,15 +112,15 @@ public class XbaseWithRichstringCompiler extends XbaseCompiler {
 	public class RichStringPrepareCompiler extends AbstractRichStringPartAcceptor.ForLoopOnce {
 
 		private final LinkedList<ITreeAppendable> appendableStack;
-		// private final LinkedList<RichStringIf> ifStack;
-		// private final LinkedList<RichStringForLoop> forStack;
+		private final LinkedList<RichStringIf> ifStack;
+		private final LinkedList<RichStringForLoop> forStack;
 		private final String variableName;
 		private ITreeAppendable appendable;
 		private ITreeAppendable currentAppendable;
 
 		public RichStringPrepareCompiler(ITreeAppendable appendable, String variableName, RichString richString) {
-			// this.ifStack = Lists.newLinkedList();
-			// this.forStack = Lists.newLinkedList();
+			this.ifStack = Lists.newLinkedList();
+			this.forStack = Lists.newLinkedList();
 			this.appendableStack = Lists.newLinkedList();
 			this.appendable = appendable;
 			this.variableName = variableName;
@@ -183,15 +166,15 @@ public class XbaseWithRichstringCompiler extends XbaseCompiler {
 			currentAppendable.append("\");");
 		}
 
-		// @Override
-		// public void acceptIfCondition(XExpression condition) {
-		// currentAppendable = null;
-		// ifStack.add((RichStringIf) condition.eContainer());
-		// appendable.newLine();
-		// pushAppendable(condition.eContainer());
-		// appendable.append("{").increaseIndentation();
-		// writeIf(condition);
-		// }
+		@Override
+		public void acceptIfCondition(XExpression condition) {
+			currentAppendable = null;
+			ifStack.add((RichStringIf) condition.eContainer());
+			appendable.newLine();
+			pushAppendable(condition.eContainer());
+			appendable.append("{").increaseIndentation();
+			writeIf(condition);
+		}
 
 		protected void pushAppendable(EObject traceInfo) {
 			appendableStack.add(appendable);
@@ -232,125 +215,124 @@ public class XbaseWithRichstringCompiler extends XbaseCompiler {
 			writeElse();
 		}
 
-		// @Override
-		// public void acceptEndIf() {
-		// currentAppendable = null;
-		// RichStringIf richStringIf = ifStack.removeLast();
-		// for (int i = 0; i < richStringIf.getElseIfs().size() + 2; i++) {
-		// appendable.decreaseIndentation();
-		// appendable.newLine();
-		// appendable.append("}");
-		// }
-		// popAppendable();
-		// }
-		//
-		// @Override
-		// public void acceptForLoop(JvmFormalParameter parameter, /* @Nullable
-		// */ XExpression expression) {
-		// currentAppendable = null;
-		// super.acceptForLoop(parameter, expression);
-		// if (expression == null)
-		// throw new IllegalArgumentException("expression may not be null");
-		// RichStringForLoop forLoop = (RichStringForLoop)
-		// expression.eContainer();
-		// forStack.add(forLoop);
-		// appendable.newLine();
-		// pushAppendable(forLoop);
-		// appendable.append("{").increaseIndentation();
-		//
-		// ITreeAppendable debugAppendable = appendable.trace(forLoop, true);
-		// internalToJavaStatement(expression, debugAppendable, true);
-		// String variableName = null;
-		// if (forLoop.getBefore() != null || forLoop.getSeparator() != null ||
-		// forLoop.getAfter() != null) {
-		// variableName = debugAppendable.declareSyntheticVariable(forLoop,
-		// "_hasElements");
-		// debugAppendable.newLine();
-		// debugAppendable.append("boolean ");
-		// debugAppendable.append(variableName);
-		// debugAppendable.append(" = false;");
-		// }
-		// debugAppendable.newLine();
-		// debugAppendable.append("for(final ");
-		// // TODO tracing if parameter was explicitly declared
-		// LightweightTypeReference paramType = getLightweightType(parameter);
-		// if (paramType != null) {
-		// debugAppendable.append(paramType);
-		// } else {
-		// debugAppendable.append("Object");
-		// }
-		// debugAppendable.append(" ");
-		// String loopParam = debugAppendable.declareVariable(parameter,
-		// parameter.getName());
-		// debugAppendable.append(loopParam);
-		// debugAppendable.append(" : ");
-		// internalToJavaExpression(expression, debugAppendable);
-		// debugAppendable.append(") {").increaseIndentation();
-		// }
-		//
-		// @Override
-		// public boolean forLoopHasNext(/* @Nullable */ XExpression before, /*
-		// @Nullable */ XExpression separator, CharSequence indentation) {
-		// currentAppendable = null;
-		// if (!super.forLoopHasNext(before, separator, indentation))
-		// return false;
-		// RichStringForLoop forLoop = forStack.getLast();
-		// if (appendable.hasName(forLoop)) {
-		// String varName = getVarName(forLoop, appendable);
-		// appendable.newLine();
-		// appendable.append("if (!");
-		// appendable.append(varName);
-		// appendable.append(") {");
-		// appendable.increaseIndentation();
-		// appendable.newLine();
-		// appendable.append(varName);
-		// appendable.append(" = true;");
-		// if (before != null) {
-		// writeExpression(before, indentation, false);
-		// }
-		// appendable.decreaseIndentation();
-		// appendable.newLine();
-		// appendable.append("}");
-		// if (separator != null) {
-		// appendable.append(" else {");
-		// appendable.increaseIndentation();
-		// writeExpression(separator, indentation, true);
-		// appendable.decreaseIndentation();
-		// appendable.newLine();
-		// appendable.append("}");
-		// }
-		// }
-		// return true;
-		// }
-		//
-		// @Override
-		// public void acceptEndFor(/* @Nullable */ XExpression after,
-		// CharSequence indentation) {
-		// currentAppendable = null;
-		// super.acceptEndFor(after, indentation);
-		// appendable.decreaseIndentation();
-		// appendable.newLine();
-		// appendable.append("}");
-		//
-		// RichStringForLoop forLoop = forStack.removeLast();
-		// if (after != null) {
-		// String varName = getVarName(forLoop, appendable);
-		// appendable.newLine();
-		// appendable.append("if (");
-		// appendable.append(varName);
-		// appendable.append(") {");
-		// appendable.increaseIndentation();
-		// writeExpression(after, indentation, false);
-		// appendable.decreaseIndentation();
-		// appendable.newLine();
-		// appendable.append("}");
-		// }
-		//
-		// appendable.decreaseIndentation();
-		// appendable.newLine();
-		// appendable.append("}");
-		// popAppendable();
-		// }
+		@Override
+		public void acceptEndIf() {
+			currentAppendable = null;
+			RichStringIf richStringIf = ifStack.removeLast();
+			for (int i = 0; i < richStringIf.getElseIfs().size() + 2; i++) {
+				appendable.decreaseIndentation();
+				appendable.newLine();
+				appendable.append("}");
+			}
+			popAppendable();
+		}
+		
+
+		@Override
+		public void acceptForLoop(JvmFormalParameter parameter, /*
+																 * @Nullable
+																 */ XExpression expression) {
+			currentAppendable = null;
+			super.acceptForLoop(parameter, expression);
+			if (expression == null)
+				throw new IllegalArgumentException("expression may not be null");
+			RichStringForLoop forLoop = (RichStringForLoop) expression.eContainer();
+			forStack.add(forLoop);
+			appendable.newLine();
+			pushAppendable(forLoop);
+			appendable.append("{").increaseIndentation();
+
+			ITreeAppendable debugAppendable = appendable.trace(forLoop, true);
+			internalToJavaStatement(expression, debugAppendable, true);
+			String variableName = null;
+			if (forLoop.getBefore() != null || forLoop.getSeparator() != null || forLoop.getAfter() != null) {
+				variableName = debugAppendable.declareSyntheticVariable(forLoop, "_hasElements");
+				debugAppendable.newLine();
+				debugAppendable.append("boolean ");
+				debugAppendable.append(variableName);
+				debugAppendable.append(" = false;");
+			}
+			debugAppendable.newLine();
+			debugAppendable.append("for(final ");
+			// TODO tracing if parameter was explicitly declared
+			LightweightTypeReference paramType = getLightweightType(parameter);
+			if (paramType != null) {
+				debugAppendable.append(paramType);
+			} else {
+				debugAppendable.append("Object");
+			}
+			debugAppendable.append(" ");
+			String loopParam = debugAppendable.declareVariable(parameter, parameter.getName());
+			debugAppendable.append(loopParam);
+			debugAppendable.append(" : ");
+			internalToJavaExpression(expression, debugAppendable);
+			debugAppendable.append(") {").increaseIndentation();
+		}
+
+		@Override
+		public boolean forLoopHasNext(/* @Nullable */ XExpression before, /*
+																			 * @Nullable
+																			 */ XExpression separator,
+				CharSequence indentation) {
+			currentAppendable = null;
+			if (!super.forLoopHasNext(before, separator, indentation))
+				return false;
+			RichStringForLoop forLoop = forStack.getLast();
+			if (appendable.hasName(forLoop)) {
+				String varName = getVarName(forLoop, appendable);
+				appendable.newLine();
+				appendable.append("if (!");
+				appendable.append(varName);
+				appendable.append(") {");
+				appendable.increaseIndentation();
+				appendable.newLine();
+				appendable.append(varName);
+				appendable.append(" = true;");
+				if (before != null) {
+					writeExpression(before, indentation, false);
+				}
+				appendable.decreaseIndentation();
+				appendable.newLine();
+				appendable.append("}");
+				if (separator != null) {
+					appendable.append(" else {");
+					appendable.increaseIndentation();
+					writeExpression(separator, indentation, true);
+					appendable.decreaseIndentation();
+					appendable.newLine();
+					appendable.append("}");
+				}
+			}
+			return true;
+		}
+
+		@Override
+		public void acceptEndFor(/* @Nullable */ XExpression after, CharSequence indentation) {
+			currentAppendable = null;
+			super.acceptEndFor(after, indentation);
+			appendable.decreaseIndentation();
+			appendable.newLine();
+			appendable.append("}");
+
+			RichStringForLoop forLoop = forStack.removeLast();
+			if (after != null) {
+				String varName = getVarName(forLoop, appendable);
+				appendable.newLine();
+				appendable.append("if (");
+				appendable.append(varName);
+				appendable.append(") {");
+				appendable.increaseIndentation();
+				writeExpression(after, indentation, false);
+				appendable.decreaseIndentation();
+				appendable.newLine();
+				appendable.append("}");
+			}
+
+			appendable.decreaseIndentation();
+			appendable.newLine();
+			appendable.append("}");
+			popAppendable();
+		}
 
 		@Override
 		public void acceptExpression(XExpression expression, CharSequence indentation) {
@@ -377,10 +359,10 @@ public class XbaseWithRichstringCompiler extends XbaseCompiler {
 		}
 
 	}
-	
+
 	@Override
 	protected XExpression normalizeBlockExpression(XExpression expr) {
-		if (expr instanceof RichString)	//RichStrings MUST not be normalized!!
+		if (expr instanceof RichString) // RichStrings MUST not be normalized!!
 			return expr;
 		return super.normalizeBlockExpression(expr);
 	}

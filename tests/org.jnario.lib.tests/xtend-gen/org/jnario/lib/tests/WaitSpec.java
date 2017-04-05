@@ -17,8 +17,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.stubbing.OngoingStubbing;
-import org.mockito.verification.VerificationMode;
 
 @CreateWith(MockInjector.class)
 @Named("Wait")
@@ -46,13 +44,9 @@ public class WaitSpec {
   @Named("waits until condition is true")
   @Order(1)
   public void _waitsUntilConditionIsTrue() throws Exception {
-    Boolean _apply = this.condition.apply();
-    OngoingStubbing<Boolean> _when = Mockito.<Boolean>when(_apply);
-    _when.thenReturn(Boolean.valueOf(false), Boolean.valueOf(false), Boolean.valueOf(true));
+    Mockito.<Boolean>when(this.condition.apply()).thenReturn(Boolean.valueOf(false), Boolean.valueOf(false), Boolean.valueOf(true));
     this.waitFor(this.condition);
-    VerificationMode _times = Mockito.times(3);
-    Function0<Boolean> _verify = Mockito.<Function0<Boolean>>verify(this.condition, _times);
-    _verify.apply();
+    Mockito.<Function0<Boolean>>verify(this.condition, Mockito.times(3)).apply();
   }
   
   @Test
@@ -60,13 +54,9 @@ public class WaitSpec {
   @Order(2)
   public void _triesEverySpecifiedPollingFrequency() throws Exception {
     this.subject.setPollingInterval(10l);
-    Boolean _apply = this.condition.apply();
-    OngoingStubbing<Boolean> _when = Mockito.<Boolean>when(_apply);
-    _when.thenReturn(Boolean.valueOf(false), Boolean.valueOf(false), Boolean.valueOf(true));
+    Mockito.<Boolean>when(this.condition.apply()).thenReturn(Boolean.valueOf(false), Boolean.valueOf(false), Boolean.valueOf(true));
     this.waitFor(this.condition);
-    VerificationMode _times = Mockito.times(2);
-    Sleeper _verify = Mockito.<Sleeper>verify(this.sleeper, _times);
-    _verify.sleep(10l);
+    Mockito.<Sleeper>verify(this.sleeper, Mockito.times(2)).sleep(10l);
   }
   
   @Test
@@ -74,12 +64,8 @@ public class WaitSpec {
   @Order(3)
   public void _throwsTimeoutErrorAfterSpecifiedTime() throws Exception {
     this.subject.setDuration(100l);
-    Boolean _apply = this.condition.apply();
-    OngoingStubbing<Boolean> _when = Mockito.<Boolean>when(_apply);
-    _when.thenReturn(Boolean.valueOf(false));
-    long _currentTime = this.clock.currentTime();
-    OngoingStubbing<Long> _when_1 = Mockito.<Long>when(Long.valueOf(_currentTime));
-    _when_1.thenReturn(Long.valueOf(0l), Long.valueOf(50l), Long.valueOf(100l), Long.valueOf(150l));
+    Mockito.<Boolean>when(this.condition.apply()).thenReturn(Boolean.valueOf(false));
+    Mockito.<Long>when(Long.valueOf(this.clock.currentTime())).thenReturn(Long.valueOf(0l), Long.valueOf(50l), Long.valueOf(100l), Long.valueOf(150l));
     boolean expectedException = false;
     String message = "";
     try{

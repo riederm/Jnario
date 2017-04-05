@@ -8,6 +8,7 @@
 package org.jnario.xbase.richstring.richstring;
 
 import org.eclipse.emf.ecore.EObject;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringForLoop;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,12 +37,12 @@ public interface ForLoopStart extends LinePart {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Loop</em>' reference.
-	 * @see #setLoop(EObject)
+	 * @see #setLoop(RichStringForLoop)
 	 * @see org.jnario.xbase.richstring.richstring.ProcessedRichStringPackage#getForLoopStart_Loop()
 	 * @model
 	 * @generated
 	 */
-	EObject getLoop();
+	RichStringForLoop getLoop();
 
 	/**
 	 * Sets the value of the '{@link org.jnario.xbase.richstring.richstring.ForLoopStart#getLoop <em>Loop</em>}' reference.
@@ -51,7 +52,7 @@ public interface ForLoopStart extends LinePart {
 	 * @see #getLoop()
 	 * @generated
 	 */
-	void setLoop(EObject value);
+	void setLoop(RichStringForLoop value);
 
 	/**
 	 * Returns the value of the '<em><b>End</b></em>' reference.

@@ -65,15 +65,14 @@ public class StepNameProviderRemoveArgumentsSpec extends StepNameProviderSpec {
         String _step = it.getStep();
         String _plus = (_builder.toString() + _step);
         StringConcatenation _builder_1 = new StringConcatenation();
-        String _plus_1 = (_plus + _builder_1.toString());
+        String _plus_1 = (_plus + _builder_1);
         StepNameProviderRemoveArgumentsSpec.this.parseScenario(_plus_1);
-        String _step_1 = it.getStep();
-        String _removeArguments = StepNameProviderRemoveArgumentsSpec.this.subject.removeArguments(_step_1);
+        String _removeArguments = StepNameProviderRemoveArgumentsSpec.this.subject.removeArguments(it.getStep());
         String _result = it.getResult();
         Assert.assertTrue("\nExpected subject.removeArguments(step) => result but"
          + "\n     subject.removeArguments(step) is " + new org.hamcrest.StringDescription().appendValue(_removeArguments).toString()
          + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(StepNameProviderRemoveArgumentsSpec.this.subject).toString()
-         + "\n     step is " + new org.hamcrest.StringDescription().appendValue(_step_1).toString()
+         + "\n     step is " + new org.hamcrest.StringDescription().appendValue(it.getStep()).toString()
          + "\n     result is " + new org.hamcrest.StringDescription().appendValue(_result).toString() + "\n", Should.<String>operator_doubleArrow(_removeArguments, _result));
         
       }

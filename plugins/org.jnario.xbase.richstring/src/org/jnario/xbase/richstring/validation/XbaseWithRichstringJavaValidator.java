@@ -6,19 +6,24 @@ package org.jnario.xbase.richstring.validation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.XExpression;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichString;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringForLoop;
 
 /**
- * This class contains custom validation rules. 
+ * This class contains custom validation rules.
  *
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
+ * See
+ * https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
-public class XbaseWithRichstringJavaValidator extends org.jnario.xbase.richstring.validation.AbstractXbaseWithRichstringJavaValidator {
+public class XbaseWithRichstringJavaValidator
+		extends org.jnario.xbase.richstring.validation.AbstractXbaseWithRichstringJavaValidator {
 
 	protected boolean isValueExpectedRecursive(XExpression expr) {
 		EObject container = expr.eContainer();
-		if (container instanceof RichString) {
+		if (container instanceof RichString 
+				|| container instanceof RichStringForLoop) {
 			return true;
 		}
 		return super.isValueExpectedRecursive(expr);
 	}
+
 }

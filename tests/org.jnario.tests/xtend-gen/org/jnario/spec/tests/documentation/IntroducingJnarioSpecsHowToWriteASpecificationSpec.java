@@ -119,7 +119,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -186,7 +186,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -236,7 +236,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -297,7 +297,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -383,7 +383,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -461,7 +461,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -569,7 +569,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
     _builder.newLine();
     _builder.append("} ");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -652,7 +652,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
     _builder.newLine();
     _builder.append("}  ");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -714,7 +714,7 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    _builder.toString().toString();
+    _builder.toString();
   }
   
   /**
@@ -781,6 +781,6 @@ public class IntroducingJnarioSpecsHowToWriteASpecificationSpec extends Introduc
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
 }

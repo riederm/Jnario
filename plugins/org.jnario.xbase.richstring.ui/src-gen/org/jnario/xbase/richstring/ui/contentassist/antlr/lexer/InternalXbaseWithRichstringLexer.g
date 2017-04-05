@@ -20,6 +20,8 @@ Synchronized : 'synchronized';
 
 Instanceof : 'instanceof';
 
+SEPARATOR : 'SEPARATOR';
+
 Extension : 'extension';
 
 Default : 'default';
@@ -27,6 +29,12 @@ Default : 'default';
 Extends : 'extends';
 
 Finally : 'finally';
+
+BEFORE : 'BEFORE';
+
+ELSEIF : 'ELSEIF';
+
+ENDFOR : 'ENDFOR';
 
 Import : 'import';
 
@@ -38,6 +46,10 @@ Switch : 'switch';
 
 Typeof : 'typeof';
 
+AFTER : 'AFTER';
+
+ENDIF : 'ENDIF';
+
 Catch : 'catch';
 
 False : 'false';
@@ -47,6 +59,8 @@ Super : 'super';
 Throw : 'throw';
 
 While : 'while';
+
+ELSE : 'ELSE';
 
 Case : 'case';
 
@@ -61,6 +75,8 @@ ExclamationMarkEqualsSignEqualsSign : '!==';
 FullStopFullStopLessThanSign : '..<';
 
 EqualsSignEqualsSignEqualsSign : '===';
+
+FOR : 'FOR';
 
 For : 'for';
 
@@ -109,6 +125,8 @@ GreaterThanSignEqualsSign : '>=';
 QuestionMarkFullStop : '?.';
 
 QuestionMarkColon : '?:';
+
+IF : 'IF';
 
 As : 'as';
 
@@ -170,13 +188,13 @@ RightCurlyBracket : '}';
 
 RULE_RICH_TEXT : '\'\'\'' RULE_IN_RICH_STRING* ('\'\'\''|('\'' '\''?)? EOF);
 
-RULE_RICH_TEXT_START : '\'\'\'' RULE_IN_RICH_STRING* ('\'' '\''?)? '\u00AB';
+RULE_RICH_TEXT_START : '\'\'\'' RULE_IN_RICH_STRING* ('\'' '\''?)? '\uFFFD';
 
-RULE_RICH_TEXT_END : '\u00BB' RULE_IN_RICH_STRING* ('\'\'\''|('\'' '\''?)? EOF);
+RULE_RICH_TEXT_END : '\uFFFD' RULE_IN_RICH_STRING* ('\'\'\''|('\'' '\''?)? EOF);
 
-RULE_RICH_TEXT_INBETWEEN : '\u00BB' RULE_IN_RICH_STRING* ('\'' '\''?)? '\u00AB';
+RULE_RICH_TEXT_INBETWEEN : '\uFFFD' RULE_IN_RICH_STRING* ('\'' '\''?)? '\uFFFD';
 
-fragment RULE_IN_RICH_STRING : ('\'\'' ~(('\u00AB'|'\''))|'\'' ~(('\u00AB'|'\''))|~(('\u00AB'|'\'')));
+fragment RULE_IN_RICH_STRING : ('\'\'' ~(('\uFFFD'|'\''))|'\'' ~(('\uFFFD'|'\''))|~(('\uFFFD'|'\'')));
 
 RULE_HEX : ('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F'|'_')+ ('#' (('b'|'B') ('i'|'I')|('l'|'L')))?;
 

@@ -122,12 +122,11 @@ public class StringsTrailingWhitespaceSpec extends StringsSpec {
     final Procedure1<StringsTrailingWhitespaceSpecExamples> _function = new Procedure1<StringsTrailingWhitespaceSpecExamples>() {
       @Override
       public void apply(final StringsTrailingWhitespaceSpecExamples it) {
-        String _string = it.getString();
-        String _trailingWhitespace = Strings.trailingWhitespace(_string);
+        String _trailingWhitespace = Strings.trailingWhitespace(it.getString());
         String _result = it.getResult();
         Assert.assertTrue("\nExpected string.trailingWhitespace => result but"
          + "\n     string.trailingWhitespace is " + new org.hamcrest.StringDescription().appendValue(_trailingWhitespace).toString()
-         + "\n     string is " + new org.hamcrest.StringDescription().appendValue(_string).toString()
+         + "\n     string is " + new org.hamcrest.StringDescription().appendValue(it.getString()).toString()
          + "\n     result is " + new org.hamcrest.StringDescription().appendValue(_result).toString() + "\n", Should.<String>operator_doubleArrow(_trailingWhitespace, _result));
         
       }

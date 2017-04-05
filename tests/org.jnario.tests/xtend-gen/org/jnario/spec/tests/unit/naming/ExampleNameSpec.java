@@ -17,7 +17,6 @@ import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.jnario.spec.spec.Example;
 import org.jnario.spec.tests.unit.naming.ExampleNameSpecExamples;
 import org.jnario.spec.tests.unit.naming.ExampleSpec;
 import org.junit.Test;
@@ -69,17 +68,14 @@ public class ExampleNameSpec extends ExampleSpec {
     final Procedure1<ExampleNameSpecExamples> _function = new Procedure1<ExampleNameSpecExamples>() {
       @Override
       public void apply(final ExampleNameSpecExamples it) {
-        String _example = it.getExample();
-        Example _parse = ExampleNameSpec.this.parse(_example);
-        String _name = _parse.getName();
-        String _println = InputOutput.<String>println(_name);
-        String _name_1 = it.getName();
+        String _println = InputOutput.<String>println(ExampleNameSpec.this.parse(it.getExample()).getName());
+        String _name = it.getName();
         Assert.assertTrue("\nExpected println(example.parse.name) should be name but"
          + "\n     println(example.parse.name) is " + new org.hamcrest.StringDescription().appendValue(_println).toString()
-         + "\n     example.parse.name is " + new org.hamcrest.StringDescription().appendValue(_name).toString()
-         + "\n     example.parse is " + new org.hamcrest.StringDescription().appendValue(_parse).toString()
-         + "\n     example is " + new org.hamcrest.StringDescription().appendValue(_example).toString()
-         + "\n     name is " + new org.hamcrest.StringDescription().appendValue(_name_1).toString() + "\n", Should.<String>should_be(_println, _name_1));
+         + "\n     example.parse.name is " + new org.hamcrest.StringDescription().appendValue(ExampleNameSpec.this.parse(it.getExample()).getName()).toString()
+         + "\n     example.parse is " + new org.hamcrest.StringDescription().appendValue(ExampleNameSpec.this.parse(it.getExample())).toString()
+         + "\n     example is " + new org.hamcrest.StringDescription().appendValue(it.getExample()).toString()
+         + "\n     name is " + new org.hamcrest.StringDescription().appendValue(_name).toString() + "\n", Should.<String>should_be(_println, _name));
         
       }
     };

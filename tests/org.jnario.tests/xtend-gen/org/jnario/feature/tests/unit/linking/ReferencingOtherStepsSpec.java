@@ -68,14 +68,13 @@ public class ReferencingOtherStepsSpec {
     _builder.newLine();
     _builder.append("\t\t");
     _builder.newLine();
-    this.m.parseScenario(_builder.toString());
-    GivenReference _first = this.m.<GivenReference>first(GivenReference.class);
-    StepImplementation _reference = _first.getReference();
-    StepImplementation _first_1 = this.m.<StepImplementation>first(Given.class);
+    this.m.parseScenario(_builder);
+    StepImplementation _reference = this.m.<GivenReference>first(GivenReference.class).getReference();
+    StepImplementation _first = this.m.<StepImplementation>first(Given.class);
     Assert.assertTrue("\nExpected first(typeof(GivenReference)).reference => first(typeof(Given)) but"
      + "\n     first(typeof(GivenReference)).reference is " + new org.hamcrest.StringDescription().appendValue(_reference).toString()
-     + "\n     first(typeof(GivenReference)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString()
-     + "\n     first(typeof(Given)) is " + new org.hamcrest.StringDescription().appendValue(_first_1).toString() + "\n", Should.<StepImplementation>operator_doubleArrow(_reference, _first_1));
+     + "\n     first(typeof(GivenReference)) is " + new org.hamcrest.StringDescription().appendValue(this.m.<GivenReference>first(GivenReference.class)).toString()
+     + "\n     first(typeof(Given)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString() + "\n", Should.<StepImplementation>operator_doubleArrow(_reference, _first));
     
   }
   
@@ -111,14 +110,13 @@ public class ReferencingOtherStepsSpec {
     _builder.append("\t\t");
     _builder.append("//   here is a whitespace");
     _builder.newLine();
-    this.m.parseScenario(_builder.toString());
-    GivenReference _first = this.m.<GivenReference>first(GivenReference.class);
-    StepImplementation _reference = _first.getReference();
-    StepImplementation _first_1 = this.m.<StepImplementation>first(Given.class);
+    this.m.parseScenario(_builder);
+    StepImplementation _reference = this.m.<GivenReference>first(GivenReference.class).getReference();
+    StepImplementation _first = this.m.<StepImplementation>first(Given.class);
     Assert.assertTrue("\nExpected first(typeof(GivenReference)).reference => first(typeof(Given)) but"
      + "\n     first(typeof(GivenReference)).reference is " + new org.hamcrest.StringDescription().appendValue(_reference).toString()
-     + "\n     first(typeof(GivenReference)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString()
-     + "\n     first(typeof(Given)) is " + new org.hamcrest.StringDescription().appendValue(_first_1).toString() + "\n", Should.<StepImplementation>operator_doubleArrow(_reference, _first_1));
+     + "\n     first(typeof(GivenReference)) is " + new org.hamcrest.StringDescription().appendValue(this.m.<GivenReference>first(GivenReference.class)).toString()
+     + "\n     first(typeof(Given)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString() + "\n", Should.<StepImplementation>operator_doubleArrow(_reference, _first));
     
   }
   
@@ -142,7 +140,7 @@ public class ReferencingOtherStepsSpec {
     _builder.append("\t\t\t");
     _builder.append("val x = \"an implementation\"");
     _builder.newLine();
-    this.m.parseScenario(_builder.toString());
+    this.m.parseScenario(_builder);
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("package test");
     _builder_1.newLine();
@@ -157,14 +155,13 @@ public class ReferencingOtherStepsSpec {
     _builder_1.newLine();
     _builder_1.append("\t\t");
     _builder_1.newLine();
-    this.m.parseScenario(_builder_1.toString());
-    GivenReference _first = this.m.<GivenReference>first(GivenReference.class);
-    StepImplementation _reference = _first.getReference();
-    StepImplementation _first_1 = this.m.<StepImplementation>first(Given.class);
+    this.m.parseScenario(_builder_1);
+    StepImplementation _reference = this.m.<GivenReference>first(GivenReference.class).getReference();
+    StepImplementation _first = this.m.<StepImplementation>first(Given.class);
     Assert.assertTrue("\nExpected first(typeof(GivenReference)).reference => first(typeof(Given)) but"
      + "\n     first(typeof(GivenReference)).reference is " + new org.hamcrest.StringDescription().appendValue(_reference).toString()
-     + "\n     first(typeof(GivenReference)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString()
-     + "\n     first(typeof(Given)) is " + new org.hamcrest.StringDescription().appendValue(_first_1).toString() + "\n", Should.<StepImplementation>operator_doubleArrow(_reference, _first_1));
+     + "\n     first(typeof(GivenReference)) is " + new org.hamcrest.StringDescription().appendValue(this.m.<GivenReference>first(GivenReference.class)).toString()
+     + "\n     first(typeof(Given)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString() + "\n", Should.<StepImplementation>operator_doubleArrow(_reference, _first));
     
   }
   
@@ -188,7 +185,7 @@ public class ReferencingOtherStepsSpec {
     _builder.append("\t\t\t");
     _builder.append("val x = \"an implementation\"");
     _builder.newLine();
-    this.m.parseScenario(_builder.toString());
+    this.m.parseScenario(_builder);
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("package test2");
     _builder_1.newLine();
@@ -204,14 +201,13 @@ public class ReferencingOtherStepsSpec {
     _builder_1.newLine();
     _builder_1.append("\t\t");
     _builder_1.newLine();
-    this.m.parseScenario(_builder_1.toString());
-    GivenReference _first = this.m.<GivenReference>first(GivenReference.class);
-    StepImplementation _reference = _first.getReference();
-    StepImplementation _first_1 = this.m.<StepImplementation>first(Given.class);
+    this.m.parseScenario(_builder_1);
+    StepImplementation _reference = this.m.<GivenReference>first(GivenReference.class).getReference();
+    StepImplementation _first = this.m.<StepImplementation>first(Given.class);
     Assert.assertTrue("\nExpected first(typeof(GivenReference)).reference => first(typeof(Given)) but"
      + "\n     first(typeof(GivenReference)).reference is " + new org.hamcrest.StringDescription().appendValue(_reference).toString()
-     + "\n     first(typeof(GivenReference)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString()
-     + "\n     first(typeof(Given)) is " + new org.hamcrest.StringDescription().appendValue(_first_1).toString() + "\n", Should.<StepImplementation>operator_doubleArrow(_reference, _first_1));
+     + "\n     first(typeof(GivenReference)) is " + new org.hamcrest.StringDescription().appendValue(this.m.<GivenReference>first(GivenReference.class)).toString()
+     + "\n     first(typeof(Given)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString() + "\n", Should.<StepImplementation>operator_doubleArrow(_reference, _first));
     
   }
 }

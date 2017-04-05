@@ -7,12 +7,10 @@
  */
 package org.jnario.spec.tests.unit.naming;
 
-import java.util.ArrayList;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IntegerRange;
-import org.jnario.jnario.test.util.Query;
 import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -36,11 +34,6 @@ public class ExampleNameProviderToMethodNameExampleSpec extends ExampleNameProvi
   @Named("converts method description to camel case starting in lowercase")
   @Order(1)
   public void _convertsMethodDescriptionToCamelCaseStartingInLowercase() throws Exception {
-    ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList(
-      "\'my example\'", 
-      "\'my\nexample\'", 
-      "\'my\texample\'", 
-      "\'my_example\'");
     final Consumer<String> _function = new Consumer<String>() {
       @Override
       public void accept(final String it) {
@@ -51,20 +44,22 @@ public class ExampleNameProviderToMethodNameExampleSpec extends ExampleNameProvi
         
       }
     };
-    _newArrayList.forEach(_function);
+    CollectionLiterals.<String>newArrayList(
+      "\'my example\'", 
+      "\'my\nexample\'", 
+      "\'my\texample\'", 
+      "\'my_example\'").forEach(_function);
   }
   
   @Test
   @Named("shortens method name to 250 chars")
   @Order(2)
   public void _shortensMethodNameTo250Chars() throws Exception {
-    String _nameOfLength = this.nameOfLength(251);
-    String _firstMethodName = this.firstMethodName(_nameOfLength);
-    int _length = _firstMethodName.length();
+    int _length = this.firstMethodName(this.nameOfLength(251)).length();
     Assert.assertTrue("\nExpected firstMethodName(nameOfLength(251)).length => 250 but"
      + "\n     firstMethodName(nameOfLength(251)).length is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(_length)).toString()
-     + "\n     firstMethodName(nameOfLength(251)) is " + new org.hamcrest.StringDescription().appendValue(_firstMethodName).toString()
-     + "\n     nameOfLength(251) is " + new org.hamcrest.StringDescription().appendValue(_nameOfLength).toString() + "\n", Should.<Integer>operator_doubleArrow(Integer.valueOf(_length), Integer.valueOf(250)));
+     + "\n     firstMethodName(nameOfLength(251)) is " + new org.hamcrest.StringDescription().appendValue(this.firstMethodName(this.nameOfLength(251))).toString()
+     + "\n     nameOfLength(251) is " + new org.hamcrest.StringDescription().appendValue(this.nameOfLength(251)).toString() + "\n", Should.<Integer>operator_doubleArrow(Integer.valueOf(_length), Integer.valueOf(250)));
     
   }
   
@@ -85,9 +80,7 @@ public class ExampleNameProviderToMethodNameExampleSpec extends ExampleNameProvi
     String _xblockexpression = null;
     {
       final String contentWithContext = (("describe \'Context\'{ fact " + content) + "}");
-      Query _parse = this.parse(contentWithContext);
-      Example _first = _parse.<Example>first(Example.class);
-      _xblockexpression = this.subject.toMethodName(_first);
+      _xblockexpression = this.subject.toMethodName(this.parse(contentWithContext).<Example>first(Example.class));
     }
     return _xblockexpression;
   }

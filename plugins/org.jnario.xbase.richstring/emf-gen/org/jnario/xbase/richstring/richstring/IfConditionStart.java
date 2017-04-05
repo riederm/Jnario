@@ -10,6 +10,7 @@ package org.jnario.xbase.richstring.richstring;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringIf;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,12 +41,12 @@ public interface IfConditionStart extends LinePart {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Rich String If</em>' reference.
-	 * @see #setRichStringIf(EObject)
+	 * @see #setRichStringIf(RichStringIf)
 	 * @see org.jnario.xbase.richstring.richstring.ProcessedRichStringPackage#getIfConditionStart_RichStringIf()
 	 * @model
 	 * @generated
 	 */
-	EObject getRichStringIf();
+	RichStringIf getRichStringIf();
 
 	/**
 	 * Sets the value of the '{@link org.jnario.xbase.richstring.richstring.IfConditionStart#getRichStringIf <em>Rich String If</em>}' reference.
@@ -55,7 +56,7 @@ public interface IfConditionStart extends LinePart {
 	 * @see #getRichStringIf()
 	 * @generated
 	 */
-	void setRichStringIf(EObject value);
+	void setRichStringIf(RichStringIf value);
 
 	/**
 	 * Returns the value of the '<em><b>Else Start</b></em>' reference.

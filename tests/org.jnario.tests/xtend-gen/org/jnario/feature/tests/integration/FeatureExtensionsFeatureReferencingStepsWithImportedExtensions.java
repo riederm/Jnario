@@ -31,17 +31,14 @@ public class FeatureExtensionsFeatureReferencingStepsWithImportedExtensions exte
   @Named("Given the value \\\"13.9\\\"")
   public void _givenTheValue139() {
     final StepArguments args = new StepArguments("13.9");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    double _double = StringConversions.toDouble(_first);
-    this.value = _double;
+    this.value = StringConversions.toDouble(JnarioIterableExtensions.<String>first(args));
   }
   
   @Test
   @Order(1)
   @Named("When I floor it")
   public void _whenIFloorIt() {
-    double _floor = Math.floor(this.value);
-    this.flooredValue = _floor;
+    this.flooredValue = Math.floor(this.value);
   }
   
   @Test
@@ -49,8 +46,7 @@ public class FeatureExtensionsFeatureReferencingStepsWithImportedExtensions exte
   @Named("Then the value should be \\\"13.0\\\"")
   public void _thenTheValueShouldBe130() {
     final StepArguments args = new StepArguments("13.0");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    double _double = StringConversions.toDouble(_first);
+    double _double = StringConversions.toDouble(JnarioIterableExtensions.<String>first(args));
     Should.<Double>operator_doubleArrow(Double.valueOf(this.flooredValue), Double.valueOf(_double));
   }
 }

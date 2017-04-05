@@ -4,7 +4,6 @@ import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
-import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.feature.feature.Step;
 import org.jnario.feature.naming.FeatureQualifiedNameProvider;
@@ -41,8 +40,7 @@ public class FeatureQualifiedNameProviderSpec {
     _builder.newLine();
     _builder.append("val x = \"\"");
     _builder.newLine();
-    String _plus = (s + _builder.toString());
-    return this.stepName(_plus);
+    return this.stepName((s + _builder.toString()));
   }
   
   public String stepName(@Extension final CharSequence s) {
@@ -65,15 +63,13 @@ public class FeatureQualifiedNameProviderSpec {
       _builder.newLine();
       _builder.append("Scenario: The Scenario");
       _builder.newLine();
-      String _plus = (_xifexpression + _builder.toString());
+      String _plus = (_xifexpression + _builder);
       String _plus_1 = (_plus + s);
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.newLine();
-      final String input = (_plus_1 + _builder_1.toString());
+      final String input = (_plus_1 + _builder_1);
       this._modelStore.parseScenario(input);
-      Step _first = this._modelStore.<Step>first(Step.class);
-      QualifiedName _fullyQualifiedName = this.subject.getFullyQualifiedName(_first);
-      _xblockexpression = this.converter.toString(_fullyQualifiedName);
+      _xblockexpression = this.converter.toString(this.subject.getFullyQualifiedName(this._modelStore.<Step>first(Step.class)));
     }
     return _xblockexpression;
   }

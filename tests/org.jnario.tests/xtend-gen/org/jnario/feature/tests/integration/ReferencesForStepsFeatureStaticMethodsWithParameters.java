@@ -41,8 +41,7 @@ public class ReferencesForStepsFeatureStaticMethodsWithParameters extends Refere
   @Named("Given a feature")
   public void _givenAFeature() {
     final StepArguments args = new StepArguments("import com.google.common.collect.Maps\n\nFeature: Static methods with parameters\n\t\n  Scenario: Define step using static method parameters\n\n    Given a step\n      val y = Maps.newHashMapWithExpectedSize(3)\n\n  Scenario: Reference step using static method parameters\n    Given a step\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

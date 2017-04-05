@@ -20,7 +20,6 @@ import org.jnario.lib.ExampleTable;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.jnario.spec.spec.Example;
 import org.jnario.spec.tests.unit.naming.ExampleImplementationSpecExamples;
 import org.jnario.spec.tests.unit.naming.ExampleSpec;
 import org.junit.Test;
@@ -63,17 +62,14 @@ public class ExampleImplementationSpec extends ExampleSpec {
     final Procedure1<ExampleImplementationSpecExamples> _function = new Procedure1<ExampleImplementationSpecExamples>() {
       @Override
       public void apply(final ExampleImplementationSpecExamples it) {
-        String _example = it.getExample();
-        Example _parse = ExampleImplementationSpec.this.parse(_example);
-        XExpression _expression = _parse.getExpression();
-        Class<? extends XExpression> _type = it.getType();
-        Matcher<XExpression> _instanceOf = CoreMatchers.<XExpression>instanceOf(_type);
+        XExpression _expression = ExampleImplementationSpec.this.parse(it.getExample()).getExpression();
+        Matcher<XExpression> _instanceOf = CoreMatchers.<XExpression>instanceOf(it.getType());
         Assert.assertTrue("\nExpected example.parse.expression should be instanceOf(type) but"
          + "\n     example.parse.expression is " + new org.hamcrest.StringDescription().appendValue(_expression).toString()
-         + "\n     example.parse is " + new org.hamcrest.StringDescription().appendValue(_parse).toString()
-         + "\n     example is " + new org.hamcrest.StringDescription().appendValue(_example).toString()
+         + "\n     example.parse is " + new org.hamcrest.StringDescription().appendValue(ExampleImplementationSpec.this.parse(it.getExample())).toString()
+         + "\n     example is " + new org.hamcrest.StringDescription().appendValue(it.getExample()).toString()
          + "\n     instanceOf(type) is " + new org.hamcrest.StringDescription().appendValue(_instanceOf).toString()
-         + "\n     type is " + new org.hamcrest.StringDescription().appendValue(_type).toString() + "\n", org.jnario.lib.Should.<XExpression>should_be(_expression, _instanceOf));
+         + "\n     type is " + new org.hamcrest.StringDescription().appendValue(it.getType()).toString() + "\n", org.jnario.lib.Should.<XExpression>should_be(_expression, _instanceOf));
         
       }
     };

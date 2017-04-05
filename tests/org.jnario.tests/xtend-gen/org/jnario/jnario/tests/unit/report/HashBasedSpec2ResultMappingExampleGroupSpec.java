@@ -44,12 +44,11 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this.m.parseSpec(_builder.toString());
-    ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
-    SpecExecution _result = this.result(_exampleGroup);
+    this.m.parseSpec(_builder);
+    SpecExecution _result = this.result(this.m.exampleGroup("Root"));
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result => typeof(Pending) but"
      + "\n     m.exampleGroup(\"Root\").result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(this.m.exampleGroup("Root")).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString() + "\n", Should.operator_doubleArrow(_result, Pending.class));
     
   }
@@ -69,12 +68,11 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this.m.parseSpec(_builder.toString());
-    ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
-    SpecExecution _result = this.result(_exampleGroup);
+    this.m.parseSpec(_builder);
+    SpecExecution _result = this.result(this.m.exampleGroup("Root"));
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result => typeof(NotRun) but"
      + "\n     m.exampleGroup(\"Root\").result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(this.m.exampleGroup("Root")).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString() + "\n", Should.operator_doubleArrow(_result, NotRun.class));
     
   }
@@ -94,13 +92,12 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this.m.parseSpec(_builder.toString());
+    this.m.parseSpec(_builder);
     this.passes("Example 1", "Example 2");
-    ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
-    SpecExecution _result = this.result(_exampleGroup);
+    SpecExecution _result = this.result(this.m.exampleGroup("Root"));
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result => typeof(Passed) but"
      + "\n     m.exampleGroup(\"Root\").result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(this.m.exampleGroup("Root")).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString() + "\n", Should.operator_doubleArrow(_result, Passed.class));
     
   }
@@ -120,14 +117,13 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this.m.parseSpec(_builder.toString());
+    this.m.parseSpec(_builder);
     this.passes("Example 1");
     this.fails("Example 2");
-    ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
-    SpecExecution _result = this.result(_exampleGroup);
+    SpecExecution _result = this.result(this.m.exampleGroup("Root"));
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result => typeof(Failed) but"
      + "\n     m.exampleGroup(\"Root\").result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(this.m.exampleGroup("Root")).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString() + "\n", Should.operator_doubleArrow(_result, Failed.class));
     
   }
@@ -147,16 +143,14 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this.m.parseSpec(_builder.toString());
+    this.m.parseSpec(_builder);
     this.exampleExecutedIn("Example 1", 1.0);
     this.exampleExecutedIn("Example 2", 2.0);
-    ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
-    SpecExecution _result = this.result(_exampleGroup);
-    double _executionTimeInSeconds = _result.getExecutionTimeInSeconds();
+    double _executionTimeInSeconds = this.result(this.m.exampleGroup("Root")).getExecutionTimeInSeconds();
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result.executionTimeInSeconds => 3.0 but"
      + "\n     m.exampleGroup(\"Root\").result.executionTimeInSeconds is " + new org.hamcrest.StringDescription().appendValue(Double.valueOf(_executionTimeInSeconds)).toString()
-     + "\n     m.exampleGroup(\"Root\").result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     m.exampleGroup(\"Root\").result is " + new org.hamcrest.StringDescription().appendValue(this.result(this.m.exampleGroup("Root"))).toString()
+     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(this.m.exampleGroup("Root")).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString() + "\n", Should.<Double>operator_doubleArrow(Double.valueOf(_executionTimeInSeconds), Double.valueOf(3.0)));
     
   }
@@ -176,15 +170,13 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this.m.parseSpec(_builder.toString());
+    this.m.parseSpec(_builder);
     this.passes("Example 1");
-    ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
-    SpecExecution _result = this.result(_exampleGroup);
-    String _className = _result.getClassName();
+    String _className = this.result(this.m.exampleGroup("Root")).getClassName();
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result.className => \"RootSpec\" but"
      + "\n     m.exampleGroup(\"Root\").result.className is " + new org.hamcrest.StringDescription().appendValue(_className).toString()
-     + "\n     m.exampleGroup(\"Root\").result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     m.exampleGroup(\"Root\").result is " + new org.hamcrest.StringDescription().appendValue(this.result(this.m.exampleGroup("Root"))).toString()
+     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(this.m.exampleGroup("Root")).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString() + "\n", Should.<String>operator_doubleArrow(_className, "RootSpec"));
     
   }
@@ -204,15 +196,13 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this.m.parseSpec(_builder.toString());
+    this.m.parseSpec(_builder);
     this.passes("Example 1");
-    ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
-    SpecExecution _result = this.result(_exampleGroup);
-    String _name = _result.getName();
+    String _name = this.result(this.m.exampleGroup("Root")).getName();
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result.name => \"Root\" but"
      + "\n     m.exampleGroup(\"Root\").result.name is " + new org.hamcrest.StringDescription().appendValue(_name).toString()
-     + "\n     m.exampleGroup(\"Root\").result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     m.exampleGroup(\"Root\").result is " + new org.hamcrest.StringDescription().appendValue(this.result(this.m.exampleGroup("Root"))).toString()
+     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(this.m.exampleGroup("Root")).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString() + "\n", Should.<String>operator_doubleArrow(_name, "Root"));
     
   }
@@ -232,7 +222,7 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this.m.parseSpec(_builder.toString());
+    this.m.parseSpec(_builder);
     this.passes("Example 1");
     final ExampleGroup exampleGroup = this.m.exampleGroup("Root");
     final SpecExecution first = this.result(exampleGroup);
@@ -263,14 +253,13 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this.m.parseSpec(_builder.toString());
+    this.m.parseSpec(_builder);
     HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME = "RootChildSpec";
     this.passes("Example 1");
-    ExampleGroup _exampleGroup = this.m.exampleGroup("Root");
-    SpecExecution _result = this.result(_exampleGroup);
+    SpecExecution _result = this.result(this.m.exampleGroup("Root"));
     Assert.assertTrue("\nExpected m.exampleGroup(\"Root\").result => typeof(Passed) but"
      + "\n     m.exampleGroup(\"Root\").result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     m.exampleGroup(\"Root\") is " + new org.hamcrest.StringDescription().appendValue(this.m.exampleGroup("Root")).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString() + "\n", Should.operator_doubleArrow(_result, Passed.class));
     
   }
@@ -294,34 +283,30 @@ public class HashBasedSpec2ResultMappingExampleGroupSpec extends HashBasedSpec2R
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this.m.parseSpec(_builder.toString());
+    this.m.parseSpec(_builder);
     HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME = "RootCharAtSpec";
     this.passes("Example 1");
-    ExampleGroup _exampleGroup = this.m.exampleGroup("String");
-    SpecExecution _result = this.result(_exampleGroup);
+    SpecExecution _result = this.result(this.m.exampleGroup("String"));
     Assert.assertTrue("\nExpected m.exampleGroup(\"String\").result => typeof(Passed) but"
      + "\n     m.exampleGroup(\"String\").result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     m.exampleGroup(\"String\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     m.exampleGroup(\"String\") is " + new org.hamcrest.StringDescription().appendValue(this.m.exampleGroup("String")).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString() + "\n", Should.operator_doubleArrow(_result, Passed.class));
     
   }
   
   public void exampleExecutedIn(@Extension final String name, @Extension final double time) {
-    Passed _passingSpec = Passed.passingSpec(HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME, name, time);
-    this.subject.accept(_passingSpec);
+    this.subject.accept(Passed.passingSpec(HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME, name, time));
   }
   
   public void fails(@Extension final String name) {
-    Failed _failingSpec = Failed.failingSpec(HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME, name, HashBasedSpec2ResultMappingSpec.anyExecutionTime, this.anyFailure);
-    this.subject.accept(_failingSpec);
+    this.subject.accept(Failed.failingSpec(HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME, name, HashBasedSpec2ResultMappingSpec.anyExecutionTime, this.anyFailure));
   }
   
   public void passes(@Extension final String... names) {
     final Consumer<String> _function = new Consumer<String>() {
       @Override
       public void accept(final String it) {
-        Passed _passingSpec = Passed.passingSpec(HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME, it, HashBasedSpec2ResultMappingSpec.anyExecutionTime);
-        HashBasedSpec2ResultMappingExampleGroupSpec.this.subject.accept(_passingSpec);
+        HashBasedSpec2ResultMappingExampleGroupSpec.this.subject.accept(Passed.passingSpec(HashBasedSpec2ResultMappingExampleGroupSpec.CLASSNAME, it, HashBasedSpec2ResultMappingSpec.anyExecutionTime));
       }
     };
     ((List<String>)Conversions.doWrapArray(names)).forEach(_function);

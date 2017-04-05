@@ -28,8 +28,7 @@ public class StepParametersFeatureParametersAreDefinedInQuotes extends StepParam
   @Named("When I have a feature with parameters")
   public void _whenIHaveAFeatureWithParameters() {
     final StepArguments args = new StepArguments("package bootstrap\nFeature: Test feature\n\tScenario: using fields in step definitions\n\t\tString x\n\t\tGiven some values \"3\", \"4\"\n\t\t\tx = args.get(0)\n\t\tThen it should be possible to get the value\n\t\t\tx => \"3\"\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

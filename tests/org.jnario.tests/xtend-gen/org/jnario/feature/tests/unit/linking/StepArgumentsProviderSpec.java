@@ -12,7 +12,6 @@ import com.google.inject.Inject;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
@@ -22,7 +21,6 @@ import org.eclipse.xtext.util.StringInputStream;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.jnario.feature.feature.Given;
 import org.jnario.feature.feature.Step;
 import org.jnario.feature.jvmmodel.StepArgumentsProvider;
 import org.jnario.feature.tests.unit.linking.StepArgumentsProviderSpecExamples;
@@ -178,9 +176,7 @@ public class StepArgumentsProviderSpec {
     final Procedure1<StepArgumentsProviderSpecExamples> _function = new Procedure1<StepArgumentsProviderSpecExamples>() {
       @Override
       public void apply(final StepArgumentsProviderSpecExamples it) {
-        String _step = it.getStep();
-        Step _create = StepArgumentsProviderSpec.this.create(_step);
-        final List<String> foundArgs = StepArgumentsProviderSpec.this.subject.findStepArguments(_create);
+        final List<String> foundArgs = StepArgumentsProviderSpec.this.subject.findStepArguments(StepArgumentsProviderSpec.this.create(it.getStep()));
         List<?> _expectedArgs = it.getExpectedArgs();
         Assert.assertTrue("\nExpected foundArgs => expectedArgs but"
          + "\n     foundArgs is " + new org.hamcrest.StringDescription().appendValue(foundArgs).toString()
@@ -195,13 +191,12 @@ public class StepArgumentsProviderSpec {
   @Named("returns empty list if step has no name")
   @Order(2)
   public void _returnsEmptyListIfStepHasNoName() throws Exception {
-    Given _step = Features.step(null);
-    List<String> _findStepArguments = this.subject.findStepArguments(_step);
+    List<String> _findStepArguments = this.subject.findStepArguments(Features.step(null));
     List<String> _list = JnarioCollectionLiterals.<String>list();
     Assert.assertTrue("\nExpected subject.findStepArguments(step(null)) => list() but"
      + "\n     subject.findStepArguments(step(null)) is " + new org.hamcrest.StringDescription().appendValue(_findStepArguments).toString()
      + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString()
-     + "\n     step(null) is " + new org.hamcrest.StringDescription().appendValue(_step).toString()
+     + "\n     step(null) is " + new org.hamcrest.StringDescription().appendValue(Features.step(null)).toString()
      + "\n     list() is " + new org.hamcrest.StringDescription().appendValue(_list).toString() + "\n", Should.<List<String>>operator_doubleArrow(_findStepArguments, _list));
     
   }
@@ -225,17 +220,13 @@ public class StepArgumentsProviderSpec {
       _builder_1.newLine();
       _builder_1.append("\t\t\t\t\t");
       _builder_1.newLine();
-      final String scenario = (_plus + _builder_1.toString());
+      final String scenario = (_plus + _builder_1);
       IParser _parser = this.resource.getParser();
       String _string = scenario.toString();
       StringInputStream _stringInputStream = new StringInputStream(_string);
       InputStreamReader _inputStreamReader = new InputStreamReader(_stringInputStream);
       final IParseResult parseResult = _parser.parse(_inputStreamReader);
-      EObject _rootASTElement = parseResult.getRootASTElement();
-      TreeIterator<EObject> _eAllContents = _rootASTElement.eAllContents();
-      List<EObject> _list = IteratorExtensions.<EObject>toList(_eAllContents);
-      Query _query = Query.query(_list);
-      _xblockexpression = _query.<Step>first(Step.class);
+      _xblockexpression = Query.query(IteratorExtensions.<EObject>toList(parseResult.getRootASTElement().eAllContents())).<Step>first(Step.class);
     }
     return _xblockexpression;
   }

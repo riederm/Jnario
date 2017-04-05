@@ -14,7 +14,6 @@ import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.jnario.spec.spec.Example;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -26,12 +25,11 @@ public class ExecutableIsPendingExampleSpec extends ExecutableIsPendingSpec {
   @Named("pendingExample.isPending[] should be true")
   @Order(1)
   public void _pendingExampleIsPendingShouldBeTrue() throws Exception {
-    Example _pendingExample = Specs.pendingExample();
-    boolean _isPending = _pendingExample.isPending();
+    boolean _isPending = Specs.pendingExample().isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), true);
     Assert.assertTrue("\nExpected pendingExample.isPending() should be true but"
      + "\n     pendingExample.isPending() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     pendingExample is " + new org.hamcrest.StringDescription().appendValue(_pendingExample).toString() + "\n", _should_be);
+     + "\n     pendingExample is " + new org.hamcrest.StringDescription().appendValue(Specs.pendingExample()).toString() + "\n", _should_be);
     
   }
   
@@ -39,12 +37,11 @@ public class ExecutableIsPendingExampleSpec extends ExecutableIsPendingSpec {
   @Named("implementedExample.isPending[] should be false")
   @Order(2)
   public void _implementedExampleIsPendingShouldBeFalse() throws Exception {
-    Example _implementedExample = Specs.implementedExample();
-    boolean _isPending = _implementedExample.isPending();
+    boolean _isPending = Specs.implementedExample().isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), false);
     Assert.assertTrue("\nExpected implementedExample.isPending() should be false but"
      + "\n     implementedExample.isPending() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     implementedExample is " + new org.hamcrest.StringDescription().appendValue(_implementedExample).toString() + "\n", _should_be);
+     + "\n     implementedExample is " + new org.hamcrest.StringDescription().appendValue(Specs.implementedExample()).toString() + "\n", _should_be);
     
   }
 }

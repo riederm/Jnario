@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -48,24 +47,20 @@ public class ScopeTestExtension implements Iterable {
   public Set<String> scope(final EObject context, final EReference ref) {
     Set<String> _xblockexpression = null;
     {
-      XtextResourceSet _resourceSet = this.store.getResourceSet();
-      Resources.addContainerStateAdapter(_resourceSet);
-      IScope _scope = this._iScopeProvider.getScope(context, ref);
-      _xblockexpression = this.scope(_scope);
+      Resources.addContainerStateAdapter(this.store.getResourceSet());
+      _xblockexpression = this.scope(this._iScopeProvider.getScope(context, ref));
     }
     return _xblockexpression;
   }
   
   public Set<String> scope(final IScope scope) {
-    Iterable<IEObjectDescription> _allElements = scope.getAllElements();
     final Function1<IEObjectDescription, String> _function = new Function1<IEObjectDescription, String>() {
       @Override
       public String apply(final IEObjectDescription it) {
         return it.toString();
       }
     };
-    Iterable<String> _map = IterableExtensions.<IEObjectDescription, String>map(_allElements, _function);
-    return IterableExtensions.<String>toSet(_map);
+    return IterableExtensions.<String>toSet(IterableExtensions.<IEObjectDescription, String>map(scope.getAllElements(), _function));
   }
   
   @Override

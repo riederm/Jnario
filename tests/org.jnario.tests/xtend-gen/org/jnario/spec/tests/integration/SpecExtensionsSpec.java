@@ -120,15 +120,13 @@ public class SpecExtensionsSpec {
     _builder_1.newLine();
     _builder_1.append("after Class");
     _builder_1.newLine();
-    this.prints(_builder.toString(), _builder_1.toString());
+    this.prints(_builder, _builder_1.toString());
   }
   
   public void prints(@Extension final CharSequence spec, @Extension final String expected) {
     final ConsoleRecorder recording = ConsoleRecorder.start();
     this._behaviorExecutor.executesSuccessfully(spec);
     final String actual = recording.stop();
-    String _replace = expected.replace("\r", "");
-    String _replace_1 = actual.replace("\r", "");
-    Assert.assertEquals(_replace, _replace_1);
+    Assert.assertEquals(expected.replace("\r", ""), actual.replace("\r", ""));
   }
 }
