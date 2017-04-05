@@ -79,8 +79,8 @@ describe Strings{
 	}
 	
 	context endsWith{
-		fact assert '''hello'''.endsWith('''lo''')
-		fact assert !'''hello'''.endsWith('''he''')
-		fact assert !'''short'''.endsWith('''longer''') 
+		fact assert "hello".endsWith("lo")
+		fact assert !"hello".endsWith("he")
+		fact assert !"short".endsWith("longer") 
 	}
 }

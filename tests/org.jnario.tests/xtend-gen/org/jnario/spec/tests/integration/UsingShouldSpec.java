@@ -118,10 +118,9 @@ public class UsingShouldSpec {
     boolean expectedException = false;
     String message = "";
     try{
-      Stack<String> _stack = new Stack<String>();
-      _stack.pop();
+      new Stack<String>().pop();
       message = "Expected " + EmptyStackException.class.getName() + " for \n     // expecting exceptions\r\n    new Stack<String>().pop\n with:"
-       + "\n     // expecting exceptions\r\n    new Stack<String>() is " + new org.hamcrest.StringDescription().appendValue(_stack).toString();
+       + "\n     // expecting exceptions\r\n    new Stack<String>() is " + new org.hamcrest.StringDescription().appendValue(new Stack<String>()).toString();
     }catch(EmptyStackException e){
       expectedException = true;
     }
@@ -129,10 +128,9 @@ public class UsingShouldSpec {
     boolean expectedException_1 = false;
     String message_1 = "";
     try{
-      Stack<String> _stack_1 = new Stack<String>();
-      _stack_1.pop();
+      new Stack<String>().pop();
       message_1 = "Expected " + EmptyStackException.class.getName() + " for \n     new Stack<String>().pop\n with:"
-       + "\n     new Stack<String>() is " + new org.hamcrest.StringDescription().appendValue(_stack_1).toString();
+       + "\n     new Stack<String>() is " + new org.hamcrest.StringDescription().appendValue(new Stack<String>()).toString();
     }catch(EmptyStackException e){
       expectedException_1 = true;
     }
@@ -259,7 +257,7 @@ public class UsingShouldSpec {
     _builder.newLine();
     _builder.append("     ");
     _builder.append("1 + 1 is <2>");
-    Helpers.is(_errorMessage, _builder.toString());
+    Helpers.is(_errorMessage, _builder);
     final String x = "hello";
     final Procedure1<Boolean> _function_1 = new Procedure1<Boolean>() {
       @Override
@@ -280,7 +278,7 @@ public class UsingShouldSpec {
     _builder_1.newLine();
     _builder_1.append("     ");
     _builder_1.append("x is \"hello\"");
-    Helpers.is(_errorMessage_1, _builder_1.toString());
+    Helpers.is(_errorMessage_1, _builder_1);
     final String y = "world";
     final Procedure1<Boolean> _function_2 = new Procedure1<Boolean>() {
       @Override
@@ -300,7 +298,7 @@ public class UsingShouldSpec {
     _builder_2.newLine();
     _builder_2.append("     ");
     _builder_2.append("y is \"world\"");
-    Helpers.is(_errorMessage_2, _builder_2.toString());
+    Helpers.is(_errorMessage_2, _builder_2);
   }
   
   /**

@@ -50,35 +50,33 @@ InternalRichString returns xbase::XExpression:
 
 RichStringPart returns xbase::XExpression:
 	XExpressionOrVarDeclaration 
-//TODO: NO_XTEND if and for loops
-//	| RichStringForLoop 
-//	| RichStringIf
+	| RichStringForLoop 
+	| RichStringIf
 ;
 
-//RichStringForLoop returns xbase::XExpression:
-//	{RichStringForLoop}
-//	"FOR" declaredParam=JvmFormalParameter ':' forExpression=XExpression
-//		("BEFORE" before=XExpression)?
-//		("SEPARATOR" separator=XExpression)?
-//		("AFTER" after=XExpression)?
-//		eachExpression=InternalRichString
-//	"ENDFOR"
-//;
-//
-//RichStringIf returns xbase::XExpression :
-//	{RichStringIf}
-//	"IF" if=XExpression
-//		then=InternalRichString
-//		elseIfs+=RichStringElseIf*
-//	("ELSE" 
-//		else=InternalRichString)?
-//	"ENDIF"
-//;
-//
-//RichStringElseIf returns RichStringElseIf:
-//	"ELSEIF" if=XExpression then=InternalRichString
-//;
-// --------------------- FROM Xtend.xtext
+RichStringForLoop returns xbase::XExpression:
+	{RichStringForLoop}
+	"FOR" declaredParam=JvmFormalParameter ':' forExpression=XExpression
+		("BEFORE" before=XExpression)?
+		("SEPARATOR" separator=XExpression)?
+		("AFTER" after=XExpression)?
+		eachExpression=InternalRichString
+	"ENDFOR"
+;
+
+RichStringIf returns xbase::XExpression :
+	{RichStringIf}
+	"IF" if=XExpression
+		then=InternalRichString
+		elseIfs+=RichStringElseIf*
+	("ELSE" 
+		else=InternalRichString)?
+	"ENDIF"
+;
+
+RichStringElseIf returns RichStringElseIf:
+	"ELSEIF" if=XExpression then=InternalRichString
+;
 
 terminal RICH_TEXT : "'''" IN_RICH_STRING* ("'''"| ("'" "'"?)? EOF);
 terminal RICH_TEXT_START : "'''" IN_RICH_STRING* ("'" "'"?)? '«';	// u00AB = '«'

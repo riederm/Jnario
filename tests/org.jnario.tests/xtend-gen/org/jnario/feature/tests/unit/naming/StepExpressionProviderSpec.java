@@ -13,7 +13,6 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.feature.feature.Step;
-import org.jnario.feature.feature.StepImplementation;
 import org.jnario.feature.feature.StepReference;
 import org.jnario.feature.jvmmodel.StepExpressionProvider;
 import org.jnario.jnario.test.util.FeatureTestCreator;
@@ -60,15 +59,13 @@ public class StepExpressionProviderSpec {
     _builder.append("\t\t\t");
     _builder.append("\"the implementation\"");
     _builder.newLine();
-    this.modelStore.parseScenario(_builder.toString());
-    Step _step = this.step();
-    XExpression _expression = _step.getExpression();
-    Step _step_1 = this.step();
-    XExpression _expressionOf = this.subject.expressionOf(_step_1);
+    this.modelStore.parseScenario(_builder);
+    XExpression _expression = this.step().getExpression();
+    XExpression _expressionOf = this.subject.expressionOf(this.step());
     boolean _equals = Objects.equal(_expression, _expressionOf);
     Assert.assertTrue("\nExpected step.expression == subject.expressionOf(step) but"
      + "\n     step.expression is " + new org.hamcrest.StringDescription().appendValue(_expression).toString()
-     + "\n     step is " + new org.hamcrest.StringDescription().appendValue(_step).toString()
+     + "\n     step is " + new org.hamcrest.StringDescription().appendValue(this.step()).toString()
      + "\n     subject.expressionOf(step) is " + new org.hamcrest.StringDescription().appendValue(_expressionOf).toString()
      + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString() + "\n", _equals);
     
@@ -98,36 +95,32 @@ public class StepExpressionProviderSpec {
     _builder.append("\t\t\t");
     _builder.append("\"the implementation\"");
     _builder.newLine();
-    this.modelStore.parseScenario(_builder.toString());
-    Step _step = this.step();
-    final XExpression expr = this.subject.expressionOf(_step);
+    this.modelStore.parseScenario(_builder);
+    final XExpression expr = this.subject.expressionOf(this.step());
     boolean _notEquals = (!Objects.equal(expr, null));
     Assert.assertTrue("\nExpected expr != null but"
      + "\n     expr is " + new org.hamcrest.StringDescription().appendValue(expr).toString() + "\n", _notEquals);
     
-    Step _step_1 = this.step();
-    XExpression _expression = _step_1.getExpression();
+    XExpression _expression = this.step().getExpression();
     boolean _equals = Objects.equal(_expression, expr);
     Assert.assertTrue("\nExpected step.expression == expr but"
      + "\n     step.expression is " + new org.hamcrest.StringDescription().appendValue(_expression).toString()
-     + "\n     step is " + new org.hamcrest.StringDescription().appendValue(_step_1).toString()
+     + "\n     step is " + new org.hamcrest.StringDescription().appendValue(this.step()).toString()
      + "\n     expr is " + new org.hamcrest.StringDescription().appendValue(expr).toString() + "\n", _equals);
     
-    Step _step_2 = this.step();
-    StepImplementation _reference = ((StepReference) _step_2).getReference();
-    XExpression _expression_1 = _reference.getExpression();
+    Step _step = this.step();
+    XExpression _expression_1 = ((StepReference) _step).getReference().getExpression();
     boolean _notEquals_1 = (!Objects.equal(_expression_1, expr));
     Assert.assertTrue("\nExpected (step as StepReference).reference.expression != expr but"
      + "\n     (step as StepReference).reference.expression is " + new org.hamcrest.StringDescription().appendValue(_expression_1).toString()
-     + "\n     (step as StepReference).reference is " + new org.hamcrest.StringDescription().appendValue(_reference).toString()
-     + "\n     step as StepReference is " + new org.hamcrest.StringDescription().appendValue(((StepReference) _step_2)).toString()
-     + "\n     step is " + new org.hamcrest.StringDescription().appendValue(_step_2).toString()
+     + "\n     (step as StepReference).reference is " + new org.hamcrest.StringDescription().appendValue(((StepReference) _step).getReference()).toString()
+     + "\n     step as StepReference is " + new org.hamcrest.StringDescription().appendValue(((StepReference) _step)).toString()
+     + "\n     step is " + new org.hamcrest.StringDescription().appendValue(_step).toString()
      + "\n     expr is " + new org.hamcrest.StringDescription().appendValue(expr).toString() + "\n", _notEquals_1);
     
   }
   
   public Step step() {
-    Query _query = Query.query(this.modelStore);
-    return _query.<Step>first(Step.class);
+    return Query.query(this.modelStore).<Step>first(Step.class);
   }
 }

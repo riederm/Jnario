@@ -89,6 +89,6 @@ public class CustomizingTheSpecCreationSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
 }

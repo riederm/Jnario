@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.util.ITextRegion;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.jnario.feature.feature.Scenario;
 import org.jnario.feature.resource.FeatureLocationInFileProvider;
 import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.jnario.test.util.ModelStore;
@@ -46,10 +45,8 @@ public class FeatureLocationInFileProviderSpec {
     _builder.append("\t");
     _builder.append("Given something");
     _builder.newLine();
-    this.parse(_builder.toString());
-    Scenario _firstScenario = this._modelStore.firstScenario();
-    CharSequence _siginificantRegion = this.siginificantRegion(_firstScenario);
-    this.is(_siginificantRegion, "Scenario: My Scenario");
+    this.parse(_builder);
+    this.is(this.siginificantRegion(this._modelStore.firstScenario()), "Scenario: My Scenario");
   }
   
   @Test
@@ -70,9 +67,8 @@ public class FeatureLocationInFileProviderSpec {
     _builder.append("\t");
     _builder.append("And something else");
     _builder.newLine();
-    this.parse(_builder.toString());
-    Scenario _firstScenario = this._modelStore.firstScenario();
-    CharSequence _region = this.region(_firstScenario);
+    this.parse(_builder);
+    CharSequence _region = this.region(this._modelStore.firstScenario());
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("Scenario: My Scenario");
     _builder_1.newLine();
@@ -85,13 +81,11 @@ public class FeatureLocationInFileProviderSpec {
     _builder_1.append("\t");
     _builder_1.append("And something else");
     _builder_1.newLine();
-    this.is(_region, _builder_1.toString());
+    this.is(_region, _builder_1);
   }
   
   public void is(@Extension final CharSequence actual, @Extension final CharSequence expected) {
-    String _string = expected.toString();
-    String _string_1 = actual.toString();
-    Assert.assertEquals(_string, _string_1);
+    Assert.assertEquals(expected.toString(), actual.toString());
   }
   
   public Resource parse(@Extension final CharSequence s) {
@@ -104,15 +98,11 @@ public class FeatureLocationInFileProviderSpec {
   }
   
   public CharSequence siginificantRegion(@Extension final EObject object) {
-    Scenario _firstScenario = this._modelStore.firstScenario();
-    ITextRegion _significantTextRegion = this.subject.getSignificantTextRegion(_firstScenario);
-    return this.toText(_significantTextRegion);
+    return this.toText(this.subject.getSignificantTextRegion(this._modelStore.firstScenario()));
   }
   
   public CharSequence region(@Extension final EObject object) {
-    Scenario _firstScenario = this._modelStore.firstScenario();
-    ITextRegion _fullTextRegion = this.subject.getFullTextRegion(_firstScenario);
-    return this.toText(_fullTextRegion);
+    return this.toText(this.subject.getFullTextRegion(this._modelStore.firstScenario()));
   }
   
   public CharSequence toText(@Extension final ITextRegion region) {

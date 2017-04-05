@@ -57,9 +57,7 @@ public class LinkerValidationSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder.toString());
-    List<Issue> _validate = this.validationTestHelper.validate(_parse);
-    this.assertNoIssues(_validate);
+    this.assertNoIssues(this.validationTestHelper.validate(this.parseHelper.parse(_builder)));
   }
   
   @Test
@@ -83,9 +81,7 @@ public class LinkerValidationSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder.toString());
-    List<Issue> _validate = this.validationTestHelper.validate(_parse);
-    this.assertIssues(_validate, 
+    this.assertIssues(this.validationTestHelper.validate(this.parseHelper.parse(_builder)), 
       "The method or field abc is undefined");
   }
   
@@ -110,9 +106,7 @@ public class LinkerValidationSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder.toString());
-    List<Issue> _validate = this.validationTestHelper.validate(_parse);
-    this.assertIssues(_validate, 
+    this.assertIssues(this.validationTestHelper.validate(this.parseHelper.parse(_builder)), 
       "The method or field abc is undefined");
   }
   
@@ -137,9 +131,7 @@ public class LinkerValidationSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder.toString());
-    List<Issue> _validate = this.validationTestHelper.validate(_parse);
-    this.assertIssues(_validate, 
+    this.assertIssues(this.validationTestHelper.validate(this.parseHelper.parse(_builder)), 
       "The method or field abc is undefined");
   }
   
@@ -164,9 +156,7 @@ public class LinkerValidationSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder.toString());
-    List<Issue> _validate = this.validationTestHelper.validate(_parse);
-    this.assertIssues(_validate, 
+    this.assertIssues(this.validationTestHelper.validate(this.parseHelper.parse(_builder)), 
       "The method or field abc is undefined");
   }
   
@@ -194,9 +184,7 @@ public class LinkerValidationSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder.toString());
-    List<Issue> _validate = this.validationTestHelper.validate(_parse);
-    this.assertNoIssues(_validate);
+    this.assertNoIssues(this.validationTestHelper.validate(this.parseHelper.parse(_builder)));
   }
   
   @Test
@@ -223,9 +211,7 @@ public class LinkerValidationSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    EObject _parse = this.parseHelper.parse(_builder.toString());
-    List<Issue> _validate = this.validationTestHelper.validate(_parse);
-    this.assertNoIssues(_validate);
+    this.assertNoIssues(this.validationTestHelper.validate(this.parseHelper.parse(_builder)));
   }
   
   public boolean assertNoIssues(@Extension final List<Issue> issues) {
@@ -245,8 +231,7 @@ public class LinkerValidationSpec {
         final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
           @Override
           public Boolean apply(final String part) {
-            String _message = it.getMessage();
-            return Boolean.valueOf(_message.contains(part));
+            return Boolean.valueOf(it.getMessage().contains(part));
           }
         };
         boolean _exists = IterableExtensions.<String>exists(((Iterable<String>)Conversions.doWrapArray(parts)), _function);
@@ -258,8 +243,7 @@ public class LinkerValidationSpec {
       {
         sb.append("- unmatched actual issue: ");
         sb.append(issue);
-        String _property = System.getProperty("line.separator");
-        sb.append(_property);
+        sb.append(System.getProperty("line.separator"));
       }
     }
     final Function1<String, Boolean> _function_1 = new Function1<String, Boolean>() {
@@ -268,8 +252,7 @@ public class LinkerValidationSpec {
         final Function1<Issue, Boolean> _function = new Function1<Issue, Boolean>() {
           @Override
           public Boolean apply(final Issue it) {
-            String _message = it.getMessage();
-            return Boolean.valueOf(_message.contains(part));
+            return Boolean.valueOf(it.getMessage().contains(part));
           }
         };
         boolean _exists = IterableExtensions.<Issue>exists(issues, _function);
@@ -281,8 +264,7 @@ public class LinkerValidationSpec {
       {
         sb.append("- unmatched expected issue part: ");
         sb.append(part);
-        String _property = System.getProperty("line.separator");
-        sb.append(_property);
+        sb.append(System.getProperty("line.separator"));
       }
     }
     int _length = sb.length();
@@ -294,7 +276,7 @@ public class LinkerValidationSpec {
       String _string = sb.toString();
       String _plus = (_builder.toString() + _string);
       StringConcatenation _builder_1 = new StringConcatenation();
-      String _plus_1 = (_plus + _builder_1.toString());
+      String _plus_1 = (_plus + _builder_1);
       org.junit.Assert.fail(_plus_1);
     }
   }

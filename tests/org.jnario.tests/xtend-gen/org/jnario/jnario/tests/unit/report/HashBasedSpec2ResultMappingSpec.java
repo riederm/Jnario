@@ -117,8 +117,7 @@ public class HashBasedSpec2ResultMappingSpec {
   }
   
   public void passedStep(@Extension final String className, @Extension final String name) {
-    Passed _passingSpec = Passed.passingSpec(className, name, 0.0);
-    this.subject.accept(_passingSpec);
+    this.subject.accept(Passed.passingSpec(className, name, 0.0));
   }
   
   public void failedStep(@Extension final String name) {
@@ -126,7 +125,6 @@ public class HashBasedSpec2ResultMappingSpec {
   }
   
   public void failedStep(@Extension final String className, @Extension final String name) {
-    Failed _failingSpec = Failed.failingSpec(className, name, 0.0, this.anyFailure);
-    this.subject.accept(_failingSpec);
+    this.subject.accept(Failed.failingSpec(className, name, 0.0, this.anyFailure));
   }
 }

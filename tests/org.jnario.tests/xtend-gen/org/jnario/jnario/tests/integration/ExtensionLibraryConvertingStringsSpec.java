@@ -79,19 +79,18 @@ public class ExtensionLibraryConvertingStringsSpec extends ExtensionLibrarySpec 
      + "\n     \"1, 2, 3\".toList is " + new org.hamcrest.StringDescription().appendValue(_list_2).toString()
      + "\n     list(\"1\", \"2\", \"3\") is " + new org.hamcrest.StringDescription().appendValue(_list_3).toString() + "\n", _doubleArrow_1);
     
-    List<String> _list_4 = StringConversions.toList("1, 2, 3");
     final Function1<String, Integer> _function = new Function1<String, Integer>() {
       @Override
       public Integer apply(final String it) {
         return Integer.valueOf(StringConversions.toInt(it));
       }
     };
-    List<Integer> _map = ListExtensions.<String, Integer>map(_list_4, _function);
-    List<Integer> _list_5 = JnarioCollectionLiterals.<Integer>list(Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3));
+    List<Integer> _map = ListExtensions.<String, Integer>map(StringConversions.toList("1, 2, 3"), _function);
+    List<Integer> _list_4 = JnarioCollectionLiterals.<Integer>list(Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3));
     Assert.assertTrue("\nExpected \"1, 2, 3\".toList.map[toInt] => list(1, 2, 3) but"
      + "\n     \"1, 2, 3\".toList.map[toInt] is " + new org.hamcrest.StringDescription().appendValue(_map).toString()
-     + "\n     \"1, 2, 3\".toList is " + new org.hamcrest.StringDescription().appendValue(_list_4).toString()
-     + "\n     list(1, 2, 3) is " + new org.hamcrest.StringDescription().appendValue(_list_5).toString() + "\n", Should.<List<Integer>>operator_doubleArrow(_map, _list_5));
+     + "\n     \"1, 2, 3\".toList is " + new org.hamcrest.StringDescription().appendValue(StringConversions.toList("1, 2, 3")).toString()
+     + "\n     list(1, 2, 3) is " + new org.hamcrest.StringDescription().appendValue(_list_4).toString() + "\n", Should.<List<Integer>>operator_doubleArrow(_map, _list_4));
     
   }
 }

@@ -19,7 +19,6 @@ import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
 import org.jnario.suite.jvmmodel.SuiteClassNameProvider;
-import org.jnario.suite.suite.Suite;
 import org.jnario.suite.unit.SuiteClassNameProviderSpec;
 import org.jnario.suite.unit.SuiteClassNameProviderToJavaClassNameSpecExamples;
 import org.junit.Test;
@@ -83,15 +82,13 @@ public class SuiteClassNameProviderToJavaClassNameSpec extends SuiteClassNamePro
     final Procedure1<SuiteClassNameProviderToJavaClassNameSpecExamples> _function = new Procedure1<SuiteClassNameProviderToJavaClassNameSpecExamples>() {
       @Override
       public void apply(final SuiteClassNameProviderToJavaClassNameSpecExamples it) {
-        String _name = it.getName();
-        Suite _suite = Suites.suite(_name);
-        String _javaClassName = SuiteClassNameProviderToJavaClassNameSpec.this.subject.toJavaClassName(_suite);
+        String _javaClassName = SuiteClassNameProviderToJavaClassNameSpec.this.subject.toJavaClassName(Suites.suite(it.getName()));
         String _expectedClassName = it.getExpectedClassName();
         Assert.assertTrue("\nExpected subject.toJavaClassName(suite(name)) => expectedClassName but"
          + "\n     subject.toJavaClassName(suite(name)) is " + new org.hamcrest.StringDescription().appendValue(_javaClassName).toString()
          + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(SuiteClassNameProviderToJavaClassNameSpec.this.subject).toString()
-         + "\n     suite(name) is " + new org.hamcrest.StringDescription().appendValue(_suite).toString()
-         + "\n     name is " + new org.hamcrest.StringDescription().appendValue(_name).toString()
+         + "\n     suite(name) is " + new org.hamcrest.StringDescription().appendValue(Suites.suite(it.getName())).toString()
+         + "\n     name is " + new org.hamcrest.StringDescription().appendValue(it.getName()).toString()
          + "\n     expectedClassName is " + new org.hamcrest.StringDescription().appendValue(_expectedClassName).toString() + "\n", Should.<String>operator_doubleArrow(_javaClassName, _expectedClassName));
         
       }

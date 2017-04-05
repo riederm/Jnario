@@ -3,7 +3,6 @@ package org.jnario.feature.tests.unit.naming;
 import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.feature.feature.FeaturePackage;
 import org.jnario.feature.feature.StepReference;
@@ -31,8 +30,7 @@ public class FeatureScopeProviderSpec {
     Set<String> _xblockexpression = null;
     {
       final EObject source = this.e.first(StepReference.class);
-      EReference _stepReference_Reference = FeaturePackage.eINSTANCE.getStepReference_Reference();
-      _xblockexpression = this.e.scope(source, _stepReference_Reference);
+      _xblockexpression = this.e.scope(source, FeaturePackage.eINSTANCE.getStepReference_Reference());
     }
     return _xblockexpression;
   }

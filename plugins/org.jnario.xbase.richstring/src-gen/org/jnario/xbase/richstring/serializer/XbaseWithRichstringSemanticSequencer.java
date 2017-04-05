@@ -64,6 +64,9 @@ import org.eclipse.xtext.xtype.XImportSection;
 import org.eclipse.xtext.xtype.XtypePackage;
 import org.jnario.xbase.richstring.services.XbaseWithRichstringGrammarAccess;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichString;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringElseIf;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringForLoop;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringIf;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichStringLiteral;
 import org.jnario.xbase.richstring.xbasewithrichstring.XbaseWithRichstringPackage;
 
@@ -418,6 +421,15 @@ public class XbaseWithRichstringSemanticSequencer extends XbaseWithAnnotationsSe
 					return; 
 				}
 				else break;
+			case XbaseWithRichstringPackage.RICH_STRING_ELSE_IF:
+				sequence_RichStringElseIf(context, (RichStringElseIf) semanticObject); 
+				return; 
+			case XbaseWithRichstringPackage.RICH_STRING_FOR_LOOP:
+				sequence_RichStringForLoop(context, (RichStringForLoop) semanticObject); 
+				return; 
+			case XbaseWithRichstringPackage.RICH_STRING_IF:
+				sequence_RichStringIf(context, (RichStringIf) semanticObject); 
+				return; 
 			case XbaseWithRichstringPackage.RICH_STRING_LITERAL:
 				if (rule == grammarAccess.getRichStringLiteralEndRule()) {
 					sequence_RichStringLiteralEnd(context, (RichStringLiteral) semanticObject); 
@@ -461,6 +473,60 @@ public class XbaseWithRichstringSemanticSequencer extends XbaseWithAnnotationsSe
 	 *     (expressions+=RichStringLiteralInbetween (expressions+=RichStringPart? expressions+=RichStringLiteralInbetween)*)
 	 */
 	protected void sequence_InternalRichString(ISerializationContext context, RichString semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     RichStringElseIf returns RichStringElseIf
+	 *
+	 * Constraint:
+	 *     (if=XExpression then=InternalRichString)
+	 */
+	protected void sequence_RichStringElseIf(ISerializationContext context, RichStringElseIf semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, XbaseWithRichstringPackage.Literals.RICH_STRING_ELSE_IF__IF) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, XbaseWithRichstringPackage.Literals.RICH_STRING_ELSE_IF__IF));
+			if (transientValues.isValueTransient(semanticObject, XbaseWithRichstringPackage.Literals.RICH_STRING_ELSE_IF__THEN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, XbaseWithRichstringPackage.Literals.RICH_STRING_ELSE_IF__THEN));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRichStringElseIfAccess().getIfXExpressionParserRuleCall_1_0(), semanticObject.getIf());
+		feeder.accept(grammarAccess.getRichStringElseIfAccess().getThenInternalRichStringParserRuleCall_2_0(), semanticObject.getThen());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     RichStringPart returns RichStringForLoop
+	 *     RichStringForLoop returns RichStringForLoop
+	 *
+	 * Constraint:
+	 *     (
+	 *         declaredParam=JvmFormalParameter 
+	 *         forExpression=XExpression 
+	 *         before=XExpression? 
+	 *         separator=XExpression? 
+	 *         after=XExpression? 
+	 *         eachExpression=InternalRichString
+	 *     )
+	 */
+	protected void sequence_RichStringForLoop(ISerializationContext context, RichStringForLoop semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     RichStringPart returns RichStringIf
+	 *     RichStringIf returns RichStringIf
+	 *
+	 * Constraint:
+	 *     (if=XExpression then=InternalRichString elseIfs+=RichStringElseIf* else=InternalRichString?)
+	 */
+	protected void sequence_RichStringIf(ISerializationContext context, RichStringIf semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

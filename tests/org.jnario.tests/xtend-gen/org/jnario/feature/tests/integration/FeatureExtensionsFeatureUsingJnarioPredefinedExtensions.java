@@ -32,16 +32,14 @@ public class FeatureExtensionsFeatureUsingJnarioPredefinedExtensions extends Fea
   @Named("Given the number \\\"5\\\" as string")
   public void _givenTheNumber5AsString() {
     final StepArguments args = new StepArguments("5");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.numberString = _first;
+    this.numberString = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test
   @Order(1)
   @Named("When it is converted to int")
   public void _whenItIsConvertedToInt() {
-    int _int = StringConversions.toInt(this.numberString);
-    this.number = _int;
+    this.number = StringConversions.toInt(this.numberString);
   }
   
   @Test
@@ -49,12 +47,11 @@ public class FeatureExtensionsFeatureUsingJnarioPredefinedExtensions extends Fea
   @Named("Then it should be \\\"5\\\"")
   public void _thenItShouldBe5() {
     final StepArguments args = new StepArguments("5");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    int _int = StringConversions.toInt(_first);
+    int _int = StringConversions.toInt(JnarioIterableExtensions.<String>first(args));
     Assert.assertTrue("\nExpected number => args.first.toInt but"
      + "\n     number is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(this.number)).toString()
      + "\n     args.first.toInt is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(_int)).toString()
-     + "\n     args.first is " + new org.hamcrest.StringDescription().appendValue(_first).toString()
+     + "\n     args.first is " + new org.hamcrest.StringDescription().appendValue(JnarioIterableExtensions.<String>first(args)).toString()
      + "\n     args is " + new org.hamcrest.StringDescription().appendValue(args).toString() + "\n", Should.<Integer>operator_doubleArrow(Integer.valueOf(this.number), Integer.valueOf(_int)));
     
   }

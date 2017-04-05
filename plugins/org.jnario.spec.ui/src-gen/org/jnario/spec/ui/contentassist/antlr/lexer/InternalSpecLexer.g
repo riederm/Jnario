@@ -20,6 +20,8 @@ Synchronized : 'synchronized';
 
 Instanceof : 'instanceof';
 
+SEPARATOR : 'SEPARATOR';
+
 Extension : 'extension';
 
 Protected : 'protected';
@@ -52,6 +54,12 @@ Pending : 'pending';
 
 Private : 'private';
 
+BEFORE : 'BEFORE';
+
+ELSEIF : 'ELSEIF';
+
+ENDFOR : 'ENDFOR';
+
 Assert : 'assert';
 
 Before : 'before';
@@ -74,6 +82,10 @@ Throws : 'throws';
 
 Typeof : 'typeof';
 
+AFTER : 'AFTER';
+
+ENDIF : 'ENDIF';
+
 After : 'after';
 
 Catch : 'catch';
@@ -89,6 +101,8 @@ Super : 'super';
 Throw : 'throw';
 
 While : 'while';
+
+ELSE : 'ELSE';
 
 Case : 'case';
 
@@ -109,6 +123,8 @@ FullStopFullStopFullStop : '...';
 FullStopFullStopLessThanSign : '..<';
 
 EqualsSignEqualsSignEqualsSign : '===';
+
+FOR : 'FOR';
 
 All : 'all';
 
@@ -163,6 +179,8 @@ GreaterThanSignEqualsSign : '>=';
 QuestionMarkFullStop : '?.';
 
 QuestionMarkColon : '?:';
+
+IF : 'IF';
 
 As : 'as';
 

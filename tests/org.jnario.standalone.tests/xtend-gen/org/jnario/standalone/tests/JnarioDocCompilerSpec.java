@@ -39,9 +39,7 @@ public class JnarioDocCompilerSpec {
   @Before
   public void before() throws Exception {
     this.compiler.setSourcePath("./testdata");
-    File _root = this.folder.getRoot();
-    String _string = _root.toString();
-    this.compiler.setOutputPath(_string);
+    this.compiler.setOutputPath(this.folder.getRoot().toString());
     this.compiler.setDeleteTempDirectory(true);
     this.compiler.setUseCurrentClassLoaderAsParent(true);
     this.compiler.compile();
@@ -51,12 +49,10 @@ public class JnarioDocCompilerSpec {
     final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
       @Override
       public Boolean apply(final String it) {
-        File _root = JnarioDocCompilerSpec.this.folder.getRoot();
-        String _string = _root.toString();
+        String _string = JnarioDocCompilerSpec.this.folder.getRoot().toString();
         String _plus = (_string + "/");
         String _plus_1 = (_plus + it);
-        File _file = new File(_plus_1);
-        return Boolean.valueOf(_file.exists());
+        return Boolean.valueOf(new File(_plus_1).exists());
       }
     };
     return Should.<String>matches("generated", _function);

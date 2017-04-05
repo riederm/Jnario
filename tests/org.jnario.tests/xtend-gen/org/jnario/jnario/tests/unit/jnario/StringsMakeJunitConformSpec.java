@@ -95,12 +95,11 @@ public class StringsMakeJunitConformSpec extends StringsSpec {
     final Procedure1<StringsMakeJunitConformSpecExamples> _function = new Procedure1<StringsMakeJunitConformSpecExamples>() {
       @Override
       public void apply(final StringsMakeJunitConformSpecExamples it) {
-        String _string = it.getString();
-        String _makeJunitConform = Strings.makeJunitConform(_string);
+        String _makeJunitConform = Strings.makeJunitConform(it.getString());
         String _result = it.getResult();
         Assert.assertTrue("\nExpected string.makeJunitConform => result but"
          + "\n     string.makeJunitConform is " + new org.hamcrest.StringDescription().appendValue(_makeJunitConform).toString()
-         + "\n     string is " + new org.hamcrest.StringDescription().appendValue(_string).toString()
+         + "\n     string is " + new org.hamcrest.StringDescription().appendValue(it.getString()).toString()
          + "\n     result is " + new org.hamcrest.StringDescription().appendValue(_result).toString() + "\n", Should.<String>operator_doubleArrow(_makeJunitConform, _result));
         
       }

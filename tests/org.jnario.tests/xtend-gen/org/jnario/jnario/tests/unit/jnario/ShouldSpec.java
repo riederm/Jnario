@@ -13,7 +13,6 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.Should;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.ModelStore;
-import org.jnario.jnario.test.util.Query;
 import org.jnario.jnario.test.util.SpecTestCreator;
 import org.jnario.lib.Assert;
 import org.jnario.runner.CreateWith;
@@ -52,15 +51,13 @@ public class ShouldSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._modelStore.parseSpec(_builder.toString());
-    Query _query = this._modelStore.query();
-    Should _first = _query.<Should>first(Should.class);
-    boolean _isNot = _first.isNot();
+    this._modelStore.parseSpec(_builder);
+    boolean _isNot = this._modelStore.query().<Should>first(Should.class).isNot();
     boolean _not = (!_isNot);
     Assert.assertTrue("\nExpected !query.first(typeof(Should)).isNot but"
      + "\n     query.first(typeof(Should)).isNot is " + new org.hamcrest.StringDescription().appendValue(_isNot).toString()
-     + "\n     query.first(typeof(Should)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString()
-     + "\n     query is " + new org.hamcrest.StringDescription().appendValue(_query).toString() + "\n", _not);
+     + "\n     query.first(typeof(Should)) is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.query().<Should>first(Should.class)).toString()
+     + "\n     query is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.query()).toString() + "\n", _not);
     
   }
   
@@ -78,13 +75,11 @@ public class ShouldSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._modelStore.parseSpec(_builder.toString());
-    Query _query = this._modelStore.query();
-    Should _first = _query.<Should>first(Should.class);
-    boolean _isNot = _first.isNot();
+    this._modelStore.parseSpec(_builder);
+    boolean _isNot = this._modelStore.query().<Should>first(Should.class).isNot();
     Assert.assertTrue("\nExpected query.first(typeof(Should)).isNot but"
-     + "\n     query.first(typeof(Should)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString()
-     + "\n     query is " + new org.hamcrest.StringDescription().appendValue(_query).toString() + "\n", _isNot);
+     + "\n     query.first(typeof(Should)) is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.query().<Should>first(Should.class)).toString()
+     + "\n     query is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.query()).toString() + "\n", _isNot);
     
   }
   
@@ -100,7 +95,7 @@ public class ShouldSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -117,7 +112,7 @@ public class ShouldSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -132,7 +127,7 @@ public class ShouldSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executionFails(_builder.toString());
+    this._behaviorExecutor.executionFails(_builder);
   }
   
   @Test
@@ -149,7 +144,7 @@ public class ShouldSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executionFails(_builder.toString());
+    this._behaviorExecutor.executionFails(_builder);
   }
   
   @Test
@@ -164,7 +159,7 @@ public class ShouldSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -184,7 +179,7 @@ public class ShouldSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -199,7 +194,7 @@ public class ShouldSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -214,6 +209,6 @@ public class ShouldSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
 }

@@ -38,7 +38,7 @@ public class FeatureScopeProviderStepReferenceSpec extends FeatureScopeProviderS
     _builder.append("\t");
     _builder.append("And another step");
     _builder.newLine();
-    this.e.parseFeature(_builder.toString());
+    this.e.parseFeature(_builder);
     Set<String> _targetOperationScope = this.targetOperationScope();
     boolean _should_contain = Should.<String>should_contain(_targetOperationScope, "myPackage.a step");
     Assert.assertTrue("\nExpected targetOperationScope should contain \"myPackage.a step\" but"

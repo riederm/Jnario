@@ -123,11 +123,7 @@ public class FeatureQualifiedNameProviderStepNameSpec extends FeatureQualifiedNa
     final Procedure1<FeatureQualifiedNameProviderStepNameSpecExamples> _function = new Procedure1<FeatureQualifiedNameProviderStepNameSpecExamples>() {
       @Override
       public void apply(final FeatureQualifiedNameProviderStepNameSpecExamples it) {
-        String _description = it.getDescription();
-        String _expected = it.getExpected();
-        String _name = it.getName();
-        String _implementedStepName = FeatureQualifiedNameProviderStepNameSpec.this.implementedStepName(_name);
-        Assert.assertEquals(_description, _expected, _implementedStepName);
+        Assert.assertEquals(it.getDescription(), it.getExpected(), FeatureQualifiedNameProviderStepNameSpec.this.implementedStepName(it.getName()));
         FeatureQualifiedNameProviderStepNameSpec.this._modelStore.clear();
       }
     };
@@ -141,11 +137,7 @@ public class FeatureQualifiedNameProviderStepNameSpec extends FeatureQualifiedNa
     final Procedure1<FeatureQualifiedNameProviderStepNameSpecExamples> _function = new Procedure1<FeatureQualifiedNameProviderStepNameSpecExamples>() {
       @Override
       public void apply(final FeatureQualifiedNameProviderStepNameSpecExamples it) {
-        String _description = it.getDescription();
-        String _expected = it.getExpected();
-        String _name = it.getName();
-        String _stepName = FeatureQualifiedNameProviderStepNameSpec.this.stepName(_name);
-        Assert.assertEquals(_description, _expected, _stepName);
+        Assert.assertEquals(it.getDescription(), it.getExpected(), FeatureQualifiedNameProviderStepNameSpec.this.stepName(it.getName()));
         FeatureQualifiedNameProviderStepNameSpec.this._modelStore.clear();
       }
     };

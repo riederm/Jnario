@@ -41,8 +41,7 @@ public class ReferencesForStepsFeatureDuplicateExtensionViaStepRerferences exten
   @Named("When I have a feature")
   public void _whenIHaveAFeature() {
     final StepArguments args = new StepArguments("import java.util.List\nFeature: Feature 1\n\t\tScenario: Scenario with field colors\n\t\t\textension List<String> colors = <String>list\n\t\t\tGiven a color red\n\t\t\t\tcolors += \"red\"\n\t\t\tAnd a color green\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.feature1 = _first;
+    this.feature1 = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test
@@ -50,8 +49,7 @@ public class ReferencesForStepsFeatureDuplicateExtensionViaStepRerferences exten
   @Named("And another feature")
   public void _andAnotherFeature() {
     final StepArguments args = new StepArguments("import java.util.List\nFeature: Feature 2\n\t\tScenario: Scenario with other colors\n\t\t\t\textension List<String> colors = <String>list\n\t\t\tGiven a color red\n\t\t\tAnd a color green\n\t\t\t\tcolors += \"green\"\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.feature2 = _first;
+    this.feature2 = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

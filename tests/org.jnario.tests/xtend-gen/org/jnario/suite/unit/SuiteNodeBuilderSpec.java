@@ -47,7 +47,7 @@ public class SuiteNodeBuilderSpec {
       _builder.newLine();
       String _plus = (_builder.toString() + s);
       StringConcatenation _builder_1 = new StringConcatenation();
-      final String input = (_plus + _builder_1.toString());
+      final String input = (_plus + _builder_1);
       _xblockexpression = this.m.parseSuite(input);
     }
     return _xblockexpression;

@@ -22,7 +22,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LineBreak" eSuperTypes="#//Literal"/>
   <eClassifiers xsi:type="ecore:EClass" name="ForLoopStart" eSuperTypes="#//LinePart">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="loop" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loop" eType="ecore:EClass XbaseRichString.ecore#//RichStringForLoop"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="end" eType="#//ForLoopEnd"
         eOpposite="#//ForLoopEnd/start"/>
   </eClassifiers>
@@ -34,7 +34,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass ../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfConditionStart" eSuperTypes="#//LinePart">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="richStringIf" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="richStringIf" eType="ecore:EClass XbaseRichString.ecore#//RichStringIf"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elseStart" eType="#//ElseStart"
         eOpposite="#//ElseStart/ifConditionStart"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elseIfConditions" upperBound="-1"
@@ -42,7 +42,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="endIf" eType="#//EndIf"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElseIfCondition" eSuperTypes="#//LinePart">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="richStringElseIf" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="richStringElseIf" eType="ecore:EClass XbaseRichString.ecore#//RichStringElseIf"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ifConditionStart" eType="#//IfConditionStart"
         eOpposite="#//IfConditionStart/elseIfConditions"/>
   </eClassifiers>

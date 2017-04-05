@@ -10,15 +10,12 @@ package org.jnario.spec.tests.unit.naming;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.Map;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.common.types.JvmGenericType;
-import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.access.ClasspathTypeProviderFactory;
 import org.eclipse.xtext.common.types.access.impl.ClasspathTypeProvider;
 import org.eclipse.xtext.common.types.access.impl.TypeResourceServices;
-import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -59,27 +56,23 @@ public class OperationNameProviderSpec {
   @Before
   public void setup() {
     final ClasspathTypeProvider typeProvider = this.typeProviderFactory.createTypeProvider();
-    String _name = OperationNamesExample.class.getName();
-    JvmType _findTypeByName = typeProvider.findTypeByName(_name);
+    JvmType _findTypeByName = typeProvider.findTypeByName(OperationNamesExample.class.getName());
     final JvmGenericType type = ((JvmGenericType) _findTypeByName);
-    EList<JvmMember> _members = type.getMembers();
-    final Iterable<JvmOperation> jvmOperations = Iterables.<JvmOperation>filter(_members, JvmOperation.class);
+    final Iterable<JvmOperation> jvmOperations = Iterables.<JvmOperation>filter(type.getMembers(), JvmOperation.class);
     final Function1<JvmOperation, String> _function = new Function1<JvmOperation, String>() {
       @Override
       public String apply(final JvmOperation it) {
         return it.getSimpleName();
       }
     };
-    Map<String, JvmOperation> _map = IterableExtensions.<String, JvmOperation>toMap(jvmOperations, _function);
-    this.operations = _map;
+    this.operations = IterableExtensions.<String, JvmOperation>toMap(jvmOperations, _function);
   }
   
   public String nameOf(@Extension final String operationName) {
     String _xblockexpression = null;
     {
       final JvmOperation op = this.operations.get(operationName);
-      QualifiedName _apply = this.subject.apply(op);
-      _xblockexpression = _apply.toString();
+      _xblockexpression = this.subject.apply(op).toString();
     }
     return _xblockexpression;
   }

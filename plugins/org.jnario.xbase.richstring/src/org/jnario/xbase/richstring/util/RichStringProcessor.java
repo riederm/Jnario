@@ -12,7 +12,10 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.xbase.XExpression;
+import org.jnario.xbase.richstring.richstring.ElseIfCondition;
+import org.jnario.xbase.richstring.richstring.ElseStart;
 import org.jnario.xbase.richstring.richstring.EndIf;
+import org.jnario.xbase.richstring.richstring.ForLoopEnd;
 import org.jnario.xbase.richstring.richstring.ForLoopStart;
 import org.jnario.xbase.richstring.richstring.IfConditionStart;
 import org.jnario.xbase.richstring.richstring.Line;
@@ -24,6 +27,9 @@ import org.jnario.xbase.richstring.richstring.ProcessedRichString;
 import org.jnario.xbase.richstring.richstring.ProcessedRichStringFactory;
 import org.jnario.xbase.richstring.richstring.util.ProcessedRichStringSwitch;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichString;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringElseIf;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringForLoop;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringIf;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichStringLiteral;
 import org.jnario.xbase.richstring.xbasewithrichstring.util.XbaseWithRichstringSwitch;
 
@@ -99,42 +105,42 @@ public class RichStringProcessor {
 			return Boolean.TRUE;
 		}
 
-//		@Override
-//		public Boolean caseRichStringForLoop(RichStringForLoop object) {
-//			ForLoopStart start = factory.createForLoopStart();
-//			start.setLoop(object);
-//			addToCurrentLine(start);
-//			doSwitch(object.getEachExpression());
-//			ForLoopEnd end = factory.createForLoopEnd();
-//			end.setStart(start);
-//			addToCurrentLine(end);
-//			return Boolean.TRUE;
-//		}
-//
-//		@Override
-//		public Boolean caseRichStringIf(RichStringIf object) {
-//			IfConditionStart start = factory.createIfConditionStart();
-//			start.setRichStringIf(object);
-//			addToCurrentLine(start);
-//			doSwitch(object.getThen());
-//			for (RichStringElseIf elseIf : object.getElseIfs()) {
-//				ElseIfCondition elseIfStart = factory.createElseIfCondition();
-//				elseIfStart.setIfConditionStart(start);
-//				elseIfStart.setRichStringElseIf(elseIf);
-//				addToCurrentLine(elseIfStart);
-//				doSwitch(elseIf.getThen());
-//			}
-//			if (object.getElse() != null) {
-//				ElseStart elseStart = factory.createElseStart();
-//				elseStart.setIfConditionStart(start);
-//				addToCurrentLine(elseStart);
-//				doSwitch(object.getElse());
-//			}
-//			EndIf end = factory.createEndIf();
-//			end.setIfConditionStart(start);
-//			addToCurrentLine(end);
-//			return Boolean.TRUE;
-//		}
+		@Override
+		public Boolean caseRichStringForLoop(RichStringForLoop object) {
+			ForLoopStart start = factory.createForLoopStart();
+			start.setLoop(object);
+			addToCurrentLine(start);
+			doSwitch(object.getEachExpression());
+			ForLoopEnd end = factory.createForLoopEnd();
+			end.setStart(start);
+			addToCurrentLine(end);
+			return Boolean.TRUE;
+		}
+
+		@Override
+		public Boolean caseRichStringIf(RichStringIf object) {
+			IfConditionStart start = factory.createIfConditionStart();
+			start.setRichStringIf(object);
+			addToCurrentLine(start);
+			doSwitch(object.getThen());
+			for (RichStringElseIf elseIf : object.getElseIfs()) {
+				ElseIfCondition elseIfStart = factory.createElseIfCondition();
+				elseIfStart.setIfConditionStart(start);
+				elseIfStart.setRichStringElseIf(elseIf);
+				addToCurrentLine(elseIfStart);
+				doSwitch(elseIf.getThen());
+			}
+			if (object.getElse() != null) {
+				ElseStart elseStart = factory.createElseStart();
+				elseStart.setIfConditionStart(start);
+				addToCurrentLine(elseStart);
+				doSwitch(object.getElse());
+			}
+			EndIf end = factory.createEndIf();
+			end.setIfConditionStart(start);
+			addToCurrentLine(end);
+			return Boolean.TRUE;
+		}
 
 		@Override
 		public Boolean defaultCase(EObject object) {
@@ -250,61 +256,61 @@ public class RichStringProcessor {
 			}
 		}
 		
-//		@Override
-//		public Boolean caseForLoopStart(ForLoopStart object) {
-//			RichStringForLoop loop = object.getLoop();
-//			acceptor.acceptForLoop(loop.getDeclaredParam(), loop.getForExpression());
-//			pushTemplateIndentationTwice(computeInitialIndentation((RichString) loop.getEachExpression()));
-//			boolean hasNext = acceptor.forLoopHasNext(loop.getBefore(), loop.getSeparator(), indentationHandler.getTotalSemanticIndentation());
-//			if (hasNext) {
-//				while (hasNext) {
-//					computeNextPart(object);
-//					while(nextPart != object.getEnd()) {
-//						doSwitch(nextPart);
-//					}
-//					hasNext = acceptor.forLoopHasNext(loop.getBefore(), loop.getSeparator(), indentationHandler.getTotalSemanticIndentation());
-//				}
-//			} else {
-//				nextPart = object.getEnd();
-//			}
-//			return Boolean.TRUE;
-//		}
-//		
-//		@Override
-//		public Boolean caseForLoopEnd(ForLoopEnd object) {
-//			popIndentationTwice();
-//			acceptor.acceptEndFor(object.getStart().getLoop().getAfter(), indentationHandler.getTotalSemanticIndentation());
-//			computeNextPart(object);
-//			return Boolean.TRUE;
-//		}
-//		
-//		@Override
-//		public Boolean caseIfConditionStart(IfConditionStart object) {
-//			RichStringIf richStringIf = object.getRichStringIf();
-//			acceptor.acceptIfCondition(richStringIf.getIf());
-//			computeNextPart(object);
-//			pushTemplateIndentationTwice(computeInitialIndentation((RichString) richStringIf.getThen()));
-//			return Boolean.TRUE;
-//		}
-//		
-//		@Override
-//		public Boolean caseElseIfCondition(ElseIfCondition object) {
-//			popIndentationTwice();
-//			RichStringElseIf elseIf = object.getRichStringElseIf();
-//			acceptor.acceptElseIfCondition(elseIf.getIf());
-//			computeNextPart(object);
-//			pushTemplateIndentationTwice(computeInitialIndentation((RichString) elseIf.getThen()));
-//			return Boolean.TRUE;
-//		}
-//		
-//		@Override
-//		public Boolean caseElseStart(ElseStart object) {
-//			popIndentationTwice();
-//			acceptor.acceptElse();
-//			computeNextPart(object);
-//			pushTemplateIndentationTwice(computeInitialIndentation((RichString) object.getIfConditionStart().getRichStringIf().getElse()));
-//			return Boolean.TRUE;
-//		}
+		@Override
+		public Boolean caseForLoopStart(ForLoopStart object) {
+			RichStringForLoop loop = object.getLoop();
+			acceptor.acceptForLoop(loop.getDeclaredParam(), loop.getForExpression());
+			pushTemplateIndentationTwice(computeInitialIndentation((RichString) loop.getEachExpression()));
+			boolean hasNext = acceptor.forLoopHasNext(loop.getBefore(), loop.getSeparator(), indentationHandler.getTotalSemanticIndentation());
+			if (hasNext) {
+				while (hasNext) {
+					computeNextPart(object);
+					while(nextPart != object.getEnd()) {
+						doSwitch(nextPart);
+					}
+					hasNext = acceptor.forLoopHasNext(loop.getBefore(), loop.getSeparator(), indentationHandler.getTotalSemanticIndentation());
+				}
+			} else {
+				nextPart = object.getEnd();
+			}
+			return Boolean.TRUE;
+		}
+		
+		@Override
+		public Boolean caseForLoopEnd(ForLoopEnd object) {
+			popIndentationTwice();
+			acceptor.acceptEndFor(object.getStart().getLoop().getAfter(), indentationHandler.getTotalSemanticIndentation());
+			computeNextPart(object);
+			return Boolean.TRUE;
+		}
+		
+		@Override
+		public Boolean caseIfConditionStart(IfConditionStart object) {
+			RichStringIf richStringIf = object.getRichStringIf();
+			acceptor.acceptIfCondition(richStringIf.getIf());
+			computeNextPart(object);
+			pushTemplateIndentationTwice(computeInitialIndentation((RichString) richStringIf.getThen()));
+			return Boolean.TRUE;
+		}
+		
+		@Override
+		public Boolean caseElseIfCondition(ElseIfCondition object) {
+			popIndentationTwice();
+			RichStringElseIf elseIf = object.getRichStringElseIf();
+			acceptor.acceptElseIfCondition(elseIf.getIf());
+			computeNextPart(object);
+			pushTemplateIndentationTwice(computeInitialIndentation((RichString) elseIf.getThen()));
+			return Boolean.TRUE;
+		}
+		
+		@Override
+		public Boolean caseElseStart(ElseStart object) {
+			popIndentationTwice();
+			acceptor.acceptElse();
+			computeNextPart(object);
+			pushTemplateIndentationTwice(computeInitialIndentation((RichString) object.getIfConditionStart().getRichStringIf().getElse()));
+			return Boolean.TRUE;
+		}
 		
 		@Override
 		public Boolean caseEndIf(EndIf object) {

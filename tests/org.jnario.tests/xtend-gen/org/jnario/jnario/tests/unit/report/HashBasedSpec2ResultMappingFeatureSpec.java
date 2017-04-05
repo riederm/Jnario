@@ -1,7 +1,6 @@
 package org.jnario.jnario.tests.unit.report;
 
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.jnario.feature.feature.Feature;
 import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.jnario.tests.unit.report.HashBasedSpec2ResultMappingSpec;
 import org.jnario.lib.Assert;
@@ -43,7 +42,7 @@ public class HashBasedSpec2ResultMappingFeatureSpec extends HashBasedSpec2Result
     _builder.append("\t");
     _builder.append("\"with implementation\"");
     _builder.newLine();
-    this.m.parseScenario(_builder.toString());
+    this.m.parseScenario(_builder);
   }
   
   @Test
@@ -52,11 +51,10 @@ public class HashBasedSpec2ResultMappingFeatureSpec extends HashBasedSpec2Result
   public void _returnsPassedIfAllScenariosPassed() throws Exception {
     this.passedStep("Given a step");
     this.passedStep(HashBasedSpec2ResultMappingSpec.OTHER_SCENARIO_CLASSNAME, "Given another step");
-    Feature _feature = this.feature();
-    SpecExecution _result = this.result(_feature);
+    SpecExecution _result = this.result(this.feature());
     Assert.assertTrue("\nExpected feature.result => typeof(Passed) but"
      + "\n     feature.result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     feature is " + new org.hamcrest.StringDescription().appendValue(_feature).toString() + "\n", Should.operator_doubleArrow(_result, Passed.class));
+     + "\n     feature is " + new org.hamcrest.StringDescription().appendValue(this.feature()).toString() + "\n", Should.operator_doubleArrow(_result, Passed.class));
     
   }
   
@@ -66,11 +64,10 @@ public class HashBasedSpec2ResultMappingFeatureSpec extends HashBasedSpec2Result
   public void _returnsFailedIfOneScenarioFailed() throws Exception {
     this.passedStep("Given a step");
     this.failedStep(HashBasedSpec2ResultMappingSpec.OTHER_SCENARIO_CLASSNAME, "Given another step");
-    Feature _feature = this.feature();
-    SpecExecution _result = this.result(_feature);
+    SpecExecution _result = this.result(this.feature());
     Assert.assertTrue("\nExpected feature.result => typeof(Failed) but"
      + "\n     feature.result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     feature is " + new org.hamcrest.StringDescription().appendValue(_feature).toString() + "\n", Should.operator_doubleArrow(_result, Failed.class));
+     + "\n     feature is " + new org.hamcrest.StringDescription().appendValue(this.feature()).toString() + "\n", Should.operator_doubleArrow(_result, Failed.class));
     
   }
 }

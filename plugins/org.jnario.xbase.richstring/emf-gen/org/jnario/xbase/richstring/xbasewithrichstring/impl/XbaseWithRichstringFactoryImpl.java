@@ -58,6 +58,9 @@ public class XbaseWithRichstringFactoryImpl extends EFactoryImpl implements Xbas
 		switch (eClass.getClassifierID()) {
 			case XbaseWithRichstringPackage.RICH_STRING: return createRichString();
 			case XbaseWithRichstringPackage.RICH_STRING_LITERAL: return createRichStringLiteral();
+			case XbaseWithRichstringPackage.RICH_STRING_FOR_LOOP: return createRichStringForLoop();
+			case XbaseWithRichstringPackage.RICH_STRING_IF: return createRichStringIf();
+			case XbaseWithRichstringPackage.RICH_STRING_ELSE_IF: return createRichStringElseIf();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -81,6 +84,36 @@ public class XbaseWithRichstringFactoryImpl extends EFactoryImpl implements Xbas
 	public RichStringLiteral createRichStringLiteral() {
 		RichStringLiteralImpl richStringLiteral = new RichStringLiteralImpl();
 		return richStringLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RichStringForLoop createRichStringForLoop() {
+		RichStringForLoopImpl richStringForLoop = new RichStringForLoopImpl();
+		return richStringForLoop;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RichStringIf createRichStringIf() {
+		RichStringIfImpl richStringIf = new RichStringIfImpl();
+		return richStringIf;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RichStringElseIf createRichStringElseIf() {
+		RichStringElseIfImpl richStringElseIf = new RichStringElseIfImpl();
+		return richStringElseIf;
 	}
 
 	/**

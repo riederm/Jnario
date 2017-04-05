@@ -3,10 +3,6 @@ package org.jnario.jnario.tests.integration;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
 import com.google.inject.Inject;
-import java.util.Iterator;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.util.StringInputStream;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.Executable;
@@ -53,12 +49,7 @@ public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingFailedSpecRuns 
   @Named("Given a specification")
   public void _givenASpecification() {
     final StepArguments args = new StepArguments("package example\n\ndescribe \"Adding values\"{\n\tfact \"4 + 3 is 8\"{\n\t\t4 + 3 => 8\n\t}\n}\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    Resource _parseSpec = this._modelStore.parseSpec(_first);
-    TreeIterator<EObject> _allContents = _parseSpec.getAllContents();
-    Iterator<ExampleGroup> _filter = Iterators.<ExampleGroup>filter(_allContents, ExampleGroup.class);
-    ExampleGroup _first_1 = JnarioIteratorExtensions.<ExampleGroup>first(_filter);
-    this.specification = _first_1;
+    this.specification = JnarioIteratorExtensions.<ExampleGroup>first(Iterators.<ExampleGroup>filter(this._modelStore.parseSpec(JnarioIterableExtensions.<String>first(args)).getAllContents(), ExampleGroup.class));
   }
   
   @Test
@@ -66,8 +57,7 @@ public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingFailedSpecRuns 
   @Named("And a test result xml file")
   public void _andATestResultXmlFile() {
     final StepArguments args = new StepArguments("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<testsuite failures=\"1\" time=\"0.017\" errors=\"0\" skipped=\"0\" tests=\"1\" name=\"example.AddingValuesSpec\">\n  <properties>\n    <property name=\"java.runtime.name\" value=\"Java(TM) SE Runtime Environment\"/>\n  </properties>\n  <testcase time=\"0.017\" classname=\"example.AddingValuesSpec\" name=\"4 + 3 is 8\">\n    <failure message=\"\nExpected 4 + 3 =&gt; 8 but\n     4 + 3 is &lt;7&gt;\n\" type=\"java.lang.AssertionError\">java.lang.AssertionError: \nExpected 4 + 3 =&gt; 8 but\n     4 + 3 is &lt;7&gt;\n\tat org.junit.Assert.fail(Assert.java:93)\n\tat org.junit.Assert.assertTrue(Assert.java:43)\n\tat example.AddingValuesSpec.__43Is8(AddingValuesSpec.java:22)\n</failure>\n  </testcase>\n</testsuite>\t\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    String _trim = _first.trim();
+    String _trim = JnarioIterableExtensions.<String>first(args).trim();
     StringInputStream _stringInputStream = new StringInputStream(_trim);
     this.resultParser.parse(_stringInputStream, this.spec2ResultMapping);
   }

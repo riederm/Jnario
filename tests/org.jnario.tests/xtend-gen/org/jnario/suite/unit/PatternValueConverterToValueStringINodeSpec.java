@@ -72,13 +72,12 @@ public class PatternValueConverterToValueStringINodeSpec extends PatternValueCon
     final Procedure1<PatternValueConverterToValueStringINodeSpecExamples> _function = new Procedure1<PatternValueConverterToValueStringINodeSpecExamples>() {
       @Override
       public void apply(final PatternValueConverterToValueStringINodeSpecExamples it) {
-        String _input = it.getInput();
-        String _value = PatternValueConverterToValueStringINodeSpec.this.subject.toValue(_input, null);
+        String _value = PatternValueConverterToValueStringINodeSpec.this.subject.toValue(it.getInput(), null);
         String _result = it.getResult();
         Assert.assertTrue("\nExpected subject.toValue(input, null) => result but"
          + "\n     subject.toValue(input, null) is " + new org.hamcrest.StringDescription().appendValue(_value).toString()
          + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(PatternValueConverterToValueStringINodeSpec.this.subject).toString()
-         + "\n     input is " + new org.hamcrest.StringDescription().appendValue(_input).toString()
+         + "\n     input is " + new org.hamcrest.StringDescription().appendValue(it.getInput()).toString()
          + "\n     result is " + new org.hamcrest.StringDescription().appendValue(_result).toString() + "\n", Should.<String>operator_doubleArrow(_value, _result));
         
       }

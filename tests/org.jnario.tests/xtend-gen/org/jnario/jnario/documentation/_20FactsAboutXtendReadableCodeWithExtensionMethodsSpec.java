@@ -88,10 +88,9 @@ public class _20FactsAboutXtendReadableCodeWithExtensionMethodsSpec extends _20F
   @Named("Local extension methods.")
   @Order(2)
   public void _localExtensionMethods() throws Exception {
-    List<String> _list = JnarioCollectionLiterals.<String>list("red");
-    boolean _hasOneElement = this.hasOneElement(_list);
+    boolean _hasOneElement = this.hasOneElement(JnarioCollectionLiterals.<String>list("red"));
     Assert.assertTrue("\nExpected list(\"red\").hasOneElement but"
-     + "\n     list(\"red\") is " + new org.hamcrest.StringDescription().appendValue(_list).toString() + "\n", _hasOneElement);
+     + "\n     list(\"red\") is " + new org.hamcrest.StringDescription().appendValue(JnarioCollectionLiterals.<String>list("red")).toString() + "\n", _hasOneElement);
     
   }
   
@@ -119,10 +118,9 @@ public class _20FactsAboutXtendReadableCodeWithExtensionMethodsSpec extends _20F
   @Named("Extension fields")
   @Order(3)
   public void _extensionFields() throws Exception {
-    List<String> _list = JnarioCollectionLiterals.<String>list("red");
-    boolean _hasOneElement = this.hasOneElement(_list);
+    boolean _hasOneElement = this.hasOneElement(JnarioCollectionLiterals.<String>list("red"));
     Assert.assertTrue("\nExpected list(\"red\").hasOneElement but"
-     + "\n     list(\"red\") is " + new org.hamcrest.StringDescription().appendValue(_list).toString() + "\n", _hasOneElement);
+     + "\n     list(\"red\") is " + new org.hamcrest.StringDescription().appendValue(JnarioCollectionLiterals.<String>list("red")).toString() + "\n", _hasOneElement);
     
   }
 }

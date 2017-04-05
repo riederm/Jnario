@@ -8,7 +8,6 @@
 package org.jnario.feature.tests.unit.validation;
 
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.junit4.validation.AssertableDiagnostics;
 import org.jnario.feature.feature.Feature;
 import org.jnario.feature.tests.unit.validation.FeatureJavaValidatorSpec;
 import org.jnario.runner.ExampleGroupRunner;
@@ -28,7 +27,6 @@ public class FeatureJavaValidatorFeaturesMustHaveDescriptionsSpec extends Featur
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Feature: ");
     _builder.newLine();
-    AssertableDiagnostics _select = this.select(_builder.toString(), Feature.class);
-    _select.assertErrorContains("description");
+    this.select(_builder, Feature.class).assertErrorContains("description");
   }
 }

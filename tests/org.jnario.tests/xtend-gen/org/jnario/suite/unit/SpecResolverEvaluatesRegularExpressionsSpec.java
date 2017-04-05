@@ -17,7 +17,6 @@ import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.jnario.suite.suite.Suite;
 import org.jnario.suite.unit.SpecResolverSpec;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -41,15 +40,13 @@ public class SpecResolverEvaluatesRegularExpressionsSpec extends SpecResolverSpe
     _builder.newLine();
     _builder.append("- \\demo\\.My.*\\");
     _builder.newLine();
-    this.m.parseSuite(_builder.toString());
-    Suite _firstSuite = this.m.firstSuite();
-    List<String> _resolvedSpecs = this.resolvedSpecs(_firstSuite);
-    Set<String> _set = IterableExtensions.<String>toSet(_resolvedSpecs);
+    this.m.parseSuite(_builder);
+    Set<String> _set = IterableExtensions.<String>toSet(this.resolvedSpecs(this.m.firstSuite()));
     Set<String> _set_1 = JnarioCollectionLiterals.<String>set("MySpecSpec", "MyFeatureFeature");
     Assert.assertTrue("\nExpected resolvedSpecs(m.firstSuite).toSet => set(\"MySpecSpec\", \"MyFeatureFeature\") but"
      + "\n     resolvedSpecs(m.firstSuite).toSet is " + new org.hamcrest.StringDescription().appendValue(_set).toString()
-     + "\n     resolvedSpecs(m.firstSuite) is " + new org.hamcrest.StringDescription().appendValue(_resolvedSpecs).toString()
-     + "\n     m.firstSuite is " + new org.hamcrest.StringDescription().appendValue(_firstSuite).toString()
+     + "\n     resolvedSpecs(m.firstSuite) is " + new org.hamcrest.StringDescription().appendValue(this.resolvedSpecs(this.m.firstSuite())).toString()
+     + "\n     m.firstSuite is " + new org.hamcrest.StringDescription().appendValue(this.m.firstSuite()).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString()
      + "\n     set(\"MySpecSpec\", \"MyFeatureFeature\") is " + new org.hamcrest.StringDescription().appendValue(_set_1).toString() + "\n", Should.<Set<String>>operator_doubleArrow(_set, _set_1));
     
@@ -69,13 +66,12 @@ public class SpecResolverEvaluatesRegularExpressionsSpec extends SpecResolverSpe
     _builder.newLine();
     _builder.append("- \\.*Spec\\");
     _builder.newLine();
-    this.m.parseSuite(_builder.toString());
-    Suite _firstSuite = this.m.firstSuite();
-    List<String> _resolvedSpecs = this.resolvedSpecs(_firstSuite);
+    this.m.parseSuite(_builder);
+    List<String> _resolvedSpecs = this.resolvedSpecs(this.m.firstSuite());
     List<String> _list = JnarioCollectionLiterals.<String>list("MySpecSpec");
     Assert.assertTrue("\nExpected resolvedSpecs(m.firstSuite) => list(\"MySpecSpec\") but"
      + "\n     resolvedSpecs(m.firstSuite) is " + new org.hamcrest.StringDescription().appendValue(_resolvedSpecs).toString()
-     + "\n     m.firstSuite is " + new org.hamcrest.StringDescription().appendValue(_firstSuite).toString()
+     + "\n     m.firstSuite is " + new org.hamcrest.StringDescription().appendValue(this.m.firstSuite()).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString()
      + "\n     list(\"MySpecSpec\") is " + new org.hamcrest.StringDescription().appendValue(_list).toString() + "\n", Should.<List<String>>operator_doubleArrow(_resolvedSpecs, _list));
     
@@ -102,7 +98,7 @@ public class SpecResolverEvaluatesRegularExpressionsSpec extends SpecResolverSpe
     _builder.newLine();
     _builder.append("- \\NonExistent\\");
     _builder.newLine();
-    this.m.parseSuite(_builder.toString());
+    this.m.parseSuite(_builder);
   }
   
   @Test
@@ -119,15 +115,13 @@ public class SpecResolverEvaluatesRegularExpressionsSpec extends SpecResolverSpe
     _builder.newLine();
     _builder.append("- \\.*\\");
     _builder.newLine();
-    this.m.parseSuite(_builder.toString());
-    Suite _firstSuite = this.m.firstSuite();
-    List<String> _resolvedSpecs = this.resolvedSpecs(_firstSuite);
-    Set<String> _set = IterableExtensions.<String>toSet(_resolvedSpecs);
+    this.m.parseSuite(_builder);
+    Set<String> _set = IterableExtensions.<String>toSet(this.resolvedSpecs(this.m.firstSuite()));
     Set<String> _set_1 = JnarioCollectionLiterals.<String>set("MySpecSpec", "MyFeatureFeature", "StringSpec");
     Assert.assertTrue("\nExpected resolvedSpecs(m.firstSuite).toSet => set(\"MySpecSpec\", \"MyFeatureFeature\", \"StringSpec\") but"
      + "\n     resolvedSpecs(m.firstSuite).toSet is " + new org.hamcrest.StringDescription().appendValue(_set).toString()
-     + "\n     resolvedSpecs(m.firstSuite) is " + new org.hamcrest.StringDescription().appendValue(_resolvedSpecs).toString()
-     + "\n     m.firstSuite is " + new org.hamcrest.StringDescription().appendValue(_firstSuite).toString()
+     + "\n     resolvedSpecs(m.firstSuite) is " + new org.hamcrest.StringDescription().appendValue(this.resolvedSpecs(this.m.firstSuite())).toString()
+     + "\n     m.firstSuite is " + new org.hamcrest.StringDescription().appendValue(this.m.firstSuite()).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString()
      + "\n     set(\"MySpecSpec\", \"MyFeatureFeature\", \"StringSpec\") is " + new org.hamcrest.StringDescription().appendValue(_set_1).toString() + "\n", Should.<Set<String>>operator_doubleArrow(_set, _set_1));
     
@@ -147,13 +141,12 @@ public class SpecResolverEvaluatesRegularExpressionsSpec extends SpecResolverSpe
     _builder.newLine();
     _builder.append("- \\.*\\");
     _builder.newLine();
-    this.m.parseSuite(_builder.toString());
-    Suite _firstSuite = this.m.firstSuite();
-    List<String> _resolvedSpecs = this.resolvedSpecs(_firstSuite);
+    this.m.parseSuite(_builder);
+    List<String> _resolvedSpecs = this.resolvedSpecs(this.m.firstSuite());
     List<String> _list = JnarioCollectionLiterals.<String>list("MyFeatureFeature", "MySpecSpec", "StringSpec");
     Assert.assertTrue("\nExpected resolvedSpecs(m.firstSuite) => list(\"MyFeatureFeature\", \"MySpecSpec\", \"StringSpec\") but"
      + "\n     resolvedSpecs(m.firstSuite) is " + new org.hamcrest.StringDescription().appendValue(_resolvedSpecs).toString()
-     + "\n     m.firstSuite is " + new org.hamcrest.StringDescription().appendValue(_firstSuite).toString()
+     + "\n     m.firstSuite is " + new org.hamcrest.StringDescription().appendValue(this.m.firstSuite()).toString()
      + "\n     m is " + new org.hamcrest.StringDescription().appendValue(this.m).toString()
      + "\n     list(\"MyFeatureFeature\", \"MySpecSpec\", \"StringSpec\") is " + new org.hamcrest.StringDescription().appendValue(_list).toString() + "\n", Should.<List<String>>operator_doubleArrow(_resolvedSpecs, _list));
     

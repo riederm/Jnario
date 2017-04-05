@@ -49,6 +49,6 @@ public class FeatureJavaValidatorStepsMustHaveDescriptionsSpec extends FeatureJa
         it.assertErrorContains("description");
       }
     };
-    this.allOf(_builder.toString(), Step.class, _function);
+    this.allOf(_builder, Step.class, _function);
   }
 }

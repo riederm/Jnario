@@ -60,9 +60,8 @@ public class FeatureJavaValidatorSpec {
     _builder.append("\t");
     _builder.append("Stack<?> stack");
     _builder.newLine();
-    this.modelStore.parseScenario(_builder.toString());
-    AssertableDiagnostics _validate = this.validate(JnarioFile.class);
-    JnarioTestTools.assertOKWithMessage(_validate);
+    this.modelStore.parseScenario(_builder);
+    JnarioTestTools.assertOKWithMessage(this.validate(JnarioFile.class));
   }
   
   public AssertableDiagnostics select(@Extension final CharSequence input, @Extension final Class<? extends EObject> type) {
@@ -76,8 +75,7 @@ public class FeatureJavaValidatorSpec {
   
   public void allOf(@Extension final CharSequence input, @Extension final Class<? extends EObject> type, @Extension final Procedure1<AssertableDiagnostics> test) {
     this.modelStore.parseScenario(input);
-    Query _query = Query.query(this.modelStore);
-    final Iterator<? extends EObject> steps = _query.allOf(type);
+    final Iterator<? extends EObject> steps = Query.query(this.modelStore).allOf(type);
     final Procedure1<EObject> _function = new Procedure1<EObject>() {
       @Override
       public void apply(final EObject it) {
@@ -89,8 +87,7 @@ public class FeatureJavaValidatorSpec {
   }
   
   public AssertableDiagnostics validate(@Extension final Class<? extends EObject> type) {
-    Query _query = Query.query(this.modelStore);
-    final EObject target = _query.first(type);
+    final EObject target = Query.query(this.modelStore).first(type);
     return RegisteredValidatorTester.validateObj(target);
   }
 }

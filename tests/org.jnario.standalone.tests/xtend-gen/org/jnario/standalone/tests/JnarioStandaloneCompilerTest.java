@@ -51,8 +51,7 @@ public class JnarioStandaloneCompilerTest {
       if (_exists) {
         Files.cleanFolder(dir, null, true, false);
       }
-      File _file = new File(JnarioStandaloneCompilerTest.OUTPUT_DIRECTORY);
-      _file.mkdir();
+      new File(JnarioStandaloneCompilerTest.OUTPUT_DIRECTORY).mkdir();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -63,9 +62,7 @@ public class JnarioStandaloneCompilerTest {
     batchCompiler.setOutputPath(JnarioStandaloneCompilerTest.OUTPUT_DIRECTORY);
     batchCompiler.setDeleteTempDirectory(true);
     batchCompiler.setUseCurrentClassLoaderAsParent(true);
-    Class<? extends JnarioStandaloneCompilerTest> _class = this.getClass();
-    ClassLoader _classLoader = _class.getClassLoader();
-    batchCompiler.setCurrentClassLoader(_classLoader);
+    batchCompiler.setCurrentClassLoader(this.getClass().getClassLoader());
     final Provider<ResourceSet> _function = new Provider<ResourceSet>() {
       @Override
       public ResourceSet get() {
@@ -99,13 +96,10 @@ public class JnarioStandaloneCompilerTest {
           return name.endsWith(".java");
         }
       };
-      String[] _list = outputDir.list(_function);
-      int _size = ((List<String>)Conversions.doWrapArray(_list)).size();
-      Assert.assertEquals(7, _size);
+      Assert.assertEquals(7, ((List<String>)Conversions.doWrapArray(outputDir.list(_function))).size());
       File _file = new File(outputDir, "ExampleSuiteSuite.java");
       final String fileContent = com.google.common.io.Files.toString(_file, Charsets.UTF_8);
-      boolean _contains = fileContent.contains("@Contains(");
-      Assert.assertTrue(("Expected to be to contain others specs, but was: \n\n" + fileContent), _contains);
+      Assert.assertTrue(("Expected to be to contain others specs, but was: \n\n" + fileContent), fileContent.contains("@Contains("));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

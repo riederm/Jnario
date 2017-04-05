@@ -19,7 +19,6 @@ import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
 import org.jnario.suite.jvmmodel.SuiteClassNameProvider;
-import org.jnario.suite.suite.Suite;
 import org.jnario.suite.unit.SuiteClassNameProviderSpec;
 import org.jnario.suite.unit.SuiteClassNameProviderToQualifiedJavaClassNameSpecExamples;
 import org.junit.Test;
@@ -99,10 +98,7 @@ public class SuiteClassNameProviderToQualifiedJavaClassNameSpec extends SuiteCla
     final Procedure1<SuiteClassNameProviderToQualifiedJavaClassNameSpecExamples> _function = new Procedure1<SuiteClassNameProviderToQualifiedJavaClassNameSpecExamples>() {
       @Override
       public void apply(final SuiteClassNameProviderToQualifiedJavaClassNameSpecExamples it) {
-        String _name = it.getName();
-        String _packageName = it.getPackageName();
-        Suite _suite = Suites.suite(_name, _packageName);
-        final String actualName = SuiteClassNameProviderToQualifiedJavaClassNameSpec.this.subject.toQualifiedJavaClassName(_suite);
+        final String actualName = SuiteClassNameProviderToQualifiedJavaClassNameSpec.this.subject.toQualifiedJavaClassName(Suites.suite(it.getName(), it.getPackageName()));
         String _qualifiedName = it.getQualifiedName();
         Assert.assertTrue("\nExpected actualName => qualifiedName but"
          + "\n     actualName is " + new org.hamcrest.StringDescription().appendValue(actualName).toString()

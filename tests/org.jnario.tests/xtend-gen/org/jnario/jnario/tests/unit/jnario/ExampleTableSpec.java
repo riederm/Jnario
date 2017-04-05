@@ -12,7 +12,6 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.ExampleTable;
 import org.jnario.jnario.test.util.ModelStore;
-import org.jnario.jnario.test.util.Query;
 import org.jnario.jnario.test.util.SpecTestCreator;
 import org.jnario.lib.Assert;
 import org.jnario.runner.CreateWith;
@@ -58,13 +57,11 @@ public class ExampleTableSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._modelStore.parseSpec(_builder.toString());
-    Query _query = this._modelStore.query();
-    ExampleTable _first = _query.<ExampleTable>first(ExampleTable.class);
-    boolean _isValid = _first.isValid();
+    this._modelStore.parseSpec(_builder);
+    boolean _isValid = this._modelStore.query().<ExampleTable>first(ExampleTable.class).isValid();
     Assert.assertTrue("\nExpected query.first(typeof(ExampleTable)).isValid() but"
-     + "\n     query.first(typeof(ExampleTable)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString()
-     + "\n     query is " + new org.hamcrest.StringDescription().appendValue(_query).toString() + "\n", _isValid);
+     + "\n     query.first(typeof(ExampleTable)) is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.query().<ExampleTable>first(ExampleTable.class)).toString()
+     + "\n     query is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.query()).toString() + "\n", _isValid);
     
   }
   
@@ -94,15 +91,13 @@ public class ExampleTableSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._modelStore.parseSpec(_builder.toString());
-    Query _query = this._modelStore.query();
-    ExampleTable _first = _query.<ExampleTable>first(ExampleTable.class);
-    boolean _isValid = _first.isValid();
+    this._modelStore.parseSpec(_builder);
+    boolean _isValid = this._modelStore.query().<ExampleTable>first(ExampleTable.class).isValid();
     boolean _not = (!_isValid);
     Assert.assertTrue("\nExpected !query.first(typeof(ExampleTable)).isValid() but"
      + "\n     query.first(typeof(ExampleTable)).isValid() is " + new org.hamcrest.StringDescription().appendValue(_isValid).toString()
-     + "\n     query.first(typeof(ExampleTable)) is " + new org.hamcrest.StringDescription().appendValue(_first).toString()
-     + "\n     query is " + new org.hamcrest.StringDescription().appendValue(_query).toString() + "\n", _not);
+     + "\n     query.first(typeof(ExampleTable)) is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.query().<ExampleTable>first(ExampleTable.class)).toString()
+     + "\n     query is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.query()).toString() + "\n", _not);
     
   }
 }

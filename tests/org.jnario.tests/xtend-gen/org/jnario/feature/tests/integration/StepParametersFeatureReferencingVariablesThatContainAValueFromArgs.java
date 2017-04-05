@@ -28,8 +28,7 @@ public class StepParametersFeatureReferencingVariablesThatContainAValueFromArgs 
   @Named("When I have a scenario that references a step with arguments")
   public void _whenIHaveAScenarioThatReferencesAStepWithArguments() {
     final StepArguments args = new StepArguments("package bootstrap \nFeature: Test feature\n\tScenario: using fields in step definitions\n\t\tString x\n\t\tString y \n\t\tGiven the value \"hello\"\n\t\t\tx = args.first\n\t\tWhen I add \" world\"\n\t\t\ty = x + args.first\n\t\tThen it should be \"hello world\"\n\t\t\ty should be args.first\n\t\t\t\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

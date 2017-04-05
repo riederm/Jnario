@@ -86,7 +86,7 @@ public class IntroducingJnarioFeaturesViewsSpec extends IntroducingJnarioFeature
     _builder.append(" ");
     _builder.append("Then it prints \"2\"");
     _builder.newLine();
-    FeatureExecutor.isSuccessful(_builder.toString());
+    FeatureExecutor.isSuccessful(_builder);
   }
   
   /**
@@ -130,6 +130,6 @@ public class IntroducingJnarioFeaturesViewsSpec extends IntroducingJnarioFeature
     _builder.append(" ");
     _builder.append("Then it prints \"2\"");
     _builder.newLine();
-    FeatureExecutor.isSuccessful(_builder.toString());
+    FeatureExecutor.isSuccessful(_builder);
   }
 }

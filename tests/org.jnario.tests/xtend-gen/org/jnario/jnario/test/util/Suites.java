@@ -11,7 +11,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.lib.CollectionExtensions;
 import org.jnario.JnarioTypeDeclaration;
 import org.jnario.Specification;
-import org.jnario.suite.suite.Reference;
 import org.jnario.suite.suite.SpecReference;
 import org.jnario.suite.suite.Suite;
 import org.jnario.suite.suite.SuiteFactory;
@@ -23,8 +22,7 @@ public class Suites {
   
   public static SuiteFile suiteFile(final Suite... suites) {
     final SuiteFile file = Suites.factory.createSuiteFile();
-    EList<JnarioTypeDeclaration> _xtendTypes = file.getXtendTypes();
-    CollectionExtensions.<Suite>addAll(_xtendTypes, suites);
+    CollectionExtensions.<Suite>addAll(file.getXtendTypes(), suites);
     return file;
   }
   
@@ -32,8 +30,7 @@ public class Suites {
     Suite _xblockexpression = null;
     {
       final Suite suite = Suites.suite(name);
-      EList<Reference> _elements = suite.getElements();
-      CollectionExtensions.<SpecReference>addAll(_elements, references);
+      CollectionExtensions.<SpecReference>addAll(suite.getElements(), references);
       _xblockexpression = suite;
     }
     return _xblockexpression;

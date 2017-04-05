@@ -41,7 +41,7 @@ public class FeatureCompilerSpec {
     _builder.append("\t");
     _builder.append("And  I define an empty closure");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test

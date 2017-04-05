@@ -41,8 +41,7 @@ public class ReferencesForStepsFeatureShouldNotInStepReferences extends Referenc
   @Named("Given a feature")
   public void _givenAFeature() {
     final StepArguments args = new StepArguments("Feature: BoolExample\n\nScenario: 1\n    Then true differs from false\n        true should not be false\n\nScenario: 2\n    Then true differs from false\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

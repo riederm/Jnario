@@ -58,18 +58,15 @@ public class StepNameProviderSpec {
   }
   
   public Step firstStep() {
-    Query _query = Query.query(this.modelStore);
-    return _query.<Step>first(Step.class);
+    return Query.query(this.modelStore).<Step>first(Step.class);
   }
   
   public String stepName() {
-    Step _firstStep = this.firstStep();
-    return this.subject.nameOf(_firstStep);
+    return this.subject.nameOf(this.firstStep());
   }
   
   public String describeStep() {
-    Step _firstStep = this.firstStep();
-    return this.subject.describe(_firstStep);
+    return this.subject.describe(this.firstStep());
   }
   
   public Given emptyStep() {
@@ -88,7 +85,7 @@ public class StepNameProviderSpec {
       _builder.newLine();
       String _plus = (_builder.toString() + s);
       StringConcatenation _builder_1 = new StringConcatenation();
-      final String input = (_plus + _builder_1.toString());
+      final String input = (_plus + _builder_1);
       _xblockexpression = this.modelStore.parseScenario(input);
     }
     return _xblockexpression;

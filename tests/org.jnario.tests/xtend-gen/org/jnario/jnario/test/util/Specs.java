@@ -7,9 +7,6 @@
  */
 package org.jnario.jnario.test.util;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.xtext.xbase.XBlockExpression;
-import org.eclipse.xtext.xbase.XBooleanLiteral;
 import org.eclipse.xtext.xbase.XbaseFactory;
 import org.eclipse.xtext.xbase.lib.CollectionExtensions;
 import org.jnario.JnarioMember;
@@ -36,8 +33,7 @@ public class Specs {
     Example _xblockexpression = null;
     {
       final Example example = Specs.example("with implementation");
-      XBlockExpression _implementation = Features.implementation();
-      example.setExpr(_implementation);
+      example.setExpr(Features.implementation());
       _xblockexpression = example;
     }
     return _xblockexpression;
@@ -49,16 +45,14 @@ public class Specs {
       final Example example = Specs.factory.createExample();
       example.setName(name);
       example.setPending(false);
-      XBooleanLiteral _createXBooleanLiteral = XbaseFactory.eINSTANCE.createXBooleanLiteral();
-      example.setExpr(_createXBooleanLiteral);
+      example.setExpr(XbaseFactory.eINSTANCE.createXBooleanLiteral());
       _xblockexpression = example;
     }
     return _xblockexpression;
   }
   
   public static ExampleGroup pendingExampleGroup() {
-    Example _pendingExample = Specs.pendingExample();
-    return Specs.exampleGroupWith(_pendingExample);
+    return Specs.exampleGroupWith(Specs.pendingExample());
   }
   
   public static ExampleGroup exampleGroupWith(final JnarioMember... examples) {
@@ -69,8 +63,7 @@ public class Specs {
     ExampleGroup _xblockexpression = null;
     {
       final ExampleGroup group = Specs.exampleGroup(name);
-      EList<JnarioMember> _members = group.getMembers();
-      CollectionExtensions.<JnarioMember>addAll(_members, examples);
+      CollectionExtensions.<JnarioMember>addAll(group.getMembers(), examples);
       _xblockexpression = group;
     }
     return _xblockexpression;

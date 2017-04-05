@@ -104,14 +104,12 @@ public class StringsTrimSpec extends StringsSpec {
     final Procedure1<StringsTrimSpecExamples> _function = new Procedure1<StringsTrimSpecExamples>() {
       @Override
       public void apply(final StringsTrimSpecExamples it) {
-        String _string = it.getString();
-        char _charAt = "_".charAt(0);
-        String _trim = Strings.trim(_string, _charAt);
+        String _trim = Strings.trim(it.getString(), "_".charAt(0));
         String _result = it.getResult();
         Assert.assertTrue("\nExpected string.trim(\'_\'.charAt(0)) => result but"
          + "\n     string.trim(\'_\'.charAt(0)) is " + new org.hamcrest.StringDescription().appendValue(_trim).toString()
-         + "\n     string is " + new org.hamcrest.StringDescription().appendValue(_string).toString()
-         + "\n     \'_\'.charAt(0) is " + new org.hamcrest.StringDescription().appendValue(_charAt).toString()
+         + "\n     string is " + new org.hamcrest.StringDescription().appendValue(it.getString()).toString()
+         + "\n     \'_\'.charAt(0) is " + new org.hamcrest.StringDescription().appendValue("_".charAt(0)).toString()
          + "\n     result is " + new org.hamcrest.StringDescription().appendValue(_result).toString() + "\n", Should.<String>operator_doubleArrow(_trim, _result));
         
       }

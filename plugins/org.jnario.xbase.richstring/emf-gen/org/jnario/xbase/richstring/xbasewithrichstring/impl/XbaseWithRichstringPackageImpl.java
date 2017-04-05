@@ -5,11 +5,15 @@ package org.jnario.xbase.richstring.xbasewithrichstring.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.xtext.xbase.XbasePackage;
 
 import org.jnario.xbase.richstring.xbasewithrichstring.RichString;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringElseIf;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringForLoop;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringIf;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichStringLiteral;
 import org.jnario.xbase.richstring.xbasewithrichstring.XbaseWithRichstringFactory;
 import org.jnario.xbase.richstring.xbasewithrichstring.XbaseWithRichstringPackage;
@@ -34,6 +38,27 @@ public class XbaseWithRichstringPackageImpl extends EPackageImpl implements Xbas
 	 * @generated
 	 */
 	private EClass richStringLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass richStringForLoopEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass richStringIfEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass richStringElseIfEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -122,6 +147,114 @@ public class XbaseWithRichstringPackageImpl extends EPackageImpl implements Xbas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRichStringForLoop() {
+		return richStringForLoopEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRichStringForLoop_Separator() {
+		return (EReference)richStringForLoopEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRichStringForLoop_Before() {
+		return (EReference)richStringForLoopEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRichStringForLoop_After() {
+		return (EReference)richStringForLoopEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRichStringIf() {
+		return richStringIfEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRichStringIf_If() {
+		return (EReference)richStringIfEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRichStringIf_Then() {
+		return (EReference)richStringIfEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRichStringIf_ElseIfs() {
+		return (EReference)richStringIfEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRichStringIf_Else() {
+		return (EReference)richStringIfEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRichStringElseIf() {
+		return richStringElseIfEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRichStringElseIf_If() {
+		return (EReference)richStringElseIfEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRichStringElseIf_Then() {
+		return (EReference)richStringElseIfEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public XbaseWithRichstringFactory getXbaseWithRichstringFactory() {
 		return (XbaseWithRichstringFactory)getEFactoryInstance();
 	}
@@ -148,6 +281,21 @@ public class XbaseWithRichstringPackageImpl extends EPackageImpl implements Xbas
 		richStringEClass = createEClass(RICH_STRING);
 
 		richStringLiteralEClass = createEClass(RICH_STRING_LITERAL);
+
+		richStringForLoopEClass = createEClass(RICH_STRING_FOR_LOOP);
+		createEReference(richStringForLoopEClass, RICH_STRING_FOR_LOOP__SEPARATOR);
+		createEReference(richStringForLoopEClass, RICH_STRING_FOR_LOOP__BEFORE);
+		createEReference(richStringForLoopEClass, RICH_STRING_FOR_LOOP__AFTER);
+
+		richStringIfEClass = createEClass(RICH_STRING_IF);
+		createEReference(richStringIfEClass, RICH_STRING_IF__IF);
+		createEReference(richStringIfEClass, RICH_STRING_IF__THEN);
+		createEReference(richStringIfEClass, RICH_STRING_IF__ELSE_IFS);
+		createEReference(richStringIfEClass, RICH_STRING_IF__ELSE);
+
+		richStringElseIfEClass = createEClass(RICH_STRING_ELSE_IF);
+		createEReference(richStringElseIfEClass, RICH_STRING_ELSE_IF__IF);
+		createEReference(richStringElseIfEClass, RICH_STRING_ELSE_IF__THEN);
 	}
 
 	/**
@@ -183,11 +331,28 @@ public class XbaseWithRichstringPackageImpl extends EPackageImpl implements Xbas
 		// Add supertypes to classes
 		richStringEClass.getESuperTypes().add(theXbasePackage.getXBlockExpression());
 		richStringLiteralEClass.getESuperTypes().add(theXbasePackage.getXStringLiteral());
+		richStringForLoopEClass.getESuperTypes().add(theXbasePackage.getXForLoopExpression());
+		richStringIfEClass.getESuperTypes().add(theXbasePackage.getXExpression());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(richStringEClass, RichString.class, "RichString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(richStringLiteralEClass, RichStringLiteral.class, "RichStringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(richStringForLoopEClass, RichStringForLoop.class, "RichStringForLoop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRichStringForLoop_Separator(), theXbasePackage.getXExpression(), null, "separator", null, 0, 1, RichStringForLoop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRichStringForLoop_Before(), theXbasePackage.getXExpression(), null, "before", null, 0, 1, RichStringForLoop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRichStringForLoop_After(), theXbasePackage.getXExpression(), null, "after", null, 0, 1, RichStringForLoop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(richStringIfEClass, RichStringIf.class, "RichStringIf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRichStringIf_If(), theXbasePackage.getXExpression(), null, "if", null, 0, 1, RichStringIf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRichStringIf_Then(), theXbasePackage.getXExpression(), null, "then", null, 0, 1, RichStringIf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRichStringIf_ElseIfs(), this.getRichStringElseIf(), null, "elseIfs", null, 0, -1, RichStringIf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRichStringIf_Else(), theXbasePackage.getXExpression(), null, "else", null, 0, 1, RichStringIf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(richStringElseIfEClass, RichStringElseIf.class, "RichStringElseIf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRichStringElseIf_If(), theXbasePackage.getXExpression(), null, "if", null, 0, 1, RichStringElseIf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRichStringElseIf_Then(), theXbasePackage.getXExpression(), null, "then", null, 0, 1, RichStringElseIf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

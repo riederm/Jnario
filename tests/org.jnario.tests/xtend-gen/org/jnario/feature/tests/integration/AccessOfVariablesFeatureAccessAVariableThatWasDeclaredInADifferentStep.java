@@ -28,8 +28,7 @@ public class AccessOfVariablesFeatureAccessAVariableThatWasDeclaredInADifferentS
   @Named("When I use a variable in different steps")
   public void _whenIUseAVariableInDifferentSteps() {
     final StepArguments args = new StepArguments("package bootstrap2\nFeature: Variable test\n\tScenario: Some scenario\n\t\tint x\n\t\tGiven a step with a variable\n\t\t\tx = 3\n\t\tWhen I assign it a different value\n\t\t\tx = 5\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

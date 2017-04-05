@@ -51,18 +51,15 @@ public class SpecExecutableProviderSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._modelStore.parseSpec(_builder.toString());
-    ExampleGroup _exampleGroup = this._modelStore.exampleGroup("Something");
-    List<Executable> _executables = this.executables(_exampleGroup);
-    Example _example = this._modelStore.example("fact 1");
-    Example _example_1 = this._modelStore.example("fact 2");
-    List<Example> _list = JnarioCollectionLiterals.<Example>list(_example, _example_1);
+    this._modelStore.parseSpec(_builder);
+    List<Executable> _executables = this.executables(this._modelStore.exampleGroup("Something"));
+    List<Example> _list = JnarioCollectionLiterals.<Example>list(this._modelStore.example("fact 1"), this._modelStore.example("fact 2"));
     Assert.assertTrue("\nExpected exampleGroup(\"Something\").executables => list(example(\"fact 1\"), example(\"fact 2\")) but"
      + "\n     exampleGroup(\"Something\").executables is " + new org.hamcrest.StringDescription().appendValue(_executables).toString()
-     + "\n     exampleGroup(\"Something\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     exampleGroup(\"Something\") is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.exampleGroup("Something")).toString()
      + "\n     list(example(\"fact 1\"), example(\"fact 2\")) is " + new org.hamcrest.StringDescription().appendValue(_list).toString()
-     + "\n     example(\"fact 1\") is " + new org.hamcrest.StringDescription().appendValue(_example).toString()
-     + "\n     example(\"fact 2\") is " + new org.hamcrest.StringDescription().appendValue(_example_1).toString() + "\n", Should.<List<? extends Executable>>operator_doubleArrow(_executables, _list));
+     + "\n     example(\"fact 1\") is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.example("fact 1")).toString()
+     + "\n     example(\"fact 2\") is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.example("fact 2")).toString() + "\n", Should.<List<? extends Executable>>operator_doubleArrow(_executables, _list));
     
   }
   
@@ -81,18 +78,15 @@ public class SpecExecutableProviderSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._modelStore.parseSpec(_builder.toString());
-    ExampleGroup _exampleGroup = this._modelStore.exampleGroup("Something");
-    List<Executable> _executables = this.executables(_exampleGroup);
-    ExampleGroup _exampleGroup_1 = this._modelStore.exampleGroup("exampleGroup 1");
-    ExampleGroup _exampleGroup_2 = this._modelStore.exampleGroup("exampleGroup 2");
-    List<ExampleGroup> _list = JnarioCollectionLiterals.<ExampleGroup>list(_exampleGroup_1, _exampleGroup_2);
+    this._modelStore.parseSpec(_builder);
+    List<Executable> _executables = this.executables(this._modelStore.exampleGroup("Something"));
+    List<ExampleGroup> _list = JnarioCollectionLiterals.<ExampleGroup>list(this._modelStore.exampleGroup("exampleGroup 1"), this._modelStore.exampleGroup("exampleGroup 2"));
     Assert.assertTrue("\nExpected exampleGroup(\"Something\").executables => list(exampleGroup(\"exampleGroup 1\"), exampleGroup(\"exampleGroup 2\")) but"
      + "\n     exampleGroup(\"Something\").executables is " + new org.hamcrest.StringDescription().appendValue(_executables).toString()
-     + "\n     exampleGroup(\"Something\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     exampleGroup(\"Something\") is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.exampleGroup("Something")).toString()
      + "\n     list(exampleGroup(\"exampleGroup 1\"), exampleGroup(\"exampleGroup 2\")) is " + new org.hamcrest.StringDescription().appendValue(_list).toString()
-     + "\n     exampleGroup(\"exampleGroup 1\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup_1).toString()
-     + "\n     exampleGroup(\"exampleGroup 2\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup_2).toString() + "\n", Should.<List<? extends Executable>>operator_doubleArrow(_executables, _list));
+     + "\n     exampleGroup(\"exampleGroup 1\") is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.exampleGroup("exampleGroup 1")).toString()
+     + "\n     exampleGroup(\"exampleGroup 2\") is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.exampleGroup("exampleGroup 2")).toString() + "\n", Should.<List<? extends Executable>>operator_doubleArrow(_executables, _list));
     
   }
   
@@ -123,24 +117,18 @@ public class SpecExecutableProviderSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._modelStore.parseSpec(_builder.toString());
-    ExampleGroup _exampleGroup = this._modelStore.exampleGroup("Something");
-    List<Executable> _executables = this.executables(_exampleGroup);
-    Set<Executable> _set = IterableExtensions.<Executable>toSet(_executables);
-    ExampleGroup _exampleGroup_1 = this._modelStore.exampleGroup("exampleGroup 1");
-    Example _example = this._modelStore.example("fact 1");
-    ExampleGroup _exampleGroup_2 = this._modelStore.exampleGroup("exampleGroup 2");
-    Example _example_1 = this._modelStore.example("fact 2");
-    Set<Executable> _set_1 = JnarioCollectionLiterals.<Executable>set(_exampleGroup_1, _example, _exampleGroup_2, _example_1);
+    this._modelStore.parseSpec(_builder);
+    Set<Executable> _set = IterableExtensions.<Executable>toSet(this.executables(this._modelStore.exampleGroup("Something")));
+    Set<Executable> _set_1 = JnarioCollectionLiterals.<Executable>set(this._modelStore.exampleGroup("exampleGroup 1"), this._modelStore.example("fact 1"), this._modelStore.exampleGroup("exampleGroup 2"), this._modelStore.example("fact 2"));
     Assert.assertTrue("\nExpected exampleGroup(\"Something\").executables.toSet => <Executable>set(exampleGroup(\"exampleGroup 1\"), example(\"fact 1\"), exampleGroup(\"exampleGroup 2\"), example(\"fact 2\")) but"
      + "\n     exampleGroup(\"Something\").executables.toSet is " + new org.hamcrest.StringDescription().appendValue(_set).toString()
-     + "\n     exampleGroup(\"Something\").executables is " + new org.hamcrest.StringDescription().appendValue(_executables).toString()
-     + "\n     exampleGroup(\"Something\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup).toString()
+     + "\n     exampleGroup(\"Something\").executables is " + new org.hamcrest.StringDescription().appendValue(this.executables(this._modelStore.exampleGroup("Something"))).toString()
+     + "\n     exampleGroup(\"Something\") is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.exampleGroup("Something")).toString()
      + "\n     <Executable>set(exampleGroup(\"exampleGroup 1\"), example(\"fact 1\"), exampleGroup(\"exampleGroup 2\"), example(\"fact 2\")) is " + new org.hamcrest.StringDescription().appendValue(_set_1).toString()
-     + "\n     exampleGroup(\"exampleGroup 1\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup_1).toString()
-     + "\n     example(\"fact 1\") is " + new org.hamcrest.StringDescription().appendValue(_example).toString()
-     + "\n     exampleGroup(\"exampleGroup 2\") is " + new org.hamcrest.StringDescription().appendValue(_exampleGroup_2).toString()
-     + "\n     example(\"fact 2\") is " + new org.hamcrest.StringDescription().appendValue(_example_1).toString() + "\n", Should.<Set<Executable>>operator_doubleArrow(_set, _set_1));
+     + "\n     exampleGroup(\"exampleGroup 1\") is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.exampleGroup("exampleGroup 1")).toString()
+     + "\n     example(\"fact 1\") is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.example("fact 1")).toString()
+     + "\n     exampleGroup(\"exampleGroup 2\") is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.exampleGroup("exampleGroup 2")).toString()
+     + "\n     example(\"fact 2\") is " + new org.hamcrest.StringDescription().appendValue(this._modelStore.example("fact 2")).toString() + "\n", Should.<Set<Executable>>operator_doubleArrow(_set, _set_1));
     
   }
   

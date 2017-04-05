@@ -31,8 +31,7 @@ public class ReferencesForStepsFeatureSteps extends ReferencesForStepsFeature {
   @Named("When I have a scenario with a variable that is initialized")
   public void _whenIHaveAScenarioWithAVariableThatIsInitialized() {
     final StepArguments args = new StepArguments("import java.util.concurrent.TimeUnit\n\n\t\tFeature: Test\n\t\t\n\t\tScenario: Scenario\n\t\tWhen test\n\t\tval test = TimeUnit::MINUTES\n\t\t\n\t\tScenario: Scenario 2\n\t\tWhen test\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

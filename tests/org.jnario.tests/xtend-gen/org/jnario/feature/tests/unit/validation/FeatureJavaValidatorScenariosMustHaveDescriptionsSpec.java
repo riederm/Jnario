@@ -8,7 +8,6 @@
 package org.jnario.feature.tests.unit.validation;
 
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.junit4.validation.AssertableDiagnostics;
 import org.jnario.feature.feature.Scenario;
 import org.jnario.feature.tests.unit.validation.FeatureJavaValidatorSpec;
 import org.jnario.runner.ExampleGroupRunner;
@@ -33,7 +32,6 @@ public class FeatureJavaValidatorScenariosMustHaveDescriptionsSpec extends Featu
     _builder.newLine();
     _builder.append("\t");
     _builder.newLine();
-    AssertableDiagnostics _select = this.select(_builder.toString(), Scenario.class);
-    _select.assertErrorContains("description");
+    this.select(_builder, Scenario.class).assertErrorContains("description");
   }
 }

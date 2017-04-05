@@ -8,7 +8,6 @@
 package org.jnario.feature.tests.unit.naming;
 
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.jnario.feature.feature.Feature;
 import org.jnario.feature.tests.unit.naming.StepNameProviderSpec;
 import org.jnario.jnario.test.util.Features;
 import org.jnario.lib.Assert;
@@ -39,7 +38,7 @@ public class StepNameProviderDescribeFeatureSpec extends StepNameProviderSpec {
     _builder.append("\t ");
     _builder.append("1 + 1 => 2");
     _builder.newLine();
-    this.parseScenario(_builder.toString());
+    this.parseScenario(_builder);
     String _describeStep = this.describeStep();
     Assert.assertTrue("\nExpected describeStep => \'Given a step with multiline parameter\' but"
      + "\n     describeStep is " + new org.hamcrest.StringDescription().appendValue(_describeStep).toString() + "\n", Should.<String>operator_doubleArrow(_describeStep, "Given a step with multiline parameter"));
@@ -50,12 +49,11 @@ public class StepNameProviderDescribeFeatureSpec extends StepNameProviderSpec {
   @Named("feature[\\\" With whitespace \\\"].desc =>  \\\"With whitespace\\\"")
   @Order(2)
   public void _featureWithWhitespaceDescWithWhitespace() throws Exception {
-    Feature _feature = Features.feature(" With whitespace ");
-    String _desc = this.desc(_feature);
+    String _desc = this.desc(Features.feature(" With whitespace "));
     boolean _doubleArrow = Should.<String>operator_doubleArrow(_desc, "With whitespace");
     Assert.assertTrue("\nExpected feature(\" With whitespace \").desc =>  \"With whitespace\" but"
      + "\n     feature(\" With whitespace \").desc is " + new org.hamcrest.StringDescription().appendValue(_desc).toString()
-     + "\n     feature(\" With whitespace \") is " + new org.hamcrest.StringDescription().appendValue(_feature).toString() + "\n", _doubleArrow);
+     + "\n     feature(\" With whitespace \") is " + new org.hamcrest.StringDescription().appendValue(Features.feature(" With whitespace ")).toString() + "\n", _doubleArrow);
     
   }
   
@@ -63,12 +61,11 @@ public class StepNameProviderDescribeFeatureSpec extends StepNameProviderSpec {
   @Named("feature[\\\"With [parentheses]\\\"].desc =>  \\\"With [parentheses]\\\"")
   @Order(3)
   public void _featureWithParenthesesDescWithParentheses() throws Exception {
-    Feature _feature = Features.feature("With (parentheses)");
-    String _desc = this.desc(_feature);
+    String _desc = this.desc(Features.feature("With (parentheses)"));
     boolean _doubleArrow = Should.<String>operator_doubleArrow(_desc, "With [parentheses]");
     Assert.assertTrue("\nExpected feature(\"With (parentheses)\").desc =>  \"With [parentheses]\" but"
      + "\n     feature(\"With (parentheses)\").desc is " + new org.hamcrest.StringDescription().appendValue(_desc).toString()
-     + "\n     feature(\"With (parentheses)\") is " + new org.hamcrest.StringDescription().appendValue(_feature).toString() + "\n", _doubleArrow);
+     + "\n     feature(\"With (parentheses)\") is " + new org.hamcrest.StringDescription().appendValue(Features.feature("With (parentheses)")).toString() + "\n", _doubleArrow);
     
   }
 }

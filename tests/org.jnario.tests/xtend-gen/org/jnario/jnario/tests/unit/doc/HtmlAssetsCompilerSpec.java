@@ -44,15 +44,13 @@ public class HtmlAssetsCompilerSpec {
   @Order(1)
   public void _compilesCssJsFilesToSpecifiedFolder() throws Exception {
     this.doCompile();
-    File _file = this.file("js/prettify.js");
-    boolean _exists = _file.exists();
+    boolean _exists = this.file("js/prettify.js").exists();
     Assert.assertTrue("\nExpected file(\"js/prettify.js\").exists but"
-     + "\n     file(\"js/prettify.js\") is " + new org.hamcrest.StringDescription().appendValue(_file).toString() + "\n", _exists);
+     + "\n     file(\"js/prettify.js\") is " + new org.hamcrest.StringDescription().appendValue(this.file("js/prettify.js")).toString() + "\n", _exists);
     
-    File _file_1 = this.file("css/prettify.css");
-    boolean _exists_1 = _file_1.exists();
+    boolean _exists_1 = this.file("css/prettify.css").exists();
     Assert.assertTrue("\nExpected file(\"css/prettify.css\").exists but"
-     + "\n     file(\"css/prettify.css\") is " + new org.hamcrest.StringDescription().appendValue(_file_1).toString() + "\n", _exists_1);
+     + "\n     file(\"css/prettify.css\") is " + new org.hamcrest.StringDescription().appendValue(this.file("css/prettify.css")).toString() + "\n", _exists_1);
     
   }
   
@@ -61,8 +59,7 @@ public class HtmlAssetsCompilerSpec {
   @Order(2)
   public void _doesNotOverrideExistingFile() throws Exception {
     this.mkdir("js");
-    File _file = this.file("js/prettify.js");
-    final String file = _file.toString();
+    final String file = this.file("js/prettify.js").toString();
     Files.writeStringIntoFile(file, "Hello World");
     this.doCompile();
     String _readFileIntoString = Files.readFileIntoString(file);
@@ -73,13 +70,11 @@ public class HtmlAssetsCompilerSpec {
   }
   
   public boolean mkdir(@Extension final String name) {
-    File _file = this.file(name);
-    return _file.mkdir();
+    return this.file(name).mkdir();
   }
   
   public File file(@Extension final String path) {
-    File _root = this._temporaryFolder.getRoot();
-    String _absolutePath = _root.getAbsolutePath();
+    String _absolutePath = this._temporaryFolder.getRoot().getAbsolutePath();
     String _plus = (_absolutePath + "/");
     String _plus_1 = (_plus + path);
     return new File(_plus_1);
@@ -88,9 +83,7 @@ public class HtmlAssetsCompilerSpec {
   public boolean doCompile() {
     boolean _xblockexpression = false;
     {
-      File _root = this._temporaryFolder.getRoot();
-      String _absolutePath = _root.getAbsolutePath();
-      this.subject.setOutputPath(_absolutePath);
+      this.subject.setOutputPath(this._temporaryFolder.getRoot().getAbsolutePath());
       _xblockexpression = this.subject.compile();
     }
     return _xblockexpression;

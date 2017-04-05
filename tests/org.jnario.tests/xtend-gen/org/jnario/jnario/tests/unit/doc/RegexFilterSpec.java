@@ -106,15 +106,13 @@ public class RegexFilterSpec {
     final Procedure1<RegexFilterSpecFilteringExamples> _function = new Procedure1<RegexFilterSpecFilteringExamples>() {
       @Override
       public void apply(final RegexFilterSpecFilteringExamples it) {
-        String _regex = it.getRegex();
-        final Filter filter = RegexFilter.create(_regex);
-        String _string = it.getString();
-        String _apply = filter.apply(_string);
+        final Filter filter = RegexFilter.create(it.getRegex());
+        String _apply = filter.apply(it.getString());
         String _result = it.getResult();
         Assert.assertTrue("\nExpected filter.apply(string) => result but"
          + "\n     filter.apply(string) is " + new org.hamcrest.StringDescription().appendValue(_apply).toString()
          + "\n     filter is " + new org.hamcrest.StringDescription().appendValue(filter).toString()
-         + "\n     string is " + new org.hamcrest.StringDescription().appendValue(_string).toString()
+         + "\n     string is " + new org.hamcrest.StringDescription().appendValue(it.getString()).toString()
          + "\n     result is " + new org.hamcrest.StringDescription().appendValue(_result).toString() + "\n", Should.<String>operator_doubleArrow(_apply, _result));
         
       }

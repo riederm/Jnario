@@ -9,7 +9,6 @@ package org.jnario.spec.tests.unit.doc;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
-import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess;
@@ -89,7 +88,7 @@ public class SpecDocGeneratorSpec {
     _builder.newLine();
     _builder.append("} ");
     _builder.newLine();
-    this.generateDoc(_builder.toString());
+    this.generateDoc(_builder);
     final String scenarioDoc = this.generatedFile("ExampleSpec.html");
     boolean _contains = scenarioDoc.contains("<p>This is an example.</p>");
     Assert.assertTrue("\nExpected scenarioDoc.contains(\"<p>This is an example.</p>\") but"
@@ -132,9 +131,8 @@ public class SpecDocGeneratorSpec {
     _builder.append("}");
     _builder.newLine();
     _builder.append("}");
-    this.generateDoc(_builder.toString());
+    this.generateDoc(_builder);
     final String scenarioDoc = this.generatedFile("ExampleSpec.html");
-    String _convertNL = this.convertNL(scenarioDoc);
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>");
     _builder_1.newLine();
@@ -145,13 +143,12 @@ public class SpecDocGeneratorSpec {
     _builder_1.append("var x = 0");
     _builder_1.newLine();
     _builder_1.append("x = x + 1</pre>");
-    String _convertNL_1 = this.convertNL(_builder_1.toString());
-    boolean _contains = _convertNL.contains(_convertNL_1);
+    boolean _contains = this.convertNL(scenarioDoc).contains(this.convertNL(_builder_1));
     Assert.assertTrue("\nExpected scenarioDoc.convertNL.contains(\'\'\'\r\n\t\t<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>\r\n\t\t<p>Example documentation</p>\r\n\t\t<pre class=\"prettyprint lang-spec linenums\">\r\n\t\tvar x = 0\r\n\t\tx = x + 1</pre>\'\'\'.convertNL) but"
-     + "\n     scenarioDoc.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
+     + "\n     scenarioDoc.convertNL is " + new org.hamcrest.StringDescription().appendValue(this.convertNL(scenarioDoc)).toString()
      + "\n     scenarioDoc is " + new org.hamcrest.StringDescription().appendValue(scenarioDoc).toString()
-     + "\n     \'\'\'\r\n\t\t<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>\r\n\t\t<p>Example documentation</p>\r\n\t\t<pre class=\"prettyprint lang-spec linenums\">\r\n\t\tvar x = 0\r\n\t\tx = x + 1</pre>\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString()
-     + "\n     \'\'\'\r\n\t\t<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>\r\n\t\t<p>Example documentation</p>\r\n\t\t<pre class=\"prettyprint lang-spec linenums\">\r\n\t\tvar x = 0\r\n\t\tx = x + 1</pre>\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder_1.toString()).toString() + "\n", _contains);
+     + "\n     \'\'\'\r\n\t\t<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>\r\n\t\t<p>Example documentation</p>\r\n\t\t<pre class=\"prettyprint lang-spec linenums\">\r\n\t\tvar x = 0\r\n\t\tx = x + 1</pre>\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(this.convertNL(_builder_1)).toString()
+     + "\n     \'\'\'\r\n\t\t<p id=\"should_do_stuff\" class=\"example notrun\"><strong>should do stuff</strong></p>\r\n\t\t<p>Example documentation</p>\r\n\t\t<pre class=\"prettyprint lang-spec linenums\">\r\n\t\tvar x = 0\r\n\t\tx = x + 1</pre>\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder_1).toString() + "\n", _contains);
     
   }
   
@@ -174,7 +171,7 @@ public class SpecDocGeneratorSpec {
     _builder.newLine();
     _builder.append("} ");
     _builder.newLine();
-    this.generateDoc(_builder.toString());
+    this.generateDoc(_builder);
     final String scenarioDoc = this.generatedFile("ExampleSpec.html");
     boolean _contains = scenarioDoc.contains("<h1>Example Heading</h1>");
     Assert.assertTrue("\nExpected scenarioDoc.contains(\"<h1>Example Heading</h1>\") but"
@@ -203,7 +200,7 @@ public class SpecDocGeneratorSpec {
     _builder.newLine();
     _builder.append("} ");
     _builder.newLine();
-    this.generateDoc(_builder.toString());
+    this.generateDoc(_builder);
     final String scenarioDoc = this.generatedFile("ExampleSpec.html");
     boolean _contains = scenarioDoc.contains("<p id=\"myExample\"><strong>MyExample</strong></p>");
     Assert.assertTrue("\nExpected scenarioDoc.contains(\'<p id=\"myExample\"><strong>MyExample</strong></p>\') but"
@@ -239,19 +236,19 @@ public class SpecDocGeneratorSpec {
     _builder.newLine();
     _builder.append("} ");
     _builder.newLine();
-    this.generateDoc(_builder.toString());
+    this.generateDoc(_builder);
     final String scenarioDoc = this.generatedFile("ExampleSpec.html");
     String _convertNL = this.convertNL(scenarioDoc);
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("<pre class=\"prettyprint lang-spec linenums\">");
     _builder_1.newLine();
     _builder_1.append("1 + 1 =&gt; 2</pre>");
-    String _convertNL_1 = this.convertNL(_builder_1.toString());
+    String _convertNL_1 = this.convertNL(_builder_1);
     Assert.assertFalse("\nExpected scenarioDoc.convertNL should not contain \'\'\'<pre class=\"prettyprint lang-spec linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\'.convertNL but"
      + "\n     scenarioDoc.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
      + "\n     scenarioDoc is " + new org.hamcrest.StringDescription().appendValue(scenarioDoc).toString()
      + "\n     \'\'\'<pre class=\"prettyprint lang-spec linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString()
-     + "\n     \'\'\'<pre class=\"prettyprint lang-spec linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder_1.toString()).toString() + "\n", Should.<Object>should_contain(_convertNL, _convertNL_1));
+     + "\n     \'\'\'<pre class=\"prettyprint lang-spec linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder_1).toString() + "\n", Should.<Object>should_contain(_convertNL, _convertNL_1));
     
   }
   
@@ -282,7 +279,7 @@ public class SpecDocGeneratorSpec {
     _builder.newLine();
     _builder.append("} ");
     _builder.newLine();
-    this.generateDoc(_builder.toString());
+    this.generateDoc(_builder);
     final String scenarioDoc = this.generatedFile("ExampleSpec.html");
     boolean _contains = scenarioDoc.contains("aaaaaa");
     Assert.assertTrue("\nExpected scenarioDoc.contains(\'aaaaaa\') but"
@@ -308,7 +305,7 @@ public class SpecDocGeneratorSpec {
     _builder.newLine();
     _builder.append("} ");
     _builder.newLine();
-    this.generateDoc(_builder.toString());
+    this.generateDoc(_builder);
   }
   
   @Test
@@ -338,19 +335,19 @@ public class SpecDocGeneratorSpec {
     _builder.newLine();
     _builder.append("} ");
     _builder.newLine();
-    this.generateDoc(_builder.toString());
+    this.generateDoc(_builder);
     final String scenarioDoc = this.generatedFile("ExampleSpec.html");
     String _convertNL = this.convertNL(scenarioDoc);
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("<pre class=\"prettyprint lang-ruby linenums\">");
     _builder_1.newLine();
     _builder_1.append("1 + 1 =&gt; 2</pre>");
-    String _convertNL_1 = this.convertNL(_builder_1.toString());
+    String _convertNL_1 = this.convertNL(_builder_1);
     Assert.assertTrue("\nExpected scenarioDoc.convertNL should contain \'\'\'<pre class=\"prettyprint lang-ruby linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\'.convertNL but"
      + "\n     scenarioDoc.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL).toString()
      + "\n     scenarioDoc is " + new org.hamcrest.StringDescription().appendValue(scenarioDoc).toString()
      + "\n     \'\'\'<pre class=\"prettyprint lang-ruby linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\'.convertNL is " + new org.hamcrest.StringDescription().appendValue(_convertNL_1).toString()
-     + "\n     \'\'\'<pre class=\"prettyprint lang-ruby linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder_1.toString()).toString() + "\n", Should.<Object>should_contain(_convertNL, _convertNL_1));
+     + "\n     \'\'\'<pre class=\"prettyprint lang-ruby linenums\">\r\n1 + 1 =&gt; 2</pre>\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder_1).toString() + "\n", Should.<Object>should_contain(_convertNL, _convertNL_1));
     
   }
   
@@ -362,7 +359,7 @@ public class SpecDocGeneratorSpec {
     _builder.newLine();
     _builder.append("} ");
     _builder.newLine();
-    this.generateDoc(_builder.toString());
+    this.generateDoc(_builder);
   }
   
   public void generateDoc(@Extension final CharSequence input) {
@@ -371,8 +368,7 @@ public class SpecDocGeneratorSpec {
   }
   
   public String generatedFile(@Extension final String name) {
-    Map<String, CharSequence> _textFiles = this.fsa.getTextFiles();
-    CharSequence _get = _textFiles.get(("DOC_OUTPUT/" + name));
+    CharSequence _get = this.fsa.getTextFiles().get(("DOC_OUTPUT/" + name));
     String _string = null;
     if (_get!=null) {
       _string=_get.toString();
@@ -380,7 +376,7 @@ public class SpecDocGeneratorSpec {
     return _string;
   }
   
-  public String convertNL(@Extension final String s) {
-    return s.replace("\r", "");
+  public String convertNL(@Extension final CharSequence s) {
+    return s.toString().replace("\r", "");
   }
 }

@@ -1,7 +1,6 @@
 package org.jnario.jnario.tests.unit.report;
 
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.jnario.feature.feature.Background;
 import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.jnario.tests.unit.report.HashBasedSpec2ResultMappingSpec;
 import org.jnario.lib.Assert;
@@ -45,7 +44,7 @@ public class HashBasedSpec2ResultMappingBackgroundSpec extends HashBasedSpec2Res
     _builder.append("\t\t");
     _builder.append("\"with implementation\"");
     _builder.newLine();
-    this.m.parseScenario(_builder.toString());
+    this.m.parseScenario(_builder);
   }
   
   @Test
@@ -54,11 +53,10 @@ public class HashBasedSpec2ResultMappingBackgroundSpec extends HashBasedSpec2Res
   public void _returnsPassedIfAllScenariosPassed() throws Exception {
     this.passedStep("Given a step");
     this.passedStep("Given another step");
-    Background _background = this.background();
-    SpecExecution _result = this.result(_background);
+    SpecExecution _result = this.result(this.background());
     Assert.assertTrue("\nExpected background.result => typeof(Passed) but"
      + "\n     background.result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     background is " + new org.hamcrest.StringDescription().appendValue(_background).toString() + "\n", Should.operator_doubleArrow(_result, Passed.class));
+     + "\n     background is " + new org.hamcrest.StringDescription().appendValue(this.background()).toString() + "\n", Should.operator_doubleArrow(_result, Passed.class));
     
   }
   
@@ -67,11 +65,10 @@ public class HashBasedSpec2ResultMappingBackgroundSpec extends HashBasedSpec2Res
   @Order(2)
   public void _returnsFailedIfOneScenarioFailed() throws Exception {
     this.failedStep("Given a step");
-    Background _background = this.background();
-    SpecExecution _result = this.result(_background);
+    SpecExecution _result = this.result(this.background());
     Assert.assertTrue("\nExpected background.result => typeof(Failed) but"
      + "\n     background.result is " + new org.hamcrest.StringDescription().appendValue(_result).toString()
-     + "\n     background is " + new org.hamcrest.StringDescription().appendValue(_background).toString() + "\n", Should.operator_doubleArrow(_result, Failed.class));
+     + "\n     background is " + new org.hamcrest.StringDescription().appendValue(this.background()).toString() + "\n", Should.operator_doubleArrow(_result, Failed.class));
     
   }
 }

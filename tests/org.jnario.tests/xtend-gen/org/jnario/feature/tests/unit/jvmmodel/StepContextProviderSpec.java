@@ -38,16 +38,13 @@ public class StepContextProviderSpec {
     Set<JnarioField> _xblockexpression = null;
     {
       final Set<String> expected = IterableExtensions.<String>toSet(((Iterable<String>)Conversions.doWrapArray(names)));
-      Iterable<JnarioField> _filter = Iterables.<JnarioField>filter(this.m, JnarioField.class);
       final Function1<JnarioField, Boolean> _function = new Function1<JnarioField, Boolean>() {
         @Override
         public Boolean apply(final JnarioField it) {
-          String _name = it.getName();
-          return Boolean.valueOf(expected.contains(_name));
+          return Boolean.valueOf(expected.contains(it.getName()));
         }
       };
-      Iterable<JnarioField> _filter_1 = IterableExtensions.<JnarioField>filter(_filter, _function);
-      _xblockexpression = IterableExtensions.<JnarioField>toSet(_filter_1);
+      _xblockexpression = IterableExtensions.<JnarioField>toSet(IterableExtensions.<JnarioField>filter(Iterables.<JnarioField>filter(this.m, JnarioField.class), _function));
     }
     return _xblockexpression;
   }

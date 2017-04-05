@@ -4,6 +4,8 @@
 package org.jnario.xbase.richstring.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
+import org.jnario.xbase.richstring.ui.autoedit.XbaseWithRichstringAutoEditStrategyProvider;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -11,5 +13,10 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 public class XbaseWithRichstringUiModule extends org.jnario.xbase.richstring.ui.AbstractXbaseWithRichstringUiModule {
 	public XbaseWithRichstringUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+	
+	@Override
+	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
+		return XbaseWithRichstringAutoEditStrategyProvider.class;
 	}
 }

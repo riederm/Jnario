@@ -4,6 +4,7 @@
 package org.jnario.xbase.richstring;
 
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 import org.jnario.xbase.richstring.conversion.XbaseWithRichstringValueConverterService;
 
 /**
@@ -14,6 +15,11 @@ public class XbaseWithRichstringRuntimeModule extends org.jnario.xbase.richstrin
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
 		return XbaseWithRichstringValueConverterService.class;
+	}
+	
+	@Override
+	public Class<? extends ITypeComputer> bindITypeComputer() {
+		return XbaseWithRichstringTypeComputer.class;
 	}
 	
 }

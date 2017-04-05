@@ -8,8 +8,6 @@
 package org.jnario.spec.tests.unit.naming;
 
 import com.google.inject.Inject;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -45,15 +43,12 @@ public class ExampleSpec {
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("}");
     _builder_1.newLine();
-    String _plus_1 = (_plus + _builder_1.toString());
+    String _plus_1 = (_plus + _builder_1);
     final Resource spec = this.modelStore.parseSpec(_plus_1);
-    TreeIterator<EObject> _allContents = spec.getAllContents();
-    Query _query = Query.query(_allContents);
-    return _query.<Example>first(Example.class);
+    return Query.query(spec.getAllContents()).<Example>first(Example.class);
   }
   
   public boolean pendingStateOf(@Extension final String string) {
-    Example _parse = this.parse(string);
-    return _parse.isPending();
+    return this.parse(string).isPending();
   }
 }

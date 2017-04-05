@@ -166,7 +166,7 @@ describe SpecDocGenerator {
 	def generatedFile(String name){
 		return fsa.textFiles.get("DOC_OUTPUT/" + name)?.toString
 	}
-	def convertNL(String s) {
-		s.replace("\r", "")
+	def convertNL(CharSequence s) {
+		s.toString.replace("\r", "")
 	}
 }

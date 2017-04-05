@@ -7,9 +7,6 @@
  */
 package org.jnario.jnario.tests.unit.jnario;
 
-import org.jnario.feature.feature.Background;
-import org.jnario.feature.feature.Feature;
-import org.jnario.feature.feature.Scenario;
 import org.jnario.jnario.test.util.Features;
 import org.jnario.jnario.tests.unit.jnario.ExecutableIsPendingSpec;
 import org.jnario.lib.Assert;
@@ -28,12 +25,11 @@ public class ExecutableIsPendingFeatureSpec extends ExecutableIsPendingSpec {
   @Named("feature[\\\"Without scenarios and without background\\\"].isPending[] should be true")
   @Order(1)
   public void _featureWithoutScenariosAndWithoutBackgroundIsPendingShouldBeTrue() throws Exception {
-    Feature _feature = Features.feature("Without scenarios and without background");
-    boolean _isPending = _feature.isPending();
+    boolean _isPending = Features.feature("Without scenarios and without background").isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), true);
     Assert.assertTrue("\nExpected feature(\"Without scenarios and without background\").isPending() should be true but"
      + "\n     feature(\"Without scenarios and without background\").isPending() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     feature(\"Without scenarios and without background\") is " + new org.hamcrest.StringDescription().appendValue(_feature).toString() + "\n", _should_be);
+     + "\n     feature(\"Without scenarios and without background\") is " + new org.hamcrest.StringDescription().appendValue(Features.feature("Without scenarios and without background")).toString() + "\n", _should_be);
     
   }
   
@@ -41,14 +37,12 @@ public class ExecutableIsPendingFeatureSpec extends ExecutableIsPendingSpec {
   @Named("featureWith[implementedScenario].isPending[] should be false")
   @Order(2)
   public void _featureWithImplementedScenarioIsPendingShouldBeFalse() throws Exception {
-    Scenario _implementedScenario = Features.implementedScenario();
-    Feature _featureWith = Features.featureWith(_implementedScenario);
-    boolean _isPending = _featureWith.isPending();
+    boolean _isPending = Features.featureWith(Features.implementedScenario()).isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), false);
     Assert.assertTrue("\nExpected featureWith(implementedScenario).isPending() should be false but"
      + "\n     featureWith(implementedScenario).isPending() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     featureWith(implementedScenario) is " + new org.hamcrest.StringDescription().appendValue(_featureWith).toString()
-     + "\n     implementedScenario is " + new org.hamcrest.StringDescription().appendValue(_implementedScenario).toString() + "\n", _should_be);
+     + "\n     featureWith(implementedScenario) is " + new org.hamcrest.StringDescription().appendValue(Features.featureWith(Features.implementedScenario())).toString()
+     + "\n     implementedScenario is " + new org.hamcrest.StringDescription().appendValue(Features.implementedScenario()).toString() + "\n", _should_be);
     
   }
   
@@ -56,16 +50,13 @@ public class ExecutableIsPendingFeatureSpec extends ExecutableIsPendingSpec {
   @Named("featureWith[scenarioWithoutSteps, implementedScenario].isPending[] should be true")
   @Order(3)
   public void _featureWithScenarioWithoutStepsImplementedScenarioIsPendingShouldBeTrue() throws Exception {
-    Scenario _scenarioWithoutSteps = Features.scenarioWithoutSteps();
-    Scenario _implementedScenario = Features.implementedScenario();
-    Feature _featureWith = Features.featureWith(_scenarioWithoutSteps, _implementedScenario);
-    boolean _isPending = _featureWith.isPending();
+    boolean _isPending = Features.featureWith(Features.scenarioWithoutSteps(), Features.implementedScenario()).isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), true);
     Assert.assertTrue("\nExpected featureWith(scenarioWithoutSteps, implementedScenario).isPending() should be true but"
      + "\n     featureWith(scenarioWithoutSteps, implementedScenario).isPending() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     featureWith(scenarioWithoutSteps, implementedScenario) is " + new org.hamcrest.StringDescription().appendValue(_featureWith).toString()
-     + "\n     scenarioWithoutSteps is " + new org.hamcrest.StringDescription().appendValue(_scenarioWithoutSteps).toString()
-     + "\n     implementedScenario is " + new org.hamcrest.StringDescription().appendValue(_implementedScenario).toString() + "\n", _should_be);
+     + "\n     featureWith(scenarioWithoutSteps, implementedScenario) is " + new org.hamcrest.StringDescription().appendValue(Features.featureWith(Features.scenarioWithoutSteps(), Features.implementedScenario())).toString()
+     + "\n     scenarioWithoutSteps is " + new org.hamcrest.StringDescription().appendValue(Features.scenarioWithoutSteps()).toString()
+     + "\n     implementedScenario is " + new org.hamcrest.StringDescription().appendValue(Features.implementedScenario()).toString() + "\n", _should_be);
     
   }
   
@@ -73,14 +64,12 @@ public class ExecutableIsPendingFeatureSpec extends ExecutableIsPendingSpec {
   @Named("featureWithBackground[implementedBackground].isPending[] should be true")
   @Order(4)
   public void _featureWithBackgroundImplementedBackgroundIsPendingShouldBeTrue() throws Exception {
-    Background _implementedBackground = Features.implementedBackground();
-    Feature _featureWithBackground = Features.featureWithBackground(_implementedBackground);
-    boolean _isPending = _featureWithBackground.isPending();
+    boolean _isPending = Features.featureWithBackground(Features.implementedBackground()).isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), true);
     Assert.assertTrue("\nExpected featureWithBackground(implementedBackground).isPending() should be true but"
      + "\n     featureWithBackground(implementedBackground).isPending() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     featureWithBackground(implementedBackground) is " + new org.hamcrest.StringDescription().appendValue(_featureWithBackground).toString()
-     + "\n     implementedBackground is " + new org.hamcrest.StringDescription().appendValue(_implementedBackground).toString() + "\n", _should_be);
+     + "\n     featureWithBackground(implementedBackground) is " + new org.hamcrest.StringDescription().appendValue(Features.featureWithBackground(Features.implementedBackground())).toString()
+     + "\n     implementedBackground is " + new org.hamcrest.StringDescription().appendValue(Features.implementedBackground()).toString() + "\n", _should_be);
     
   }
   
@@ -88,14 +77,12 @@ public class ExecutableIsPendingFeatureSpec extends ExecutableIsPendingSpec {
   @Named("featureWithBackground[backgroundWithoutSteps].isPending[] should be true")
   @Order(5)
   public void _featureWithBackgroundBackgroundWithoutStepsIsPendingShouldBeTrue() throws Exception {
-    Background _backgroundWithoutSteps = Features.backgroundWithoutSteps();
-    Feature _featureWithBackground = Features.featureWithBackground(_backgroundWithoutSteps);
-    boolean _isPending = _featureWithBackground.isPending();
+    boolean _isPending = Features.featureWithBackground(Features.backgroundWithoutSteps()).isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), true);
     Assert.assertTrue("\nExpected featureWithBackground(backgroundWithoutSteps).isPending() should be true but"
      + "\n     featureWithBackground(backgroundWithoutSteps).isPending() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     featureWithBackground(backgroundWithoutSteps) is " + new org.hamcrest.StringDescription().appendValue(_featureWithBackground).toString()
-     + "\n     backgroundWithoutSteps is " + new org.hamcrest.StringDescription().appendValue(_backgroundWithoutSteps).toString() + "\n", _should_be);
+     + "\n     featureWithBackground(backgroundWithoutSteps) is " + new org.hamcrest.StringDescription().appendValue(Features.featureWithBackground(Features.backgroundWithoutSteps())).toString()
+     + "\n     backgroundWithoutSteps is " + new org.hamcrest.StringDescription().appendValue(Features.backgroundWithoutSteps()).toString() + "\n", _should_be);
     
   }
   
@@ -103,16 +90,13 @@ public class ExecutableIsPendingFeatureSpec extends ExecutableIsPendingSpec {
   @Named("featureWithBackgroundAndScenario[backgroundWithoutSteps, implementedScenario].isPending[] should be true")
   @Order(6)
   public void _featureWithBackgroundAndScenarioBackgroundWithoutStepsImplementedScenarioIsPendingShouldBeTrue() throws Exception {
-    Background _backgroundWithoutSteps = Features.backgroundWithoutSteps();
-    Scenario _implementedScenario = Features.implementedScenario();
-    Feature _featureWithBackgroundAndScenario = Features.featureWithBackgroundAndScenario(_backgroundWithoutSteps, _implementedScenario);
-    boolean _isPending = _featureWithBackgroundAndScenario.isPending();
+    boolean _isPending = Features.featureWithBackgroundAndScenario(Features.backgroundWithoutSteps(), Features.implementedScenario()).isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), true);
     Assert.assertTrue("\nExpected featureWithBackgroundAndScenario(backgroundWithoutSteps, implementedScenario).isPending() should be true but"
      + "\n     featureWithBackgroundAndScenario(backgroundWithoutSteps, implementedScenario).isPending() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     featureWithBackgroundAndScenario(backgroundWithoutSteps, implementedScenario) is " + new org.hamcrest.StringDescription().appendValue(_featureWithBackgroundAndScenario).toString()
-     + "\n     backgroundWithoutSteps is " + new org.hamcrest.StringDescription().appendValue(_backgroundWithoutSteps).toString()
-     + "\n     implementedScenario is " + new org.hamcrest.StringDescription().appendValue(_implementedScenario).toString() + "\n", _should_be);
+     + "\n     featureWithBackgroundAndScenario(backgroundWithoutSteps, implementedScenario) is " + new org.hamcrest.StringDescription().appendValue(Features.featureWithBackgroundAndScenario(Features.backgroundWithoutSteps(), Features.implementedScenario())).toString()
+     + "\n     backgroundWithoutSteps is " + new org.hamcrest.StringDescription().appendValue(Features.backgroundWithoutSteps()).toString()
+     + "\n     implementedScenario is " + new org.hamcrest.StringDescription().appendValue(Features.implementedScenario()).toString() + "\n", _should_be);
     
   }
   
@@ -120,16 +104,13 @@ public class ExecutableIsPendingFeatureSpec extends ExecutableIsPendingSpec {
   @Named("featureWithBackgroundAndScenario[implementedBackground, implementedScenario].isPending[] should be false")
   @Order(7)
   public void _featureWithBackgroundAndScenarioImplementedBackgroundImplementedScenarioIsPendingShouldBeFalse() throws Exception {
-    Background _implementedBackground = Features.implementedBackground();
-    Scenario _implementedScenario = Features.implementedScenario();
-    Feature _featureWithBackgroundAndScenario = Features.featureWithBackgroundAndScenario(_implementedBackground, _implementedScenario);
-    boolean _isPending = _featureWithBackgroundAndScenario.isPending();
+    boolean _isPending = Features.featureWithBackgroundAndScenario(Features.implementedBackground(), Features.implementedScenario()).isPending();
     boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isPending), false);
     Assert.assertTrue("\nExpected featureWithBackgroundAndScenario(implementedBackground, implementedScenario).isPending() should be false but"
      + "\n     featureWithBackgroundAndScenario(implementedBackground, implementedScenario).isPending() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isPending)).toString()
-     + "\n     featureWithBackgroundAndScenario(implementedBackground, implementedScenario) is " + new org.hamcrest.StringDescription().appendValue(_featureWithBackgroundAndScenario).toString()
-     + "\n     implementedBackground is " + new org.hamcrest.StringDescription().appendValue(_implementedBackground).toString()
-     + "\n     implementedScenario is " + new org.hamcrest.StringDescription().appendValue(_implementedScenario).toString() + "\n", _should_be);
+     + "\n     featureWithBackgroundAndScenario(implementedBackground, implementedScenario) is " + new org.hamcrest.StringDescription().appendValue(Features.featureWithBackgroundAndScenario(Features.implementedBackground(), Features.implementedScenario())).toString()
+     + "\n     implementedBackground is " + new org.hamcrest.StringDescription().appendValue(Features.implementedBackground()).toString()
+     + "\n     implementedScenario is " + new org.hamcrest.StringDescription().appendValue(Features.implementedScenario()).toString() + "\n", _should_be);
     
   }
 }

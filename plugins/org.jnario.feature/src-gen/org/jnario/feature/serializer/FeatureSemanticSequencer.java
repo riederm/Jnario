@@ -87,6 +87,9 @@ import org.jnario.feature.feature.WhenReference;
 import org.jnario.feature.services.FeatureGrammarAccess;
 import org.jnario.xbase.richstring.serializer.XbaseWithRichstringSemanticSequencer;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichString;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringElseIf;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringForLoop;
+import org.jnario.xbase.richstring.xbasewithrichstring.RichStringIf;
 import org.jnario.xbase.richstring.xbasewithrichstring.RichStringLiteral;
 import org.jnario.xbase.richstring.xbasewithrichstring.XbaseWithRichstringPackage;
 
@@ -541,6 +544,15 @@ public class FeatureSemanticSequencer extends XbaseWithRichstringSemanticSequenc
 					return; 
 				}
 				else break;
+			case XbaseWithRichstringPackage.RICH_STRING_ELSE_IF:
+				sequence_RichStringElseIf(context, (RichStringElseIf) semanticObject); 
+				return; 
+			case XbaseWithRichstringPackage.RICH_STRING_FOR_LOOP:
+				sequence_RichStringForLoop(context, (RichStringForLoop) semanticObject); 
+				return; 
+			case XbaseWithRichstringPackage.RICH_STRING_IF:
+				sequence_RichStringIf(context, (RichStringIf) semanticObject); 
+				return; 
 			case XbaseWithRichstringPackage.RICH_STRING_LITERAL:
 				if (rule == grammarAccess.getRichStringLiteralEndRule()) {
 					sequence_RichStringLiteralEnd(context, (RichStringLiteral) semanticObject); 
@@ -589,7 +601,7 @@ public class FeatureSemanticSequencer extends XbaseWithRichstringSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FeaturePackage.Literals.STEP_REFERENCE__REFERENCE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAndReferenceAccess().getReferenceAndAND_TEXTTerminalRuleCall_1_0_1(), semanticObject.getReference());
+		feeder.accept(grammarAccess.getAndReferenceAccess().getReferenceAndAND_TEXTTerminalRuleCall_1_0_1(), semanticObject.eGet(FeaturePackage.Literals.STEP_REFERENCE__REFERENCE, false));
 		feeder.finish();
 	}
 	
@@ -774,7 +786,7 @@ public class FeatureSemanticSequencer extends XbaseWithRichstringSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FeaturePackage.Literals.STEP_REFERENCE__REFERENCE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getButReferenceAccess().getReferenceButBUT_TEXTTerminalRuleCall_1_0_1(), semanticObject.getReference());
+		feeder.accept(grammarAccess.getButReferenceAccess().getReferenceButBUT_TEXTTerminalRuleCall_1_0_1(), semanticObject.eGet(FeaturePackage.Literals.STEP_REFERENCE__REFERENCE, false));
 		feeder.finish();
 	}
 	
@@ -837,7 +849,7 @@ public class FeatureSemanticSequencer extends XbaseWithRichstringSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FeaturePackage.Literals.STEP_REFERENCE__REFERENCE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getGivenReferenceAccess().getReferenceGivenGIVEN_TEXTTerminalRuleCall_1_0_1(), semanticObject.getReference());
+		feeder.accept(grammarAccess.getGivenReferenceAccess().getReferenceGivenGIVEN_TEXTTerminalRuleCall_1_0_1(), semanticObject.eGet(FeaturePackage.Literals.STEP_REFERENCE__REFERENCE, false));
 		feeder.finish();
 	}
 	
@@ -947,7 +959,7 @@ public class FeatureSemanticSequencer extends XbaseWithRichstringSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FeaturePackage.Literals.STEP_REFERENCE__REFERENCE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getThenReferenceAccess().getReferenceThenTHEN_TEXTTerminalRuleCall_1_0_1(), semanticObject.getReference());
+		feeder.accept(grammarAccess.getThenReferenceAccess().getReferenceThenTHEN_TEXTTerminalRuleCall_1_0_1(), semanticObject.eGet(FeaturePackage.Literals.STEP_REFERENCE__REFERENCE, false));
 		feeder.finish();
 	}
 	
@@ -986,7 +998,7 @@ public class FeatureSemanticSequencer extends XbaseWithRichstringSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeReferenceNoTypeArgsAccess().getTypeJvmTypeQualifiedNameParserRuleCall_0_1(), semanticObject.getType());
+		feeder.accept(grammarAccess.getTypeReferenceNoTypeArgsAccess().getTypeJvmTypeQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, false));
 		feeder.finish();
 	}
 	
@@ -1004,7 +1016,7 @@ public class FeatureSemanticSequencer extends XbaseWithRichstringSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FeaturePackage.Literals.STEP_REFERENCE__REFERENCE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getWhenReferenceAccess().getReferenceWhenWHEN_TEXTTerminalRuleCall_1_0_1(), semanticObject.getReference());
+		feeder.accept(grammarAccess.getWhenReferenceAccess().getReferenceWhenWHEN_TEXTTerminalRuleCall_1_0_1(), semanticObject.eGet(FeaturePackage.Literals.STEP_REFERENCE__REFERENCE, false));
 		feeder.finish();
 	}
 	
@@ -1139,7 +1151,7 @@ public class FeatureSemanticSequencer extends XbaseWithRichstringSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getXRelationalExpressionAccess().getShouldLeftOperandAction_1_0_0_0_0(), semanticObject.getLeftOperand());
-		feeder.accept(grammarAccess.getXRelationalExpressionAccess().getFeatureJvmIdentifiableElementShouldParserRuleCall_1_0_0_0_1_0_1(), semanticObject.getFeature());
+		feeder.accept(grammarAccess.getXRelationalExpressionAccess().getFeatureJvmIdentifiableElementShouldParserRuleCall_1_0_0_0_1_0_1(), semanticObject.eGet(XbasePackage.Literals.XABSTRACT_FEATURE_CALL__FEATURE, false));
 		feeder.accept(grammarAccess.getXRelationalExpressionAccess().getRightOperandXOtherOperatorExpressionParserRuleCall_1_0_1_0(), semanticObject.getRightOperand());
 		feeder.finish();
 	}

@@ -48,7 +48,7 @@ public class CompilerSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -72,7 +72,7 @@ public class CompilerSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -96,7 +96,7 @@ public class CompilerSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -120,7 +120,7 @@ public class CompilerSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -149,7 +149,7 @@ public class CompilerSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -171,7 +171,7 @@ public class CompilerSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -198,7 +198,7 @@ public class CompilerSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   @Test
@@ -256,6 +256,6 @@ public class CompilerSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
 }

@@ -10,7 +10,6 @@ package org.jnario.spec.tests.unit.scoping;
 import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.jnario.test.util.ScopeTestExtension;
 import org.jnario.jnario.test.util.SpecTestCreator;
@@ -53,7 +52,6 @@ public class SpecScopeProviderSpec {
   
   public Set<String> targetOperationScope() {
     final EObject source = this._scopeTestExtension.second(ExampleGroup.class);
-    EReference _exampleGroup_TargetOperation = SpecPackage.eINSTANCE.getExampleGroup_TargetOperation();
-    return this._scopeTestExtension.scope(source, _exampleGroup_TargetOperation);
+    return this._scopeTestExtension.scope(source, SpecPackage.eINSTANCE.getExampleGroup_TargetOperation());
   }
 }

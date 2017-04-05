@@ -45,7 +45,7 @@ public class SpecResultParserSpec {
       _builder.append("a message");
       _builder.newLine();
       _builder.append("withnewline");
-      String _platformIndependent = Strings.platformIndependent(_builder.toString());
+      String _platformIndependent = Strings.platformIndependent(_builder);
       return _platformIndependent;
     }
   }.apply();
@@ -67,7 +67,7 @@ public class SpecResultParserSpec {
       _builder.append("    ");
       _builder.append("at java.lang.reflect.Constructor.newInstance(Constructor.java:513)");
       _builder.newLine();
-      String _platformIndependent = Strings.platformIndependent(_builder.toString());
+      String _platformIndependent = Strings.platformIndependent(_builder);
       return _platformIndependent;
     }
   }.apply();
@@ -83,19 +83,16 @@ public class SpecResultParserSpec {
     String _plus = (_builder.toString() + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME));
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("\" classname=\"");
-    String _plus_1 = (_plus + _builder_1.toString());
+    String _plus_1 = (_plus + _builder_1);
     String _plus_2 = (_plus_1 + SpecResultParserSpec.CLASSNAME);
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("\" name=\"");
-    String _plus_3 = (_plus_2 + _builder_2.toString());
+    String _plus_3 = (_plus_2 + _builder_2);
     String _plus_4 = (_plus_3 + SpecResultParserSpec.NAME);
     StringConcatenation _builder_3 = new StringConcatenation();
     _builder_3.append("\"/>");
     _builder_3.newLine();
-    String _plus_5 = (_plus_4 + _builder_3.toString());
-    String _xml = this.toXml(_plus_5);
-    Passed _passingSpec = this.passingSpec();
-    this.parse(_xml, _passingSpec);
+    this.parse(this.toXml((_plus_4 + _builder_3)), this.passingSpec());
   }
   
   @Test
@@ -107,26 +104,26 @@ public class SpecResultParserSpec {
     String _plus = (_builder.toString() + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME));
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("\" classname=\"");
-    String _plus_1 = (_plus + _builder_1.toString());
+    String _plus_1 = (_plus + _builder_1);
     String _plus_2 = (_plus_1 + SpecResultParserSpec.CLASSNAME);
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("\" name=\"");
-    String _plus_3 = (_plus_2 + _builder_2.toString());
+    String _plus_3 = (_plus_2 + _builder_2);
     String _plus_4 = (_plus_3 + SpecResultParserSpec.NAME);
     StringConcatenation _builder_3 = new StringConcatenation();
     _builder_3.append("\">");
     _builder_3.newLine();
     _builder_3.append("\t\t   ");
     _builder_3.append("<failure message=\"");
-    String _plus_5 = (_plus_4 + _builder_3.toString());
+    String _plus_5 = (_plus_4 + _builder_3);
     String _plus_6 = (_plus_5 + SpecResultParserSpec.FAILURE_MESSAGE);
     StringConcatenation _builder_4 = new StringConcatenation();
     _builder_4.append("\" type=\"");
-    String _plus_7 = (_plus_6 + _builder_4.toString());
+    String _plus_7 = (_plus_6 + _builder_4);
     String _plus_8 = (_plus_7 + SpecResultParserSpec.FAILURE_TYPE);
     StringConcatenation _builder_5 = new StringConcatenation();
     _builder_5.append("\">");
-    String _plus_9 = (_plus_8 + _builder_5.toString());
+    String _plus_9 = (_plus_8 + _builder_5);
     String _plus_10 = (_plus_9 + SpecResultParserSpec.XML_STACKTRACE);
     StringConcatenation _builder_6 = new StringConcatenation();
     _builder_6.append("</failure>");
@@ -134,10 +131,7 @@ public class SpecResultParserSpec {
     _builder_6.append("\t\t   ");
     _builder_6.append("</testcase>");
     _builder_6.newLine();
-    String _plus_11 = (_plus_10 + _builder_6.toString());
-    String _xml = this.toXml(_plus_11);
-    Failed _failingSpec = this.failingSpec();
-    this.parse(_xml, _failingSpec);
+    this.parse(this.toXml((_plus_10 + _builder_6)), this.failingSpec());
   }
   
   @Test
@@ -149,26 +143,26 @@ public class SpecResultParserSpec {
     String _plus = (_builder.toString() + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME));
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("\" classname=\"");
-    String _plus_1 = (_plus + _builder_1.toString());
+    String _plus_1 = (_plus + _builder_1);
     String _plus_2 = (_plus_1 + SpecResultParserSpec.CLASSNAME);
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("\" name=\"");
-    String _plus_3 = (_plus_2 + _builder_2.toString());
+    String _plus_3 = (_plus_2 + _builder_2);
     String _plus_4 = (_plus_3 + SpecResultParserSpec.NAME);
     StringConcatenation _builder_3 = new StringConcatenation();
     _builder_3.append("\">");
     _builder_3.newLine();
     _builder_3.append("\t\t   ");
     _builder_3.append("<error message=\"");
-    String _plus_5 = (_plus_4 + _builder_3.toString());
+    String _plus_5 = (_plus_4 + _builder_3);
     String _plus_6 = (_plus_5 + SpecResultParserSpec.FAILURE_MESSAGE);
     StringConcatenation _builder_4 = new StringConcatenation();
     _builder_4.append("\" type=\"");
-    String _plus_7 = (_plus_6 + _builder_4.toString());
+    String _plus_7 = (_plus_6 + _builder_4);
     String _plus_8 = (_plus_7 + SpecResultParserSpec.FAILURE_TYPE);
     StringConcatenation _builder_5 = new StringConcatenation();
     _builder_5.append("\">");
-    String _plus_9 = (_plus_8 + _builder_5.toString());
+    String _plus_9 = (_plus_8 + _builder_5);
     String _plus_10 = (_plus_9 + SpecResultParserSpec.XML_STACKTRACE);
     StringConcatenation _builder_6 = new StringConcatenation();
     _builder_6.append("</error>");
@@ -176,10 +170,7 @@ public class SpecResultParserSpec {
     _builder_6.append("\t\t   ");
     _builder_6.append("</testcase>");
     _builder_6.newLine();
-    String _plus_11 = (_plus_10 + _builder_6.toString());
-    String _xml = this.toXml(_plus_11);
-    Failed _failingSpec = this.failingSpec();
-    this.parse(_xml, _failingSpec);
+    this.parse(this.toXml((_plus_10 + _builder_6)), this.failingSpec());
   }
   
   @Test
@@ -191,41 +182,41 @@ public class SpecResultParserSpec {
     String _plus = (_builder.toString() + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME));
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("\" classname=\"");
-    String _plus_1 = (_plus + _builder_1.toString());
+    String _plus_1 = (_plus + _builder_1);
     String _plus_2 = (_plus_1 + SpecResultParserSpec.CLASSNAME);
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("\" name=\"");
-    String _plus_3 = (_plus_2 + _builder_2.toString());
+    String _plus_3 = (_plus_2 + _builder_2);
     String _plus_4 = (_plus_3 + SpecResultParserSpec.NAME);
     StringConcatenation _builder_3 = new StringConcatenation();
     _builder_3.append("\"/>");
     _builder_3.newLine();
     _builder_3.append("\t\t   ");
     _builder_3.append("<testcase time=\"");
-    String _plus_5 = (_plus_4 + _builder_3.toString());
+    String _plus_5 = (_plus_4 + _builder_3);
     String _plus_6 = (_plus_5 + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME));
     StringConcatenation _builder_4 = new StringConcatenation();
     _builder_4.append("\" classname=\"");
-    String _plus_7 = (_plus_6 + _builder_4.toString());
+    String _plus_7 = (_plus_6 + _builder_4);
     String _plus_8 = (_plus_7 + SpecResultParserSpec.CLASSNAME);
     StringConcatenation _builder_5 = new StringConcatenation();
     _builder_5.append("\" name=\"");
-    String _plus_9 = (_plus_8 + _builder_5.toString());
+    String _plus_9 = (_plus_8 + _builder_5);
     String _plus_10 = (_plus_9 + SpecResultParserSpec.NAME);
     StringConcatenation _builder_6 = new StringConcatenation();
     _builder_6.append("\">");
     _builder_6.newLine();
     _builder_6.append("\t\t   ");
     _builder_6.append("<error message=\"");
-    String _plus_11 = (_plus_10 + _builder_6.toString());
+    String _plus_11 = (_plus_10 + _builder_6);
     String _plus_12 = (_plus_11 + SpecResultParserSpec.FAILURE_MESSAGE);
     StringConcatenation _builder_7 = new StringConcatenation();
     _builder_7.append("\" type=\"");
-    String _plus_13 = (_plus_12 + _builder_7.toString());
+    String _plus_13 = (_plus_12 + _builder_7);
     String _plus_14 = (_plus_13 + SpecResultParserSpec.FAILURE_TYPE);
     StringConcatenation _builder_8 = new StringConcatenation();
     _builder_8.append("\">");
-    String _plus_15 = (_plus_14 + _builder_8.toString());
+    String _plus_15 = (_plus_14 + _builder_8);
     String _plus_16 = (_plus_15 + SpecResultParserSpec.XML_STACKTRACE);
     StringConcatenation _builder_9 = new StringConcatenation();
     _builder_9.append("</error>");
@@ -233,11 +224,7 @@ public class SpecResultParserSpec {
     _builder_9.append("\t\t   ");
     _builder_9.append("</testcase>");
     _builder_9.newLine();
-    String _plus_17 = (_plus_16 + _builder_9.toString());
-    String _xml = this.toXml(_plus_17);
-    Passed _passingSpec = this.passingSpec();
-    Failed _failingSpec = this.failingSpec();
-    this.parse(_xml, _passingSpec, _failingSpec);
+    this.parse(this.toXml((_plus_16 + _builder_9)), this.passingSpec(), this.failingSpec());
   }
   
   @Test
@@ -249,11 +236,11 @@ public class SpecResultParserSpec {
     String _plus = (_builder.toString() + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME));
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("\" classname=\"");
-    String _plus_1 = (_plus + _builder_1.toString());
+    String _plus_1 = (_plus + _builder_1);
     String _plus_2 = (_plus_1 + SpecResultParserSpec.CLASSNAME);
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("\" name=\"");
-    String _plus_3 = (_plus_2 + _builder_2.toString());
+    String _plus_3 = (_plus_2 + _builder_2);
     String _plus_4 = (_plus_3 + SpecResultParserSpec.NAME);
     StringConcatenation _builder_3 = new StringConcatenation();
     _builder_3.append("\">");
@@ -264,10 +251,7 @@ public class SpecResultParserSpec {
     _builder_3.append("\t\t   ");
     _builder_3.append("</testcase>");
     _builder_3.newLine();
-    String _plus_5 = (_plus_4 + _builder_3.toString());
-    String _xml = this.toXml(_plus_5);
-    Pending _pendingSpec = this.pendingSpec();
-    this.parse(_xml, _pendingSpec);
+    this.parse(this.toXml((_plus_4 + _builder_3)), this.pendingSpec());
   }
   
   @Test
@@ -279,13 +263,12 @@ public class SpecResultParserSpec {
     String _plus = (_builder.toString() + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME));
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("\" classname=\"");
-    String _plus_1 = (_plus + _builder_1.toString());
+    String _plus_1 = (_plus + _builder_1);
     String _plus_2 = (_plus_1 + SpecResultParserSpec.CLASSNAME);
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("\" name=\"When I entered \\&quot;50\\&quot; and \\&quot;70\\&quot;\"/>");
     _builder_2.newLine();
-    String _plus_3 = (_plus_2 + _builder_2.toString());
-    String _xml = this.toXml(_plus_3);
+    String _xml = this.toXml((_plus_2 + _builder_2));
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "When I entered \"50\" and \"70\"", SpecResultParserSpec.EXECUTION_TIME);
     this.parse(_xml, _passed);
   }
@@ -299,13 +282,12 @@ public class SpecResultParserSpec {
     String _plus = (_builder.toString() + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME));
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("\" classname=\"");
-    String _plus_1 = (_plus + _builder_1.toString());
+    String _plus_1 = (_plus + _builder_1);
     String _plus_2 = (_plus_1 + SpecResultParserSpec.CLASSNAME);
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("\" name=\"cell[-1\\u002C 1].plus[cell[3\\u002C4]] =&gt; cell[2\\u002C5]\"/>");
     _builder_2.newLine();
-    String _plus_3 = (_plus_2 + _builder_2.toString());
-    String _xml = this.toXml(_plus_3);
+    String _xml = this.toXml((_plus_2 + _builder_2));
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "cell[-1, 1].plus[cell[3,4]] => cell[2,5]", SpecResultParserSpec.EXECUTION_TIME);
     this.parse(_xml, _passed);
   }
@@ -319,13 +301,12 @@ public class SpecResultParserSpec {
     String _plus = (_builder.toString() + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME));
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("\" classname=\"");
-    String _plus_1 = (_plus + _builder_1.toString());
+    String _plus_1 = (_plus + _builder_1);
     String _plus_2 = (_plus_1 + SpecResultParserSpec.CLASSNAME);
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("\" name=\"L\\u00D6sung\"/>");
     _builder_2.newLine();
-    String _plus_3 = (_plus_2 + _builder_2.toString());
-    String _xml = this.toXml(_plus_3);
+    String _xml = this.toXml((_plus_2 + _builder_2));
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "L\u00D6sung", SpecResultParserSpec.EXECUTION_TIME);
     this.parse(_xml, _passed);
   }
@@ -339,13 +320,12 @@ public class SpecResultParserSpec {
     String _plus = (_builder.toString() + Double.valueOf(SpecResultParserSpec.EXECUTION_TIME));
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("\" classname=\"");
-    String _plus_1 = (_plus + _builder_1.toString());
+    String _plus_1 = (_plus + _builder_1);
     String _plus_2 = (_plus_1 + SpecResultParserSpec.CLASSNAME);
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("\" name=\"\\&quot;http:\\/\\/www.google.de\\&quot;\"/>");
     _builder_2.newLine();
-    String _plus_3 = (_plus_2 + _builder_2.toString());
-    String _xml = this.toXml(_plus_3);
+    String _xml = this.toXml((_plus_2 + _builder_2));
     Passed _passed = new Passed(SpecResultParserSpec.CLASSNAME, "\"http://www.google.de\"", SpecResultParserSpec.EXECUTION_TIME);
     this.parse(_xml, _passed);
   }
@@ -374,7 +354,7 @@ public class SpecResultParserSpec {
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("</testsuite>\t");
     _builder_1.newLine();
-    return (_plus + _builder_1.toString());
+    return (_plus + _builder_1);
   }
   
   public void parse(@Extension final CharSequence content, @Extension final SpecExecution... expected) {
@@ -390,10 +370,7 @@ public class SpecResultParserSpec {
          + "\n     i.hasNext is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_hasNext)).toString()
          + "\n     i is " + new org.hamcrest.StringDescription().appendValue(i).toString() + "\n", _doubleArrow);
         
-        SpecExecution _next = i.next();
-        String _string = _next.toString();
-        String _string_1 = it.toString();
-        org.junit.Assert.assertEquals(_string, _string_1);
+        org.junit.Assert.assertEquals(i.next().toString(), it.toString());
       }
     };
     this.subject.parse(_stringInputStream, _function);

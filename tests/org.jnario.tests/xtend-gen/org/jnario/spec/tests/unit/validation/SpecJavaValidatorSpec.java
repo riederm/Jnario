@@ -11,7 +11,6 @@ import com.google.inject.Inject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics;
 import org.eclipse.xtext.junit4.validation.RegisteredValidatorTester;
-import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xbase.XBinaryOperation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.Assertion;
@@ -147,10 +146,8 @@ public class SpecJavaValidatorSpec {
   }
   
   public AssertableDiagnostics validate(@Extension final Class<? extends EObject> type) {
-    XtextResourceSet _resourceSet = this.modelStore.getResourceSet();
-    Resources.addContainerStateAdapter(_resourceSet);
-    Query _query = Query.query(this.modelStore);
-    final EObject target = _query.first(type);
+    Resources.addContainerStateAdapter(this.modelStore.getResourceSet());
+    final EObject target = Query.query(this.modelStore).first(type);
     return RegisteredValidatorTester.validateObj(target);
   }
 }

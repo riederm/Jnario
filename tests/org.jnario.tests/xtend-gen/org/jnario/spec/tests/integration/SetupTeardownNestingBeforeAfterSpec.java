@@ -159,6 +159,6 @@ public class SetupTeardownNestingBeforeAfterSpec extends SetupTeardownSpec {
     _builder_1.newLine();
     _builder_1.append("Spec: after all");
     _builder_1.newLine();
-    this.prints(_builder.toString(), _builder_1.toString());
+    this.prints(_builder, _builder_1.toString());
   }
 }

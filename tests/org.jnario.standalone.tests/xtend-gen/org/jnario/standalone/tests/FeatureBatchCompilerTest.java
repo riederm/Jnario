@@ -46,15 +46,11 @@ public class FeatureBatchCompilerTest {
       this.batchCompiler.setOutputPath(FeatureBatchCompilerTest.OUTPUT_DIRECTORY);
       this.batchCompiler.setDeleteTempDirectory(true);
       this.batchCompiler.setUseCurrentClassLoaderAsParent(true);
-      Class<? extends FeatureBatchCompilerTest> _class = this.getClass();
-      ClassLoader _classLoader = _class.getClassLoader();
-      this.batchCompiler.setCurrentClassLoader(_classLoader);
+      this.batchCompiler.setCurrentClassLoader(this.getClass().getClassLoader());
+      new File(FeatureBatchCompilerTest.OUTPUT_DIRECTORY).mkdir();
       File _file = new File(FeatureBatchCompilerTest.OUTPUT_DIRECTORY);
-      _file.mkdir();
-      File _file_1 = new File(FeatureBatchCompilerTest.OUTPUT_DIRECTORY);
-      Files.cleanFolder(_file_1, null, true, false);
-      File _file_2 = new File(FeatureBatchCompilerTest.OUTPUT_DIRECTORY_WITH_SPACES);
-      _file_2.mkdir();
+      Files.cleanFolder(_file, null, true, false);
+      new File(FeatureBatchCompilerTest.OUTPUT_DIRECTORY_WITH_SPACES).mkdir();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -67,11 +63,10 @@ public class FeatureBatchCompilerTest {
       Files.cleanFolder(_file, null, true, true);
       File _file_1 = new File(FeatureBatchCompilerTest.OUTPUT_DIRECTORY_WITH_SPACES);
       Files.cleanFolder(_file_1, null, true, true);
-      File _file_2 = new File(FeatureBatchCompilerTest.TEMP_DIRECTORY);
-      boolean _exists = _file_2.exists();
+      boolean _exists = new File(FeatureBatchCompilerTest.TEMP_DIRECTORY).exists();
       if (_exists) {
-        File _file_3 = new File(FeatureBatchCompilerTest.TEMP_DIRECTORY);
-        Files.cleanFolder(_file_3, null, true, true);
+        File _file_2 = new File(FeatureBatchCompilerTest.TEMP_DIRECTORY);
+        Files.cleanFolder(_file_2, null, true, true);
       }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -81,15 +76,12 @@ public class FeatureBatchCompilerTest {
   @Test
   public void testCompileTestData() {
     this.batchCompiler.compile();
-    File _file = new File((FeatureBatchCompilerTest.OUTPUT_DIRECTORY + "/test"));
     final FilenameFilter _function = new FilenameFilter() {
       @Override
       public boolean accept(final File dir, final String name) {
         return name.endsWith(".java");
       }
     };
-    String[] _list = _file.list(_function);
-    int _size = ((List<String>)Conversions.doWrapArray(_list)).size();
-    Assert.assertEquals(3, _size);
+    Assert.assertEquals(3, ((List<String>)Conversions.doWrapArray(new File((FeatureBatchCompilerTest.OUTPUT_DIRECTORY + "/test")).list(_function))).size());
   }
 }

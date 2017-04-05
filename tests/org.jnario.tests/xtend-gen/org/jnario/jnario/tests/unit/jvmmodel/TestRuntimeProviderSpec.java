@@ -21,7 +21,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.stubbing.OngoingStubbing;
 
 @CreateWith(SpecTestCreator.class)
 @Named("TestRuntimeProvider")
@@ -54,9 +53,7 @@ public class TestRuntimeProviderSpec {
   public void _returnsJUnit3RuntimeProviderIfJUnit4IsNotOnClasspath() throws Exception {
     TestRuntimeProvider _testRuntimeProvider = new TestRuntimeProvider(this.typeReferences, this.junit3Support, this.junit4Support);
     this.subject = _testRuntimeProvider;
-    JvmType _findDeclaredType = this.typeReferences.findDeclaredType("junit.framework.TestCase", this.anyNotifier);
-    OngoingStubbing<JvmType> _when = Mockito.<JvmType>when(_findDeclaredType);
-    _when.thenReturn(this.resultingType);
+    Mockito.<JvmType>when(this.typeReferences.findDeclaredType("junit.framework.TestCase", this.anyNotifier)).thenReturn(this.resultingType);
     TestRuntimeSupport _get = this.subject.get(this.anyNotifier);
     Assert.assertTrue("\nExpected subject.get(anyNotifier) => typeof(JUnit3RuntimeSupport) but"
      + "\n     subject.get(anyNotifier) is " + new org.hamcrest.StringDescription().appendValue(_get).toString()
@@ -69,9 +66,7 @@ public class TestRuntimeProviderSpec {
   @Named("returns JUnit4 runtime provider if JUnit4 is on classpath")
   @Order(2)
   public void _returnsJUnit4RuntimeProviderIfJUnit4IsOnClasspath() throws Exception {
-    JvmType _findDeclaredType = this.typeReferences.findDeclaredType("org.junit.rules.TestRule", this.anyNotifier);
-    OngoingStubbing<JvmType> _when = Mockito.<JvmType>when(_findDeclaredType);
-    _when.thenReturn(this.resultingType);
+    Mockito.<JvmType>when(this.typeReferences.findDeclaredType("org.junit.rules.TestRule", this.anyNotifier)).thenReturn(this.resultingType);
     TestRuntimeSupport _get = this.subject.get(this.anyNotifier);
     Assert.assertTrue("\nExpected subject.get(anyNotifier) => typeof(JUnit4RuntimeSupport) but"
      + "\n     subject.get(anyNotifier) is " + new org.hamcrest.StringDescription().appendValue(_get).toString()

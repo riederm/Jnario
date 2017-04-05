@@ -3,10 +3,6 @@ package org.jnario.jnario.tests.integration;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
 import com.google.inject.Inject;
-import java.util.Iterator;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.util.StringInputStream;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.jnario.Executable;
@@ -54,12 +50,7 @@ public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingSuccessfullSpec
   @Named("Given a specification")
   public void _givenASpecification() {
     final StepArguments args = new StepArguments("package example\ndescribe \"Adding values\"{\n\tfact \"4 + 3 is 7\"{\n\t\t4 + 3 => 7\n\t}\n}\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    Resource _parseSpec = this._modelStore.parseSpec(_first);
-    TreeIterator<EObject> _allContents = _parseSpec.getAllContents();
-    Iterator<ExampleGroup> _filter = Iterators.<ExampleGroup>filter(_allContents, ExampleGroup.class);
-    ExampleGroup _first_1 = JnarioIteratorExtensions.<ExampleGroup>first(_filter);
-    this.specification = _first_1;
+    this.specification = JnarioIteratorExtensions.<ExampleGroup>first(Iterators.<ExampleGroup>filter(this._modelStore.parseSpec(JnarioIterableExtensions.<String>first(args)).getAllContents(), ExampleGroup.class));
   }
   
   @Test
@@ -67,8 +58,7 @@ public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingSuccessfullSpec
   @Named("And a test result xml file")
   public void _andATestResultXmlFile() {
     final StepArguments args = new StepArguments("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<testsuite failures=\"0\" time=\"0.001\" errors=\"0\" skipped=\"0\" tests=\"1\" name=\"example.AddingValuesSpec\">\n  <properties>\n    <property name=\"java.runtime.name\" value=\"Java(TM) SE Runtime Environment\"/>\n  </properties>\n  <testcase time=\"0.001\" classname=\"example.AddingValuesSpec\" name=\"4 + 3 is 7\"/>\n</testsuite>\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    String _trim = _first.trim();
+    String _trim = JnarioIterableExtensions.<String>first(args).trim();
     StringInputStream _stringInputStream = new StringInputStream(_trim);
     this.resultParser.parse(_stringInputStream, this.spec2ResultMapping);
   }

@@ -41,8 +41,7 @@ public class ReferencesForStepsFeatureOrderingInStepReferences extends Reference
   @Named("Given a feature")
   public void _givenAFeature() {
     final StepArguments args = new StepArguments("Feature: Ordering of step references\n \nScenario: First\n\tCharSequence jnarioFile\n\tThen it should execute successfully\n\t\tjnarioFile = \"\"\n\t\t\nScenario: Second\n\tWhen I have a scenario with a field\n\t\tjnarioFile = \"\"\n \tThen it should execute successfully\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.jnarioFile = _first;
+    this.jnarioFile = JnarioIterableExtensions.<String>first(args);
   }
   
   @Test

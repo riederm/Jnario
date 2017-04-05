@@ -94,7 +94,7 @@ public class UsingTablesSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -137,7 +137,7 @@ public class UsingTablesSpec {
     _builder.newLine();
     _builder.append("} ");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -189,7 +189,7 @@ public class UsingTablesSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -256,7 +256,7 @@ public class UsingTablesSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -319,7 +319,7 @@ public class UsingTablesSpec {
     _builder.newLine();
     _builder.append("}  ");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -372,7 +372,7 @@ public class UsingTablesSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   public ExampleTable<UsingTablesSpecExample> _initUsingTablesSpecExample() {
@@ -505,7 +505,7 @@ public class UsingTablesSpec {
     _builder.newLine();
     _builder.append("     ");
     _builder.append("sum is <14>");
-    Helpers.is(_errorMessage, _builder.toString());
+    Helpers.is(_errorMessage, _builder);
   }
   
   /**
@@ -532,7 +532,7 @@ public class UsingTablesSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
   /**
@@ -562,6 +562,6 @@ public class UsingTablesSpec {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    this._behaviorExecutor.executesSuccessfully(_builder.toString());
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
 }

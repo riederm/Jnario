@@ -7,7 +7,6 @@
  */
 package org.jnario.suite.unit;
 
-import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -27,7 +26,6 @@ import org.jnario.spec.scoping.SpecResourceDescriptionStrategy;
 import org.jnario.spec.spec.ExampleGroup;
 import org.jnario.spec.spec.SpecPackage;
 import org.jnario.suite.scoping.SuiteSpecFilter;
-import org.jnario.suite.suite.Suite;
 import org.jnario.suite.suite.SuitePackage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,14 +53,12 @@ public class SuiteSpecFilterSpec {
   @Named("Suites pass")
   @Order(1)
   public void _suitesPass() throws Exception {
-    EClass _suite = this._suitePackage.getSuite();
-    IEObjectDescription _desc = this.desc(_suite);
-    boolean _apply = this.subject.apply(_desc);
+    boolean _apply = this.subject.apply(this.desc(this._suitePackage.getSuite()));
     Assert.assertTrue("\nExpected subject.apply(desc(suite)) => true but"
      + "\n     subject.apply(desc(suite)) is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_apply)).toString()
      + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString()
-     + "\n     desc(suite) is " + new org.hamcrest.StringDescription().appendValue(_desc).toString()
-     + "\n     suite is " + new org.hamcrest.StringDescription().appendValue(_suite).toString() + "\n", Should.<Boolean>operator_doubleArrow(Boolean.valueOf(_apply), true));
+     + "\n     desc(suite) is " + new org.hamcrest.StringDescription().appendValue(this.desc(this._suitePackage.getSuite())).toString()
+     + "\n     suite is " + new org.hamcrest.StringDescription().appendValue(this._suitePackage.getSuite()).toString() + "\n", Should.<Boolean>operator_doubleArrow(Boolean.valueOf(_apply), true));
     
   }
   
@@ -70,14 +66,12 @@ public class SuiteSpecFilterSpec {
   @Named("Features pass")
   @Order(2)
   public void _featuresPass() throws Exception {
-    EClass _feature = this._featurePackage.getFeature();
-    IEObjectDescription _desc = this.desc(_feature);
-    boolean _apply = this.subject.apply(_desc);
+    boolean _apply = this.subject.apply(this.desc(this._featurePackage.getFeature()));
     Assert.assertTrue("\nExpected subject.apply(desc(feature)) => true but"
      + "\n     subject.apply(desc(feature)) is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_apply)).toString()
      + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString()
-     + "\n     desc(feature) is " + new org.hamcrest.StringDescription().appendValue(_desc).toString()
-     + "\n     feature is " + new org.hamcrest.StringDescription().appendValue(_feature).toString() + "\n", Should.<Boolean>operator_doubleArrow(Boolean.valueOf(_apply), true));
+     + "\n     desc(feature) is " + new org.hamcrest.StringDescription().appendValue(this.desc(this._featurePackage.getFeature())).toString()
+     + "\n     feature is " + new org.hamcrest.StringDescription().appendValue(this._featurePackage.getFeature()).toString() + "\n", Should.<Boolean>operator_doubleArrow(Boolean.valueOf(_apply), true));
     
   }
   
@@ -85,12 +79,11 @@ public class SuiteSpecFilterSpec {
   @Named("Root Specs pass")
   @Order(3)
   public void _rootSpecsPass() throws Exception {
-    IEObjectDescription _rootSpec = this.rootSpec();
-    boolean _apply = this.subject.apply(_rootSpec);
+    boolean _apply = this.subject.apply(this.rootSpec());
     Assert.assertTrue("\nExpected subject.apply(rootSpec) => true but"
      + "\n     subject.apply(rootSpec) is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_apply)).toString()
      + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString()
-     + "\n     rootSpec is " + new org.hamcrest.StringDescription().appendValue(_rootSpec).toString() + "\n", Should.<Boolean>operator_doubleArrow(Boolean.valueOf(_apply), true));
+     + "\n     rootSpec is " + new org.hamcrest.StringDescription().appendValue(this.rootSpec()).toString() + "\n", Should.<Boolean>operator_doubleArrow(Boolean.valueOf(_apply), true));
     
   }
   
@@ -98,18 +91,16 @@ public class SuiteSpecFilterSpec {
   @Named("Child Specs fail")
   @Order(4)
   public void _childSpecsFail() throws Exception {
-    IEObjectDescription _childSpec = this.childSpec();
-    boolean _apply = this.subject.apply(_childSpec);
+    boolean _apply = this.subject.apply(this.childSpec());
     Assert.assertTrue("\nExpected subject.apply(childSpec) => false but"
      + "\n     subject.apply(childSpec) is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_apply)).toString()
      + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(this.subject).toString()
-     + "\n     childSpec is " + new org.hamcrest.StringDescription().appendValue(_childSpec).toString() + "\n", Should.<Boolean>operator_doubleArrow(Boolean.valueOf(_apply), false));
+     + "\n     childSpec is " + new org.hamcrest.StringDescription().appendValue(this.childSpec()).toString() + "\n", Should.<Boolean>operator_doubleArrow(Boolean.valueOf(_apply), false));
     
   }
   
   public IEObjectDescription desc(@Extension final EClass type) {
-    Suite _suite = Suites.suite("mySuite");
-    return EObjectDescription.create("name", _suite);
+    return EObjectDescription.create("name", Suites.suite("mySuite"));
   }
   
   public IEObjectDescription rootSpec() {
@@ -125,8 +116,7 @@ public class SuiteSpecFilterSpec {
     {
       final ExampleGroup spec = Specs.exampleGroup("name");
       Pair<String, String> _mappedTo = Pair.<String, String>of(SpecResourceDescriptionStrategy.ROOT_SPEC, value);
-      Map<String, String> _map = JnarioCollectionLiterals.<String, String>map(_mappedTo);
-      _xblockexpression = EObjectDescription.create("name", spec, _map);
+      _xblockexpression = EObjectDescription.create("name", spec, JnarioCollectionLiterals.<String, String>map(_mappedTo));
     }
     return _xblockexpression;
   }
