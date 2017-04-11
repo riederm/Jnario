@@ -26,6 +26,7 @@ import org.eclipse.xtext.ui.LanguageSpecific;
 import org.eclipse.xtext.ui.editor.IURIEditorOpener;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategy;
+import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.contentassist.IContentProposalPriorities;
 import org.eclipse.xtext.ui.editor.contentassist.IContextInformationProvider;
 import org.eclipse.xtext.ui.editor.contentassist.IProposalConflictHelper;
@@ -62,6 +63,7 @@ import org.jnario.ui.editor.XtendCopyQualifiedNameService;
 import org.jnario.ui.highlighting.JnarioHighlightingConfiguration;
 import org.jnario.ui.highlighting.RichStringAwareTokenScanner;
 import org.jnario.ui.highlighting.TokenToAttributeIdMapper;
+import org.jnario.xbase.richstring.ui.autoedit.XbaseWithRichstringAutoEditStrategyProvider;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -153,10 +155,10 @@ public class SpecUiModule extends org.jnario.spec.ui.AbstractSpecUiModule {
 //		return TokenTypeToPartitionMapper.class;
 //	}
 //
-//	@Override
-//	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
-//		return AutoEditStrategyProvider.class;
-//	}
+	@Override
+	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
+		return XbaseWithRichstringAutoEditStrategyProvider.class;
+	}
 //
 //	public Class<? extends DoubleClickStrategyProvider> bindDoubleClickStrategyProvider() {
 //		return XtendDoubleClickStrategyProvider.class;
