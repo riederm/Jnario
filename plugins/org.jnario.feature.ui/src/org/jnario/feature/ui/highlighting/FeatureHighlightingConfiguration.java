@@ -16,12 +16,15 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfigurationAcceptor;
 import org.eclipse.xtext.ui.editor.utils.TextStyle;
 import org.eclipse.xtext.xbase.ui.highlighting.XbaseHighlightingConfiguration;
+import org.jnario.ui.highlighting.JnarioHighlightingConfiguration;
+import org.jnario.xbase.richstring.ui.highlighting.XbaseWithRichstringHighlightingCalculator;
+import org.jnario.xbase.richstring.ui.highlighting.XbaseWithRichstringHighlightingConfiguration;
 
 /**
  * @author Birgit Engelmann - Initial contribution and API
  * @author Sebastian Benz 
  */
-public class FeatureHighlightingConfiguration extends XbaseHighlightingConfiguration {
+public class FeatureHighlightingConfiguration extends JnarioHighlightingConfiguration {
 
 	private static final int DEFAULT_FONT_SIZE = getDefaultFontDescriptor()
 			.getFontData()[0].getHeight();

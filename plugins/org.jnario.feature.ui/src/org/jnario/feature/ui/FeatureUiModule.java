@@ -11,6 +11,7 @@
 package org.jnario.feature.ui;
 
 import org.eclipse.jface.text.DefaultIndentLineAutoEditStrategy;
+import org.eclipse.jface.text.rules.ITokenScanner;
 import org.eclipse.jface.text.source.DefaultCharacterPairMatcher;
 import org.eclipse.jface.text.source.ICharacterPairMatcher;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -81,6 +82,9 @@ import org.jnario.ui.JnarioResourceUiServiceProvider;
 import org.jnario.ui.builder.JnarioBuilderParticipant;
 import org.jnario.ui.builder.JnarioSourceRelativeFileSystemAccess;
 import org.jnario.ui.editor.XtendCopyQualifiedNameService;
+import org.jnario.ui.highlighting.JnarioHighlightingConfiguration;
+import org.jnario.ui.highlighting.RichStringAwareTokenScanner;
+import org.jnario.ui.highlighting.TokenToAttributeIdMapper;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -197,6 +201,11 @@ public class FeatureUiModule extends org.jnario.feature.ui.AbstractFeatureUiModu
 		return FeatureTokenHighlighting.class;
 	}
 
+	
+	@Override
+	public Class<? extends ITokenScanner> bindITokenScanner() {
+		return RichStringAwareTokenScanner.class;
+	}
 // TODO NO_XTEND
 //	@Override
 //	public Class<? extends ITokenScanner> bindITokenScanner() {

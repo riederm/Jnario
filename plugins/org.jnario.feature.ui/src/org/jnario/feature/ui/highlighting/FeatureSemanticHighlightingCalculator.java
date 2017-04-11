@@ -53,6 +53,14 @@ import com.google.inject.Inject;
  */
 public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCalculator {
 
+	@Override
+	public void provideHighlightingFor(XtextResource resource,
+			org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor acceptor,
+			CancelIndicator cancelIndicator) {
+		// TODO Auto-generated method stub
+		super.provideHighlightingFor(resource, acceptor, cancelIndicator);
+	}
+	
 	private class Implementation extends FeatureSwitch<Boolean> {
 
 		private final IHighlightedPositionAcceptor acceptor;
@@ -67,7 +75,6 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 			for (JnarioMember member : scenario.getMembers()) {
 				if(member.eClass() == JnarioPackage.Literals.JNARIO_FIELD){
 					JnarioField field = (JnarioField) member;
-
 					// TODO NO_XTEND
 					// highlightXtendField(field, acceptor);
 					

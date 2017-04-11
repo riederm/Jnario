@@ -7,7 +7,7 @@
  *******************************************************************************/
 package org.jnario.feature.ui.highlighting;
 
-import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
+import org.jnario.ui.highlighting.TokenToAttributeIdMapper;
 
 import com.google.inject.Singleton;
 
@@ -15,7 +15,7 @@ import com.google.inject.Singleton;
  * @author Birgit Engelmann - Initial contribution and API
  */
 @Singleton
-public class FeatureTokenHighlighting extends DefaultAntlrTokenToAttributeIdMapper{
+public class FeatureTokenHighlighting extends TokenToAttributeIdMapper{
 
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {

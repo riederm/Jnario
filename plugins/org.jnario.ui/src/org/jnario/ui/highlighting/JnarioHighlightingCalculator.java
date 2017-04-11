@@ -40,24 +40,4 @@ public abstract class JnarioHighlightingCalculator extends XbaseWithRichstringHi
 			super.computeFeatureCallHighlighting(featureCall, acceptor);
 		}
 	}
-
-	@Override
-	protected void highlightSpecialIdentifiers(ILeafNode node,
-			IHighlightedPositionAcceptor acceptor, TerminalRule idRule) {
-		super.highlightSpecialIdentifiers(node, acceptor, idRule);
-		
-//		EObject element = node.getGrammarElement();
-//		EObject rule = getRichStringTerminalRule();
-//		if (element == rule || (element instanceof RuleCall && ((RuleCall) element).getRule() == rule)) {
-//			if (!node.getText().startsWith("'''")) {
-//				return;
-//			}
-//			List<TextRegion> regionList = jnarioRichStringProcessor.process(node.getText());
-//			if (regionList != null) {
-//				for (TextRegion textRegion : regionList) {
-//					acceptor.addPosition(node.getOffset() + textRegion.getOffset(), textRegion.getLength(), RICH_TEXT_ID);
-//				}
-//			}
-//		}
-	}
 }
