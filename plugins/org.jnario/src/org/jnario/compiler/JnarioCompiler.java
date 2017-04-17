@@ -45,6 +45,7 @@ import org.jnario.util.SourceAdapter;
 import org.jnario.xbase.richstring.XbaseWithRichstringCompiler;
 
 import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 
@@ -383,10 +384,20 @@ public class JnarioCompiler extends XbaseWithRichstringCompiler {
 				return !expressionHelper.isLiteral(expr);
 			}
 		};
+		Predicate<XExpression> noPackageFragments = new Predicate<XExpression>(){
+			public boolean apply(XExpression expr) {
+				if (expr instanceof XAbstractFeatureCall){
+					//we don't want package fragments as fully-fledged sub-expressions
+					return !((XAbstractFeatureCall)expr).isPackageFragment(); 
+				}
+				return true;
+			}
+		};
 		Iterable<XExpression> subExpressions = filter(expression.eContents(), XExpression.class);
-		
+
 		subExpressions = filter(subExpressions, noLiteralExpressions);
 		subExpressions = filter(subExpressions, noSwitchCases);
+		subExpressions = filter(subExpressions, noPackageFragments);
 		return subExpressions.iterator();
 	}
 
