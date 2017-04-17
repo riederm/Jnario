@@ -47,6 +47,7 @@
   <setupTask
       xsi:type="git:GitCloneTask"
       id="jnario.git.clone"
+      location="${jnario.git.location}"
       remoteURI="https://github.com/riederm/Jnario.git"
       pushURI="https://github.com/riederm/Jnario.git">
     <description>${scope.project.label}</description>
@@ -76,6 +77,14 @@
           name="org.mockito"/>
       <requirement
           name="org.objenesis"/>
+      <requirement
+          name="org.eclipse.jdt.junit.runners.feature.feature.group"/>
+      <requirement
+          name="org.xpect.sdk.feature.group"/>
+      <requirement
+          name="org.xpect.xtext.lib.feature.feature.group"/>
+      <requirement
+          name="org.xpect.xtext.xbase.lib.feature.feature.group"/>
       <sourceLocator
           rootFolder="${git.clone.location}"
           locateNestedProjects="true"/>
@@ -89,6 +98,8 @@
             url="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/"/>
         <repository
             url="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/milestones/"/>
+        <repository
+            url="http://www.xpect-tests.org/updatesite/nightly/"/>
       </repositoryList>
     </targlet>
   </setupTask>
@@ -106,19 +117,18 @@
     <description>The dynamic working sets for ${scope.project.label}</description>
   </setupTask>
   <setupTask
-      xsi:type="git:GitCloneTask"
-      id="jdt.runners.git.clone"
-      remoteURI="https://github.com/meysholdt/eclipse_jdt_junit_runners.git"
-      pushURI="https://github.com/meysholdt/eclipse_jdt_junit_runners.git"
-      checkoutBranch="master">
-    <description>${scope.project.label}</description>
-  </setupTask>
-  <setupTask
       xsi:type="projects:ProjectsImportTask"
       id="jnario.import">
     <sourceLocator
         rootFolder="${jnario.git.clone.location}"
         locateNestedProjects="true"/>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="jnario.git.location"
+      name="jnario.git.location"
+      defaultValue="${installation.location/git/}${@id.remoteURI|gitRepository}">
+    <description>the git checkout location</description>
   </setupTask>
   <stream name="xbaseWithRichstrings_2.11"
       label="xbaseWithRichstrings_2.11"/>
