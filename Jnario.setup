@@ -130,8 +130,8 @@
       defaultValue="${installation.location/git/}${@id.remoteURI|gitRepository}">
     <description>the git checkout location</description>
   </setupTask>
-  <stream name="xbaseWithRichstrings_2.11"
-      label="xbaseWithRichstrings_2.11"/>
+  <stream name="master"
+      label="master"/>
   <logicalProjectContainer
       xsi:type="setup:ProjectCatalog"
       href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
