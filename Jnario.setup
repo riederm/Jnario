@@ -60,9 +60,11 @@
       <requirement
           name="org.eclipse.sdk.feature.group"/>
       <requirement
-          name="org.eclipse.xtext.sdk.feature.group"/>
+          name="org.eclipse.xtext.sdk.feature.group"
+          versionRange="[2.11.0,2.12.0)"/>
       <requirement
-          name="org.eclipse.xtend.sdk.feature.group"/>
+          name="org.eclipse.xtend.sdk.feature.group"
+          versionRange="[2.11.0,2.12.0)"/>
       <requirement
           name="org.objectweb.asm"/>
       <requirement
@@ -128,6 +130,14 @@
       id="jnario.git.location"
       name="jnario.git.location"
       defaultValue="${installation.location/git/}${@id.remoteURI|gitRepository}">
+    <description>the git checkout location</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="git.clone.location"
+      name="git.clone.location"
+      value=""
+      defaultValue="${jnario.git.location}">
     <description>the git checkout location</description>
   </setupTask>
   <stream name="master"
