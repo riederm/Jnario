@@ -130,6 +130,14 @@
       defaultValue="${installation.location/git/}${@id.remoteURI|gitRepository}">
     <description>the git checkout location</description>
   </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="git.clone.location"
+      name="git.clone.location"
+      value=""
+      defaultValue="${jnario.git.location}">
+    <description>the git checkout location</description>
+  </setupTask>
   <stream name="master"
       label="master"/>
   <logicalProjectContainer
