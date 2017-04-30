@@ -13,18 +13,27 @@ import org.jnario.scoping.JnarioResourceDescriptionStrategy
 import org.jnario.spec.spec.ExampleGroup
 
 import static java.lang.String.*
+import org.eclipse.xtext.resource.IEObjectDescription
+import org.eclipse.xtext.common.types.JvmVoid
 
 class SpecResourceDescriptionStrategy extends JnarioResourceDescriptionStrategy {
 	
 	public static val ROOT_SPEC = "root"
 	public static val TRUE = "1"
 	public static val FALSE = "0"
+	public static val EXAMPLE_TYPE = "type"
 	
 	override createUserData(EObject eObject, ImmutableMap.Builder<String, String> userData) {
 		super.createUserData(eObject, userData);
 		if (eObject instanceof ExampleGroup){
 			val exampleGroup = eObject as ExampleGroup			
 			userData.put(ROOT_SPEC, valueOf(exampleGroup.isRoot))
+			if (exampleGroup.targetType !== null) {	
+				val targetType = exampleGroup.targetType
+				if (!(targetType.type instanceof JvmVoid)) {
+					userData.put(EXAMPLE_TYPE,exampleGroup.targetType.simpleName)					
+				}
+			}
 		}
 	}
 	
@@ -34,6 +43,10 @@ class SpecResourceDescriptionStrategy extends JnarioResourceDescriptionStrategy 
 		}else{
 			FALSE
 		}
+	}
+	
+	static def getTypeName(IEObjectDescription specDescription) {
+		specDescription.getUserData(EXAMPLE_TYPE)
 	}
 	
 }

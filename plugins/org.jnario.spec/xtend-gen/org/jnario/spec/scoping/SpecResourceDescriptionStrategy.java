@@ -9,6 +9,10 @@ package org.jnario.spec.scoping;
 
 import com.google.common.collect.ImmutableMap;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.JvmTypeReference;
+import org.eclipse.xtext.common.types.JvmVoid;
+import org.eclipse.xtext.resource.IEObjectDescription;
 import org.jnario.scoping.JnarioResourceDescriptionStrategy;
 import org.jnario.spec.spec.ExampleGroup;
 
@@ -20,14 +24,24 @@ public class SpecResourceDescriptionStrategy extends JnarioResourceDescriptionSt
   
   public final static String FALSE = "0";
   
+  public final static String EXAMPLE_TYPE = "type";
+  
   @Override
   public void createUserData(final EObject eObject, final ImmutableMap.Builder<String, String> userData) {
     super.createUserData(eObject, userData);
     if ((eObject instanceof ExampleGroup)) {
       final ExampleGroup exampleGroup = ((ExampleGroup) eObject);
-      String _isRoot = this.isRoot(exampleGroup);
-      String _valueOf = String.valueOf(_isRoot);
-      userData.put(SpecResourceDescriptionStrategy.ROOT_SPEC, _valueOf);
+      userData.put(SpecResourceDescriptionStrategy.ROOT_SPEC, String.valueOf(this.isRoot(exampleGroup)));
+      JvmTypeReference _targetType = exampleGroup.getTargetType();
+      boolean _tripleNotEquals = (_targetType != null);
+      if (_tripleNotEquals) {
+        final JvmTypeReference targetType = exampleGroup.getTargetType();
+        JvmType _type = targetType.getType();
+        boolean _not = (!(_type instanceof JvmVoid));
+        if (_not) {
+          userData.put(SpecResourceDescriptionStrategy.EXAMPLE_TYPE, exampleGroup.getTargetType().getSimpleName());
+        }
+      }
     }
   }
   
@@ -41,5 +55,9 @@ public class SpecResourceDescriptionStrategy extends JnarioResourceDescriptionSt
       _xifexpression = SpecResourceDescriptionStrategy.FALSE;
     }
     return _xifexpression;
+  }
+  
+  public static String getTypeName(final IEObjectDescription specDescription) {
+    return specDescription.getUserData(SpecResourceDescriptionStrategy.EXAMPLE_TYPE);
   }
 }

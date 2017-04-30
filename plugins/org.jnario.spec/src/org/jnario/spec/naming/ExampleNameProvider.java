@@ -20,15 +20,21 @@ import static org.jnario.util.Strings.markAsPending;
 
 import java.util.List;
 import java.util.Stack;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.resource.IResourceDescription;
+import org.eclipse.xtext.resource.IResourceDescriptions;
+import org.eclipse.xtext.resource.IResourceDescriptions.IContextAware;
 import org.jnario.ExampleTable;
 import org.jnario.JnarioClass;
 import org.jnario.jvmmodel.JnarioNameProvider;
+import org.jnario.spec.scoping.SpecResourceDescriptionStrategy;
 import org.jnario.spec.spec.After;
 import org.jnario.spec.spec.Before;
 import org.jnario.spec.spec.Example;
@@ -52,6 +58,8 @@ public class ExampleNameProvider extends JnarioNameProvider{
 
 	@Inject 
 	private OperationNameProvider operationNameProvider;
+	@Inject
+	private IResourceDescriptions index;
 	
 	protected String internalToMethodName(EObject eObject){
 		if(eObject == null){
@@ -256,6 +264,19 @@ public class ExampleNameProvider extends JnarioNameProvider{
 	}
 
 	private String resolveProxyTypeName(ExampleGroup exampleGroup) {
+		if (index instanceof IContextAware) {
+			//FIXME : Only for tests / non ui not sure why
+			((IContextAware) index).setContext(exampleGroup);
+		}
+		IResourceDescription localizedIndex = index.getResourceDescription(exampleGroup.eResource().getURI());
+		if (localizedIndex != null) {
+			Iterable<IEObjectDescription> result = localizedIndex.getExportedObjectsByObject(exampleGroup);
+			return StreamSupport.stream(result.spliterator(), false).findFirst().map(SpecResourceDescriptionStrategy::getTypeName).orElse(retrieveNameFromNodeModel(exampleGroup));
+		}
+		return retrieveNameFromNodeModel(exampleGroup);
+	}
+
+	private String retrieveNameFromNodeModel(ExampleGroup exampleGroup) {
 		String text = textForFeature(exampleGroup, SpecPackage.Literals.EXAMPLE_GROUP__TARGET_TYPE);
 		int begin = max(text.lastIndexOf('.'), text.lastIndexOf('$')) + 1;
 		int end = text.indexOf('<');
