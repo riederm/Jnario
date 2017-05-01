@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.TerminalRule;
+import org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XExpression;
@@ -57,7 +57,6 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 	public void provideHighlightingFor(XtextResource resource,
 			org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor acceptor,
 			CancelIndicator cancelIndicator) {
-		// TODO Auto-generated method stub
 		super.provideHighlightingFor(resource, acceptor, cancelIndicator);
 	}
 	
@@ -220,7 +219,8 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 				|| root(resource) == null;
 	}
 	
-	protected void searchAndHighlightElements(XtextResource resource, IHighlightedPositionAcceptor acceptor) {
+	@Override
+	protected void searchAndHighlightElements(XtextResource resource, IHighlightedPositionAcceptor acceptor, CancelIndicator cancelIndicator) {
 		Implementation highlighter = new Implementation(acceptor);
 		
 		TreeIterator<EObject> iterator = resource.getAllContents();
