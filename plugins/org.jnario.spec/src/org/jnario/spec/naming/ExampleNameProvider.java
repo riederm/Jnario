@@ -10,27 +10,21 @@ package org.jnario.spec.naming;
 import static com.google.common.collect.Iterables.addAll;
 import static com.google.common.collect.Iterables.filter;
 import static com.google.common.collect.Lists.newArrayList;
-import static java.lang.Math.max;
 import static org.eclipse.xtext.EcoreUtil2.getContainerOfType;
 import static org.eclipse.xtext.util.Strings.toFirstUpper;
-import static org.jnario.util.Nodes.textForFeature;
 import static org.jnario.util.Strings.convertToCamelCase;
 import static org.jnario.util.Strings.makeJunitConform;
 import static org.jnario.util.Strings.markAsPending;
 
 import java.util.List;
 import java.util.Stack;
-import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescriptions;
-import org.eclipse.xtext.resource.IResourceDescriptions.IContextAware;
 import org.jnario.ExampleTable;
 import org.jnario.JnarioClass;
 import org.jnario.jvmmodel.JnarioNameProvider;
@@ -129,8 +123,7 @@ public class ExampleNameProvider extends JnarioNameProvider{
 	private QualifiedName getOperationName(ExampleGroup exampleGroup, boolean withParameters) {
 		EObject operation = (EObject) exampleGroup.eGet(SpecPackage.Literals.EXAMPLE_GROUP__TARGET_OPERATION, false);
 		if(!withParameters || operation.eIsProxy()){
-			String name = textForFeature(exampleGroup, SpecPackage.Literals.EXAMPLE_GROUP__TARGET_OPERATION);
-			return QualifiedName.create(name);
+			return SpecResourceDescriptionStrategy.getOperationName(index, exampleGroup);
 		}
 		return operationNameProvider.apply(exampleGroup.getTargetOperation());
 	}
@@ -252,7 +245,7 @@ public class ExampleNameProvider extends JnarioNameProvider{
 	private String getTargetTypeName(ExampleGroup exampleGroup) {
 		String targetName;
 		if(isProxy(exampleGroup.getTargetType())){
-			targetName = resolveProxyTypeName(exampleGroup);
+			targetName = SpecResourceDescriptionStrategy.getTypeName(index, exampleGroup);
 		}else{
 			targetName = exampleGroup.getTargetType().getSimpleName();
 		}
@@ -263,28 +256,6 @@ public class ExampleNameProvider extends JnarioNameProvider{
 		return exampleGroup.eIsSet(SpecPackage.Literals.EXAMPLE_GROUP__TARGET_OPERATION);
 	}
 
-	private String resolveProxyTypeName(ExampleGroup exampleGroup) {
-		if (index instanceof IContextAware) {
-			//FIXME : Only for tests / non ui not sure why
-			((IContextAware) index).setContext(exampleGroup);
-		}
-		IResourceDescription localizedIndex = index.getResourceDescription(exampleGroup.eResource().getURI());
-		if (localizedIndex != null) {
-			Iterable<IEObjectDescription> result = localizedIndex.getExportedObjectsByObject(exampleGroup);
-			return StreamSupport.stream(result.spliterator(), false).findFirst().map(SpecResourceDescriptionStrategy::getTypeName).orElse(retrieveNameFromNodeModel(exampleGroup));
-		}
-		return retrieveNameFromNodeModel(exampleGroup);
-	}
-
-	private String retrieveNameFromNodeModel(ExampleGroup exampleGroup) {
-		String text = textForFeature(exampleGroup, SpecPackage.Literals.EXAMPLE_GROUP__TARGET_TYPE);
-		int begin = max(text.lastIndexOf('.'), text.lastIndexOf('$')) + 1;
-		int end = text.indexOf('<');
-		if(end == -1){
-			end = text.length();
-		}
-		return text.substring(begin, end);
-	}
 
 	private boolean isProxy(JvmTypeReference jvmTypeReference) {
 		if (jvmTypeReference instanceof JvmParameterizedTypeReference) {

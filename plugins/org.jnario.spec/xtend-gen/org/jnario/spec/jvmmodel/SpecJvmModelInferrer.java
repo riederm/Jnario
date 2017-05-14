@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmAnnotationValue;
 import org.eclipse.xtext.common.types.JvmConstructor;
@@ -26,14 +25,12 @@ import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.common.types.JvmIntAnnotationValue;
 import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
 import org.eclipse.xtext.common.types.util.TypeReferences;
 import org.eclipse.xtext.util.Strings;
-import org.eclipse.xtext.xbase.XBlockExpression;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.XNullLiteral;
 import org.eclipse.xtext.xbase.XbaseFactory;
@@ -58,10 +55,8 @@ import org.jnario.JnarioField;
 import org.jnario.JnarioFile;
 import org.jnario.JnarioFunction;
 import org.jnario.JnarioMember;
-import org.jnario.JnarioTypeDeclaration;
 import org.jnario.jvmmodel.ExtendedJvmTypesBuilder;
 import org.jnario.jvmmodel.JnarioJvmModelInferrer;
-import org.jnario.jvmmodel.TestRuntimeSupport;
 import org.jnario.lib.ExampleTableRow;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
@@ -122,8 +117,7 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
     final JnarioFile jnarioFile = ((JnarioFile) object);
     this.xtendJvmModelInferrer.infer(object, acceptor, preIndexingPhase);
     final ArrayList<Runnable> doLater = CollectionLiterals.<Runnable>newArrayList();
-    EList<JnarioTypeDeclaration> _xtendTypes = jnarioFile.getXtendTypes();
-    Iterable<ExampleGroup> _filter = Iterables.<ExampleGroup>filter(_xtendTypes, ExampleGroup.class);
+    Iterable<ExampleGroup> _filter = Iterables.<ExampleGroup>filter(jnarioFile.getXtendTypes(), ExampleGroup.class);
     for (final ExampleGroup declaration : _filter) {
       this.infer(acceptor, declaration, null, doLater, preIndexingPhase);
     }
@@ -140,47 +134,32 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
     {
       boolean _notEquals = (!Objects.equal(superType, null));
       if (_notEquals) {
-        JvmParameterizedTypeReference _createTypeRef = this._typeReferences.createTypeRef(superType);
-        exampleGroup.setExtends(_createTypeRef);
+        exampleGroup.setExtends(this._typeReferences.createTypeRef(superType));
       } else {
         this.addSuperClass(exampleGroup);
       }
       final JvmGenericType javaType = this.typesFactory.createJvmGenericType();
-      JnarioFile _jnarioFile = this.jnarioFile(exampleGroup);
-      this.setNameAndAssociate(_jnarioFile, exampleGroup, javaType);
+      this.setNameAndAssociate(this.jnarioFile(exampleGroup), exampleGroup, javaType);
       acceptor.<JvmGenericType>accept(javaType);
       if ((!preIndexingPhase)) {
-        final Runnable _function = new Runnable() {
-          @Override
-          public void run() {
-            SpecJvmModelInferrer.this.initialize(exampleGroup, javaType);
-          }
+        final Runnable _function = () -> {
+          this.initialize(exampleGroup, javaType);
         };
         doLater.add(_function);
       }
       final ArrayList<JvmGenericType> children = CollectionLiterals.<JvmGenericType>newArrayList();
-      EList<JnarioMember> _members = exampleGroup.getMembers();
-      Iterable<ExampleGroup> _filter = Iterables.<ExampleGroup>filter(_members, ExampleGroup.class);
-      final Consumer<ExampleGroup> _function_1 = new Consumer<ExampleGroup>() {
-        @Override
-        public void accept(final ExampleGroup child) {
-          JvmGenericType _infer = SpecJvmModelInferrer.this.infer(acceptor, child, javaType, doLater, preIndexingPhase);
-          children.add(_infer);
-        }
+      final Consumer<ExampleGroup> _function_1 = (ExampleGroup child) -> {
+        JvmGenericType _infer = this.infer(acceptor, child, javaType, doLater, preIndexingPhase);
+        children.add(_infer);
       };
-      _filter.forEach(_function_1);
+      Iterables.<ExampleGroup>filter(exampleGroup.getMembers(), ExampleGroup.class).forEach(_function_1);
       boolean _isEmpty = children.isEmpty();
       boolean _not = (!_isEmpty);
       if (_not) {
-        TestRuntimeSupport _testRuntime = this.getTestRuntime();
-        final Function1<JvmGenericType, JvmTypeReference> _function_2 = new Function1<JvmGenericType, JvmTypeReference>() {
-          @Override
-          public JvmTypeReference apply(final JvmGenericType it) {
-            return SpecJvmModelInferrer.this._typeReferences.createTypeRef(it);
-          }
+        final Function1<JvmGenericType, JvmTypeReference> _function_2 = (JvmGenericType it) -> {
+          return this._typeReferences.createTypeRef(it);
         };
-        List<JvmTypeReference> _map = ListExtensions.<JvmGenericType, JvmTypeReference>map(children, _function_2);
-        _testRuntime.addChildren(exampleGroup, javaType, _map);
+        this.getTestRuntime().addChildren(exampleGroup, javaType, ListExtensions.<JvmGenericType, JvmTypeReference>map(children, _function_2));
       }
       _xblockexpression = javaType;
     }
@@ -190,40 +169,29 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
   @Override
   public void initialize(final JnarioClass source, final JvmGenericType inferredJvmType) {
     inferredJvmType.setVisibility(JvmVisibility.PUBLIC);
-    EList<XAnnotation> _annotations = source.getAnnotations();
-    final Function1<XAnnotation, Boolean> _function = new Function1<XAnnotation, Boolean>() {
-      @Override
-      public Boolean apply(final XAnnotation it) {
-        JvmType _annotationType = null;
-        if (it!=null) {
-          _annotationType=it.getAnnotationType();
-        }
-        return Boolean.valueOf((!Objects.equal(_annotationType, null)));
+    final Function1<XAnnotation, Boolean> _function = (XAnnotation it) -> {
+      JvmType _annotationType = null;
+      if (it!=null) {
+        _annotationType=it.getAnnotationType();
       }
+      return Boolean.valueOf((!Objects.equal(_annotationType, null)));
     };
-    Iterable<XAnnotation> _filter = IterableExtensions.<XAnnotation>filter(_annotations, _function);
-    this._extendedJvmTypesBuilder.addAnnotations(inferredJvmType, _filter);
-    EList<JvmAnnotationReference> _annotations_1 = inferredJvmType.getAnnotations();
-    String _describe = this._exampleNameProvider.describe(source);
-    JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(Named.class, _describe);
-    this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations_1, _annotationRef);
+    this._extendedJvmTypesBuilder.addAnnotations(inferredJvmType, IterableExtensions.<XAnnotation>filter(source.getAnnotations(), _function));
+    EList<JvmAnnotationReference> _annotations = inferredJvmType.getAnnotations();
+    JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(Named.class, this._exampleNameProvider.describe(source));
+    this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotationRef);
     JvmTypeReference _extends = source.getExtends();
     boolean _equals = Objects.equal(_extends, null);
     if (_equals) {
       final JvmTypeReference typeRefToObject = this._typeReferences.getTypeForName(Object.class, source);
       boolean _notEquals = (!Objects.equal(typeRefToObject, null));
       if (_notEquals) {
-        EList<JvmTypeReference> _superTypes = inferredJvmType.getSuperTypes();
-        _superTypes.add(typeRefToObject);
+        inferredJvmType.getSuperTypes().add(typeRefToObject);
       }
     } else {
-      EList<JvmTypeReference> _superTypes_1 = inferredJvmType.getSuperTypes();
-      JvmTypeReference _extends_1 = source.getExtends();
-      JvmTypeReference _cloneWithProxies = this._extendedJvmTypesBuilder.cloneWithProxies(_extends_1);
-      _superTypes_1.add(_cloneWithProxies);
+      inferredJvmType.getSuperTypes().add(this._extendedJvmTypesBuilder.cloneWithProxies(source.getExtends()));
     }
-    TestRuntimeSupport _testRuntime = this.getTestRuntime();
-    _testRuntime.updateExampleGroup(source, inferredJvmType);
+    this.getTestRuntime().updateExampleGroup(source, inferredJvmType);
     this.exampleIndex = 0;
     EList<JnarioMember> _members = source.getMembers();
     for (final JnarioMember member : _members) {
@@ -239,38 +207,28 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
     XExpression _expression = element.getExpression();
     boolean _equals = Objects.equal(_expression, null);
     if (_equals) {
-      XBlockExpression _createXBlockExpression = XbaseFactory.eINSTANCE.createXBlockExpression();
-      element.setExpression(_createXBlockExpression);
+      element.setExpression(XbaseFactory.eINSTANCE.createXBlockExpression());
     }
     final JvmOperation method = this.toMethod(element, container);
-    TestRuntimeSupport _testRuntime = this.getTestRuntime();
-    _testRuntime.markAsTestMethod(element, method);
+    this.getTestRuntime().markAsTestMethod(element, method);
     boolean _isPending = element.isPending();
     if (_isPending) {
-      TestRuntimeSupport _testRuntime_1 = this.getTestRuntime();
-      _testRuntime_1.markAsPending(element, method);
+      this.getTestRuntime().markAsPending(element, method);
     }
     EList<JvmAnnotationReference> _annotations = method.getAnnotations();
-    String _describe = this._exampleNameProvider.describe(element);
-    JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(Named.class, _describe);
+    JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(Named.class, this._exampleNameProvider.describe(element));
     this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations, _annotationRef);
     EList<JvmAnnotationReference> _annotations_1 = method.getAnnotations();
     JvmAnnotationReference _annotationRef_1 = this._annotationTypesBuilder.annotationRef(Order.class);
-    final Procedure1<JvmAnnotationReference> _function = new Procedure1<JvmAnnotationReference>() {
-      @Override
-      public void apply(final JvmAnnotationReference it) {
-        EList<JvmAnnotationValue> _explicitValues = it.getExplicitValues();
-        JvmIntAnnotationValue _createJvmIntAnnotationValue = SpecJvmModelInferrer.this.typesFactory.createJvmIntAnnotationValue();
-        final Procedure1<JvmIntAnnotationValue> _function = new Procedure1<JvmIntAnnotationValue>() {
-          @Override
-          public void apply(final JvmIntAnnotationValue it) {
-            EList<Integer> _values = it.getValues();
-            SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<Integer>operator_add(_values, Integer.valueOf(SpecJvmModelInferrer.this.exampleIndex));
-          }
-        };
-        JvmIntAnnotationValue _doubleArrow = ObjectExtensions.<JvmIntAnnotationValue>operator_doubleArrow(_createJvmIntAnnotationValue, _function);
-        SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<JvmAnnotationValue>operator_add(_explicitValues, _doubleArrow);
-      }
+    final Procedure1<JvmAnnotationReference> _function = (JvmAnnotationReference it) -> {
+      EList<JvmAnnotationValue> _explicitValues = it.getExplicitValues();
+      JvmIntAnnotationValue _createJvmIntAnnotationValue = this.typesFactory.createJvmIntAnnotationValue();
+      final Procedure1<JvmIntAnnotationValue> _function_1 = (JvmIntAnnotationValue it_1) -> {
+        EList<Integer> _values = it_1.getValues();
+        this._extendedJvmTypesBuilder.<Integer>operator_add(_values, Integer.valueOf(this.exampleIndex));
+      };
+      JvmIntAnnotationValue _doubleArrow = ObjectExtensions.<JvmIntAnnotationValue>operator_doubleArrow(_createJvmIntAnnotationValue, _function_1);
+      this._extendedJvmTypesBuilder.<JvmAnnotationValue>operator_add(_explicitValues, _doubleArrow);
     };
     JvmAnnotationReference _doubleArrow = ObjectExtensions.<JvmAnnotationReference>operator_doubleArrow(_annotationRef_1, _function);
     this._extendedJvmTypesBuilder.<JvmAnnotationReference>operator_add(_annotations_1, _doubleArrow);
@@ -280,37 +238,21 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
   }
   
   protected void _transform(final Before element, final JvmGenericType container) {
-    final Procedure2<JnarioMember, JvmOperation> _function = new Procedure2<JnarioMember, JvmOperation>() {
-      @Override
-      public void apply(final JnarioMember e, final JvmOperation m) {
-        TestRuntimeSupport _testRuntime = SpecJvmModelInferrer.this.getTestRuntime();
-        _testRuntime.beforeMethod(e, m);
-      }
+    final Procedure2<JnarioMember, JvmOperation> _function = (JnarioMember e, JvmOperation m) -> {
+      this.getTestRuntime().beforeMethod(e, m);
     };
-    final Procedure2<JnarioMember, JvmOperation> _function_1 = new Procedure2<JnarioMember, JvmOperation>() {
-      @Override
-      public void apply(final JnarioMember e, final JvmOperation m) {
-        TestRuntimeSupport _testRuntime = SpecJvmModelInferrer.this.getTestRuntime();
-        _testRuntime.beforeAllMethod(e, m);
-      }
+    final Procedure2<JnarioMember, JvmOperation> _function_1 = (JnarioMember e, JvmOperation m) -> {
+      this.getTestRuntime().beforeAllMethod(e, m);
     };
     this.transformAround(element, container, _function, _function_1);
   }
   
   protected void _transform(final After element, final JvmGenericType container) {
-    final Procedure2<JnarioMember, JvmOperation> _function = new Procedure2<JnarioMember, JvmOperation>() {
-      @Override
-      public void apply(final JnarioMember e, final JvmOperation m) {
-        TestRuntimeSupport _testRuntime = SpecJvmModelInferrer.this.getTestRuntime();
-        _testRuntime.afterMethod(e, m);
-      }
+    final Procedure2<JnarioMember, JvmOperation> _function = (JnarioMember e, JvmOperation m) -> {
+      this.getTestRuntime().afterMethod(e, m);
     };
-    final Procedure2<JnarioMember, JvmOperation> _function_1 = new Procedure2<JnarioMember, JvmOperation>() {
-      @Override
-      public void apply(final JnarioMember e, final JvmOperation m) {
-        TestRuntimeSupport _testRuntime = SpecJvmModelInferrer.this.getTestRuntime();
-        _testRuntime.afterAllMethod(e, m);
-      }
+    final Procedure2<JnarioMember, JvmOperation> _function_1 = (JnarioMember e, JvmOperation m) -> {
+      this.getTestRuntime().afterAllMethod(e, m);
     };
     this.transformAround(element, container, _function, _function_1);
   }
@@ -338,244 +280,161 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
   public JvmOperation toMethod(final TestFunction element, final JvmGenericType container) {
     JvmOperation _xblockexpression = null;
     {
-      JvmTypeReference _typeForName = this._typeReferences.getTypeForName(Void.TYPE, element);
-      element.setReturnType(_typeForName);
+      element.setReturnType(this._typeReferences.getTypeForName(Void.TYPE, element));
       JvmOperation _createJvmOperation = this.typesFactory.createJvmOperation();
-      final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
-        @Override
-        public void apply(final JvmOperation it) {
-          String _methodName = SpecJvmModelInferrer.this._exampleNameProvider.toMethodName(element);
-          it.setSimpleName(_methodName);
-          it.setVisibility(JvmVisibility.PUBLIC);
-          boolean _isStatic = element.isStatic();
-          it.setStatic(_isStatic);
-          JvmTypeReference _typeForName = SpecJvmModelInferrer.this._typeReferences.getTypeForName(Void.TYPE, element);
-          it.setReturnType(_typeForName);
-        }
+      final Procedure1<JvmOperation> _function = (JvmOperation it) -> {
+        it.setSimpleName(this._exampleNameProvider.toMethodName(element));
+        it.setVisibility(JvmVisibility.PUBLIC);
+        it.setStatic(element.isStatic());
+        it.setReturnType(this._typeReferences.getTypeForName(Void.TYPE, element));
       };
       final JvmOperation operation = ObjectExtensions.<JvmOperation>operator_doubleArrow(_createJvmOperation, _function);
-      XExpression _expression = element.getExpression();
-      this._extendedJvmTypesBuilder.setBody(operation, _expression);
-      EList<XAnnotation> _annotations = element.getAnnotations();
-      final Function1<XAnnotation, Boolean> _function_1 = new Function1<XAnnotation, Boolean>() {
-        @Override
-        public Boolean apply(final XAnnotation it) {
-          JvmType _annotationType = null;
-          if (it!=null) {
-            _annotationType=it.getAnnotationType();
-          }
-          return Boolean.valueOf((!Objects.equal(_annotationType, null)));
+      this._extendedJvmTypesBuilder.setBody(operation, element.getExpression());
+      final Function1<XAnnotation, Boolean> _function_1 = (XAnnotation it) -> {
+        JvmType _annotationType = null;
+        if (it!=null) {
+          _annotationType=it.getAnnotationType();
         }
+        return Boolean.valueOf((!Objects.equal(_annotationType, null)));
       };
-      Iterable<XAnnotation> _filter = IterableExtensions.<XAnnotation>filter(_annotations, _function_1);
-      this._extendedJvmTypesBuilder.addAnnotations(operation, _filter);
+      this._extendedJvmTypesBuilder.addAnnotations(operation, IterableExtensions.<XAnnotation>filter(element.getAnnotations(), _function_1));
       this._extendedJvmTypesBuilder.copyDocumentationTo(element, operation);
-      EList<JvmMember> _members = container.getMembers();
-      _members.add(operation);
+      container.getMembers().add(operation);
       EList<JvmTypeReference> _exceptions = operation.getExceptions();
-      JvmTypeReference _typeForName_1 = this._typeReferences.getTypeForName(Exception.class, element);
-      this._extendedJvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeForName_1);
+      JvmTypeReference _typeForName = this._typeReferences.getTypeForName(Exception.class, element);
+      this._extendedJvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeForName);
       _xblockexpression = operation;
     }
     return _xblockexpression;
   }
   
   public void configureWith(final JvmGenericType type, final EObject source, final JnarioFile spec) {
-    Resource _eResource = spec.eResource();
-    EList<EObject> _contents = _eResource.getContents();
+    EList<EObject> _contents = spec.eResource().getContents();
     this._extendedJvmTypesBuilder.<JvmGenericType>operator_add(_contents, type);
-    String _package = spec.getPackage();
-    type.setPackageName(_package);
-    String _documentation = this._extendedJvmTypesBuilder.getDocumentation(source);
-    this._extendedJvmTypesBuilder.setDocumentation(type, _documentation);
+    type.setPackageName(spec.getPackage());
+    this._extendedJvmTypesBuilder.setDocumentation(type, this._extendedJvmTypesBuilder.getDocumentation(source));
   }
   
   protected void _transform(final ExampleTable table, final JvmGenericType specType) {
     this.associateTableWithSpec(specType, table);
-    JnarioFile _jnarioFile = this.jnarioFile(table);
-    String _javaClassName = this._exampleNameProvider.toJavaClassName(table);
-    final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {
-      @Override
-      public void apply(final JvmGenericType exampleTableType) {
-        EList<JvmTypeReference> _superTypes = exampleTableType.getSuperTypes();
-        JvmTypeReference _typeForName = SpecJvmModelInferrer.this._typeReferences.getTypeForName(ExampleTableRow.class, table);
-        SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _typeForName);
-        JnarioFile _jnarioFile = SpecJvmModelInferrer.this.jnarioFile(table);
-        SpecJvmModelInferrer.this.configureWith(exampleTableType, table, _jnarioFile);
-        JvmParameterizedTypeReference _createTypeRef = SpecJvmModelInferrer.this._typeReferences.createTypeRef(exampleTableType);
-        final JvmTypeReference type = SpecJvmModelInferrer.this._typeReferences.getTypeForName(org.jnario.lib.ExampleTable.class, table, _createTypeRef);
-        String _javaClassName = SpecJvmModelInferrer.this._exampleNameProvider.toJavaClassName(table);
-        final String initMethodName = ("_init" + _javaClassName);
-        EList<JvmMember> _members = specType.getMembers();
-        final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
-          @Override
-          public void apply(final JvmOperation it) {
-            final Procedure1<ITreeAppendable> _function = new Procedure1<ITreeAppendable>() {
-              @Override
-              public void apply(final ITreeAppendable a) {
-                it.setDeclaringType(specType);
-                SpecJvmModelInferrer.this.generateInitializationMethod(table, a);
-              }
-            };
-            SpecJvmModelInferrer.this._extendedJvmTypesBuilder.setBody(it, _function);
-          }
+    final Procedure1<JvmGenericType> _function = (JvmGenericType exampleTableType) -> {
+      EList<JvmTypeReference> _superTypes = exampleTableType.getSuperTypes();
+      JvmTypeReference _typeForName = this._typeReferences.getTypeForName(ExampleTableRow.class, table);
+      this._extendedJvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _typeForName);
+      this.configureWith(exampleTableType, table, this.jnarioFile(table));
+      final JvmTypeReference type = this._typeReferences.getTypeForName(org.jnario.lib.ExampleTable.class, table, this._typeReferences.createTypeRef(exampleTableType));
+      String _javaClassName = this._exampleNameProvider.toJavaClassName(table);
+      final String initMethodName = ("_init" + _javaClassName);
+      EList<JvmMember> _members = specType.getMembers();
+      final Procedure1<JvmOperation> _function_1 = (JvmOperation it) -> {
+        final Procedure1<ITreeAppendable> _function_2 = (ITreeAppendable a) -> {
+          it.setDeclaringType(specType);
+          this.generateInitializationMethod(table, a);
         };
-        JvmOperation _method = SpecJvmModelInferrer.this._extendedJvmTypesBuilder.toMethod(table, initMethodName, type, _function);
-        SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
-        EList<JvmMember> _members_1 = specType.getMembers();
-        String _fieldName = SpecJvmModelInferrer.this._exampleNameProvider.toFieldName(table);
-        final Procedure1<JvmField> _function_1 = new Procedure1<JvmField>() {
-          @Override
-          public void apply(final JvmField it) {
-            it.setVisibility(JvmVisibility.PROTECTED);
-            final Procedure1<ITreeAppendable> _function = new Procedure1<ITreeAppendable>() {
-              @Override
-              public void apply(final ITreeAppendable it) {
-                ITreeAppendable _append = it.append(initMethodName);
-                _append.append("()");
-              }
-            };
-            SpecJvmModelInferrer.this._extendedJvmTypesBuilder.setInitializer(it, _function);
-          }
+        this._extendedJvmTypesBuilder.setBody(it, _function_2);
+      };
+      JvmOperation _method = this._extendedJvmTypesBuilder.toMethod(table, initMethodName, type, _function_1);
+      this._extendedJvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
+      EList<JvmMember> _members_1 = specType.getMembers();
+      final Procedure1<JvmField> _function_2 = (JvmField it) -> {
+        it.setVisibility(JvmVisibility.PROTECTED);
+        final Procedure1<ITreeAppendable> _function_3 = (ITreeAppendable it_1) -> {
+          it_1.append(initMethodName).append("()");
         };
-        JvmField _field = SpecJvmModelInferrer.this._extendedJvmTypesBuilder.toField(table, _fieldName, type, _function_1);
-        SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<JvmField>operator_add(_members_1, _field);
-        final Procedure1<JvmConstructor> _function_2 = new Procedure1<JvmConstructor>() {
-          @Override
-          public void apply(final JvmConstructor it) {
-            String _simpleName = exampleTableType.getSimpleName();
-            it.setSimpleName(_simpleName);
-          }
+        this._extendedJvmTypesBuilder.setInitializer(it, _function_3);
+      };
+      JvmField _field = this._extendedJvmTypesBuilder.toField(table, this._exampleNameProvider.toFieldName(table), type, _function_2);
+      this._extendedJvmTypesBuilder.<JvmField>operator_add(_members_1, _field);
+      final Procedure1<JvmConstructor> _function_3 = (JvmConstructor it) -> {
+        it.setSimpleName(exampleTableType.getSimpleName());
+      };
+      final JvmConstructor constructor = this._extendedJvmTypesBuilder.toConstructor(table, _function_3);
+      EList<JvmMember> _members_2 = exampleTableType.getMembers();
+      this._extendedJvmTypesBuilder.<JvmConstructor>operator_add(_members_2, constructor);
+      final ArrayList<String> assignments = CollectionLiterals.<String>newArrayList();
+      final JvmTypeReference stringType = this._typeReferences.getTypeForName(String.class, table);
+      final JvmTypeReference listType = this._typeReferences.getTypeForName(List.class, table, stringType);
+      final JvmFormalParameter cellNames = this.typesFactory.createJvmFormalParameter();
+      cellNames.setName("cellNames");
+      cellNames.setParameterType(listType);
+      EList<JvmFormalParameter> _parameters = constructor.getParameters();
+      this._extendedJvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, cellNames);
+      assignments.add("super(cellNames);");
+      this.index = 0;
+      final Consumer<ExampleColumn> _function_4 = (ExampleColumn column) -> {
+        JvmTypeReference _xifexpression = null;
+        JvmTypeReference _type = column.getType();
+        boolean _notEquals = (!Objects.equal(_type, null));
+        if (_notEquals) {
+          _xifexpression = column.getType();
+        } else {
+          _xifexpression = this._extendedJvmTypesBuilder.inferredType();
+        }
+        final JvmTypeReference columnType = _xifexpression;
+        EList<JvmMember> _members_3 = exampleTableType.getMembers();
+        JvmField _field_1 = this._extendedJvmTypesBuilder.toField(column, column.getName(), this._extendedJvmTypesBuilder.cloneWithProxies(columnType));
+        this._extendedJvmTypesBuilder.<JvmField>operator_add(_members_3, _field_1);
+        final JvmFormalParameter param = this._extendedJvmTypesBuilder.toParameter(column, column.getName(), this._extendedJvmTypesBuilder.cloneWithProxies(columnType));
+        EList<JvmFormalParameter> _parameters_1 = constructor.getParameters();
+        this._extendedJvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, param);
+        final JvmOperation getter = this._extendedJvmTypesBuilder.toGetter(column, column.getName(), this._extendedJvmTypesBuilder.cloneWithProxies(columnType));
+        EList<JvmMember> _members_4 = exampleTableType.getMembers();
+        this._extendedJvmTypesBuilder.<JvmOperation>operator_add(_members_4, getter);
+        String _name = column.getName();
+        String _plus = ("this." + _name);
+        String _plus_1 = (_plus + " = ");
+        String _name_1 = column.getName();
+        String _plus_2 = (_plus_1 + _name_1);
+        String _plus_3 = (_plus_2 + ";");
+        assignments.add(_plus_3);
+      };
+      table.getColumns().forEach(_function_4);
+      final Consumer<ExampleRow> _function_5 = (ExampleRow it) -> {
+        final Consumer<ExampleCell> _function_6 = (ExampleCell it_1) -> {
+          this.generateCellInitializerMethod(specType, this.initMethodName(table, this.index), it_1);
+          this.index = (this.index + 1);
         };
-        final JvmConstructor constructor = SpecJvmModelInferrer.this._extendedJvmTypesBuilder.toConstructor(table, _function_2);
-        EList<JvmMember> _members_2 = exampleTableType.getMembers();
-        SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<JvmConstructor>operator_add(_members_2, constructor);
-        final ArrayList<String> assignments = CollectionLiterals.<String>newArrayList();
-        final JvmTypeReference stringType = SpecJvmModelInferrer.this._typeReferences.getTypeForName(String.class, table);
-        final JvmTypeReference listType = SpecJvmModelInferrer.this._typeReferences.getTypeForName(List.class, table, stringType);
-        final JvmFormalParameter cellNames = SpecJvmModelInferrer.this.typesFactory.createJvmFormalParameter();
-        cellNames.setName("cellNames");
-        cellNames.setParameterType(listType);
-        EList<JvmFormalParameter> _parameters = constructor.getParameters();
-        SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, cellNames);
-        assignments.add("super(cellNames);");
-        SpecJvmModelInferrer.this.index = 0;
-        EList<ExampleColumn> _columns = table.getColumns();
-        final Consumer<ExampleColumn> _function_3 = new Consumer<ExampleColumn>() {
-          @Override
-          public void accept(final ExampleColumn column) {
-            JvmTypeReference _xifexpression = null;
-            JvmTypeReference _type = column.getType();
-            boolean _notEquals = (!Objects.equal(_type, null));
-            if (_notEquals) {
-              _xifexpression = column.getType();
-            } else {
-              _xifexpression = SpecJvmModelInferrer.this._extendedJvmTypesBuilder.inferredType();
-            }
-            final JvmTypeReference columnType = _xifexpression;
-            EList<JvmMember> _members = exampleTableType.getMembers();
-            String _name = column.getName();
-            JvmTypeReference _cloneWithProxies = SpecJvmModelInferrer.this._extendedJvmTypesBuilder.cloneWithProxies(columnType);
-            JvmField _field = SpecJvmModelInferrer.this._extendedJvmTypesBuilder.toField(column, _name, _cloneWithProxies);
-            SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<JvmField>operator_add(_members, _field);
-            String _name_1 = column.getName();
-            JvmTypeReference _cloneWithProxies_1 = SpecJvmModelInferrer.this._extendedJvmTypesBuilder.cloneWithProxies(columnType);
-            final JvmFormalParameter param = SpecJvmModelInferrer.this._extendedJvmTypesBuilder.toParameter(column, _name_1, _cloneWithProxies_1);
-            EList<JvmFormalParameter> _parameters = constructor.getParameters();
-            SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, param);
-            String _name_2 = column.getName();
-            JvmTypeReference _cloneWithProxies_2 = SpecJvmModelInferrer.this._extendedJvmTypesBuilder.cloneWithProxies(columnType);
-            final JvmOperation getter = SpecJvmModelInferrer.this._extendedJvmTypesBuilder.toGetter(column, _name_2, _cloneWithProxies_2);
-            EList<JvmMember> _members_1 = exampleTableType.getMembers();
-            SpecJvmModelInferrer.this._extendedJvmTypesBuilder.<JvmOperation>operator_add(_members_1, getter);
-            String _name_3 = column.getName();
-            String _plus = ("this." + _name_3);
-            String _plus_1 = (_plus + " = ");
-            String _name_4 = column.getName();
-            String _plus_2 = (_plus_1 + _name_4);
-            String _plus_3 = (_plus_2 + ";");
-            assignments.add(_plus_3);
-          }
+        it.getCells().forEach(_function_6);
+      };
+      table.getRows().forEach(_function_5);
+      final Procedure1<ITreeAppendable> _function_6 = (ITreeAppendable a) -> {
+        final Consumer<String> _function_7 = (String it) -> {
+          a.append(it).newLine();
         };
-        _columns.forEach(_function_3);
-        EList<ExampleRow> _rows = table.getRows();
-        final Consumer<ExampleRow> _function_4 = new Consumer<ExampleRow>() {
-          @Override
-          public void accept(final ExampleRow it) {
-            EList<ExampleCell> _cells = it.getCells();
-            final Consumer<ExampleCell> _function = new Consumer<ExampleCell>() {
-              @Override
-              public void accept(final ExampleCell it) {
-                String _initMethodName = SpecJvmModelInferrer.this.initMethodName(table, SpecJvmModelInferrer.this.index);
-                SpecJvmModelInferrer.this.generateCellInitializerMethod(specType, _initMethodName, it);
-                SpecJvmModelInferrer.this.index = (SpecJvmModelInferrer.this.index + 1);
-              }
-            };
-            _cells.forEach(_function);
-          }
-        };
-        _rows.forEach(_function_4);
-        final Procedure1<ITreeAppendable> _function_5 = new Procedure1<ITreeAppendable>() {
-          @Override
-          public void apply(final ITreeAppendable a) {
-            final Consumer<String> _function = new Consumer<String>() {
-              @Override
-              public void accept(final String it) {
-                ITreeAppendable _append = a.append(it);
-                _append.newLine();
-              }
-            };
-            assignments.forEach(_function);
-          }
-        };
-        SpecJvmModelInferrer.this._extendedJvmTypesBuilder.setBody(constructor, _function_5);
-      }
+        assignments.forEach(_function_7);
+      };
+      this._extendedJvmTypesBuilder.setBody(constructor, _function_6);
     };
-    this._extendedJvmTypesBuilder.toClass(_jnarioFile, _javaClassName, _function);
+    this._extendedJvmTypesBuilder.toClass(this.jnarioFile(table), this._exampleNameProvider.toJavaClassName(table), _function);
   }
   
   public void generateInitializationMethod(final ExampleTable exampleTable, final ITreeAppendable appendable) {
-    JvmTypeReference _typeForName = this._typeReferences.getTypeForName(Arrays.class, exampleTable);
-    final JvmType arraysType = _typeForName.getType();
+    final JvmType arraysType = this._typeReferences.getTypeForName(Arrays.class, exampleTable).getType();
     String _fieldName = this._exampleNameProvider.toFieldName(exampleTable);
     String _plus = ("return ExampleTable.create(\"" + _fieldName);
     String _plus_1 = (_plus + "\", \n");
     appendable.append(_plus_1);
-    ITreeAppendable _append = appendable.append("  ");
-    ITreeAppendable _append_1 = _append.append(arraysType);
-    ITreeAppendable _append_2 = _append_1.append(".asList(\"");
-    List<String> _columnNames = this.columnNames(exampleTable);
-    String _join = IterableExtensions.join(_columnNames, "\", \"");
+    ITreeAppendable _append = appendable.append("  ").append(arraysType).append(".asList(\"");
+    String _join = IterableExtensions.join(this.columnNames(exampleTable), "\", \"");
     String _plus_2 = (_join + "\"), ");
-    _append_2.append(_plus_2);
+    _append.append(_plus_2);
     appendable.increaseIndentation();
     appendable.append("\n");
     this.index = 0;
     EList<ExampleRow> _rows = exampleTable.getRows();
     for (final ExampleRow row : _rows) {
       {
-        ITreeAppendable _append_3 = appendable.append("new ");
-        String _javaClassName = this._exampleNameProvider.toJavaClassName(exampleTable);
-        ITreeAppendable _append_4 = _append_3.append(_javaClassName);
-        _append_4.append("(");
-        ITreeAppendable _append_5 = appendable.append("  ");
-        ITreeAppendable _append_6 = _append_5.append(arraysType);
-        EList<ExampleCell> _cells = row.getCells();
-        final Function1<ExampleCell, String> _function = new Function1<ExampleCell, String>() {
-          @Override
-          public String apply(final ExampleCell it) {
-            String _serialize = SpecJvmModelInferrer.this.serialize(it);
-            String _trim = _serialize.trim();
-            return Strings.convertToJavaString(_trim);
-          }
+        appendable.append("new ").append(this._exampleNameProvider.toJavaClassName(exampleTable)).append("(");
+        ITreeAppendable _append_1 = appendable.append("  ").append(arraysType);
+        final Function1<ExampleCell, String> _function = (ExampleCell it) -> {
+          return Strings.convertToJavaString(this.serialize(it).trim());
         };
-        List<String> _map = ListExtensions.<ExampleCell, String>map(_cells, _function);
-        String _join_1 = IterableExtensions.join(_map, "\", \"");
+        String _join_1 = IterableExtensions.join(ListExtensions.<ExampleCell, String>map(row.getCells(), _function), "\", \"");
         String _plus_3 = (".asList(\"" + _join_1);
         String _plus_4 = (_plus_3 + "\"), ");
-        _append_6.append(_plus_4);
-        EList<ExampleCell> _cells_1 = row.getCells();
-        for (final ExampleCell cell : _cells_1) {
+        _append_1.append(_plus_4);
+        EList<ExampleCell> _cells = row.getCells();
+        for (final ExampleCell cell : _cells) {
           {
             XExpression _expression = cell.getExpression();
             if ((_expression instanceof XNullLiteral)) {
@@ -586,8 +445,7 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
               appendable.append(_plus_5);
             }
             this.index = (this.index + 1);
-            EList<ExampleCell> _cells_2 = row.getCells();
-            ExampleCell _last = IterableExtensions.<ExampleCell>last(_cells_2);
+            ExampleCell _last = IterableExtensions.<ExampleCell>last(row.getCells());
             boolean _notEquals = (!Objects.equal(_last, cell));
             if (_notEquals) {
               appendable.append(", ");
@@ -595,8 +453,7 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
           }
         }
         appendable.append(")");
-        EList<ExampleRow> _rows_1 = exampleTable.getRows();
-        ExampleRow _last = IterableExtensions.<ExampleRow>last(_rows_1);
+        ExampleRow _last = IterableExtensions.<ExampleRow>last(exampleTable.getRows());
         boolean _notEquals = (!Objects.equal(_last, row));
         if (_notEquals) {
           appendable.append(",\n");
@@ -623,32 +480,23 @@ public class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
   
   public boolean generateCellInitializerMethod(final JvmGenericType specType, final String name, final ExampleCell cell) {
     EList<JvmMember> _members = specType.getMembers();
-    JvmTypeReference _inferredType = this._extendedJvmTypesBuilder.inferredType();
-    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
-      @Override
-      public void apply(final JvmOperation it) {
-        it.setDeclaringType(specType);
-        XExpression _expression = cell.getExpression();
-        SpecJvmModelInferrer.this._extendedJvmTypesBuilder.setBody(it, _expression);
-      }
+    final Procedure1<JvmOperation> _function = (JvmOperation it) -> {
+      it.setDeclaringType(specType);
+      this._extendedJvmTypesBuilder.setBody(it, cell.getExpression());
     };
-    JvmOperation _method = this._extendedJvmTypesBuilder.toMethod(cell, name, _inferredType, _function);
+    JvmOperation _method = this._extendedJvmTypesBuilder.toMethod(cell, name, this._extendedJvmTypesBuilder.inferredType(), _function);
     return this._extendedJvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
   }
   
   public List<String> columnNames(final ExampleTable exampleTable) {
-    EList<ExampleColumn> _columns = exampleTable.getColumns();
-    final Function1<ExampleColumn, String> _function = new Function1<ExampleColumn, String>() {
-      @Override
-      public String apply(final ExampleColumn it) {
-        String _name = null;
-        if (it!=null) {
-          _name=it.getName();
-        }
-        return _name;
+    final Function1<ExampleColumn, String> _function = (ExampleColumn it) -> {
+      String _name = null;
+      if (it!=null) {
+        _name=it.getName();
       }
+      return _name;
     };
-    return ListExtensions.<ExampleColumn, String>map(_columns, _function);
+    return ListExtensions.<ExampleColumn, String>map(exampleTable.getColumns(), _function);
   }
   
   protected void transform(final JnarioMember element, final JvmGenericType container) {
