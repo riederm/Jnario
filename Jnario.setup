@@ -42,6 +42,14 @@
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup.p2:P2Task">
+    <requirement
+        name="org.eclipse.xtend.sdk.feature.group"/>
+    <requirement
+        name="org.eclipse.xtext.sdk.feature.group"/>
+    <repository
+        url="http://download.eclipse.org/releases/neon"/>
+    <repository
+        url="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/milestones/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
