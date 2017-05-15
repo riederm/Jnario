@@ -25,8 +25,8 @@
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<useUIHarness>true</useUIHarness>
-					<useUIThread>true</useUIThread>
+					<useUIHarness>false</useUIHarness>
+					<useUIThread>false</useUIThread>
 					<argLine>-Xms40m -Xmx1G -XX:MaxPermSize=256m ${os-jvm-flags}</argLine>
 					<includes>
 						<include>**/Test*.java</include>
