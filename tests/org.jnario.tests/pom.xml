@@ -7,10 +7,10 @@
 		<artifactId>jnario</artifactId>
 		<groupId>org.jnario</groupId>
 		<relativePath>../../pom.xml</relativePath>
-		<version>1.1.0-SNAPSHOT</version>
+		<version>1.1.1-SNAPSHOT</version> <!--Jnario Version-->
 	</parent>
 	<artifactId>org.jnario.tests</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>1.1.1-SNAPSHOT</version> <!--Jnario Version-->
 	<packaging>eclipse-test-plugin</packaging>
 	<properties>
 		<os-jvm-flags /> <!-- for the default case -->
@@ -25,8 +25,8 @@
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<useUIHarness>true</useUIHarness>
-					<useUIThread>true</useUIThread>
+					<useUIHarness>false</useUIHarness>
+					<useUIThread>false</useUIThread>
 					<argLine>-Xms40m -Xmx1G -XX:MaxPermSize=256m ${os-jvm-flags}</argLine>
 					<includes>
 						<include>**/Test*.java</include>
