@@ -62,10 +62,27 @@ public class RichStringsExpressionsInRichstringsSpec extends RichStringsSpec {
     _builder.append(y, "");
     _builder.newLineIfNotEmpty();
     _builder.append("post");
-    Assert.assertTrue("\nExpected \'\'\'\n\t\t\t\tpre\n\t\t\t\t\u00ABx\u00BB\n\t\t\t\t\u00ABy\u00BB\n\t\t\t\tpost\'\'\' should be \"pre\\nvalue\\nvalue2\\npost\" but"
-     + "\n     \'\'\'\n\t\t\t\tpre\n\t\t\t\t\u00ABx\u00BB\n\t\t\t\t\u00ABy\u00BB\n\t\t\t\tpost\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString()
+    String _lineSeparator = System.lineSeparator();
+    String _plus = ("pre" + _lineSeparator);
+    String _plus_1 = (_plus + "value");
+    String _lineSeparator_1 = System.lineSeparator();
+    String _plus_2 = (_plus_1 + _lineSeparator_1);
+    String _plus_3 = (_plus_2 + "value2");
+    String _lineSeparator_2 = System.lineSeparator();
+    String _plus_4 = (_plus_3 + _lineSeparator_2);
+    String _plus_5 = (_plus_4 + "post");
+    Assert.assertTrue("\nExpected \'\'\'\r\n\t\t\t\tpre\r\n\t\t\t\t\u00ABx\u00BB\r\n\t\t\t\t\u00ABy\u00BB\r\n\t\t\t\tpost\'\'\' should be \"pre\"+System.lineSeparator()+\"value\"+System.lineSeparator()+\"value2\"+System.lineSeparator()+\"post\" but"
+     + "\n     \'\'\'\r\n\t\t\t\tpre\r\n\t\t\t\t\u00ABx\u00BB\r\n\t\t\t\t\u00ABy\u00BB\r\n\t\t\t\tpost\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString()
      + "\n     x is " + new org.hamcrest.StringDescription().appendValue(x).toString()
-     + "\n     y is " + new org.hamcrest.StringDescription().appendValue(y).toString() + "\n", Should.<String>should_be(_builder.toString(), "pre\nvalue\nvalue2\npost"));
+     + "\n     y is " + new org.hamcrest.StringDescription().appendValue(y).toString()
+     + "\n     \"pre\"+System.lineSeparator()+\"value\"+System.lineSeparator()+\"value2\"+System.lineSeparator()+\"post\" is " + new org.hamcrest.StringDescription().appendValue(_plus_5).toString()
+     + "\n     \"pre\"+System.lineSeparator()+\"value\"+System.lineSeparator()+\"value2\"+System.lineSeparator() is " + new org.hamcrest.StringDescription().appendValue(_plus_4).toString()
+     + "\n     \"pre\"+System.lineSeparator()+\"value\"+System.lineSeparator()+\"value2\" is " + new org.hamcrest.StringDescription().appendValue(_plus_3).toString()
+     + "\n     \"pre\"+System.lineSeparator()+\"value\"+System.lineSeparator() is " + new org.hamcrest.StringDescription().appendValue(_plus_2).toString()
+     + "\n     \"pre\"+System.lineSeparator()+\"value\" is " + new org.hamcrest.StringDescription().appendValue(_plus_1).toString()
+     + "\n     \"pre\"+System.lineSeparator() is " + new org.hamcrest.StringDescription().appendValue(_plus).toString()
+     + "\n     System.lineSeparator() is " + new org.hamcrest.StringDescription().appendValue(_lineSeparator).toString()
+     + "\n     System is " + new org.hamcrest.StringDescription().appendValue(System.class).toString() + "\n", Should.<String>should_be(_builder.toString(), _plus_5));
     
   }
   

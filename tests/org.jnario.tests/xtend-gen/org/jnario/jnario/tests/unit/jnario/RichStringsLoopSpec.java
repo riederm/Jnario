@@ -28,7 +28,15 @@ public class RichStringsLoopSpec extends RichStringsSpec {
       }
     }
     final String x_1 = _builder.toString();
-    Assert.assertEquals("line 1\nline 2\nline 3\n", x_1);
+    String _lineSeparator = System.lineSeparator();
+    String _plus = ("line 1" + _lineSeparator);
+    String _plus_1 = (_plus + "line 2");
+    String _lineSeparator_1 = System.lineSeparator();
+    String _plus_2 = (_plus_1 + _lineSeparator_1);
+    String _plus_3 = (_plus_2 + "line 3");
+    String _lineSeparator_2 = System.lineSeparator();
+    String _plus_4 = (_plus_3 + _lineSeparator_2);
+    Assert.assertEquals(_plus_4, x_1);
   }
   
   @Test

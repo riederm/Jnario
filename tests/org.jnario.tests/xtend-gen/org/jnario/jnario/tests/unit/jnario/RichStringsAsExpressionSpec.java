@@ -20,8 +20,8 @@ public class RichStringsAsExpressionSpec extends RichStringsSpec {
   public void _richstringShouldBe() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("abc");
-    Assert.assertTrue("\nExpected //dont assign to variable, use directly\n\t\t\t\'\'\'abc\'\'\' should be \"abc\" but"
-     + "\n     //dont assign to variable, use directly\n\t\t\t\'\'\'abc\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", Should.<String>should_be(_builder.toString(), "abc"));
+    Assert.assertTrue("\nExpected //dont assign to variable, use directly\r\n\t\t\t\'\'\'abc\'\'\' should be \"abc\" but"
+     + "\n     //dont assign to variable, use directly\r\n\t\t\t\'\'\'abc\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", Should.<String>should_be(_builder.toString(), "abc"));
     
   }
   
