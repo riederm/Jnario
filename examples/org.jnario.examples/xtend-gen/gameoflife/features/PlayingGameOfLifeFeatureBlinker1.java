@@ -23,9 +23,7 @@ public class PlayingGameOfLifeFeatureBlinker1 extends PlayingGameOfLifeFeature {
   @Named("Given a world")
   public void _givenAWorld() {
     final StepArguments args = new StepArguments("-----\n--X--\n--X--\n--X--\n-----\n");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    World _parseWorld = World.parseWorld(_first);
-    this.world = _parseWorld;
+    this.world = World.parseWorld(JnarioIterableExtensions.<String>first(args));
   }
   
   @Test
@@ -33,11 +31,8 @@ public class PlayingGameOfLifeFeatureBlinker1 extends PlayingGameOfLifeFeature {
   @Named("Then the world evolves into")
   public void _thenTheWorldEvolvesInto() {
     final StepArguments args = new StepArguments("-----\n-----\n-XXX-\n-----\n-----\n");
-    Evolution _gameOfLife = Evolution.gameOfLife();
-    World _evolve = _gameOfLife.evolve(this.world);
-    this.world = _evolve;
-    String _first = JnarioIterableExtensions.<String>first(args);
-    World _parseWorld = World.parseWorld(_first);
+    this.world = Evolution.gameOfLife().evolve(this.world);
+    World _parseWorld = World.parseWorld(JnarioIterableExtensions.<String>first(args));
     Should.<World>operator_doubleArrow(this.world, _parseWorld);
   }
 }

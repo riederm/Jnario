@@ -23,8 +23,7 @@ public class AdditionFeatureAddTwoNumbers extends AdditionFeature {
   @Named("Given I have entered \\\"50\\\" into the calculator")
   public void _givenIHaveEntered50IntoTheCalculator() {
     final StepArguments args = new StepArguments("50");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.calculator.enter(_first);
+    this.calculator.enter(JnarioIterableExtensions.<String>first(args));
   }
   
   @Test
@@ -32,8 +31,7 @@ public class AdditionFeatureAddTwoNumbers extends AdditionFeature {
   @Named("And I have entered \\\"70\\\" into the calculator")
   public void _andIHaveEntered70IntoTheCalculator() {
     final StepArguments args = new StepArguments("70");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    this.calculator.enter(_first);
+    this.calculator.enter(JnarioIterableExtensions.<String>first(args));
   }
   
   @Test

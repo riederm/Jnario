@@ -18,17 +18,15 @@ public class CellLocationCalculatingRelativeCellLocationsSpec extends CellLocati
   @Named("cell[-1, 1].plus[cell[3,4]] => cell[2,5]")
   @Order(1)
   public void _cell11PlusCell34Cell25() throws Exception {
-    CellLocation _cell = CellLocation.cell((-1), 1);
-    CellLocation _cell_1 = CellLocation.cell(3, 4);
-    CellLocation _plus = _cell.plus(_cell_1);
-    CellLocation _cell_2 = CellLocation.cell(2, 5);
-    boolean _doubleArrow = Should.<CellLocation>operator_doubleArrow(_plus, _cell_2);
+    CellLocation _plus = CellLocation.cell((-1), 1).plus(CellLocation.cell(3, 4));
+    CellLocation _cell = CellLocation.cell(2, 5);
+    boolean _doubleArrow = Should.<CellLocation>operator_doubleArrow(_plus, _cell);
     Assert.assertTrue("\nExpected cell(-1, 1).plus(cell(3,4)) => cell(2,5) but"
      + "\n     cell(-1, 1).plus(cell(3,4)) is " + new org.hamcrest.StringDescription().appendValue(_plus).toString()
-     + "\n     cell(-1, 1) is " + new org.hamcrest.StringDescription().appendValue(_cell).toString()
+     + "\n     cell(-1, 1) is " + new org.hamcrest.StringDescription().appendValue(CellLocation.cell((-1), 1)).toString()
      + "\n     -1 is " + new org.hamcrest.StringDescription().appendValue((-1)).toString()
-     + "\n     cell(3,4) is " + new org.hamcrest.StringDescription().appendValue(_cell_1).toString()
-     + "\n     cell(2,5) is " + new org.hamcrest.StringDescription().appendValue(_cell_2).toString() + "\n", _doubleArrow);
+     + "\n     cell(3,4) is " + new org.hamcrest.StringDescription().appendValue(CellLocation.cell(3, 4)).toString()
+     + "\n     cell(2,5) is " + new org.hamcrest.StringDescription().appendValue(_cell).toString() + "\n", _doubleArrow);
     
   }
 }
