@@ -71,6 +71,24 @@ describe &quot;Example Tables&quot;{
     examples should not be null
   }     
 }</pre>
+</li><li><p id="forEach_overloadings" class="example notrun"><strong>forEach overloadings</strong></p>
+<p>An example table can use forEach with different overloadings</p>
+<pre class="prettyprint lang-spec linenums">
+package bootstrap
+
+describe &quot;Example Tables&quot;{
+  
+  def exampleTable {
+    | a | b | 
+    | 0 | 1 |
+  }
+
+  fact &quot;name is optional&quot;{    
+    exampleTable.forEach[ a should be 0]
+    exampleTable.forEach[it | a should be 0]
+    exampleTable.forEach[it, index | a should be 0]
+  }     
+}</pre>
 </li><li><p id="Expressions_in_tables" class="example notrun"><strong>Expressions in tables</strong></p>
 <p>Values in an example table can be arbitrary non-void expressions, for examples closures:</p>
 <pre class="prettyprint lang-spec linenums">
@@ -314,6 +332,31 @@ describe &quot;Using Tables&quot;{
 
       fact &quot;name is optional&quot;{    
         examples should not be null
+      }     
+    } 
+    '''.executesSuccessfully 
+  }       
+  
+  
+   /*
+   * An example table can use forEach with different overloadings
+   * @filter('''|.executesSuccessfully) 
+   */
+  fact &quot;forEach overloadings&quot;{   
+    '''
+    package bootstrap
+    
+    describe &quot;Example Tables&quot;{
+      
+      def exampleTable {
+        | a | b | 
+        | 0 | 1 |
+      }
+
+      fact &quot;name is optional&quot;{    
+        exampleTable.forEach[ a should be 0]
+        exampleTable.forEach[it | a should be 0]
+        exampleTable.forEach[it, index | a should be 0]
       }     
     } 
     '''.executesSuccessfully 

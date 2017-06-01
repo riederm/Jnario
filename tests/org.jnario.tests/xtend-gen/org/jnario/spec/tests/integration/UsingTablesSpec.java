@@ -141,12 +141,61 @@ public class UsingTablesSpec {
   }
   
   /**
+   * An example table can use forEach with different overloadings
+   * @filter('''|.executesSuccessfully)
+   */
+  @Test
+  @Named("forEach overloadings")
+  @Order(3)
+  public void _forEachOverloadings() throws Exception {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package bootstrap");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("describe \"Example Tables\"{");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("def exampleTable {");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("| a | b | ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("| 0 | 1 |");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("fact \"name is optional\"{    ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("exampleTable.forEach[ a should be 0]");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("exampleTable.forEach[it | a should be 0]");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("exampleTable.forEach[it, index | a should be 0]");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("}     ");
+    _builder.newLine();
+    _builder.append("} ");
+    _builder.newLine();
+    this._behaviorExecutor.executesSuccessfully(_builder);
+  }
+  
+  /**
    * Values in an example table can be arbitrary non-void expressions, for examples closures:
    * @filter('''|.executesSuccessfully)
    */
   @Test
   @Named("Expressions in tables")
-  @Order(3)
+  @Order(4)
   public void _expressionsInTables() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -198,7 +247,7 @@ public class UsingTablesSpec {
    */
   @Test
   @Named("Referencing members")
-  @Order(4)
+  @Order(5)
   public void _referencingMembers() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -266,7 +315,7 @@ public class UsingTablesSpec {
    */
   @Test
   @Named("Column type inference")
-  @Order(5)
+  @Order(6)
   public void _columnTypeInference() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -328,7 +377,7 @@ public class UsingTablesSpec {
    */
   @Test
   @Named("Specifying column types")
-  @Order(6)
+  @Order(7)
   public void _specifyingColumnTypes() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("import java.util.ArrayList");
@@ -428,7 +477,7 @@ public class UsingTablesSpec {
    */
   @Test
   @Named("Error message")
-  @Order(7)
+  @Order(8)
   public void _errorMessage() throws Exception {
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
       @Override
@@ -513,7 +562,7 @@ public class UsingTablesSpec {
    */
   @Test
   @Named("type inference uses null for one column with null value")
-  @Order(8)
+  @Order(9)
   public void _typeInferenceUsesNullForOneColumnWithNullValue() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe \"TableBug\" {");
@@ -540,7 +589,7 @@ public class UsingTablesSpec {
    */
   @Test
   @Named("Primitives & null")
-  @Order(9)
+  @Order(10)
   public void _primitivesNull() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe \"TableBug\" {");

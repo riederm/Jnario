@@ -13,6 +13,7 @@ import static java.lang.String.format;
 import java.util.List;
 
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
 import org.jnario.lib.internal.RowFailed;
 import org.jnario.lib.internal.RowPassed;
 import org.jnario.lib.internal.RowResult;
@@ -32,6 +33,26 @@ public class ExampleTableIterators<T extends ExampleTableRow> {
 	 */
 	public static <T extends ExampleTableRow> void forEach(ExampleTable<T> table, Procedure1<T> assertion) {
 		new ExampleTableIterators<T>(table, assertion).perform();
+	}
+	
+	/**
+	 * Performs an assertion on each row in an {@link ExampleTable}. All
+	 * failures are collected and merged into a readable representation.
+	 * 
+	 * @param table a table with examples
+	 * @param assertion a closure which performs an assertion on each row.
+	 */
+	public static <T extends ExampleTableRow> void forEach(ExampleTable<T> table, final Procedure2<T, Integer> assertion) {
+		Procedure1<T> wrapper = new Procedure1<T>() {
+			int index = 0;
+			@Override
+			public void apply(T p) {
+				assertion.apply(p, index);
+				index++;
+				
+			}
+		};
+		forEach(table, wrapper);
 	}
 	
 	private static final String INDENT = "        ";
