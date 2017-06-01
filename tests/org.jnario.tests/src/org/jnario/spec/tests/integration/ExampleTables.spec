@@ -73,6 +73,31 @@ describe "Using Tables"{
     '''.executesSuccessfully 
   }       
   
+  
+   /*
+   * An example table can use forEach with different overloadings
+   * @filter('''|.executesSuccessfully) 
+   */
+  fact "forEach overloadings"{   
+    '''
+    package bootstrap
+    
+    describe "Example Tables"{
+      
+      def exampleTable {
+        | a | b | 
+        | 0 | 1 |
+      }
+
+      fact "name is optional"{    
+        exampleTable.forEach[ a should be 0]
+        exampleTable.forEach[it | a should be 0]
+        exampleTable.forEach[it, index | a should be 0]
+      }     
+    } 
+    '''.executesSuccessfully 
+  }       
+  
   /* 
    * Values in an example table can be arbitrary non-void expressions, for examples closures:
    * @filter('''|.executesSuccessfully) 

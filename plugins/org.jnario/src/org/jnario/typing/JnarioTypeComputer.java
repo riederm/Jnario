@@ -3,8 +3,11 @@ package org.jnario.typing;
 
 import static org.jnario.jvmmodel.DoubleArrowSupport.isDoubleArrow;
 
+import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmPrimitiveType;
@@ -12,8 +15,12 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.util.TypeReferences;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XBinaryOperation;
+import org.eclipse.xtext.xbase.XClosure;
 import org.eclipse.xtext.xbase.XExpression;
+import org.eclipse.xtext.xbase.XMemberFeatureCall;
 import org.eclipse.xtext.xbase.XNullLiteral;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
 import org.eclipse.xtext.xbase.typesystem.computation.IFeatureLinkingCandidate;
 import org.eclipse.xtext.xbase.typesystem.computation.ILinkingCandidate;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputationState;
@@ -25,6 +32,8 @@ import org.jnario.ShouldThrow;
 import org.jnario.lib.Each;
 import org.jnario.xbase.richstring.XbaseWithRichstringTypeComputer;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 
 public class JnarioTypeComputer extends XbaseWithRichstringTypeComputer {
@@ -106,10 +115,40 @@ public class JnarioTypeComputer extends XbaseWithRichstringTypeComputer {
                 JvmOperation feature = (JvmOperation) candidate.getFeature();
                 JvmGenericType type = (JvmGenericType) feature.eContainer();
                 if (Each.class.getName().equals(type.getQualifiedName()) && "forEach".equals(feature.getSimpleName())) {
-                    return candidate;
+                	if (candidate.getExpression() instanceof XMemberFeatureCall){
+                		if (hasSameArguments(((XMemberFeatureCall)candidate.getExpression()), feature)){
+                			return candidate;
+                		}
+                	}
                 }
 			}
 		}
 		return super.getBestCandidate(candidates);
+	}
+	
+	private boolean hasSameArguments(XMemberFeatureCall featureCall, JvmOperation feature) {
+		int callArguments = -1;
+		XExpression argument = Iterables.getFirst(featureCall.getMemberCallArguments(), null);
+		if (argument instanceof XClosure){
+			EList<JvmFormalParameter> parameters = ((XClosure) argument).getFormalParameters();
+			callArguments = parameters != null ? parameters.size() : 0; 
+		}
+		
+		List<? extends JvmFormalParameter> parameters = MoreObjects.firstNonNull(feature.getParameters(), Collections.EMPTY_LIST);
+		if (parameters.size() == 2){
+			JvmTypeReference targetClosure = parameters.get(1).getParameterType(); //2nd parameter
+			String closeureQualifiedName = targetClosure.getType().getQualifiedName();
+			
+			//if the closure has 1 or 0 arguments, we need the Procedure1 overloading
+			if (Procedure1.class.getName().equals(closeureQualifiedName) && (callArguments == 1 || callArguments == 0)){
+				return true;
+				
+			//if the closure has 2 arguments, we need the Procedure2 overloading
+			}else if (Procedure2.class.getName().equals(closeureQualifiedName) && callArguments == 2){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }
