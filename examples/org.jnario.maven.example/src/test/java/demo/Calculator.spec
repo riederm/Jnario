@@ -23,4 +23,12 @@ describe "Calculator"{
 		examples.forEach[a + b => sum]
 	}	
 
+	fact "load a richstring" {
+		examples.forEach[
+			val x = '''pre «b» post'''
+			x => "pre " + b + " post"
+		]
+
+	}
+
 }
