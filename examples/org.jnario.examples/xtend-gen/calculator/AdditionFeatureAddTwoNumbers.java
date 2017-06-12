@@ -26,10 +26,7 @@ public class AdditionFeatureAddTwoNumbers extends AdditionFeature {
   @Named("When I entered \\\"50\\\" and \\\"70\\\"")
   public void _whenIEntered50And70() {
     final StepArguments args = new StepArguments("50", "70");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    String _second = JnarioIterableExtensions.<String>second(args);
-    int _add = this.calculator.add(_first, _second);
-    this.result = _add;
+    this.result = this.calculator.add(JnarioIterableExtensions.<String>first(args), JnarioIterableExtensions.<String>second(args));
   }
   
   @Test
@@ -37,12 +34,11 @@ public class AdditionFeatureAddTwoNumbers extends AdditionFeature {
   @Named("Then the result should be \\\"120\\\"")
   public void _thenTheResultShouldBe120() {
     final StepArguments args = new StepArguments("120");
-    String _first = JnarioIterableExtensions.<String>first(args);
-    int _int = StringConversions.toInt(_first);
+    int _int = StringConversions.toInt(JnarioIterableExtensions.<String>first(args));
     Assert.assertTrue("\nExpected result => args.first.toInt but"
      + "\n     result is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(this.result)).toString()
      + "\n     args.first.toInt is " + new org.hamcrest.StringDescription().appendValue(Integer.valueOf(_int)).toString()
-     + "\n     args.first is " + new org.hamcrest.StringDescription().appendValue(_first).toString()
+     + "\n     args.first is " + new org.hamcrest.StringDescription().appendValue(JnarioIterableExtensions.<String>first(args)).toString()
      + "\n     args is " + new org.hamcrest.StringDescription().appendValue(args).toString() + "\n", Should.<Integer>operator_doubleArrow(Integer.valueOf(this.result), Integer.valueOf(_int)));
     
   }

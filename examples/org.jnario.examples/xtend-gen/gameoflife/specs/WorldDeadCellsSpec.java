@@ -4,7 +4,6 @@ import com.google.common.collect.Iterables;
 import gameoflife.CellLocation;
 import gameoflife.World;
 import gameoflife.specs.WorldSpec;
-import java.util.List;
 import java.util.Set;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -24,14 +23,12 @@ public class WorldDeadCellsSpec extends WorldSpec {
   @Named("with no live cells there are no dead cells")
   @Order(1)
   public void _withNoLiveCellsThereAreNoDeadCells() throws Exception {
-    List<CellLocation> _emptyList = CollectionLiterals.<CellLocation>emptyList();
-    World _worldWith = World.worldWith(_emptyList);
-    Set<CellLocation> _deadCells = _worldWith.deadCells();
+    Set<CellLocation> _deadCells = World.worldWith(CollectionLiterals.<CellLocation>emptyList()).deadCells();
     Set<CellLocation> _emptySet = CollectionLiterals.<CellLocation>emptySet();
     Assert.assertTrue("\nExpected worldWith(emptyList).deadCells => emptySet but"
      + "\n     worldWith(emptyList).deadCells is " + new org.hamcrest.StringDescription().appendValue(_deadCells).toString()
-     + "\n     worldWith(emptyList) is " + new org.hamcrest.StringDescription().appendValue(_worldWith).toString()
-     + "\n     emptyList is " + new org.hamcrest.StringDescription().appendValue(_emptyList).toString()
+     + "\n     worldWith(emptyList) is " + new org.hamcrest.StringDescription().appendValue(World.worldWith(CollectionLiterals.<CellLocation>emptyList())).toString()
+     + "\n     emptyList is " + new org.hamcrest.StringDescription().appendValue(CollectionLiterals.<CellLocation>emptyList()).toString()
      + "\n     emptySet is " + new org.hamcrest.StringDescription().appendValue(_emptySet).toString() + "\n", Should.<Set<CellLocation>>operator_doubleArrow(_deadCells, _emptySet));
     
   }
@@ -68,8 +65,7 @@ public class WorldDeadCellsSpec extends WorldSpec {
     {
       Set<CellLocation> _neighbours = this.liveCell.neighbours();
       Set<CellLocation> _neighbours_1 = this.anotherLivingCell.neighbours();
-      Iterable<CellLocation> _plus = Iterables.<CellLocation>concat(_neighbours, _neighbours_1);
-      final Set<CellLocation> allNonLivingNeighbours = IterableExtensions.<CellLocation>toSet(_plus);
+      final Set<CellLocation> allNonLivingNeighbours = IterableExtensions.<CellLocation>toSet(Iterables.<CellLocation>concat(_neighbours, _neighbours_1));
       allNonLivingNeighbours.remove(this.anotherLivingCell);
       allNonLivingNeighbours.remove(this.liveCell);
       _xblockexpression = allNonLivingNeighbours;

@@ -8,6 +8,7 @@
 package introduction;
 
 import com.google.inject.Inject;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.jnario.test.util.Helpers;
@@ -97,7 +98,21 @@ public class JnarioSpecsFactsForJavaSpec {
       }
     };
     String _errorMessage = Helpers.errorMessage(_function);
-    Helpers.is(_errorMessage, "Expected x == 1 && y == 0 but\r\n     x == 1 is <false>\r\n     x is <0>\r\n     y == 0 is <false>\r\n     y is <1>");
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("Expected x == 1 && y == 0 but");
+    _builder.newLine();
+    _builder.append("     ");
+    _builder.append("x == 1 is <false>");
+    _builder.newLine();
+    _builder.append("     ");
+    _builder.append("x is <0>");
+    _builder.newLine();
+    _builder.append("     ");
+    _builder.append("y == 0 is <false>");
+    _builder.newLine();
+    _builder.append("     ");
+    _builder.append("y is <1>");
+    Helpers.is(_errorMessage, _builder);
   }
   
   /**
@@ -114,6 +129,28 @@ public class JnarioSpecsFactsForJavaSpec {
   @Named("Implicit subject creation")
   @Order(3)
   public void _implicitSubjectCreation() throws Exception {
-    this._specExecutor.executesSuccessfully("package bootstrap\r\n\r\nimport java.util.ArrayList\r\n\r\ndescribe ArrayList{\r\n\r\n  fact \"should automatically create an instance of ArrayList called subject\"{\r\n    subject should be typeof(ArrayList)\r\n  }\r\n\r\n}\r\n");
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package bootstrap");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("import java.util.ArrayList");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("describe ArrayList{");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("fact \"should automatically create an instance of ArrayList called subject\"{");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("subject should be typeof(ArrayList)");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    this._specExecutor.executesSuccessfully(_builder);
   }
 }

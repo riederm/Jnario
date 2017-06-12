@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RichStrings</title>
+<meta name="description" content="">
+<meta name="author" content="Jnario">
+
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<link rel="stylesheet" href="../../../../../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../../../../css/bootstrap-responsive.min.css">
+<link rel="stylesheet" href="../../../../../../css/custom.css">
+<link rel="stylesheet" href="../../../../../../css/prettify.css">
+<script type="text/javascript" src="../../../../../../js/prettify.js"></script>
+<script type="text/javascript" src="../../../../../../js/lang-jnario.js"></script>
+<script type="text/javascript" src="../../../../../../js/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../js/bootstrap-tab.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+	<div class="container">
+		<div class="tabbable">
+			<div class="content">
+				<div class="page-header notrun">
+					<h1>RichStrings</h1>
+					  <ul class="nav nav-tabs pull-right">
+					    <li class="active"><a href="#spec" data-toggle="tab">Spec</a></li>
+						<li><a href="#source" data-toggle="tab">Source</a></li>
+					  </ul>
+				</div>
+				<div class="row">
+					<div class="span12">
+						  <div class="tab-content">
+							  	<div class="tab-pane active" id="spec">
+<h3 class="exampleGroup notrun"  id="as_expression">As expression</h3>
+<ul><li><p id="richstring_should_be" class="example notrun"><strong>richstring should be</strong></p>
+<pre class="prettyprint lang-spec linenums">
+//dont assign to variable, use directly
+'''abc''' should be &quot;abc&quot;</pre>
+</li><li><p id="richstring_with_if" class="example notrun"><strong>richstring with if</strong></p>
+<pre class="prettyprint lang-spec linenums">
+'''a &laquo;IF true&raquo;b&laquo;ENDIF&raquo;''' should be &quot;a b&quot;</pre>
+</li></ul>
+<h3 class="exampleGroup notrun"  id="tab_newline_etc">Tab, newline, etc.</h3>
+<ul><li><p id="tabs" class="example notrun"><strong>tabs</strong></p>
+<pre class="prettyprint lang-spec linenums">
+//Table does not format correctly yet
+'''  leading Tab''' should be &quot;\tleading Tab&quot;
+'''trailing Tab  ''' should be &quot;trailing Tab\t&quot;
+'''inner  tab''' should be &quot;inner\ttab&quot;</pre>
+</li><li><p id="spaces" class="example notrun"><strong>spaces</strong></p>
+<pre class="prettyprint lang-spec linenums">
+//Table does not format correctly yet
+''' leading ws''' should be &quot; leading ws&quot;
+'''trailing ws ''' should be &quot;trailing ws &quot;
+'''inner ws''' should be &quot;inner ws&quot;</pre>
+</li><li><p id="newlines" class="example notrun"><strong>newlines</strong></p>
+<pre class="prettyprint lang-spec linenums">
+'''
+  line1
+  line2''' should be &quot;line1&quot;+System.lineSeparator()+&quot;line2&quot;</pre>
+</li><li><p id="empty_newlines" class="example notrun"><strong>empty newlines</strong></p>
+<pre class="prettyprint lang-spec linenums">
+'''
+  line1
+  
+  line2''' should be &quot;line1&quot;+System.lineSeparator()+System.lineSeparator()+&quot;line2&quot;</pre>
+</li></ul>
+<h3 class="exampleGroup notrun"  id="expressions_in_richstrings">Expressions in richstrings</h3>
+<ul><li><p id="a_variable" class="example notrun"><strong>a variable</strong></p>
+<pre class="prettyprint lang-spec linenums">
+val x = &quot;value&quot;
+'''pre &laquo;x&raquo; post''' should be &quot;pre value post&quot;</pre>
+</li><li><p id="multiple_variables" class="example notrun"><strong>multiple variables</strong></p>
+<pre class="prettyprint lang-spec linenums">
+val x = &quot;value&quot;
+val y = &quot;value2&quot;
+'''pre &laquo;x&raquo; &laquo;y&raquo; post''' should be &quot;pre value value2 post&quot;</pre>
+</li><li><p id="multiple_variables_in_new_lines" class="example notrun"><strong>multiple variables in new lines</strong></p>
+<pre class="prettyprint lang-spec linenums">
+val x = &quot;value&quot;
+val y = &quot;value2&quot;
+'''
+  pre
+  &laquo;x&raquo;
+  &laquo;y&raquo;
+  post''' should be &quot;pre&quot;+System.lineSeparator()+&quot;value&quot;+System.lineSeparator()+&quot;value2&quot;+System.lineSeparator()+&quot;post&quot;</pre>
+</li><li><p id="expression" class="example notrun"><strong>expression</strong></p>
+<pre class="prettyprint lang-spec linenums">
+'''1 + 2 = &laquo;1+2&raquo;''' should be &quot;1 + 2 = 3&quot;</pre>
+</li><li><p id="expression_with_variables" class="example notrun"><strong>expression with variables</strong></p>
+<pre class="prettyprint lang-spec linenums">
+val a = 1
+val b = 2
+'''&laquo;a&raquo; + &laquo;b&raquo; = &laquo;a + b&raquo;''' should be &quot;1 + 2 = 3&quot;</pre>
+</li></ul>
+<h3 class="exampleGroup notrun"  id="indentation">Indentation</h3>
+<ul><li><p id="no_indentation" class="example notrun"><strong>no indentation</strong></p>
+<pre class="prettyprint lang-spec linenums">
+'''
+a
+b''' should be &quot;a&quot;+System.lineSeparator()+&quot;b&quot;</pre>
+</li><li><p id="with_indentation" class="example notrun"><strong>with indentation</strong></p>
+<pre class="prettyprint lang-spec linenums">
+'''
+a
+  b''' should be &quot;a&quot;+System.lineSeparator()+&quot;\tb&quot;
+  
+'''
+  a
+b''' should be &quot;\ta&quot;+System.lineSeparator()+&quot;b&quot;</pre>
+</li></ul>
+<h3 class="exampleGroup notrun"  id="if_condition">If condition</h3>
+<ul><li><p id="if_false" class="example notrun"><strong>if false</strong></p>
+<pre class="prettyprint lang-spec linenums">
+val stringWithIf = '''pre&laquo;IF false&raquo; x &laquo;ENDIF&raquo;post'''
+org.junit.Assert.assertEquals(&quot;prepost&quot;, stringWithIf)</pre>
+</li><li><p id="if_true" class="example notrun"><strong>if true</strong></p>
+<pre class="prettyprint lang-spec linenums">
+val stringWithIf = '''pre&laquo;IF true&raquo; x &laquo;ENDIF&raquo;post'''
+org.junit.Assert.assertEquals(&quot;pre x post&quot;, stringWithIf)</pre>
+</li><li><p id="if_expression" class="example notrun"><strong>if expression</strong></p>
+<pre class="prettyprint lang-spec linenums">
+var stringWithIf = '''pre&laquo;IF 3 &gt; 2&raquo; x &laquo;ENDIF&raquo;post'''
+org.junit.Assert.assertEquals(&quot;pre x post&quot;, stringWithIf) 
+
+stringWithIf = '''pre&laquo;IF 3 &lt; 2&raquo; x &laquo;ENDIF&raquo;post'''
+org.junit.Assert.assertEquals(&quot;prepost&quot;, stringWithIf)</pre>
+</li></ul>
+<h3 class="exampleGroup notrun"  id="loop">Loop</h3>
+<ul><li><p id="for_1_3" class="example notrun"><strong>for 1..3</strong></p>
+<pre class="prettyprint lang-spec linenums">
+val x = ''' 
+  &laquo;FOR x : (1..3)&raquo;
+  line &laquo;x&raquo;
+  &laquo;ENDFOR&raquo;
+  '''  
+
+org.junit.Assert.assertEquals(&quot;line 1&quot;+System.lineSeparator()+&quot;line 2&quot;+System.lineSeparator()+&quot;line 3&quot;+System.lineSeparator(), x)</pre>
+</li><li><p id="for_before_after" class="example notrun"><strong>for before after</strong></p>
+<pre class="prettyprint lang-spec linenums">
+val text = ''' 
+  &laquo;FOR x : (1..3) BEFORE 'pre ' SEPARATOR ',' AFTER ' post'&raquo;&laquo;x&raquo;&laquo;ENDFOR&raquo;'''  
+ 
+org.junit.Assert.assertEquals(&quot;pre 1,2,3 post&quot;, text)</pre>
+</li></ul>
+							</div>
+						    <div class="tab-pane" id="source">
+						    	<h3>RichStrings.spec</h3>
+						    	<p>
+<pre class="prettyprint lang-spec linenums">
+package org.jnario.jnario.tests.unit.jnario
+
+describe &quot;RichStrings&quot;{
+  context &quot;as expression&quot;{
+
+    fact &quot;richstring should be&quot;{
+      //dont assign to variable, use directly
+      '''abc''' should be &quot;abc&quot;
+    } 
+        
+    fact &quot;richstring with if&quot;{
+      '''a &laquo;IF true&raquo;b&laquo;ENDIF&raquo;''' should be &quot;a b&quot;
+    }
+  } 
+  
+  context &quot;tab, newline, etc.&quot;{
+
+    fact &quot;tabs&quot;{
+      //Table does not format correctly yet
+      '''  leading Tab''' should be &quot;\tleading Tab&quot;
+      '''trailing Tab  ''' should be &quot;trailing Tab\t&quot;
+      '''inner  tab''' should be &quot;inner\ttab&quot;
+    }
+    
+    fact &quot;spaces&quot;{
+      //Table does not format correctly yet
+      ''' leading ws''' should be &quot; leading ws&quot;
+      '''trailing ws ''' should be &quot;trailing ws &quot;
+      '''inner ws''' should be &quot;inner ws&quot;
+    }
+     
+    fact &quot;newlines&quot;{
+      '''
+        line1
+        line2''' should be &quot;line1&quot;+System.lineSeparator()+&quot;line2&quot;
+    }
+    
+    fact &quot;empty newlines&quot;{
+      '''
+        line1
+        
+        line2''' should be &quot;line1&quot;+System.lineSeparator()+System.lineSeparator()+&quot;line2&quot;
+    }
+  }
+  
+  context &quot;expressions in richstrings&quot;{
+    fact &quot;a variable&quot;{
+      val x = &quot;value&quot;
+      '''pre &laquo;x&raquo; post''' should be &quot;pre value post&quot;
+    }
+    
+    fact &quot;multiple variables&quot;{
+      val x = &quot;value&quot;
+      val y = &quot;value2&quot;
+      '''pre &laquo;x&raquo; &laquo;y&raquo; post''' should be &quot;pre value value2 post&quot;
+    }
+    
+    fact &quot;multiple variables in new lines&quot;{
+      val x = &quot;value&quot;
+      val y = &quot;value2&quot;
+      '''
+        pre
+        &laquo;x&raquo;
+        &laquo;y&raquo;
+        post''' should be &quot;pre&quot;+System.lineSeparator()+&quot;value&quot;+System.lineSeparator()+&quot;value2&quot;+System.lineSeparator()+&quot;post&quot;
+    }
+    
+    fact &quot;expression&quot;{
+      '''1 + 2 = &laquo;1+2&raquo;''' should be &quot;1 + 2 = 3&quot;
+    }
+    
+    fact &quot;expression with variables&quot;{
+      val a = 1
+      val b = 2
+      '''&laquo;a&raquo; + &laquo;b&raquo; = &laquo;a + b&raquo;''' should be &quot;1 + 2 = 3&quot;
+    }
+  }
+  
+  context &quot;indentation&quot;{
+    
+    fact &quot;no indentation&quot;{
+      '''
+      a
+      b''' should be &quot;a&quot;+System.lineSeparator()+&quot;b&quot;
+    }
+    
+    fact &quot;with indentation&quot;{
+      '''
+      a
+        b''' should be &quot;a&quot;+System.lineSeparator()+&quot;\tb&quot;
+        
+      '''
+        a
+      b''' should be &quot;\ta&quot;+System.lineSeparator()+&quot;b&quot;
+    }
+  }
+      
+  context &quot;if condition&quot;{    
+    fact &quot;if false&quot;{ 
+      val stringWithIf = '''pre&laquo;IF false&raquo; x &laquo;ENDIF&raquo;post'''
+      org.junit.Assert.assertEquals(&quot;prepost&quot;, stringWithIf) 
+    }
+    
+    fact &quot;if true&quot;{ 
+      val stringWithIf = '''pre&laquo;IF true&raquo; x &laquo;ENDIF&raquo;post'''
+      org.junit.Assert.assertEquals(&quot;pre x post&quot;, stringWithIf) 
+    }  
+    
+    fact &quot;if expression&quot;{
+      var stringWithIf = '''pre&laquo;IF 3 &gt; 2&raquo; x &laquo;ENDIF&raquo;post'''
+      org.junit.Assert.assertEquals(&quot;pre x post&quot;, stringWithIf) 
+      
+      stringWithIf = '''pre&laquo;IF 3 &lt; 2&raquo; x &laquo;ENDIF&raquo;post'''
+      org.junit.Assert.assertEquals(&quot;prepost&quot;, stringWithIf) 
+    }
+  }
+  
+  context &quot;loop&quot; {
+    fact &quot;for 1..3&quot;{
+      val x = ''' 
+        &laquo;FOR x : (1..3)&raquo;
+        line &laquo;x&raquo;
+        &laquo;ENDFOR&raquo;
+        '''  
+      
+      org.junit.Assert.assertEquals(&quot;line 1&quot;+System.lineSeparator()+&quot;line 2&quot;+System.lineSeparator()+&quot;line 3&quot;+System.lineSeparator(), x)
+    }
+    
+    fact &quot;for before after&quot;{
+      val text = ''' 
+        &laquo;FOR x : (1..3) BEFORE 'pre ' SEPARATOR ',' AFTER ' post'&raquo;&laquo;x&raquo;&laquo;ENDFOR&raquo;'''  
+       
+      org.junit.Assert.assertEquals(&quot;pre 1,2,3 post&quot;, text)
+    }
+  }
+}
+</pre>
+						    </p></div>
+						  </div>
+					</div> 
+				</div> <!-- /row -->
+			</div> <!-- /content -->
+		</div> <!-- /tabbable -->
+		<footer>
+			<p><small>Generated by <a href="http://www.jnario.org">Jnario</a>.</small></p>
+		</footer>
+	</div> <!-- /container -->
+
+</body>
+</html>

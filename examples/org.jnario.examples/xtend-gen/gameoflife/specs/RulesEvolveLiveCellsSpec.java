@@ -74,13 +74,12 @@ public class RulesEvolveLiveCellsSpec extends RulesSpec {
     final Procedure1<RulesEvolveLiveCellsSpecLiveCells> _function = new Procedure1<RulesEvolveLiveCellsSpecLiveCells>() {
       @Override
       public void apply(final RulesEvolveLiveCellsSpecLiveCells it) {
-        int _liveNeighbourCount = it.getLiveNeighbourCount();
-        boolean _becomesAlive = RulesEvolveLiveCellsSpec.this.subject.becomesAlive(_liveNeighbourCount);
+        boolean _becomesAlive = RulesEvolveLiveCellsSpec.this.subject.becomesAlive(it.getLiveNeighbourCount());
         boolean _result = it.getResult();
         Assert.assertTrue("\nExpected subject.becomesAlive(liveNeighbourCount) => result but"
          + "\n     subject.becomesAlive(liveNeighbourCount) is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_becomesAlive)).toString()
          + "\n     subject is " + new org.hamcrest.StringDescription().appendValue(RulesEvolveLiveCellsSpec.this.subject).toString()
-         + "\n     liveNeighbourCount is " + new org.hamcrest.StringDescription().appendValue(_liveNeighbourCount).toString()
+         + "\n     liveNeighbourCount is " + new org.hamcrest.StringDescription().appendValue(it.getLiveNeighbourCount()).toString()
          + "\n     result is " + new org.hamcrest.StringDescription().appendValue(_result).toString() + "\n", Should.<Boolean>operator_doubleArrow(Boolean.valueOf(_becomesAlive), _result));
         
       }

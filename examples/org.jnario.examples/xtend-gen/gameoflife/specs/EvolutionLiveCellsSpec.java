@@ -3,7 +3,6 @@ package gameoflife.specs;
 import gameoflife.CellLocation;
 import gameoflife.Evolution;
 import gameoflife.Rule;
-import gameoflife.World;
 import gameoflife.specs.EvolutionSpec;
 import java.util.Set;
 import org.jnario.lib.Assert;
@@ -31,12 +30,11 @@ public class EvolutionLiveCellsSpec extends EvolutionSpec {
   @Order(1)
   public void _stayAliveIfRuleSaysSo() throws Exception {
     final Evolution evolution = new Evolution(this.allLiveStayAlive, this.dontCare);
-    World _evolve = evolution.evolve(this.worldWithLiveCell);
-    Set<CellLocation> _livingCells = _evolve.getLivingCells();
+    Set<CellLocation> _livingCells = evolution.evolve(this.worldWithLiveCell).getLivingCells();
     Set<CellLocation> _set = JnarioCollectionLiterals.<CellLocation>set(this.livingCell);
     Assert.assertTrue("\nExpected evolution.evolve(worldWithLiveCell).livingCells => set(livingCell) but"
      + "\n     evolution.evolve(worldWithLiveCell).livingCells is " + new org.hamcrest.StringDescription().appendValue(_livingCells).toString()
-     + "\n     evolution.evolve(worldWithLiveCell) is " + new org.hamcrest.StringDescription().appendValue(_evolve).toString()
+     + "\n     evolution.evolve(worldWithLiveCell) is " + new org.hamcrest.StringDescription().appendValue(evolution.evolve(this.worldWithLiveCell)).toString()
      + "\n     evolution is " + new org.hamcrest.StringDescription().appendValue(evolution).toString()
      + "\n     worldWithLiveCell is " + new org.hamcrest.StringDescription().appendValue(this.worldWithLiveCell).toString()
      + "\n     set(livingCell) is " + new org.hamcrest.StringDescription().appendValue(_set).toString()

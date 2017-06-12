@@ -32,14 +32,14 @@ describe "RichStrings"{
 		fact "newlines"{
 			'''
 				line1
-				line2''' should be "line1\nline2"
+				line2''' should be "line1"+System.lineSeparator()+"line2"
 		}
 		
 		fact "empty newlines"{
 			'''
 				line1
 				
-				line2''' should be "line1\n\nline2"
+				line2''' should be "line1"+System.lineSeparator()+System.lineSeparator()+"line2"
 		}
 	}
 	
@@ -62,7 +62,7 @@ describe "RichStrings"{
 				pre
 				«x»
 				«y»
-				post''' should be "pre\nvalue\nvalue2\npost"
+				post''' should be "pre"+System.lineSeparator()+"value"+System.lineSeparator()+"value2"+System.lineSeparator()+"post"
 		}
 		
 		fact "expression"{
@@ -81,17 +81,17 @@ describe "RichStrings"{
 		fact "no indentation"{
 			'''
 			a
-			b''' should be "a\nb"
+			b''' should be "a"+System.lineSeparator()+"b"
 		}
 		
 		fact "with indentation"{
 			'''
 			a
-				b''' should be "a\n\tb"
+				b''' should be "a"+System.lineSeparator()+"\tb"
 				
 			'''
 				a
-			b''' should be "\ta\nb"
+			b''' should be "\ta"+System.lineSeparator()+"b"
 		}
 	}
 	    
@@ -123,7 +123,7 @@ describe "RichStrings"{
 				«ENDFOR»
 				'''	
 			
-			org.junit.Assert.assertEquals("line 1\nline 2\nline 3\n", x)
+			org.junit.Assert.assertEquals("line 1"+System.lineSeparator()+"line 2"+System.lineSeparator()+"line 3"+System.lineSeparator(), x)
 		}
 		
 		fact "for before after"{

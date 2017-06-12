@@ -22,8 +22,8 @@ public class RichStringsTabNewlineEtcSpec extends RichStringsSpec {
     _builder.append("\t");
     _builder.append("leading Tab");
     boolean _should_be = Should.<String>should_be(_builder.toString(), "\tleading Tab");
-    Assert.assertTrue("\nExpected //Table does not format correctly yet\n\t\t\t\'\'\'\tleading Tab\'\'\' should be \"\\tleading Tab\" but"
-     + "\n     //Table does not format correctly yet\n\t\t\t\'\'\'\tleading Tab\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", _should_be);
+    Assert.assertTrue("\nExpected //Table does not format correctly yet\r\n\t\t\t\'\'\'\tleading Tab\'\'\' should be \"\\tleading Tab\" but"
+     + "\n     //Table does not format correctly yet\r\n\t\t\t\'\'\'\tleading Tab\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", _should_be);
     
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("trailing Tab\t");
@@ -46,8 +46,8 @@ public class RichStringsTabNewlineEtcSpec extends RichStringsSpec {
     _builder.append(" ");
     _builder.append("leading ws");
     boolean _should_be = Should.<String>should_be(_builder.toString(), " leading ws");
-    Assert.assertTrue("\nExpected //Table does not format correctly yet\n\t\t\t\'\'\' leading ws\'\'\' should be \" leading ws\" but"
-     + "\n     //Table does not format correctly yet\n\t\t\t\'\'\' leading ws\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", _should_be);
+    Assert.assertTrue("\nExpected //Table does not format correctly yet\r\n\t\t\t\'\'\' leading ws\'\'\' should be \" leading ws\" but"
+     + "\n     //Table does not format correctly yet\r\n\t\t\t\'\'\' leading ws\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", _should_be);
     
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("trailing ws ");
@@ -70,8 +70,15 @@ public class RichStringsTabNewlineEtcSpec extends RichStringsSpec {
     _builder.append("line1");
     _builder.newLine();
     _builder.append("line2");
-    Assert.assertTrue("\nExpected \'\'\'\n\t\t\t\tline1\n\t\t\t\tline2\'\'\' should be \"line1\\nline2\" but"
-     + "\n     \'\'\'\n\t\t\t\tline1\n\t\t\t\tline2\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", Should.<String>should_be(_builder.toString(), "line1\nline2"));
+    String _lineSeparator = System.lineSeparator();
+    String _plus = ("line1" + _lineSeparator);
+    String _plus_1 = (_plus + "line2");
+    Assert.assertTrue("\nExpected \'\'\'\r\n\t\t\t\tline1\r\n\t\t\t\tline2\'\'\' should be \"line1\"+System.lineSeparator()+\"line2\" but"
+     + "\n     \'\'\'\r\n\t\t\t\tline1\r\n\t\t\t\tline2\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString()
+     + "\n     \"line1\"+System.lineSeparator()+\"line2\" is " + new org.hamcrest.StringDescription().appendValue(_plus_1).toString()
+     + "\n     \"line1\"+System.lineSeparator() is " + new org.hamcrest.StringDescription().appendValue(_plus).toString()
+     + "\n     System.lineSeparator() is " + new org.hamcrest.StringDescription().appendValue(_lineSeparator).toString()
+     + "\n     System is " + new org.hamcrest.StringDescription().appendValue(System.class).toString() + "\n", Should.<String>should_be(_builder.toString(), _plus_1));
     
   }
   
@@ -84,8 +91,18 @@ public class RichStringsTabNewlineEtcSpec extends RichStringsSpec {
     _builder.newLine();
     _builder.newLine();
     _builder.append("line2");
-    Assert.assertTrue("\nExpected \'\'\'\n\t\t\t\tline1\n\t\t\t\t\n\t\t\t\tline2\'\'\' should be \"line1\\n\\nline2\" but"
-     + "\n     \'\'\'\n\t\t\t\tline1\n\t\t\t\t\n\t\t\t\tline2\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString() + "\n", Should.<String>should_be(_builder.toString(), "line1\n\nline2"));
+    String _lineSeparator = System.lineSeparator();
+    String _plus = ("line1" + _lineSeparator);
+    String _lineSeparator_1 = System.lineSeparator();
+    String _plus_1 = (_plus + _lineSeparator_1);
+    String _plus_2 = (_plus_1 + "line2");
+    Assert.assertTrue("\nExpected \'\'\'\r\n\t\t\t\tline1\r\n\t\t\t\t\r\n\t\t\t\tline2\'\'\' should be \"line1\"+System.lineSeparator()+System.lineSeparator()+\"line2\" but"
+     + "\n     \'\'\'\r\n\t\t\t\tline1\r\n\t\t\t\t\r\n\t\t\t\tline2\'\'\' is " + new org.hamcrest.StringDescription().appendValue(_builder.toString()).toString()
+     + "\n     \"line1\"+System.lineSeparator()+System.lineSeparator()+\"line2\" is " + new org.hamcrest.StringDescription().appendValue(_plus_2).toString()
+     + "\n     \"line1\"+System.lineSeparator()+System.lineSeparator() is " + new org.hamcrest.StringDescription().appendValue(_plus_1).toString()
+     + "\n     \"line1\"+System.lineSeparator() is " + new org.hamcrest.StringDescription().appendValue(_plus).toString()
+     + "\n     System.lineSeparator() is " + new org.hamcrest.StringDescription().appendValue(_lineSeparator).toString()
+     + "\n     System is " + new org.hamcrest.StringDescription().appendValue(System.class).toString() + "\n", Should.<String>should_be(_builder.toString(), _plus_2));
     
   }
 }
