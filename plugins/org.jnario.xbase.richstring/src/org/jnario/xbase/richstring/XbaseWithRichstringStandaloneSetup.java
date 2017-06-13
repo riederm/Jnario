@@ -3,6 +3,11 @@
  */
 package org.jnario.xbase.richstring;
 
+import org.eclipse.emf.ecore.EPackage;
+import org.jnario.xbase.richstring.xbasewithrichstring.XbaseWithRichstringPackage;
+
+import com.google.inject.Injector;
+
 /**
  * Initialization support for running Xtext languages 
  * without equinox extension registry
@@ -11,6 +16,13 @@ public class XbaseWithRichstringStandaloneSetup extends XbaseWithRichstringStand
 
 	public static void doSetup() {
 		new XbaseWithRichstringStandaloneSetup().createInjectorAndDoEMFRegistration();
+	}
+	
+	
+	@Override
+	public Injector createInjectorAndDoEMFRegistration() {
+		EPackage.Registry.INSTANCE.put(XbaseWithRichstringPackage.eNS_URI, XbaseWithRichstringPackage.eINSTANCE);
+		return super.createInjectorAndDoEMFRegistration();
 	}
 }
 
