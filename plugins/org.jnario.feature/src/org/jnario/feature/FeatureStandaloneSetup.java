@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotationsPackage;
 import org.jnario.JnarioPackage;
 import org.jnario.feature.feature.FeaturePackage;
+import org.jnario.xbase.richstring.xbasewithrichstring.XbaseWithRichstringPackage;
 
 import com.google.inject.Injector;
 
@@ -27,6 +28,7 @@ public class FeatureStandaloneSetup extends FeatureStandaloneSetupGenerated{
 	@Override
 	public Injector createInjectorAndDoEMFRegistration() {
 		EPackage.Registry.INSTANCE.put(XAnnotationsPackage.eINSTANCE.getNsURI(),XAnnotationsPackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(XbaseWithRichstringPackage.eNS_URI, XbaseWithRichstringPackage.eINSTANCE);
 		EPackage.Registry.INSTANCE.put(JnarioPackage.eNS_URI, JnarioPackage.eINSTANCE);
 		EPackage.Registry.INSTANCE.put(FeaturePackage.eNS_URI, FeaturePackage.eINSTANCE);
 		return super.createInjectorAndDoEMFRegistration();

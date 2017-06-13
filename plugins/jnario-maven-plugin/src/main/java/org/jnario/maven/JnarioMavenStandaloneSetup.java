@@ -3,13 +3,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.xtext.xbase.annotations.XbaseWithAnnotationsStandaloneSetup;
 import org.jnario.feature.FeatureStandaloneSetupGenerated;
 import org.jnario.feature.feature.FeaturePackage;
 import org.jnario.spec.SpecStandaloneSetupGenerated;
 import org.jnario.spec.spec.SpecPackage;
 import org.jnario.suite.SuiteStandaloneSetupGenerated;
 import org.jnario.suite.suite.SuitePackage;
+import org.jnario.xbase.richstring.XbaseWithRichstringStandaloneSetup;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -23,7 +23,7 @@ public class JnarioMavenStandaloneSetup {
 			return injectors;
 		
 		List<Injector> injectors = new ArrayList<Injector>();
-		XbaseWithAnnotationsStandaloneSetup.doSetup();
+		XbaseWithRichstringStandaloneSetup.doSetup();
 		
 		injectors.add(registerFeature());
 		injectors.add(registerSpec());

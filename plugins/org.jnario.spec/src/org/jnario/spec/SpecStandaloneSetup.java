@@ -11,6 +11,7 @@ package org.jnario.spec;
 import org.eclipse.emf.ecore.EPackage;
 import org.jnario.JnarioPackage;
 import org.jnario.spec.spec.SpecPackage;
+import org.jnario.xbase.richstring.xbasewithrichstring.XbaseWithRichstringPackage;
 
 import com.google.inject.Injector;
 
@@ -26,6 +27,7 @@ public class SpecStandaloneSetup extends SpecStandaloneSetupGenerated{
 
 	@Override
 	public Injector createInjectorAndDoEMFRegistration() {
+		EPackage.Registry.INSTANCE.put(XbaseWithRichstringPackage.eNS_URI, XbaseWithRichstringPackage.eINSTANCE);
 		EPackage.Registry.INSTANCE.put(JnarioPackage.eNS_URI, JnarioPackage.eINSTANCE);
 		EPackage.Registry.INSTANCE.put(SpecPackage.eNS_URI, SpecPackage.eINSTANCE);
 		return super.createInjectorAndDoEMFRegistration();
