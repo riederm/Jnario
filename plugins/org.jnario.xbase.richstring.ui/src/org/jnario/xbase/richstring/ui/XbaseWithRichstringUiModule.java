@@ -19,4 +19,6 @@ public class XbaseWithRichstringUiModule extends org.jnario.xbase.richstring.ui.
 	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
 		return XbaseWithRichstringAutoEditStrategyProvider.class;
 	}
+	
+	
 }

@@ -32,10 +32,12 @@ import org.eclipse.xtext.ui.editor.contentassist.IContextInformationProvider;
 import org.eclipse.xtext.ui.editor.contentassist.IProposalConflictHelper;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.AntlrProposalConflictHelper;
 import org.eclipse.xtext.ui.editor.copyqualifiedname.CopyQualifiedNameService;
+import org.eclipse.xtext.ui.editor.doubleClicking.DoubleClickStrategyProvider;
 import org.eclipse.xtext.ui.editor.findrefs.IReferenceFinder;
 import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
 import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
+import org.eclipse.xtext.ui.editor.model.ITokenTypeToPartitionTypeMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
@@ -63,7 +65,9 @@ import org.jnario.ui.editor.XtendCopyQualifiedNameService;
 import org.jnario.ui.highlighting.JnarioHighlightingConfiguration;
 import org.jnario.ui.highlighting.RichStringAwareTokenScanner;
 import org.jnario.ui.highlighting.TokenToAttributeIdMapper;
+import org.jnario.xbase.richstring.ui.autoedit.TokenTypeToPartitionMapper;
 import org.jnario.xbase.richstring.ui.autoedit.XbaseWithRichstringAutoEditStrategyProvider;
+import org.jnario.xbase.richstring.ui.editor.XbaseWithRichstringDoubleClickStrategyProvider;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -151,18 +155,18 @@ public class SpecUiModule extends org.jnario.spec.ui.AbstractSpecUiModule {
 		return SpecHighlightingCalculator.class;
 	}
 
-//	public Class<? extends ITokenTypeToPartitionTypeMapper> bindITokenTypeToPartitionTypeMapper() {
-//		return TokenTypeToPartitionMapper.class;
-//	}
-//
+	public Class<? extends ITokenTypeToPartitionTypeMapper> bindITokenTypeToPartitionTypeMapper() {
+		return TokenTypeToPartitionMapper.class;
+	}
+
 	@Override
 	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
 		return XbaseWithRichstringAutoEditStrategyProvider.class;
 	}
-//
-//	public Class<? extends DoubleClickStrategyProvider> bindDoubleClickStrategyProvider() {
-//		return XtendDoubleClickStrategyProvider.class;
-//	}
+
+	public Class<? extends DoubleClickStrategyProvider> bindDoubleClickStrategyProvider() {
+		return XbaseWithRichstringDoubleClickStrategyProvider.class;
+	}
 
 //	@Override
 //	public Class<? extends IComparator> bindOutlineFilterAndSorter$IComparator() {

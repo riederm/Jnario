@@ -9,10 +9,10 @@ package org.jnario.feature.ui.editor;
 
 import org.eclipse.jface.text.ITextDoubleClickStrategy;
 import org.eclipse.jface.text.source.ISourceViewer;
-import org.eclipse.xtext.ui.editor.doubleClicking.DoubleClickStrategyProvider;
 import org.eclipse.xtext.ui.editor.doubleClicking.FixedCharCountPartitionDoubleClickSelector;
+import org.jnario.xbase.richstring.ui.editor.XbaseWithRichstringDoubleClickStrategyProvider;
 
-public class FeatureDoubleClickStrategyProvider extends DoubleClickStrategyProvider {
+public class FeatureDoubleClickStrategyProvider extends XbaseWithRichstringDoubleClickStrategyProvider {
 
 	
 	public ITextDoubleClickStrategy getStrategy(ISourceViewer sourceViewer, String contentType, String documentPartitioning) {
