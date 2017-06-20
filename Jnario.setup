@@ -71,10 +71,10 @@
           name="org.eclipse.sdk.feature.group"/>
       <requirement
           name="org.eclipse.xtext.sdk.feature.group"
-          versionRange="[2.11.0,2.12.0)"/>
+          versionRange="[2.11.0,2.13.0)"/>
       <requirement
           name="org.eclipse.xtend.sdk.feature.group"
-          versionRange="[2.11.0,2.12.0)"/>
+          versionRange="[2.11.0,2.13.0)"/>
       <requirement
           name="org.objectweb.asm"/>
       <requirement
