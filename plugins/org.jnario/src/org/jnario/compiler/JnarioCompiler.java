@@ -432,11 +432,11 @@ public class JnarioCompiler extends XbaseWithRichstringCompiler {
 
 	@Override
 	protected boolean isVariableDeclarationRequired(XExpression expr,
-			ITreeAppendable b) {
+			ITreeAppendable b, boolean recursive) {
 		if (expr instanceof Assertion) {
 			return false;
 		}
-		return super.isVariableDeclarationRequired(expr, b);
+		return super.isVariableDeclarationRequired(expr, b, recursive);
 	}
 
 
