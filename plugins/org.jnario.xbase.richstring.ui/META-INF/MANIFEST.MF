@@ -17,10 +17,12 @@ Require-Bundle: org.jnario.xbase.richstring,
  org.eclipse.xtext.common.types.ui,
  org.eclipse.jdt.debug.ui,
  org.antlr.runtime
-Import-Package: org.apache.log4j
+Import-Package: com.ibm.icu.text;version="56.1.0",
+ org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.jnario.xbase.richstring.ui.autoedit,
  org.jnario.xbase.richstring.ui.contentassist,
+ org.jnario.xbase.richstring.ui.editor,
  org.jnario.xbase.richstring.ui.highlighting,
  org.jnario.xbase.richstring.ui.quickfix
 Bundle-Activator: org.jnario.xbase.richstring.ui.internal.XbaseWithRichstringActivator
