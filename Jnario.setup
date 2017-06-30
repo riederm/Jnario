@@ -16,8 +16,8 @@
     label="Jnario">
   <setupTask
       xsi:type="jdt:JRETask"
-      version="JavaSE-1.7"
-      location="${jre.location-1.7}">
+      version="JavaSE-1.8"
+      location="${jre.location-1.8}">
     <description>Define the JRE needed to compile and run the Java projects of ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -43,15 +43,15 @@
   <setupTask
       xsi:type="setup.p2:P2Task">
     <requirement
-        name="org.eclipse.xtend.sdk.feature.group"
-        versionRange="[2.11.0,2.12.0)"/>
+        name="org.eclipse.xtend.sdk.feature.group"/>
     <requirement
-        name="org.eclipse.xtext.sdk.feature.group"
-        versionRange="[2.11.0,2.12.0)"/>
+        name="org.eclipse.xtext.sdk.feature.group"/>
     <repository
         url="http://download.eclipse.org/releases/neon"/>
     <repository
         url="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/milestones/"/>
+    <repository
+        url="http://download.eclipse.org/releases/oxygen"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -71,10 +71,10 @@
           name="org.eclipse.sdk.feature.group"/>
       <requirement
           name="org.eclipse.xtext.sdk.feature.group"
-          versionRange="[2.11.0,2.13.0)"/>
+          versionRange="[2.12.0,2.13.0)"/>
       <requirement
           name="org.eclipse.xtend.sdk.feature.group"
-          versionRange="[2.11.0,2.13.0)"/>
+          versionRange="[2.12.0,2.13.0)"/>
       <requirement
           name="org.objectweb.asm"/>
       <requirement
@@ -108,6 +108,19 @@
             url="http://download.eclipse.org/cbi/updates/license"/>
         <repository
             url="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/"/>
+        <repository
+            url="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/milestones/"/>
+        <repository
+            url="http://www.xpect-tests.org/updatesite/nightly/"/>
+      </repositoryList>
+      <repositoryList
+          name="Oxygen">
+        <repository
+            url="http://download.eclipse.org/releases/oxygen"/>
+        <repository
+            url="http://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="http://download.eclipse.org/tools/orbit/downloads/drops/R20170516192513/repository/"/>
         <repository
             url="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/milestones/"/>
         <repository
