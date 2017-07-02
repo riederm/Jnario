@@ -25,6 +25,7 @@ import org.jnario.util.Nodes
 import static org.eclipse.xtext.EcoreUtil2.*
 import static org.jnario.spec.jvmmodel.Constants.*
 
+import static java.util.Collections.emptyIterator
 import static extension com.google.common.collect.Iterables.*
 import static extension com.google.common.collect.Iterators.*
 import org.jnario.JnarioFunction

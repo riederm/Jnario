@@ -11,6 +11,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import com.google.inject.Inject;
+import java.util.Collections;
 import java.util.Iterator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.EcoreUtil2;
@@ -114,7 +115,7 @@ public class ImplicitSubject {
   }
   
   public boolean neverUsesSubject(final ExampleGroup exampleGroup) {
-    Iterator<XAbstractFeatureCall> allFeatureCalls = Iterators.<XAbstractFeatureCall>emptyIterator();
+    Iterator<XAbstractFeatureCall> allFeatureCalls = Collections.<XAbstractFeatureCall>emptyIterator();
     final EList<JnarioMember> members = exampleGroup.getMembers();
     Iterable<JnarioFunction> _filter = Iterables.<JnarioFunction>filter(members, JnarioFunction.class);
     Iterable<TestFunction> _filter_1 = Iterables.<TestFunction>filter(members, TestFunction.class);
@@ -131,7 +132,7 @@ public class ImplicitSubject {
   }
   
   public boolean doesNotInitializeSubject(final ExampleGroup exampleGroup) {
-    Iterator<XAssignment> allAssignments = Iterators.<XAssignment>emptyIterator();
+    Iterator<XAssignment> allAssignments = Collections.<XAssignment>emptyIterator();
     final EList<JnarioMember> members = exampleGroup.getMembers();
     Iterable<JnarioFunction> _filter = Iterables.<JnarioFunction>filter(members, JnarioFunction.class);
     Iterable<TestFunction> _filter_1 = Iterables.<TestFunction>filter(members, TestFunction.class);

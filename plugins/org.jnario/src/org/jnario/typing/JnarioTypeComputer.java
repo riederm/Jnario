@@ -31,7 +31,8 @@ import org.jnario.Should;
 import org.jnario.ShouldThrow;
 import org.jnario.lib.Each;
 import org.jnario.xbase.richstring.XbaseWithRichstringTypeComputer;
-import com.google.common.base.Objects;
+
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 
@@ -132,7 +133,8 @@ public class JnarioTypeComputer extends XbaseWithRichstringTypeComputer {
 			EList<JvmFormalParameter> parameters = ((XClosure) argument).getFormalParameters();
 			callArguments = parameters != null ? parameters.size() : 0; 
 		}
-		List<? extends JvmFormalParameter> parameters = Objects.firstNonNull(feature.getParameters(), Collections.EMPTY_LIST);
+		@SuppressWarnings("unchecked")
+		List<? extends JvmFormalParameter> parameters = MoreObjects.firstNonNull(feature.getParameters(), Collections.EMPTY_LIST);
 		if (parameters.size() == 2){
 			JvmTypeReference targetClosure = parameters.get(1).getParameterType(); //2nd parameter
 			String closeureQualifiedName = targetClosure.getType().getQualifiedName();
