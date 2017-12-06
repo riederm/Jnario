@@ -320,7 +320,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
       public TestSuiteElement apply(final TestSuiteElement parent) {
         TestSuiteElement _xblockexpression = null;
         {
-          final TestSuiteElement suite = new TestSuiteElement(parent, "id", "name", 10);
+          final TestSuiteElement suite = new TestSuiteElement(parent, "id", "name", 10, null, null, null);
           final Consumer<Function1<? super TestSuiteElement, ? extends TestElement>> _function = new Consumer<Function1<? super TestSuiteElement, ? extends TestElement>>() {
             @Override
             public void accept(final Function1<? super TestSuiteElement, ? extends TestElement> it) {
@@ -340,7 +340,7 @@ public class AbstractJnarioRunnerUIHandlerSuiteLabellingSpec extends AbstractJna
     final Function1<TestSuiteElement, TestCaseElement> _function = new Function1<TestSuiteElement, TestCaseElement>() {
       @Override
       public TestCaseElement apply(final TestSuiteElement suite) {
-        return new TestCaseElement(suite, "id", "tc");
+        return new TestCaseElement(suite, "id", "tc", null, false, null, null);
       }
     };
     return _function;

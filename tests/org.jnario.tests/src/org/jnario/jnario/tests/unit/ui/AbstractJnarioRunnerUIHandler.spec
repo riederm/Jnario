@@ -53,14 +53,14 @@ describe "AbstractJnarioRunnerUIHandler" {
 
 		def suite((TestSuiteElement)=>TestElement... elementConstructors) {
 			[ TestSuiteElement parent |
-				val suite = new TestSuiteElement(parent, "id", "name", 10)
+				val suite = new TestSuiteElement(parent, "id", "name", 10, null, null, null)
 				elementConstructors.forEach[it.apply(suite)]
 				suite
 			]
 		}
 
 		def tc() {
-			[TestSuiteElement suite|new TestCaseElement(suite, "id", "tc")]
+			[TestSuiteElement suite|new TestCaseElement(suite, "id", "tc", null, false, null, null)]
 		}
 
 		def ign() {
