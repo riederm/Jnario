@@ -130,7 +130,7 @@
               <groupId>org.jnario</groupId>
               <artifactId>org.jnario.target</artifactId>
               <version>${project.version}</version>
-              <classifier>oxygen-xtext2.12</classifier>
+              <classifier>oxygen-xtext2.13</classifier>
             </artifact>
           </target>
           <ignoreTychoRepositories>true</ignoreTychoRepositories>
