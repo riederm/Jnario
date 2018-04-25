@@ -26,12 +26,12 @@ class JnarioBuilderParticipant extends BuilderParticipant {
 	@Inject EclipseSourceFolderProvider sourceFolders
 
 	override build(IBuildContext context, IProgressMonitor monitor) throws CoreException {
-		super.build(context, monitor)
+		/*super.build(context, monitor)
 		sourceFolders.getSourceFolders(context.builtProject).forEach [ source |
 			if (context.relevantDeltas.exists[uri.toString.contains(source.makeProjectRelative)]) {
 				htmlAssets.generate(createFsa(context, source))
 			}
-		]
+		] */
 	}
 
 	def private createFsa(IBuildContext context, IContainer source) {
